@@ -74,7 +74,7 @@ const MobileShell = ({ setIsDrawerOpen }) => {
             padding: 6px 16px;
             border-radius: 10px;
             transition: color .15s;
-            min-width: 85px;
+            flex: 1;
           }
           .rm-mob-btn svg {
             display: block;
