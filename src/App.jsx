@@ -56,7 +56,7 @@ const MobileShell = ({ setIsDrawerOpen }) => {
             box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
             z-index: 998;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-evenly;
           }
           .rm-mob-btn {
             display: flex;
