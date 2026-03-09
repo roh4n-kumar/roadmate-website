@@ -49,7 +49,8 @@ const MobileShell = ({ setIsDrawerOpen }) => {
             display: flex !important;
             position: fixed;
             bottom: 0; left: 0; right: 0;
-            height: 68px;
+            height: 64px;
+            padding-bottom: env(safe-area-inset-bottom, 0px);
             background: #fff;
             border-top: 1px solid #eee;
             box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
@@ -58,11 +59,26 @@ const MobileShell = ({ setIsDrawerOpen }) => {
             justify-content: space-around;
           }
           .rm-mob-btn {
-            display: flex; flex-direction: column; align-items: center; gap: 3px;
-            background: none; border: none; cursor: pointer;
-            font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700;
-            color: #aaa; padding: 4px 16px; border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            color: #aaa;
+            padding: 6px 16px;
+            border-radius: 10px;
             transition: color .15s;
+            min-width: 60px;
+          }
+          .rm-mob-btn svg {
+            display: block;
+            flex-shrink: 0;
           }
           .rm-mob-btn.active { color: ${RED}; }
         }
@@ -91,15 +107,15 @@ const MobileShell = ({ setIsDrawerOpen }) => {
       {/* BOTTOM NAV */}
       <div className="rm-mobile-bot">
         <button className={`rm-mob-btn${isActive("/") ? " active" : ""}`} onClick={() => navigate("/")}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           Home
         </button>
         <button className={`rm-mob-btn${isActive("/my-bookings") ? " active" : ""}`} onClick={() => navigate("/my-bookings")}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="m16 10-4 4-2-2"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="m16 10-4 4-2-2"/></svg>
           My Bookings
         </button>
         <button className="rm-mob-btn" onClick={() => setIsDrawerOpen(true)}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           Account
         </button>
       </div>
