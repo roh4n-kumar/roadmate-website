@@ -1,0 +1,169 @@
+/* ===============================
+   GLOBAL & SCROLLBAR HIDE
+   =============================== */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  color: #111;
+  font-family: "Inter", sans-serif;
+  
+  /* 🛠️ SCROLLER JAD SE KHATAM */
+  overflow-x: hidden; /* Side scroll rokne ke liye */
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
+/* Chrome, Safari aur Opera ke liye scroller hide */
+body::-webkit-scrollbar {
+  display: none !important;
+}
+
+button {
+  font-family: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* 🔒 DESKTOP LOCK */
+.desktop-container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===============================
+   react-day-picker v8+ FINAL FIX
+   =============================== */
+
+.rdp {
+  --rdp-cell-size: 36px;
+  --rdp-accent-color: #111;
+  --rdp-accent-background-color: #111;
+
+  background: #fff;
+  color: #111;
+  border-radius: 16px;
+  padding: 16px;
+  font-family: "Inter", sans-serif;
+}
+
+/* Month + Year */
+.rdp-caption_label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+}
+
+/* Navigation arrows */
+.rdp-nav_button {
+  background: transparent;
+  border: none;
+  color: #111;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.rdp-nav_button:hover {
+  background: #e5e5e5;
+}
+
+/* Weekday names */
+.rdp-weekday {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+}
+
+/* ===============================
+   DAYS
+   =============================== */
+
+.rdp-day {
+  width: 36px;
+  height: 36px;
+  font-size: 13px;
+  color: #111;
+  border-radius: 999px;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+
+/* Hover (grey only) */
+.rdp-day:hover:not(.rdp-day_selected) {
+  background: #e5e5e5;
+}
+
+/* 🖤 SELECTED DATE */
+.rdp-day_selected,
+.rdp-day[aria-selected="true"] {
+  background: #111 !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border-radius: 999px;
+}
+
+/* 🖤 TODAY (only outline if not selected) */
+.rdp-day_today:not(.rdp-day_selected),
+.rdp-day[aria-current="date"]:not([aria-selected="true"]) {
+  border: 1px solid #111;
+  font-weight: 600;
+  background: transparent;
+  color: #111;
+}
+
+/* Outside month days */
+.rdp-day_outside {
+  color: #ccc;
+}
+
+/* ===============================
+   🚫 REMOVE ALL BLUE (FOCUS / RING)
+   =============================== */
+
+.rdp-day:focus,
+.rdp-day:focus-visible,
+.rdp-day:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Kill any leftover blue from browser */
+.rdp * {
+  caret-color: transparent;
+}
+
+/* ===============================
+   🔥 FORCE BOLD SELECTED DATE
+   =============================== */
+
+/* Selected day button */
+.rdp-day_selected,
+.rdp-day[aria-selected="true"] {
+  background: #111 !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+}
+
+/* 🔑 ACTUAL NUMBER INSIDE BUTTON */
+.rdp-day_selected span,
+.rdp-day[aria-selected="true"] span {
+  font-weight: 700 !important;
+}
+
+@media (max-width: 1024px) {
+  .hide-on-mobile { display: none !important; }
+}
+
+/* 🛠️ CUSTOM UTILITY CLASS FOR SIDEBARS */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
