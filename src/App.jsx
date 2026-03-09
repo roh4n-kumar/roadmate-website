@@ -49,8 +49,7 @@ const MobileShell = ({ setIsDrawerOpen }) => {
             display: flex !important;
             position: fixed;
             bottom: 0; left: 0; right: 0;
-            height: 72px;
-            padding-bottom: 8px;
+            height: 68px;
             background: #fff;
             border-top: 1px solid #eee;
             box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
