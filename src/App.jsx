@@ -61,7 +61,7 @@ const MobileShell = ({ setIsDrawerOpen }) => {
             display: flex; flex-direction: column; align-items: center; gap: 3px;
             background: none; border: none; cursor: pointer;
             font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700;
-            color: #aaa; padding: 8px 16px; border-radius: 10px;
+            color: #aaa; padding: 4px 16px; border-radius: 10px;
             transition: color .15s;
           }
           .rm-mob-btn.active { color: ${RED}; }
