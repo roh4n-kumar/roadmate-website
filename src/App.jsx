@@ -7,7 +7,7 @@ import MyBookings from "./pages/MyBookings";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PersonalInfo from "./pages/PersonalInfo";
-import DocumentVerification from "./pages/DocumentVerification";
+import DocumentVerification from "./pages/Documentverification";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
