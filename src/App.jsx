@@ -36,27 +36,32 @@ const MobileShell = ({ setIsDrawerOpen }) => {
             display: flex !important;
             align-items: center;
             justify-content: space-between;
-            background: #ffffff;
-            border-bottom: 1px solid #eee;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--glass-border);
             padding: 0 20px;
             height: 56px;
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 998;
+            box-shadow: var(--shadow-sm);
           }
           .rm-mobile-bot {
             display: flex !important;
             position: fixed;
-            bottom: 0; left: 0; right: 0;
+            bottom: 20px; left: 20px; right: 20px;
             height: 64px;
-            padding-bottom: env(safe-area-inset-bottom, 0px);
-            background: #fff;
-            border-top: 1px solid #eee;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+            background: rgba(11, 11, 11, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             z-index: 998;
             align-items: center;
             justify-content: space-evenly;
+            padding: 0 10px;
           }
           .rm-mob-btn {
             display: flex;
@@ -67,36 +72,48 @@ const MobileShell = ({ setIsDrawerOpen }) => {
             background: none;
             border: none;
             cursor: pointer;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 10px;
             font-weight: 700;
-            color: #aaa;
-            padding: 6px 16px;
-            border-radius: 10px;
-            transition: color .15s;
+            color: rgba(255,255,255,0.5);
+            height: 100%;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
             flex: 1;
           }
-          .rm-mob-btn svg {
-            display: block;
-            flex-shrink: 0;
+          .rm-mob-btn.active { color: #fff; }
+          .rm-mob-btn.active::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            width: 4px;
+            height: 4px;
+            background: var(--brand-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--brand-primary);
           }
-          .rm-mob-btn.active { color: ${RED}; }
+          .rm-mob-btn svg {
+            transition: transform 0.2s;
+          }
+          .rm-mob-btn.active svg {
+            transform: translateY(-2px);
+          }
         }
       `}</style>
 
       {/* TOP BAR */}
       <div className="rm-mobile-top">
-        <a href="/" style={{ color:"#1a1a1a", fontSize:"22px", fontWeight:800, textDecoration:"none", letterSpacing:"-0.5px", fontFamily:"'DM Sans',sans-serif" }}>
+        <a href="/" style={{ color:"#111", fontSize:"22px", fontWeight:900, textDecoration:"none", letterSpacing:"-0.8px", fontFamily:"'Outfit',sans-serif" }}>
           Road<span style={{ color: RED }}>Mate</span>
         </a>
         <div style={{
-          width:38, height:38, borderRadius:"50%",
-          background:`linear-gradient(135deg,${RED},#e84545)`,
+          width:36, height:36, borderRadius:"12px",
+          background:`var(--brand-primary)`,
           display:"flex", alignItems:"center", justifyContent:"center",
-          fontSize:"15px", fontWeight:900, color:"#fff",
-          boxShadow:`0 2px 8px rgba(190,13,13,0.3)`,
+          fontSize:"14px", fontWeight:800, color:"#fff",
+          boxShadow:`0 4px 12px rgba(190,13,13,0.3)`,
         }}>
-          {user ? (user.displayName?.[0] || user.email?.[0] || "?").toUpperCase() : (
+          {user ? (user.displayName?.[0] || user.email?.[0] || "U").toUpperCase() : (
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
             </svg>
@@ -112,7 +129,7 @@ const MobileShell = ({ setIsDrawerOpen }) => {
         </button>
         <button className={`rm-mob-btn${isActive("/my-bookings") ? " active" : ""}`} onClick={() => navigate("/my-bookings")}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="m16 10-4 4-2-2"/></svg>
-          My Bookings
+          Bookings
         </button>
         <button className="rm-mob-btn" onClick={() => setIsDrawerOpen(true)}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
