@@ -11,6 +11,10 @@ const MONTHS = ["January","February","March","April","May","June","July","August
 const ChevLeft  = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>);
 const ChevRight = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>);
 
+const fieldLabel = { display:"block", fontSize:"12px", fontWeight:"800", color:"#64748b", marginBottom:"10px", textTransform:"uppercase", letterSpacing:"1.2px", fontFamily:"'Outfit', sans-serif" };
+const fieldInput = (editable) => ({ width:"100%", padding:"12px 16px", borderRadius:"14px", border:editable?"1.5px solid #e2e8f0":"1.5px solid #f1f5f9", background:editable?"#fff":"#f8fafc", fontSize:"14px", fontWeight:"600", color:editable?"#1e293b":"#94a3b8", boxSizing:"border-box", fontFamily:"'Outfit', sans-serif", transition:"all 0.2s", cursor:editable?"text":"default" });
+const submitBtn = { width:"100%", padding:"15px", borderRadius:"16px", background:RED, color:"white", border:"none", fontSize:"14px", fontWeight:"800", cursor:"pointer", fontFamily:"'Outfit', sans-serif", letterSpacing:"0.5px" };
+
 const MiniDropdown = ({ options, value, onChange, width }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef();
@@ -674,9 +678,5 @@ const DocumentVerification = () => {
     </div>
   );
 };
-
-const fieldLabel = { display:"block", fontSize:"12px", fontWeight:"800", color:"#64748b", marginBottom:"10px", textTransform:"uppercase", letterSpacing:"1.2px", fontFamily:"'Outfit', sans-serif" };
-const fieldInput = (editable) => ({ width:"100%", padding:"12px 16px", borderRadius:"14px", border:editable?"1.5px solid #e2e8f0":"1.5px solid #f1f5f9", background:editable?"#fff":"#f8fafc", fontSize:"14px", fontWeight:"600", color:editable?"#1e293b":"#94a3b8", boxSizing:"border-box", fontFamily:"'Outfit', sans-serif", transition:"all 0.2s", cursor:editable?"text":"default" });
-const submitBtn = { width:"100%", padding:"15px", borderRadius:"16px", background:RED, color:"white", border:"none", fontSize:"14px", fontWeight:"800", cursor:"pointer", fontFamily:"'Outfit', sans-serif", letterSpacing:"0.5px" };
 
 export default DocumentVerification;

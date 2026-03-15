@@ -379,4 +379,3 @@ const PersonalInfo = () => {
 const spinnerStyle = { width: "40px", height: "40px", border: "4px solid rgba(190,13,13,0.1)", borderTop: `4px solid ${RED}`, borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto" };
 const navBtnStyle  = { background: "none", border: "none", cursor: "pointer", padding: "6px", borderRadius: "10px", display: "flex", alignItems: "center", color: "#475569", transition: "all 0.2s" };
 export default PersonalInfo;
-nfo;
