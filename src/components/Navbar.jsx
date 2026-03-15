@@ -112,7 +112,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               fontSize: "24px",
               fontWeight: 900,
               textDecoration: "none",
-              color: scrolled ? "#111" : "#fff",
+              color: scrolled ? "#111" : "#222",
               letterSpacing: "-1px"
             }}
           >
@@ -229,9 +229,11 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                 )}
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "10px" }} className="hide-scrollbar">
+                   <DrawerItem icon={<AccountIcon size={20} />} label="Personal Profile" onClick={() => { setIsDrawerOpen(false); navigate("/profile"); }} />
                    <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => { setIsDrawerOpen(false); navigate("/my-bookings"); }} />
                    <DrawerItem icon={<ShieldIcon />} label="Document Verification" onClick={() => { setIsDrawerOpen(false); navigate("/documents"); }} />
                    <DrawerItem icon={<NewWalletIcon />} label="Wallet & Payments" onClick={() => { setIsDrawerOpen(false); navigate("/wallet"); }} />
+                   <DrawerItem icon={<SupportIcon />} label="Customer Support" onClick={() => { setIsDrawerOpen(false); /* support logic */ }} />
                 </div>
 
                 {isLoggedIn && (
@@ -310,5 +312,6 @@ const LogoutIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24
 const AdminIcon = ({ size, color }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>;
 const ShieldIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>;
 const NewWalletIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="5" width="20" height="14" rx="2" /><line x1="2" y1="10" x2="22" y2="10" /><line x1="7" y1="15" x2="11" y2="15" /></svg>;
+const SupportIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>;
 
 export default Navbar;

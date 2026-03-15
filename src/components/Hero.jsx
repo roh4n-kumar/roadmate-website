@@ -183,10 +183,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .hero-section { font-family: 'Outfit', sans-serif; background: #fff; overflow: visible; }
 
     .search-ribbon {
-      background: linear-gradient(135deg, var(--ribbon-navy) 0%, var(--ribbon-night) 45%, var(--ribbon-dark) 100%);
-      padding: 40px 40px 80px;
+      background: linear-gradient(180deg, #111 0%, var(--ribbon-night) 100%);
+      padding: 60px 40px 100px;
       position: relative;
       overflow: visible;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
     
     .search-inner-wrapper {
@@ -196,17 +197,17 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     .glass-search-container {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: var(--glass-border);
-      border-radius: 24px;
-      padding: 30px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 28px;
+      padding: 40px;
       display: flex;
       align-items: flex-end;
       gap: 0;
-      box-shadow: var(--shadow-xl);
-      margin-bottom: -50px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+      margin-bottom: -60px;
       position: relative;
       z-index: 100;
     }
@@ -544,41 +545,18 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   );
 
   return (
-    <section className="hero-section" style={{ marginTop:"64px" }}>
+    <section className="hero-section" style={{ minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "center", background: "#fbfbfb", paddingBottom: "100px" }}>
       <style>{css}</style>
 
-{/* BANNER — hidden on mobile */}
-      <div className="hero-banner" style={{ width:"100%", position:"relative", lineHeight:0, overflow:"hidden" }}>
-        <img src="/banner.png" alt="RoadMate" style={{ width:"100%", height:"auto", display:"block", objectFit:"cover" }} />
-        {/* Text overlay */}
-        <div style={{
-          position:"absolute", top:0, left:0, bottom:0,
-          display:"flex", alignItems:"center",
-          padding:"0 5%",
-          background:"linear-gradient(to right, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 55%, transparent 80%)",
-        }}>
-          <div>
-            <p style={{ color:"rgba(255,255,255,0.85)", fontSize:"clamp(13px,1.8vw,18px)", fontWeight:600, margin:"0 0 6px", letterSpacing:"0.5px", fontFamily:"'DM Sans',sans-serif" }}>
-              Bhubaneswar's Smart Way to
-            </p>
-            <h1 style={{ margin:"0 0 6px", lineHeight:1.1, fontFamily:"'DM Sans',sans-serif" }}>
-              <span style={{ color:"#be0d0d", fontSize:"clamp(28px,4.5vw,56px)", fontWeight:900, marginRight:"10px" }}>
-                Rent
-              </span>
-              <span style={{ color:"#fff", fontSize:"clamp(28px,4.5vw,56px)", fontWeight:900 }}>
-                Bikes &amp; Cars
-              </span>
-            </h1>
-            <p style={{ color:"rgba(255,255,255,0.7)", fontSize:"clamp(11px,1.3vw,15px)", fontWeight:500, margin:"10px 0 0", fontFamily:"'DM Sans',sans-serif" }}>
-              Affordable · Verified · Instant Booking
-            </p>
-          </div>
-        </div>
-      </div>
-
       {/* SEARCH RIBBON */}
-      <div className="search-ribbon">
+      <div className="search-ribbon" style={{ paddingTop: "120px", paddingBottom: "100px" }}>
         <div className="search-inner-wrapper">
+          <div style={{ textAlign: "center", marginBottom: "50px" }}>
+            <h1 style={{ fontSize: "clamp(34px, 5vw, 64px)", fontWeight: 900, color: "#fff", marginBottom: "15px", letterSpacing: "-2px" }}>
+              Rent <span style={{ color: RED }}>Premium</span> Bikes & Cars
+            </h1>
+            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "18px", fontWeight: 500 }}>Bhubaneswar's elite vehicle rental platform.</p>
+          </div>
           <div className="glass-search-container">
             {/* 1. Vehicle */}
             <div ref={vehicleRef} className="search-field">
@@ -688,15 +666,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
       </div>
 
-      {/* OFFER BANNER */}
-      <div className="offer-section">
-        <div className="offer-inner">
-          <img src="/offer_banner.png" alt="Special Offer" />
-        </div>
-      </div>
-
       {/* WHY CHOOSE US */}
-      <div className="why-section">
+      <div className="why-section" style={{ paddingTop: "100px" }}>
         <div className="why-inner">
           <div className="section-header">
             <div className="section-tag">Premium Benefits</div>
