@@ -257,7 +257,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-btn-container {
       display: flex;
       justify-content: center;
-      margin-bottom: -29px; /* Overlap from top */
+      margin-top: -29px; /* Overlap from bottom */
       position: relative;
       z-index: 150;
     }
@@ -551,7 +551,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <style>{css}</style>
 
       {/* SEARCH RIBBON */}
-      <div className="search-ribbon" style={{ paddingTop: "120px", paddingBottom: "100px" }}>
+      <div className="search-ribbon" style={{ paddingTop: "80px", paddingBottom: "100px" }}>
         <div className="search-inner-wrapper">
           <div style={{ textAlign: "center", marginBottom: "50px" }}>
             <h1 style={{ fontSize: "clamp(34px, 5vw, 64px)", fontWeight: 900, color: "#fff", marginBottom: "15px", letterSpacing: "-2px" }}>
@@ -559,13 +559,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </h1>
             <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "18px", fontWeight: 500 }}>Bhubaneswar's elite vehicle rental platform.</p>
           </div>
-          {/* SEARCH BUTTON moved to TOP of glass container */}
-          <div className="search-btn-container">
-            <button className="search-btn" onClick={handleSearch}>
-              <SearchIcon /> Search Availability
-            </button>
-          </div>
-
           <div className="glass-search-container">
             {/* 1. Vehicle */}
             <div ref={vehicleRef} className="search-field">
@@ -643,6 +636,12 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 </div>
               )}
             </div>
+          </div>
+
+          <div className="search-btn-container">
+            <button className="search-btn" onClick={handleSearch}>
+              <SearchIcon /> Search Availability
+            </button>
           </div>
         </div>
       </div>
