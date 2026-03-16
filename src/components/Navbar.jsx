@@ -21,16 +21,9 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
   const navigate = useNavigate();
   const scrollRef = useRef(null); // This ref is not used in the new drawer implementation for scroll locking, but kept as it was in the original code.
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -94,11 +87,11 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           width: "100%",
           zIndex: 1000,
           transition: "all 0.3s ease",
-          height: scrolled ? "70px" : "90px",
+          height: "70px",
           display: "flex",
           alignItems: "center",
           padding: "0 24px",
-          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.9)" : "#fff",
+          backgroundColor: "#fff",
           backdropFilter: "blur(15px)",
           borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
           boxShadow: "0 4px 30px rgba(0, 0, 0, 0.05)",
@@ -314,4 +307,4 @@ const ShieldIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="n
 const NewWalletIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="5" width="20" height="14" rx="2" /><line x1="2" y1="10" x2="22" y2="10" /><line x1="7" y1="15" x2="11" y2="15" /></svg>;
 const SupportIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>;
 
-export default Navbar;
+export default Navbar;
