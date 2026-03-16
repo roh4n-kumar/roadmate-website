@@ -3,7 +3,8 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 const RED = "#be0d0d";
-const F = "'DM Sans', sans-serif";
+const F   = "'Inter', sans-serif";
+const H   = "'Outfit', sans-serif";
 
 const BIKES = [
   { id: "b1", name: "Royal Enfield Classic 350", type: "Cruiser",  cc: "350cc", fuel: "Petrol", seats: 2, pricePerHour: 80,  image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80", rating: 4.8, reviews: 124 },
@@ -55,10 +56,20 @@ const BookingModal = ({ vehicle, hours, date, pickup, drop, onClose, onConfirm }
       onClick={onClose}
     >
       <motion.div
-        initial={{ y: 80 }} animate={{ y: 0 }} exit={{ y: 80 }}
-        transition={{ type: "spring", damping: 28, stiffness: 300 }}
+        initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }}
+        transition={{ type: "spring", damping: 30, stiffness: 300 }}
         onClick={e => e.stopPropagation()}
-        style={{ background: "#fff", borderRadius: "24px 24px 0 0", width: "100%", maxWidth: "500px", maxHeight: "92vh", overflowY: "auto", boxShadow: "0 -8px 40px rgba(0,0,0,0.18)" }}
+        style={{ 
+          background: "rgba(255, 255, 255, 0.9)", 
+          backdropFilter: "blur(30px)",
+          WebkitBackdropFilter: "blur(30px)",
+          borderRadius: "32px 32px 0 0", 
+          width: "100%", maxWidth: "550px", 
+          maxHeight: "92vh", overflowY: "auto", 
+          boxShadow: "0 -20px 60px rgba(0,0,0,0.15)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          fontFamily: F
+        }}
       >
         <div style={{ display: "flex", justifyContent: "center", padding: "10px 0 0" }}>
           <div style={{ width: 40, height: 4, borderRadius: 99, background: "#e0e0e0" }} />
@@ -101,10 +112,10 @@ const BookingModal = ({ vehicle, hours, date, pickup, drop, onClose, onConfirm }
             </div>
           </div>
 
-          <button onClick={() => onConfirm(vehicle, grand)} style={{ width: "100%", padding: "15px", borderRadius: "14px", background: `linear-gradient(135deg,${RED},#e84545)`, border: "none", color: "#fff", fontSize: "15px", fontWeight: "800", cursor: "pointer", boxShadow: `0 6px 20px rgba(190,13,13,0.35)`, fontFamily: F }}>
+          <button onClick={() => onConfirm(vehicle, grand)} style={{ width: "100%", padding: "16px", borderRadius: "16px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, border: "none", color: "#fff", fontSize: "16px", fontWeight: "900", cursor: "pointer", boxShadow: `0 12px 30px rgba(190,13,13,0.35)`, fontFamily: F, transition: "all .3s ease" }}>
             Confirm Booking
           </button>
-          <p style={{ textAlign: "center", fontSize: "11px", color: "#bbb", marginTop: "10px", marginBottom: 0 }}>Free cancellation up to 1 hour before pickup</p>
+          <p style={{ textAlign: "center", fontSize: "11px", color: "#94a3b8", marginTop: "12px", marginBottom: 0, fontWeight: 600 }}>Free cancellation up to 1 hour before pickup</p>
         </div>
       </motion.div>
     </motion.div>
@@ -140,38 +151,48 @@ export default function VehicleResults() {
       return b.reviews - a.reviews;
     });
 
-  const handleConfirm = () => { setSelected(null); setBooked(true); setTimeout(() => navigate("/my-bookings"), 2000); };
+  const handleConfirm = () => { 
+    setSelected(null); 
+    setBooked(true); 
+    setTimeout(() => navigate("/my-bookings"), 2000); 
+  };
 
   return (
-    <div style={{ minHeight: "100vh", background: "#f5f5f7", fontFamily: F }}>
+    <div style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: F }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
         * { box-sizing: border-box; }
-        .vcard { transition: transform .2s, box-shadow .2s; }
-        .vcard:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.12) !important; }
-        .book-btn { transition: all .15s; }
-        .book-btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+        .vcard { transition: all .3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .vcard:hover { transform: translateY(-8px); boxShadow: 0 30px 60px rgba(0,0,0,0.12) !important; border-color: ${RED}30 !important; }
+        .book-btn { transition: all .3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .book-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(190,13,13,0.3); }
 
         /* ── Desktop layout ── */
-        .vr-page       { padding-top: 64px; padding-bottom: 40px; }
-        .vr-subheader  { position: sticky; top: 64px; z-index: 100; background: #fff; border-bottom: 1px solid #eee; padding: 12px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 1px 6px rgba(0,0,0,.04); }
-        .vr-content    { max-width: 1100px; margin: 0 auto; padding: 20px 16px 60px; }
-        .vr-filterbar  { display: flex; gap: 10px; margin-bottom: 20px; align-items: center; }
-        .vr-types      { display: flex; gap: 6px; flex-wrap: wrap; }
-        .vr-sort       { margin-left: auto; display: flex; align-items: center; gap: 8px; }
-        .vr-grid       { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+        .vr-page       { padding-top: 70px; padding-bottom: 60px; }
+        .vr-subheader  { 
+          position: sticky; top: 70px; z-index: 100; 
+          background: rgba(255, 255, 255, 0.8); 
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border-bottom: 1.5px solid rgba(15, 23, 42, 0.05); 
+          padding: 14px 24px; display: flex; align-items: center; gap: 16px; 
+        }
+        .vr-content    { max-width: 1250px; margin: 0 auto; padding: 24px 24px 60px; }
+        .vr-filterbar  { display: flex; gap: 12px; margin-bottom: 24px; align-items: center; }
+        .vr-types      { display: flex; gap: 8px; flex-wrap: wrap; }
+        .vr-sort       { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+        .vr-grid       { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
 
         /* ── Mobile layout ── */
         @media (max-width: 900px) {
-          .vr-page      { padding-top: 56px !important; padding-bottom: 70px !important; }
-          .vr-subheader { top: 56px !important; padding: 10px 12px !important; }
+          .vr-page      { padding-top: 60px !important; padding-bottom: 70px !important; }
+          .vr-subheader { top: 60px !important; padding: 12px 16px !important; }
           .vr-hide-mob  { display: none !important; }
-          .vr-content   { padding: 14px 12px 20px !important; }
+          .vr-content   { padding: 16px 16px 30px !important; }
           .vr-filterbar { flex-wrap: nowrap !important; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
-          .vr-filterbar::-webkit-scrollbar { display: none; }
           .vr-types     { flex-wrap: nowrap !important; }
           .vr-sort      { margin-left: 0 !important; flex-shrink: 0; }
-          .vr-grid      { grid-template-columns: 1fr !important; gap: 14px !important; }
+          .vr-grid      { grid-template-columns: 1fr !important; gap: 16px !important; }
         }
       `}</style>
 
@@ -188,23 +209,23 @@ export default function VehicleResults() {
       <div className="vr-page">
         {/* Sticky subheader */}
         <div className="vr-subheader">
-          <button onClick={() => navigate(-1)} style={{ width: "34px", height: "34px", borderRadius: "10px", background: "#f5f5f5", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#333", flexShrink: 0 }}>
+          <button onClick={() => navigate(-1)} style={{ width: "40px", height: "40px", borderRadius: "12px", background: "rgba(15, 23, 42, 0.05)", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#0f172a", flexShrink: 0, transition: "all .2s" }}>
             <IcoBack />
           </button>
 
-          <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "6px", flexWrap: "wrap", minWidth: 0 }}>
-            <span style={{ fontSize: "15px", fontWeight: "800", color: "#111", flexShrink: 0 }}>{isBike ? "Bikes" : "Cars"}</span>
+          <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", minWidth: 0 }}>
+            <span style={{ fontSize: "18px", fontWeight: "900", color: "#0f172a", flexShrink: 0, fontFamily: H }}>{isBike ? "Bikes" : "Cars"}</span>
             {date && <>
-              <span style={{ color: "#ddd" }}>·</span>
-              <span style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "13px", color: "#666", fontWeight: "600", whiteSpace: "nowrap" }}><IcoCalendar /> {fmt(date)}</span>
+              <span style={{ color: "rgba(15, 23, 42, 0.1)" }}>·</span>
+              <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}><IcoCalendar /> {fmt(date)}</span>
             </>}
             {hours > 0 && <>
-              <span className="vr-hide-mob" style={{ color: "#ddd" }}>·</span>
-              <span className="vr-hide-mob" style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "13px", color: "#666", fontWeight: "600", whiteSpace: "nowrap" }}><IcoClock /> {hours} hr{hours !== 1 ? "s" : ""} ({fmtTime(pickup)} – {fmtTime(drop)})</span>
+              <span className="vr-hide-mob" style={{ color: "rgba(15, 23, 42, 0.1)" }}>·</span>
+              <span className="vr-hide-mob" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}><IcoClock /> {hours} hr{hours !== 1 ? "s" : ""} ({fmtTime(pickup)} – {fmtTime(drop)})</span>
             </>}
           </div>
 
-          <span style={{ fontSize: "12px", color: "#aaa", fontWeight: "600", flexShrink: 0 }}>{sorted.length} available</span>
+          <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>{sorted.length} available</span>
         </div>
 
         <div className="vr-content">
@@ -219,9 +240,9 @@ export default function VehicleResults() {
               ))}
             </div>
             <div className="vr-sort">
-              <span style={{ fontSize: "12px", color: "#aaa", fontWeight: "600", whiteSpace: "nowrap" }}>Sort:</span>
+              <span style={{ fontSize: "12px", color: "#94a3b8", fontWeight: "700", whiteSpace: "nowrap", fontFamily: H, textTransform: "uppercase" }}>Sort By</span>
               <select value={sortBy} onChange={e => setSortBy(e.target.value)}
-                style={{ padding: "7px 10px", borderRadius: "10px", border: "1.5px solid #e0e0e0", background: "#fff", fontSize: "12px", fontWeight: "700", color: "#333", cursor: "pointer", outline: "none" }}>
+                style={{ padding: "8px 12px", borderRadius: "12px", border: "1.5px solid rgba(15, 23, 42, 0.08)", background: "#fff", fontSize: "13px", fontWeight: "700", color: "#0f172a", cursor: "pointer", outline: "none", fontFamily: F }}>
                 <option value="popular">Most Popular</option>
                 <option value="rating">Top Rated</option>
                 <option value="price_low">Price: Low–High</option>
@@ -245,36 +266,36 @@ export default function VehicleResults() {
               return (
                 <motion.div key={v.id} className="vcard"
                   initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
-                  style={{ background: "#fff", borderRadius: "20px", overflow: "hidden", boxShadow: "0 2px 12px rgba(0,0,0,0.07)", border: "1px solid #f0f0f0" }}>
+                  style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.05)", border: "1.5px solid rgba(15, 23, 42, 0.05)" }}>
 
-                  <div style={{ position: "relative", height: "185px", overflow: "hidden" }}>
+                  <div style={{ position: "relative", height: "200px", overflow: "hidden" }}>
                     <img src={v.image} alt={v.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.52) 0%, transparent 55%)" }} />
-                    <span style={{ position: "absolute", top: "11px", left: "11px", background: "rgba(0,0,0,0.5)", color: "#fff", fontSize: "11px", fontWeight: "700", padding: "4px 10px", borderRadius: "99px", backdropFilter: "blur(6px)" }}>{v.type}</span>
-                    <div style={{ position: "absolute", top: "11px", right: "11px", display: "flex", alignItems: "center", gap: "4px", background: "rgba(0,0,0,0.5)", color: "#fbbf24", fontSize: "11px", fontWeight: "700", padding: "4px 10px", borderRadius: "99px", backdropFilter: "blur(6px)" }}>
-                      <IcoStar /> {v.rating} <span style={{ color: "rgba(255,255,255,0.55)" }}>({v.reviews})</span>
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15, 23, 42, 0.6) 0%, transparent 60%)" }} />
+                    <span style={{ position: "absolute", top: "12px", left: "12px", background: "rgba(15, 23, 42, 0.8)", color: "#fff", fontSize: "11px", fontWeight: "800", padding: "5px 12px", borderRadius: "99px", backdropFilter: "blur(8px)", fontFamily: H, textTransform: "uppercase" }}>{v.type}</span>
+                    <div style={{ position: "absolute", top: "12px", right: "12px", display: "flex", alignItems: "center", gap: "4px", background: "rgba(255, 255, 255, 0.9)", color: "#fbbf24", fontSize: "12px", fontWeight: "900", padding: "5px 12px", borderRadius: "99px", backdropFilter: "blur(8px)", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}>
+                      <IcoStar /> {v.rating} <span style={{ color: "#94a3b8", fontWeight: 700 }}>({v.reviews})</span>
                     </div>
-                    <div style={{ position: "absolute", bottom: "11px", left: "13px", right: "13px" }}>
-                      <h3 style={{ color: "#fff", fontSize: "16px", fontWeight: "800", margin: 0, textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}>{v.name}</h3>
+                    <div style={{ position: "absolute", bottom: "14px", left: "16px", right: "16px" }}>
+                      <h3 style={{ color: "#fff", fontSize: "18px", fontWeight: "900", margin: 0, fontFamily: H, letterSpacing: "-0.3px" }}>{v.name}</h3>
                     </div>
                   </div>
 
-                  <div style={{ padding: "13px 14px 15px" }}>
-                    <div style={{ display: "flex", gap: "12px", marginBottom: "13px", flexWrap: "wrap" }}>
-                      <span style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "#777", fontWeight: "600" }}><IcoFuel />{v.fuel}</span>
-                      <span style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "#777", fontWeight: "600" }}><IcoSeat />{v.seats} seats</span>
-                      <span style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "#777", fontWeight: "600" }}><IcoTag />{v.cc}</span>
+                  <div style={{ padding: "20px" }}>
+                    <div style={{ display: "flex", gap: "14px", marginBottom: "16px", flexWrap: "wrap" }}>
+                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoFuel />{v.fuel}</span>
+                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoSeat />{v.seats} Seats</span>
+                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoTag />{v.cc}</span>
                     </div>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
                       <div>
-                        <div style={{ display: "flex", alignItems: "baseline", gap: "3px" }}>
-                          <span style={{ fontSize: "22px", fontWeight: "900", color: "#111" }}>₹{v.pricePerHour}</span>
-                          <span style={{ fontSize: "12px", color: "#aaa", fontWeight: "600" }}>/hr</span>
+                        <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
+                          <span style={{ fontSize: "24px", fontWeight: "900", color: "#0f172a", fontFamily: H }}>₹{v.pricePerHour}</span>
+                          <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800" }}>/hr</span>
                         </div>
-                        {hours > 0 && <p style={{ fontSize: "11px", color: "#aaa", fontWeight: "600", margin: "1px 0 0" }}>₹{grand} total ({hours}hr + GST)</p>}
+                        {hours > 0 && <p style={{ fontSize: "11px", color: "#94a3b8", fontWeight: "700", margin: "2px 0 0" }}>₹{grand} total ({hours}hr + GST)</p>}
                       </div>
                       <button className="book-btn" onClick={() => setSelected(v)}
-                        style={{ padding: "10px 20px", borderRadius: "12px", background: `linear-gradient(135deg,${RED},#e84545)`, border: "none", color: "#fff", fontSize: "13px", fontWeight: "800", cursor: "pointer", boxShadow: `0 4px 14px rgba(190,13,13,0.3)`, whiteSpace: "nowrap", fontFamily: F }}>
+                        style={{ padding: "12px 24px", borderRadius: "14px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, border: "none", color: "#fff", fontSize: "14px", fontWeight: "900", cursor: "pointer", boxShadow: `0 8px 20px rgba(190,13,13,0.3)`, whiteSpace: "nowrap", fontFamily: F }}>
                         Book Now
                       </button>
                     </div>

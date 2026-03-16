@@ -3,8 +3,11 @@ import TimePopup from "./TimePopup";
 import { useState, useRef, useEffect } from "react";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import heroPremium from "../assets/hero-premium.png";
 
 const RED = "#be0d0d";
+const F   = "'Inter', sans-serif";
+const H   = "'Outfit', sans-serif";
 
 // ── Custom Calendar (no external dependency) ──────────────────────────────────
 const DAYS_SHORT = ["SU","MO","TU","WE","TH","FR","SA"];
@@ -38,7 +41,7 @@ const CalendarInline = ({ selected, onSelect }) => {
   for (let d = 1; d <= dim; d++) cells.push(d);
 
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", minWidth: 280 }}>
+    <div style={{ fontFamily: F, minWidth: 280 }}>
       {/* Month nav */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", paddingBottom:"12px", borderBottom:"1px solid #f0f0f0", marginBottom:"10px" }}>
         <span style={{ fontSize:"15px", fontWeight:800, color:"#111" }}>
@@ -86,7 +89,7 @@ const CalendarInline = ({ selected, onSelect }) => {
                 fontSize:"13px", fontWeight: sel ? 700 : tod ? 600 : 400,
                 cursor: past ? "default" : "pointer",
                 display:"flex", alignItems:"center", justifyContent:"center",
-                transition:"all .12s", fontFamily:"'DM Sans', sans-serif",
+                transition:"all .12s", fontFamily: F,
                 boxShadow: sel ? `0 4px 12px rgba(190,13,13,0.35)` : "none",
               }}
               onMouseEnter={e => { if (!sel && !past) e.currentTarget.style.background = `${RED}15`; }}
@@ -177,32 +180,50 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   ];
 
   const css = `
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
     * { box-sizing: border-box; }
-    .hero-section { font-family: 'DM Sans', sans-serif; background: #fff; }
+    .hero-section { font-family: ${F}; background: #fff; }
 
     .search-ribbon {
-      background: linear-gradient(135deg, #1f1b3a 0%, #140f26 45%, #0b0b0b 100%);
-      padding: 24px 40px 60px;
+      background: #0f172a;
+      padding: 30px 40px 60px;
       position: relative;
       overflow: visible;
     }
-    .search-inner { max-width: 1250px; margin: 0 auto; display: flex; align-items: flex-end; gap: 0; position: relative; }
-    .search-field { flex: 1; display: flex; flex-direction: column; gap: 8px; position: relative; padding-right: 20px; margin-right: 20px; border-right: 1px solid rgba(255,255,255,0.15); }
-    .search-field:last-child { border-right: none; padding-right: 0; margin-right: 0; }
-    .search-label { font-size: 11px; color: #ffffff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
-    .search-input-box { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.1); border-radius: 14px; height: 50px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: border-color .2s, background .2s; color: #fff; }
-    .search-input-box:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.09); }
-    .search-input-box span { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.5); }
+    .search-inner { 
+      max-width: 1250px; margin: 0 auto; display: flex; align-items: flex-end; gap: 0; position: relative; 
+      background: rgba(255, 255, 255, 0.03); 
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .search-field { flex: 1; display: flex; flex-direction: column; gap: 8px; position: relative; padding: 0 20px; border-right: 1px solid rgba(255,255,255,0.1); }
+    .search-field:last-child { border-right: none; }
+    .search-label { font-size: 11px; color: rgba(255, 255, 255, 0.6); font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; font-family: ${H}; }
+    .search-input-box { 
+      background: rgba(255,255,255,0.05); 
+      border: 1.5px solid rgba(255,255,255,0.08); 
+      border-radius: 14px; height: 52px; padding: 0 16px; 
+      display: flex; align-items: center; justify-content: space-between; 
+      cursor: pointer; transition: all .2s cubic-bezier(0.16, 1, 0.3, 1); color: #fff; 
+    }
+    .search-input-box:hover { border-color: ${RED}; background: rgba(255,255,255,0.1); }
+    .search-input-box span { font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, 0.4); }
     .search-input-box span.filled { color: #fff; }
 
     .search-btn-wrap { display: flex; justify-content: center; position: relative; z-index: 50; margin-top: -26px; padding-bottom: 26px; }
-    .search-btn { background: ${RED}; color: #fff; border: none; padding: 0 48px; height: 52px; border-radius: 999px; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; white-space: nowrap; box-shadow: 0 8px 28px rgba(190,13,13,0.45); transition: transform .15s, box-shadow .15s; font-family: 'DM Sans', sans-serif; }
-    .search-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(190,13,13,0.5); }
+    .search-btn { 
+      background: ${RED}; color: #fff; border: none; padding: 0 48px; height: 52px; border-radius: 999px; 
+      font-size: 15px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 10px; 
+      white-space: nowrap; box-shadow: 0 12px 32px rgba(190,13,13,0.4); 
+      transition: all .2s cubic-bezier(0.16, 1, 0.3, 1); font-family: ${F}; 
+    }
+    .search-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(190,13,13,0.5); }
 
     .date-sub-row { display: flex; gap: 8px; align-items: center; }
     .date-trigger { flex: 1; }
-    .quick-btn { background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 0 14px; height: 50px; border-radius: 999px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all .15s; white-space: nowrap; font-family: 'DM Sans', sans-serif; }
+    .quick-btn { background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 0 14px; height: 50px; border-radius: 999px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all .15s; white-space: nowrap; font-family: ${F}; }
     .quick-btn:hover { background: rgba(255,255,255,0.18); color: #fff; }
 
     .v-dropdown { position: absolute; top: calc(100% + 8px); left: 0; width: 100%; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.25); border: 1px solid #eee; z-index: 5000; }
@@ -305,8 +326,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <style>{css}</style>
 
 {/* BANNER — hidden on mobile */}
-      <div className="hero-banner" style={{ width:"100%", position:"relative", lineHeight:0, overflow:"hidden" }}>
-        <img src="/banner.png" alt="RoadMate" style={{ width:"100%", height:"auto", display:"block", objectFit:"cover" }} />
+      <div className="hero-banner" style={{ width:"100%", position:"relative", lineHeight:0, overflow:"hidden", height: "min(600px, 70vh)" }}>
+        <img src={heroPremium} alt="RoadMate Premium" style={{ width:"100%", height:"100%", display:"block", objectFit:"cover" }} />
         {/* Text overlay */}
         <div style={{
           position:"absolute", top:0, left:0, bottom:0,
@@ -315,18 +336,18 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           background:"linear-gradient(to right, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 55%, transparent 80%)",
         }}>
           <div>
-            <p style={{ color:"rgba(255,255,255,0.85)", fontSize:"clamp(13px,1.8vw,18px)", fontWeight:600, margin:"0 0 6px", letterSpacing:"0.5px", fontFamily:"'DM Sans',sans-serif" }}>
+            <p style={{ color:"rgba(255,255,255,0.9)", fontSize:"clamp(13px,1.8vw,18px)", fontWeight:800, margin:"0 0 8px", letterSpacing:"1.5px", fontFamily:H, textTransform: "uppercase" }}>
               Bhubaneswar's Smart Way to
             </p>
-            <h1 style={{ margin:"0 0 6px", lineHeight:1.1, fontFamily:"'DM Sans',sans-serif" }}>
-              <span style={{ color:"#be0d0d", fontSize:"clamp(28px,4.5vw,56px)", fontWeight:900, marginRight:"10px" }}>
+            <h1 style={{ margin:"0 0 6px", lineHeight:1.1, fontFamily:H }}>
+              <span style={{ color:RED, fontSize:"clamp(32px,5vw,72px)", fontWeight:900, marginRight:"14px" }}>
                 Rent
               </span>
-              <span style={{ color:"#fff", fontSize:"clamp(28px,4.5vw,56px)", fontWeight:900 }}>
+              <span style={{ color:"#fff", fontSize:"clamp(32px,5vw,72px)", fontWeight:900 }}>
                 Bikes &amp; Cars
               </span>
             </h1>
-            <p style={{ color:"rgba(255,255,255,0.7)", fontSize:"clamp(11px,1.3vw,15px)", fontWeight:500, margin:"10px 0 0", fontFamily:"'DM Sans',sans-serif" }}>
+            <p style={{ color:"rgba(255,255,255,0.8)", fontSize:"clamp(12px,1.4vw,17px)", fontWeight:600, margin:"12px 0 0", fontFamily:F }}>
               Affordable · Verified · Instant Booking
             </p>
           </div>

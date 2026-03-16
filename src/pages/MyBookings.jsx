@@ -14,6 +14,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMotorcycle, faCar, faCalendarAlt, faClock } from '@fortawesome/free-solid-svg-icons';
 
 const RED = "#be0d0d";
+const F   = "'Inter', sans-serif";
+const H   = "'Outfit', sans-serif";
 
 const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -67,61 +69,65 @@ const MyBookings = () => {
     <div style={{ padding: "0 0 80px 0", color: "black", minHeight: "100vh", backgroundColor: "#fcfcfc" }}>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
         @keyframes slideUpFade {
           from { opacity: 0; transform: translateY(15px); }
           to   { opacity: 1; transform: translateY(0); }
         }
         .smooth-entry { animation: slideUpFade 0.4s ease-out forwards; }
-        .booking-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08) !important; }
+        .booking-card { transition: all .3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .booking-card:hover { transform: translateY(-6px); boxShadow: 0 20px 50px rgba(0,0,0,0.1) !important; border-color: ${RED}20 !important; }
 
         .mb-outer { padding: 0 10% 0 10%; }
 
-          .mb-sticky { padding-top: 70px !important; }
+          .mb-sticky { padding-top: 20px !important; }
           @media (max-width: 900px) {
             .mb-outer { padding: 0 16px 0 16px !important; }
-            .mb-title  { font-size: 26px !important; }
+            .mb-title  { font-size: 28px !important; }
             .mb-subtitle { font-size: 14px !important; }
             .mb-tabs   { gap: 24px !important; }
             .mb-tab-label { font-size: 14px !important; }
             .mb-grid   { grid-template-columns: 1fr !important; gap: 16px !important; }
-            .mb-sticky { padding-top: 80px !important; }
+            .mb-sticky { padding-top: 24px !important; }
           }
       `}</style>
 
-      {/* STICKY HEADER */}
       <div className="mb-outer" style={{
-        position: "sticky", top: 0, zIndex: 100,
-        backgroundColor: "#fcfcfc",
-        paddingTop: "80px", paddingBottom: "10px",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        paddingBottom: "10px",
+        borderBottom: "1.5px solid rgba(15, 23, 42, 0.05)",
+        fontFamily: F
       }}>
-        <div className="mb-sticky" style={{ textAlign: "left", marginBottom: "32px" }}>
-          <h2 className="mb-title" style={{ fontSize: "36px", fontWeight: "900", margin: "0", letterSpacing: "-1px" }}>
+        <div className="mb-sticky" style={{ textAlign: "left", marginBottom: "24px" }}>
+          <h2 className="mb-title" style={{ fontSize: "40px", fontWeight: "900", margin: "0", letterSpacing: "-1.5px", fontFamily: H, color: "#0f172a" }}>
             My Bookings
           </h2>
-          <p className="mb-subtitle" style={{ fontSize: "16px", fontWeight: "600", color: "#666", marginTop: "8px" }}>
+          <p className="mb-subtitle" style={{ fontSize: "16px", fontWeight: "600", color: "#64748b", marginTop: "6px" }}>
             Check your ride schedule and rental history.
           </p>
         </div>
 
-        {/* TABS */}
-        <div className="mb-tabs" style={{ display: "flex", gap: "45px", marginBottom: "30px", borderBottom: "1px solid #eee", paddingBottom: "8px" }}>
+        <div className="mb-tabs" style={{ display: "flex", gap: "45px", marginBottom: "10px", paddingBottom: "0" }}>
           {["upcoming", "completed", "cancelled"].map((tab) => (
-            <div key={tab} onClick={() => setActiveTab(tab)} style={{ cursor: "pointer", position: "relative", display: "inline-block" }}>
+            <div key={tab} onClick={() => setActiveTab(tab)} style={{ cursor: "pointer", position: "relative", display: "inline-block", paddingBottom: "12px" }}>
               <div className="mb-tab-label" style={{
-                fontWeight: activeTab === tab ? 800 : 500,
+                fontWeight: activeTab === tab ? 800 : 600,
                 fontSize: "16px",
-                color: activeTab === tab ? RED : "#888",
+                color: activeTab === tab ? RED : "#94a3b8",
                 textTransform: "capitalize",
                 padding: "0 2px",
-                transition: "color 0.3s ease",
+                transition: "all 0.3s ease",
+                fontFamily: H
               }}>
                 {tab}
               </div>
               <div style={{
-                position: "absolute", bottom: "-8px", left: 0,
-                height: "4px", background: RED, borderRadius: "10px",
-                transition: "width 0.3s ease-in-out",
+                position: "absolute", bottom: 0, left: 0,
+                height: "3px", background: RED, borderRadius: "10px",
+                transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
                 width: activeTab === tab ? "100%" : "0%",
+                boxShadow: activeTab === tab ? `0 0 12px ${RED}40` : "none"
               }} />
             </div>
           ))}
@@ -139,26 +145,27 @@ const MyBookings = () => {
             }}>
               {list.map((b) => (
                 <div key={b.id} className="booking-card" style={{
-                  padding: "36px 20px 24px 20px",
-                  borderRadius: "20px",
+                  padding: "40px 24px 28px 24px",
+                  borderRadius: "28px",
                   background: "#ffffff",
-                  boxShadow: "0 8px 30px rgba(0,0,0,0.05)",
-                  border: "1px solid #f0f0f0",
+                  boxShadow: "0 4px 20px rgba(0,0,0,0.03)",
+                  border: "1.5px solid rgba(15, 23, 42, 0.05)",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   textAlign: "center",
                   position: "relative",
-                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                  fontFamily: F
                 }}>
 
                   {activeTab !== "cancelled" && (
                     <div style={{
-                      position: "absolute", top: "14px", right: "16px",
-                      fontSize: "10px", fontWeight: "700", color: "#bbb",
-                      textTransform: "uppercase", letterSpacing: "0.5px",
+                      position: "absolute", top: "16px", right: "20px",
+                      fontSize: "10px", fontWeight: "800", color: "#94a3b8",
+                      textTransform: "uppercase", letterSpacing: "1px",
+                      fontFamily: H
                     }}>
-                      Booked: {formatDate(b.createdAt)}
+                      ID: {b.id.slice(-6)}
                     </div>
                   )}
 
@@ -177,24 +184,23 @@ const MyBookings = () => {
                   </div>
 
                   {/* Vehicle name */}
-                  <h3 style={{ margin: "0 0 12px 0", color: "#1a1a1a", fontSize: "20px", fontWeight: "900", textTransform: "capitalize" }}>
+                  <h3 style={{ margin: "0 0 16px 0", color: "#0f172a", fontSize: "22px", fontWeight: "900", textTransform: "capitalize", fontFamily: H }}>
                     {b.vehicleType}
                   </h3>
 
-                  {/* Date & Time */}
                   <div style={{
                     display: "flex", flexDirection: "column", alignItems: "center",
-                    gap: "6px", marginBottom: "16px", padding: "10px 16px",
-                    backgroundColor: "#f9f9f9", borderRadius: "12px",
-                    border: "1px solid #eee", width: "100%",
+                    gap: "8px", marginBottom: "24px", padding: "14px 20px",
+                    backgroundColor: "#f8fafc", borderRadius: "16px",
+                    border: "1px solid rgba(15, 23, 42, 0.05)", width: "100%",
                   }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                      <FontAwesomeIcon icon={faCalendarAlt} style={{ color: RED, fontSize: "13px" }} />
-                      <span style={{ fontWeight: "700", color: "#333", fontSize: "14px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <FontAwesomeIcon icon={faCalendarAlt} style={{ color: RED, fontSize: "14px" }} />
+                      <span style={{ fontWeight: "800", color: "#0f172a", fontSize: "15px" }}>
                         {formatDate(b.date || b.createdAt)}
                       </span>
                     </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "6px", color: RED, fontSize: "12px", fontWeight: "700" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px", color: RED, fontSize: "13px", fontWeight: "800" }}>
                       <FontAwesomeIcon icon={faClock} />
                       <span>{b.pickupTime || "09:00 AM"} – {b.dropOffTime || "09:00 PM"}</span>
                     </div>
@@ -203,10 +209,11 @@ const MyBookings = () => {
                   {/* Action */}
                   {activeTab === "upcoming" ? (
                     <button onClick={() => handleCancel(b.id)} style={{
-                      width: "100%", padding: "13px",
-                      background: "transparent", border: `2px solid ${RED}`,
-                      color: RED, borderRadius: "12px",
-                      fontWeight: "800", fontSize: "14px", cursor: "pointer", transition: "0.2s",
+                      width: "100%", padding: "14px",
+                      background: "transparent", border: `1.5px solid ${RED}`,
+                      color: RED, borderRadius: "14px",
+                      fontWeight: "900", fontSize: "14px", cursor: "pointer", transition: "all .3s ease",
+                      fontFamily: F
                     }}
                       onMouseEnter={(e) => { e.currentTarget.style.background = RED; e.currentTarget.style.color = "#fff"; }}
                       onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = RED; }}
@@ -214,11 +221,11 @@ const MyBookings = () => {
                       Cancel Booking
                     </button>
                   ) : activeTab === "completed" ? (
-                    <div style={{ width: "100%", padding: "12px", borderRadius: "12px", background: "#f0fdf4", color: "#16a34a", fontWeight: "800", fontSize: "13px" }}>
+                    <div style={{ width: "100%", padding: "14px", borderRadius: "14px", background: "#f0fdf4", color: "#16a34a", fontWeight: "900", fontSize: "14px" }}>
                       Ride Completed ✓
                     </div>
                   ) : (
-                    <div style={{ width: "100%", padding: "12px", borderRadius: "12px", background: "#fef2f2", color: RED, fontWeight: "800", fontSize: "13px" }}>
+                    <div style={{ width: "100%", padding: "14px", borderRadius: "14px", background: "#fef2f2", color: RED, fontWeight: "900", fontSize: "14px" }}>
                       Cancelled
                     </div>
                   )}

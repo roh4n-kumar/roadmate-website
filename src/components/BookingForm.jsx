@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import TimePopup from "./TimePopup";
 
 const RED = "#be0d0d";
-const F   = "'DM Sans', sans-serif";
+const F   = "'Inter', sans-serif";
+const H   = "'Outfit', sans-serif";
 
 // ── Calendar helpers ──────────────────────────────────────────────────────────
 const DAYS   = ["SU","MO","TU","WE","TH","FR","SA"];
@@ -178,12 +179,12 @@ const BookingForm = () => {
   // ── Field button style ──
   const fieldBtn = (active) => ({
     display:"flex", alignItems:"center", gap:"10px",
-    padding:"12px 16px", borderRadius:"14px",
-    border:`1.5px solid ${active ? RED : "#e8e8e8"}`,
-    background: active ? "#fff9f9" : "#fff",
+    padding:"14px 18px", borderRadius:"16px",
+    border:`1.5px solid ${active ? RED : "rgba(15, 23, 42, 0.08)"}`,
+    background: active ? "#fffcfc" : "#fff",
     cursor:"pointer", width:"100%", textAlign:"left",
-    transition:"all .15s", fontFamily:F,
-    boxShadow: active ? `0 0 0 3px ${RED}18` : "none",
+    transition:"all .25s cubic-bezier(0.16, 1, 0.3, 1)", fontFamily:F,
+    boxShadow: active ? `0 6px 20px rgba(190,13,13,0.12)` : "none",
   });
 
   return (
@@ -218,21 +219,22 @@ const BookingForm = () => {
 
       {/* ── Card ── */}
       <div style={{
-        background:"#fff", borderRadius:"24px",
-        padding:"24px", boxShadow:"0 8px 40px rgba(0,0,0,0.12)",
-        border:"1px solid #f0f0f0",
+        background:"rgba(255, 255, 255, 0.95)", borderRadius:"28px",
+        padding:"28px", boxShadow:"0 20px 60px rgba(0,0,0,0.1)",
+        border:"1px solid rgba(15, 23, 42, 0.05)",
+        backdropFilter: "blur(20px)",
       }}>
 
         {/* Vehicle type toggle */}
-        <div style={{ display:"flex", background:"#f5f5f5", borderRadius:"14px", padding:"4px", marginBottom:"20px", gap:"4px" }}>
+        <div style={{ display:"flex", background:"#f8fafc", borderRadius:"16px", padding:"5px", marginBottom:"24px", gap:"5px" }}>
           {["Bike","Car"].map(v => (
             <button key={v} onClick={() => setVehicleType(v)} style={{
-              flex:1, padding:"10px", borderRadius:"11px", border:"none",
-              background: vehicleType===v ? "#fff" : "transparent",
-              color: vehicleType===v ? RED : "#888",
-              fontWeight:700, fontSize:"14px", cursor:"pointer",
-              boxShadow: vehicleType===v ? "0 2px 8px rgba(0,0,0,0.1)" : "none",
-              transition:"all .15s", fontFamily:F,
+              flex:1, padding:"12px", borderRadius:"12px", border:"none",
+              background: vehicleType===v ? "#0f172a" : "transparent",
+              color: vehicleType===v ? "#fff" : "#64748b",
+              fontWeight: 800, fontSize:"14px", cursor:"pointer",
+              boxShadow: vehicleType===v ? "0 4px 12px rgba(15,23,42,0.1)" : "none",
+              transition:"all .25s cubic-bezier(0.16, 1, 0.3, 1)", fontFamily:F,
             }}>
               {v === "Bike" ? "🏍️  Bike" : "🚗  Car"}
             </button>
@@ -247,8 +249,8 @@ const BookingForm = () => {
           <button style={fieldBtn(openPanel==="calendar")}
             onClick={() => setOpenPanel(openPanel==="calendar" ? null : "calendar")}>
             <span style={{ fontSize:"18px" }}>📅</span>
-            <span style={{ fontSize:"14px", fontWeight: date ? 600 : 400, color: date ? "#111" : "#bbb" }}>
-              {date ? fmtDate(date) : "Select date"}
+            <span style={{ fontSize:"15px", fontWeight: date ? 700 : 500, color: date ? "#0f172a" : "#94a3b8" }}>
+              {date ? fmtDate(date) : "Select pickup date"}
             </span>
             {date && <span style={{ marginLeft:"auto", fontSize:"11px", color:RED, fontWeight:700 }}>✓</span>}
           </button>
@@ -264,7 +266,7 @@ const BookingForm = () => {
             <button style={fieldBtn(openPanel==="pickup")}
               onClick={() => setOpenPanel(openPanel==="pickup" ? null : "pickup")}>
               <span style={{ fontSize:"16px" }}>⏰</span>
-              <span style={{ fontSize:"13px", fontWeight: pickupTime ? 600 : 400, color: pickupTime ? "#111" : "#bbb" }}>
+              <span style={{ fontSize:"14px", fontWeight: pickupTime ? 700 : 500, color: pickupTime ? "#0f172a" : "#94a3b8" }}>
                 {pickupTime || "Select"}
               </span>
               {pickupTime && <span style={{ marginLeft:"auto", fontSize:"11px", color:RED, fontWeight:700 }}>✓</span>}
@@ -279,7 +281,7 @@ const BookingForm = () => {
             <button style={fieldBtn(openPanel==="drop")}
               onClick={() => setOpenPanel(openPanel==="drop" ? null : "drop")}>
               <span style={{ fontSize:"16px" }}>🏁</span>
-              <span style={{ fontSize:"13px", fontWeight: dropTime ? 600 : 400, color: dropTime ? "#111" : "#bbb" }}>
+              <span style={{ fontSize:"14px", fontWeight: dropTime ? 700 : 500, color: dropTime ? "#0f172a" : "#94a3b8" }}>
                 {dropTime || "Select"}
               </span>
               {dropTime && <span style={{ marginLeft:"auto", fontSize:"11px", color:RED, fontWeight:700 }}>✓</span>}
@@ -289,16 +291,16 @@ const BookingForm = () => {
 
         {/* ── Search button ── */}
         <button onClick={handleSearch} disabled={!ready} style={{
-          width:"100%", padding:"15px",
-          borderRadius:"14px", border:"none",
-          background: ready ? `linear-gradient(135deg,${RED},#e84545)` : "#eee",
-          color: ready ? "#fff" : "#bbb",
-          fontSize:"15px", fontWeight:800,
-          cursor: ready ? "pointer" : "default",
-          boxShadow: ready ? `0 6px 20px rgba(190,13,13,0.35)` : "none",
-          transition:"all .2s", fontFamily:F,
+          width:"100%", padding:"16px",
+          borderRadius:"16px", border:"none",
+          background: ready ? `linear-gradient(135deg,${RED},#ff4d4d)` : "#f1f5f9",
+          color: ready ? "#fff" : "#94a3b8",
+          fontSize:"16px", fontWeight:900,
+          cursor: ready ? "pointer" : "not-allowed",
+          boxShadow: ready ? `0 10px 25px rgba(190,13,13,0.3)` : "none",
+          transition:"all .3s cubic-bezier(0.16, 1, 0.3, 1)", fontFamily:F,
         }}>
-          {ready ? "Search Vehicles 🔍" : "Fill all fields to search"}
+          {ready ? "Search Availability 🔍" : "Fill all fields to search"}
         </button>
       </div>
 

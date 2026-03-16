@@ -12,6 +12,8 @@ import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
 const RED = "#be0d0d";
+const F   = "'Inter', sans-serif";
+const H   = "'Outfit', sans-serif";
 
 // ── Mobile Shell — topbar + bottom nav, shown only on mobile ─────────────────
 const MobileShell = ({ setIsDrawerOpen }) => {
@@ -36,11 +38,12 @@ const MobileShell = ({ setIsDrawerOpen }) => {
             display: flex !important;
             align-items: center;
             justify-content: space-between;
-            background: #ffffff;
-            border-bottom: 1px solid #eee;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1.5px solid rgba(15, 23, 42, 0.05);
             padding: 0 20px;
-            height: 56px;
+            height: 60px;
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 998;
@@ -49,28 +52,31 @@ const MobileShell = ({ setIsDrawerOpen }) => {
             display: flex !important;
             position: fixed;
             bottom: 0; left: 0; right: 0;
-            height: 64px;
-            background: #fff;
-            border-top: 1px solid #eee;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+            height: 70px;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 998;
             align-items: center;
             justify-content: space-around;
+            padding: 0 10px;
           }
           .rm-mob-btn {
-            display: flex; flex-direction: column; align-items: center; gap: 3px;
+            display: flex; flex-direction: column; align-items: center; gap: 4px;
             background: none; border: none; cursor: pointer;
-            font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700;
-            color: #aaa; padding: 8px 16px; border-radius: 10px;
-            transition: color .15s;
+            font-family: ${F}; font-size: 11px; font-weight: 700;
+            color: rgba(255, 255, 255, 0.5); padding: 8px 12px; border-radius: 12px;
+            transition: all .2s ease;
           }
-          .rm-mob-btn.active { color: ${RED}; }
+          .rm-mob-btn.active { color: #fff; transform: translateY(-2px); }
+          .rm-mob-btn.active svg { stroke: ${RED}; stroke-width: 3; }
         }
       `}</style>
 
       {/* TOP BAR */}
       <div className="rm-mobile-top">
-        <a href="/" style={{ color:"#1a1a1a", fontSize:"22px", fontWeight:800, textDecoration:"none", letterSpacing:"-0.5px", fontFamily:"'DM Sans',sans-serif" }}>
+        <a href="/" style={{ color:"#0f172a", fontSize:"22px", fontWeight:900, textDecoration:"none", letterSpacing:"-0.8px", fontFamily:H }}>
           Road<span style={{ color: RED }}>Mate</span>
         </a>
         <div style={{

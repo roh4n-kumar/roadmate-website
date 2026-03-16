@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 const RED = "#be0d0d";
+const F   = "'Inter', sans-serif";
+const H   = "'Outfit', sans-serif";
 const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 const UserIcon    = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>);
@@ -23,11 +25,11 @@ const ChevronLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill=
 const ChevronRight= () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>);
 
 const inputStyle = (editable) => ({
-  width: "100%", padding: "11px 14px", borderRadius: "12px",
-  border: editable ? "1.5px solid #e0e0e0" : "1.5px solid #f0f0f0",
-  background: editable ? "#fff" : "#fafafa", fontSize: "14px", fontWeight: "500",
-  color: editable ? "#111" : "#666", cursor: editable ? "text" : "default",
-  boxSizing: "border-box", fontFamily: "'DM Sans', sans-serif", transition: "all 0.2s",
+  width: "100%", padding: "12px 16px", borderRadius: "14px",
+  border: editable ? "1.5px solid rgba(15, 23, 42, 0.1)" : "1.5px solid rgba(15, 23, 42, 0.05)",
+  background: editable ? "#fff" : "rgba(15, 23, 42, 0.02)", fontSize: "14px", fontWeight: "600",
+  color: editable ? "#0f172a" : "#64748b", cursor: editable ? "text" : "default",
+  boxSizing: "border-box", fontFamily: F, transition: "all .2s ease",
 });
 
 const CustomDropdown = ({ options, value, onChange, width, disabled, placeholder }) => {
@@ -49,11 +51,11 @@ const CustomDropdown = ({ options, value, onChange, width, disabled, placeholder
       <AnimatePresence>
         {open && (
           <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 4 }}
-            style={{ position: "absolute", top: "calc(100% + 4px)", left: 0, width: "100%", maxHeight: "200px", overflowY: "auto", background: "#fff", borderRadius: "12px", zIndex: 2000, boxShadow: "0 6px 20px rgba(0,0,0,0.12)", border: "1px solid #eee" }}>
+            style={{ position: "absolute", top: "calc(100% + 6px)", left: 0, width: "100%", maxHeight: "200px", overflowY: "auto", background: "#fff", borderRadius: "14px", zIndex: 2000, boxShadow: "0 10px 30px rgba(0,0,0,0.12)", border: "1.5px solid rgba(15, 23, 42, 0.08)" }}>
             {options.map(opt => (
               <div key={opt.value} onClick={(e) => { e.stopPropagation(); onChange(opt.value); setOpen(false); }}
-                style={{ padding: "10px 14px", fontSize: "14px", fontWeight: opt.value === value ? "700" : "500", color: opt.value === value ? RED : "#333", background: opt.value === value ? "#fff5f5" : "transparent", cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}
-                onMouseEnter={e => { if (opt.value !== value) e.currentTarget.style.background = "#f9f9f9"; }}
+                style={{ padding: "12px 16px", fontSize: "14px", fontWeight: opt.value === value ? "800" : "600", color: opt.value === value ? RED : "#0f172a", background: opt.value === value ? "#fff5f5" : "transparent", cursor: "pointer", fontFamily: F }}
+                onMouseEnter={e => { if (opt.value !== value) e.currentTarget.style.background = "#f8fafc"; }}
                 onMouseLeave={e => { if (opt.value !== value) e.currentTarget.style.background = "transparent"; }}>
                 {opt.label}
               </div>
@@ -136,10 +138,10 @@ const PhoneInput = ({ digits, onChange, disabled, hasWarning, onEnterBlur }) => 
   const borderColor = hasWarning ? RED : focused ? RED : "#e0e0e0";
   const shadow = hasWarning ? "0 0 0 3px rgba(190,13,13,0.15)" : focused ? "0 0 0 3px rgba(190,13,13,0.08)" : "none";
   return (
-    <div style={{ display: "flex", alignItems: "center", borderRadius: "12px", border: disabled ? "1.5px solid #f0f0f0" : `1.5px solid ${borderColor}`, background: disabled ? "#fafafa" : "#fff", boxShadow: disabled ? "none" : shadow, overflow: "hidden", transition: "all 0.2s" }}>
-      <span style={{ padding: "11px 10px 11px 14px", fontSize: "14px", fontWeight: "600", color: disabled ? "#888" : "#111", whiteSpace: "nowrap", userSelect: "none", borderRight: "1.5px solid #eee", background: disabled ? "#f5f5f5" : "#f9f9f9", flexShrink: 0 }}>+91</span>
+    <div style={{ display: "flex", alignItems: "center", borderRadius: "14px", border: disabled ? "1.5px solid rgba(15, 23, 42, 0.05)" : `1.5px solid ${borderColor}`, background: disabled ? "rgba(15, 23, 42, 0.02)" : "#fff", boxShadow: disabled ? "none" : shadow, overflow: "hidden", transition: "all 0.2s" }}>
+      <span style={{ padding: "12px 14px", fontSize: "14px", fontWeight: "800", color: disabled ? "#94a3b8" : "#0f172a", whiteSpace: "nowrap", userSelect: "none", borderRight: "1.5px solid rgba(15, 23, 42, 0.08)", background: disabled ? "rgba(15, 23, 42, 0.03)" : "#f8fafc", flexShrink: 0, fontFamily: H }}>+91</span>
       <input type="tel" value={digits} onChange={handleChange} onKeyDown={handleKey} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} disabled={disabled} placeholder="XXXXXXXXXX"
-        style={{ flex: 1, border: "none", outline: "none", background: "transparent", padding: "11px 14px", fontSize: "14px", fontWeight: "500", fontFamily: "'DM Sans', sans-serif", color: disabled ? "#666" : "#111", cursor: disabled ? "default" : "text" }} />
+        style={{ flex: 1, border: "none", outline: "none", background: "transparent", padding: "12px 16px", fontSize: "14px", fontWeight: "600", fontFamily: F, color: disabled ? "#64748b" : "#0f172a", cursor: disabled ? "default" : "text" }} />
     </div>
   );
 };
@@ -152,7 +154,7 @@ const PincodeInput = ({ value, onChange, disabled, hasWarning, onEnterBlur }) =>
   const shadow = hasWarning ? "0 0 0 3px rgba(190,13,13,0.15)" : focused ? "0 0 0 3px rgba(190,13,13,0.08)" : "none";
   return (
     <input type="tel" value={value} onChange={handleChange} onKeyDown={handleKey} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} disabled={disabled} placeholder="XXXXXX"
-      style={{ ...inputStyle(!disabled), color: !disabled ? "#111" : "#666", outline: "none", borderColor: disabled ? "#f0f0f0" : borderColor, boxShadow: disabled ? "none" : shadow }} />
+      style={{ ...inputStyle(!disabled), color: !disabled ? "#0f172a" : "#64748b", outline: "none", borderColor: disabled ? "rgba(15, 23, 42, 0.05)" : borderColor, boxShadow: disabled ? "none" : shadow }} />
   );
 };
 
@@ -230,73 +232,73 @@ const PersonalInfo = () => {
   const handleEnterKey = (e) => { if (e.key === "Enter") { e.preventDefault(); e.target.blur(); } };
 
   if (loading) return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#f8fafc" }}>
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       <div style={{ textAlign: "center" }}>
         <div style={spinnerStyle} />
-        <p style={{ color: "#999", marginTop: "16px", fontSize: "14px", fontFamily: "'DM Sans', sans-serif" }}>Loading your profile...</p>
+        <p style={{ color: "#94a3b8", marginTop: "24px", fontSize: "14px", fontWeight: "700", fontFamily: F }}>Loading your profile...</p>
       </div>
     </div>
   );
 
   return (
-    <div style={{ minHeight: "100vh", background: "#f4f4f6", fontFamily: "'DM Sans', sans-serif" }}>
+    <div style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: F }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
         @keyframes spin { to { transform: rotate(360deg); } }
         input:focus, textarea:focus { outline: none; }
-        .edit-btn:hover   { background: #ececec !important; }
-        .cancel-btn:hover { background: #ececec !important; }
+        .edit-btn:hover   { background: rgba(15, 23, 42, 0.05) !important; }
+        .cancel-btn:hover { background: rgba(15, 23, 42, 0.05) !important; }
 
         /* Desktop */
-        .pi-wrap   { padding-top: 84px; padding-bottom: 120px; }
-        .pi-inner  { max-width: 700px; margin: 0 auto; padding: 0 20px; }
-        .pi-card   { background: #fff; border-radius: 20px; padding: 28px; margin-bottom: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); border: 1px solid #efefef; }
-        .pi-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .pi-title  { font-size: 34px; }
-        .pi-avatar { width: 80px; height: 80px; font-size: 32px; }
-        .pi-name   { font-size: 20px; }
-        .pi-btns   { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
+        .pi-wrap   { padding-top: 100px; padding-bottom: 120px; }
+        .pi-inner  { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        .pi-card   { background: #fff; border-radius: 28px; padding: 40px; margin-bottom: 24px; boxShadow: 0 4px 24px rgba(0,0,0,0.03); border: 1.5px solid rgba(15, 23, 42, 0.05); }
+        .pi-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .pi-title  { font-size: 40px; }
+        .pi-avatar { width: 90px; height: 90px; font-size: 34px; }
+        .pi-name   { font-size: 24px; }
+        .pi-btns   { display: flex; justify-content: center; gap: 16px; margin-top: 32px; }
 
         /* Mobile */
         @media (max-width: 900px) {
-          .pi-wrap  { padding-top: 68px !important; padding-bottom: 80px !important; }
-          .pi-inner { padding: 0 14px !important; }
-          .pi-card  { padding: 18px !important; border-radius: 16px !important; margin-bottom: 12px !important; }
-          .pi-grid  { grid-template-columns: 1fr !important; gap: 14px !important; }
-          .pi-title { font-size: 24px !important; }
-          .pi-avatar{ width: 60px !important; height: 60px !important; font-size: 24px !important; }
-          .pi-name  { font-size: 16px !important; }
-          .pi-btns  { flex-direction: column !important; gap: 10px !important; }
+          .pi-wrap  { padding-top: 80px !important; padding-bottom: 80px !important; }
+          .pi-inner { padding: 0 16px !important; }
+          .pi-card  { padding: 24px !important; border-radius: 20px !important; margin-bottom: 16px !important; }
+          .pi-grid  { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .pi-title { font-size: 28px !important; }
+          .pi-avatar{ width: 70px !important; height: 70px !important; font-size: 28px !important; }
+          .pi-name  { font-size: 18px !important; }
+          .pi-btns  { flex-direction: column !important; gap: 12px !important; }
           .pi-btns button { width: 100% !important; justify-content: center !important; }
-          .pi-edit-btn { padding: 8px 14px !important; font-size: 12px !important; }
+          .pi-edit-btn { padding: 10px 16px !important; font-size: 13px !important; }
         }
       `}</style>
 
       <div className="pi-wrap">
         <div className="pi-inner">
 
-          <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} style={{ marginBottom: "24px" }}>
-            <h1 className="pi-title" style={{ fontFamily: "'Arial Black','Arial',sans-serif", fontWeight: "900", color: "#111", margin: 0, letterSpacing: "-0.5px" }}>
+          <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} style={{ marginBottom: "32px" }}>
+            <h1 className="pi-title" style={{ fontFamily: H, fontWeight: "900", color: "#0f172a", margin: 0, letterSpacing: "-1.5px" }}>
               Personal <span style={{ color: RED }}>Information</span>
             </h1>
-            <p style={{ color: "#999", fontSize: "14px", marginTop: "6px", fontWeight: "500" }}>Manage and update your profile details</p>
+            <p style={{ color: "#64748b", fontSize: "16px", marginTop: "8px", fontWeight: "600" }}>Manage and update your profile details</p>
           </motion.div>
 
           {/* Avatar card */}
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="pi-card">
-            <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-              <div className="pi-avatar" style={{ borderRadius: "50%", background: `linear-gradient(135deg,${RED},#e84545)`, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "900", color: "white", fontFamily: "'Arial Black','Arial',sans-serif", boxShadow: "0 6px 20px rgba(190,13,13,0.3)", flexShrink: 0 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+              <div className="pi-avatar" style={{ borderRadius: "24px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "900", color: "white", fontFamily: H, boxShadow: `0 10px 25px ${RED}40`, flexShrink: 0 }}>
                 {(formData.name?.[0] || user?.email?.[0] || "?").toUpperCase()}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <h3 className="pi-name" style={{ margin: 0, fontWeight: "800", fontFamily: "'Arial Black','Arial',sans-serif", letterSpacing: "-0.5px", color: "#111", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                <h3 className="pi-name" style={{ margin: 0, fontWeight: "900", fontFamily: H, letterSpacing: "-0.5px", color: "#0f172a", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                   {formData.name || "Your Name"}
                 </h3>
-                <p style={{ margin: "3px 0 0", fontSize: "13px", color: "#999", fontWeight: "500", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{formData.email}</p>
+                <p style={{ margin: "4px 0 0", fontSize: "14px", color: "#64748b", fontWeight: "600", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{formData.email}</p>
               </div>
               {!editMode && (
-                <button onClick={handleEditClick} className="edit-btn pi-edit-btn" style={{ background: "#f5f5f5", border: "none", padding: "9px 18px", borderRadius: "12px", fontWeight: "700", fontSize: "13px", cursor: "pointer", color: "#111", display: "flex", alignItems: "center", gap: "7px", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap", flexShrink: 0 }}>
+                <button onClick={handleEditClick} className="edit-btn pi-edit-btn" style={{ background: "rgba(15, 23, 42, 0.04)", border: "none", padding: "12px 20px", borderRadius: "14px", fontWeight: "800", fontSize: "14px", cursor: "pointer", color: "#0f172a", display: "flex", alignItems: "center", gap: "8px", fontFamily: F, whiteSpace: "nowrap", flexShrink: 0, transition: "all .2s" }}>
                   <EditIcon /> Edit Profile
                 </button>
               )}
@@ -305,12 +307,12 @@ const PersonalInfo = () => {
 
           {/* Fields card */}
           <motion.div ref={formCardRef} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="pi-card">
-            <h2 style={{ margin: "0 0 20px", fontSize: "11px", fontWeight: "700", color: "#aaa", textTransform: "uppercase", letterSpacing: "1.5px" }}>Profile Details</h2>
+            <h2 style={{ margin: "0 0 28px", fontSize: "12px", fontWeight: "800", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1.5px", fontFamily: H }}>Profile Details</h2>
 
             <div className="pi-grid">
               {FIELDS.map(({ key, label, type, Icon, placeholder, options, disabled }) => (
                 <div key={key} style={{ gridColumn: type === "textarea" ? "1 / -1" : "auto" }}>
-                  <label style={{ display: "flex", alignItems: "center", gap: "7px", fontSize: "11px", fontWeight: "700", color: "#999", marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.8px", fontFamily: "'DM Sans',sans-serif" }}>
+                  <label style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", fontWeight: "800", color: "#64748b", marginBottom: "10px", textTransform: "uppercase", letterSpacing: "1px", fontFamily: H }}>
                     <span style={{ color: RED, display: "flex", alignItems: "center" }}><Icon /></span>
                     {label}
                   </label>
@@ -324,8 +326,8 @@ const PersonalInfo = () => {
               ))}
             </div>
 
-            <p style={{ fontSize: "12px", color: "#ccc", marginTop: "18px", marginBottom: 0, display: "flex", alignItems: "center", gap: "6px" }}>
-              <MailIcon /> Email is linked to your Google account and cannot be changed.
+            <p style={{ fontSize: "13px", color: "#94a3b8", marginTop: "24px", marginBottom: 0, display: "flex", alignItems: "center", gap: "8px", fontWeight: "600" }}>
+              <MailIcon /> Email is linked to your account and cannot be modified.
             </p>
 
             <AnimatePresence>
@@ -341,9 +343,9 @@ const PersonalInfo = () => {
             <AnimatePresence>
               {editMode && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="pi-btns">
-                  <button onClick={handleCancel} className="cancel-btn" style={{ background: "#f5f5f5", border: "none", padding: "11px 22px", borderRadius: "12px", fontWeight: "700", fontSize: "14px", cursor: "pointer", color: "#555", fontFamily: "'DM Sans',sans-serif" }}>Cancel</button>
-                  <button onClick={handleSave} disabled={saving} style={{ background: RED, color: "white", border: "none", padding: "11px 28px", borderRadius: "12px", fontWeight: "700", fontSize: "14px", cursor: "pointer", display: "flex", alignItems: "center", gap: "8px", boxShadow: "0 4px 14px rgba(190,13,13,0.3)", fontFamily: "'DM Sans',sans-serif" }}>
-                    <SaveIcon />{saving ? "Saving..." : "Save"}
+                  <button onClick={handleCancel} className="cancel-btn" style={{ background: "rgba(15, 23, 42, 0.04)", border: "none", padding: "14px 28px", borderRadius: "14px", fontWeight: "800", fontSize: "15px", cursor: "pointer", color: "#64748b", fontFamily: F, transition: "all .2s" }}>Cancel</button>
+                  <button onClick={handleSave} disabled={saving} style={{ background: RED, color: "white", border: "none", padding: "14px 36px", borderRadius: "14px", fontWeight: "900", fontSize: "15px", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", boxShadow: `0 10px 25px ${RED}40`, fontFamily: H, transition: "all .3s ease" }}>
+                    <SaveIcon />{saving ? "Saving..." : "Save Changes"}
                   </button>
                 </motion.div>
               )}
@@ -353,13 +355,12 @@ const PersonalInfo = () => {
         </div>
       </div>
 
-      {/* Success Toast */}
       <AnimatePresence>
         {saved && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
-            style={{ position: "fixed", bottom: "80px", left: 0, right: 0, display: "flex", justifyContent: "center", zIndex: 9999, pointerEvents: "none" }}>
-            <div style={{ background: "#111", color: "white", padding: "14px 24px", borderRadius: "14px", display: "flex", alignItems: "center", gap: "10px", boxShadow: "0 8px 30px rgba(0,0,0,0.25)", borderLeft: "4px solid #22c55e", fontSize: "14px", fontWeight: "600", whiteSpace: "nowrap", fontFamily: "'DM Sans',sans-serif" }}>
-              ✅ Profile saved successfully!
+            style={{ position: "fixed", bottom: "40px", left: 0, right: 0, display: "flex", justifyContent: "center", zIndex: 9999, pointerEvents: "none" }}>
+            <div style={{ background: "#0f172a", color: "white", padding: "16px 32px", borderRadius: "16px", display: "flex", alignItems: "center", gap: "12px", boxShadow: "0 12px 40px rgba(0,0,0,0.25)", borderLeft: `6px solid #22c55e`, fontSize: "15px", fontWeight: "700", whiteSpace: "nowrap", fontFamily: F }}>
+              ✅ Profile updated successfully!
             </div>
           </motion.div>
         )}

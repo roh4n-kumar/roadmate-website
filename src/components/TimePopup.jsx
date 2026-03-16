@@ -50,7 +50,7 @@ const TimePopup = ({ onSelect, alignRight = false }) => {
       borderRadius: "20px",
       padding: "12px",
       boxShadow: "0 16px 48px rgba(0,0,0,0.18)",
-      fontFamily: "'DM Sans', sans-serif",
+      fontFamily: "'Inter', sans-serif",
       boxSizing: "border-box",
       zIndex: 9999,
       border: "1px solid #f0f0f0",
@@ -70,7 +70,7 @@ const TimePopup = ({ onSelect, alignRight = false }) => {
             color: ampm === v ? "#111" : "#aaa",
             fontWeight: "700", fontSize: "13px", cursor: "pointer",
             boxShadow: ampm === v ? "0 1px 4px rgba(0,0,0,0.1)" : "none",
-            transition: "all .15s", fontFamily: "'DM Sans', sans-serif"
+            transition: "all .15s", fontFamily: "'Inter', sans-serif"
           }}>{v}</button>
         ))}
       </div>
@@ -113,10 +113,10 @@ const TimePopup = ({ onSelect, alignRight = false }) => {
                   display: "flex", alignItems: "center", justifyContent: "center",
                   scrollSnapAlign: "start",
                   fontSize:   hour === h ? "20px" : "14px",
-                  fontWeight: hour === h ? "800"  : "400",
+                  fontWeight: hour === h ? "700"  : "400",
                   color:      hour === h ? "#111" : "#ccc",
                   cursor: "pointer", transition: "all .1s",
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                 }}
               >{h}</div>
             ))}
@@ -159,10 +159,10 @@ const TimePopup = ({ onSelect, alignRight = false }) => {
                   display: "flex", alignItems: "center", justifyContent: "center",
                   scrollSnapAlign: "start",
                   fontSize:   minute === m ? "20px" : "14px",
-                  fontWeight: minute === m ? "800"  : "400",
+                  fontWeight: minute === m ? "700"  : "400",
                   color:      minute === m ? "#111" : "#ccc",
                   cursor: "pointer", transition: "all .1s",
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                 }}
               >{m}</div>
             ))}
@@ -177,7 +177,7 @@ const TimePopup = ({ onSelect, alignRight = false }) => {
         color: "#fff", border: "none", padding: "10px", borderRadius: "12px",
         fontWeight: "700", cursor: "pointer", fontSize: "13px",
         boxShadow: `0 4px 14px rgba(190,13,13,0.3)`,
-        fontFamily: "'DM Sans', sans-serif"
+        fontFamily: "'Outfit', sans-serif"
       }}>Confirm</button>
 
       <style>{`.rm-scroll::-webkit-scrollbar { display: none; }`}</style>

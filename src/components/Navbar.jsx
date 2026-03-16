@@ -11,6 +11,8 @@ import {
 import { setDoc, doc, getDoc } from "firebase/firestore";
 
 const RED = "#be0d0d";
+const F   = "'Inter', sans-serif";
+const H   = "'Outfit', sans-serif";
 
 const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSetDrawerOpen }) => {
   const [_internalDrawerOpen, _setInternalDrawerOpen] = useState(false);
@@ -116,32 +118,36 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
         {`
           .hide-scrollbar::-webkit-scrollbar { display: none; }
           .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-          /* ── Hide desktop navbar on mobile ── */
           @media (max-width: 900px) { .desktop-navbar { display: none !important; } .roadmate-drawer { width: 100% !important; } }
           .google-auth-btn {
             width: 100%; padding: 14px; background: #fff;
-            border: 1.5px solid #e0e0e0; border-radius: 12px;
+            border: 1.5px solid rgba(15, 23, 42, 0.1); border-radius: 14px;
             display: flex; align-items: center; justify-content: center;
-            gap: 12px; font-weight: 700; font-size: 16px; color: #333;
-            cursor: pointer; transition: all 0.2s ease; margin-top: 10px;
+            gap: 12px; font-weight: 800; font-size: 16px; color: #0f172a;
+            cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 10px;
+            font-family: ${F};
           }
-          .google-auth-btn:hover { background: #f9f9f9; border-color: #ccc; }
-          .google-auth-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+          .google-auth-btn:hover { background: #f8fafc; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
           .premium-logout-btn {
-            background: ${RED}; color: white; border: none; padding: 14px;
-            border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 16px;
+            background: #0f172a; color: white; border: none; padding: 16px;
+            border-radius: 16px; font-weight: 800; cursor: pointer; font-size: 16px;
             width: 100%; display: flex; align-items: center; justify-content: center;
-            gap: 10px; transition: 0.3s;
+            gap: 10px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-family: ${F};
           }
-          .premium-logout-btn:hover { opacity: 0.9; transform: translateY(-2px); }
-          .mybookings-btn { background: transparent; }
-          .mybookings-btn:hover { background: #e8e8e8 !important; }
-          .mybookings-btn.selected { background: #be0d0d !important; color: white !important; }
-          .mybookings-btn:active { background: #a50b0b !important; }
-          .account-btn { background: transparent; }
-          .account-btn:hover { background: #e8e8e8 !important; }
-          .account-btn.selected { background: #be0d0d !important; color: white !important; }
-          .account-btn:active { background: #a50b0b !important; }
+          .premium-logout-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(190,13,13,0.3); }
+          .desktop-link { transition: all 0.2s ease; font-family: ${F}; }
+          .desktop-link:hover { color: ${RED} !important; transform: translateY(-1px); }
+          .desktop-link.selected { background: transparent !important; color: ${RED} !important; border-bottom: 3px solid ${RED}; border-radius: 0; }
+          .account-premium-btn {
+            background: #0f172a; color: #fff; border: none;
+            padding: 10px 20px; border-radius: 12px;
+            font-weight: 800; font-size: 14px; cursor: pointer;
+            display: flex; align-items: center; gap: 10px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-family: ${F};
+          }
+          .account-premium-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(190,13,13,0.3); }
         `}
       </style>
 
@@ -162,32 +168,33 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                   }, 400);
                 }
               }}
-              className={({ isActive }) => `mybookings-btn${isActive ? " selected" : ""}`}
-              style={({ isActive }) => ({
-                ...linkStyle,
-                backgroundColor: isActive ? RED : "",
-                color: isActive ? "white" : "#1a1a1a",
+              className={({ isActive }) => `desktop-link${isActive ? " selected" : ""}`}
+              style={{
+                textDecoration: "none",
+                fontSize: "15px",
+                fontWeight: 700,
+                color: "#0f172a",
                 display: "flex", alignItems: "center", gap: "8px",
-              })}
+                padding: "10px 0",
+              }}
             >
               <BookingIcon />
               My Bookings
             </NavLink>
-            <div onClick={() => setIsDrawerOpen(true)} className={`account-btn${isDrawerOpen ? " selected" : ""}`} style={{...accountBtnStyle, background: ""}}>
+            <div onClick={() => setIsDrawerOpen(true)} className="account-premium-btn">
               {isLoggedIn ? (
                 <>
                   <div style={{
-                    width: "28px", height: "28px", borderRadius: "50%",
-                    background: isDrawerOpen ? "rgba(255,255,255,0.25)" : `linear-gradient(135deg, ${RED}, #e84545)`,
+                    width: "26px", height: "26px", borderRadius: "8px",
+                    background: `linear-gradient(135deg, ${RED}, #ff4040)`,
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: "13px", fontWeight: "900", color: "white",
-                    fontFamily: "'Arial Black', Arial, sans-serif",
-                    flexShrink: 0,
-                    boxShadow: isDrawerOpen ? "none" : "0 2px 8px rgba(190,13,13,0.35)",
+                    fontSize: "12px", fontWeight: "900", color: "white",
+                    fontFamily: H, flexShrink: 0,
+                    boxShadow: "0 4px 10px rgba(190,13,13,0.3)",
                   }}>
                     {(user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()}
                   </div>
-                  {user?.displayName || user?.email || "User"}
+                  Account
                 </>
               ) : (
                 <><AccountIcon size={18} /> Account</>
@@ -347,11 +354,11 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
 const modalOverlayStyle = { position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 11000 };
 const modalContentStyle = { background: "#fff", padding: "45px 40px", borderRadius: "32px", width: "90%", maxWidth: "420px", position: "relative", textAlign: "center", boxShadow: "0 20px 60px rgba(0,0,0,0.2)" };
 const closeModalStyle = { position: "absolute", top: "20px", right: "25px", fontSize: "32px", cursor: "pointer", color: "#ccc" };
-const navStyle = { position: "fixed", top: 0, left: 0, width: "100%", height: "64px", zIndex: 1000, background: "#ffffff", boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)", borderBottom: "2px solid #e0e0e0", display: "flex", alignItems: "center" };
+const navStyle = { position: "fixed", top: 0, left: 0, width: "100%", height: "70px", zIndex: 1000, background: "rgba(255, 255, 255, 0.8)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", borderBottom: "1.5px solid rgba(15, 23, 42, 0.05)", display: "flex", alignItems: "center" };
 const containerStyle = { maxWidth: "1200px", margin: "0 auto", padding: "0 24px", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" };
-const logoStyle = { color: "#1a1a1a", fontSize: "22px", fontWeight: 800, textDecoration: "none", letterSpacing: "-0.5px" };
-const linkStyle = { textDecoration: "none", fontSize: "14px", fontWeight: 700, padding: "8px 18px", borderRadius: "10px", transition: "all 0.3s ease" };
-const accountBtnStyle = { textDecoration: "none", fontSize: "14px", fontWeight: 700, padding: "8px 12px", borderRadius: "10px", transition: "all 0.3s ease", display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", color: "#1a1a1a", border: "none" };
+const logoStyle = { color: "#0f172a", fontSize: "24px", fontWeight: 900, textDecoration: "none", letterSpacing: "-1px", fontFamily: H };
+const linkStyle = { textDecoration: "none", fontSize: "14px", fontWeight: 700, padding: "8px 18px", borderRadius: "10px", transition: "all 0.3s ease", fontFamily: F };
+const accountBtnStyle = { textDecoration: "none", fontSize: "14px", fontWeight: 700, padding: "8px 12px", borderRadius: "10px", transition: "all 0.3s ease", display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", color: "#0f172a", border: "none", fontFamily: F };
 const overlayStyle = { position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", backgroundColor: "rgba(0, 0, 0, 0.4)", backdropFilter: "blur(2px)", zIndex: 10001 };
 const drawerStyle = { position: "fixed", top: 0, width: "400px", height: "100vh", background: "white", zIndex: 10002, transition: "0.4s cubic-bezier(0.4, 0, 0.2, 1)", boxShadow: "-10px 0 30px rgba(0,0,0,0.1)", display: "flex", flexDirection: "column" };
 const drawerHeaderStyle = { padding: "0 24px", height: "64px", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #eee" };
