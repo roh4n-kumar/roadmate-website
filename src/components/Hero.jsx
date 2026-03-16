@@ -551,7 +551,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <style>{css}</style>
 
       {/* SEARCH RIBBON */}
-      <div className="search-ribbon" style={{ paddingTop: "80px", paddingBottom: "100px" }}>
+      <div className="search-ribbon" style={{ paddingTop: "60px", paddingBottom: "100px" }}>
         <div className="search-inner-wrapper">
           <div style={{ textAlign: "center", marginBottom: "50px" }}>
             <h1 style={{ fontSize: "clamp(34px, 5vw, 64px)", fontWeight: 900, color: "#fff", marginBottom: "15px", letterSpacing: "-2px" }}>
