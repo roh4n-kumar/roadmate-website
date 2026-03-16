@@ -13,6 +13,10 @@ const MONTHS = ["January","February","March","April","May","June","July","August
 const ChevLeft  = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>);
 const ChevRight = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>);
 
+const fieldLabel = { display:"block", fontSize:"12px", fontWeight:"800", color:"#64748b", marginBottom:"10px", textTransform:"uppercase", letterSpacing:"1.2px", fontFamily:"'Outfit', sans-serif" };
+const fieldInput = (editable) => ({ width:"100%", padding:"12px 16px", borderRadius:"14px", border:editable?"1.5px solid #e2e8f0":"1.5px solid #f1f5f9", background:editable?"#fff":"#f8fafc", fontSize:"14px", fontWeight:"600", color:editable?"#1e293b":"#94a3b8", boxSizing:"border-box", fontFamily:"'Outfit', sans-serif", transition:"all 0.2s", cursor:editable?"text":"default" });
+const submitBtn = { width:"100%", padding:"15px", borderRadius:"16px", background:RED, color:"white", border:"none", fontSize:"14px", fontWeight:"800", cursor:"pointer", fontFamily:"'Outfit', sans-serif", letterSpacing:"0.5px" };
+
 const MiniDropdown = ({ options, value, onChange, width }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef();
@@ -24,18 +28,30 @@ const MiniDropdown = ({ options, value, onChange, width }) => {
   const selected = options.find(o => o.value === value);
   return (
     <div ref={ref} style={{ position: "relative", width }}>
+<<<<<<< HEAD:src/pages/Documentverification.jsx
       <button onClick={e => { e.stopPropagation(); if (!disabled) setOpen(o => !o); }}
         style={{ width: "100%", padding: "6px 12px", borderRadius: "8px", border: "1.5px solid rgba(15, 23, 42, 0.08)", background: disabled ? "rgba(15, 23, 42, 0.02)" : "#fff", fontSize: "13px", fontWeight: "800", color: disabled ? "#94a3b8" : "#0f172a", cursor: disabled ? "default" : "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", fontFamily: F }}>
+=======
+      <button onClick={e => { e.stopPropagation(); setOpen(o => !o); }}
+        style={{ width: "100%", padding: "8px 12px", borderRadius: "10px", border: "1.5px solid #f1f5f9", background: "#f8fafc", fontSize: "13px", fontWeight: "700", color: "#1e293b", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", fontFamily: "'Outfit', sans-serif" }}>
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
         <span>{selected?.label}</span>
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points={open?"18 15 12 9 6 15":"6 9 12 15 18 9"}/></svg>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points={open?"18 15 12 9 6 15":"6 9 12 15 18 9"}/></svg>
       </button>
       <AnimatePresence>
         {open && (
           <motion.div initial={{ opacity:0, y:4 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:4 }}
+<<<<<<< HEAD:src/pages/Documentverification.jsx
             style={{ position:"absolute", top:"calc(100% + 6px)", left:0, width:"100%", maxHeight:"180px", overflowY:"auto", background:"#fff", borderRadius:"12px", zIndex:9999, boxShadow:"0 8px 30px rgba(0,0,0,0.12)", border:"1.5px solid rgba(15, 23, 42, 0.08)" }}>
             {options.map(opt => (
               <div key={opt.value} onClick={e => { e.stopPropagation(); onChange(opt.value); setOpen(false); }}
                 style={{ padding:"10px 12px", fontSize:"13px", fontWeight: opt.value===value?"800":"600", color: opt.value===value?RED:"#0f172a", background: opt.value===value?"#fff5f5":"transparent", cursor:"pointer", fontFamily: F }}
+=======
+            style={{ position:"absolute", top:"calc(100% + 4px)", left:0, width:"100%", maxHeight:"180px", overflowY:"auto", background:"#fff", borderRadius:"12px", zIndex:9999, boxShadow:"0 6px 20px rgba(0,0,0,0.12)", border:"1px solid #f1f5f9" }}>
+            {options.map(opt => (
+              <div key={opt.value} onClick={e => { e.stopPropagation(); onChange(opt.value); setOpen(false); }}
+                style={{ padding:"10px 14px", fontSize:"13px", fontWeight: opt.value===value?"700":"600", color: opt.value===value?RED:"#475569", background: opt.value===value?"rgba(190,13,13,0.05)":"transparent", cursor:"pointer", fontFamily:"'Outfit', sans-serif" }}
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
                 onMouseEnter={e => { if (opt.value!==value) e.currentTarget.style.background="#f8fafc"; }}
                 onMouseLeave={e => { if (opt.value!==value) e.currentTarget.style.background="transparent"; }}>
                 {opt.label}
@@ -75,33 +91,39 @@ const ExpiryDatePicker = ({ value, onChange, disabled, hasError }) => {
   return (
     <div ref={ref} style={{ position:"relative" }}>
       <div onClick={() => !disabled && setOpen(o=>!o)}
+<<<<<<< HEAD:src/pages/Documentverification.jsx
         style={{ width:"100%", padding:"12px 16px", borderRadius:"14px", border: hasError?`1.5px solid ${RED}`:"1.5px solid rgba(15, 23, 42, 0.1)", background:disabled?"rgba(15, 23, 42, 0.02)":"#fff", fontSize:"14px", fontWeight:"600", color:value?(disabled?"#64748b":"#0f172a"):"#94a3b8", boxSizing:"border-box", fontFamily:F, transition:"all 0.2s ease", cursor:disabled?"default":"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", userSelect:"none" }}>
         <span>{displayValue}</span>
         {!disabled && (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>)}
+=======
+        style={{ width:"100%", padding:"12px 16px", borderRadius:"14px", border: hasError?`2px solid ${RED}`:"1.5px solid #e2e8f0", background:disabled?"#f8fafc":"#fff", fontSize:"14px", fontWeight:"600", color:value?(disabled?"#64748b":"#1e293b"):"#94a3b8", boxSizing:"border-box", fontFamily:"'Outfit', sans-serif", transition:"all 0.2s", cursor:disabled?"default":"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", userSelect:"none" }}>
+        <span>{displayValue}</span>
+        {!disabled && (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>)}
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
       </div>
       <AnimatePresence>
         {open && (
           <motion.div initial={{ opacity:0, y:6 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:6 }}
-            style={{ position:"absolute", top:"calc(100% + 6px)", left:0, zIndex:9999, background:"#fff", borderRadius:"14px", border:"1.5px solid #eee", boxShadow:"0 8px 28px rgba(0,0,0,0.13)", padding:"12px", width:"280px" }}>
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"10px", gap:"6px" }}>
-              <button onClick={prevMonth} style={{ background:"none", border:"none", cursor:"pointer", padding:"4px", borderRadius:"6px", display:"flex", alignItems:"center", color:"#555" }}><ChevLeft/></button>
+            style={{ position:"absolute", top:"calc(100% + 8px)", left:0, zIndex:9999, background:"#fff", borderRadius:"20px", border:"1px solid #f1f5f9", boxShadow:"0 15px 35px rgba(0,0,0,0.12)", padding:"16px", width:"290px" }}>
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"12px", gap:"6px" }}>
+              <button onClick={prevMonth} style={{ background:"none", border:"none", cursor:"pointer", padding:"6px", borderRadius:"10px", display:"flex", alignItems:"center", color:"#475569" }}><ChevLeft/></button>
               <div style={{ display:"flex", gap:"6px", flex:1, justifyContent:"center" }}>
-                <MiniDropdown options={monthOptions} value={viewMonth} onChange={setViewMonth} width="110px"/>
-                <MiniDropdown options={yearOptions}  value={viewYear}  onChange={setViewYear}  width="76px"/>
+                <MiniDropdown options={monthOptions} value={viewMonth} onChange={setViewMonth} width="115px"/>
+                <MiniDropdown options={yearOptions}  value={viewYear}  onChange={setViewYear}  width="80px"/>
               </div>
-              <button onClick={nextMonth} style={{ background:"none", border:"none", cursor:"pointer", padding:"4px", borderRadius:"6px", display:"flex", alignItems:"center", color:"#555" }}><ChevRight/></button>
+              <button onClick={nextMonth} style={{ background:"none", border:"none", cursor:"pointer", padding:"6px", borderRadius:"10px", display:"flex", alignItems:"center", color:"#475569" }}><ChevRight/></button>
             </div>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:"1px", marginBottom:"2px" }}>
-              {["Su","Mo","Tu","We","Th","Fr","Sa"].map(d => <div key={d} style={{ textAlign:"center", fontSize:"10px", fontWeight:"700", color:"#bbb", padding:"2px 0" }}>{d}</div>)}
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:"1px", marginBottom:"4px" }}>
+              {["Su","Mo","Tu","We","Th","Fr","Sa"].map(d => <div key={d} style={{ textAlign:"center", fontSize:"10px", fontWeight:"800", color:"#94a3b8", padding:"4px 0" }}>{d}</div>)}
             </div>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:"1px" }}>
-              {Array.from({ length:firstDay }).map((_,i) => <div key={"e"+i} style={{ height:"32px" }}/>)}
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:"2px" }}>
+              {Array.from({ length:firstDay }).map((_,i) => <div key={"e"+i} style={{ height:"34px" }}/>)}
               {Array.from({ length:days }, (_,i) => i+1).map(day => {
                 const past = isPastDay(day);
                 return (
                   <button key={day} onClick={() => !past && handleDayClick(day)} disabled={past}
-                    style={{ width:"100%", height:"32px", borderRadius:"6px", border:"none", background:selectedDay===day?RED:"transparent", color:selectedDay===day?"white":past?"#ddd":"#111", fontWeight:selectedDay===day?"700":"500", fontSize:"12px", cursor:past?"default":"pointer" }}
-                    onMouseEnter={e => { if (selectedDay!==day && !past) e.currentTarget.style.background="#ececec"; }}
+                    style={{ width:"100%", height:"34px", borderRadius:"10px", border:"none", background:selectedDay===day?RED:"transparent", color:selectedDay===day?"white":past?"#e2e8f0":"#334155", fontWeight:selectedDay===day?"800":"600", fontSize:"13px", cursor:past?"default":"pointer", transition:"all 0.2s" }}
+                    onMouseEnter={e => { if (selectedDay!==day && !past) e.currentTarget.style.background="#f1f5f9"; }}
                     onMouseLeave={e => { if (selectedDay!==day) e.currentTarget.style.background="transparent"; }}>
                     {day}
                   </button>
@@ -127,14 +149,18 @@ const CameraIcon  = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill=
 
 const StatusBadge = ({ status }) => {
   const config = {
-    verified:     { bg:"#f0fdf4", border:"#86efac", color:"#16a34a", text:"Verified",     icon:<CheckIcon /> },
-    pending:      { bg:"#fffbeb", border:"#fcd34d", color:"#d97706", text:"Pending",      icon:<ClockIcon /> },
-    rejected:     { bg:"#fff5f5", border:"#fca5a5", color:RED,       text:"Rejected",     icon:"✕" },
+    verified:     { bg:"#f0fdf4", border:"#bbf7d0", color:"#16a34a", text:"Verified",     icon:<CheckIcon /> },
+    pending:      { bg:"#fffbeb", border:"#fde68a", color:"#d97706", text:"Pending",      icon:<ClockIcon /> },
+    rejected:     { bg:"#fef2f2", border:"#fecdd3", color:RED,       text:"Rejected",     icon:"✕" },
     not_uploaded: { bg:"#f8fafc", border:"#e2e8f0", color:"#94a3b8", text:"Not Uploaded", icon:<span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#cbd5e1", display:"inline-block" }}/> },
   };
   const c = config[status] || config.not_uploaded;
   return (
+<<<<<<< HEAD:src/pages/Documentverification.jsx
     <span style={{ display:"inline-flex", alignItems:"center", gap:"6px", padding:"6px 14px", borderRadius:"99px", background:c.bg, border:`1.5px solid ${c.border}`, color:c.color, fontSize:"11px", fontWeight:"900", fontFamily:H, textTransform:"uppercase", letterSpacing:"0.5px" }}>
+=======
+    <span style={{ display:"inline-flex", alignItems:"center", gap:"6px", padding:"4px 12px", borderRadius:"20px", background:c.bg, border:`1px solid ${c.border}`, color:c.color, fontSize:"12px", fontWeight:"800", fontFamily:"'Outfit', sans-serif" }}>
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
       {c.icon} {c.text}
     </span>
   );
@@ -152,6 +178,7 @@ const UploadBox = ({ label, hint, file, onChange, accept="image/*", disabled, fa
   const displaySrc = preview || fallbackUrl || null;
   return (
     <div>
+<<<<<<< HEAD:src/pages/Documentverification.jsx
       <p style={{ fontSize:"12px", fontWeight:"800", color:"#94a3b8", textTransform:"uppercase", letterSpacing:"1.2px", marginBottom:"10px", fontFamily:H }}>{label}</p>
       <div
         onClick={() => !disabled && inputRef.current?.click()}
@@ -166,6 +193,27 @@ const UploadBox = ({ label, hint, file, onChange, accept="image/*", disabled, fa
             <div style={{ color:"#94a3b8" }}><UploadIcon /></div>
             <p style={{ fontSize:"14px", fontWeight:"700", color:"#0f172a", margin:0, fontFamily:F }}>Click to upload</p>
             <p style={{ fontSize:"12px", color:"#94a3b8", margin:0, fontWeight:"600", fontFamily:F }}>{hint}</p>
+=======
+      <p style={{ fontSize:"12px", fontWeight:"800", color:"#64748b", textTransform:"uppercase", letterSpacing:"1px", marginBottom:"10px", fontFamily:"'Outfit', sans-serif" }}>{label}</p>
+      <div
+        onClick={() => !disabled && inputRef.current?.click()}
+        style={{ border:`2.5px dashed ${(file||fallbackUrl)?"#22c55e":"#e2e8f0"}`, borderRadius:"20px", padding:"20px", textAlign:"center", cursor:disabled?"default":"pointer", background:(file||fallbackUrl)?"#f0fdf4":"#f8fafc", transition:"all 0.3s", minHeight:"130px", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"10px" }}
+        onMouseEnter={e => { if (!disabled && !file) e.currentTarget.style.borderColor=RED; e.currentTarget.style.background="#f1f5f9"; }}
+        onMouseLeave={e => { if (!disabled && !file) { e.currentTarget.style.borderColor="#e2e8f0"; e.currentTarget.style.background="#f8fafc"; } else if (file||fallbackUrl) e.currentTarget.style.background="#f0fdf4"; }}
+      >
+        {displaySrc ? (
+          <div style={{ position:"relative" }}>
+            <img src={displaySrc} alt={label} style={{ maxHeight:"100px", maxWidth:"100%", borderRadius:"12px", objectFit:"contain", boxShadow:"0 4px 12px rgba(0,0,0,0.08)" }} />
+            {!disabled && (
+              <div style={{ position:"absolute", top:"-8px", right:"-8px", background:RED, color:"white", width:"20px", height:"20px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"10px", fontWeight:"900", border:"2px solid white" }}>✕</div>
+            )}
+          </div>
+        ) : (
+          <>
+            <div style={{ color:"#94a3b8" }}><UploadIcon /></div>
+            <p style={{ fontSize:"14px", fontWeight:"700", color:"#475569", margin:0, fontFamily:"'Outfit', sans-serif" }}>Click to upload</p>
+            <p style={{ fontSize:"11px", color:"#94a3b8", margin:0, fontFamily:"'Outfit', sans-serif", fontWeight:"600" }}>{hint}</p>
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
           </>
         )}
       </div>
@@ -363,12 +411,16 @@ const DocumentVerification = () => {
   const anyPending  = Object.values(docStatus).some(s => s==="pending");
 
   if (loading) return (
-    <div style={{ minHeight:"100vh", display:"flex", alignItems:"center", justifyContent:"center" }}>
+    <div style={{ minHeight:"100vh", display:"flex", alignItems:"center", justifyContent:"center", background:"#f8fafc" }}>
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-      <div style={{ width:"36px", height:"36px", border:"3px solid #f0f0f0", borderTop:`3px solid ${RED}`, borderRadius:"50%", animation:"spin 0.8s linear infinite" }} />
+      <div style={{ textAlign:"center" }}>
+        <div style={{ width:"40px", height:"40px", border:"4px solid rgba(190,13,13,0.1)", borderTop:`4px solid ${RED}`, borderRadius:"50%", animation:"spin 0.8s linear infinite", margin:"0 auto" }} />
+        <p style={{ color:"#64748b", marginTop:"20px", fontSize:"15px", fontWeight:"700", fontFamily:"'Outfit', sans-serif" }}>Preparing verification...</p>
+      </div>
     </div>
   );
   return (
+<<<<<<< HEAD:src/pages/Documentverification.jsx
     <div style={{ minHeight:"100vh", background:"#f8fafc", fontFamily:F }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
@@ -384,10 +436,26 @@ const DocumentVerification = () => {
         .dv-title { font-size: 40px; }
         .dv-dl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .dv-aad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+=======
+    <div style={{ minHeight:"100vh", background:"#f8fafc", fontFamily:"'Outfit', sans-serif" }}>
+      <style>{`
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .dv-wrap { animation: slideUp 0.6s ease-out; }
+        input:focus, select:focus { outline:none; border-color:${RED} !important; border-width:2px; }
+        .field-input { transition: all 0.2s; }
+        .hover-card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.04) !important; }
+
+        /* Desktop */
+        .dv-container { padding-top: 100px; padding-bottom: 120px; max-width: 800px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
+        .dv-header { margin-bottom: 35px; }
+        .dv-card { background:#fff; border-radius:28px; padding:30px; margin-bottom:20px; border:1px solid #f1f5f9; box-shadow:0 4px 20px rgba(0,0,0,0.02); }
+        .dv-dl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .dv-aad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
         .dv-step-header { display:flex; align-items:center; gap:20px; cursor:pointer; }
 
-        /* Mobile */
         @media (max-width: 900px) {
+<<<<<<< HEAD:src/pages/Documentverification.jsx
           .dv-wrap  { padding-top: 80px !important; padding-bottom: 80px !important; }
           .dv-inner { padding: 0 16px !important; }
           .dv-card  { padding: 24px !important; border-radius: 20px !important; margin-bottom: 12px !important; }
@@ -403,13 +471,23 @@ const DocumentVerification = () => {
           .dv-banner-sub   { font-size: 13px !important; }
           .dv-selfie-vid { width: 220px !important; height: 220px !important; }
           .dv-selfie-img { width: 180px !important; height: 180px !important; }
+=======
+          .dv-container { padding-top: 80px !important; padding-bottom: 100px !important; }
+          .dv-card { padding: 20px !important; border-radius: 20px !important; }
+          .dv-dl-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .dv-aad-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .dv-title { font-size: 28px !important; }
+          .dv-banner-icon { width: 40px !important; height: 40px !important; }
+          .dv-step-icon { width: 42px !important; height: 42px !important; border-radius: 12px !important; }
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
         }
       `}</style>
 
-      <div className="dv-wrap">
-        <div className="dv-inner">
+      <div className="dv-container">
+        <div className="dv-wrap">
 
           {/* Header */}
+<<<<<<< HEAD:src/pages/Documentverification.jsx
           <motion.div initial={{ opacity:0, y:-12 }} animate={{ opacity:1, y:0 }} style={{ marginBottom:"32px" }}>
             <h1 className="dv-title" style={{ fontFamily:H, fontWeight:"900", color:"#0f172a", margin:0, letterSpacing:"-1.5px" }}>
               Document <span style={{ color:RED }}>Verification</span>
@@ -429,69 +507,118 @@ const DocumentVerification = () => {
                 </h3>
                 <p className="dv-banner-sub" style={{ margin:"4px 0 0", fontSize:"14px", color:"#64748b", fontWeight:"600" }}>
                   {allVerified?"You can now book any vehicle on RoadMate!":anyPending?"Our team will review your documents within 24 hours.":"Submit all 3 documents to start booking vehicles."}
+=======
+          <div className="dv-header">
+            <h1 className="dv-title" style={{ fontSize: "38px", fontWeight: "900", color: "#1e293b", margin: 0, letterSpacing: "-1.5px" }}>
+              Document <span style={{ color: RED }}>Verification</span>
+            </h1>
+            <p style={{ color: "#64748b", fontSize: "16px", marginTop: "8px", fontWeight: "600" }}>Complete verification to unlock premium bookings</p>
+          </div>
+
+          {/* Status Banner */}
+          <div className="dv-card" style={{ 
+            background: allVerified ? "rgba(34,197,94,0.03)" : anyPending ? "rgba(217,119,6,0.03)" : "#fff", 
+            borderColor: allVerified ? "#bbf7d0" : anyPending ? "#fde68a" : "#f1f5f9", 
+            marginBottom: "30px",
+            borderLeft: `6px solid ${allVerified ? "#22c55e" : anyPending ? "#f59e0b" : "#e2e8f0"}`
+          }}>
+            <div style={{ display:"flex", alignItems:"center", gap:"18px" }}>
+              <div className="dv-banner-icon" style={{ 
+                width:"54px", height:"54px", borderRadius:"16px", 
+                background: allVerified ? "#22c55e" : anyPending ? "#f59e0b" : "#f1f5f9", 
+                display:"flex", alignItems:"center", justifyContent:"center", 
+                color: allVerified || anyPending ? "white" : "#94a3b8", flexShrink:0,
+                boxShadow: allVerified ? "0 8px 20px rgba(34,197,94,0.2)" : anyPending ? "0 8px 20px rgba(245,158,11,0.2)" : "none"
+              }}>
+                <ShieldIcon />
+              </div>
+              <div style={{ flex:1 }}>
+                <h3 style={{ margin:0, fontSize:"18px", fontWeight:"900", color:"#1e293b", letterSpacing:"-0.5px" }}>
+                  {allVerified?"All Documents Verified ✅":anyPending?"Verification In Progress":"Verification Required"}
+                </h3>
+                <p style={{ margin:"4px 0 0", fontSize:"14px", color:"#64748b", fontWeight:"600" }}>
+                  {allVerified?"You have verified access to RoadMate fleet.":anyPending?"Our team is reviewing your documents (ETA: 24h).":"Please upload required documents to start your journey."}
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Steps */}
           {STEPS.map((step, i) => {
             const status = docStatus[step.key];
+            const isOpen = expandedCards[step.key];
             return (
-              <motion.div key={step.key} ref={el => stepRefs.current[step.key]=el} initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.05*i }} className="dv-card">
-
+              <div key={step.key} ref={el => stepRefs.current[step.key]=el} className="dv-card hover-card">
                 <div className="dv-step-header" onClick={() => setExpandedCards(p => ({ ...p, [step.key]:!p[step.key] }))}>
+<<<<<<< HEAD:src/pages/Documentverification.jsx
                   <div className="dv-step-icon" style={{ width:"50px", height:"50px", borderRadius:"16px", background:status==="verified"?"#f0fdf4":status==="pending"?"#fffbeb":"rgba(15, 23, 42, 0.03)", display:"flex", alignItems:"center", justifyContent:"center", color:status==="verified"?"#16a34a":status==="pending"?"#d97706":"#94a3b8", flexShrink:0, border:`1.5px solid ${status==="verified"?"rgba(34, 197, 94, 0.3)":status==="pending"?"#fcd34d":"transparent"}` }}>
+=======
+                  <div className="dv-step-icon" style={{ 
+                    width:"50px", height:"50px", borderRadius:"16px", 
+                    background: status==="verified" ? "rgba(34,197,94,0.1)" : status==="pending" ? "rgba(217,119,6,0.1)" : status==="rejected" ? "rgba(190,13,13,0.1)" : "#f8fafc", 
+                    display:"flex", alignItems:"center", justifyContent:"center", 
+                    color: status==="verified"?"#16a34a":status==="pending"?"#d97706":status==="rejected"?RED:"#94a3b8", flexShrink:0, 
+                    border:`1.5px solid ${status==="verified"?"#bbf7d0":status==="pending"?"#fde68a":status==="rejected"?"#fecdd3":"#f1f5f9"}` 
+                  }}>
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
                     {status==="verified"?<CheckIcon />:step.icon}
                   </div>
                   <div style={{ flex:1, minWidth:0 }}>
                     <div style={{ display:"flex", alignItems:"center", gap:"10px", flexWrap:"wrap" }}>
+<<<<<<< HEAD:src/pages/Documentverification.jsx
                       <span className="dv-step-label" style={{ fontSize:"17px", fontWeight:"900", color:"#0f172a", fontFamily:H }}>{step.label}</span>
                       <StatusBadge status={status} />
                     </div>
                     <p className="dv-step-desc" style={{ margin:"4px 0 0", fontSize:"13px", color:"#94a3b8", fontWeight:"600" }}>{step.desc}</p>
                   </div>
                   <div style={{ color:"#cbd5e1", transform:expandedCards[step.key]?"rotate(90deg)":"rotate(0deg)", transition:"transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)", flexShrink:0 }}>
+=======
+                      <span style={{ fontSize:"16px", fontWeight:"900", color:"#1e293b", letterSpacing:"-0.3px" }}>{step.label}</span>
+                      <StatusBadge status={status} />
+                    </div>
+                    <p style={{ margin:"4px 0 0", fontSize:"13px", color:"#94a3b8", fontWeight:"600" }}>{step.desc}</p>
+                  </div>
+                  <div style={{ color:"#cbd5e1", transform:isOpen?"rotate(90deg)":"rotate(0deg)", transition:"transform 0.3s", flexShrink:0 }}>
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
                     <ChevronRight />
                   </div>
                 </div>
 
                 <AnimatePresence>
-                  {expandedCards[step.key] && (
-                    <motion.div initial={{ opacity:0, height:0 }} animate={{ opacity:1, height:"auto" }} exit={{ opacity:0, height:0 }} transition={{ duration:0.25 }} style={{ overflow:"visible" }}>
-                      <div style={{ borderTop:"1px solid #f0f0f0", marginTop:"16px", paddingTop:"18px" }}>
+                  {isOpen && (
+                    <motion.div initial={{ opacity:0, height:0 }} animate={{ opacity:1, height:"auto" }} exit={{ opacity:0, height:0 }} transition={{ duration:0.3 }}>
+                      <div style={{ borderTop:"1.5px solid #f1f5f9", marginTop:"20px", paddingTop:"25px" }}>
 
-                        {/* ── DL Form ── */}
+                        {/* DL Form */}
                         {step.key==="driving-licence" && (
-                          <div style={{ display:"flex", flexDirection:"column", gap:"14px" }}>
-                            <UploadBox label="DL Photo" hint="Clear photo of your Driving Licence" file={dlFront} onChange={setDlFront} disabled={status==="pending"||status==="verified"||uploading} fallbackUrl={dlImageUrl} />
+                          <div style={{ display:"flex", flexDirection:"column", gap:"20px" }}>
+                            <UploadBox label="DL Photo" hint="Front clear photo of your Driving Licence" file={dlFront} onChange={setDlFront} disabled={status==="pending"||status==="verified"||uploading} fallbackUrl={dlImageUrl} />
                             <div className="dv-dl-grid">
-                              <div>
+                              <div style={{ flex:1 }}>
                                 <label style={fieldLabel}>DL Number</label>
                                 <input
                                   value={dlNumber}
-                                  onChange={e => { const raw=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,15); const letters=raw.slice(0,2).replace(/[^A-Z]/g,""); const digits=raw.slice(2).replace(/[^0-9]/g,""); const val=(letters+digits).slice(0,15); setDlNumber(val); if (/^[A-Z]{2}([0-9]{11}|[0-9]{13})$/.test(val)) setDlErrors(p=>({...p,dlNumber:""})); }}
-                                  onKeyDown={e => { if (e.key==="Enter") { e.preventDefault(); e.target.blur(); } }}
-                                  onBlur={() => { if (!dlNumber) return; if (!/^[A-Z]{2}([0-9]{11}|[0-9]{13})$/.test(dlNumber)) setDlErrors(p=>({...p,dlNumber:"Invalid DL number format"})); }}
-                                  placeholder="OD0420XXXXXXX" maxLength={15}
+                                  onChange={e => { const val=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,15); setDlNumber(val); if (/^[A-Z]{2}([0-9]{11}|[0-9]{13})$/.test(val)) setDlErrors(p=>({...p,dlNumber:""})); }}
+                                  placeholder="OD0420XXXXXXXXX" maxLength={15}
                                   disabled={status==="pending"||status==="verified"||uploading}
-                                  style={{ ...fieldInput(status!=="pending"&&status!=="verified"&&!uploading), borderColor:dlErrors.dlNumber?"#be0d0d":dlBorderColor }}
+                                  style={{ ...fieldInput(status!=="pending"&&status!=="verified"&&!uploading), borderColor:dlErrors.dlNumber?RED:dlBorderColor }}
                                 />
-                                {dlErrors.dlNumber && <p style={{ margin:"4px 0 0", fontSize:"11px", color:"#be0d0d", fontWeight:"600" }}>⚠ {dlErrors.dlNumber}</p>}
+                                {dlErrors.dlNumber && <p style={{ margin:"6px 0 0", fontSize:"12px", color:RED, fontWeight:"700" }}>⚠ {dlErrors.dlNumber}</p>}
                               </div>
-                              <div>
+                              <div style={{ flex:1 }}>
                                 <label style={fieldLabel}>Expiry Date</label>
                                 <ExpiryDatePicker value={dlExpiry} onChange={val=>{ setDlExpiry(val); setDlErrors(p=>({...p,dlExpiry:""})); }} disabled={status==="pending"||status==="verified"||uploading} hasError={!!dlErrors.dlExpiry} />
-                                {dlErrors.dlExpiry && <p style={{ margin:"4px 0 0", fontSize:"11px", color:RED, fontWeight:"600" }}>⚠ {dlErrors.dlExpiry}</p>}
+                                {dlErrors.dlExpiry && <p style={{ margin:"6px 0 0", fontSize:"12px", color:RED, fontWeight:"700" }}>⚠ {dlErrors.dlExpiry}</p>}
                               </div>
                             </div>
                             <div>
-                              <label style={fieldLabel}>Vehicle Class</label>
+                              <label style={fieldLabel}>Vehicle Category</label>
                               {(() => {
                                 const classes = [
                                   { value:"LMV",      label:"LMV",        sub:"Light Motor Vehicle (Car)" },
                                   { value:"MCWG",     label:"MCWG",       sub:"Motorcycle With Gear" },
-                                  { value:"MCWOG",    label:"MCWOG",      sub:"Motorcycle Without Gear (Scooter)" },
+                                  { value:"MCWOG",    label:"MCWOG",      sub:"Motorcycle Without Gear" },
                                   { value:"LMV+MCWG", label:"LMV + MCWG", sub:"Both Car and Motorcycle" },
                                 ];
                                 const selected = classes.find(c => c.value===dlClass);
@@ -500,21 +627,26 @@ const DocumentVerification = () => {
                                   <div id="dl-class-dropdown" style={{ position:"relative" }}>
                                     <div onClick={() => !isDisabled && setDlClassOpen(p=>!p)}
                                       style={{ ...fieldInput(!isDisabled), borderColor:dlErrors.dlClass?RED:dlClassOpen?RED:undefined, cursor:isDisabled?"default":"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", userSelect:"none" }}>
-                                      <span style={{ color:selected?"#111":"#aaa", fontSize:"14px" }}>{selected?selected.label:"Select vehicle type"}</span>
-                                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform:dlClassOpen?"rotate(180deg)":"rotate(0deg)", transition:"transform 0.2s", flexShrink:0 }}><polyline points="6 9 12 15 18 9"/></svg>
+                                      <span style={{ color:selected?"#1e293b":"#94a3b8", fontSize:"14px", fontWeight:"600" }}>{selected?selected.label:"Select primary category"}</span>
+                                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform:dlClassOpen?"rotate(180deg)":"rotate(0deg)", transition:"transform 0.2s" }}><polyline points="6 9 12 15 18 9"/></svg>
                                     </div>
                                     {dlClassOpen && (
-                                      <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, background:"#fff", borderRadius:"14px", border:"1.5px solid #e0e0e0", boxShadow:"0 8px 30px rgba(0,0,0,0.12)", zIndex:100, overflow:"hidden" }}>
+                                      <div style={{ position:"absolute", top:"calc(100% + 8px)", left:0, right:0, background:"#fff", borderRadius:"16px", border:"1px solid #f1f5f9", boxShadow:"0 10px 40px rgba(0,0,0,0.1)", zIndex:100, overflow:"hidden" }}>
                                         {classes.map(c => (
                                           <div key={c.value} onClick={() => { setDlClass(c.value); setDlErrors(p=>({...p,dlClass:""})); setDlClassOpen(false); }}
-                                            style={{ display:"flex", alignItems:"center", gap:"14px", padding:"13px 16px", cursor:"pointer", background:dlClass===c.value?"#fff5f5":"transparent", borderBottom:"1px solid #f5f5f5" }}
-                                            onMouseEnter={e => { if (dlClass!==c.value) e.currentTarget.style.background="#fafafa"; }}
+                                            style={{ display:"flex", alignItems:"center", gap:"14px", padding:"15px 20px", cursor:"pointer", background:dlClass===c.value?"rgba(190,13,13,0.05)":"transparent", borderBottom:"1px solid #f8fafc" }}
+                                            onMouseEnter={e => { if (dlClass!==c.value) e.currentTarget.style.background="#f8fafc"; }}
                                             onMouseLeave={e => { if (dlClass!==c.value) e.currentTarget.style.background="transparent"; }}>
                                             <div style={{ flex:1 }}>
+<<<<<<< HEAD:src/pages/Documentverification.jsx
                                               <p style={{ margin:0, fontSize:"14px", fontWeight:"700", color:dlClass===c.value?RED:"#111", fontFamily:F }}>{c.label}</p>
                                               <p style={{ margin:"1px 0 0", fontSize:"12px", color:"#aaa", fontFamily:F }}>{c.sub}</p>
+=======
+                                              <p style={{ margin:0, fontSize:"14px", fontWeight:"800", color:dlClass===c.value?RED:"#1e293b", fontFamily:"'Outfit', sans-serif" }}>{c.label}</p>
+                                              <p style={{ margin:"2px 0 0", fontSize:"12px", color:"#94a3b8", fontFamily:"'Outfit', sans-serif", fontWeight:"600" }}>{c.sub}</p>
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
                                             </div>
-                                            {dlClass===c.value && (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>)}
+                                            {dlClass===c.value && (<div style={{ background:RED, borderRadius:"50%", padding:"4px" }}><CheckIcon /></div>)}
                                           </div>
                                         ))}
                                       </div>
@@ -522,39 +654,40 @@ const DocumentVerification = () => {
                                   </div>
                                 );
                               })()}
-                              {dlErrors.dlClass && <p style={{ margin:"4px 0 0", fontSize:"11px", color:RED, fontWeight:"600" }}>⚠ {dlErrors.dlClass}</p>}
+                              {dlErrors.dlClass && <p style={{ margin:"6px 0 0", fontSize:"12px", color:RED, fontWeight:"700" }}>⚠ Licence category is required</p>}
                             </div>
                             {(status==="not_uploaded"||status==="rejected") && (
-                              <p style={{ fontSize:"12px", color:RED, fontWeight:"600", margin:"0" }}>⚠ Ensure your DL is valid and the selected class matches your licence.</p>
+                              <p style={{ fontSize:"13px", color:"#f59e0b", fontWeight:"700", margin:0, background:"rgba(245,158,11,0.08)", padding:"12px 16px", borderRadius:"12px", border:"1px solid rgba(245,158,11,0.2)" }}>
+                                💡 Make sure all details on DL match your profile Information.
+                              </p>
                             )}
                           </div>
                         )}
 
-                        {/* ── Aadhaar Form ── */}
+                        {/* Aadhaar Form */}
                         {step.key==="aadhaar" && (
-                          <div style={{ display:"flex", flexDirection:"column", gap:"14px" }}>
+                          <div style={{ display:"flex", flexDirection:"column", gap:"20px" }}>
                             <div className="dv-aad-grid">
-                              <UploadBox label="Front Side" hint="Aadhaar front with photo" file={aadhaarFront} onChange={setAadhaarFront} disabled={status==="pending"||status==="verified"||uploading} fallbackUrl={aadhaarFrontUrl} />
-                              <UploadBox label="Back Side" hint="Aadhaar back with address" file={aadhaarBack} onChange={setAadhaarBack} disabled={status==="pending"||status==="verified"||uploading} fallbackUrl={aadhaarBackUrl} />
+                              <UploadBox label="Front Side" hint="Clear scan of Aadhaar front" file={aadhaarFront} onChange={setAadhaarFront} disabled={status==="pending"||status==="verified"||uploading} fallbackUrl={aadhaarFrontUrl} />
+                              <UploadBox label="Back Side" hint="Clear scan of Aadhaar back" file={aadhaarBack} onChange={setAadhaarBack} disabled={status==="pending"||status==="verified"||uploading} fallbackUrl={aadhaarBackUrl} />
                             </div>
                             <div>
                               <label style={fieldLabel}>Aadhaar Number</label>
                               <input
                                 value={aadhaarNumber}
                                 onChange={e => { const raw=e.target.value.replace(/\D/g,"").slice(0,12); const formatted=raw.replace(/(\d{4})(?=\d)/g,"$1 ").trim(); setAadhaarNumber(formatted); }}
-                                onBlur={() => { const digits=aadhaarNumber.replace(/\s/g,""); if (digits.length>0&&digits.length<12) setAadhaarErrors(p=>({...p,aadhaarNumber:"Invalid Aadhaar number"})); else setAadhaarErrors(p=>({...p,aadhaarNumber:""})); }}
-                                onKeyDown={e => { if (e.key==="Enter") e.target.blur(); }}
                                 placeholder="XXXX XXXX XXXX"
                                 disabled={status==="pending"||status==="verified"||uploading}
                                 style={{ ...fieldInput(status!=="pending"&&status!=="verified"&&!uploading), borderColor:aadhaarErrors?.aadhaarNumber?RED:aadhaarNumber.replace(/\s/g,"").length===12?"#22c55e":undefined }}
                               />
-                              {aadhaarErrors?.aadhaarNumber && <p style={{ margin:"4px 0 0", fontSize:"11px", color:RED, fontWeight:"600" }}>⚠ {aadhaarErrors.aadhaarNumber}</p>}
+                              {aadhaarErrors?.aadhaarNumber && <p style={{ margin:"6px 0 0", fontSize:"12px", color:RED, fontWeight:"700" }}>⚠ {aadhaarErrors.aadhaarNumber}</p>}
                             </div>
                           </div>
                         )}
 
-                        {/* ── Selfie Form ── */}
+                        {/* Selfie Form */}
                         {step.key==="selfie" && (
+<<<<<<< HEAD:src/pages/Documentverification.jsx
                           <div style={{ display:"flex", flexDirection:"column", gap:"18px", alignItems:"center", paddingBottom:"10px" }}>
                             {status!=="pending"&&status!=="verified" && (
                               <div style={{ padding:"12px 16px", borderRadius:"14px", background:"#fffbeb", border:"1.5px solid #fcd34d", fontSize:"13px", color:"#92400e", fontWeight:"600", width:"100%", boxSizing:"border-box", display:"flex", alignItems:"center", gap:"10px" }}>
@@ -565,11 +698,26 @@ const DocumentVerification = () => {
                             {(status==="pending"||status==="verified") && selfieImg && (
                               <div style={{ textAlign:"center" }}>
                                 <img src={selfieImg} alt="selfie" className="dv-selfie-img" style={{ width:"180px", height:"180px", borderRadius:"50%", objectFit:"cover", border:`4px solid ${status==="verified"?"#22c55e":"#fcd34d"}`, boxShadow:"0 10px 25px rgba(0,0,0,0.1)" }} />
+=======
+                          <div style={{ display:"flex", flexDirection:"column", gap:"20px", alignItems:"center" }}>
+                            {(status==="not_uploaded"||status==="rejected") && !cameraOn && !selfieImg && (
+                              <div style={{ padding:"15px 20px", borderRadius:"16px", background:"rgba(190,13,13,0.05)", border:"1px solid rgba(190,13,13,0.1)", fontSize:"13px", color:RED, fontWeight:"700", width:"100%", textAlign:"center" }}>
+                                📸 We need a live selfie for identity verification.
+                              </div>
+                            )}
+                            {(status==="pending"||status==="verified") && selfieImg && (
+                              <div style={{ textAlign:"center", position:"relative" }}>
+                                <img src={selfieImg} alt="selfie" style={{ width:"180px", height:"180px", borderRadius:"50%", objectFit:"cover", border:`6px solid ${status==="verified"?"#22c55e":"#f59e0b"}`, boxShadow:"0 10px 30px rgba(0,0,0,0.1)" }} />
+                                <div style={{ position:"absolute", bottom:"10px", right:"10px", background:status==="verified"?"#22c55e":"#f59e0b", color:"white", width:"36px", height:"36px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 12px rgba(0,0,0,0.15)" }}>
+                                  {status==="verified"?<CheckIcon />:<ClockIcon />}
+                                </div>
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
                               </div>
                             )}
                             {status!=="pending"&&status!=="verified" && (
                               selfieImg ? (
                                 <div style={{ textAlign:"center" }}>
+<<<<<<< HEAD:src/pages/Documentverification.jsx
                                   <img src={selfieImg} alt="selfie" className="dv-selfie-img" style={{ width:"200px", height:"200px", borderRadius:"50%", objectFit:"cover", border:`5px solid ${RED}`, boxShadow:`0 10px 25px ${RED}40` }} />
                                   <p style={{ fontSize:"14px", color:"#16a34a", fontWeight:"800", marginTop:"12px" }}>Selfie captured!</p>
                                   <button onClick={() => !uploading&&setSelfieImg(null)} className="hover-btn" style={{ background:"rgba(15, 23, 42, 0.05)", border:"none", padding:"10px 24px", borderRadius:"12px", fontSize:"14px", fontWeight:"800", cursor:uploading?"not-allowed":"pointer", marginTop:"10px", opacity:uploading?0.5:1, fontFamily:F }}>Retake</button>
@@ -595,6 +743,28 @@ const DocumentVerification = () => {
                               ) : (
                                 <button onClick={startCamera} disabled={uploading} style={{ ...submitBtn, opacity:uploading?0.5:1 }}>
                                   <span style={{ display:"flex", alignItems:"center", gap:"10px", justifyContent:"center" }}><CameraIcon /> Open Camera</span>
+=======
+                                  <img src={selfieImg} alt="selfie" style={{ width:"200px", height:"200px", borderRadius:"50%", objectFit:"cover", border:`5px solid ${RED}`, boxShadow:"0 15px 40px rgba(190,13,13,0.2)" }} />
+                                  <p style={{ fontSize:"15px", color:"#22c55e", fontWeight:"800", marginTop:"15px" }}>Perfect Shot! ✨</p>
+                                  <button onClick={() => !uploading&&setSelfieImg(null)} style={{ background:"#f8fafc", border:"1.5px solid #f1f5f9", padding:"10px 24px", borderRadius:"12px", fontSize:"14px", fontWeight:"800", cursor:uploading?"not-allowed":"pointer", marginTop:"10px", color:"#1e293b", transition:"0.2s" }} onMouseEnter={e=>e.currentTarget.style.background="#f1f5f9"} onMouseLeave={e=>e.currentTarget.style.background="#f8fafc"}>Retake Photo</button>
+                                </div>
+                              ) : cameraOn ? (
+                                <div style={{ textAlign:"center", width:"100%" }}>
+                                  <div style={{ position:"relative", display:"inline-block", maxWidth:"300px", width:"100%" }}>
+                                    <video ref={videoRef} autoPlay playsInline muted style={{ width:"100%", aspectRatio:"1/1", borderRadius:"100px", objectFit:"cover", border:`5px solid ${RED}`, boxShadow:"0 20px 50px rgba(190,13,13,0.15)" }} />
+                                    <button onClick={() => { stream?.getTracks().forEach(t=>t.stop()); setCameraOn(false); }} 
+                                      style={{ position:"absolute", top:"15px", right:"15px", width:"36px", height:"36px", borderRadius:"50%", background:"rgba(0,0,0,0.5)", border:"none", color:"white", display:"flex", alignItems:"center", justifyContent:"center", cursor:"pointer", backdropFilter:"blur(5px)" }}>✕</button>
+                                  </div>
+                                  <canvas ref={canvasRef} style={{ display:"none" }} />
+                                  <br />
+                                  <button onClick={takeSelfie} style={{ ...submitBtn, width:"auto", padding:"14px 40px", marginTop:"20px", display:"inline-flex", alignItems:"center", gap:"10px", background:RED }}>
+                                    <CameraIcon /> Capture Selfie
+                                  </button>
+                                </div>
+                              ) : (
+                                <button onClick={startCamera} disabled={uploading} style={{ ...submitBtn, background:"#1e293b", opacity:uploading?0.5:1 }}>
+                                  <span style={{ display:"flex", alignItems:"center", gap:"10px", justifyContent:"center" }}><CameraIcon /> Access Camera</span>
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
                                 </button>
                               )
                             )}
@@ -605,39 +775,60 @@ const DocumentVerification = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             );
           })}
 
-          {/* Submit button */}
+          {/* Action Footer */}
           {!allVerified && !anyPending && (
+<<<<<<< HEAD:src/pages/Documentverification.jsx
             <motion.div initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.2 }} style={{ marginTop:"12px" }}>
               <button onClick={handleSubmitAll} disabled={uploading} style={{ ...submitBtn, padding:"18px", fontSize:"16px", borderRadius:"18px", boxShadow:`0 12px 30px ${RED}40`, opacity:uploading?0.7:1, cursor:uploading?"not-allowed":"pointer", fontFamily:H }}>
                 {uploading ? (
                   <span style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:"12px" }}>
                     <span style={{ width:"20px", height:"20px", border:"3px solid rgba(255,255,255,0.4)", borderTop:"3px solid white", borderRadius:"50%", display:"inline-block", animation:"spin 0.8s linear infinite" }} />
                     Uploading Documents...
+=======
+            <div style={{ marginTop:"20px" }}>
+              <button onClick={handleSubmitAll} disabled={uploading} style={{ 
+                ...submitBtn, padding:"18px", fontSize:"16px", borderRadius:"20px", 
+                boxShadow: uploading ? "none" : "0 10px 30px rgba(190,13,13,0.3)", 
+                opacity:uploading?0.8:1, transition:"0.3s" 
+              }}>
+                {uploading ? (
+                  <span style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:"12px" }}>
+                    <div className="spinner" style={{ width:"20px", height:"20px", border:"3px solid rgba(255,255,255,0.3)", borderTop:"3px solid white", borderRadius:"50%", animation:"spin 0.8s linear infinite" }} />
+                    Finalizing Upload...
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
                   </span>
-                ) : "Submit All Documents for Verification"}
+                ) : "Submit for Verification"}
               </button>
-            </motion.div>
+            </div>
           )}
 
           {anyPending && (
+<<<<<<< HEAD:src/pages/Documentverification.jsx
             <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} style={{ marginTop:"12px", padding:"16px 20px", borderRadius:"18px", background:"#fffbeb", border:"1.5px solid #fcd34d", fontSize:"14px", color:"#92400e", fontWeight:"700", display:"flex", alignItems:"center", gap:"12px", fontFamily:F }}>
               <ClockIcon /> All documents submitted — our team will review within 24 hours.
             </motion.div>
+=======
+            <div style={{ marginTop:"20px", padding:"20px", borderRadius:"20px", background:"rgba(245,158,11,0.05)", border:"1px solid rgba(245,158,11,0.2)", fontSize:"15px", color:"#b45309", fontWeight:"700", display:"flex", alignItems:"center", gap:"12px", boxShadow:"0 4px 15px rgba(245,158,11,0.05)" }}>
+              <ClockIcon /> Review in progress. We'll notify you once verified.
+            </div>
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
           )}
 
-          <p style={{ fontSize:"12px", color:"#bbb", textAlign:"center", marginTop:"16px", fontWeight:"500" }}>
-            All documents are securely stored. Only verified users can book vehicles.
+          <p style={{ fontSize:"13px", color:"#94a3b8", textAlign:"center", marginTop:"25px", fontWeight:"600", letterSpacing:"0.2px" }}>
+            🔒 Your data is end-to-end encrypted and used only for verification.
           </p>
+
         </div>
       </div>
 
-      {/* Admin Notification */}
+      {/* Admin notification & Toast same as before but updated style */}
       <AnimatePresence>
         {notification && (
+<<<<<<< HEAD:src/pages/Documentverification.jsx
           <motion.div initial={{ opacity:0, y:-60 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:-60 }} transition={{ duration:0.4 }}
             onAnimationComplete={() => { setTimeout(() => setNotification(null), 5000); }}
             style={{ position:"fixed", top:"80px", left:0, right:0, display:"flex", justifyContent:"center", zIndex:9999, padding:"0 16px" }}>
@@ -651,17 +842,28 @@ const DocumentVerification = () => {
                 }
               </div>
               <span style={{ flex:1 }}>{notification.message}</span>
+=======
+          <motion.div initial={{ opacity:0, y:-100 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:-100 }}
+            style={{ position:"fixed", top:"100px", left:0, right:0, display:"flex", justifyContent:"center", zIndex:9999, padding:"0 20px" }}>
+            <div style={{ background:notification.type==="approved"?"#ecfdf5":"#fef2f2", border:`2px solid ${notification.type==="approved"?"#bbf7d0":"#fecdd3"}`, color:notification.type==="approved"?"#065f46":RED, padding:"18px 24px", borderRadius:"24px", fontSize:"15px", fontWeight:"800", boxShadow:"0 15px 40px rgba(0,0,0,0.1)", maxWidth:"550px", width:"100%", display:"flex", alignItems:"center", gap:"15px" }}>
+               <ShieldIcon /> {notification.message}
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Toast */}
       <AnimatePresence>
         {toast && (
+<<<<<<< HEAD:src/pages/Documentverification.jsx
           <motion.div initial={{ opacity:0, y:10 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:10 }}
             style={{ position:"fixed", bottom:"40px", left:0, right:0, display:"flex", justifyContent:"center", zIndex:9999, padding:"0 16px" }}>
             <div style={{ background:"#0f172a", color:"white", padding:"16px 28px", borderRadius:"18px", display:"flex", alignItems:"center", gap:"12px", boxShadow:"0 12px 40px rgba(0,0,0,0.3)", borderLeft:`6px solid ${toast.type==="error"?RED:"#22c55e"}`, fontSize:"15px", fontWeight:"700", whiteSpace:"nowrap", fontFamily:F }}>
+=======
+          <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:20 }}
+            style={{ position:"fixed", bottom:"40px", left:0, right:0, display:"flex", justifyContent:"center", zIndex:9999, padding:"0 20px" }}>
+            <div style={{ background:"#1e293b", color:"white", padding:"16px 28px", borderRadius:"20px", display:"flex", alignItems:"center", gap:"12px", boxShadow:"0 15px 40px rgba(0,0,0,0.2)", borderLeft:`6px solid ${toast.type==="error"?RED:"#22c55e"}`, fontSize:"15px", fontWeight:"800" }}>
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
               {toast.type==="error"?"⚠️":"✅"} {toast.msg}
             </div>
           </motion.div>
@@ -671,8 +873,11 @@ const DocumentVerification = () => {
   );
 };
 
+<<<<<<< HEAD:src/pages/Documentverification.jsx
 const fieldLabel = { display:"block", fontSize:"12px", fontWeight:"800", color:"#94a3b8", marginBottom:"10px", textTransform:"uppercase", letterSpacing:"1.2px", fontFamily:H };
 const fieldInput = (editable) => ({ width:"100%", padding:"12px 16px", borderRadius:"14px", border:editable?"1.5px solid rgba(15, 23, 42, 0.1)":"1.5px solid rgba(15, 23, 42, 0.05)", background:editable?"#fff":"rgba(15, 23, 42, 0.02)", fontSize:"14px", fontWeight:"600", color:editable?"#0f172a":"#64748b", boxSizing:"border-box", fontFamily:F, transition:"all 0.2s ease", cursor:editable?"text":"default" });
 const submitBtn = { width:"100%", padding:"16px", borderRadius:"16px", background:RED, color:"white", border:"none", fontSize:"15px", fontWeight:"900", cursor:"pointer", fontFamily:H, boxShadow:`0 10px 25px ${RED}40` };
 
+=======
+>>>>>>> c74f3a9:src/pages/DocumentVerification.jsx
 export default DocumentVerification;

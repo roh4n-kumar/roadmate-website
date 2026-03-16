@@ -1,21 +1,50 @@
-<<<<<<< HEAD
-# React + Vite
+# RoadMate - Premium Mobility Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+RoadMate is a premium online car and bike rental platform designed for a seamless and high-end user experience. This project has recently undergone a major **UI/UX Redesign** to align with modern SaaS and premium startup aesthetics.
 
-Currently, two official plugins are available:
+## ✨ Premium UI Redesign (March 2026)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The platform now features a **Glassmorphic Design System** with a focus on luxury and performance.
 
-## React Compiler
+### 🎨 Design Language
+- **Aesthetic**: Premium glassmorphism, soft gradients, and high-fidelity micro-interactions.
+- **Typography**: Integrated the **'Outfit'** font from Google Fonts for a modern and sophisticated feel.
+- **Color Palette**: 
+  - **Primary Accent**: `#be0d0d` (Racing Red)
+  - **Base Tones**: Midnight Blue (`#140f26`), Deep Navy (`#1f1b3a`), and sleek Dark Modes.
+  - **Glass**: High-blur backdrops with subtle 1px translucent borders.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🚀 Key Redesigned Components
+- **Navbar & Hero**: A revamped navigation experience with glassmorphic effects and a bold, high-impact hero section.
+- **Vehicle Selection**: Premium vehicle cards with dynamic hover states and elegant typography.
+- **Authentication**: Completely redesigned **Login & Signup** flows with premium auth cards and animated glass backgrounds.
+- **User Dashboard**:
+  - **Personal Info**: Clean, dashboard-style personal information management.
+  - **Document Verification**: A high-fidelity, step-by-step verification flow for DL and Aadhaar with modern upload interfaces.
+  - **My Bookings**: Enhanced booking management cards with clear status indicators.
 
-## Expanding the ESLint configuration
+### 📱 Responsive Design
+- **Mobile-First Approach**: The entire platform is fully optimized for mobile devices, ensuring a premium experience on every screen size.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# roadmate-website
-RoadMate - A smart way to rent bikes and cars.
->>>>>>> 98122e307ca94d6eafa3115dc642ff831eb26fb6
+---
+
+## 🛠 Tech Stack
+- **Frontend**: React.js, Vite
+- **Styling**: Vanilla CSS, Framer Motion (Animations)
+- **Backend/DB**: Firebase (Auth & Firestore)
+- **Deployment**: Vercel
+
+## 🚀 Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone <repo-url>
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
