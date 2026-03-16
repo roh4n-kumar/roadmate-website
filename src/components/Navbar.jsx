@@ -98,10 +98,10 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           display: "flex",
           alignItems: "center",
           padding: "0 24px",
-          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.8)" : "transparent",
-          backdropFilter: scrolled ? "blur(15px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(255, 255, 255, 0.3)" : "none",
-          boxShadow: scrolled ? "0 4px 30px rgba(0, 0, 0, 0.05)" : "none",
+          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.9)" : "#fff",
+          backdropFilter: "blur(15px)",
+          borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
+          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.05)",
         }}
       >
         <div style={{ maxWidth: "1250px", margin: "0 auto", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -112,7 +112,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               fontSize: "24px",
               fontWeight: 900,
               textDecoration: "none",
-              color: scrolled ? "#111" : "#222",
+              color: "#111",
               letterSpacing: "-1px"
             }}
           >
@@ -127,7 +127,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                 textDecoration: "none",
                 fontSize: "14px",
                 fontWeight: 700,
-                color: isActive ? RED : (scrolled ? "#555" : "rgba(255,255,255,0.85)"),
+                color: isActive ? RED : "#111",
                 display: "flex",
                 alignItems: "center",
                 gap: "8px",
@@ -140,8 +140,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             <button
               onClick={() => setIsDrawerOpen(true)}
               style={{
-                backgroundColor: scrolled ? "#111" : "#fff",
-                color: scrolled ? "#fff" : "#111",
+                backgroundColor: "#111",
+                color: "#fff",
                 border: "none",
                 padding: "10px 24px",
                 borderRadius: "14px",
@@ -174,7 +174,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           <div
             className="mobile-only"
             onClick={() => setIsDrawerOpen(true)}
-            style={{ color: scrolled ? "#111" : "#fff", cursor: "pointer" }}
+            style={{ color: "#111", cursor: "pointer" }}
           >
              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
           </div>

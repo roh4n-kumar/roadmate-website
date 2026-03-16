@@ -257,7 +257,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-btn-container {
       display: flex;
       justify-content: center;
-      margin-top: 20px;
+      margin-bottom: -29px; /* Overlap from top */
+      position: relative;
+      z-index: 150;
     }
 
     .search-btn { 
@@ -557,6 +559,13 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </h1>
             <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "18px", fontWeight: 500 }}>Bhubaneswar's elite vehicle rental platform.</p>
           </div>
+          {/* SEARCH BUTTON moved to TOP of glass container */}
+          <div className="search-btn-container">
+            <button className="search-btn" onClick={handleSearch}>
+              <SearchIcon /> Search Availability
+            </button>
+          </div>
+
           <div className="glass-search-container">
             {/* 1. Vehicle */}
             <div ref={vehicleRef} className="search-field">
@@ -634,13 +643,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 </div>
               )}
             </div>
-          </div>
-          
-          {/* SEARCH BUTTON moved inside inner-wrapper but below glass container */}
-          <div className="search-btn-container">
-            <button className="search-btn" onClick={handleSearch}>
-              <SearchIcon /> Search Availability
-            </button>
           </div>
         </div>
       </div>
