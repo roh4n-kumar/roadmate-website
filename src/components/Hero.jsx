@@ -183,11 +183,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .hero-section { font-family: 'Outfit', sans-serif; background: #fff; overflow: visible; }
 
     .search-ribbon {
-      background: linear-gradient(180deg, #111 0%, var(--ribbon-night) 100%);
-      padding: 60px 40px 100px;
+      background: #fff;
+      padding: 100px 40px 120px;
       position: relative;
       overflow: visible;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
     
     .search-inner-wrapper {
@@ -197,17 +197,17 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     .glass-search-container {
-      background: rgba(255, 255, 255, 0.03);
+      background: #ffffff;
       backdrop-filter: blur(40px);
       -webkit-backdrop-filter: blur(40px);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(0,0,0,0.08);
       border-radius: 28px;
       padding: 40px;
       display: flex;
       align-items: flex-end;
       gap: 0;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-      margin-bottom: -60px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+      margin-bottom: 0px;
       position: relative;
       z-index: 100;
     }
@@ -220,13 +220,13 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       position: relative; 
       padding-right: 25px; 
       margin-right: 25px; 
-      border-right: 1px solid rgba(255,255,255,0.1); 
+      border-right: 1px solid rgba(0,0,0,0.1); 
     }
     .search-field:last-child { border-right: none; padding-right: 0; margin-right: 0; }
     
     .search-label { 
       font-size: 11px; 
-      color: rgba(255, 255, 255, 0.6); 
+      color: rgba(0, 0, 0, 0.5); 
       font-weight: 700; 
       text-transform: uppercase; 
       letter-spacing: 1.2px; 
@@ -234,8 +234,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
     
     .search-input-box { 
-      background: rgba(255,255,255,0.05); 
-      border: 1px solid rgba(255,255,255,0.1); 
+      background: rgba(0,0,0,0.02); 
+      border: 1px solid rgba(0,0,0,0.08); 
       border-radius: 16px; 
       height: 56px; 
       padding: 0 18px; 
@@ -244,20 +244,22 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       justify-content: space-between; 
       cursor: pointer; 
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-      color: #fff; 
+      color: #111; 
     }
     .search-input-box:hover { 
       border-color: var(--brand-red); 
       background: rgba(255,255,255,0.08); 
       box-shadow: 0 0 20px rgba(190, 13, 13, 0.2);
     }
-    .search-input-box span { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.4); }
-    .search-input-box span.filled { color: #fff; font-weight: 600; }
+    .search-input-box span { font-size: 15px; font-weight: 500; color: rgba(0,0,0,0.4); }
+    .search-input-box span.filled { color: #111; font-weight: 600; }
 
     .search-btn-container {
       display: flex;
       justify-content: center;
-      margin-top: 20px;
+      margin-top: -29px;
+      position: relative;
+      z-index: 150;
     }
 
     .search-btn { 
@@ -288,9 +290,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .date-sub-row { display: flex; gap: 10px; align-items: center; }
     .date-trigger { flex: 1; }
     .quick-btn { 
-      background: rgba(255,255,255,0.08); 
-      border: 1px solid rgba(255,255,255,0.1); 
-      color: rgba(255,255,255,0.7); 
+      background: rgba(0,0,0,0.04); 
+      border: 1px solid rgba(0,0,0,0.08); 
+      color: rgba(0,0,0,0.6); 
       padding: 0 16px; 
       height: 56px; 
       border-radius: 16px; 
@@ -300,7 +302,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       transition: all 0.2s; 
       font-family: 'Outfit', sans-serif; 
     }
-    .quick-btn:hover { background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.3); }
+    .quick-btn:hover { background: rgba(0,0,0,0.08); color: #111; border-color: rgba(0,0,0,0.15); }
 
     .v-dropdown { 
       position: absolute; 
@@ -342,16 +344,17 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     .stats-bar { 
-      background: var(--ribbon-dark); 
+      background: #fff; 
       padding: 40px 40px; 
       position: relative;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      border-top: 1px solid rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
     .stats-inner { max-width: 1250px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
     .stat-item { display: flex; align-items: center; gap: 15px; }
     .stat-num { font-size: 36px; font-weight: 800; line-height: 1; letter-spacing: -1px; }
-    .stat-label { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 500; line-height: 1.4; text-transform: uppercase; letter-spacing: 1px; }
-    .stat-divider { width: 1px; height: 50px; background: rgba(255,255,255,0.1); }
+    .stat-label { font-size: 13px; color: rgba(0,0,0,0.5); font-weight: 500; line-height: 1.4; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-divider { width: 1px; height: 50px; background: rgba(0,0,0,0.1); }
 
     .offer-section { padding: 100px 40px 60px; background: #fff; }
     .offer-inner { max-width: 1250px; margin: 0 auto; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.08); transition: transform 0.4s; }
@@ -552,10 +555,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <div className="search-ribbon" style={{ paddingTop: "120px", paddingBottom: "100px" }}>
         <div className="search-inner-wrapper">
           <div style={{ textAlign: "center", marginBottom: "50px" }}>
-            <h1 style={{ fontSize: "clamp(34px, 5vw, 64px)", fontWeight: 900, color: "#fff", marginBottom: "15px", letterSpacing: "-2px" }}>
+            <h1 style={{ fontSize: "clamp(34px, 5vw, 64px)", fontWeight: 900, color: "#111", marginBottom: "15px", letterSpacing: "-2px" }}>
               Rent <span style={{ color: RED }}>Premium</span> Bikes & Cars
             </h1>
-            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "18px", fontWeight: 500 }}>Bhubaneswar's elite vehicle rental platform.</p>
+            <p style={{ color: "rgba(0,0,0,0.5)", fontSize: "18px", fontWeight: 500 }}>Bhubaneswar's elite vehicle rental platform.</p>
           </div>
           <div className="glass-search-container">
             {/* 1. Vehicle */}
@@ -652,7 +655,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             <div key={i} style={{ display: 'flex', alignItems: 'center' }}>
               <div key={s.num+i} className="stat-item">
                 <div className="stat-num">
-                  <span style={{ color:"#fff" }}>{s.num}</span>
+                  <span style={{ color:"#111" }}>{s.num}</span>
                   <span style={{ color:'var(--brand-red)' }}>{s.suffix}</span>
                 </div>
                 <div className="stat-label">
