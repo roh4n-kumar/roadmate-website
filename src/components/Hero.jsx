@@ -180,24 +180,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   ];
 
   const css = `
-<<<<<<< HEAD
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
-    * { box-sizing: border-box; }
-    .hero-section { font-family: ${F}; background: #fff; }
-
-    .search-ribbon {
-      background: #0f172a;
-      padding: 30px 40px 60px;
-=======
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
     
     * { box-sizing: border-box; }
     .hero-section { font-family: 'Outfit', sans-serif; background: #fff; overflow: visible; }
 
     .search-ribbon {
-      background: linear-gradient(180deg, #111 0%, var(--ribbon-night) 100%);
+      background: linear-gradient(180deg, #111 0%, #0f172a 100%);
       padding: 60px 40px 100px;
->>>>>>> c74f3a9
       position: relative;
       overflow: visible;
       border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -235,38 +225,16 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       margin-right: 25px; 
       border-right: 1px solid rgba(255,255,255,0.1); 
     }
-<<<<<<< HEAD
-    .search-inner { 
-      max-width: 1250px; margin: 0 auto; display: flex; align-items: flex-end; gap: 0; position: relative; 
-      background: rgba(255, 255, 255, 0.03); 
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+    .search-field { 
+      flex: 1; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 10px; 
+      position: relative; 
+      padding-right: 25px; 
+      margin-right: 25px; 
+      border-right: 1px solid rgba(255,255,255,0.1); 
     }
-    .search-field { flex: 1; display: flex; flex-direction: column; gap: 8px; position: relative; padding: 0 20px; border-right: 1px solid rgba(255,255,255,0.1); }
-    .search-field:last-child { border-right: none; }
-    .search-label { font-size: 11px; color: rgba(255, 255, 255, 0.6); font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; font-family: ${H}; }
-    .search-input-box { 
-      background: rgba(255,255,255,0.05); 
-      border: 1.5px solid rgba(255,255,255,0.08); 
-      border-radius: 14px; height: 52px; padding: 0 16px; 
-      display: flex; align-items: center; justify-content: space-between; 
-      cursor: pointer; transition: all .2s cubic-bezier(0.16, 1, 0.3, 1); color: #fff; 
-    }
-    .search-input-box:hover { border-color: ${RED}; background: rgba(255,255,255,0.1); }
-    .search-input-box span { font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, 0.4); }
-    .search-input-box span.filled { color: #fff; }
-
-    .search-btn-wrap { display: flex; justify-content: center; position: relative; z-index: 50; margin-top: -26px; padding-bottom: 26px; }
-    .search-btn { 
-      background: ${RED}; color: #fff; border: none; padding: 0 48px; height: 52px; border-radius: 999px; 
-      font-size: 15px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 10px; 
-      white-space: nowrap; box-shadow: 0 12px 32px rgba(190,13,13,0.4); 
-      transition: all .2s cubic-bezier(0.16, 1, 0.3, 1); font-family: ${F}; 
-    }
-    .search-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(190,13,13,0.5); }
-=======
     .search-field:last-child { border-right: none; padding-right: 0; margin-right: 0; }
     
     .search-label { 
@@ -276,6 +244,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       text-transform: uppercase; 
       letter-spacing: 1.2px; 
       padding-left: 4px;
+      font-family: ${H};
     }
     
     .search-input-box { 
@@ -292,7 +261,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       color: #fff; 
     }
     .search-input-box:hover { 
-      border-color: var(--brand-red); 
+      border-color: ${RED}; 
       background: rgba(255,255,255,0.08); 
       box-shadow: 0 0 20px rgba(190, 13, 13, 0.2);
     }
@@ -302,11 +271,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-btn-container {
       display: flex;
       justify-content: center;
-      margin-top: -29px; /* Overlap from bottom */
+      margin-top: -29px;
       position: relative;
       z-index: 150;
     }
->>>>>>> c74f3a9
 
     .search-btn { 
       background: var(--brand-red); 
@@ -335,10 +303,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .date-sub-row { display: flex; gap: 10px; align-items: center; }
     .date-trigger { flex: 1; }
-<<<<<<< HEAD
-    .quick-btn { background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 0 14px; height: 50px; border-radius: 999px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all .15s; white-space: nowrap; font-family: ${F}; }
-    .quick-btn:hover { background: rgba(255,255,255,0.18); color: #fff; }
-=======
     .quick-btn { 
       background: rgba(255,255,255,0.08); 
       border: 1px solid rgba(255,255,255,0.1); 
@@ -350,10 +314,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       font-weight: 600; 
       cursor: pointer; 
       transition: all 0.2s; 
-      font-family: 'Outfit', sans-serif; 
+      font-family: ${H}; 
     }
     .quick-btn:hover { background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.3); }
->>>>>>> c74f3a9
 
     .v-dropdown { 
       position: absolute; 
@@ -601,8 +564,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     <section className="hero-section" style={{ minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "center", background: "#fbfbfb", paddingBottom: "100px" }}>
       <style>{css}</style>
 
-<<<<<<< HEAD
-{/* BANNER — hidden on mobile */}
+      {/* BANNER — hidden on mobile */}
       <div className="hero-banner" style={{ width:"100%", position:"relative", lineHeight:0, overflow:"hidden", height: "min(600px, 70vh)" }}>
         <img src={heroPremium} alt="RoadMate Premium" style={{ width:"100%", height:"100%", display:"block", objectFit:"cover" }} />
         {/* Text overlay */}
@@ -630,9 +592,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           </div>
         </div>
       </div>
-
-=======
->>>>>>> c74f3a9
       {/* SEARCH RIBBON */}
       <div className="search-ribbon" style={{ paddingTop: "60px", paddingBottom: "100px" }}>
         <div className="search-inner-wrapper">

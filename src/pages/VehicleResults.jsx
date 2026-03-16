@@ -52,7 +52,7 @@ const BookingModal = ({ vehicle, hours, date, pickup, drop, onClose, onConfirm }
   return (
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)", backdropFilter: 'blur(6px)', zIndex: 1000, display: "flex", alignItems: "flex-end", justifyContent: "center" }}
+      style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)", backdropFilter: "blur(6px)", zIndex: 1000, display: "flex", alignItems: "flex-end", justifyContent: "center" }}
       onClick={onClose}
     >
       <motion.div
@@ -60,7 +60,6 @@ const BookingModal = ({ vehicle, hours, date, pickup, drop, onClose, onConfirm }
         transition={{ type: "spring", damping: 30, stiffness: 300 }}
         onClick={e => e.stopPropagation()}
         style={{ 
-<<<<<<< HEAD
           background: "rgba(255, 255, 255, 0.9)", 
           backdropFilter: "blur(30px)",
           WebkitBackdropFilter: "blur(30px)",
@@ -70,18 +69,6 @@ const BookingModal = ({ vehicle, hours, date, pickup, drop, onClose, onConfirm }
           boxShadow: "0 -20px 60px rgba(0,0,0,0.15)",
           border: "1px solid rgba(255, 255, 255, 0.2)",
           fontFamily: F
-=======
-          background: "var(--glass-bg)", 
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          border: "var(--glass-border)",
-          borderRadius: "32px 32px 0 0", 
-          width: "100%", 
-          maxWidth: "500px", 
-          maxHeight: "92vh", 
-          overflowY: "auto", 
-          boxShadow: "0 -20px 60px rgba(0,0,0,0.3)" 
->>>>>>> c74f3a9
         }}
       >
         <div style={{ display: "flex", justifyContent: "center", padding: "12px 0 0" }}>
@@ -92,16 +79,16 @@ const BookingModal = ({ vehicle, hours, date, pickup, drop, onClose, onConfirm }
           <img src={vehicle.image} alt={vehicle.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 70%)" }} />
           <div style={{ position: "absolute", bottom: "15px", left: "20px", right: "50px" }}>
-            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "12px", fontWeight: "700", margin: 0, textTransform: 'uppercase', letterSpacing: '1px' }}>{vehicle.type}</p>
+            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "12px", fontWeight: "700", margin: 0, textTransform: "uppercase", letterSpacing: "1px" }}>{vehicle.type}</p>
             <h3 style={{ color: "#fff", fontSize: "20px", fontWeight: "800", margin: "4px 0 0" }}>{vehicle.name}</h3>
           </div>
-          <button onClick={onClose} style={{ position: "absolute", top: "15px", right: "15px", width: "32px", height: "32px", borderRadius: "50%", background: "rgba(0,0,0,0.4)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: 'all 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.6)'} onMouseLeave={e => e.currentTarget.style.background = 'rgba(0,0,0,0.4)'}>
+          <button onClick={onClose} style={{ position: "absolute", top: "15px", right: "15px", width: "32px", height: "32px", borderRadius: "50%", background: "rgba(0,0,0,0.4)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s" }} onMouseEnter={e => e.currentTarget.style.background = "rgba(0,0,0,0.6)"} onMouseLeave={e => e.currentTarget.style.background = "rgba(0,0,0,0.4)"}>
             <Svg size={14}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></Svg>
           </button>
         </div>
 
         <div style={{ padding: "20px 20px 35px" }}>
-          <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "20px", padding: "20px", marginBottom: "20px", border: '1px solid rgba(255,255,255,0.05)' }}>
+          <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "20px", padding: "20px", marginBottom: "20px", border: "1px solid rgba(255,255,255,0.05)" }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
               {[{ label: "DATE", val: fmt(date) }, { label: "DURATION", val: `${hours} hr${hours !== 1 ? "s" : ""}` }, { label: "PICKUP", val: fmtTime(pickup) }, { label: "DROP-OFF", val: fmtTime(drop) }].map(({ label, val }) => (
                 <div key={label}>
@@ -112,7 +99,7 @@ const BookingModal = ({ vehicle, hours, date, pickup, drop, onClose, onConfirm }
             </div>
           </div>
 
-          <div style={{ marginBottom: "25px", padding: '0 5px' }}>
+          <div style={{ marginBottom: "25px", padding: "0 5px" }}>
             {[{ label: `Base Fare (₹${vehicle.pricePerHour}/hr × ${hours} hrs)`, val: `₹${total}` }, { label: "Taxes & GST (18%)", val: `₹${gst}` }].map(({ label, val }) => (
               <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
                 <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.6)" }}>{label}</span>
@@ -121,21 +108,14 @@ const BookingModal = ({ vehicle, hours, date, pickup, drop, onClose, onConfirm }
             ))}
             <div style={{ display: "flex", justifyContent: "space-between", padding: "15px 0 0" }}>
               <span style={{ fontSize: "16px", fontWeight: "800", color: "#fff" }}>Grand Total</span>
-              <span style={{ fontSize: "26px", fontWeight: "900", color: 'var(--brand-primary-light)' }}>₹{grand}</span>
+              <span style={{ fontSize: "26px", fontWeight: "900", color: "var(--brand-primary-light)" }}>₹{grand}</span>
             </div>
           </div>
 
-<<<<<<< HEAD
-          <button onClick={() => onConfirm(vehicle, grand)} style={{ width: "100%", padding: "16px", borderRadius: "16px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, border: "none", color: "#fff", fontSize: "16px", fontWeight: "900", cursor: "pointer", boxShadow: `0 12px 30px rgba(190,13,13,0.35)`, fontFamily: F, transition: "all .3s ease" }}>
+          <button onClick={() => onConfirm(vehicle, grand)} style={{ width: "100%", padding: "16px", borderRadius: "16px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, border: "none", color: "#fff", fontSize: "16px", fontWeight: "900", cursor: "pointer", boxShadow: "0 12px 30px rgba(190,13,13,0.35)", fontFamily: F, transition: "all .3s ease" }}>
             Confirm Booking
           </button>
           <p style={{ textAlign: "center", fontSize: "11px", color: "#94a3b8", marginTop: "12px", marginBottom: 0, fontWeight: 600 }}>Free cancellation up to 1 hour before pickup</p>
-=======
-          <button onClick={() => onConfirm(vehicle, grand)} style={{ width: "100%", padding: "18px", borderRadius: "18px", background: `linear-gradient(135deg,var(--brand-primary),var(--brand-primary-light))`, border: "none", color: "#fff", fontSize: "16px", fontWeight: "800", cursor: "pointer", boxShadow: `0 8px 25px rgba(190,13,13,0.35)`, fontFamily: F, transition: 'all 0.3s' }} onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
-            Confirm Booking
-          </button>
-          <p style={{ textAlign: "center", fontSize: "12px", color: "rgba(255,255,255,0.4)", marginTop: "15px", marginBottom: 0 }}>Securely powered by RoadMate Payments</p>
->>>>>>> c74f3a9
         </div>
       </motion.div>
     </motion.div>
@@ -180,7 +160,6 @@ export default function VehicleResults() {
   return (
     <div style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: F }}>
       <style>{`
-<<<<<<< HEAD
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
         * { box-sizing: border-box; }
         .vcard { transition: all .3s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -215,202 +194,6 @@ export default function VehicleResults() {
           .vr-sort      { margin-left: 0 !important; flex-shrink: 0; }
           .vr-grid      { grid-template-columns: 1fr !important; gap: 16px !important; }
         }
-=======
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
-    
-    * { box-sizing: border-box; }
-    
-    .vr-page { 
-      padding-top: 64px; 
-      padding-bottom: 40px; 
-      background: #f8fafc;
-      min-height: 100vh;
-      font-family: 'Outfit', sans-serif;
-    }
-
-    .vr-subheader { 
-      position: sticky; 
-      top: 64px; 
-      z-index: 100; 
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border-bottom: 1px solid var(--glass-border);
-      padding: 16px 40px; 
-      display: flex; 
-      align-items: center; 
-      gap: 15px; 
-      box-shadow: var(--shadow-sm); 
-    }
-
-    .vr-content { 
-      max-width: 1250px; 
-      margin: 0 auto; 
-      padding: 40px 40px 100px; 
-    }
-
-    .vr-filterbar { 
-      display: flex; 
-      gap: 15px; 
-      margin-bottom: 30px; 
-      align-items: center; 
-      background: #fff;
-      padding: 12px 20px;
-      border-radius: 20px;
-      border: 1px solid #f0f0f0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-    }
-
-    .vr-types { display: flex; gap: 8px; flex-wrap: wrap; }
-    
-    .filter-btn {
-      padding: 8px 18px; 
-      border-radius: 99px; 
-      border: 1.5px solid #e2e8f0; 
-      background: #fff; 
-      color: #64748b; 
-      fontSize: 13px; 
-      font-weight: 700; 
-      cursor: pointer; 
-      text-transform: capitalize; 
-      white-space: nowrap; 
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .filter-btn:hover { border-color: #cbd5e1; color: #334155; transform: translateY(-1px); }
-    .filter-btn.active { 
-      background: var(--brand-red); 
-      border-color: var(--brand-red); 
-      color: #fff; 
-      box-shadow: 0 4px 12px rgba(190, 13, 13, 0.2);
-    }
-
-    .vr-sort { 
-      margin-left: auto; 
-      display: flex; 
-      align-items: center; 
-      gap: 10px; 
-    }
-    
-    .sort-select {
-      padding: 8px 14px; 
-      border-radius: 12px; 
-      border: 1.5px solid #e2e8f0; 
-      background: #fff; 
-      font-size: 13px; 
-      font-weight: 700; 
-      color: #334155; 
-      cursor: pointer; 
-      outline: none;
-      transition: all 0.2s;
-    }
-    .sort-select:hover { border-color: #cbd5e1; }
-    .sort-select:focus { border-color: var(--brand-red); }
-
-    .vr-grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-      gap: 25px; 
-    }
-
-    .vcard { 
-      background: #fff; 
-      border-radius: 24px; 
-      overflow: hidden; 
-      box-shadow: 0 4px 20px rgba(0,0,0,0.03); 
-      border: 1px solid #f0f0f0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-    }
-    .vcard:hover { 
-      transform: translateY(-8px); 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08); 
-      border-color: #ffd5d5;
-    }
-
-    .img-wrapper { 
-      position: relative; 
-      height: 220px; 
-      overflow: hidden; 
-    }
-    .img-wrapper img { transition: transform 0.5s; }
-    .vcard:hover .img-wrapper img { transform: scale(1.08); }
-
-    .card-badge {
-      position: absolute; 
-      top: 15px; 
-      left: 15px; 
-      background: rgba(255,255,255,0.9); 
-      color: #111; 
-      font-size: 11px; 
-      font-weight: 800; 
-      padding: 5px 12px; 
-      border-radius: 99px; 
-      backdrop-filter: blur(8px);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .rating-badge {
-      position: absolute; 
-      top: 15px; 
-      right: 15px; 
-      display: flex; 
-      align-items: center; 
-      gap: 5px; 
-      background: rgba(0,0,0,0.5); 
-      color: #fbbf24; 
-      font-size: 12px; 
-      font-weight: 700; 
-      padding: 5px 12px; 
-      border-radius: 99px; 
-      backdrop-filter: blur(8px);
-    }
-
-    .book-btn { 
-      padding: 12px 24px; 
-      border-radius: 14px; 
-      background: var(--brand-red); 
-      border: none; 
-      color: #fff; 
-      font-size: 14px; 
-      font-weight: 800; 
-      cursor: pointer; 
-      box-shadow: 0 6px 15px rgba(190,13,13,0.25); 
-      white-space: nowrap; 
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .book-btn:hover { 
-      transform: translateY(-2px); 
-      box-shadow: 0 10px 20px rgba(190,13,13,0.35); 
-      filter: brightness(1.1);
-    }
-    .book-btn:active { transform: translateY(0); }
-
-    @media (max-width: 900px) {
-      .vr-page { padding-top: 56px !important; padding-bottom: 80px !important; }
-      .vr-subheader { top: 56px !important; padding: 12px 15px !important; }
-      .vr-content { padding: 20px 15px !important; }
-      .vr-filterbar { 
-        flex-direction: column; 
-        align-items: stretch; 
-        gap: 15px; 
-        background: transparent; 
-        padding: 0; 
-        border: none; 
-        box-shadow: none;
-      }
-      .vr-types { 
-        flex-wrap: nowrap; 
-        overflow-x: auto; 
-        padding-bottom: 5px;
-        -webkit-overflow-scrolling: touch;
-      }
-      .vr-types::-webkit-scrollbar { display: none; }
-      .vr-sort { margin-left: 0 !important; width: 100%; }
-      .sort-select { width: 100%; }
-      .vr-grid { grid-template-columns: 1fr !important; gap: 18px !important; }
-      .img-wrapper { height: 200px; }
-    }
->>>>>>> c74f3a9
       `}</style>
 
       {/* Toast */}
@@ -425,7 +208,6 @@ export default function VehicleResults() {
 
       <div className="vr-page">
         <div className="vr-subheader">
-<<<<<<< HEAD
           <button onClick={() => navigate(-1)} style={{ width: "40px", height: "40px", borderRadius: "12px", background: "rgba(15, 23, 42, 0.05)", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#0f172a", flexShrink: 0, transition: "all .2s" }}>
             <IcoBack />
           </button>
@@ -443,25 +225,6 @@ export default function VehicleResults() {
           </div>
 
           <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>{sorted.length} available</span>
-=======
-          <button onClick={() => navigate(-1)} style={{ width: "40px", height: "40px", borderRadius: "12px", background: "rgba(0,0,0,0.05)", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#111", flexShrink: 0, transition: "all 0.2s" }} onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.1)'} onMouseLeave={e => e.currentTarget.style.background = 'rgba(0,0,0,0.05)'}>
-            <IcoBack />
-          </button>
-
-          <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", minWidth: 0 }}>
-            <span style={{ fontSize: "18px", fontWeight: "800", color: "#111", flexShrink: 0, letterSpacing: '-0.5px' }}>{isBike ? "Bikes" : "Cars"}</span>
-            {date && <>
-              <span style={{ color: "rgba(0,0,0,0.1)", fontSize: '20px' }}>·</span>
-              <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#666", fontWeight: "600", whiteSpace: "nowrap" }}><IcoCalendar /> {fmt(date)}</span>
-            </>}
-            {hours > 0 && <>
-              <span className="desktop-only" style={{ color: "rgba(0,0,0,0.1)", fontSize: '20px' }}>·</span>
-              <span className="desktop-only" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#666", fontWeight: "600", whiteSpace: "nowrap" }}><IcoClock /> {hours} hr{hours !== 1 ? "s" : ""} ({fmtTime(pickup)} – {fmtTime(drop)})</span>
-            </>}
-          </div>
-
-          <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "700", flexShrink: 0 }}>{sorted.length} available</span>
->>>>>>> c74f3a9
         </div>
 
         <div className="vr-content">
@@ -476,14 +239,9 @@ export default function VehicleResults() {
               ))}
             </div>
             <div className="vr-sort">
-<<<<<<< HEAD
               <span style={{ fontSize: "12px", color: "#94a3b8", fontWeight: "700", whiteSpace: "nowrap", fontFamily: H, textTransform: "uppercase" }}>Sort By</span>
               <select value={sortBy} onChange={e => setSortBy(e.target.value)}
                 style={{ padding: "8px 12px", borderRadius: "12px", border: "1.5px solid rgba(15, 23, 42, 0.08)", background: "#fff", fontSize: "13px", fontWeight: "700", color: "#0f172a", cursor: "pointer", outline: "none", fontFamily: F }}>
-=======
-              <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "700", whiteSpace: "nowrap" }}>Sort by:</span>
-              <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="sort-select">
->>>>>>> c74f3a9
                 <option value="popular">Most Popular</option>
                 <option value="rating">Top Rated</option>
                 <option value="price_low">Price: Low–High</option>
@@ -506,7 +264,6 @@ export default function VehicleResults() {
               return (
                 <motion.div key={v.id} className="vcard"
                   initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
-<<<<<<< HEAD
                   style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.05)", border: "1.5px solid rgba(15, 23, 42, 0.05)" }}>
 
                   <div style={{ position: "relative", height: "200px", overflow: "hidden" }}>
@@ -518,53 +275,25 @@ export default function VehicleResults() {
                     </div>
                     <div style={{ position: "absolute", bottom: "14px", left: "16px", right: "16px" }}>
                       <h3 style={{ color: "#fff", fontSize: "18px", fontWeight: "900", margin: 0, fontFamily: H, letterSpacing: "-0.3px" }}>{v.name}</h3>
-=======
-                >
-                  <div className="img-wrapper">
-                    <img src={v.image} alt={v.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)" }} />
-                    <span className="card-badge">{v.type}</span>
-                    <div className="rating-badge">
-                      <IcoStar /> {v.rating} <span style={{ color: "rgba(255,255,255,0.7)", fontWeight: 500 }}>({v.reviews})</span>
-                    </div>
-                    <div style={{ position: "absolute", bottom: "15px", left: "20px", right: "20px" }}>
-                      <h3 style={{ color: "#fff", fontSize: "18px", fontWeight: "800", margin: 0, textShadow: "0 2px 4px rgba(0,0,0,0.3)", letterSpacing: '-0.3px' }}>{v.name}</h3>
->>>>>>> c74f3a9
                     </div>
                   </div>
 
                   <div style={{ padding: "20px" }}>
-<<<<<<< HEAD
                     <div style={{ display: "flex", gap: "14px", marginBottom: "16px", flexWrap: "wrap" }}>
                       <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoFuel />{v.fuel}</span>
                       <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoSeat />{v.seats} Seats</span>
                       <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoTag />{v.cc}</span>
-=======
-                    <div style={{ display: "flex", gap: "15px", marginBottom: "18px", flexWrap: "wrap" }}>
-                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", color: "#64748b", fontWeight: "600" }}><IcoFuel />{v.fuel}</span>
-                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", color: "#64748b", fontWeight: "600" }}><IcoSeat />{v.seats} Seats</span>
-                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", color: "#64748b", fontWeight: "600" }}><IcoTag />{v.cc}</span>
->>>>>>> c74f3a9
                     </div>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
                       <div>
                         <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
-<<<<<<< HEAD
                           <span style={{ fontSize: "24px", fontWeight: "900", color: "#0f172a", fontFamily: H }}>₹{v.pricePerHour}</span>
                           <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800" }}>/hr</span>
                         </div>
                         {hours > 0 && <p style={{ fontSize: "11px", color: "#94a3b8", fontWeight: "700", margin: "2px 0 0" }}>₹{grand} total ({hours}hr + GST)</p>}
                       </div>
                       <button className="book-btn" onClick={() => setSelected(v)}
-                        style={{ padding: "12px 24px", borderRadius: "14px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, border: "none", color: "#fff", fontSize: "14px", fontWeight: "900", cursor: "pointer", boxShadow: `0 8px 20px rgba(190,13,13,0.3)`, whiteSpace: "nowrap", fontFamily: F }}>
-=======
-                          <span style={{ fontSize: "24px", fontWeight: "900", color: "#1e293b" }}>₹{v.pricePerHour}</span>
-                          <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "600" }}>/hr</span>
-                        </div>
-                        {hours > 0 && <p style={{ fontSize: "12px", color: "#94a3b8", fontWeight: "600", margin: "2px 0 0" }}>₹{grand} incl. GST</p>}
-                      </div>
-                      <button className="book-btn" onClick={() => setSelected(v)}>
->>>>>>> c74f3a9
+                        style={{ padding: "12px 24px", borderRadius: "14px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, border: "none", color: "#fff", fontSize: "14px", fontWeight: "900", cursor: "pointer", boxShadow: "0 8px 20px rgba(190,13,13,0.3)", whiteSpace: "nowrap", fontFamily: F }}>
                         Book Now
                       </button>
                     </div>

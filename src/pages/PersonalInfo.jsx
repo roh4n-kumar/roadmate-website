@@ -26,17 +26,10 @@ const ChevronRight= () => (<svg width="16" height="16" viewBox="0 0 24 24" fill=
 
 const inputStyle = (editable) => ({
   width: "100%", padding: "12px 16px", borderRadius: "14px",
-<<<<<<< HEAD
   border: editable ? "1.5px solid rgba(15, 23, 42, 0.1)" : "1.5px solid rgba(15, 23, 42, 0.05)",
   background: editable ? "#fff" : "rgba(15, 23, 42, 0.02)", fontSize: "14px", fontWeight: "600",
   color: editable ? "#0f172a" : "#64748b", cursor: editable ? "text" : "default",
   boxSizing: "border-box", fontFamily: F, transition: "all .2s ease",
-=======
-  border: editable ? "1.5px solid #e2e8f0" : "1.5px solid #f1f5f9",
-  background: editable ? "#fff" : "#f8fafc", fontSize: "14px", fontWeight: "600",
-  color: editable ? "#1e293b" : "#64748b", cursor: editable ? "text" : "default",
-  boxSizing: "border-box", fontFamily: "'Outfit', sans-serif", transition: "all 0.2s",
->>>>>>> c74f3a9
 });
 
 const CustomDropdown = ({ options, value, onChange, width, disabled, placeholder }) => {
@@ -58,17 +51,10 @@ const CustomDropdown = ({ options, value, onChange, width, disabled, placeholder
       <AnimatePresence>
         {open && (
           <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 4 }}
-<<<<<<< HEAD
             style={{ position: "absolute", top: "calc(100% + 6px)", left: 0, width: "100%", maxHeight: "200px", overflowY: "auto", background: "#fff", borderRadius: "14px", zIndex: 2000, boxShadow: "0 10px 30px rgba(0,0,0,0.12)", border: "1.5px solid rgba(15, 23, 42, 0.08)" }}>
             {options.map(opt => (
               <div key={opt.value} onClick={(e) => { e.stopPropagation(); onChange(opt.value); setOpen(false); }}
                 style={{ padding: "12px 16px", fontSize: "14px", fontWeight: opt.value === value ? "800" : "600", color: opt.value === value ? RED : "#0f172a", background: opt.value === value ? "#fff5f5" : "transparent", cursor: "pointer", fontFamily: F }}
-=======
-            style={{ position: "absolute", top: "calc(100% + 6px)", left: 0, width: "100%", maxHeight: "200px", overflowY: "auto", background: "#fff", borderRadius: "16px", zIndex: 2000, boxShadow: "0 10px 25px rgba(0,0,0,0.1)", border: "1px solid #f1f5f9" }}>
-            {options.map(opt => (
-              <div key={opt.value} onClick={(e) => { e.stopPropagation(); onChange(opt.value); setOpen(false); }}
-                style={{ padding: "12px 16px", fontSize: "14px", fontWeight: opt.value === value ? "700" : "600", color: opt.value === value ? RED : "#475569", background: opt.value === value ? "rgba(190,13,13,0.05)" : "transparent", cursor: "pointer", fontFamily: "'Outfit', sans-serif" }}
->>>>>>> c74f3a9
                 onMouseEnter={e => { if (opt.value !== value) e.currentTarget.style.background = "#f8fafc"; }}
                 onMouseLeave={e => { if (opt.value !== value) e.currentTarget.style.background = "transparent"; }}>
                 {opt.label}
@@ -152,17 +138,10 @@ const PhoneInput = ({ digits, onChange, disabled, hasWarning, onEnterBlur }) => 
   const borderColor = hasWarning ? RED : focused ? RED : "#e2e8f0";
   const shadow = hasWarning ? "0 0 0 4px rgba(190,13,13,0.15)" : focused ? "0 0 0 4px rgba(190,13,13,0.08)" : "none";
   return (
-<<<<<<< HEAD
     <div style={{ display: "flex", alignItems: "center", borderRadius: "14px", border: disabled ? "1.5px solid rgba(15, 23, 42, 0.05)" : `1.5px solid ${borderColor}`, background: disabled ? "rgba(15, 23, 42, 0.02)" : "#fff", boxShadow: disabled ? "none" : shadow, overflow: "hidden", transition: "all 0.2s" }}>
       <span style={{ padding: "12px 14px", fontSize: "14px", fontWeight: "800", color: disabled ? "#94a3b8" : "#0f172a", whiteSpace: "nowrap", userSelect: "none", borderRight: "1.5px solid rgba(15, 23, 42, 0.08)", background: disabled ? "rgba(15, 23, 42, 0.03)" : "#f8fafc", flexShrink: 0, fontFamily: H }}>+91</span>
       <input type="tel" value={digits} onChange={handleChange} onKeyDown={handleKey} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} disabled={disabled} placeholder="XXXXXXXXXX"
         style={{ flex: 1, border: "none", outline: "none", background: "transparent", padding: "12px 16px", fontSize: "14px", fontWeight: "600", fontFamily: F, color: disabled ? "#64748b" : "#0f172a", cursor: disabled ? "default" : "text" }} />
-=======
-    <div style={{ display: "flex", alignItems: "center", borderRadius: "14px", border: disabled ? "1.5px solid #f1f5f9" : `1.5px solid ${borderColor}`, background: disabled ? "#f8fafc" : "#fff", boxShadow: disabled ? "none" : shadow, overflow: "hidden", transition: "all 0.2s" }}>
-      <span style={{ padding: "12px 12px 12px 16px", fontSize: "14px", fontWeight: "700", color: disabled ? "#94a3b8" : "#1e293b", whiteSpace: "nowrap", userSelect: "none", borderRight: "1.5px solid #f1f5f9", background: disabled ? "#f1f5f9" : "#f8fafc", flexShrink: 0 }}>+91</span>
-      <input type="tel" value={digits} onChange={handleChange} onKeyDown={handleKey} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} disabled={disabled} placeholder="XXXXXXXXXX"
-        style={{ flex: 1, border: "none", outline: "none", background: "transparent", padding: "12px 16px", fontSize: "14px", fontWeight: "600", fontFamily: "'Outfit', sans-serif", color: disabled ? "#64748b" : "#1e293b", cursor: disabled ? "default" : "text" }} />
->>>>>>> c74f3a9
     </div>
   );
 };
@@ -175,11 +154,7 @@ const PincodeInput = ({ value, onChange, disabled, hasWarning, onEnterBlur }) =>
   const shadow = hasWarning ? "0 0 0 4px rgba(190,13,13,0.15)" : focused ? "0 0 0 4px rgba(190,13,13,0.08)" : "none";
   return (
     <input type="tel" value={value} onChange={handleChange} onKeyDown={handleKey} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} disabled={disabled} placeholder="XXXXXX"
-<<<<<<< HEAD
       style={{ ...inputStyle(!disabled), color: !disabled ? "#0f172a" : "#64748b", outline: "none", borderColor: disabled ? "rgba(15, 23, 42, 0.05)" : borderColor, boxShadow: disabled ? "none" : shadow }} />
-=======
-      style={{ ...inputStyle(!disabled), color: !disabled ? "#1e293b" : "#64748b", outline: "none", borderColor: disabled ? "#f1f5f9" : borderColor, boxShadow: disabled ? "none" : shadow }} />
->>>>>>> c74f3a9
   );
 };
 
@@ -261,17 +236,12 @@ const PersonalInfo = () => {
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       <div style={{ textAlign: "center" }}>
         <div style={spinnerStyle} />
-<<<<<<< HEAD
         <p style={{ color: "#94a3b8", marginTop: "24px", fontSize: "14px", fontWeight: "700", fontFamily: F }}>Loading your profile...</p>
-=======
-        <p style={{ color: "#64748b", marginTop: "20px", fontSize: "15px", fontWeight: "700", fontFamily: "'Outfit', sans-serif" }}>Preparing your profile...</p>
->>>>>>> c74f3a9
       </div>
     </div>
   );
 
   return (
-<<<<<<< HEAD
     <div style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: F }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
@@ -283,35 +253,14 @@ const PersonalInfo = () => {
         /* Desktop */
         .pi-wrap   { padding-top: 100px; padding-bottom: 120px; }
         .pi-inner  { max-width: 800px; margin: 0 auto; padding: 0 24px; }
-        .pi-card   { background: #fff; border-radius: 28px; padding: 40px; margin-bottom: 24px; boxShadow: 0 4px 24px rgba(0,0,0,0.03); border: 1.5px solid rgba(15, 23, 42, 0.05); }
+        .pi-card   { background: #fff; border-radius: 28px; padding: 40px; margin-bottom: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.03); border: 1.5px solid rgba(15, 23, 42, 0.05); }
         .pi-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
         .pi-title  { font-size: 40px; }
         .pi-avatar { width: 90px; height: 90px; font-size: 34px; }
         .pi-name   { font-size: 24px; }
         .pi-btns   { display: flex; justify-content: center; gap: 16px; margin-top: 32px; }
-=======
-    <div style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: "'Outfit', sans-serif" }}>
-      <style>{`
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .pi-wrap { animation: slideUp 0.6s ease-out; }
-        input:focus, textarea:focus { outline: none; }
-        .edit-btn { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .edit-btn:hover { background: #f1f5f9 !important; transform: translateY(-2px); }
-        .save-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(190,13,13,0.3) !important; }
-        .cancel-btn:hover { background: #f1f5f9 !important; }
-
-        /* Desktop */
-        .pi-container { padding-top: 100px; padding-bottom: 120px; max-width: 800px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
-        .pi-header { margin-bottom: 35px; }
-        .pi-card { background: #fff; border-radius: 28px; padding: 35px; margin-bottom: 25px; border: 1px solid #f1f5f9; box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
-        .pi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        .pi-avatar-card { display: flex; align-items: center; gap: 24px; }
-        .pi-avatar { width: 90px; height: 90px; font-size: 36px; border-radius: 24px; }
-        .pi-btns { display: flex; justify-content: flex-end; gap: 15px; margin-top: 30px; }
->>>>>>> c74f3a9
 
         @media (max-width: 900px) {
-<<<<<<< HEAD
           .pi-wrap  { padding-top: 80px !important; padding-bottom: 80px !important; }
           .pi-inner { padding: 0 16px !important; }
           .pi-card  { padding: 24px !important; border-radius: 20px !important; margin-bottom: 16px !important; }
@@ -322,24 +271,10 @@ const PersonalInfo = () => {
           .pi-btns  { flex-direction: column !important; gap: 12px !important; }
           .pi-btns button { width: 100% !important; justify-content: center !important; }
           .pi-edit-btn { padding: 10px 16px !important; font-size: 13px !important; }
-=======
-          .pi-container { padding-top: 80px !important; padding-bottom: 100px !important; }
-          .pi-card { padding: 25px !important; border-radius: 24px !important; }
-          .pi-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-          .pi-avatar { width: 70px !important; height: 70px !important; font-size: 28px !important; border-radius: 20px !important; }
-          .pi-avatar-card { gap: 18px !important; }
-          .pi-btns { flex-direction: column-reverse !important; width: 100% !important; }
-          .pi-btns button { width: 100% !important; height: 50px !important; }
-          .pi-title { font-size: 28px !important; }
-          .pi-edit-btn { padding: 10px 15px !important; font-size: 13px !important; }
->>>>>>> c74f3a9
         }
       `}</style>
 
-      <div className="pi-container">
-        <div className="pi-wrap">
-
-<<<<<<< HEAD
+      <div className="pi-inner pi-wrap">
           <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} style={{ marginBottom: "32px" }}>
             <h1 className="pi-title" style={{ fontFamily: H, fontWeight: "900", color: "#0f172a", margin: 0, letterSpacing: "-1.5px" }}>
               Personal <span style={{ color: RED }}>Information</span>
@@ -364,64 +299,17 @@ const PersonalInfo = () => {
                   <EditIcon /> Edit Profile
                 </button>
               )}
-=======
-          {/* PAGE TITLE */}
-          <div className="pi-header">
-            <h1 className="pi-title" style={{ fontSize: "38px", fontWeight: "900", color: "#1e293b", margin: 0, letterSpacing: "-1.5px" }}>
-              Personal <span style={{ color: RED }}>Information</span>
-            </h1>
-            <p style={{ color: "#64748b", fontSize: "16px", marginTop: "8px", fontWeight: "600" }}>Manage your account settings and profile details</p>
-          </div>
-
-          {/* PROFILE AVATAR CARD */}
-          <div className="pi-card pi-avatar-card">
-            <div className="pi-avatar" style={{ 
-              background: `linear-gradient(135deg, ${RED}, #ff4d4d)`, 
-              display: "flex", alignItems: "center", justifyContent: "center", 
-              fontWeight: "900", color: "white", 
-              boxShadow: "0 10px 30px rgba(190,13,13,0.25)", 
-              flexShrink: 0 
-            }}>
-              {(formData.name?.[0] || user?.email?.[0] || "?").toUpperCase()}
->>>>>>> c74f3a9
             </div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <h3 style={{ margin: 0, fontWeight: "900", fontSize: "22px", letterSpacing: "-0.5px", color: "#1e293b", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                {formData.name || "Your Name"}
-              </h3>
-              <p style={{ margin: "4px 0 0", fontSize: "14px", color: "#64748b", fontWeight: "600", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{formData.email}</p>
-            </div>
-            {!editMode && (
-              <button onClick={handleEditClick} className="edit-btn pi-edit-btn" style={{ 
-                background: "#f8fafc", border: "1.5px solid #f1f5f9", 
-                padding: "12px 20px", borderRadius: "14px", 
-                fontWeight: "800", fontSize: "14px", cursor: "pointer", color: "#1e293b", 
-                display: "flex", alignItems: "center", gap: "8px", 
-                whiteSpace: "nowrap", flexShrink: 0 
-              }}>
-                <EditIcon /> Edit Profile
-              </button>
-            )}
-          </div>
+          </motion.div>
 
-<<<<<<< HEAD
           {/* Fields card */}
           <motion.div ref={formCardRef} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="pi-card">
             <h2 style={{ margin: "0 0 28px", fontSize: "12px", fontWeight: "800", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1.5px", fontFamily: H }}>Profile Details</h2>
-=======
-          {/* FORM FIELDS CARD */}
-          <div ref={formCardRef} className="pi-card">
-            <h2 style={{ margin: "0 0 25px", fontSize: "12px", fontWeight: "800", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "2px" }}>General Profile</h2>
->>>>>>> c74f3a9
 
             <div className="pi-grid">
               {FIELDS.map(({ key, label, type, Icon, placeholder, options, disabled }) => (
                 <div key={key} style={{ gridColumn: type === "textarea" ? "1 / -1" : "auto" }}>
-<<<<<<< HEAD
                   <label style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", fontWeight: "800", color: "#64748b", marginBottom: "10px", textTransform: "uppercase", letterSpacing: "1px", fontFamily: H }}>
-=======
-                  <label style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", fontWeight: "800", color: "#64748b", marginBottom: "10px", textTransform: "uppercase", letterSpacing: "1px" }}>
->>>>>>> c74f3a9
                     <span style={{ color: RED, display: "flex", alignItems: "center" }}><Icon /></span>
                     {label}
                   </label>
@@ -429,19 +317,14 @@ const PersonalInfo = () => {
                   : type === "pincode"      ? <PincodeInput value={pincodeDigits} onChange={setPincodeDigits} disabled={!editMode} hasWarning={pincodeWarning} onEnterBlur={checkPincode} />
                   : type === "datepicker"   ? <DatePicker value={formData[key] || ""} onChange={(val) => handleChange(key, val)} disabled={!editMode} />
                   : type === "custom-select"? <CustomDropdown options={options.map(o => ({ value: o, label: o }))} value={formData[key] || ""} onChange={(val) => handleChange(key, val)} disabled={!editMode} width="100%" placeholder="Select gender" />
-                  : type === "textarea"     ? <textarea value={formData[key] || ""} onChange={(e) => handleChange(key, e.target.value)} onKeyDown={handleEnterKey} disabled={!editMode} placeholder={placeholder} rows={3} style={{ ...inputStyle(editMode), resize: "none", color: editMode ? "#1e293b" : "#64748b" }} />
-                  : <input type={type} value={formData[key] || ""} onChange={(e) => handleChange(key, e.target.value)} onKeyDown={handleEnterKey} disabled={!editMode || disabled} placeholder={placeholder} style={{ ...inputStyle(editMode && !disabled), color: (editMode && !disabled) ? "#1e293b" : "#64748b" }} />}
+                  : type === "textarea"     ? <textarea value={formData[key] || ""} onChange={(e) => handleChange(key, e.target.value)} onKeyDown={handleEnterKey} disabled={!editMode} placeholder={placeholder} rows={3} style={{ ...inputStyle(editMode), resize: "none", color: editMode ? "#0f172a" : "#64748b" }} />
+                  : <input type={type} value={formData[key] || ""} onChange={(e) => handleChange(key, e.target.value)} onKeyDown={handleEnterKey} disabled={!editMode || disabled} placeholder={placeholder} style={{ ...inputStyle(editMode && !disabled), color: (editMode && !disabled) ? "#0f172a" : "#64748b" }} />}
                 </div>
               ))}
             </div>
 
-<<<<<<< HEAD
             <p style={{ fontSize: "13px", color: "#94a3b8", marginTop: "24px", marginBottom: 0, display: "flex", alignItems: "center", gap: "8px", fontWeight: "600" }}>
               <MailIcon /> Email is linked to your account and cannot be modified.
-=======
-            <p style={{ fontSize: "13px", color: "#94a3b8", marginTop: "25px", marginBottom: 0, display: "flex", alignItems: "center", gap: "8px", fontWeight: "500" }}>
-              <InfoIcon /> Email is linked to your account and cannot be modified.
->>>>>>> c74f3a9
             </p>
 
             <AnimatePresence>
@@ -454,7 +337,6 @@ const PersonalInfo = () => {
               )}
             </AnimatePresence>
 
-<<<<<<< HEAD
             <AnimatePresence>
               {editMode && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="pi-btns">
@@ -466,37 +348,15 @@ const PersonalInfo = () => {
               )}
             </AnimatePresence>
           </motion.div>
-=======
-            {editMode && (
-              <div className="pi-btns">
-                <button onClick={handleCancel} className="cancel-btn" style={{ background: "#f8fafc", border: "1.5px solid #f1f5f9", padding: "12px 30px", borderRadius: "16px", fontWeight: "800", fontSize: "15px", cursor: "pointer", color: "#64748b", transition: "all 0.2s" }}>Discard</button>
-                <button onClick={handleSave} disabled={saving} className="save-btn" style={{ background: RED, color: "white", border: "none", padding: "12px 35px", borderRadius: "16px", fontWeight: "800", fontSize: "15px", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", boxShadow: "0 8px 20px rgba(190,13,13,0.2)", transition: "all 0.3s" }}>
-                  <SaveIcon />{saving ? "Saving Changes..." : "Save Changes"}
-                </button>
-              </div>
-            )}
-          </div>
->>>>>>> c74f3a9
 
-        </div>
       </div>
 
-<<<<<<< HEAD
       <AnimatePresence>
         {saved && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
             style={{ position: "fixed", bottom: "40px", left: 0, right: 0, display: "flex", justifyContent: "center", zIndex: 9999, pointerEvents: "none" }}>
             <div style={{ background: "#0f172a", color: "white", padding: "16px 32px", borderRadius: "16px", display: "flex", alignItems: "center", gap: "12px", boxShadow: "0 12px 40px rgba(0,0,0,0.25)", borderLeft: `6px solid #22c55e`, fontSize: "15px", fontWeight: "700", whiteSpace: "nowrap", fontFamily: F }}>
               ✅ Profile updated successfully!
-=======
-      {/* SUCCESS TOAST */}
-      <AnimatePresence>
-        {saved && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}
-            style={{ position: "fixed", bottom: "40px", left: 0, right: 0, display: "flex", justifyContent: "center", zIndex: 9999, pointerEvents: "none" }}>
-            <div style={{ background: "#1e293b", color: "white", padding: "16px 28px", borderRadius: "20px", display: "flex", alignItems: "center", gap: "12px", boxShadow: "0 15px 40px rgba(0,0,0,0.2)", borderLeft: `6px solid #22c55e`, fontSize: "15px", fontWeight: "800" }}>
-              ✅ Your profile has been updated!
->>>>>>> c74f3a9
             </div>
           </motion.div>
         )}

@@ -25,7 +25,6 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const scrollRef = useRef(null); // This ref is not used in the new drawer implementation for scroll locking, but kept as it was in the original code.
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -81,12 +80,17 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
 
   return (
     <>
-<<<<<<< HEAD
       <style>
         {`
           .hide-scrollbar::-webkit-scrollbar { display: none; }
           .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-          @media (max-width: 900px) { .desktop-navbar { display: none !important; } .roadmate-drawer { width: 100% !important; } }
+          @media (max-width: 900px) { 
+            .desktop-nav { display: none !important; } 
+            .mobile-trigger { display: flex !important; }
+          }
+          @media (min-width: 901px) {
+            .mobile-trigger { display: none !important; }
+          }
           .google-auth-btn {
             width: 100%; padding: 14px; background: #fff;
             border: 1.5px solid rgba(15, 23, 42, 0.1); border-radius: 14px;
@@ -104,9 +108,9 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             font-family: ${F};
           }
           .premium-logout-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(190,13,13,0.3); }
-          .desktop-link { transition: all 0.2s ease; font-family: ${F}; }
+          .desktop-link { transition: all 0.2s ease; font-family: ${F}; text-decoration: none; font-size: 15px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 8px; padding: 10px 0; }
           .desktop-link:hover { color: ${RED} !important; transform: translateY(-1px); }
-          .desktop-link.selected { background: transparent !important; color: ${RED} !important; border-bottom: 3px solid ${RED}; border-radius: 0; }
+          .desktop-link.active { color: ${RED} !important; border-bottom: 3px solid ${RED}; }
           .account-premium-btn {
             background: #0f172a; color: #fff; border: none;
             padding: 10px 20px; border-radius: 12px;
@@ -118,7 +122,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           .account-premium-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(190,13,13,0.3); }
         `}
       </style>
-=======
+
       <nav
         style={{
           position: "fixed",
@@ -131,10 +135,10 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           display: "flex",
           alignItems: "center",
           padding: "0 24px",
-          backgroundColor: "#fff",
-          backdropFilter: "blur(15px)",
-          borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
-          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.05)",
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          borderBottom: "1.5px solid rgba(15, 23, 42, 0.05)",
         }}
       >
         <div style={{ maxWidth: "1250px", margin: "0 auto", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -145,55 +149,24 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               fontSize: "24px",
               fontWeight: 900,
               textDecoration: "none",
-              color: "#111",
-              letterSpacing: "-1px"
+              color: "#0f172a",
+              letterSpacing: "-1px",
+              fontFamily: H
             }}
           >
             Road<span style={{ color: RED }}>Mate</span>
           </Link>
->>>>>>> c74f3a9
 
           {/* Desktop Nav */}
-          <div style={{ display: "flex", alignItems: "center", gap: "30px" }} className="desktop-only">
+          <div style={{ display: "flex", alignItems: "center", gap: "30px" }} className="desktop-nav">
             <NavLink
               to="/my-bookings"
-<<<<<<< HEAD
-              onClick={(e) => {
-                if (!isLoggedIn) {
-                  e.preventDefault();
-                  setIsDrawerOpen(true);
-                  setTimeout(() => {
-                    setShowWarning(true);
-                    setTimeout(() => setShowWarning(false), 3000);
-                  }, 400);
-                }
-              }}
-              className={({ isActive }) => `desktop-link${isActive ? " selected" : ""}`}
-              style={{
-                textDecoration: "none",
-                fontSize: "15px",
-                fontWeight: 700,
-                color: "#0f172a",
-                display: "flex", alignItems: "center", gap: "8px",
-                padding: "10px 0",
-              }}
-=======
-              style={({ isActive }) => ({
-                textDecoration: "none",
-                fontSize: "14px",
-                fontWeight: 700,
-                color: isActive ? RED : "#111",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                transition: "all 0.2s"
-              })}
->>>>>>> c74f3a9
+              className={({ isActive }) => `desktop-link${isActive ? " active" : ""}`}
             >
               <BookingIcon /> My Bookings
             </NavLink>
-<<<<<<< HEAD
-            <div onClick={() => setIsDrawerOpen(true)} className="account-premium-btn">
+
+            <button onClick={() => setIsDrawerOpen(true)} className="account-premium-btn">
               {isLoggedIn ? (
                 <>
                   <div style={{
@@ -208,36 +181,6 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                   </div>
                   Account
                 </>
-=======
-
-            <button
-              onClick={() => setIsDrawerOpen(true)}
-              style={{
-                backgroundColor: "#111",
-                color: "#fff",
-                border: "none",
-                padding: "12px 28px",
-                borderRadius: "18px",
-                fontSize: "15px",
-                fontWeight: 800,
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                transition: "transform 0.2s",
-                boxShadow: "0 10px 20px rgba(0,0,0,0.05)"
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"}
-              onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
-            >
-              {isLoggedIn ? (
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                   <div style={{ width: "20px", height: "20px", borderRadius: "50%", background: RED, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px" }}>
-                    {(user?.displayName?.[0] || user?.email?.[0] || "U").toUpperCase()}
-                   </div>
-                   Account
-                </div>
->>>>>>> c74f3a9
               ) : (
                 <> <AccountIcon size={18} /> Account </>
               )}
@@ -246,9 +189,9 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
 
           {/* Mobile Menu Icon */}
           <div
-            className="mobile-only"
+            className="mobile-trigger"
             onClick={() => setIsDrawerOpen(true)}
-            style={{ color: "#111", cursor: "pointer" }}
+            style={{ color: "#0f172a", cursor: "pointer", display: "none" }}
           >
              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
           </div>
@@ -272,49 +215,49 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              style={{ position: "fixed", top: 0, right: 0, width: "100%", maxWidth: "400px", height: "100vh", backgroundColor: "#fff", zIndex: 10002, display: "flex", flexDirection: "column", boxShadow: "-20px 0 50px rgba(0,0,0,0.1)" }}
+              style={{ position: "fixed", top: 0, right: 0, width: "100%", maxWidth: "400px", height: "100vh", backgroundColor: "#fff", zIndex: 10002, display: "flex", flexDirection: "column", boxShadow: "-20px 0 50px rgba(0,0,0,0.1)", borderLeft: "1px solid rgba(0,0,0,0.05)" }}
             >
               <div style={{ padding: "30px", display: "flex", flexDirection: "column", height: "100%" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "40px" }}>
-                  <h2 style={{ fontSize: "24px", fontWeight: 900 }}>Account</h2>
+                  <h2 style={{ fontSize: "24px", fontWeight: 900, fontFamily: H }}>Account</h2>
                   <button onClick={() => setIsDrawerOpen(false)} style={{ background: "none", border: "none", fontSize: "32px", cursor: "pointer", color: "#ccc" }}>&times;</button>
                 </div>
 
                 {!isLoggedIn ? (
                   <div style={{ padding: "30px", borderRadius: "30px", background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)", marginBottom: "40px" }}>
-                    <h3 style={{ fontSize: "22px", fontWeight: 900, marginBottom: "20px", color: "#111" }}>Premium Vehicle Rentals</h3>
+                    <h3 style={{ fontSize: "22px", fontWeight: 900, marginBottom: "20px", color: "#111", fontFamily: H }}>Premium Vehicle Rentals</h3>
                     <button
                       onClick={() => { setIsDrawerOpen(false); setIsLoginOpen(true); }}
-                      style={{ width: "100%", padding: "16px", background: RED, color: "#fff", border: "none", borderRadius: "18px", fontSize: "16px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", boxShadow: "0 10px 20px rgba(190,13,13,0.2)" }}
+                      style={{ width: "100%", padding: "16px", background: `linear-gradient(135deg, ${RED}, #ff4d4d)`, color: "#fff", border: "none", borderRadius: "18px", fontSize: "16px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", boxShadow: "0 10px 20px rgba(190,13,13,0.2)", fontFamily: F }}
                     >
                       <LoginIcon size={20} /> Login / Signup
                     </button>
                   </div>
                 ) : (
                   <div style={{ display: "flex", alignItems: "center", gap: "15px", padding: "20px", borderRadius: "24px", background: "#f8f9fa", border: "1px solid #eee", marginBottom: "40px" }}>
-                    <div style={{ width: "50px", height: "50px", borderRadius: "50%", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid #eee" }}>
-                      <AdminIcon size={24} color={RED} />
+                    <div style={{ width: "50px", height: "50px", borderRadius: "16px", background: `linear-gradient(135deg, ${RED}, #ff4d4d)`, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "20px", fontWeight: 900, fontFamily: H }}>
+                      {(user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()}
                     </div>
-                    <div>
-                      <h4 style={{ fontSize: "18px", fontWeight: 900, margin: 0 }}>{user?.displayName || "RoadMate User"}</h4>
-                      <p style={{ fontSize: "13px", color: "#666", margin: 0 }}>{user?.email}</p>
+                    <div style={{ overflow: "hidden" }}>
+                      <h4 style={{ fontSize: "18px", fontWeight: 900, margin: 0, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontFamily: H }}>{user?.displayName || "RoadMate User"}</h4>
+                      <p style={{ fontSize: "13px", color: "#64748b", margin: 0, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontWeight: 600 }}>{user?.email}</p>
                     </div>
                   </div>
                 )}
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }} className="hide-scrollbar">
+                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }} className="hide-scrollbar">
                    <DrawerItem icon={<AccountIcon size={20} />} label="Personal Profile" onClick={() => { setIsDrawerOpen(false); navigate("/profile"); }} />
                    <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => { setIsDrawerOpen(false); navigate("/my-bookings"); }} />
                    <DrawerItem icon={<ShieldIcon />} label="Document Verification" onClick={() => { setIsDrawerOpen(false); navigate("/documents"); }} />
                    <DrawerItem icon={<NewWalletIcon />} label="Wallet & Payments" onClick={() => { setIsDrawerOpen(false); navigate("/wallet"); }} />
-                   <DrawerItem icon={<SupportIcon />} label="Customer Support" onClick={() => { setIsDrawerOpen(false); /* support logic */ }} />
+                   <DrawerItem icon={<SupportIcon />} label="Customer Support" onClick={() => { setIsDrawerOpen(false); /* support */ }} />
                 </div>
 
                 {isLoggedIn && (
                   <div style={{ marginTop: "auto", paddingTop: "40px" }}>
                     <button
                       onClick={handleLogout}
-                      style={{ width: "100%", padding: "16px", background: "none", border: "2px solid #fff0f0", color: RED, borderRadius: "18px", fontSize: "15px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}
+                      className="premium-logout-btn"
                     >
                       <LogoutIcon size={18} /> Logout
                     </button>
@@ -343,15 +286,13 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
              >
                 <button onClick={() => setIsLoginOpen(false)} style={{ position: "absolute", top: "25px", right: "25px", border: "none", background: "none", fontSize: "32px", cursor: "pointer", color: "#ccc" }}>&times;</button>
                 <div style={{ marginBottom: "30px" }}>
-                   <h2 style={{ fontSize: "32px", fontWeight: 900, marginBottom: "10px" }}>Welcome <span style={{ color: RED }}>Mate</span></h2>
-                   <p style={{ color: "#888", fontWeight: 500 }}>Bhubaneswar's choice for luxury rentals</p>
+                   <h2 style={{ fontSize: "32px", fontWeight: 900, marginBottom: "10px", fontFamily: H }}>Welcome <span style={{ color: RED }}>Mate</span></h2>
+                   <p style={{ color: "#64748b", fontWeight: 600, fontFamily: F }}>Bhubaneswar's choice for luxury rentals</p>
                 </div>
                 <button
                   onClick={handleGoogleSignup}
                   disabled={loading}
-                  style={{ width: "100%", padding: "16px", backgroundColor: "#fff", border: "2px solid #f0f0f0", borderRadius: "20px", display: "flex", alignItems: "center", justifyContent: "center", gap: "15px", fontSize: "16px", fontWeight: 700, cursor: "pointer", transition: "background 0.2s" }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#f9f9f9"}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "#fff"}
+                  className="google-auth-btn"
                 >
                   <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="24" alt="G" />
                   {loading ? "Connecting..." : "Continue with Google"}
@@ -364,42 +305,28 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   );
 };
 
-<<<<<<< HEAD
-const modalOverlayStyle = { position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 11000 };
-const modalContentStyle = { background: "#fff", padding: "45px 40px", borderRadius: "32px", width: "90%", maxWidth: "420px", position: "relative", textAlign: "center", boxShadow: "0 20px 60px rgba(0,0,0,0.2)" };
-const closeModalStyle = { position: "absolute", top: "20px", right: "25px", fontSize: "32px", cursor: "pointer", color: "#ccc" };
-const navStyle = { position: "fixed", top: 0, left: 0, width: "100%", height: "70px", zIndex: 1000, background: "rgba(255, 255, 255, 0.8)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", borderBottom: "1.5px solid rgba(15, 23, 42, 0.05)", display: "flex", alignItems: "center" };
-const containerStyle = { maxWidth: "1200px", margin: "0 auto", padding: "0 24px", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" };
-const logoStyle = { color: "#0f172a", fontSize: "24px", fontWeight: 900, textDecoration: "none", letterSpacing: "-1px", fontFamily: H };
-const linkStyle = { textDecoration: "none", fontSize: "14px", fontWeight: 700, padding: "8px 18px", borderRadius: "10px", transition: "all 0.3s ease", fontFamily: F };
-const accountBtnStyle = { textDecoration: "none", fontSize: "14px", fontWeight: 700, padding: "8px 12px", borderRadius: "10px", transition: "all 0.3s ease", display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", color: "#0f172a", border: "none", fontFamily: F };
-const overlayStyle = { position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", backgroundColor: "rgba(0, 0, 0, 0.4)", backdropFilter: "blur(2px)", zIndex: 10001 };
-const drawerStyle = { position: "fixed", top: 0, width: "400px", height: "100vh", background: "white", zIndex: 10002, transition: "0.4s cubic-bezier(0.4, 0, 0.2, 1)", boxShadow: "-10px 0 30px rgba(0,0,0,0.1)", display: "flex", flexDirection: "column" };
-const drawerHeaderStyle = { padding: "0 24px", height: "64px", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #eee" };
-const dividerStyle = { margin: "0 24px 20px 24px", border: "none", borderTop: "1px solid #eee" };
-const closeBtnStyle = { cursor: "pointer", fontSize: "28px", color: "#888" };
-const ctaTitleStyle = { fontSize: "24px", fontWeight: "900", color: "#1a1a1a", marginBottom: "16px", lineHeight: "1.2" };
-const loginBtnStyle = { background: RED, color: "white", border: "none", padding: "14px", borderRadius: "12px", fontWeight: "700", cursor: "pointer", fontSize: "16px", marginBottom: "12px", width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" };
-const signupTextStyle = { fontSize: "14px", color: "#666" };
-const scrollAreaStyle = { flex: 1, overflowY: "auto", paddingBottom: "40px" };
-const sectionTitleStyle = { fontSize: "18px", fontWeight: "800", color: "#1a1a1a", padding: "10px 24px", margin: "10px 0 5px 0" };
-const drawerItemStyle = { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 24px", cursor: "pointer", transition: "0.2s" };
-=======
 const DrawerItem = ({ icon, label, onClick }) => (
   <div
     onClick={onClick}
-    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", borderRadius: "18px", cursor: "pointer", transition: "background 0.2s" }}
-    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#f8f9fa"}
-    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "transparent"}
+    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", borderRadius: "16px", cursor: "pointer", transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.backgroundColor = "#f8f9fa";
+      e.currentTarget.lastChild.style.transform = "translateX(4px)";
+      e.currentTarget.lastChild.style.color = RED;
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.backgroundColor = "transparent";
+      e.currentTarget.lastChild.style.transform = "translateX(0)";
+      e.currentTarget.lastChild.style.color = "#cbd5e1";
+    }}
   >
     <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-      <div style={{ color: "#aaa" }}>{icon}</div>
-      <span style={{ fontSize: "15px", fontWeight: 700, color: "#333" }}>{label}</span>
+      <div style={{ color: "#64748b" }}>{icon}</div>
+      <span style={{ fontSize: "15px", fontWeight: 700, color: "#1e293b", fontFamily: F }}>{label}</span>
     </div>
-    <span style={{ color: "#ddd", fontSize: "20px" }}>&rsaquo;</span>
+    <span style={{ color: "#cbd5e1", fontSize: "20px", fontWeight: "300", transition: "all 0.2s" }}>&rsaquo;</span>
   </div>
 );
->>>>>>> c74f3a9
 
 const BookingIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="m16 10-4 4-2-2"/></svg>;
 const AccountIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
