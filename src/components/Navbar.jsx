@@ -145,7 +145,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                 alignItems: "center",
                 gap: "10px",
                 transition: "transform 0.2s",
-                boxShadow: scrolled ? "0 10px 20px rgba(0,0,0,0.1)" : "0 10px 20px rgba(0,0,0,0.05)"
+                boxShadow: "0 10px 20px rgba(0,0,0,0.05)"
               }}
               onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"}
               onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
