@@ -752,6 +752,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 <SearchIcon /> Search Availability
               </button>
             </div>
+          </div>
+        </div>
+      </div>
 
       {/* NEW ANIMATION ANCHOR - positioned just above stats bar */}
       <div style={{ position: "relative", width: "100%", maxWidth: "1400px", margin: "0 auto", height: 0, overflow: "visible", zIndex: 1000 }}>
