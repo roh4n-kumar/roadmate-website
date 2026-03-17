@@ -170,8 +170,8 @@ const FrameAnimation = ({ type }) => {
     <div className={`anim-container ${type}-anim`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <canvas 
         ref={canvasRef} 
-        width={300} 
-        height={200} 
+        width={800} 
+        height={600} 
         style={{ width: '100%', height: '100%', objectFit: 'contain' }}
       />
     </div>
@@ -379,18 +379,18 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .anim-container {
       position: relative;
-      width: 25rem;
-      height: 18rem;
+      width: 15rem;
+      height: 10rem;
       z-index: 1000;
       pointer-events: none;
-      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));
+      filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15));
     }
-    .bike-anim { margin-left: -50px; transform: scaleX(-1); /* Facing towards center */ }
-    .car-anim { margin-right: -50px; }
+    .bike-anim { margin-left: 0; }
+    .car-anim { margin-right: 0; }
     .anim-img { width: 100%; height: 100%; object-fit: contain; }
 
     @media (max-width: 1200px) {
-      .anim-container { width: 18rem; height: 12rem; }
+      .anim-container { width: 12rem; height: 8rem; }
     }
     @media (max-width: 900px) {
       .anim-container { display: none; }
