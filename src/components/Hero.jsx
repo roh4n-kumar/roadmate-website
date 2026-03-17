@@ -657,6 +657,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 <SearchIcon /> Search Availability
               </button>
             </div>
+
+            {/* Vehicle Animations */}
+            <FrameAnimation type="bike" />
+            <FrameAnimation type="car" />
           </div>
         </div>
       </div>
