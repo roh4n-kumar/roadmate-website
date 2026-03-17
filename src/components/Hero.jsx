@@ -378,18 +378,21 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-btn:active { transform: translateY(0) scale(0.98); }
 
     .anim-container {
-      position: absolute;
-      bottom: -15px; 
-      width: 15rem;
-      height: 10rem;
-      z-index: 140;
+      position: relative;
+      width: 25rem;
+      height: 18rem;
+      z-index: 1000;
       pointer-events: none;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));
     }
-    .bike-anim { left: -40px; }
-    .car-anim { right: -40px; }
+    .bike-anim { margin-left: -50px; transform: scaleX(-1); /* Facing towards center */ }
+    .car-anim { margin-right: -50px; }
     .anim-img { width: 100%; height: 100%; object-fit: contain; }
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1200px) {
+      .anim-container { width: 18rem; height: 12rem; }
+    }
+    @media (max-width: 900px) {
       .anim-container { display: none; }
     }
 
@@ -750,10 +753,13 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               </button>
             </div>
 
-            {/* Vehicle Animations */}
-            <FrameAnimation type="bike" />
-            <FrameAnimation type="car" />
-          </div>
+      {/* NEW ANIMATION ANCHOR - positioned just above stats bar */}
+      <div style={{ position: "relative", width: "100%", maxWidth: "1400px", margin: "0 auto", height: 0, overflow: "visible", zIndex: 1000 }}>
+        <div style={{ position: "absolute", bottom: 0, left: 0 }}>
+          <FrameAnimation type="bike" />
+        </div>
+        <div style={{ position: "absolute", bottom: 0, right: 0 }}>
+          <FrameAnimation type="car" />
         </div>
       </div>
 
