@@ -107,8 +107,8 @@ const CalendarInline = ({ selected, onSelect }) => {
 const FrameAnimation = ({ type }) => {
   const canvasRef = useRef(null);
   const [frame, setFrame] = useState(1);
-  const totalFrames = 192;
-  const skip = 3; // Play every 3rd frame to reduce load (64 frames total)
+  const totalFrames = 177; // Trimmed from 192 to remove the "braking" frames at the end
+  const skip = 3; // Play every 3rd frame to reduce load
   const imagesRef = useRef({});
   const lastUpdateRef = useRef(0);
 
