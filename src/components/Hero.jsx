@@ -102,6 +102,25 @@ const CalendarInline = ({ selected, onSelect }) => {
 };
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
+const FrameAnimation = ({ type }) => {
+  const [frame, setFrame] = useState(1);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFrame(f => (f >= 192 ? 1 : f + 1));
+    }, 40);
+    return () => clearInterval(timer);
+  }, []);
+
+  const frameStr = String(frame).padStart(3, '0');
+  const src = `/${type}/ezgif-frame-${frameStr}.jpg`;
+
+  return (
+    <div className={`anim-container ${type}-anim`}>
+      <img src={src} alt={type} className="anim-img" />
+    </div>
+  );
+};
+
 const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const navigate = useNavigate();
 
@@ -300,6 +319,22 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       filter: brightness(1.1);
     }
     .search-btn:active { transform: translateY(0) scale(0.98); }
+
+    .anim-container {
+      position: absolute;
+      bottom: -15px; 
+      width: 15rem;
+      height: 10rem;
+      z-index: 140;
+      pointer-events: none;
+    }
+    .bike-anim { left: -40px; }
+    .car-anim { right: -40px; }
+    .anim-img { width: 100%; height: 100%; object-fit: contain; }
+
+    @media (max-width: 1000px) {
+      .anim-container { display: none; }
+    }
 
     .date-sub-row { display: flex; gap: 10px; align-items: center; }
     .date-trigger { flex: 1; }
