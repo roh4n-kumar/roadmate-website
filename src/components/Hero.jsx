@@ -204,13 +204,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       -webkit-backdrop-filter: blur(40px);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 28px;
-      padding: 40px;
+      padding: 40px 40px 60px; /* Extra bottom padding to clear the button */
       display: flex;
       align-items: flex-end;
       gap: 0;
       box-shadow: 0 40px 100px rgba(0,0,0,0.5);
       position: relative;
       z-index: 100;
+      margin-bottom: 30px; /* Give space for half-button hanging below */
     }
 
     .search-field { 
@@ -267,11 +268,12 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-input-box span.filled { color: #fff; font-weight: 600; }
 
     .search-btn-container {
-      display: flex;
-      justify-content: center;
-      margin-top: -30px;
-      position: relative;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 50%); /* Centered on the bottom edge */
       z-index: 150;
+      white-space: nowrap;
     }
 
     .search-btn { 
@@ -648,12 +650,13 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 </div>
               )}
             </div>
-          </div>
 
-          <div className="search-btn-container">
-            <button className="search-btn" onClick={handleSearch}>
-              <SearchIcon /> Search Availability
-            </button>
+            {/* SEARCH BUTTON moved inside for edge positioning */}
+            <div className="search-btn-container">
+              <button className="search-btn" onClick={handleSearch}>
+                <SearchIcon /> Search Availability
+              </button>
+            </div>
           </div>
         </div>
       </div>
