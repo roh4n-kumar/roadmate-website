@@ -270,18 +270,18 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-btn-container {
       display: flex;
       justify-content: center;
-      margin-top: -29px;
+      margin-top: 40px;
       position: relative;
       z-index: 150;
     }
 
     .search-btn { 
-      background: var(--brand-red); 
+      background: ${RED}; 
       color: #fff; 
       border: none; 
       padding: 0 50px; 
-      height: 58px; 
-      border-radius: 18px; 
+      height: 60px; 
+      border-radius: 20px; 
       font-size: 16px; 
       font-weight: 700; 
       cursor: pointer; 
@@ -289,7 +289,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       align-items: center; 
       gap: 12px; 
       white-space: nowrap; 
-      box-shadow: 0 10px 30px rgba(190,13,13,0.4); 
+      box-shadow: 0 15px 35px rgba(190,13,13,0.4); 
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
       font-family: 'Outfit', sans-serif; 
     }
