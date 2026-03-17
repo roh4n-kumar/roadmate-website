@@ -106,20 +106,21 @@ const CalendarInline = ({ selected, onSelect }) => {
 // ── Hero ──────────────────────────────────────────────────────────────────────
 const FrameAnimation = ({ type }) => {
   const canvasRef = useRef(null);
-  const [frame, setFrame] = useState(1);
-  const totalFrames = 177; // Trimmed from 192 to remove the "braking" frames at the end
-  const skip = 3; // Play every 3rd frame to reduce load
+  const startFrame = 15; // Skip the initial delay
+  const endFrame = 177; // Skip the braking at the end
+  const [frame, setFrame] = useState(startFrame);
+  const skip = 3; 
   const imagesRef = useRef({});
   const lastUpdateRef = useRef(0);
 
-  // 1. Optimized Animation Loop using requestAnimationFrame
+  // 1. Optimized Animation Loop
   useEffect(() => {
     let animId;
     const animate = (time) => {
-      if (time - lastUpdateRef.current > 60) { // Throttle to ~16fps for balance
+      if (time - lastUpdateRef.current > 60) {
         setFrame(f => {
           let next = f + skip;
-          return next > totalFrames ? 1 : next;
+          return next > endFrame ? startFrame : next;
         });
         lastUpdateRef.current = time;
       }
@@ -129,23 +130,22 @@ const FrameAnimation = ({ type }) => {
     return () => cancelAnimationFrame(animId);
   }, []);
 
-  // 2. Sequential Throttled Preloading (Crucial for performance)
+  // 2. Sequential Throttled Preloading
   useEffect(() => {
     let isMounted = true;
     const loadSequentially = async () => {
-      // Load only the frames we actually need (multiples of skip)
-      for (let i = 1; i <= totalFrames; i += skip) {
+      // Load only the range we need
+      for (let i = startFrame; i <= endFrame; i += skip) {
         if (!isMounted) break;
         if (!imagesRef.current[i]) {
           await new Promise(resolve => {
             const img = new Image();
             img.onload = resolve;
-            img.onerror = resolve; // Continue on error
+            img.onerror = resolve;
             img.src = `/${type}/ezgif-frame-${String(i).padStart(3, '0')}.png`;
             imagesRef.current[i] = img;
           });
-          // Small pause to let main thread breathe
-          if (i % (skip * 5) === 0) await new Promise(r => setTimeout(r, 50));
+          if (i % (skip * 5) === 0) await new Promise(r => setTimeout(r, 40));
         }
       }
     };
