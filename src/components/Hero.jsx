@@ -108,29 +108,50 @@ const FrameAnimation = ({ type }) => {
   const canvasRef = useRef(null);
   const [frame, setFrame] = useState(1);
   const totalFrames = 192;
+  const skip = 3; // Play every 3rd frame to reduce load (64 frames total)
   const imagesRef = useRef({});
+  const lastUpdateRef = useRef(0);
 
-  // 1. Animation Loop
+  // 1. Optimized Animation Loop using requestAnimationFrame
   useEffect(() => {
-    const timer = setInterval(() => {
-      setFrame(f => (f >= totalFrames ? 1 : f + 1));
-    }, 40); // 25fps
-    return () => clearInterval(timer);
+    let animId;
+    const animate = (time) => {
+      if (time - lastUpdateRef.current > 60) { // Throttle to ~16fps for balance
+        setFrame(f => {
+          let next = f + skip;
+          return next > totalFrames ? 1 : next;
+        });
+        lastUpdateRef.current = time;
+      }
+      animId = requestAnimationFrame(animate);
+    };
+    animId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animId);
   }, []);
 
-  // 2. Continuous Preloading (Non-blocking)
+  // 2. Sequential Throttled Preloading (Crucial for performance)
   useEffect(() => {
-    // Load a window of frames around current one
-    const preloadWindow = 20;
-    for (let i = 0; i < preloadWindow; i++) {
-      const fNum = ((frame + i - 1) % totalFrames) + 1;
-      if (!imagesRef.current[fNum]) {
-        const img = new Image();
-        img.src = `/${type}/ezgif-frame-${String(fNum).padStart(3, '0')}.png`;
-        imagesRef.current[fNum] = img;
+    let isMounted = true;
+    const loadSequentially = async () => {
+      // Load only the frames we actually need (multiples of skip)
+      for (let i = 1; i <= totalFrames; i += skip) {
+        if (!isMounted) break;
+        if (!imagesRef.current[i]) {
+          await new Promise(resolve => {
+            const img = new Image();
+            img.onload = resolve;
+            img.onerror = resolve; // Continue on error
+            img.src = `/${type}/ezgif-frame-${String(i).padStart(3, '0')}.png`;
+            imagesRef.current[i] = img;
+          });
+          // Small pause to let main thread breathe
+          if (i % (skip * 5) === 0) await new Promise(r => setTimeout(r, 50));
+        }
       }
-    }
-  }, [frame, type]);
+    };
+    loadSequentially();
+    return () => { isMounted = false; };
+  }, [type]);
 
   // 3. Canvas Rendering
   useEffect(() => {
@@ -142,17 +163,8 @@ const FrameAnimation = ({ type }) => {
     if (img && img.complete) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    } else if (!img) {
-      // Fallback: start loading it if missed
-      const newImg = new Image();
-      newImg.src = `/${type}/ezgif-frame-${String(frame).padStart(3, '0')}.png`;
-      newImg.onload = () => {
-        imagesRef.current[frame] = newImg;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(newImg, 0, 0, canvas.width, canvas.height);
-      };
     }
-  }, [frame, type]);
+  }, [frame]);
 
   return (
     <div className={`anim-container ${type}-anim`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
