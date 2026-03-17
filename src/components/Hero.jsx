@@ -209,7 +209,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       align-items: flex-end;
       gap: 0;
       box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-      margin-bottom: -60px;
       position: relative;
       z-index: 100;
     }
