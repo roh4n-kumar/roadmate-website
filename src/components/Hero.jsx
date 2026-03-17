@@ -105,40 +105,62 @@ const CalendarInline = ({ selected, onSelect }) => {
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
 const FrameAnimation = ({ type }) => {
+  const canvasRef = useRef(null);
   const [frame, setFrame] = useState(1);
   const totalFrames = 192;
+  const imagesRef = useRef({});
 
+  // 1. Animation Loop
   useEffect(() => {
-    // Standard interval for frame switching
     const timer = setInterval(() => {
       setFrame(f => (f >= totalFrames ? 1 : f + 1));
-    }, 40); // 25 fps
-    
-    // Preloader: Load 10 frames ahead silently in the background
-    const preload = () => {
-      for (let i = 1; i <= 10; i++) {
-        const nextFrame = (frame + i) > totalFrames ? (frame + i) - totalFrames : (frame + i);
-        const nextStr = String(nextFrame).padStart(3, '0');
-        const img = new Image();
-        img.src = `/${type}/ezgif-frame-${nextStr}.png`;
-      }
-    };
-    preload();
-
+    }, 40); // 25fps
     return () => clearInterval(timer);
-  }, [frame, type]); // Re-run preload on frame change
+  }, []);
 
-  const frameStr = String(frame).padStart(3, '0');
-  const src = `/${type}/ezgif-frame-${frameStr}.png`;
+  // 2. Continuous Preloading (Non-blocking)
+  useEffect(() => {
+    // Load a window of frames around current one
+    const preloadWindow = 20;
+    for (let i = 0; i < preloadWindow; i++) {
+      const fNum = ((frame + i - 1) % totalFrames) + 1;
+      if (!imagesRef.current[fNum]) {
+        const img = new Image();
+        img.src = `/${type}/ezgif-frame-${String(fNum).padStart(3, '0')}.png`;
+        imagesRef.current[fNum] = img;
+      }
+    }
+  }, [frame, type]);
+
+  // 3. Canvas Rendering
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const img = imagesRef.current[frame];
+
+    if (img && img.complete) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    } else if (!img) {
+      // Fallback: start loading it if missed
+      const newImg = new Image();
+      newImg.src = `/${type}/ezgif-frame-${String(frame).padStart(3, '0')}.png`;
+      newImg.onload = () => {
+        imagesRef.current[frame] = newImg;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(newImg, 0, 0, canvas.width, canvas.height);
+      };
+    }
+  }, [frame, type]);
 
   return (
     <div className={`anim-container ${type}-anim`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <img 
-        src={src} 
-        alt={type} 
-        className="anim-img" 
+      <canvas 
+        ref={canvasRef} 
+        width={300} 
+        height={200} 
         style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-        key={src} // Force re-render of img tag for smoother transition in some browsers
       />
     </div>
   );
