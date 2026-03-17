@@ -114,7 +114,7 @@ const FrameAnimation = ({ type }) => {
   }, []);
 
   const frameStr = String(frame).padStart(3, '0');
-  const src = `/${type}/ezgif-frame-${frameStr}.jpg`;
+  const src = `/${type}/ezgif-frame-${frameStr}.png`;
 
   return (
     <div className={`anim-container ${type}-anim`}>
