@@ -106,19 +106,40 @@ const CalendarInline = ({ selected, onSelect }) => {
 // ── Hero ──────────────────────────────────────────────────────────────────────
 const FrameAnimation = ({ type }) => {
   const [frame, setFrame] = useState(1);
+  const totalFrames = 192;
+
   useEffect(() => {
+    // Standard interval for frame switching
     const timer = setInterval(() => {
-      setFrame(f => (f >= 192 ? 1 : f + 1));
-    }, 40);
+      setFrame(f => (f >= totalFrames ? 1 : f + 1));
+    }, 40); // 25 fps
+    
+    // Preloader: Load 10 frames ahead silently in the background
+    const preload = () => {
+      for (let i = 1; i <= 10; i++) {
+        const nextFrame = (frame + i) > totalFrames ? (frame + i) - totalFrames : (frame + i);
+        const nextStr = String(nextFrame).padStart(3, '0');
+        const img = new Image();
+        img.src = `/${type}/ezgif-frame-${nextStr}.png`;
+      }
+    };
+    preload();
+
     return () => clearInterval(timer);
-  }, []);
+  }, [frame, type]); // Re-run preload on frame change
 
   const frameStr = String(frame).padStart(3, '0');
   const src = `/${type}/ezgif-frame-${frameStr}.png`;
 
   return (
-    <div className={`anim-container ${type}-anim`}>
-      <img src={src} alt={type} className="anim-img" />
+    <div className={`anim-container ${type}-anim`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <img 
+        src={src} 
+        alt={type} 
+        className="anim-img" 
+        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+        key={src} // Force re-render of img tag for smoother transition in some browsers
+      />
     </div>
   );
 };
