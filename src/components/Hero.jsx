@@ -8,6 +8,8 @@ const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
+// Vercel Build Trigger: v2
+
 // ── Custom Calendar (no external dependency) ──────────────────────────────────
 const DAYS_SHORT = ["SU","MO","TU","WE","TH","FR","SA"];
 const MONTHS_FULL = ["January","February","March","April","May","June",
