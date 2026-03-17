@@ -106,7 +106,7 @@ const CalendarInline = ({ selected, onSelect }) => {
 // ── Hero ──────────────────────────────────────────────────────────────────────
 const FrameAnimation = ({ type }) => {
   const canvasRef = useRef(null);
-  const startFrame = 30; // Further skip the initial delay
+  const startFrame = 50; // Further skip the initial delay
   const endFrame = 177; // Skip the braking at the end
   const [frame, setFrame] = useState(startFrame);
   const skip = 3; 
