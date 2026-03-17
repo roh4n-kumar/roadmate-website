@@ -270,7 +270,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-btn-container {
       display: flex;
       justify-content: center;
-      margin-top: 40px;
+      margin-top: -30px;
       position: relative;
       z-index: 150;
     }
