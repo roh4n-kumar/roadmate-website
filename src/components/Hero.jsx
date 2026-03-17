@@ -3,7 +3,6 @@ import TimePopup from "./TimePopup";
 import { useState, useRef, useEffect } from "react";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import heroPremium from "../assets/hero-premium.png";
 
 const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
@@ -564,34 +563,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     <section className="hero-section" style={{ minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "center", background: "#fbfbfb", paddingBottom: "100px" }}>
       <style>{css}</style>
 
-      {/* BANNER — hidden on mobile */}
-      <div className="hero-banner" style={{ width:"100%", position:"relative", lineHeight:0, overflow:"hidden", height: "min(600px, 70vh)" }}>
-        <img src={heroPremium} alt="RoadMate Premium" style={{ width:"100%", height:"100%", display:"block", objectFit:"cover" }} />
-        {/* Text overlay */}
-        <div style={{
-          position:"absolute", top:0, left:0, bottom:0,
-          display:"flex", alignItems:"center",
-          padding:"0 5%",
-          background:"linear-gradient(to right, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 55%, transparent 80%)",
-        }}>
-          <div>
-            <p style={{ color:"rgba(255,255,255,0.9)", fontSize:"clamp(13px,1.8vw,18px)", fontWeight:800, margin:"0 0 8px", letterSpacing:"1.5px", fontFamily:H, textTransform: "uppercase" }}>
-              Bhubaneswar's Smart Way to
-            </p>
-            <h1 style={{ margin:"0 0 6px", lineHeight:1.1, fontFamily:H }}>
-              <span style={{ color:RED, fontSize:"clamp(32px,5vw,72px)", fontWeight:900, marginRight:"14px" }}>
-                Rent
-              </span>
-              <span style={{ color:"#fff", fontSize:"clamp(32px,5vw,72px)", fontWeight:900 }}>
-                Bikes &amp; Cars
-              </span>
-            </h1>
-            <p style={{ color:"rgba(255,255,255,0.8)", fontSize:"clamp(12px,1.4vw,17px)", fontWeight:600, margin:"12px 0 0", fontFamily:F }}>
-              Affordable · Verified · Instant Booking
-            </p>
-          </div>
-        </div>
-      </div>
       {/* SEARCH RIBBON */}
       <div className="search-ribbon" style={{ paddingTop: "60px", paddingBottom: "100px" }}>
         <div className="search-inner-wrapper">
