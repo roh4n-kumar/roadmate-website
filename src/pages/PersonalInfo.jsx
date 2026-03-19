@@ -4,6 +4,7 @@ import { onAuthStateChanged, updateProfile } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import ProfileCard from "../components/ProfileCard";
 
 const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
@@ -310,26 +311,18 @@ const PersonalInfo = () => {
 
       <div className="pi-inner pi-wrap">
           {/* Avatar card */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="pi-card">
-            <div style={{ display: "flex", alignItems: "center", gap: "24px", flexWrap: 'wrap' }}>
-              <div className="pi-avatar" style={{ borderRadius: "28px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "900", color: "white", fontFamily: H, boxShadow: `0 15px 35px ${RED}40`, flexShrink: 0 }}>
-                {(formData.name?.[0] || user?.email?.[0] || "?").toUpperCase()}
-              </div>
-              <div style={{ flex: 1, minWidth: '200px' }}>
-                <h3 className="pi-name" style={{ margin: 0, fontWeight: "900", fontFamily: H, letterSpacing: "-0.5px", color: "#0f172a" }}>
-                  {formData.name || "Your Name"}
-                </h3>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: "#64748b", fontWeight: "600", fontSize: "15px", marginTop: "6px" }}>
-                  <MailIcon /> {formData.email}
-                </div>
-              </div>
-              {!editMode && (
+          <div style={{ marginBottom: "30px" }}>
+            <ProfileCard 
+              name={formData.name || user?.displayName} 
+              email={formData.email || user?.email}
+              style={{ padding: "30px" }}
+              action={!editMode && (
                 <button onClick={handleEditClick} className="edit-btn pi-edit-btn" style={{ background: "rgba(15, 23, 42, 0.04)", border: "none", padding: "14px 24px", borderRadius: "16px", fontWeight: "800", fontSize: "14px", cursor: "pointer", color: "#0f172a", display: "flex", alignItems: "center", gap: "10px", fontFamily: F, whiteSpace: "nowrap", transition: "all .3s" }}>
                   <EditIcon /> Edit Profile
                 </button>
               )}
-            </div>
-          </motion.div>
+            />
+          </div>
 
           {/* Fields card */}
           <motion.div ref={formCardRef} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="pi-card">

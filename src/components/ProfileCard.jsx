@@ -8,8 +8,8 @@ const F = "'Inter', sans-serif";
 const ProfileCard = ({ name, email, avatarOnly = false, action, style = {} }) => {
   const initial = (name?.[0] || email?.[0] || "?").toUpperCase();
 
-  // Vibrant, multi-stop premium gradient
-  const avatarGradient = `linear-gradient(135deg, ${RED} 0%, #ff3d3d 45%, #ff7070 100%)`;
+  // Exact Brand Primary Gradient as before
+  const avatarGradient = `linear-gradient(135deg, ${RED}, #ff4d4d)`;
 
   return (
     <motion.div 
@@ -30,15 +30,6 @@ const ProfileCard = ({ name, email, avatarOnly = false, action, style = {} }) =>
     >
       <div style={{ display: "flex", alignItems: "center", gap: "18px", flex: 1, minWidth: "180px" }}>
         <div style={{ position: "relative", flexShrink: 0 }}>
-          {/* External Soft Ring */}
-          <div style={{ 
-            position: "absolute", 
-            inset: "-3px", 
-            borderRadius: "20px", 
-            border: `1.5px solid ${RED}15`,
-            background: `linear-gradient(135deg, ${RED}08, transparent)`
-          }} />
-          
           <div style={{ 
             width: "56px", 
             height: "56px", 
@@ -53,52 +44,27 @@ const ProfileCard = ({ name, email, avatarOnly = false, action, style = {} }) =>
             fontFamily: H,
             boxShadow: `0 8px 20px ${RED}25`,
             position: "relative",
-            zIndex: 1,
-            overflow: "hidden"
+            zIndex: 1
           }}>
-            {/* Glossy Overlay */}
-            <div style={{ 
-              position: "absolute", 
-              top: "-50%", 
-              left: "-50%", 
-              width: "200%", 
-              height: "200%", 
-              background: "radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%)",
-              pointerEvents: "none"
-            }} />
-            <span style={{ position: "relative", zIndex: 2 }}>{initial}</span>
+            {initial}
           </div>
         </div>
 
         {!avatarOnly && (
           <div style={{ overflow: "hidden", flex: 1 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "2px" }}>
-              <h4 style={{ 
-                fontSize: "18px", 
-                fontWeight: 900, 
-                margin: 0, 
-                color: "#1a1a1a", 
-                whiteSpace: "nowrap", 
-                textOverflow: "ellipsis", 
-                overflow: "hidden", 
-                fontFamily: H,
-                letterSpacing: "-0.3px"
-              }}>
-                {name || "RoadMate User"}
-              </h4>
-              <div style={{ 
-                padding: "3px 8px", 
-                borderRadius: "6px", 
-                background: `${RED}10`, 
-                color: RED, 
-                fontSize: "9px", 
-                fontWeight: 800, 
-                textTransform: "uppercase", 
-                fontFamily: H
-              }}>
-                Elite
-              </div>
-            </div>
+            <h4 style={{ 
+              fontSize: "18px", 
+              fontWeight: 900, 
+              margin: "0 0 2px 0", 
+              color: "#1a1a1a", 
+              whiteSpace: "nowrap", 
+              textOverflow: "ellipsis", 
+              overflow: "hidden", 
+              fontFamily: H,
+              letterSpacing: "-0.3px"
+            }}>
+              {name || "RoadMate User"}
+            </h4>
             <p style={{ 
               fontSize: "13px", 
               color: "#64748b", 
