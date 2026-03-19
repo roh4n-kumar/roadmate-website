@@ -244,6 +244,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                       {(user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()}
                     </div>
                     <div style={{ overflow: "hidden" }}>
+                      <h4 style={{ fontSize: "18px", fontWeight: 900, margin: 0, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontFamily: H }}>{user?.displayName || "RoadMate User"}</h4>
+                      <p style={{ fontSize: "13px", color: "#64748b", margin: 0, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontWeight: 600 }}>{user?.email}</p>
                     </div>
                   </div>
                 )}
