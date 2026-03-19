@@ -256,14 +256,17 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                           </button>
                         </div>
                       ) : (
-                        <div style={{ display: "flex", alignItems: "center", gap: "15px", padding: "20px", borderRadius: "24px", background: "#f8f9fa", border: "1px solid #eee", marginBottom: "30px" }}>
-                          <div style={{ width: "50px", height: "50px", borderRadius: "16px", background: `linear-gradient(135deg, ${RED}, #ff4d4d)`, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "20px", fontWeight: 900, fontFamily: H }}>
-                            {(user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()}
-                          </div>
-                          <div style={{ overflow: "hidden" }}>
-                            <h4 style={{ fontSize: "18px", fontWeight: 900, margin: 0, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontFamily: H }}>{user?.displayName || "RoadMate User"}</h4>
-                            <p style={{ fontSize: "13px", color: "#64748b", margin: 0, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontWeight: 600 }}>{user?.email}</p>
-                          </div>
+                        <div style={{ marginBottom: "30px" }}>
+                          <ProfileCard 
+                            name={user?.displayName} 
+                            email={user?.email} 
+                            style={{ 
+                              padding: "20px", 
+                              borderRadius: "24px", 
+                              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+                              background: "rgba(255,255,255,0.8)" 
+                            }} 
+                          />
                         </div>
                       )}
                     </div>
