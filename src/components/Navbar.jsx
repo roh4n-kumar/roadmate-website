@@ -119,7 +119,9 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             font-family: ${F};
           }
-          .account-premium-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(190,13,13,0.3); }
+          .account-premium-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px ${RED}30; }
+          .drawer-icon-wrapper { color: ${RED}; opacity: 0.9 !important; display: flex; alignItems: center; justifyContent: center; background: ${RED}08; padding: 8px; borderRadius: 10px; margin-right: 2px; }
+          .drawer-item-hover:hover .drawer-icon-wrapper { background: ${RED}15; transform: scale(1.05); }
         `}
       </style>
 
@@ -340,7 +342,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
 const DrawerItem = ({ icon, label, subtitle, onClick }) => (
   <div
     onClick={onClick}
-    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 20px", borderRadius: "12px", cursor: "pointer", transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
+    className="drawer-item-hover"
+    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 20px", borderRadius: "16px", cursor: "pointer", transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
     onMouseEnter={(e) => {
       e.currentTarget.style.backgroundColor = "#f8f9fa";
       e.currentTarget.lastChild.style.transform = "translateX(4px)";
@@ -351,7 +354,7 @@ const DrawerItem = ({ icon, label, subtitle, onClick }) => (
     }}
   >
     <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-      <div style={{ color: "#1e293b", opacity: 0.7, display: "flex", alignItems: "center", justifyContent: "center" }}>{icon}</div>
+      <div className="drawer-icon-wrapper">{icon}</div>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <span style={{ fontSize: "15px", fontWeight: 700, color: "#1e293b", fontFamily: F }}>{label}</span>
         {subtitle && <span style={{ fontSize: "12px", color: "#64748b", fontWeight: 500, marginTop: "1px" }}>{subtitle}</span>}
