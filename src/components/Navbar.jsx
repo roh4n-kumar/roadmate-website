@@ -235,7 +235,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               style={{ position: "fixed", top: 0, right: 0, width: "100%", maxWidth: "400px", height: "100vh", backgroundColor: "#fff", zIndex: 10002, display: "flex", flexDirection: "column", boxShadow: "-20px 0 50px rgba(0,0,0,0.1)", borderLeft: "1px solid rgba(0,0,0,0.05)" }}
             >
-                <div style={{ padding: "20px 25px 15px", borderBottom: "1px solid rgba(15, 23, 42, 0.08)", marginBottom: "20px" }}>
+                <div style={{ padding: "20px 25px 15px", borderBottom: "1.5px solid rgba(15, 23, 42, 0.08)", marginBottom: "0px" }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <h2 style={{ fontSize: "24px", fontWeight: 900, fontFamily: H, margin: 0 }}>Account</h2>
                     <button onClick={() => setIsDrawerOpen(false)} style={{ background: "none", border: "none", fontSize: "28px", cursor: "pointer", color: "#64748b", display: "flex", alignItems: "center" }}>&times;</button>
@@ -243,10 +243,10 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                 </div>
 
                 <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "10px" }} className="hide-scrollbar">
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "10px", paddingTop: "20px" }} className="hide-scrollbar">
                     <div style={{ padding: "0 25px" }}>
                       {!isLoggedIn ? (
-                        <div style={{ padding: "30px", borderRadius: "30px", background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)", marginBottom: "40px" }}>
+                        <div style={{ padding: "30px", borderRadius: "30px", background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)", marginBottom: "30px" }}>
                           <h3 style={{ fontSize: "22px", fontWeight: 900, marginBottom: "20px", color: "#111", fontFamily: H }}>Premium Vehicle Rentals</h3>
                           <button
                             onClick={() => { setIsDrawerOpen(false); setIsLoginOpen(true); }}
@@ -256,7 +256,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                           </button>
                         </div>
                       ) : (
-                        <div style={{ display: "flex", alignItems: "center", gap: "15px", padding: "20px", borderRadius: "24px", background: "#f8f9fa", border: "1px solid #eee", marginBottom: "40px" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "15px", padding: "20px", borderRadius: "24px", background: "#f8f9fa", border: "1px solid #eee", marginBottom: "30px" }}>
                           <div style={{ width: "50px", height: "50px", borderRadius: "16px", background: `linear-gradient(135deg, ${RED}, #ff4d4d)`, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "20px", fontWeight: 900, fontFamily: H }}>
                             {(user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()}
                           </div>
@@ -268,7 +268,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                       )}
                     </div>
 
-                    <div style={{ height: "1.5px", background: "rgba(15, 23, 42, 0.08)", marginBottom: "30px", marginTop: "-10px", width: "calc(100% - 100px)", marginLeft: "auto", marginRight: "auto", borderRadius: "2px" }} />
+                    <div style={{ height: "1.5px", background: "rgba(15, 23, 42, 0.12)", marginBottom: "30px", marginTop: "10px", width: "calc(100% - 60px)", marginLeft: "auto", marginRight: "auto", borderRadius: "2px" }} />
                     {/* Section Headers with padding moved to items */}
                     <div style={{ padding: "10px 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>My details</h3>
