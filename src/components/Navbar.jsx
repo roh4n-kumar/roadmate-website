@@ -42,11 +42,14 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   useEffect(() => {
     if (isDrawerOpen) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
     }
     return () => {
       document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
     };
   }, [isDrawerOpen]);
 
@@ -240,33 +243,32 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                 </div>
 
                 <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-                  <div style={{ padding: "0 25px" }}>
-                    {!isLoggedIn ? (
-                      <div style={{ padding: "30px", borderRadius: "30px", background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)", marginBottom: "40px" }}>
-                        <h3 style={{ fontSize: "22px", fontWeight: 900, marginBottom: "20px", color: "#111", fontFamily: H }}>Premium Vehicle Rentals</h3>
-                        <button
-                          onClick={() => { setIsDrawerOpen(false); setIsLoginOpen(true); }}
-                          style={{ width: "100%", padding: "16px", background: `linear-gradient(135deg, ${RED}, #ff4d4d)`, color: "#fff", border: "none", borderRadius: "18px", fontSize: "16px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", boxShadow: "0 10px 20px rgba(190,13,13,0.2)", fontFamily: F }}
-                        >
-                          <LoginIcon size={20} /> Login / Signup
-                        </button>
-                      </div>
-                    ) : (
-                      <div style={{ display: "flex", alignItems: "center", gap: "15px", padding: "20px", borderRadius: "24px", background: "#f8f9fa", border: "1px solid #eee", marginBottom: "40px" }}>
-                        <div style={{ width: "50px", height: "50px", borderRadius: "16px", background: `linear-gradient(135deg, ${RED}, #ff4d4d)`, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "20px", fontWeight: 900, fontFamily: H }}>
-                          {(user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()}
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "10px" }} className="hide-scrollbar">
+                    <div style={{ padding: "0 25px" }}>
+                      {!isLoggedIn ? (
+                        <div style={{ padding: "30px", borderRadius: "30px", background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)", marginBottom: "40px" }}>
+                          <h3 style={{ fontSize: "22px", fontWeight: 900, marginBottom: "20px", color: "#111", fontFamily: H }}>Premium Vehicle Rentals</h3>
+                          <button
+                            onClick={() => { setIsDrawerOpen(false); setIsLoginOpen(true); }}
+                            style={{ width: "100%", padding: "16px", background: `linear-gradient(135deg, ${RED}, #ff4d4d)`, color: "#fff", border: "none", borderRadius: "18px", fontSize: "16px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", boxShadow: "0 10px 20px rgba(190,13,13,0.2)", fontFamily: F }}
+                          >
+                            <LoginIcon size={20} /> Login / Signup
+                          </button>
                         </div>
-                        <div style={{ overflow: "hidden" }}>
-                          <h4 style={{ fontSize: "18px", fontWeight: 900, margin: 0, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontFamily: H }}>{user?.displayName || "RoadMate User"}</h4>
-                          <p style={{ fontSize: "13px", color: "#64748b", margin: 0, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontWeight: 600 }}>{user?.email}</p>
+                      ) : (
+                        <div style={{ display: "flex", alignItems: "center", gap: "15px", padding: "20px", borderRadius: "24px", background: "#f8f9fa", border: "1px solid #eee", marginBottom: "40px" }}>
+                          <div style={{ width: "50px", height: "50px", borderRadius: "16px", background: `linear-gradient(135deg, ${RED}, #ff4d4d)`, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "20px", fontWeight: 900, fontFamily: H }}>
+                            {(user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()}
+                          </div>
+                          <div style={{ overflow: "hidden" }}>
+                            <h4 style={{ fontSize: "18px", fontWeight: 900, margin: 0, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontFamily: H }}>{user?.displayName || "RoadMate User"}</h4>
+                            <p style={{ fontSize: "13px", color: "#64748b", margin: 0, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontWeight: 600 }}>{user?.email}</p>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
+                      )}
+                    </div>
 
-                  <div style={{ height: "1px", background: "rgba(15, 23, 42, 0.08)", marginBottom: "15px", marginTop: "0px" }} />
-
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "30px" }} className="hide-scrollbar">
+                    <div style={{ height: "1.5px", background: "rgba(15, 23, 42, 0.08)", marginBottom: "30px", marginTop: "-10px", width: "calc(100% - 100px)", marginLeft: "auto", marginRight: "auto", borderRadius: "2px" }} />
                     {/* Section Headers with padding moved to items */}
                     <div style={{ padding: "10px 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>My details</h3>
@@ -303,7 +305,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     </div>
 
                    {isLoggedIn && (
-                     <div style={{ marginTop: "40px", padding: "10px 25px 40px" }}>
+                     <div style={{ marginTop: "40px", padding: "10px 25px 20px" }}>
                        <button
                          onClick={handleLogout}
                          className="premium-logout-btn"
