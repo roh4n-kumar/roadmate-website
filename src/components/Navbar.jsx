@@ -268,7 +268,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                       )}
                     </div>
 
-                    <div style={{ height: "1.5px", background: "rgba(15, 23, 42, 0.12)", marginBottom: "30px", marginTop: "10px", width: "calc(100% - 60px)", marginLeft: "auto", marginRight: "auto", borderRadius: "2px" }} />
+                    <div style={{ height: "1px", background: "#e2e8f0", marginBottom: "20px", marginTop: "0px", width: "calc(100% - 60px)", marginLeft: "auto", marginRight: "auto", borderRadius: "2px" }} />
                     {/* Section Headers with padding moved to items */}
                     <div style={{ padding: "10px 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>My details</h3>
