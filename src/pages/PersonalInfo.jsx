@@ -254,21 +254,12 @@ const PersonalInfo = () => {
 
         /* Modern Styles */
         .pi-header {
-          background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);
-          padding: 80px 0 140px;
-          margin-bottom: -80px;
+          background: #0a0a0a;
+          padding: 60px 0 100px;
+          margin-bottom: -60px;
           text-align: center;
           position: relative;
           color: #fff;
-        }
-        .pi-header::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 100px;
-          background: linear-gradient(0deg, #fdfdfd 0%, transparent 100%);
         }
         
         .pi-wrap   { padding-bottom: 120px; position: relative; z-index: 10; }
@@ -278,21 +269,11 @@ const PersonalInfo = () => {
           border-radius: 32px; 
           padding: 40px; 
           margin-bottom: 24px; 
-          box-shadow: 0 20px 50px rgba(0,0,0,0.04); 
+          box-shadow: 0 15px 40px rgba(0,0,0,0.03); 
           border: 1px solid rgba(15, 23, 42, 0.04); 
           position: relative;
           overflow: hidden;
           animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        .pi-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 4px;
-          background: linear-gradient(90deg, ${RED}, #ff4040);
-          opacity: 0.8;
         }
         .pi-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .pi-title  { font-size: 48px; margin-bottom: 12px; letter-spacing: -2px; }
@@ -318,9 +299,6 @@ const PersonalInfo = () => {
       <div className="pi-header">
         <div className="pi-inner">
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-            <div style={{ display: 'inline-block', padding: '8px 16px', background: 'rgba(255,255,255,0.05)', borderRadius: '100px', fontSize: '13px', fontWeight: 800, color: RED, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '20px', border: '1px solid rgba(255,255,255,0.1)', fontFamily: H }}>
-              Premium Profile
-            </div>
             <h1 className="pi-title" style={{ fontFamily: H, fontWeight: "900", margin: 0 }}>
               Personal <span style={{ color: RED }}>Information</span>
             </h1>
