@@ -120,8 +120,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             font-family: ${F};
           }
           .account-premium-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px ${RED}30; }
-          .drawer-icon-wrapper { color: ${RED}; opacity: 0.9 !important; display: flex; align-items: center; justify-content: center; padding: 4px; margin-right: 2px; transition: transform 0.2s ease; }
-          .drawer-item-hover:hover .drawer-icon-wrapper { transform: scale(1.1); }
+          .drawer-icon-wrapper { color: ${RED}; opacity: 0.9 !important; display: flex; align-items: center; justify-content: center; background: ${RED}08; padding: 8px; border-radius: 14px; margin-right: 2px; transition: transform 0.2s ease; }
+          .drawer-item-hover:hover .drawer-icon-wrapper { background: ${RED}15; transform: scale(1.1); }
         `}
       </style>
 
@@ -244,11 +244,11 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                       {(user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()}
                     </div>
                     <div style={{ overflow: "hidden" }}>
-                      <h4 style={{ fontSize: "18px", fontWeight: 900, margin: 0, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontFamily: H }}>{user?.displayName || "RoadMate User"}</h4>
-                      <p style={{ fontSize: "13px", color: "#64748b", margin: 0, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontWeight: 600 }}>{user?.email}</p>
                     </div>
                   </div>
                 )}
+
+                <div style={{ height: "1px", background: "rgba(15, 23, 42, 0.08)", marginBottom: "30px", marginTop: "-10px" }} />
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto" }} className="hide-scrollbar">
                    {/* My Details Section */}
