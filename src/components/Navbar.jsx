@@ -120,8 +120,10 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             font-family: ${F};
           }
           .account-premium-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px ${RED}30; }
-          .drawer-icon-wrapper { color: ${RED}; opacity: 0.9 !important; display: flex; align-items: center; justify-content: center; background: ${RED}08; padding: 8px; border-radius: 14px; margin-right: 2px; transition: transform 0.2s ease; }
+          .drawer-icon-wrapper { color: ${RED}; opacity: 0.9 !important; display: flex; align-items: center; justify-content: center; background: ${RED}08; padding: 8px; border-radius: 14px; margin-right: 2px; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
           .drawer-item-hover:hover .drawer-icon-wrapper { background: ${RED}15; transform: scale(1.1); }
+          .drawer-chevron { color: #cbd5e1; font-size: 18px; font-weight: 400; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+          .drawer-item-hover:hover .drawer-chevron { transform: translateX(4px); color: ${RED}; }
         `}
       </style>
 
@@ -226,9 +228,9 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                   </div>
                 </div>
 
-                <div style={{ padding: "0 25px 30px", flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-
-                {!isLoggedIn ? (
+                <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+                  <div style={{ padding: "0 25px" }}>
+                    {!isLoggedIn ? (
                   <div style={{ padding: "30px", borderRadius: "30px", background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)", marginBottom: "40px" }}>
                     <h3 style={{ fontSize: "22px", fontWeight: 900, marginBottom: "20px", color: "#111", fontFamily: H }}>Premium Vehicle Rentals</h3>
                     <button
@@ -248,51 +250,47 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                       <p style={{ fontSize: "13px", color: "#64748b", margin: 0, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontWeight: 600 }}>{user?.email}</p>
                     </div>
                   </div>
-                )}
 
-                <div style={{ height: "1px", background: "rgba(15, 23, 42, 0.08)", marginBottom: "30px", marginTop: "-10px" }} />
+                  <div style={{ height: "1px", background: "rgba(15, 23, 42, 0.08)", marginBottom: "15px", marginTop: "0px", marginHorizontal: "25px" }} />
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto" }} className="hide-scrollbar">
-                   {/* My Details Section */}
-                   <div style={{ padding: "10px 0" }}>
-                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>My details</h3>
-                     <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => { setIsDrawerOpen(false); navigate("/my-bookings"); }} />
-                     <DrawerItem icon={<UserIcon size={20} />} label="Personal information" onClick={() => { setIsDrawerOpen(false); navigate("/profile"); }} />
-                   </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "120px" }} className="hide-scrollbar">
+                    {/* Section Headers with padding */}
+                    <div style={{ padding: "10px 25px" }}>
+                      <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>My details</h3>
+                      <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => { setIsDrawerOpen(false); navigate("/my-bookings"); }} />
+                      <DrawerItem icon={<UserIcon size={20} />} label="Personal information" onClick={() => { setIsDrawerOpen(false); navigate("/profile"); }} />
+                    </div>
 
-                   {/* Document Verification Section */}
-                   <div style={{ padding: "10px 0" }}>
-                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>Document Verification</h3>
-                     <DrawerItem 
-                       icon={<ShieldIcon />} 
-                       label="DL, Aadhaar & Selfie" 
-                       subtitle="Upload & verify your documents"
-                       onClick={() => { setIsDrawerOpen(false); navigate("/documents"); }} 
-                     />
-                   </div>
+                    <div style={{ padding: "10px 25px" }}>
+                      <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>Document Verification</h3>
+                      <DrawerItem 
+                        icon={<ShieldIcon />} 
+                        label="DL, Aadhaar & Selfie" 
+                        subtitle="Upload & verify your documents"
+                        onClick={() => { setIsDrawerOpen(false); navigate("/documents"); }} 
+                      />
+                    </div>
 
-                   {/* Payments Section */}
-                   <div style={{ padding: "10px 0" }}>
-                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>Payments</h3>
-                     <DrawerItem icon={<CreditCardIcon size={20} />} label="RoadMate Wallet" onClick={() => { setIsDrawerOpen(false); navigate("/wallet"); }} />
-                   </div>
+                    <div style={{ padding: "10px 25px" }}>
+                      <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>Payments</h3>
+                      <DrawerItem icon={<CreditCardIcon size={20} />} label="RoadMate Wallet" onClick={() => { setIsDrawerOpen(false); navigate("/wallet"); }} />
+                    </div>
 
-                   {/* More Section */}
-                   <div style={{ padding: "10px 0" }}>
-                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>More</h3>
-                     <DrawerItem icon={<HelpCircleIcon size={20} />} label="Help" onClick={() => { setIsDrawerOpen(false); /* help */ }} />
-                     <DrawerItem icon={<TagIcon size={20} />} label="Offers" onClick={() => { setIsDrawerOpen(false); /* offers */ }} />
-                     <DrawerItem icon={<InfoIcon size={20} />} label="Know about RoadMate" onClick={() => { setIsDrawerOpen(false); /* about */ }} />
-                     <DrawerItem 
-                       icon={<GlobeIcon size={20} />} 
-                       label="Language" 
-                       subtitle="English"
-                       onClick={() => { setIsDrawerOpen(false); /* language */ }} 
-                     />
-                   </div>
+                    <div style={{ padding: "10px 25px" }}>
+                      <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>More</h3>
+                      <DrawerItem icon={<HelpCircleIcon size={20} />} label="Help" onClick={() => { setIsDrawerOpen(false); /* help */ }} />
+                      <DrawerItem icon={<TagIcon size={20} />} label="Offers" onClick={() => { setIsDrawerOpen(false); /* offers */ }} />
+                      <DrawerItem icon={<InfoIcon size={20} />} label="Know about RoadMate" onClick={() => { setIsDrawerOpen(false); /* about */ }} />
+                      <DrawerItem 
+                        icon={<GlobeIcon size={20} />} 
+                        label="Language" 
+                        subtitle="English"
+                        onClick={() => { setIsDrawerOpen(false); /* language */ }} 
+                      />
+                    </div>
 
                    {isLoggedIn && (
-                     <div style={{ marginTop: "40px", padding: "10px 0 40px" }}>
+                     <div style={{ marginTop: "40px", padding: "10px 25px 40px" }}>
                        <button
                          onClick={handleLogout}
                          className="premium-logout-btn"
@@ -348,14 +346,12 @@ const DrawerItem = ({ icon, label, subtitle, onClick }) => (
   <div
     onClick={onClick}
     className="drawer-item-hover"
-    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 0", borderRadius: "16px", cursor: "pointer", transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
+    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 0px", borderRadius: "16px", cursor: "pointer", transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
     onMouseEnter={(e) => {
       e.currentTarget.style.backgroundColor = "#f8f9fa";
-      e.currentTarget.lastChild.style.transform = "translateX(4px)";
     }}
     onMouseLeave={(e) => {
       e.currentTarget.style.backgroundColor = "transparent";
-      e.currentTarget.lastChild.style.transform = "translateX(0)";
     }}
   >
     <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
@@ -365,7 +361,7 @@ const DrawerItem = ({ icon, label, subtitle, onClick }) => (
         {subtitle && <span style={{ fontSize: "12px", color: "#64748b", fontWeight: 500, marginTop: "1px" }}>{subtitle}</span>}
       </div>
     </div>
-    <span style={{ color: "#cbd5e1", fontSize: "18px", fontWeight: "400", transition: "all 0.2s" }}>&rsaquo;</span>
+    <span className="drawer-chevron">&rsaquo;</span>
   </div>
 );
 
