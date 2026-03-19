@@ -120,7 +120,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             font-family: ${F};
           }
           .account-premium-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px ${RED}30; }
-          .drawer-icon-wrapper { color: ${RED}; opacity: 0.9 !important; display: flex; alignItems: center; justifyContent: center; background: ${RED}08; padding: 8px; borderRadius: 10px; margin-right: 2px; }
+          .drawer-icon-wrapper { color: ${RED}; opacity: 0.9 !important; display: flex; alignItems: center; justifyContent: center; background: ${RED}08; padding: 8px; borderRadius: 14px; margin-right: 2px; }
           .drawer-item-hover:hover .drawer-icon-wrapper { background: ${RED}15; transform: scale(1.05); }
         `}
       </style>
@@ -220,9 +220,9 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               style={{ position: "fixed", top: 0, right: 0, width: "100%", maxWidth: "400px", height: "100vh", backgroundColor: "#fff", zIndex: 10002, display: "flex", flexDirection: "column", boxShadow: "-20px 0 50px rgba(0,0,0,0.1)", borderLeft: "1px solid rgba(0,0,0,0.05)" }}
             >
               <div style={{ padding: "30px", display: "flex", flexDirection: "column", height: "100%" }}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "40px" }}>
-                  <h2 style={{ fontSize: "24px", fontWeight: 900, fontFamily: H }}>Account</h2>
-                  <button onClick={() => setIsDrawerOpen(false)} style={{ background: "none", border: "none", fontSize: "32px", cursor: "pointer", color: "#ccc" }}>&times;</button>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "25px", paddingBottom: "15px", borderBottom: "1px solid rgba(15, 23, 42, 0.08)" }}>
+                  <h2 style={{ fontSize: "24px", fontWeight: 900, fontFamily: H, margin: 0 }}>Account</h2>
+                  <button onClick={() => setIsDrawerOpen(false)} style={{ background: "none", border: "none", fontSize: "28px", cursor: "pointer", color: "#64748b", display: "flex", alignItems: "center" }}>&times;</button>
                 </div>
 
                 {!isLoggedIn ? (
@@ -250,14 +250,14 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                 <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto" }} className="hide-scrollbar">
                    {/* My Details Section */}
                    <div style={{ padding: "10px 0" }}>
-                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 10px", fontFamily: H }}>My details</h3>
+                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>My details</h3>
                      <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => { setIsDrawerOpen(false); navigate("/my-bookings"); }} />
                      <DrawerItem icon={<UserIcon size={20} />} label="Personal information" onClick={() => { setIsDrawerOpen(false); navigate("/profile"); }} />
                    </div>
 
                    {/* Document Verification Section */}
                    <div style={{ padding: "10px 0" }}>
-                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 10px", fontFamily: H }}>Document Verification</h3>
+                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>Document Verification</h3>
                      <DrawerItem 
                        icon={<ShieldIcon />} 
                        label="DL, Aadhaar & Selfie" 
@@ -268,13 +268,13 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
 
                    {/* Payments Section */}
                    <div style={{ padding: "10px 0" }}>
-                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 10px", fontFamily: H }}>Payments</h3>
+                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>Payments</h3>
                      <DrawerItem icon={<CreditCardIcon size={20} />} label="RoadMate Wallet" onClick={() => { setIsDrawerOpen(false); navigate("/wallet"); }} />
                    </div>
 
                    {/* More Section */}
                    <div style={{ padding: "10px 0" }}>
-                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 10px", fontFamily: H }}>More</h3>
+                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>More</h3>
                      <DrawerItem icon={<HelpCircleIcon size={20} />} label="Help" onClick={() => { setIsDrawerOpen(false); /* help */ }} />
                      <DrawerItem icon={<TagIcon size={20} />} label="Offers" onClick={() => { setIsDrawerOpen(false); /* offers */ }} />
                      <DrawerItem icon={<InfoIcon size={20} />} label="Know about RoadMate" onClick={() => { setIsDrawerOpen(false); /* about */ }} />
@@ -343,7 +343,7 @@ const DrawerItem = ({ icon, label, subtitle, onClick }) => (
   <div
     onClick={onClick}
     className="drawer-item-hover"
-    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 10px", borderRadius: "16px", cursor: "pointer", transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
+    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 0", borderRadius: "16px", cursor: "pointer", transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
     onMouseEnter={(e) => {
       e.currentTarget.style.backgroundColor = "#f8f9fa";
       e.currentTarget.lastChild.style.transform = "translateX(4px)";
