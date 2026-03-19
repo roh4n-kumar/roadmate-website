@@ -120,7 +120,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             font-family: ${F};
           }
           .account-premium-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px ${RED}30; }
-          .drawer-icon-wrapper { color: ${RED}; opacity: 0.9 !important; display: flex; alignItems: center; justifyContent: center; padding: 4px; margin-right: 2px; transition: transform 0.2s ease; }
+          .drawer-icon-wrapper { color: ${RED}; opacity: 0.9 !important; display: flex; align-items: center; justify-content: center; padding: 4px; margin-right: 2px; transition: transform 0.2s ease; }
           .drawer-item-hover:hover .drawer-icon-wrapper { transform: scale(1.1); }
         `}
       </style>
@@ -300,6 +300,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                      </div>
                    )}
                 </div>
+              </div>
             </motion.div>
           </>
         )}
