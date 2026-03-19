@@ -245,16 +245,48 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                   </div>
                 )}
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }} className="hide-scrollbar">
-                   <DrawerItem icon={<AccountIcon size={20} />} label="Personal Profile" onClick={() => { setIsDrawerOpen(false); navigate("/profile"); }} />
-                   <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => { setIsDrawerOpen(false); navigate("/my-bookings"); }} />
-                   <DrawerItem icon={<ShieldIcon />} label="Document Verification" onClick={() => { setIsDrawerOpen(false); navigate("/documents"); }} />
-                   <DrawerItem icon={<NewWalletIcon />} label="Wallet & Payments" onClick={() => { setIsDrawerOpen(false); navigate("/wallet"); }} />
-                   <DrawerItem icon={<SupportIcon />} label="Customer Support" onClick={() => { setIsDrawerOpen(false); /* support */ }} />
+                <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto" }} className="hide-scrollbar">
+                   {/* My Details Section */}
+                   <div style={{ padding: "10px 0" }}>
+                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 20px", fontFamily: H }}>My details</h3>
+                     <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => { setIsDrawerOpen(false); navigate("/my-bookings"); }} />
+                     <DrawerItem icon={<UserIcon size={20} />} label="Personal information" onClick={() => { setIsDrawerOpen(false); navigate("/profile"); }} />
+                   </div>
+
+                   {/* Document Verification Section */}
+                   <div style={{ padding: "10px 0" }}>
+                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 20px", fontFamily: H }}>Document Verification</h3>
+                     <DrawerItem 
+                       icon={<ShieldIcon />} 
+                       label="DL, Aadhaar & Selfie" 
+                       subtitle="Upload & verify your documents"
+                       onClick={() => { setIsDrawerOpen(false); navigate("/documents"); }} 
+                     />
+                   </div>
+
+                   {/* Payments Section */}
+                   <div style={{ padding: "10px 0" }}>
+                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 20px", fontFamily: H }}>Payments</h3>
+                     <DrawerItem icon={<CreditCardIcon size={20} />} label="RoadMate Wallet" onClick={() => { setIsDrawerOpen(false); navigate("/wallet"); }} />
+                   </div>
+
+                   {/* More Section */}
+                   <div style={{ padding: "10px 0" }}>
+                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 20px", fontFamily: H }}>More</h3>
+                     <DrawerItem icon={<HelpCircleIcon size={20} />} label="Help" onClick={() => { setIsDrawerOpen(false); /* help */ }} />
+                     <DrawerItem icon={<TagIcon size={20} />} label="Offers" onClick={() => { setIsDrawerOpen(false); /* offers */ }} />
+                     <DrawerItem icon={<InfoIcon size={20} />} label="Know about RoadMate" onClick={() => { setIsDrawerOpen(false); /* about */ }} />
+                     <DrawerItem 
+                       icon={<GlobeIcon size={20} />} 
+                       label="Language" 
+                       subtitle="English"
+                       onClick={() => { setIsDrawerOpen(false); /* language */ }} 
+                     />
+                   </div>
                 </div>
 
                 {isLoggedIn && (
-                  <div style={{ marginTop: "auto", paddingTop: "40px" }}>
+                  <div style={{ marginTop: "auto", paddingTop: "20px" }}>
                     <button
                       onClick={handleLogout}
                       className="premium-logout-btn"
@@ -305,36 +337,40 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   );
 };
 
-const DrawerItem = ({ icon, label, onClick }) => (
+const DrawerItem = ({ icon, label, subtitle, onClick }) => (
   <div
     onClick={onClick}
-    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", borderRadius: "16px", cursor: "pointer", transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
+    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 20px", borderRadius: "12px", cursor: "pointer", transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
     onMouseEnter={(e) => {
       e.currentTarget.style.backgroundColor = "#f8f9fa";
       e.currentTarget.lastChild.style.transform = "translateX(4px)";
-      e.currentTarget.lastChild.style.color = RED;
     }}
     onMouseLeave={(e) => {
       e.currentTarget.style.backgroundColor = "transparent";
       e.currentTarget.lastChild.style.transform = "translateX(0)";
-      e.currentTarget.lastChild.style.color = "#cbd5e1";
     }}
   >
     <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-      <div style={{ color: "#64748b" }}>{icon}</div>
-      <span style={{ fontSize: "15px", fontWeight: 700, color: "#1e293b", fontFamily: F }}>{label}</span>
+      <div style={{ color: "#1e293b", opacity: 0.7, display: "flex", alignItems: "center", justifyContent: "center" }}>{icon}</div>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <span style={{ fontSize: "15px", fontWeight: 700, color: "#1e293b", fontFamily: F }}>{label}</span>
+        {subtitle && <span style={{ fontSize: "12px", color: "#64748b", fontWeight: 500, marginTop: "1px" }}>{subtitle}</span>}
+      </div>
     </div>
-    <span style={{ color: "#cbd5e1", fontSize: "20px", fontWeight: "300", transition: "all 0.2s" }}>&rsaquo;</span>
+    <span style={{ color: "#cbd5e1", fontSize: "18px", fontWeight: "400", transition: "all 0.2s" }}>&rsaquo;</span>
   </div>
 );
 
-const BookingIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="m16 10-4 4-2-2"/></svg>;
+const BookingIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>;
 const AccountIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
+const UserIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
+const ShieldIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>;
+const CreditCardIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>;
+const HelpCircleIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>;
+const TagIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>;
+const InfoIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>;
+const GlobeIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>;
 const LoginIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>;
 const LogoutIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>;
-const AdminIcon = ({ size, color }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>;
-const ShieldIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>;
-const NewWalletIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="5" width="20" height="14" rx="2" /><line x1="2" y1="10" x2="22" y2="10" /><line x1="7" y1="15" x2="11" y2="15" /></svg>;
-const SupportIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>;
 
 export default Navbar;
