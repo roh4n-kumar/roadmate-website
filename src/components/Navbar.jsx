@@ -250,14 +250,14 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                 <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto" }} className="hide-scrollbar">
                    {/* My Details Section */}
                    <div style={{ padding: "10px 0" }}>
-                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 20px", fontFamily: H }}>My details</h3>
+                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 10px", fontFamily: H }}>My details</h3>
                      <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => { setIsDrawerOpen(false); navigate("/my-bookings"); }} />
                      <DrawerItem icon={<UserIcon size={20} />} label="Personal information" onClick={() => { setIsDrawerOpen(false); navigate("/profile"); }} />
                    </div>
 
                    {/* Document Verification Section */}
                    <div style={{ padding: "10px 0" }}>
-                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 20px", fontFamily: H }}>Document Verification</h3>
+                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 10px", fontFamily: H }}>Document Verification</h3>
                      <DrawerItem 
                        icon={<ShieldIcon />} 
                        label="DL, Aadhaar & Selfie" 
@@ -268,13 +268,13 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
 
                    {/* Payments Section */}
                    <div style={{ padding: "10px 0" }}>
-                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 20px", fontFamily: H }}>Payments</h3>
+                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 10px", fontFamily: H }}>Payments</h3>
                      <DrawerItem icon={<CreditCardIcon size={20} />} label="RoadMate Wallet" onClick={() => { setIsDrawerOpen(false); navigate("/wallet"); }} />
                    </div>
 
                    {/* More Section */}
                    <div style={{ padding: "10px 0" }}>
-                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 20px", fontFamily: H }}>More</h3>
+                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 10px", fontFamily: H }}>More</h3>
                      <DrawerItem icon={<HelpCircleIcon size={20} />} label="Help" onClick={() => { setIsDrawerOpen(false); /* help */ }} />
                      <DrawerItem icon={<TagIcon size={20} />} label="Offers" onClick={() => { setIsDrawerOpen(false); /* offers */ }} />
                      <DrawerItem icon={<InfoIcon size={20} />} label="Know about RoadMate" onClick={() => { setIsDrawerOpen(false); /* about */ }} />
@@ -285,18 +285,18 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                        onClick={() => { setIsDrawerOpen(false); /* language */ }} 
                      />
                    </div>
-                </div>
 
-                {isLoggedIn && (
-                  <div style={{ marginTop: "auto", paddingTop: "20px" }}>
-                    <button
-                      onClick={handleLogout}
-                      className="premium-logout-btn"
-                    >
-                      <LogoutIcon size={18} /> Logout
-                    </button>
-                  </div>
-                )}
+                   {isLoggedIn && (
+                     <div style={{ marginTop: "40px", padding: "10px 20px 40px" }}>
+                       <button
+                         onClick={handleLogout}
+                         className="premium-logout-btn"
+                       >
+                         <LogoutIcon size={18} /> Logout
+                       </button>
+                     </div>
+                   )}
+                </div>
               </div>
             </motion.div>
           </>
@@ -343,7 +343,7 @@ const DrawerItem = ({ icon, label, subtitle, onClick }) => (
   <div
     onClick={onClick}
     className="drawer-item-hover"
-    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 20px", borderRadius: "16px", cursor: "pointer", transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
+    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 10px", borderRadius: "16px", cursor: "pointer", transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
     onMouseEnter={(e) => {
       e.currentTarget.style.backgroundColor = "#f8f9fa";
       e.currentTarget.lastChild.style.transform = "translateX(4px)";
