@@ -21,6 +21,7 @@ const PinIcon     = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill=
 const EditIcon    = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>);
 const SaveIcon    = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>);
 const InfoIcon    = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>);
+const ShieldIcon  = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>);
 const ChevronLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>);
 const ChevronRight= () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>);
 
@@ -421,8 +422,4 @@ const PersonalInfo = () => {
 
 const spinnerStyle = { width: "50px", height: "50px", border: "5px solid rgba(190,13,13,0.1)", borderTop: `5px solid ${RED}`, borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto" };
 const navBtnStyle  = { background: "rgba(15, 23, 42, 0.04)", border: "none", cursor: "pointer", padding: "8px", borderRadius: "12px", display: "flex", alignItems: "center", color: "#475569", transition: "all 0.2s" };
-export default PersonalInfo;
-
-const spinnerStyle = { width: "40px", height: "40px", border: "4px solid rgba(190,13,13,0.1)", borderTop: `4px solid ${RED}`, borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto" };
-const navBtnStyle  = { background: "none", border: "none", cursor: "pointer", padding: "6px", borderRadius: "10px", display: "flex", alignItems: "center", color: "#475569", transition: "all 0.2s" };
 export default PersonalInfo;
