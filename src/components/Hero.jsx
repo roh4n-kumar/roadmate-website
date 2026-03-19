@@ -8,7 +8,7 @@ const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
-// Vercel Build Trigger: v2
+
 
 // ── Custom Calendar (no external dependency) ──────────────────────────────────
 const DAYS_SHORT = ["SU","MO","TU","WE","TH","FR","SA"];
@@ -104,79 +104,7 @@ const CalendarInline = ({ selected, onSelect }) => {
 };
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
-const FrameAnimation = ({ type }) => {
-  const canvasRef = useRef(null);
-  const startFrame = 65; // Further skip the initial delay
-  const endFrame = 177; // Skip the braking at the end
-  const [frame, setFrame] = useState(startFrame);
-  const skip = 3; 
-  const imagesRef = useRef({});
-  const lastUpdateRef = useRef(0);
 
-  // 1. Optimized Animation Loop
-  useEffect(() => {
-    let animId;
-    const animate = (time) => {
-      if (time - lastUpdateRef.current > 60) {
-        setFrame(f => {
-          let next = f + skip;
-          return next > endFrame ? startFrame : next;
-        });
-        lastUpdateRef.current = time;
-      }
-      animId = requestAnimationFrame(animate);
-    };
-    animId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animId);
-  }, []);
-
-  // 2. Sequential Throttled Preloading
-  useEffect(() => {
-    let isMounted = true;
-    const loadSequentially = async () => {
-      // Load only the range we need
-      for (let i = startFrame; i <= endFrame; i += skip) {
-        if (!isMounted) break;
-        if (!imagesRef.current[i]) {
-          await new Promise(resolve => {
-            const img = new Image();
-            img.onload = resolve;
-            img.onerror = resolve;
-            img.src = `/${type}/ezgif-frame-${String(i).padStart(3, '0')}.png`;
-            imagesRef.current[i] = img;
-          });
-          if (i % (skip * 5) === 0) await new Promise(r => setTimeout(r, 40));
-        }
-      }
-    };
-    loadSequentially();
-    return () => { isMounted = false; };
-  }, [type]);
-
-  // 3. Canvas Rendering
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const img = imagesRef.current[frame];
-
-    if (img && img.complete) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    }
-  }, [frame]);
-
-  return (
-    <div className={`anim-container ${type}-anim`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <canvas 
-        ref={canvasRef} 
-        width={800} 
-        height={600} 
-        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-      />
-    </div>
-  );
-};
 
 const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const navigate = useNavigate();
@@ -377,24 +305,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
     .search-btn:active { transform: translateY(0) scale(0.98); }
 
-    .anim-container {
-      position: relative;
-      width: 15rem;
-      height: 10rem;
-      z-index: 1000;
-      pointer-events: none;
-      filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15));
-    }
-    .bike-anim { margin-left: 0; }
-    .car-anim { margin-right: 0; }
-    .anim-img { width: 100%; height: 100%; object-fit: contain; }
 
-    @media (max-width: 1200px) {
-      .anim-container { width: 12rem; height: 8rem; }
-    }
-    @media (max-width: 900px) {
-      .anim-container { display: none; }
-    }
 
     .date-sub-row { display: flex; gap: 10px; align-items: center; }
     .date-trigger { flex: 1; }
@@ -756,15 +667,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
       </div>
 
-      {/* NEW ANIMATION ANCHOR - positioned just above stats bar */}
-      <div style={{ position: "relative", width: "100%", maxWidth: "1400px", margin: "0 auto", height: 0, overflow: "visible", zIndex: 1000 }}>
-        <div style={{ position: "absolute", bottom: 0, left: 0 }}>
-          <FrameAnimation type="bike" />
-        </div>
-        <div style={{ position: "absolute", bottom: 0, right: 0 }}>
-          <FrameAnimation type="car" />
-        </div>
-      </div>
+
 
       {/* STATS BAR - moved above offer for better hierarchy */}
       <div className="stats-bar">
