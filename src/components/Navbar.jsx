@@ -268,9 +268,9 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                       )}
                     </div>
 
-                    <div style={{ height: "1px", minHeight: "1px", background: "#cbd5e1", marginBottom: "25px", marginTop: "10px", width: "calc(100% - 60px)", marginLeft: "auto", marginRight: "auto", borderRadius: "2px", flexShrink: 0 }} />
+                    <div style={{ height: "1px", minHeight: "1px", background: "rgba(15, 23, 42, 0.08)", marginBottom: "15px", marginTop: "10px", width: "calc(100% - 60px)", marginLeft: "auto", marginRight: "auto", borderRadius: "2px", flexShrink: 0 }} />
                     {/* Section Headers with padding moved to items */}
-                    <div style={{ padding: "10px 0" }}>
+                    <div style={{ padding: "0 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>My details</h3>
                       <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => { setIsDrawerOpen(false); navigate("/my-bookings"); }} />
                       <DrawerItem icon={<UserIcon size={20} />} label="Personal information" onClick={() => { setIsDrawerOpen(false); navigate("/profile"); }} />
