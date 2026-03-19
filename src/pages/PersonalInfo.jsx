@@ -242,60 +242,109 @@ const PersonalInfo = () => {
   );
 
   return (
-    <div style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: F }}>
+    <div style={{ minHeight: "100vh", background: "#fdfdfd", fontFamily: F, color: "#0f172a" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
         @keyframes spin { to { transform: rotate(360deg); } }
-        input:focus, textarea:focus { outline: none; }
-        .edit-btn:hover   { background: rgba(15, 23, 42, 0.05) !important; }
+        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.98) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        input:focus, textarea:focus { outline: none; border-color: ${RED} !important; box-shadow: 0 0 0 4px ${RED}15 !important; }
+        .edit-btn:hover   { background: ${RED}08 !important; color: ${RED} !important; transform: translateY(-1px); }
         .cancel-btn:hover { background: rgba(15, 23, 42, 0.05) !important; }
 
-        /* Desktop */
-        .pi-wrap   { padding-top: 100px; padding-bottom: 120px; }
-        .pi-inner  { max-width: 800px; margin: 0 auto; padding: 0 24px; }
-        .pi-card   { background: #fff; border-radius: 28px; padding: 40px; margin-bottom: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.03); border: 1.5px solid rgba(15, 23, 42, 0.05); }
-        .pi-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        .pi-title  { font-size: 40px; }
-        .pi-avatar { width: 90px; height: 90px; font-size: 34px; }
-        .pi-name   { font-size: 24px; }
-        .pi-btns   { display: flex; justify-content: center; gap: 16px; margin-top: 32px; }
+        /* Modern Styles */
+        .pi-header {
+          background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+          padding: 80px 0 140px;
+          margin-bottom: -80px;
+          text-align: center;
+          position: relative;
+          color: #fff;
+        }
+        .pi-header::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 100px;
+          background: linear-gradient(0deg, #fdfdfd 0%, transparent 100%);
+        }
+        
+        .pi-wrap   { padding-bottom: 120px; position: relative; z-index: 10; }
+        .pi-inner  { max-width: 850px; margin: 0 auto; padding: 0 24px; }
+        .pi-card   { 
+          background: #fff; 
+          border-radius: 32px; 
+          padding: 40px; 
+          margin-bottom: 24px; 
+          box-shadow: 0 20px 50px rgba(0,0,0,0.04); 
+          border: 1px solid rgba(15, 23, 42, 0.04); 
+          position: relative;
+          overflow: hidden;
+          animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .pi-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 4px;
+          background: linear-gradient(90deg, ${RED}, #ff4040);
+          opacity: 0.8;
+        }
+        .pi-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .pi-title  { font-size: 48px; margin-bottom: 12px; letter-spacing: -2px; }
+        .pi-avatar { width: 100px; height: 100px; font-size: 38px; border: 4px solid #fff; }
+        .pi-name   { font-size: 26px; }
+        .pi-btns   { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
 
         @media (max-width: 900px) {
-          .pi-wrap  { padding-top: 80px !important; padding-bottom: 80px !important; }
+          .pi-header { padding: 60px 0 100px; }
+          .pi-wrap  { padding-bottom: 80px !important; }
           .pi-inner { padding: 0 16px !important; }
-          .pi-card  { padding: 24px !important; border-radius: 20px !important; margin-bottom: 16px !important; }
-          .pi-grid  { grid-template-columns: 1fr !important; gap: 16px !important; }
-          .pi-title { font-size: 28px !important; }
-          .pi-avatar{ width: 70px !important; height: 70px !important; font-size: 28px !important; }
-          .pi-name  { font-size: 18px !important; }
-          .pi-btns  { flex-direction: column !important; gap: 12px !important; }
-          .pi-btns button { width: 100% !important; justify-content: center !important; }
+          .pi-card  { padding: 28px !important; border-radius: 24px !important; margin-bottom: 20px !important; }
+          .pi-grid  { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .pi-title { font-size: 32px !important; }
+          .pi-avatar{ width: 80px !important; height: 80px !important; font-size: 30px !important; }
+          .pi-name  { font-size: 20px !important; }
+          .pi-btns  { flex-direction: column-reverse !important; gap: 12px !important; }
+          .pi-btns button { width: 100% !important; justify-content: center !important; height: 56px !important; }
           .pi-edit-btn { padding: 10px 16px !important; font-size: 13px !important; }
         }
       `}</style>
 
-      <div className="pi-inner pi-wrap">
-          <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} style={{ marginBottom: "32px" }}>
-            <h1 className="pi-title" style={{ fontFamily: H, fontWeight: "900", color: "#0f172a", margin: 0, letterSpacing: "-1.5px" }}>
+      <div className="pi-header">
+        <div className="pi-inner">
+          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
+            <div style={{ display: 'inline-block', padding: '8px 16px', background: 'rgba(255,255,255,0.05)', borderRadius: '100px', fontSize: '13px', fontWeight: 800, color: RED, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '20px', border: '1px solid rgba(255,255,255,0.1)', fontFamily: H }}>
+              Premium Profile
+            </div>
+            <h1 className="pi-title" style={{ fontFamily: H, fontWeight: "900", margin: 0 }}>
               Personal <span style={{ color: RED }}>Information</span>
             </h1>
-            <p style={{ color: "#64748b", fontSize: "16px", marginTop: "8px", fontWeight: "600" }}>Manage and update your profile details</p>
+            <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "17px", marginTop: "12px", fontWeight: "500", maxWidth: '500px', margin: '12px auto 0' }}>Manage your RoadMate account details and preferences to ensure a seamless rental experience.</p>
           </motion.div>
+        </div>
+      </div>
 
+      <div className="pi-inner pi-wrap">
           {/* Avatar card */}
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="pi-card">
-            <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-              <div className="pi-avatar" style={{ borderRadius: "24px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "900", color: "white", fontFamily: H, boxShadow: `0 10px 25px ${RED}40`, flexShrink: 0 }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="pi-card">
+            <div style={{ display: "flex", alignItems: "center", gap: "24px", flexWrap: 'wrap' }}>
+              <div className="pi-avatar" style={{ borderRadius: "28px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "900", color: "white", fontFamily: H, boxShadow: `0 15px 35px ${RED}40`, flexShrink: 0 }}>
                 {(formData.name?.[0] || user?.email?.[0] || "?").toUpperCase()}
               </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <h3 className="pi-name" style={{ margin: 0, fontWeight: "900", fontFamily: H, letterSpacing: "-0.5px", color: "#0f172a", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              <div style={{ flex: 1, minWidth: '200px' }}>
+                <h3 className="pi-name" style={{ margin: 0, fontWeight: "900", fontFamily: H, letterSpacing: "-0.5px", color: "#0f172a" }}>
                   {formData.name || "Your Name"}
                 </h3>
-                <p style={{ margin: "4px 0 0", fontSize: "14px", color: "#64748b", fontWeight: "600", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{formData.email}</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: "#64748b", fontWeight: "600", fontSize: "15px", marginTop: "6px" }}>
+                  <MailIcon /> {formData.email}
+                </div>
               </div>
               {!editMode && (
-                <button onClick={handleEditClick} className="edit-btn pi-edit-btn" style={{ background: "rgba(15, 23, 42, 0.04)", border: "none", padding: "12px 20px", borderRadius: "14px", fontWeight: "800", fontSize: "14px", cursor: "pointer", color: "#0f172a", display: "flex", alignItems: "center", gap: "8px", fontFamily: F, whiteSpace: "nowrap", flexShrink: 0, transition: "all .2s" }}>
+                <button onClick={handleEditClick} className="edit-btn pi-edit-btn" style={{ background: "rgba(15, 23, 42, 0.04)", border: "none", padding: "14px 24px", borderRadius: "16px", fontWeight: "800", fontSize: "14px", cursor: "pointer", color: "#0f172a", display: "flex", alignItems: "center", gap: "10px", fontFamily: F, whiteSpace: "nowrap", transition: "all .3s" }}>
                   <EditIcon /> Edit Profile
                 </button>
               )}
@@ -303,14 +352,17 @@ const PersonalInfo = () => {
           </motion.div>
 
           {/* Fields card */}
-          <motion.div ref={formCardRef} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="pi-card">
-            <h2 style={{ margin: "0 0 28px", fontSize: "12px", fontWeight: "800", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1.5px", fontFamily: H }}>Profile Details</h2>
+          <motion.div ref={formCardRef} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="pi-card">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '40px' }}>
+              <h2 style={{ margin: 0, fontSize: "13px", fontWeight: "800", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1.5px", fontFamily: H }}>Account Details</h2>
+              <div style={{ height: '1px', flex: 1, background: 'rgba(15, 23, 42, 0.05)', marginLeft: '20px' }} />
+            </div>
 
             <div className="pi-grid">
               {FIELDS.map(({ key, label, type, Icon, placeholder, options, disabled }) => (
                 <div key={key} style={{ gridColumn: type === "textarea" ? "1 / -1" : "auto" }}>
-                  <label style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", fontWeight: "800", color: "#64748b", marginBottom: "10px", textTransform: "uppercase", letterSpacing: "1px", fontFamily: H }}>
-                    <span style={{ color: RED, display: "flex", alignItems: "center" }}><Icon /></span>
+                  <label style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "13px", fontWeight: "800", color: "#475569", marginBottom: "12px", textTransform: "uppercase", letterSpacing: "1px", fontFamily: H }}>
+                    <span style={{ color: RED, display: "flex", alignItems: "center", background: `${RED}10`, padding: '6px', borderRadius: '8px' }}><Icon /></span>
                     {label}
                   </label>
                   {type === "phone"         ? <PhoneInput digits={phoneDigits} onChange={setPhoneDigits} disabled={!editMode} hasWarning={phoneWarning} onEnterBlur={checkPhone} />
@@ -323,40 +375,42 @@ const PersonalInfo = () => {
               ))}
             </div>
 
-            <p style={{ fontSize: "13px", color: "#94a3b8", marginTop: "24px", marginBottom: 0, display: "flex", alignItems: "center", gap: "8px", fontWeight: "600" }}>
-              <MailIcon /> Email is linked to your account and cannot be modified.
-            </p>
+            <div style={{ marginTop: "32px", padding: "16px 20px", borderRadius: "16px", background: "rgba(15, 23, 42, 0.02)", display: "flex", alignItems: "center", gap: "12px", fontSize: "14px", color: "#64748b", fontWeight: "600", border: '1px dashed rgba(15, 23, 42, 0.1)' }}>
+              <InfoIcon />
+              <span>Note: Your email address is linked to your login and cannot be manually updated.</span>
+            </div>
 
             <AnimatePresence>
               {(phoneWarning || pincodeWarning) && (
                 <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
-                  style={{ marginTop: "15px", padding: "12px 16px", borderRadius: "14px", background: "#fef2f2", border: "1px solid #fecdd3", display: "flex", alignItems: "center", gap: "10px", color: RED, fontSize: "14px", fontWeight: "700" }}>
-                  <InfoIcon />
-                  {phoneWarning ? "Phone number must be exactly 10 digits" : "Pin code must be exactly 6 digits"}
+                  style={{ marginTop: "20px", padding: "14px 20px", borderRadius: "16px", background: "#fef2f2", border: "1.5px solid #fecdd3", display: "flex", alignItems: "center", gap: "12px", color: RED, fontSize: "14px", fontWeight: "700" }}>
+                  <ShieldIcon />
+                  {phoneWarning ? "Invalid phone number: Must be exactly 10 digits" : "Invalid pin code: Must be exactly 6 digits"}
                 </motion.div>
               )}
             </AnimatePresence>
 
             <AnimatePresence>
               {editMode && (
-                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="pi-btns">
-                  <button onClick={handleCancel} className="cancel-btn" style={{ background: "rgba(15, 23, 42, 0.04)", border: "none", padding: "14px 28px", borderRadius: "14px", fontWeight: "800", fontSize: "15px", cursor: "pointer", color: "#64748b", fontFamily: F, transition: "all .2s" }}>Cancel</button>
-                  <button onClick={handleSave} disabled={saving} style={{ background: RED, color: "white", border: "none", padding: "14px 36px", borderRadius: "14px", fontWeight: "900", fontSize: "15px", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", boxShadow: `0 10px 25px ${RED}40`, fontFamily: H, transition: "all .3s ease" }}>
-                    <SaveIcon />{saving ? "Saving..." : "Save Changes"}
+                <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 15 }} className="pi-btns">
+                  <button onClick={handleCancel} className="cancel-btn" style={{ background: "transparent", border: "1.5px solid #e2e8f0", padding: "14px 32px", borderRadius: "16px", fontWeight: "800", fontSize: "15px", cursor: "pointer", color: "#64748b", fontFamily: F, transition: "all .2s" }}>Discard Changes</button>
+                  <button onClick={handleSave} disabled={saving} style={{ background: RED, color: "white", border: "none", padding: "14px 44px", borderRadius: "16px", fontWeight: "900", fontSize: "16px", cursor: "pointer", display: "flex", alignItems: "center", gap: "12px", boxShadow: `0 12px 30px ${RED}40`, fontFamily: H, transition: "all .3s cubic-bezier(0.16, 1, 0.3, 1)" }}>
+                    {saving ? <div style={{ width: '20px', height: '20px', border: '3px solid rgba(255,255,255,0.3)', borderTop: '3px solid #fff', borderRadius: '50%', animation: 'spin 0.6s linear infinite' }} /> : <SaveIcon />}
+                    {saving ? "Updating..." : "Save Profile"}
                   </button>
                 </motion.div>
               )}
             </AnimatePresence>
           </motion.div>
-
       </div>
 
       <AnimatePresence>
         {saved && (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
-            style={{ position: "fixed", bottom: "40px", left: 0, right: 0, display: "flex", justifyContent: "center", zIndex: 9999, pointerEvents: "none" }}>
-            <div style={{ background: "#0f172a", color: "white", padding: "16px 32px", borderRadius: "16px", display: "flex", alignItems: "center", gap: "12px", boxShadow: "0 12px 40px rgba(0,0,0,0.25)", borderLeft: `6px solid #22c55e`, fontSize: "15px", fontWeight: "700", whiteSpace: "nowrap", fontFamily: F }}>
-              ✅ Profile updated successfully!
+          <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            style={{ position: "fixed", bottom: "50px", left: 0, right: 0, display: "flex", justifyContent: "center", zIndex: 9999, pointerEvents: "none" }}>
+            <div style={{ background: "#0f172a", color: "white", padding: "18px 36px", borderRadius: "20px", display: "flex", alignItems: "center", gap: "14px", boxShadow: "0 20px 50px rgba(0,0,0,0.3)", borderLeft: `6px solid #22c55e`, fontSize: "16px", fontWeight: "700", fontFamily: F }}>
+              <div style={{ background: '#22c55e', width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px' }}>✓</div>
+              Profile Updated successfully!
             </div>
           </motion.div>
         )}
@@ -364,6 +418,10 @@ const PersonalInfo = () => {
     </div>
   );
 };
+
+const spinnerStyle = { width: "50px", height: "50px", border: "5px solid rgba(190,13,13,0.1)", borderTop: `5px solid ${RED}`, borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto" };
+const navBtnStyle  = { background: "rgba(15, 23, 42, 0.04)", border: "none", cursor: "pointer", padding: "8px", borderRadius: "12px", display: "flex", alignItems: "center", color: "#475569", transition: "all 0.2s" };
+export default PersonalInfo;
 
 const spinnerStyle = { width: "40px", height: "40px", border: "4px solid rgba(190,13,13,0.1)", borderTop: `4px solid ${RED}`, borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto" };
 const navBtnStyle  = { background: "none", border: "none", cursor: "pointer", padding: "6px", borderRadius: "10px", display: "flex", alignItems: "center", color: "#475569", transition: "all 0.2s" };
