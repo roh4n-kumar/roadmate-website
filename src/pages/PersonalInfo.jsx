@@ -254,12 +254,13 @@ const PersonalInfo = () => {
 
         /* Modern Styles */
         .pi-header {
-          background: #0a0a0a;
-          padding: 60px 0 100px;
+          background: linear-gradient(180deg, #111 0%, #0f172a 100%);
+          padding: 140px 0 120px;
           margin-bottom: -60px;
           text-align: center;
           position: relative;
           color: #fff;
+          border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
         .pi-wrap   { padding-bottom: 120px; position: relative; z-index: 10; }
