@@ -120,8 +120,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             font-family: ${F};
           }
           .account-premium-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px ${RED}30; }
-          .drawer-icon-wrapper { color: ${RED}; opacity: 0.9 !important; display: flex; alignItems: center; justifyContent: center; background: ${RED}08; padding: 8px; borderRadius: 14px; margin-right: 2px; }
-          .drawer-item-hover:hover .drawer-icon-wrapper { background: ${RED}15; transform: scale(1.05); }
+          .drawer-icon-wrapper { color: ${RED}; opacity: 0.9 !important; display: flex; alignItems: center; justifyContent: center; padding: 4px; margin-right: 2px; transition: transform 0.2s ease; }
+          .drawer-item-hover:hover .drawer-icon-wrapper { transform: scale(1.1); }
         `}
       </style>
 
@@ -219,11 +219,14 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               style={{ position: "fixed", top: 0, right: 0, width: "100%", maxWidth: "400px", height: "100vh", backgroundColor: "#fff", zIndex: 10002, display: "flex", flexDirection: "column", boxShadow: "-20px 0 50px rgba(0,0,0,0.1)", borderLeft: "1px solid rgba(0,0,0,0.05)" }}
             >
-              <div style={{ padding: "30px", display: "flex", flexDirection: "column", height: "100%" }}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "25px", paddingBottom: "15px", borderBottom: "1px solid rgba(15, 23, 42, 0.08)" }}>
-                  <h2 style={{ fontSize: "24px", fontWeight: 900, fontFamily: H, margin: 0 }}>Account</h2>
-                  <button onClick={() => setIsDrawerOpen(false)} style={{ background: "none", border: "none", fontSize: "28px", cursor: "pointer", color: "#64748b", display: "flex", alignItems: "center" }}>&times;</button>
+                <div style={{ padding: "20px 25px 15px", borderBottom: "1px solid rgba(15, 23, 42, 0.08)", marginBottom: "20px" }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <h2 style={{ fontSize: "24px", fontWeight: 900, fontFamily: H, margin: 0 }}>Account</h2>
+                    <button onClick={() => setIsDrawerOpen(false)} style={{ background: "none", border: "none", fontSize: "28px", cursor: "pointer", color: "#64748b", display: "flex", alignItems: "center" }}>&times;</button>
+                  </div>
                 </div>
+
+                <div style={{ padding: "0 25px 30px", flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
 
                 {!isLoggedIn ? (
                   <div style={{ padding: "30px", borderRadius: "30px", background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)", marginBottom: "40px" }}>
@@ -287,7 +290,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                    </div>
 
                    {isLoggedIn && (
-                     <div style={{ marginTop: "40px", padding: "10px 20px 40px" }}>
+                     <div style={{ marginTop: "40px", padding: "10px 0 40px" }}>
                        <button
                          onClick={handleLogout}
                          className="premium-logout-btn"
@@ -297,7 +300,6 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                      </div>
                    )}
                 </div>
-              </div>
             </motion.div>
           </>
         )}
