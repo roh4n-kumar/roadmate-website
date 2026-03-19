@@ -256,15 +256,15 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                 <div style={{ height: "1px", background: "rgba(15, 23, 42, 0.08)", marginBottom: "15px", marginTop: "0px" }} />
 
                   <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "120px" }} className="hide-scrollbar">
-                    {/* Section Headers with padding */}
-                    <div style={{ padding: "10px 25px" }}>
-                      <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>My details</h3>
+                    {/* Section Headers with padding moved to items */}
+                    <div style={{ padding: "10px 0" }}>
+                      <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>My details</h3>
                       <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => { setIsDrawerOpen(false); navigate("/my-bookings"); }} />
                       <DrawerItem icon={<UserIcon size={20} />} label="Personal information" onClick={() => { setIsDrawerOpen(false); navigate("/profile"); }} />
                     </div>
 
-                    <div style={{ padding: "10px 25px" }}>
-                      <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>Document Verification</h3>
+                    <div style={{ padding: "10px 0" }}>
+                      <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>Document Verification</h3>
                       <DrawerItem 
                         icon={<ShieldIcon />} 
                         label="DL, Aadhaar & Selfie" 
@@ -273,13 +273,13 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                       />
                     </div>
 
-                    <div style={{ padding: "10px 25px" }}>
-                      <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>Payments</h3>
+                    <div style={{ padding: "10px 0" }}>
+                      <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>Payments</h3>
                       <DrawerItem icon={<CreditCardIcon size={20} />} label="RoadMate Wallet" onClick={() => { setIsDrawerOpen(false); navigate("/wallet"); }} />
                     </div>
 
-                    <div style={{ padding: "10px 25px" }}>
-                      <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 0", fontFamily: H }}>More</h3>
+                    <div style={{ padding: "10px 0" }}>
+                      <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>More</h3>
                       <DrawerItem icon={<HelpCircleIcon size={20} />} label="Help" onClick={() => { setIsDrawerOpen(false); /* help */ }} />
                       <DrawerItem icon={<TagIcon size={20} />} label="Offers" onClick={() => { setIsDrawerOpen(false); /* offers */ }} />
                       <DrawerItem icon={<InfoIcon size={20} />} label="Know about RoadMate" onClick={() => { setIsDrawerOpen(false); /* about */ }} />
@@ -348,7 +348,7 @@ const DrawerItem = ({ icon, label, subtitle, onClick }) => (
   <div
     onClick={onClick}
     className="drawer-item-hover"
-    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 0px", borderRadius: "16px", cursor: "pointer", transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
+    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 25px", borderRadius: "0", cursor: "pointer", transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
     onMouseEnter={(e) => {
       e.currentTarget.style.backgroundColor = "#f8f9fa";
     }}
