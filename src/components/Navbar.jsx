@@ -253,9 +253,9 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     )}
                   </div>
 
-                <div style={{ height: "1px", background: "rgba(15, 23, 42, 0.08)", marginBottom: "15px", marginTop: "0px" }} />
+                  <div style={{ height: "1px", background: "rgba(15, 23, 42, 0.08)", marginBottom: "15px", marginTop: "0px" }} />
 
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "120px" }} className="hide-scrollbar">
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "30px" }} className="hide-scrollbar">
                     {/* Section Headers with padding moved to items */}
                     <div style={{ padding: "10px 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>My details</h3>
