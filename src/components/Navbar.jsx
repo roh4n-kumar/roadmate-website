@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { auth, db } from "../firebase";
+import ProfileCard from "./ProfileCard";
+import ProfileCard from "./ProfileCard";
 import {
   onAuthStateChanged,
   signOut,
