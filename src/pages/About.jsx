@@ -103,7 +103,8 @@ const About = () => {
 
              {/* OUR STORY / MISSION */}
              <div style={{ padding: "40px 40px 80px", maxWidth: "1200px", margin: "0 auto", textAlign: "left" }}>
-                 {/*                   <div className="animate-box">
+                 {/* ABOUT US */}
+                 <div className="animate-box">
                     <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "20px" }}>
                         <span style={{ color: BLUE }}>About</span> <span style={{ color: RED }}>Us</span>
                     </h2>
@@ -114,9 +115,9 @@ const About = () => {
                         We didn't just want to build a rental service; we wanted to create a travel ecosystem where convenience meets trust. Our platform bridges the gap between high-quality local vehicles and the modern rider who values efficiency, fair pricing, and absolute transparency. We are committed to empowering every individual with the freedom they deserve, making every trip—whether it's a few miles or a few hundred—a memory to cherish. At RoadMate, your journey is our pride, and your satisfaction is our mission.
                     </p>
                  </div>
-          </div>
 
-                 {/* MANAGEMENT                   <div className="animate-box delay-1">
+                 {/* MANAGEMENT TEAM SECTION */}
+                 <div className="animate-box delay-1">
                     <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "30px" }}>
                         <span style={{ color: BLUE }}>Management</span> <span style={{ color: RED }}>Team</span>
                     </h2>
@@ -145,7 +146,6 @@ const About = () => {
                         </div>
                     </div>
                  </div>
-          </div>
              </div>
 
              {/* FEATURE GRID */}
