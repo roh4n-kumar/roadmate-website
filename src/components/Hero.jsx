@@ -579,9 +579,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         <div className="search-inner-wrapper">
           <div style={{ textAlign: "center", marginBottom: "50px" }}>
             <h1 style={{ fontSize: "clamp(34px, 5vw, 64px)", fontWeight: 900, color: "#fff", marginBottom: "15px", letterSpacing: "-2px" }}>
-              Smart Way To <span style={{ color: RED }}>Rent</span> Bikes And Cars
+              Smart Way to <span style={{ color: RED }}>Rent</span> Bikes and Cars
             </h1>
-            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "18px", fontWeight: 500 }}>Starting our journey to make vehicle rentals simple and accessible in Bhubaneswar.</p>
+            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "18px", fontWeight: 500 }}>Start renting vehicles in simple and accessible way in Bhubaneswar.</p>
           </div>
           <div className="glass-search-container">
             {/* 1. Vehicle */}
