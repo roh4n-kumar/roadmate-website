@@ -182,7 +182,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               to="/my-bookings"
               className={({ isActive }) => `desktop-link${isActive ? " active" : ""}`}
             >
-              <BookingIcon /> My Bookings
+              <BookingIcon /> <span style={{ marginTop: "1px" }}>My Bookings</span>
             </NavLink>
 
             <button onClick={() => setIsDrawerOpen(true)} className="account-premium-btn">
@@ -198,10 +198,10 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                   }}>
                     {(user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()}
                   </div>
-                  Account
+                  <span style={{ marginTop: "1px" }}>{user?.displayName?.split(" ")[0] || "Account"}</span>
                 </>
               ) : (
-                <> <AccountIcon size={18} /> Account </>
+                <> <AccountIcon size={18} /> <span style={{ marginTop: "1px" }}>Account</span> </>
               )}
             </button>
           </div>
