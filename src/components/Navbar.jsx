@@ -127,14 +127,14 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           .desktop-link:hover { color: ${RED} !important; transform: translateY(-1px); }
           .desktop-link.active { color: ${RED} !important; border-bottom: 3px solid ${RED}; }
           .account-premium-btn {
-            background: #0f172a; color: #fff; border: none;
-            padding: 10px 20px; border-radius: 12px;
-            font-weight: 800; font-size: 14px; cursor: pointer;
-            display: flex; align-items: center; gap: 10px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background: transparent; color: #0f172a; border: none;
+            padding: 10px 0; border-radius: 0;
+            font-weight: 700; font-size: 15px; cursor: pointer;
+            display: flex; align-items: center; gap: 8px;
+            transition: all 0.2s ease;
             font-family: ${F};
           }
-          .account-premium-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px ${RED}30; }
+          .account-premium-btn:hover { color: ${RED} !important; transform: translateY(-1px); }
           .drawer-icon-wrapper { color: ${RED}; opacity: 0.9 !important; display: flex; align-items: center; justify-content: center; background: ${RED}08; padding: 8px; border-radius: 14px; margin-right: 2px; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
           .drawer-item-hover:hover .drawer-icon-wrapper { background: ${RED}15; transform: scale(1.1); }
           .drawer-chevron { color: #cbd5e1; font-size: 18px; font-weight: 400; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -186,23 +186,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             </NavLink>
 
             <button onClick={() => setIsDrawerOpen(true)} className="account-premium-btn">
-              {isLoggedIn ? (
-                <>
-                  <div style={{
-                    width: "26px", height: "26px", borderRadius: "8px",
-                    background: `linear-gradient(135deg, ${RED}, #ff4040)`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: "12px", fontWeight: "900", color: "white",
-                    fontFamily: H, flexShrink: 0,
-                    boxShadow: "0 4px 10px rgba(190,13,13,0.3)",
-                  }}>
-                    {(user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()}
-                  </div>
-                  Account
-                </>
-              ) : (
-                <> <AccountIcon size={18} /> Account </>
-              )}
+              Account
             </button>
           </div>
 
