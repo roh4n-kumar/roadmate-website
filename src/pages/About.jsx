@@ -101,16 +101,16 @@ const About = () => {
              </div>
 
              {/* OUR STORY / MISSION */}
-             <div style={{ padding: "60px 40px 100px", textAlign: "left" }}>
-                 <div style={{ maxWidth: "900px", margin: "0" }}>
+             <div style={{ padding: "10px 40px 80px", textAlign: "left" }}>
+                 <div style={{ maxWidth: "1350px", margin: "0" }}>
                     <div className="animate-box">
-                         <h2 style={{ fontSize: "48px", fontWeight: 900, fontFamily: H, marginBottom: "35px", lineHeight: 1.2 }}>
+                         <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H, marginBottom: "25px", lineHeight: 1.2 }}>
                              About <span style={{ color: RED }}>Us</span>
                          </h2>
-                         <p style={{ fontSize: "19px", color: "#64748b", lineHeight: 1.8, marginBottom: "25px", textAlign: "justify" }}>
+                         <p style={{ fontSize: "15px", color: "#64748b", lineHeight: 1.8, marginBottom: "20px", textAlign: "justify" }}>
                              RoadMate was born from a simple yet powerful observation: the freedom of movement shouldn't be a luxury or a bureaucratic hurdle. In a fast-evolving city like Bhubaneswar, we noticed that while the need for local travel was growing, the means to access reliable, clean, and well-maintained vehicles remained surprisingly difficult. Whether you are a student striving for a better commute, a professional navigating a busy schedule, or a traveler eager to explore the hidden joys of Odisha, RoadMate is here to ensure that your journey starts on the right note.
                          </p>
-                         <p style={{ fontSize: "19px", color: "#64748b", lineHeight: 1.8, textAlign: "justify" }}>
+                         <p style={{ fontSize: "15px", color: "#64748b", lineHeight: 1.8, textAlign: "justify" }}>
                              We didn't just want to build a rental service; we wanted to create a travel ecosystem where convenience meets trust. Our platform bridges the gap between high-quality local vehicles and the modern rider who values efficiency, fair pricing, and absolute transparency. We are committed to empowering every individual with the freedom they deserve, making every trip—whether it's a few miles or a few hundred—a memory to cherish. At RoadMate, your journey is our pride, and your satisfaction is our mission.
                          </p>
                     </div>
