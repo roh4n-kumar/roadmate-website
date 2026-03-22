@@ -53,7 +53,7 @@ const About = () => {
 
              {/* HERO SECTION */}
              <div style={{ 
-                padding: "160px 40px 100px", 
+                padding: "120px 40px 70px", 
                 background: "linear-gradient(180deg, #111 0%, #0f172a 100%)", 
                 color: "#fff", 
                 textAlign: "center",
@@ -79,21 +79,21 @@ const About = () => {
                         Discover RoadMate
                     </div>
                     <h1 className="animate-box delay-1" style={{ 
-                        fontSize: "72px", 
+                        fontSize: "56px", 
                         fontWeight: 900, 
                         fontFamily: H, 
-                        marginBottom: "25px", 
-                        letterSpacing: "-2px",
+                        marginBottom: "20px", 
+                        letterSpacing: "-1.5px",
                         lineHeight: 1.1
                     }}>
                         Your Journey, <span style={{ color: RED }}>Our Pride</span>
                     </h1>
                     <p className="animate-box delay-2" style={{ 
-                        fontSize: "20px", 
+                        fontSize: "18px", 
                         color: "rgba(255,255,255,0.7)", 
                         lineHeight: 1.6, 
-                        maxWidth: "700px", 
-                        margin: "0 auto 40px" 
+                        maxWidth: "600px", 
+                        margin: "0 auto 30px" 
                     }}>
                         We're on a mission to simplify vehicle rentals in Bhubaneswar, providing every explorer with the freedom they deserve.
                     </p>
