@@ -101,33 +101,18 @@ const About = () => {
              </div>
 
              {/* OUR STORY / MISSION */}
-             <div style={{ padding: "100px 40px", position: "relative" }}>
-                 <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}>
-                        <div className="animate-box">
-                             <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H, marginBottom: "30px", lineHeight: 1.2 }}>
-                                 Built for the <span style={{ color: RED }}>Simple Path</span>
-                             </h2>
-                             <p style={{ fontSize: "18px", color: "#64748b", lineHeight: 1.8, marginBottom: "25px" }}>
-                                 RoadMate started with a simple observation: renting a vehicle shouldn't be a hurdle. Whether you're a student heading to class, a professional on a business trip, or an explorer discovering the beauty of Odisha, we're here to make your travel effortless.
-                             </p>
-                             <p style={{ fontSize: "18px", color: "#64748b", lineHeight: 1.8 }}>
-                                 Our platform bridges the gap between high-quality local vehicles and the modern rider who values time, transparency, and trust.
-                             </p>
-                        </div>
-                        <div className="animate-box delay-2" style={{ position: "relative" }}>
-                             <div style={{ 
-                                width: "100%", 
-                                height: "500px", 
-                                background: "url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1000&q=80') center/cover", 
-                                borderRadius: "40px",
-                                boxShadow: "0 40px 100px rgba(0,0,0,0.1)"
-                             }} />
-                             <div style={{ position: "absolute", bottom: "-30px", left: "-30px", background: RED, color: "#fff", padding: "30px", borderRadius: "30px", boxShadow: "0 20px 40px rgba(190,13,13,0.3)" }}>
-                                <div style={{ fontSize: "42px", fontWeight: 900, fontFamily: H }}>0+</div>
-                                <div style={{ fontSize: "14px", fontWeight: 700, opacity: 0.8, textTransform: "uppercase" }}>Happy Miles</div>
-                             </div>
-                        </div>
+             <div style={{ padding: "40px 40px 80px", textAlign: "center" }}>
+                 <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+                    <div className="animate-box">
+                         <h2 style={{ fontSize: "36px", fontWeight: 900, fontFamily: H, marginBottom: "25px", lineHeight: 1.2 }}>
+                             Built for the <span style={{ color: RED }}>Simple Path</span>
+                         </h2>
+                         <p style={{ fontSize: "17px", color: "#64748b", lineHeight: 1.8, marginBottom: "20px" }}>
+                             RoadMate started with a simple observation: renting a vehicle shouldn't be a hurdle. Whether you're a student heading to class, a professional on a business trip, or an explorer discovering the beauty of Odisha, we're here to make your travel effortless.
+                         </p>
+                         <p style={{ fontSize: "17px", color: "#64748b", lineHeight: 1.8 }}>
+                             Our platform bridges the gap between high-quality local vehicles and the modern rider who values time, transparency, and trust.
+                         </p>
                     </div>
                  </div>
              </div>
