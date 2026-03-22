@@ -186,7 +186,23 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             </NavLink>
 
             <button onClick={() => setIsDrawerOpen(true)} className="account-premium-btn">
-              Account
+              {isLoggedIn ? (
+                <>
+                  <div style={{
+                    width: "24px", height: "24px", borderRadius: "50%",
+                    background: `linear-gradient(135deg, ${RED}, #ff4040)`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: "11px", fontWeight: "900", color: "white",
+                    fontFamily: H, flexShrink: 0,
+                    boxShadow: "0 4px 10px rgba(190,13,13,0.2)",
+                  }}>
+                    {(user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()}
+                  </div>
+                  Account
+                </>
+              ) : (
+                <> <AccountIcon size={18} /> Account </>
+              )}
             </button>
           </div>
 
