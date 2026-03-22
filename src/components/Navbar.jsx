@@ -24,6 +24,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [authWarning, setAuthWarning] = useState("");
 
   const navigate = useNavigate();
 
@@ -81,6 +82,17 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleProtectedAction = (path) => {
+    if (!isLoggedIn) {
+      setAuthWarning("Please Login / Signup to access this section");
+      setTimeout(() => setAuthWarning(""), 3000);
+      setIsLoginOpen(true);
+      return;
+    }
+    setIsDrawerOpen(false);
+    navigate(path);
   };
 
   const handleLogout = async () => {
@@ -276,8 +288,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     {/* Section Headers with padding moved to items */}
                     <div style={{ padding: "0 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>My details</h3>
-                      <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => { setIsDrawerOpen(false); navigate("/my-bookings"); }} />
-                      <DrawerItem icon={<UserIcon size={20} />} label="Personal information" onClick={() => { setIsDrawerOpen(false); navigate("/profile"); }} />
+                      <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => handleProtectedAction("/my-bookings")} />
+                      <DrawerItem icon={<UserIcon size={20} />} label="Personal information" onClick={() => handleProtectedAction("/profile")} />
                     </div>
 
                     <div style={{ padding: "10px 0" }}>
@@ -286,13 +298,13 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                         icon={<ShieldIcon />} 
                         label="DL, Aadhaar & Selfie" 
                         subtitle="Upload & verify your documents"
-                        onClick={() => { setIsDrawerOpen(false); navigate("/documents"); }} 
+                        onClick={() => handleProtectedAction("/documents")} 
                       />
                     </div>
 
                     <div style={{ padding: "10px 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>Payments</h3>
-                      <DrawerItem icon={<CreditCardIcon size={20} />} label="RoadMate Wallet" onClick={() => { setIsDrawerOpen(false); navigate("/wallet"); }} />
+                      <DrawerItem icon={<CreditCardIcon size={20} />} label="RoadMate Wallet" onClick={() => handleProtectedAction("/wallet")} />
                     </div>
 
                     <div style={{ padding: "10px 0" }}>
@@ -355,6 +367,20 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                 </button>
              </motion.div>
           </div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {authWarning && (
+          <motion.div 
+            initial={{ opacity: 0, y: 50, x: "-50%" }} 
+            animate={{ opacity: 1, y: 0, x: "-50%" }} 
+            exit={{ opacity: 0, y: 50, x: "-50%" }}
+            style={{ position: "fixed", bottom: "40px", left: "50%", zIndex: 20000, background: "#0f172a", color: "#fff", padding: "14px 28px", borderRadius: "16px", fontWeight: "700", display: "flex", alignItems: "center", gap: "10px", boxShadow: "0 20px 40px rgba(0,0,0,0.2)", borderLeft: `5px solid ${RED}`, fontSize: "14px", fontFamily: F, whiteSpace: "nowrap" }}
+          >
+            <div style={{ background: RED, width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "900" }}>!</div>
+            {authWarning}
+          </motion.div>
         )}
       </AnimatePresence>
     </>
