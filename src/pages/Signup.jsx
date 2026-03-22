@@ -89,7 +89,7 @@ const Signup = () => {
           Create <span style={{ color: RED }}>Account</span>
         </h2>
         <p style={{ fontSize: "16px", color: "rgba(255,255,255,0.6)", marginBottom: "40px", fontWeight: "500" }}>
-          Join RoadMate for a premium experience
+          Join RoadMate for a hassle-free experience
         </p>
 
         <button

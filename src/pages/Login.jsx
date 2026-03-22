@@ -89,7 +89,7 @@ const Login = () => {
           border: "1px solid rgba(255,255,255,0.1)"
         }}
       >
-        {/* Close button with premium hover */}
+        {/* Close button with hover */}
         <div
           onClick={() => navigate("/")}
           style={{ 
@@ -118,7 +118,7 @@ const Login = () => {
           Welcome <span style={{ color: RED }}>Back</span>
         </h2>
         <p style={{ fontSize: "16px", color: "rgba(255,255,255,0.6)", marginBottom: "40px", fontWeight: "500" }}>
-          Join RoadMate for a premium experience
+          Join RoadMate for a hassle-free experience
         </p>
 
         <button

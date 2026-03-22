@@ -579,9 +579,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         <div className="search-inner-wrapper">
           <div style={{ textAlign: "center", marginBottom: "50px" }}>
             <h1 style={{ fontSize: "clamp(34px, 5vw, 64px)", fontWeight: 900, color: "#fff", marginBottom: "15px", letterSpacing: "-2px" }}>
-              Rent <span style={{ color: RED }}>Premium</span> Bikes & Cars
+              Rent <span style={{ color: RED }}>Your Favorite</span> Bikes & Cars
             </h1>
-            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "18px", fontWeight: 500 }}>Bhubaneswar's elite vehicle rental platform.</p>
+            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "18px", fontWeight: 500 }}>Bhubaneswar's most trusted vehicle rental platform.</p>
           </div>
           <div className="glass-search-container">
             {/* 1. Vehicle */}
@@ -698,7 +698,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <div className="why-section" style={{ paddingTop: "100px" }}>
         <div className="why-inner">
           <div className="section-header">
-            <div className="section-tag">Premium Benefits</div>
+            <div className="section-tag">Why Choose Us</div>
             <h2 className="section-title">Bhubaneswar's Most Trusted<br/>Vehicle Rental Platform</h2>
             <p className="section-sub">Experience the freedom of smart mobility with RoadMate's verified fleet and seamless booking.</p>
           </div>

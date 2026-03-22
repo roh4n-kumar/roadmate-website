@@ -16,7 +16,7 @@ const FEATURED_VEHICLES = [
 ];
 
 const REVIEWS = [
-  { name: "Rahul Sharma", role: "Software Engineer", text: "Truly premium experience. The Royal Enfield was in pristine condition. Best rental service in Bhubaneswar!", stars: 5 },
+  { name: "Rahul Sharma", role: "Software Engineer", text: "Truly excellent experience. The Royal Enfield was in pristine condition. Best rental service in Bhubaneswar!", stars: 5 },
   { name: "Priya Das", role: "Travel Blogger", text: "Loved the seamless booking process. No paperwork, just book and ride. Highly recommended for tourists!", stars: 5 },
   { name: "Amit Kumar", role: "Business Traveler", text: "The Thar was perfect for my weekend trip. Verified vehicles and 24/7 support made it worry-free.", stars: 4 },
 ];
@@ -109,7 +109,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
           
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "40px" }}>
             {[
-              { step: "01", title: "Choose Vehicle", desc: "Browse our premium fleet and pick your perfect ride." },
+              { step: "01", title: "Choose Vehicle", desc: "Browse our quality fleet and pick your perfect ride." },
               { step: "02", title: "Verify Docs", desc: "Quick digital verification with zero physical paperwork." },
               { step: "03", title: "Start Journey", desc: "Pick up your keys and enjoy the freedom of the road." }
             ].map((s, i) => (
@@ -168,7 +168,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
             <span style={{ color: RED, fontWeight: 800, textTransform: "uppercase", fontSize: "14px", letterSpacing: "2px" }}>Next Gen Mobility</span>
             <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, color: "#fff", marginTop: "15px", lineHeight: "1.1" }}>Your Journey, <br/>Our Responsibility</h2>
             <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "18px", lineHeight: "1.7", marginTop: "25px", marginBottom: "40px" }}>
-              Moving around the city hasn't been this easier. With RoadMate, you get a premium experience at an affordable price. Zero paperwork, 100% verified rides.
+              Moving around the city hasn't been this easier. With RoadMate, you get a great experience at an affordable price. Zero paperwork, 100% verified rides.
             </p>
             <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
               <button style={{ background: "#fff", color: "#000", padding: "18px 32px", borderRadius: "16px", border: "none", fontWeight: 800, fontSize: "16px", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px" }}>

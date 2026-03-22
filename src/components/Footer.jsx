@@ -16,7 +16,7 @@ const Footer = () => {
               Road<span style={{ color: RED }}>Mate</span>
             </Link>
             <p style={{ color: "rgba(255,255,255,0.6)", lineHeight: "1.8", fontSize: "15px", maxWidth: "320px", marginBottom: "30px" }}>
-              Bhubaneswar's premier vehicle rental platform. Experience the freedom of the road with our premium, 100% verified fleet.
+              Bhubaneswar's leading vehicle rental platform. Experience the freedom of the road with our quality, 100% verified fleet.
             </p>
             <div style={{ display: "flex", gap: "15px" }}>
               {["facebook", "twitter", "instagram", "linkedin"].map(social => (

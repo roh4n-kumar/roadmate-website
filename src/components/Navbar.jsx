@@ -127,18 +127,18 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             font-family: ${F};
           }
           .google-auth-btn:hover { background: #f8fafc; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-          .premium-logout-btn {
+          .logout-btn {
             background: #0f172a; color: white; border: none; padding: 16px;
             border-radius: 16px; font-weight: 800; cursor: pointer; font-size: 16px;
             width: 100%; display: flex; align-items: center; justify-content: center;
             gap: 10px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             font-family: ${F};
           }
-          .premium-logout-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(190,13,13,0.3); }
+          .logout-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(190,13,13,0.3); }
           .desktop-link { transition: all 0.2s ease; font-family: ${F}; text-decoration: none; font-size: 15px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 8px; padding: 10px 0; }
           .desktop-link:hover { color: ${RED} !important; transform: translateY(-1px); }
           .desktop-link.active { color: ${RED} !important; border-bottom: 3px solid ${RED}; }
-          .account-premium-btn {
+          .account-btn {
             background: transparent; color: #0f172a; border: none;
             padding: 10px 0; border-radius: 0;
             font-weight: 700; font-size: 15px; cursor: pointer;
@@ -146,7 +146,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             transition: all 0.2s ease;
             font-family: ${F};
           }
-          .account-premium-btn:hover { color: ${RED} !important; transform: translateY(-1px); }
+          .account-btn:hover { color: ${RED} !important; transform: translateY(-1px); }
           .drawer-icon-wrapper { color: ${RED}; opacity: 0.9 !important; display: flex; align-items: center; justify-content: center; background: ${RED}08; padding: 8px; border-radius: 14px; margin-right: 2px; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
           .drawer-item-hover:hover .drawer-icon-wrapper { background: ${RED}15; transform: scale(1.1); }
           .drawer-chevron { color: #cbd5e1; font-size: 18px; font-weight: 400; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -197,7 +197,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               <BookingIcon /> <span style={{ marginTop: "1px" }}>My Bookings</span>
             </NavLink>
 
-            <button onClick={() => setIsDrawerOpen(true)} className="account-premium-btn">
+            <button onClick={() => setIsDrawerOpen(true)} className="account-btn">
               {isLoggedIn ? (
                 <>
                   <div style={{
@@ -260,7 +260,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     <div style={{ padding: "0 25px" }}>
                       {!isLoggedIn ? (
                         <div style={{ padding: "30px", borderRadius: "30px", background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)", marginBottom: "30px" }}>
-                          <h3 style={{ fontSize: "22px", fontWeight: 900, marginBottom: "20px", color: "#111", fontFamily: H }}>Premium Vehicle Rentals</h3>
+                          <h3 style={{ fontSize: "22px", fontWeight: 900, marginBottom: "20px", color: "#111", fontFamily: H }}>Reliable Vehicle Rentals</h3>
                           <button
                             onClick={() => { setIsDrawerOpen(false); setIsLoginOpen(true); }}
                             style={{ width: "100%", padding: "16px", background: `linear-gradient(135deg, ${RED}, #ff4d4d)`, color: "#fff", border: "none", borderRadius: "18px", fontSize: "16px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", boxShadow: "0 10px 20px rgba(190,13,13,0.2)", fontFamily: F }}
@@ -324,7 +324,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                      <div style={{ marginTop: "40px", padding: "10px 25px 20px" }}>
                        <button
                          onClick={handleLogout}
-                         className="premium-logout-btn"
+                         className="logout-btn"
                        >
                          <LogoutIcon size={18} /> Logout
                        </button>
