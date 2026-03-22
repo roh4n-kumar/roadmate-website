@@ -151,7 +151,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 </div>
              </div>
              <div style={{ position: "relative" }}>
-                <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80" alt="luxury car" style={{ width: "100%", borderRadius: "32px", boxShadow: "0 30px 60px rgba(0,0,0,0.15)" }} />
+                <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80" alt="quality car" style={{ width: "100%", borderRadius: "32px", boxShadow: "0 30px 60px rgba(0,0,0,0.15)" }} />
                 <div style={{ position: "absolute", bottom: "-30px", right: "-20px", background: "#fff", padding: "25px", borderRadius: "24px", boxShadow: "0 20px 40px rgba(0,0,0,0.1)", textAlign: "center", border: "1px solid #f0f0f0" }}>
                    <div style={{ fontSize: "32px", fontWeight: 900, color: RED }}>0+</div>
                    <div style={{ fontSize: "12px", fontWeight: 800, color: "#94a3b8", textTransform: "uppercase" }}>Booking Fees</div>

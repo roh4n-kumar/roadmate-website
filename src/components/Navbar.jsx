@@ -88,7 +88,6 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
     if (!isLoggedIn) {
       setAuthWarning("Please Login / Signup to access this section");
       setTimeout(() => setAuthWarning(""), 3000);
-      setIsLoginOpen(true);
       return;
     }
     setIsDrawerOpen(false);
@@ -355,7 +354,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                 <button onClick={() => setIsLoginOpen(false)} style={{ position: "absolute", top: "25px", right: "25px", border: "none", background: "none", fontSize: "32px", cursor: "pointer", color: "#ccc" }}>&times;</button>
                 <div style={{ marginBottom: "30px" }}>
                    <h2 style={{ fontSize: "32px", fontWeight: 900, marginBottom: "10px", fontFamily: H }}>Welcome <span style={{ color: RED }}>Mate</span></h2>
-                   <p style={{ color: "#64748b", fontWeight: 600, fontFamily: F }}>Bhubaneswar's choice for luxury rentals</p>
+                   <p style={{ color: "#64748b", fontWeight: 600, fontFamily: F }}>Bhubaneswar's choice for hassle-free rentals</p>
                 </div>
                 <button
                   onClick={handleGoogleSignup}
