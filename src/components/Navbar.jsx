@@ -260,7 +260,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     <div style={{ padding: "0 25px" }}>
                       {!isLoggedIn ? (
                         <div style={{ padding: "30px", borderRadius: "30px", background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)", marginBottom: "30px" }}>
-                          <h3 style={{ fontSize: "22px", fontWeight: 900, marginBottom: "20px", color: "#111", fontFamily: H }}>Reliable Vehicle Rentals</h3>
+                          <h3 style={{ fontSize: "22px", fontWeight: 900, marginBottom: "20px", color: "#111", fontFamily: H }}>Login to start your ride.</h3>
                           <button
                             onClick={() => { setIsDrawerOpen(false); setIsLoginOpen(true); }}
                             style={{ width: "100%", padding: "16px", background: `linear-gradient(135deg, ${RED}, #ff4d4d)`, color: "#fff", border: "none", borderRadius: "18px", fontSize: "16px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", boxShadow: "0 10px 20px rgba(190,13,13,0.2)", fontFamily: F }}
