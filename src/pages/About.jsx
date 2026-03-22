@@ -124,11 +124,13 @@ const About = () => {
                     
                     <div style={{ display: "flex", gap: "30px", marginBottom: "40px", alignItems: "flex-start" }}>
                         <div style={{ width: "120px", height: "120px", borderRadius: "50%", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "4px solid #fff", boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}>
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="CEO" />
+                            <img src="/Founder & CEO.png" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Founder & CEO" />
                         </div>
                         <div>
-                            <h3 style={{ fontSize: "19px", fontWeight: 800, color: RED, marginBottom: "8px", fontFamily: H }}>Rohan Chaudhary, Founder</h3>
-                            <p style={{ fontSize: "13px", color: "#666", lineHeight: 1.6, textAlign: "justify" }}>
+                            <h3 style={{ fontSize: "19px", fontWeight: 800, fontFamily: H, marginBottom: "8px" }}>
+                                <span style={{ color: BLUE }}>Rohan Chaudhary</span>, <span style={{ color: RED }}>Founder & CEO</span>
+                            </h3>
+                            <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
                                 Rohan Chaudhary is the visionary behind RoadMate. With a deep passion for improving urban mobility and a background in strategic development, he founded RoadMate to bridge the gap in Bhubaneswar's local transport. He is dedicated to transforming the rental experience into a seamless, trust-driven journey for every rider.
                             </p>
                         </div>
@@ -136,12 +138,14 @@ const About = () => {
 
                     <div style={{ display: "flex", gap: "30px", alignItems: "flex-start" }}>
                         <div style={{ width: "120px", height: "120px", borderRadius: "50%", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "4px solid #fff", boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}>
-                           <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Operations Head" />
+                           <img src="/Co-Founder.png" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Co-Founder" />
                         </div>
                         <div>
-                            <h3 style={{ fontSize: "19px", fontWeight: 800, color: RED, marginBottom: "8px", fontFamily: H }}>Sarah Jenkins, Operations Head</h3>
-                            <p style={{ fontSize: "13px", color: "#666", lineHeight: 1.6, textAlign: "justify" }}>
-                                Sarah Jenkins leads the operations at RoadMate, ensuring that every vehicle meets our rigorous quality standards. With extensive experience in fleet management and customer service, she is the backbone of our commitment to safety and reliability, making sure that your RoadMate experience is always top-notch.
+                            <h3 style={{ fontSize: "19px", fontWeight: 800, fontFamily: H, marginBottom: "8px" }}>
+                                <span style={{ color: BLUE }}>Ankit Gupta</span>, <span style={{ color: RED }}>Co-Founder</span>
+                            </h3>
+                            <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
+                                Ankit Gupta is the Co-Founder of RoadMate and has been an integral part of the journey since its very inception. Working side-by-side with Rohan from day one, his dedication and strategic insight have been crucial in building the foundation of RoadMate. He continues to drive our mission forward with a shared vision of transforming urban mobility.
                             </p>
                         </div>
                     </div>
