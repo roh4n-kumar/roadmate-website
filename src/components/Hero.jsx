@@ -175,12 +175,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     { icon: "🚀", title: "Instant Booking",         desc: "Book your ride in under 2 minutes. No paperwork, no waiting." },
   ];
 
-  const stats = [
-    { num: "50",   suffix: "+", line1: "Bikes",  line2: "Available" },
-    { num: "20",   suffix: "+", line1: "Cars",   line2: "Available" },
-    { num: "1000", suffix: "+", line1: "Happy",  line2: "Riders"    },
-    { num: "4.9",  suffix: "",  line1: "Average",line2: "Rating ⭐"  },
-  ];
 
   const css = `
     :root {
@@ -367,17 +361,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       z-index: 9999; 
     }
 
-    .stats-bar { 
-      background: var(--ribbon-dark); 
-      padding: 40px 40px; 
-      position: relative;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    .stats-inner { max-width: 1250px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-    .stat-item { display: flex; align-items: center; gap: 15px; }
-    .stat-num { font-size: 36px; font-weight: 800; line-height: 1; letter-spacing: -1px; }
-    .stat-label { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 500; line-height: 1.4; text-transform: uppercase; letter-spacing: 1px; }
-    .stat-divider { width: 1px; height: 50px; background: rgba(255,255,255,0.1); }
 
     .offer-section { padding: 100px 40px 60px; background: #fff; }
     .offer-inner { max-width: 1250px; margin: 0 auto; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.08); transition: transform 0.4s; }
@@ -478,10 +461,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .step-title { font-size: 18px; font-weight: 800; color: #111; margin: 0 0 10px; }
     .step-desc { font-size: 14px; color: #777; line-height: 1.6; font-weight: 400; max-width: 220px; margin: 0 auto; }
 
-    @media (max-width: 1100px) {
-      .stats-inner { gap: 30px; flex-wrap: wrap; justify-content: center; }
-      .stat-divider { display: none; }
-    }
 
     @media (max-width: 900px) {
       .search-ribbon { padding: 30px 20px 100px; }
@@ -496,8 +475,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .search-btn { width: 100%; justify-content: center; border-radius: 16px; height: 56px; }
       .search-btn:hover { transform: none; }
       
-      .stats-bar { padding: 40px 20px; }
-      .stat-num { font-size: 28px; }
       
       .offer-section { padding: 180px 20px 40px; }
       .why-section { padding: 40px 20px 60px; }
@@ -524,9 +501,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .search-field { flex: none; border-right: none !important; padding-right: 0 !important; margin-right: 0 !important; }
       .search-btn { width: 100%; justify-content: center; border-radius: 14px; height: 50px; }
       .search-btn:hover { transform: none; }
-      .stats-bar { padding: 16px 20px; }
-      .stats-inner { gap: 20px; flex-wrap: wrap; justify-content: center; }
-      .stat-num { font-size: 20px; }
       .offer-section { padding: 40px 20px 30px; }
       .why-section { padding: 20px 20px 50px; }
       .features-grid { grid-template-columns: repeat(2, 1fr); }
@@ -673,26 +647,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
 
 
-      {/* STATS BAR - moved above offer for better hierarchy */}
-      <div className="stats-bar">
-        <div className="stats-inner">
-          {stats.map((s,i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center' }}>
-              <div key={s.num+i} className="stat-item">
-                <div className="stat-num">
-                  <span style={{ color:"#fff" }}>{s.num}</span>
-                  <span style={{ color:'var(--brand-red)' }}>{s.suffix}</span>
-                </div>
-                <div className="stat-label">
-                  <div>{s.line1}</div>
-                  <div>{s.line2}</div>
-                </div>
-              </div>
-              {i < stats.length - 1 && <div className="stat-divider" style={{ marginLeft: '40px' }} />}
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* WHY CHOOSE US */}
       <div className="why-section" style={{ paddingTop: "100px" }}>
