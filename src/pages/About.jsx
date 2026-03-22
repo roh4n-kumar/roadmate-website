@@ -124,7 +124,7 @@ const About = () => {
                     
                     <div style={{ display: "flex", gap: "30px", marginBottom: "40px", alignItems: "flex-start" }}>
                         <div style={{ width: "120px", height: "120px", borderRadius: "50%", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "4px solid #fff", boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}>
-                            <img src="/Founder & CEO.png" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Founder & CEO" />
+                            <img src="/Founder%20%26%20CEO.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} alt="Founder & CEO" />
                         </div>
                         <div>
                             <h3 style={{ fontSize: "19px", fontWeight: 800, fontFamily: H, marginBottom: "8px" }}>
@@ -138,7 +138,7 @@ const About = () => {
 
                     <div style={{ display: "flex", gap: "30px", alignItems: "flex-start" }}>
                         <div style={{ width: "120px", height: "120px", borderRadius: "50%", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "4px solid #fff", boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}>
-                           <img src="/Co-Founder.png" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Co-Founder" />
+                           <img src="/Co-Founder.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }} alt="Co-Founder" />
                         </div>
                         <div>
                             <h3 style={{ fontSize: "19px", fontWeight: 800, fontFamily: H, marginBottom: "8px" }}>
