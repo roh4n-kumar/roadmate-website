@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PersonalInfo from "./pages/PersonalInfo";
 import DocumentVerification from "./pages/DocumentVerification";
+import About from "./pages/About";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -129,6 +130,7 @@ function App() {
         <Route path="/my-bookings"        element={<ProtectedRoute><MyBookings /></ProtectedRoute>} />
         <Route path="/documents/:docType" element={<ProtectedRoute><DocumentVerification /></ProtectedRoute>} />
         <Route path="/documents"          element={<ProtectedRoute><DocumentVerification /></ProtectedRoute>} />
+        <Route path="/about"               element={<About />} />
       </Routes>
     </>
   );
