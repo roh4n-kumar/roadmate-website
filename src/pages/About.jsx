@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import Footer from "../components/Footer";
 
 const RED = "#be0d0d";
+const BLUE = "#0f172a";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
@@ -102,28 +103,31 @@ const About = () => {
 
              {/* OUR STORY / MISSION */}
              <div style={{ padding: "40px 40px 80px", maxWidth: "1200px", margin: "0 auto", textAlign: "left" }}>
-                 {/* ABOUT US */}
-                 <div className="animate-box">
-                    <h2 style={{ fontSize: "22px", fontWeight: 800, color: RED, fontFamily: H, marginBottom: "20px" }}>About us</h2>
-                    <p style={{ fontSize: "13px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "20px", textAlign: "justify" }}>
+                 {/*                   <div className="animate-box">
+                    <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "20px" }}>
+                        <span style={{ color: BLUE }}>About</span> <span style={{ color: RED }}>Us</span>
+                    </h2>
+                    <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "20px", textAlign: "justify" }}>
                         RoadMate was born from a simple yet powerful observation: the freedom of movement shouldn't be a luxury or a bureaucratic hurdle. In a fast-evolving city like Bhubaneswar, we noticed that while the need for local travel was growing, the means to access reliable, clean, and well-maintained vehicles remained surprisingly difficult. Whether you are a student striving for a better commute, a professional navigating a busy schedule, or a traveler eager to explore the hidden joys of Odisha, RoadMate is here to ensure that your journey starts on the right note.
                     </p>
-                    <p style={{ fontSize: "13px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
+                    <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
                         We didn't just want to build a rental service; we wanted to create a travel ecosystem where convenience meets trust. Our platform bridges the gap between high-quality local vehicles and the modern rider who values efficiency, fair pricing, and absolute transparency. We are committed to empowering every individual with the freedom they deserve, making every trip—whether it's a few miles or a few hundred—a memory to cherish. At RoadMate, your journey is our pride, and your satisfaction is our mission.
                     </p>
                  </div>
+          </div>
 
-                 {/* MANAGEMENT TEAM SECTION */}
-                 <div className="animate-box delay-1">
-                    <h2 style={{ fontSize: "22px", fontWeight: 800, color: RED, fontFamily: H, marginBottom: "30px" }}>Management Team</h2>
+                 {/* MANAGEMENT                   <div className="animate-box delay-1">
+                    <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "30px" }}>
+                        <span style={{ color: BLUE }}>Management</span> <span style={{ color: RED }}>Team</span>
+                    </h2>
                     
                     <div style={{ display: "flex", gap: "30px", marginBottom: "40px", alignItems: "flex-start" }}>
                         <div style={{ width: "120px", height: "120px", borderRadius: "50%", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "4px solid #fff", boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}>
                             <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="CEO" />
                         </div>
                         <div>
-                            <h3 style={{ fontSize: "18px", fontWeight: 800, color: RED, marginBottom: "8px", fontFamily: H }}>Rohan Chaudhary, Founder</h3>
-                            <p style={{ fontSize: "12px", color: "#666", lineHeight: 1.6, textAlign: "justify" }}>
+                            <h3 style={{ fontSize: "19px", fontWeight: 800, color: RED, marginBottom: "8px", fontFamily: H }}>Rohan Chaudhary, Founder</h3>
+                            <p style={{ fontSize: "13px", color: "#666", lineHeight: 1.6, textAlign: "justify" }}>
                                 Rohan Chaudhary is the visionary behind RoadMate. With a deep passion for improving urban mobility and a background in strategic development, he founded RoadMate to bridge the gap in Bhubaneswar's local transport. He is dedicated to transforming the rental experience into a seamless, trust-driven journey for every rider.
                             </p>
                         </div>
@@ -134,13 +138,14 @@ const About = () => {
                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Operations Head" />
                         </div>
                         <div>
-                            <h3 style={{ fontSize: "18px", fontWeight: 800, color: RED, marginBottom: "8px", fontFamily: H }}>Sarah Jenkins, Operations Head</h3>
-                            <p style={{ fontSize: "12px", color: "#666", lineHeight: 1.6, textAlign: "justify" }}>
+                            <h3 style={{ fontSize: "19px", fontWeight: 800, color: RED, marginBottom: "8px", fontFamily: H }}>Sarah Jenkins, Operations Head</h3>
+                            <p style={{ fontSize: "13px", color: "#666", lineHeight: 1.6, textAlign: "justify" }}>
                                 Sarah Jenkins leads the operations at RoadMate, ensuring that every vehicle meets our rigorous quality standards. With extensive experience in fleet management and customer service, she is the backbone of our commitment to safety and reliability, making sure that your RoadMate experience is always top-notch.
                             </p>
                         </div>
                     </div>
                  </div>
+          </div>
              </div>
 
              {/* FEATURE GRID */}
