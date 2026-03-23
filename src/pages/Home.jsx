@@ -118,15 +118,14 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </div>
           </div>
           <motion.div 
-            style={{ position: "relative" }}
+            className="v-card"
+            style={{ position: "relative", background: "#fff", borderRadius: "40px", overflow: "hidden", border: "1.5px solid #f0f0f0", transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "pointer" }}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            whileHover={{ y: -10 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-             <div style={{ width: "100%", height: "500px", background: "#fff", borderRadius: "40px", position: "relative", overflow: "hidden", boxShadow: "0 20px 40px rgba(0,0,0,0.08)", transition: "all 0.4s ease" }}>
-                <img src="/puri_marine_drive.jpg" alt="Puri Konark Marine Drive" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+             <div style={{ width: "100%", height: "500px", overflow: "hidden", position: "relative" }}>
+                <img src="/puri_marine_drive.jpg" alt="Puri Konark Marine Drive" className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
              </div>
           </motion.div>
         </div>
