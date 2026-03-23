@@ -489,7 +489,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .feature-title { font-size: 18px; font-weight: 800; color: #111; margin: 0 0 12px; }
     .feature-desc { font-size: 14px; color: #777; line-height: 1.7; margin: 0; font-weight: 450; }
 
-    .how-section { padding: 80px 40px 100px; background: #fafafa; position: relative; overflow: hidden; }
+    .how-section { padding: 60px 40px 50px; background: #fafafa; position: relative; overflow: hidden; }
     .how-inner { max-width: 1250px; margin: 0 auto; position: relative; z-index: 1; }
     .steps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; position: relative; }
     .steps-grid-connector { 
