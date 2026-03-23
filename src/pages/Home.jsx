@@ -122,21 +122,15 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </div>
           </div>
           <div style={{ position: "relative" }}>
-             <div style={{ width: "100%", height: "500px", background: `linear-gradient(45deg, ${RED}, #ff4040)`, borderRadius: "40px", position: "relative", overflow: "hidden", boxShadow: "0 40px 100px rgba(0,0,0,0.5)" }}>
-                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80" alt="app preview" style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.6 }} />
-                <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                   <div style={{ background: "rgba(255,255,255,0.1)", backdropFilter: "blur(20px)", padding: "40px", borderRadius: "30px", border: "1px solid rgba(255,255,255,0.2)", textAlign: "center" }}>
-                      <h3 style={{ color: "#fff", margin: 0, fontSize: "64px", fontWeight: 900 }}>10k+</h3>
-                      <p style={{ color: "rgba(255,255,255,0.8)", margin: "5px 0 0", fontWeight: 700, textTransform: "uppercase" }}>Happy Riders</p>
-                   </div>
-                </div>
+             <div style={{ width: "100%", height: "500px", background: "#fff", borderRadius: "40px", position: "relative", overflow: "hidden", boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}>
+                <img src="/src/assets/odisha_car.png" alt="Odisha scenic drive" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
              </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section style={{ padding: "100px 24px", background: "#fbfbfb" }}>
+      <section style={{ padding: "100px 24px", background: "#fafafa" }}>
         <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "70px" }}>
             <span style={{ color: RED, fontWeight: 800, textTransform: "uppercase", fontSize: "14px", letterSpacing: "2px" }}>Testimonials</span>
