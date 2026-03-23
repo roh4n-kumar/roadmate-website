@@ -15,11 +15,7 @@ const FEATURED_VEHICLES = [
   { id: "c3", name: "Toyota Innova Crysta", type: "Car", price: 200, image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&q=80", rating: 4.8 },
 ];
 
-const REVIEWS = [
-  { name: "Rahul Sharma", role: "Software Engineer", text: "Truly excellent experience. The Royal Enfield was in pristine condition. Best rental service in Bhubaneswar!", stars: 5 },
-  { name: "Priya Das", role: "Travel Blogger", text: "Loved the seamless booking process. No paperwork, just book and ride. Highly recommended for tourists!", stars: 5 },
-  { name: "Amit Kumar", role: "Business Traveler", text: "The Thar was perfect for my weekend trip. Verified vehicles and 24/7 support made it worry-free.", stars: 4 },
-];
+
 
 const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const navigate = useNavigate();
@@ -129,37 +125,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section style={{ padding: "100px 24px", background: "#fafafa" }}>
-        <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "70px" }}>
-            <span style={{ color: RED, fontWeight: 800, textTransform: "uppercase", fontSize: "14px", letterSpacing: "2px" }}>Testimonials</span>
-            <h2 style={{ fontSize: "clamp(32px, 4vw, 44px)", fontWeight: 900, fontFamily: H, marginTop: "15px" }}>What Our Riders Say</h2>
-          </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "30px" }}>
-            {REVIEWS.map((r, i) => (
-              <div key={i} style={{ background: "#fff", padding: "40px", borderRadius: "32px", border: "1px solid #f0f0f0", position: "relative" }}>
-                <div style={{ color: "#fbbf24", fontSize: "20px", marginBottom: "20px" }}>
-                  {"★".repeat(r.stars)}{"☆".repeat(5 - r.stars)}
-                </div>
-                <p style={{ fontSize: "16px", lineHeight: "1.8", color: "#475569", fontWeight: 500, fontStyle: "italic", marginBottom: "30px" }}>
-                  "{r.text}"
-                </p>
-                <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-                  <div style={{ width: "48px", height: "48px", borderRadius: "50%", background: `linear-gradient(45deg, ${RED}, #ff4040)`, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 900 }}>
-                    {r.name[0]}
-                  </div>
-                  <div>
-                    <h4 style={{ margin: 0, fontSize: "16px", fontWeight: 800 }}>{r.name}</h4>
-                    <p style={{ margin: 0, fontSize: "13px", color: "#94a3b8", fontWeight: 600 }}>{r.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Trust Markers */}
       <section style={{ padding: "60px 24px", borderTop: "1px solid #f0f0f0" }}>
