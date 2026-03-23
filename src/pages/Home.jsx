@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Hero from "../components/Hero";
 import MapSection from "../components/MapSection";
+import FAQSection from "../components/FAQSection";
 import Footer from "../components/Footer";
 
 const RED = "#be0d0d";
@@ -137,14 +138,8 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       {/* Network Map Section */}
       <MapSection />
 
-      {/* Trust Markers */}
-      <section style={{ padding: "60px 24px", borderTop: "1px solid #f0f0f0" }}>
-        <div style={{ maxWidth: "1250px", margin: "0 auto", display: "flex", justifyContent: "space-around", flexWrap: "wrap", gap: "40px", opacity: 0.5, filter: "grayscale(1)" }}>
-          {["Forbes", "TechCrunch", "The Hindu", "Economic Times", "YourStory"].map(brand => (
-            <span key={brand} style={{ fontSize: "20px", fontWeight: 900, fontFamily: H }}>{brand}</span>
-          ))}
-        </div>
-      </section>
+      {/* FAQ Section */}
+      <FAQSection />
 
       <Footer />
     </div>
