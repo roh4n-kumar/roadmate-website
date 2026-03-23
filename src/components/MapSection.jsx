@@ -55,12 +55,16 @@ const MapSection = () => {
             attribution: '&copy; OpenStreetMap contributors'
           }).addTo(map);
 
-          // Custom Icon
+          // Custom Icon (Marker) - More Premium
           const createIcon = (color) => window.L.divIcon({
             className: 'custom-div-icon',
-            html: `<div style="background-color: ${color}; width: 14px; height: 14px; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 10px rgba(0,0,0,0.3);"></div>`,
-            iconSize: [14, 14],
-            iconAnchor: [7, 7]
+            html: `
+              <div style="position: relative; width: 30px; height: 30px; display: flex; alignItems: center; justifyContent: center;">
+                <div style="position: absolute; width: 100%; height: 100%; background: ${color}; opacity: 0.2; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                <div style="background: ${color}; width: 12px; height: 12px; border: 2.5px solid white; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 2;"></div>
+              </div>`,
+            iconSize: [30, 30],
+            iconAnchor: [15, 15]
           });
 
           const bounds = [];
@@ -70,12 +74,22 @@ const MapSection = () => {
             }).addTo(map);
 
             marker.bindPopup(`
-              <div style="font-family: 'Inter', sans-serif; padding: 4px;">
-                <b style="color: #0f172a; font-size: 14px;">${loc.name}</b><br/>
-                <span style="font-size: 11px; color: #64748b;">${loc.address}</span><br/>
-                <span style="display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 800; color: ${loc.type === 'Garage' ? RED : '#4f46e5'}">${loc.type.toUpperCase()}</span>
+              <div style="font-family: 'Inter', sans-serif; padding: 4px; min-width: 180px;">
+                <div style="margin-bottom: 8px;">
+                  <span style="display: inline-block; padding: 3px 10px; border-radius: 6px; background: ${loc.type === 'Garage' ? 'rgba(190,13,13,0.1)' : 'rgba(79,70,229,0.1)'}; color: ${loc.type === 'Garage' ? RED : '#4f46e5'}; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px;">${loc.type}</span>
+                </div>
+                <div style="color: #0f172a; font-size: 16px; font-weight: 900; line-height: 1.2; margin-bottom: 6px; font-family: 'Outfit', sans-serif;">${loc.name}</div>
+                <div style="font-size: 12px; color: #64748b; line-height: 1.4;">${loc.address}</div>
+                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #f0f0f0;">
+                  <a href="https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lng}" target="_blank" style="text-decoration: none; color: ${RED}; font-size: 11px; font-weight: 800; display: flex; align-items: center; gap: 5px;">
+                    Get Directions →
+                  </a>
+                </div>
               </div>
-            `);
+            `, {
+              closeButton: false,
+              offset: [0, -5]
+            });
             bounds.push([loc.lat, loc.lng]);
           });
 
@@ -115,9 +129,20 @@ const MapSection = () => {
           <style>
               {`
                   @keyframes spin { to { transform: rotate(360deg); } }
-                  .leaflet-popup-content-wrapper { border-radius: 12px !important; padding: 0 !important; }
-                  .leaflet-popup-content { margin: 12px !important; line-height: 1.4 !important; }
-                  .leaflet-container { font-family: 'Inter', sans-serif !important; }
+                  @keyframes pulse {
+                    0% { transform: scale(0.6); opacity: 0.6; }
+                    100% { transform: scale(2.5); opacity: 0; }
+                  }
+                  .leaflet-popup-content-wrapper { 
+                    border-radius: 20px !important; 
+                    padding: 0 !important; 
+                    box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
+                    border: 1px solid #f0f0f0 !important;
+                  }
+                  .leaflet-popup-tip { box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important; }
+                  .leaflet-popup-content { margin: 20px !important; line-height: 1.4 !important; }
+                  .leaflet-container { font-family: 'Inter', sans-serif !important; background: #f8f9fa !important; }
+                  .custom-div-icon { background: none !important; border: none !important; }
               `}
           </style>
         </motion.div>
