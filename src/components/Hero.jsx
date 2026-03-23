@@ -710,7 +710,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
 
       {/* WHY CHOOSE US */}
-      <div className="why-section" style={{ paddingTop: "0px" }}>
+      <div className="why-section" style={{ paddingTop: "80px" }}>
         <div className="why-inner">
           <div className="section-header">
             <h2 className="section-title">Bhubaneswar's Own<br/>Vehicle Rental Platform</h2>
