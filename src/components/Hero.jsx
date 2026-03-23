@@ -191,7 +191,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       {/* Inner detail */}
       <circle cx="12" cy="12" r="7" stroke="#fff" strokeWidth="1" strokeDasharray="2 2" opacity="0.3" />
       {/* Dollar Sign */}
-      <path d="M12 8V16M14.5 10H10.5C9.67157 10 9 10.6716 9 11.5V11.5C9 12.3284 9.67157 13 10.5 13H13.5C14.3284 13 15 13.6716 15 14.5V14.5C15 15.3284 14.3284 16 13.5 16H9.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+      <path d="M12 7V17" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+      <path d="M14.5 9.5H11C10.1716 9.5 9.5 10.1716 9.5 11C9.5 11.8284 10.1716 12.5 11 12.5H13C13.8284 12.5 14.5 13.1716 14.5 14C14.5 14.8284 13.8284 15.5 13 15.5H9.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
       {/* Sparkle */}
       <circle cx="17" cy="7" r="1.5" fill="#fff" opacity="0.8" />
     </svg>
