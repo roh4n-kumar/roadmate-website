@@ -428,7 +428,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .offer-inner:hover { transform: scale(1.01); }
     .offer-inner img { width: 100%; height: auto; display: block; }
 
-    .why-section { padding: 60px 40px 100px; background: #fff; }
+    .why-section { padding: 40px 40px 100px; background: #fff; }
     .why-inner { max-width: 1250px; margin: 0 auto; }
     .section-header { text-align: center; margin-bottom: 60px; }
     .section-tag { 
@@ -710,7 +710,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
 
       {/* WHY CHOOSE US */}
-      <div className="why-section" style={{ paddingTop: "100px" }}>
+      <div className="why-section" style={{ paddingTop: "40px" }}>
         <div className="why-inner">
           <div className="section-header">
             <div className="section-tag">Why Choose Us</div>
