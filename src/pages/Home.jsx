@@ -119,7 +119,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
           </div>
           <div style={{ position: "relative" }}>
              <div style={{ width: "100%", height: "500px", background: "#fff", borderRadius: "40px", position: "relative", overflow: "hidden", boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}>
-                <img src="https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Puri Konark Marine Drive" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/puri_marine_drive.jpg" alt="Puri Konark Marine Drive" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
              </div>
           </div>
         </div>
