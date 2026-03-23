@@ -178,30 +178,48 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   );
 
   const IconCharges = () => (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs><linearGradient id="gradC" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#f59e0b"/><stop offset="100%" stopColor="#d97706"/></linearGradient></defs>
-      <circle cx="12" cy="12" r="10" fill="url(#gradC)" opacity="0.2"/>
-      <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="url(#gradC)" strokeWidth="2"/>
-      <path d="M12 7V17M15 9H11C10.4477 9 10 9.44772 10 10V10C10 10.5523 10.4477 11 11 11H13C13.5523 11 14 11.4477 14 12V12C14 12.5523 13.5523 13 13 13H9" stroke="url(#gradC)" strokeWidth="2" strokeLinecap="round"/>
-    </svg>
-  );
-
-  const IconSupport = () => (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs><linearGradient id="gradS" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#06b6d4"/><stop offset="100%" stopColor="#0891b2"/></linearGradient></defs>
-      <circle cx="12" cy="12" r="10" fill="url(#gradS)" opacity="0.2"/>
-      <circle cx="12" cy="12" r="10" stroke="url(#gradS)" strokeWidth="2"/>
-      <path d="M12 6V12L16 14" stroke="url(#gradS)" strokeWidth="2" strokeLinecap="round"/>
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradC" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#fbbf24" />
+          <stop offset="100%" stopColor="#d97706" />
+        </linearGradient>
+      </defs>
+      {/* Dynamic Stack Effect */}
+      <circle cx="12" cy="14" r="8" fill="#d97706" opacity="0.4" />
+      <circle cx="12" cy="12" r="9" fill="url(#gradC)" />
+      {/* Inner detail */}
+      <circle cx="12" cy="12" r="7" stroke="#fff" strokeWidth="1" strokeDasharray="2 2" opacity="0.3" />
+      {/* Dollar Sign */}
+      <path d="M12 8V16M14.5 10H10.5C9.67157 10 9 10.6716 9 11.5V11.5C9 12.3284 9.67157 13 10.5 13H13.5C14.3284 13 15 13.6716 15 14.5V14.5C15 15.3284 14.3284 16 13.5 16H9.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+      {/* Sparkle */}
+      <circle cx="17" cy="7" r="1.5" fill="#fff" opacity="0.8" />
     </svg>
   );
 
   const IconRocket = () => (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs><linearGradient id="gradR" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#f43f5e"/><stop offset="100%" stopColor="#ef4444"/></linearGradient></defs>
-      <path d="M4.5 16.5C4.5 16.5 4 21 3 22C4 21 8.5 20.5 8.5 20.5L10.5 18.5L5.5 13.5L4.5 16.5Z" fill="url(#gradR)" opacity="0.2" stroke="url(#gradR)" strokeWidth="2"/>
-      <path d="M15 4.5C15 4.5 19 4 21 3C20 5 19.5 9 19.5 9L18 10.5L13.5 6L15 4.5Z" fill="url(#gradR)" opacity="0.2" stroke="url(#gradR)" strokeWidth="2"/>
-      <path d="M9 15L11.5 12.5L12.5 11.5L15 9" stroke="url(#gradR)" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M13.5 6L5.5 13.5C3.5 15.5 3.5 18.5 5.5 20.5C7.5 22.5 10.5 22.5 12.5 20.5L19.5 9L13.5 6Z" fill="url(#gradR)" opacity="0.2" stroke="url(#gradR)" strokeWidth="2"/>
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradR" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#f43f5e" />
+          <stop offset="100%" stopColor="#b91c1c" />
+        </linearGradient>
+        <linearGradient id="gradFlame" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#fbbf24" />
+          <stop offset="100%" stopColor="#f97316" />
+        </linearGradient>
+      </defs>
+      {/* Flame */}
+      <path d="M12 18C12 18 10 20 10 22C10 24 12 24 12 24C12 24 14 24 14 22C14 20 12 18 12 18Z" fill="url(#gradFlame)" />
+      {/* Rocket Body */}
+      <path d="M12 2C12 2 7 6 7 12V17H17V12C17 6 12 2 12 2Z" fill="url(#gradR)" />
+      {/* Fins */}
+      <path d="M7 14L4 18V20H7V17" fill="#991b1b" />
+      <path d="M17 14L20 18V20H17V17" fill="#991b1b" />
+      {/* Window */}
+      <circle cx="12" cy="8" r="2" fill="#fff" opacity="0.3" stroke="#fff" strokeWidth="1" />
+      {/* Nose cone point */}
+      <path d="M11 4L12 2L13 4" fill="#fff" opacity="0.2" />
     </svg>
   );
 
