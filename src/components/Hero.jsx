@@ -495,8 +495,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .steps-grid-connector { 
       position: absolute; 
       top: 40px; 
-      left: 15%; 
-      right: 15%; 
+      left: 10%; 
+      right: 10%; 
       height: 2px; 
       background: repeating-linear-gradient(to right, transparent, transparent 10px, rgba(190,13,13,0.2) 10px, rgba(190,13,13,0.2) 20px);
       z-index: 0;
@@ -744,7 +744,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               { step:"02", title:"Choose Vehicle",  desc:"Select your preferred bike or car from our highly curated, verified fleet." },
               { step:"03", title:"Pick Date & Time",desc:"Set your rental date, pickup and drop-off time as per your convenience." },
               { step:"04", title:"Confirm Booking", desc:"Review the transparent pricing and confirm your booking instantly." },
-              { step:"05", title:"Ride Away",        desc:"Pick up your vehicle and enjoy the ride. It's that simple!" },
+              { step:"05", title:"Enjoy Ride",       desc:"Pick up your vehicle and enjoy the ride. It's that simple!" },
             ].map((s,i) => (
               <div key={i} className="step-card">
                 <div className="step-num">{s.step}</div>
