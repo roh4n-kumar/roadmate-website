@@ -55,16 +55,17 @@ const MapSection = () => {
             attribution: '&copy; OpenStreetMap contributors'
           }).addTo(map);
 
-          // Custom Icon (Marker) - More Premium
+          // Custom Icon (Marker) - Perfectly Centered
           const createIcon = (color) => window.L.divIcon({
             className: 'custom-div-icon',
             html: `
-              <div style="position: relative; width: 30px; height: 30px; display: flex; alignItems: center; justifyContent: center;">
-                <div style="position: absolute; width: 100%; height: 100%; background: ${color}; opacity: 0.2; border-radius: 50%; animation: pulse 2s infinite;"></div>
-                <div style="background: ${color}; width: 12px; height: 12px; border: 2.5px solid white; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 2;"></div>
+              <div style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px;">
+                <div style="position: absolute; width: 30px; height: 30px; background: ${color}; opacity: 0.2; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                <div style="background: ${color}; width: 12px; height: 12px; border: 2.5px solid white; border-radius: 50%; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 2;"></div>
               </div>`,
             iconSize: [30, 30],
-            iconAnchor: [15, 15]
+            iconAnchor: [15, 15],
+            popupAnchor: [0, -5] // Aligns the tip exactly above the dot
           });
 
           const bounds = [];
@@ -87,8 +88,7 @@ const MapSection = () => {
                 </div>
               </div>
             `, {
-              closeButton: false,
-              offset: [0, -5]
+              closeButton: false
             });
             bounds.push([loc.lat, loc.lng]);
           });
