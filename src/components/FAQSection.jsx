@@ -6,24 +6,24 @@ const H = "'Outfit', sans-serif";
 
 const FAQS = [
   {
-    q: "Abhi booking ke liye kaunse documents chahiye?",
-    a: "Aapko bas apna valid Driving License aur ek ID proof (Aadhar Card/Voter ID) dikhana hoga. Hum zero paperwork system follow karte hain!"
+    q: "What documents are required for booking?",
+    a: "You only need a valid Driving License and a secondary ID proof (such as an Aadhar Card or Voter ID). We follow a 100% digital, zero-paperwork process for your convenience."
   },
   {
-    q: "Pricing kaise calculate hoti hai?",
-    a: "Humari pricing minute-by-minute accurate hai. Jitna samay aap gadi rakhenge, sirf utne ka hi charge lagega. Koi chhupa hua charge nahi hai."
+    q: "How is the rental price calculated?",
+    a: "Our pricing is remarkably accurate, calculated minute-by-minute. You are charged only for the exact duration the vehicle is with you, ensuring no unfair rounding up or hidden costs."
   },
   {
-    q: "Kya main apni booking extend kar sakta hun?",
-    a: "Haan, bilkul! Agar gadi agle slot ke liye khali hai, toh aap admin panel ya call karke easily apni booking extend kar sakte hain."
+    q: "Can I extend my booking during the trip?",
+    a: "Yes, extensions are seamless! If the vehicle is available for the next slot, you can easily extend your trip through the website or by calling our support team."
   },
   {
-    q: "Gadi kharab hone par kya hoga?",
-    a: "RoadMate Garage network pure sheher mein faila hua hai. Kuch bhi problem hone par humari team turant aapki madad ke liye pahunchegi."
+    q: "What happens if the vehicle breaks down?",
+    a: "With our extensive network of RoadMate Garages spread across the city, help is never far away. In case of any technical issues, our roadside assistance team will reach you immediately."
   },
   {
-    q: "Security deposit ka kya system hai?",
-    a: "Hum minimum security deposit lete hain jo gadi wapas karne ke turant baad aapke account mein refund ho jata hai."
+    q: "How does the security deposit refund work?",
+    a: "We collect a minimal security deposit which is automatically initiated for refund as soon as you return the vehicle in its original condition. The amount typically reflects in your account within 24-48 business hours."
   }
 ];
 
@@ -35,7 +35,7 @@ const FAQSection = () => {
       <div style={{ maxWidth: "800px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "60px" }}>
           <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Help Center</span>
-          <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, marginTop: "15px", color: "#0f172a" }}>Frequently Asked Questions</h2>
+          <h2 style={{ fontSize: "clamp(30px, 4vw, 44px)", fontWeight: 900, fontFamily: H, marginTop: "15px", color: "#0f172a", lineHeight: "1.2" }}>FAQs related to Vehicle Renting</h2>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
@@ -43,18 +43,19 @@ const FAQSection = () => {
             <div 
               key={i} 
               style={{ 
-                border: "1.5px solid #f0f0f0", 
-                borderRadius: "20px", 
+                border: "1.5px solid #f1f5f9", 
+                borderRadius: "24px", 
                 overflow: "hidden", 
-                transition: "all 0.3s ease",
-                background: active === i ? "#fafafa" : "#fff"
+                transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                background: active === i ? "#fafafa" : "#fff",
+                boxShadow: active === i ? "0 10px 30px rgba(0,0,0,0.03)" : "none"
               }}
             >
               <button 
                 onClick={() => setActive(active === i ? null : i)}
                 style={{ 
                   width: "100%", 
-                  padding: "24px 30px", 
+                  padding: "26px 34px", 
                   display: "flex", 
                   justifyContent: "space-between", 
                   alignItems: "center", 
@@ -65,12 +66,15 @@ const FAQSection = () => {
                 }}
               >
                 <span style={{ fontSize: "18px", fontWeight: 700, color: "#0f172a", fontFamily: H }}>{faq.q}</span>
-                <span style={{ 
-                  fontSize: "24px", 
-                  color: active === i ? RED : "#cbd5e1",
-                  transition: "transform 0.3s ease",
-                  transform: active === i ? "rotate(45deg)" : "rotate(0deg)"
-                }}>+</span>
+                <div style={{ 
+                    transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                    transform: active === i ? "rotate(180deg)" : "rotate(0deg)",
+                    color: active === i ? RED : "#94a3b8"
+                }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </div>
               </button>
               
               <AnimatePresence>
@@ -79,9 +83,9 @@ const FAQSection = () => {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <div style={{ padding: "0 30px 30px", color: "#64748b", fontSize: "16px", lineHeight: "1.6" }}>
+                    <div style={{ padding: "0 34px 30px", color: "rgba(100, 116, 139, 0.9)", fontSize: "16px", lineHeight: "1.7" }}>
                       {faq.a}
                     </div>
                   </motion.div>
