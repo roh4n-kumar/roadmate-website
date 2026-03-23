@@ -31,7 +31,7 @@ const FAQSection = () => {
   const [active, setActive] = useState(null);
 
   return (
-    <section style={{ padding: "100px 24px", background: "#fafafa" }}>
+    <section style={{ padding: "100px 24px", background: "#ffffff" }}>
       <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
         <div style={{ textAlign: "left", marginBottom: "50px" }}>
           <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Help Center</span>
