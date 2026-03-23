@@ -226,17 +226,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       margin-right: 25px; 
       border-right: 1px solid rgba(255,255,255,0.1); 
     }
-    .search-field { 
-      flex: 1; 
-      display: flex; 
-      flex-direction: column; 
-      gap: 10px; 
-      position: relative; 
-      padding-right: 25px; 
-      margin-right: 25px; 
-      border-right: 1px solid rgba(255,255,255,0.1); 
-    }
-    .search-field:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+    .search-field:nth-last-child(2) { border-right: none; padding-right: 0; margin-right: 0; }
     
     .search-label { 
       font-size: 11px; 
