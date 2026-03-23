@@ -53,7 +53,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <section style={{ padding: "100px 24px", maxWidth: "1250px", margin: "0 auto" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "50px" }}>
           <div>
-            <span style={{ color: RED, fontWeight: 800, textTransform: "uppercase", fontSize: "14px", letterSpacing: "2px" }}>Our Pride</span>
+            <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Our Pride</span>
             <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, marginTop: "10px" }}>Featured Fleet</h2>
           </div>
           <button onClick={() => navigate("/vehicles")} style={{ padding: "12px 24px", borderRadius: "12px", background: "rgba(15,23,42,0.05)", border: "none", fontWeight: 700, cursor: "pointer", transition: "all 0.2s" }}>
@@ -103,7 +103,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <section style={{ background: "#fafafa", padding: "100px 24px", overflow: "hidden", position: "relative" }}>
         <div style={{ maxWidth: "1250px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px", alignItems: "center" }}>
           <div>
-            <span style={{ color: RED, fontWeight: 800, textTransform: "uppercase", fontSize: "14px", letterSpacing: "2px" }}>Next Gen Mobility</span>
+            <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Next Gen Mobility</span>
             <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, color: "#0f172a", marginTop: "15px", lineHeight: "1.1" }}>Your Journey, <br/>Our Responsibility</h2>
             <p style={{ color: "#64748b", fontSize: "18px", lineHeight: "1.7", marginTop: "25px", marginBottom: "40px" }}>
               Moving around the city hasn't been this easier. With RoadMate, you get a great experience at an affordable price. Zero paperwork, 100% verified rides.
