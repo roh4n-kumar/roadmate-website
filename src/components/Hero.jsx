@@ -197,6 +197,21 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     </svg>
   );
 
+  const IconSupport = () => (
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradS" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#06b6d4" />
+          <stop offset="100%" stopColor="#0891b2" />
+        </linearGradient>
+      </defs>
+      <circle cx="12" cy="12" r="10" fill="url(#gradS)" opacity="0.15" />
+      <circle cx="12" cy="12" r="10" stroke="url(#gradS)" strokeWidth="2" />
+      <path d="M12 6V12L16 14" stroke="url(#gradS)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="url(#gradS)" opacity="0.1" />
+    </svg>
+  );
+
   const IconRocket = () => (
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
