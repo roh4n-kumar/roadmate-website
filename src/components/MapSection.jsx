@@ -101,7 +101,7 @@ const MapSection = () => {
   }, [locations, loading]);
 
   return (
-    <section style={{ padding: "100px 24px", background: "#fff", overflow: "hidden" }}>
+    <section style={{ padding: "100px 24px", background: "#fcfcfc", overflow: "hidden" }}>
       <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "50px" }}>
           <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "1000px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Our Network</span>
@@ -115,7 +115,7 @@ const MapSection = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          style={{ position: "relative", borderRadius: "40px", overflow: "hidden", boxShadow: "0 30px 60px rgba(0,0,0,0.12)", border: "8px solid #fff", background: "#f0f0f0" }}
+          style={{ position: "relative", borderRadius: "40px", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.06)", border: "2px solid #fff", background: "#f8f9fa" }}
         >
           {loading ? (
             <div style={{ height: "500px", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "15px" }}>
