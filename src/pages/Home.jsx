@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Hero from "../components/Hero";
+import MapSection from "../components/MapSection";
 import Footer from "../components/Footer";
 
 const RED = "#be0d0d";
@@ -132,6 +133,9 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       </section>
 
 
+
+      {/* Network Map Section */}
+      <MapSection />
 
       {/* Trust Markers */}
       <section style={{ padding: "60px 24px", borderTop: "1px solid #f0f0f0" }}>
