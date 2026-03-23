@@ -101,65 +101,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
       </section>
 
-      {/* How it Works */}
-      <section style={{ padding: "100px 24px", background: "#f8fafc" }}>
-        <div style={{ maxWidth: "1250px", margin: "0 auto", textAlign: "center" }}>
-          <span style={{ color: RED, fontWeight: 800, textTransform: "uppercase", fontSize: "14px", letterSpacing: "2px" }}>Easy Process</span>
-          <h2 style={{ fontSize: "clamp(32px, 4vw, 44px)", fontWeight: 900, fontFamily: H, marginTop: "15px", marginBottom: "60px" }}>How it Works</h2>
-          
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "40px" }}>
-            {[
-              { step: "01", title: "Choose Vehicle", desc: "Browse our quality fleet and pick your perfect ride." },
-              { step: "02", title: "Verify Docs", desc: "Quick digital verification with zero physical paperwork." },
-              { step: "03", title: "Start Journey", desc: "Pick up your keys and enjoy the freedom of the road." }
-            ].map((s, i) => (
-              <div key={i} style={{ position: "relative" }}>
-                 <div style={{ fontSize: "80px", fontWeight: 900, color: "rgba(190,13,13,0.05)", position: "absolute", top: "-40px", left: "50%", transform: "translateX(-50%)", zIndex: 0 }}>{s.step}</div>
-                 <div style={{ position: "relative", zIndex: 1 }}>
-                    <div style={{ width: "60px", height: "60px", borderRadius: "18px", background: RED, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 25px", fontSize: "24px", fontWeight: 800, boxShadow: "0 10px 20px rgba(190,13,13,0.2)" }}>{s.step}</div>
-                    <h3 style={{ fontSize: "20px", fontWeight: 800, marginBottom: "15px", fontFamily: H }}>{s.title}</h3>
-                    <p style={{ color: "#64748b", lineHeight: "1.6", fontSize: "15px", fontWeight: 500 }}>{s.desc}</p>
-                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Why Choose Us */}
-      <section style={{ padding: "100px 24px" }}>
-        <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "50px", alignItems: "center" }}>
-             <div>
-                <span style={{ color: RED, fontWeight: 800, textTransform: "uppercase", fontSize: "14px", letterSpacing: "2px" }}>Our Advantages</span>
-                <h2 style={{ fontSize: "clamp(32px, 4vw, 46px)", fontWeight: 900, fontFamily: H, marginTop: "15px", marginBottom: "25px", lineHeight: "1.1" }}>Why Choose <br/>RoadMate?</h2>
-                <p style={{ color: "#64748b", fontSize: "17px", lineHeight: "1.7", marginBottom: "40px" }}>
-                  We don't just rent vehicles; we provide a promise of safety, quality, and an unforgettable journey across Odisha.
-                </p>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
-                   {[
-                     { label: "100% Verified", icon: "🛡️" },
-                     { label: "Best Pricing", icon: "💰" },
-                     { label: "24/7 Support", icon: "🎧" },
-                     { label: "No Hidden Costs", icon: "💎" }
-                   ].map(item => (
-                     <div key={item.label} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "15px", borderRadius: "12px", background: "#f8fafc", border: "1px solid #f0f0f0" }}>
-                        <span style={{ fontSize: "20px" }}>{item.icon}</span>
-                        <span style={{ fontWeight: 700, fontSize: "14px" }}>{item.label}</span>
-                     </div>
-                   ))}
-                </div>
-             </div>
-             <div style={{ position: "relative" }}>
-                <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80" alt="quality car" style={{ width: "100%", borderRadius: "32px", boxShadow: "0 30px 60px rgba(0,0,0,0.15)" }} />
-                <div style={{ position: "absolute", bottom: "-30px", right: "-20px", background: "#fff", padding: "25px", borderRadius: "24px", boxShadow: "0 20px 40px rgba(0,0,0,0.1)", textAlign: "center", border: "1px solid #f0f0f0" }}>
-                   <div style={{ fontSize: "32px", fontWeight: 900, color: RED }}>0+</div>
-                   <div style={{ fontSize: "12px", fontWeight: 800, color: "#94a3b8", textTransform: "uppercase" }}>Booking Fees</div>
-                </div>
-             </div>
-          </div>
-        </div>
-      </section>
 
       {/* Experience / App Section */}
       <section style={{ background: "#0f172a", padding: "100px 24px", overflow: "hidden", position: "relative" }}>
