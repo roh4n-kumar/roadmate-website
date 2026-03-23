@@ -152,7 +152,7 @@ const About = () => {
              <div style={{ padding: "80px 40px", background: "#f8f9fa" }}>
                  <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
                     <div style={{ textAlign: "center", marginBottom: "70px" }}>
-                         <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H }}>The RoadMate <span style={{ color: RED }}>Difference</span></h2>
+                         <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H }}>The <span style={{ color: BLUE }}>RoadMate</span> <span style={{ color: RED }}>Difference</span></h2>
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "30px" }}>
                         {features.map((f, i) => (
