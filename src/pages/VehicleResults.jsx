@@ -10,15 +10,36 @@ const H   = "'Outfit', sans-serif";
 
 
 
+const parseTimeToMins = (t) => {
+  if (!t) return 0;
+  const match = t.match(/(\d+):(\d+)\s*(AM|PM)/i);
+  if (!match) {
+    const [h, m] = t.split(":").map(Number);
+    return (h || 0) * 60 + (m || 0);
+  }
+  let h = parseInt(match[1]);
+  const m = parseInt(match[2]);
+  const ampm = match[3].toUpperCase();
+  if (ampm === "PM" && h < 12) h += 12;
+  if (ampm === "AM" && h === 12) h = 0;
+  return h * 60 + m;
+};
+
 const calcHours = (pickup, drop) => {
   if (!pickup || !drop) return 0;
-  const [ph, pm] = pickup.split(":").map(Number);
-  const [dh, dm] = drop.split(":").map(Number);
-  const mins = (dh * 60 + dm) - (ph * 60 + pm);
-  return mins > 0 ? Math.ceil(mins / 60) : 0;
+  const pMins = parseTimeToMins(pickup);
+  const dMins = parseTimeToMins(drop);
+  const diff = dMins - pMins;
+  return diff > 0 ? Math.ceil(diff / 60) : 0;
 };
 const fmt     = s => { if (!s) return ""; const d = new Date(s); return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }); };
-const fmtTime = t => { if (!t) return ""; const [h, m] = t.split(":"); const hr = parseInt(h); return `${hr % 12 || 12}:${m} ${hr >= 12 ? "PM" : "AM"}`; };
+const fmtTime = t => {
+  if (!t) return "";
+  if (t.includes("AM") || t.includes("PM")) return t;
+  const [h, m] = t.split(":");
+  const hr = parseInt(h);
+  return `${hr % 12 || 12}:${m} ${hr >= 12 ? "PM" : "AM"}`;
+};
 
 const Svg = ({ children, size = 16 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{children}</svg>;
 const IcoStar     = () => <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>;
