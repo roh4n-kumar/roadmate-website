@@ -25,12 +25,12 @@ const parseTimeToMins = (t) => {
   return h * 60 + m;
 };
 
-const calcHours = (pickup, drop) => {
+const calcMinutes = (pickup, drop) => {
   if (!pickup || !drop) return 0;
   const pMins = parseTimeToMins(pickup);
   const dMins = parseTimeToMins(drop);
   const diff = dMins - pMins;
-  return diff > 0 ? Math.ceil(diff / 60) : 0;
+  return diff > 0 ? diff : 0;
 };
 const fmt     = s => { if (!s) return ""; const d = new Date(s); return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }); };
 const fmtTime = t => {
@@ -39,6 +39,14 @@ const fmtTime = t => {
   const [h, m] = t.split(":");
   const hr = parseInt(h);
   return `${hr % 12 || 12}:${m} ${hr >= 12 ? "PM" : "AM"}`;
+};
+const fmtDuration = m => {
+  if (m <= 0) return "";
+  const h = Math.floor(m / 60);
+  const rem = m % 60;
+  if (h === 0) return `${rem}m`;
+  if (rem === 0) return `${h}h`;
+  return `${h}h ${rem}m`;
 };
 
 const Svg = ({ children, size = 16 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{children}</svg>;
@@ -51,8 +59,8 @@ const IcoCalendar = () => <Svg><rect x="3" y="4" width="18" height="18" rx="2"/>
 const IcoTag      = () => <Svg><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></Svg>;
 
 // ── Booking Modal (bottom sheet on mobile) ────────────────────────────────────
-const BookingModal = ({ vehicle, hours, date, pickup, drop, onClose, onConfirm }) => {
-  const total = vehicle.pricePerHour * hours;
+const BookingModal = ({ vehicle, totalMins, date, pickup, drop, onClose, onConfirm }) => {
+  const total = Math.round((vehicle.pricePerHour * totalMins) / 60);
   const gst   = Math.round(total * 0.18);
   const grand = total + gst;
 
@@ -97,7 +105,7 @@ const BookingModal = ({ vehicle, hours, date, pickup, drop, onClose, onConfirm }
         <div style={{ padding: "20px 20px 35px" }}>
           <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "20px", padding: "20px", marginBottom: "20px", border: "1px solid rgba(255,255,255,0.05)" }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
-              {[{ label: "DATE", val: fmt(date) }, { label: "DURATION", val: `${hours} hr${hours !== 1 ? "s" : ""}` }, { label: "PICKUP", val: fmtTime(pickup) }, { label: "DROP-OFF", val: fmtTime(drop) }].map(({ label, val }) => (
+              {[{ label: "DATE", val: fmt(date) }, { label: "DURATION", val: fmtDuration(totalMins) }, { label: "PICKUP", val: fmtTime(pickup) }, { label: "DROP-OFF", val: fmtTime(drop) }].map(({ label, val }) => (
                 <div key={label}>
                   <p style={{ fontSize: "10px", fontWeight: "800", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1.2px", margin: 0 }}>{label}</p>
                   <p style={{ fontSize: "14px", fontWeight: "700", color: "#fff", margin: "4px 0 0" }}>{val}</p>
@@ -107,7 +115,7 @@ const BookingModal = ({ vehicle, hours, date, pickup, drop, onClose, onConfirm }
           </div>
 
           <div style={{ marginBottom: "25px", padding: "0 5px" }}>
-            {[{ label: `Base Fare (₹${vehicle.pricePerHour}/hr × ${hours} hrs)`, val: `₹${total}` }, { label: "Taxes & GST (18%)", val: `₹${gst}` }].map(({ label, val }) => (
+            {[{ label: `Base Fare (₹${vehicle.pricePerHour}/hr × ${Number((totalMins/60).toFixed(2))} hrs)`, val: `₹${total}` }, { label: "Taxes & GST (18%)", val: `₹${gst}` }].map(({ label, val }) => (
               <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
                 <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.6)" }}>{label}</span>
                 <span style={{ fontSize: "14px", fontWeight: "700", color: "#fff" }}>{val}</span>
@@ -138,7 +146,7 @@ export default function VehicleResults() {
   const date        = params.get("date")   || "";
   const pickup      = params.get("pickup") || "";
   const drop        = params.get("drop")   || "";
-  const hours       = calcHours(pickup, drop);
+  const totalMins   = calcMinutes(pickup, drop);
 
   const [sortBy,   setSortBy]   = useState("popular");
   const [filterCC, setFilterCC] = useState("all");
@@ -239,9 +247,11 @@ export default function VehicleResults() {
               <span style={{ color: "rgba(15, 23, 42, 0.1)" }}>·</span>
               <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}><IcoCalendar /> {fmt(date)}</span>
             </>}
-            {hours > 0 && <>
-              <span className="vr-hide-mob" style={{ color: "rgba(15, 23, 42, 0.1)" }}>·</span>
-              <span className="vr-hide-mob" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}><IcoClock /> {hours} hr{hours !== 1 ? "s" : ""} ({fmtTime(pickup)} – {fmtTime(drop)})</span>
+            {totalMins > 0 && <>
+              <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.4)", fontWeight: "500" }}>|</span>
+              <span className="vr-hide-mob" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#64748b", fontSize: "14px", fontWeight: "700", background: "rgba(15, 23, 42, 0.04)", padding: "8px 16px", borderRadius: "12px", border: "1px solid rgba(15, 23, 42, 0.05)" }}>
+                <IcoClock /> {fmtDuration(totalMins)} ({fmtTime(pickup)} – {fmtTime(drop)})
+              </span>
             </>}
           </div>
 
@@ -263,7 +273,7 @@ export default function VehicleResults() {
           ) : (
             <div className="vr-grid">
               {sorted.map((v, i) => {
-                const total = v.pricePerHour * hours;
+                const total = Math.round((v.pricePerHour * totalMins) / 60);
                 const gst   = Math.round(total * 0.18);
                 const grand = total + gst;
                 return (
@@ -291,7 +301,7 @@ export default function VehicleResults() {
                       </div>
                       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
                         <div>
-                          {hours > 0 ? (
+                          {totalMins > 0 ? (
                             <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
                               <span style={{ fontSize: "24px", fontWeight: "900", color: RED, fontFamily: H }}>₹{grand}</span>
                               <span style={{ fontSize: "11px", color: "#94a3b8", fontWeight: "800", textTransform: "uppercase" }}>Total</span>
@@ -302,7 +312,7 @@ export default function VehicleResults() {
                               <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800" }}>/hr</span>
                             </div>
                           )}
-                          {hours > 0 && <p style={{ fontSize: "10px", color: "#94a3b8", fontWeight: "700", margin: "2px 0 0" }}>₹{v.pricePerHour}/hr + GST</p>}
+                          {totalMins > 0 && <p style={{ fontSize: "10px", color: "#94a3b8", fontWeight: "700", margin: "2px 0 0" }}>₹{v.pricePerHour}/hr + GST</p>}
                         </div>
                         <button className="book-btn" onClick={() => setSelected(v)}
                           style={{ padding: "12px 24px", borderRadius: "14px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, border: "none", color: "#fff", fontSize: "14px", fontWeight: "900", cursor: "pointer", boxShadow: "0 8px 20px rgba(190,13,13,0.3)", whiteSpace: "nowrap", fontFamily: F }}>
@@ -320,7 +330,7 @@ export default function VehicleResults() {
 
       <AnimatePresence>
         {selected && (
-          <BookingModal vehicle={selected} hours={hours} date={date} pickup={pickup} drop={drop}
+          <BookingModal vehicle={selected} totalMins={totalMins} date={date} pickup={pickup} drop={drop}
             onClose={() => setSelected(null)} onConfirm={handleConfirm} />
         )}
       </AnimatePresence>
