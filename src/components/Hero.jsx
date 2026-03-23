@@ -491,7 +491,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .how-section { padding: 80px 40px 100px; background: #fafafa; position: relative; overflow: hidden; }
     .how-inner { max-width: 1250px; margin: 0 auto; position: relative; z-index: 1; }
-    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; position: relative; }
+    .steps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; position: relative; }
     .steps-grid-connector { 
       position: absolute; 
       top: 40px; 
@@ -734,16 +734,17 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         <div className="how-inner">
           <div className="section-header">
             <div className="section-tag">Seamless Process</div>
-            <h2 className="section-title">Book Your Ride in 4 Easy Steps</h2>
+            <h2 className="section-title">Book Your Ride in 5 Easy Steps</h2>
             <p className="section-sub">Simple, fast, and completely online — no paperwork, no hassle.</p>
           </div>
           <div className="steps-grid">
             <div className="steps-grid-connector" />
             {[
-              { step:"01", title:"Choose Vehicle",  desc:"Select your preferred bike or car from our highly curated, verified fleet." },
-              { step:"02", title:"Pick Date & Time",desc:"Set your rental date, pickup and drop-off time as per your convenience." },
-              { step:"03", title:"Confirm Booking", desc:"Review the transparent pricing and confirm your booking instantly." },
-              { step:"04", title:"Ride Away",        desc:"Pick up your vehicle and enjoy the ride. It's that simple!" },
+              { step:"01", title:"Verify Docs",    desc:"Quick digital verification with zero physical paperwork." },
+              { step:"02", title:"Choose Vehicle",  desc:"Select your preferred bike or car from our highly curated, verified fleet." },
+              { step:"03", title:"Pick Date & Time",desc:"Set your rental date, pickup and drop-off time as per your convenience." },
+              { step:"04", title:"Confirm Booking", desc:"Review the transparent pricing and confirm your booking instantly." },
+              { step:"05", title:"Ride Away",        desc:"Pick up your vehicle and enjoy the ride. It's that simple!" },
             ].map((s,i) => (
               <div key={i} className="step-card">
                 <div className="step-num">{s.step}</div>
