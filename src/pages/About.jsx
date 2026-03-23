@@ -12,11 +12,68 @@ const About = () => {
         window.scrollTo(0, 0);
     }, []);
 
+    const IconMission = () => (
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="gradMission" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#3b82f6" />
+                    <stop offset="100%" stopColor="#10b981" />
+                </linearGradient>
+            </defs>
+            <circle cx="12" cy="12" r="10" fill="url(#gradMission)" opacity="0.2" />
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="url(#gradMission)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M2 12H22" stroke="url(#gradMission)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" stroke="url(#gradMission)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    );
+
+    const IconSafety = () => (
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="gradSafety" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#6366f1" />
+                    <stop offset="100%" stopColor="#3b82f6" />
+                </linearGradient>
+            </defs>
+            <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" fill="url(#gradSafety)" opacity="0.2" />
+            <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="url(#gradSafety)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M9 12L11 14L15 10" stroke="url(#gradSafety)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    );
+
+    const IconAccess = () => (
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="gradAccess" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#f59e0b" />
+                    <stop offset="100%" stopColor="#ef4444" />
+                </linearGradient>
+            </defs>
+            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="url(#gradAccess)" opacity="0.2" />
+            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="url(#gradAccess)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    );
+
+    const IconCommunity = () => (
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="gradCommunity" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#f43f5e" />
+                    <stop offset="100%" stopColor="#ec4899" />
+                </linearGradient>
+            </defs>
+            <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="url(#gradCommunity)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="9" cy="7" r="4" stroke="url(#gradCommunity)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M23 21V19C22.9993 18.1137 22.7044 17.2522 22.1614 16.5523C21.6184 15.8524 20.8581 15.3516 20 15.13" stroke="url(#gradCommunity)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11703 19.0078 7.005C19.0078 7.89297 18.7122 8.75608 18.1676 9.45768C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="url(#gradCommunity)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    );
+
     const features = [
-        { icon: "🌍", title: "Our Mission", desc: "To revolutionize local transport by making vehicle rentals as simple as checking your phone. We're starting in Bhubaneswar to empower every traveler with freedom and accessibility." },
-        { icon: "🛡️", title: "Trust & Safety", desc: "Every vehicle on RoadMate undergoes a rigorous 50-point inspection. We partner with local experts to ensure your ride is safe, clean, and reliable." },
-        { icon: "⚡", title: "Instant Access", desc: "No more long queues or endless paperwork. Our digital-first approach means you can go from browsing to riding in under 2 minutes." },
-        { icon: "🤝", title: "Community First", desc: "RoadMate isn't just a rental service; it's a community. We believe in providing value to both our riders and our local partners." }
+        { icon: <IconMission />, title: "Our Mission", desc: "To revolutionize local transport by making vehicle rentals as simple as checking your phone. We're starting in Bhubaneswar to empower every traveler with freedom and accessibility." },
+        { icon: <IconSafety />, title: "Trust & Safety", desc: "Every vehicle on RoadMate undergoes a rigorous 50-point inspection. We partner with local experts to ensure your ride is safe, clean, and reliable." },
+        { icon: <IconAccess />, title: "Instant Access", desc: "No more long queues or endless paperwork. Our digital-first approach means you can go from browsing to riding in under 2 minutes." },
+        { icon: <IconCommunity />, title: "Community First", desc: "RoadMate isn't just a rental service; it's a community. We believe in providing value to both our riders and our local partners." }
     ];
 
 
