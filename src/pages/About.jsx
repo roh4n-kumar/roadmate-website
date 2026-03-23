@@ -19,11 +19,7 @@ const About = () => {
         { icon: "🤝", title: "Community First", desc: "RoadMate isn't just a rental service; it's a community. We believe in providing value to both our riders and our local partners." }
     ];
 
-    const steps = [
-        { num: "01", title: "Search", desc: "Find the perfect bike or car for your needs." },
-        { num: "02", title: "Book", desc: "Confirm your dates and pay securely online." },
-        { num: "03", title: "Ride", desc: "Pick up your keys and enjoy your journey!" }
-    ];
+
 
     return (
         <div style={{ background: "#fff", fontFamily: F, color: "#111", overflowX: "hidden" }}>
@@ -170,23 +166,7 @@ const About = () => {
                  </div>
              </div>
 
-             {/* HOW IT WORKS */}
-             <div style={{ padding: "100px 40px" }}>
-                <div style={{ maxWidth: "1250px", margin: "0 auto", textAlign: "center" }}>
-                    <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H, marginBottom: "70px" }}>Experience the <span style={{ color: RED }}>Ease</span></h2>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "40px", position: "relative" }}>
-                        {steps.map((s, i) => (
-                            <div key={i} className="animate-box" style={{ textAlign: "center" }}>
-                                <div style={{ fontSize: "80px", fontWeight: 900, color: "#f0f0f0", marginBottom: "-40px", position: "relative", zIndex: 1 }}>{s.num}</div>
-                                <div style={{ position: "relative", zIndex: 2 }}>
-                                    <h3 style={{ fontSize: "24px", fontWeight: 800, marginBottom: "15px", fontFamily: H }}>{s.title}</h3>
-                                    <p style={{ fontSize: "16px", color: "#64748b", lineHeight: 1.6 }}>{s.desc}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-             </div>
+
 
              {/* CTA */}
              <div style={{ padding: "100px 40px" }}>
