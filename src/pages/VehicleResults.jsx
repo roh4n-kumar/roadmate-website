@@ -1,28 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { db } from "../firebase";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 
 const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
-const BIKES = [
-  { id: "b1", name: "Royal Enfield Classic 350", type: "Cruiser",  cc: "350cc", fuel: "Petrol", seats: 2, pricePerHour: 80,  image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80", rating: 4.8, reviews: 124 },
-  { id: "b2", name: "Honda CB Shine",             type: "Commuter", cc: "125cc", fuel: "Petrol", seats: 2, pricePerHour: 45,  image: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&q=80", rating: 4.5, reviews: 89  },
-  { id: "b3", name: "Bajaj Pulsar NS200",          type: "Sports",   cc: "200cc", fuel: "Petrol", seats: 2, pricePerHour: 65,  image: "https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=80", rating: 4.7, reviews: 201 },
-  { id: "b4", name: "TVS Apache RTR 160",          type: "Sports",   cc: "160cc", fuel: "Petrol", seats: 2, pricePerHour: 55,  image: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80", rating: 4.6, reviews: 156 },
-  { id: "b5", name: "Hero Splendor Plus",          type: "Commuter", cc: "100cc", fuel: "Petrol", seats: 2, pricePerHour: 35,  image: "https://images.unsplash.com/photo-1547549082-6bc09f2049ae?w=600&q=80", rating: 4.3, reviews: 67  },
-  { id: "b6", name: "KTM Duke 390",                type: "Sports",   cc: "390cc", fuel: "Petrol", seats: 2, pricePerHour: 110, image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&q=80", rating: 4.9, reviews: 312 },
-];
 
-const CARS = [
-  { id: "c1", name: "Maruti Swift",  type: "Hatchback", cc: "1200cc", fuel: "Petrol", seats: 5, pricePerHour: 120, image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600&q=80", rating: 4.6, reviews: 245 },
-  { id: "c2", name: "Hyundai i20",   type: "Hatchback", cc: "1200cc", fuel: "Petrol", seats: 5, pricePerHour: 140, image: "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=600&q=80", rating: 4.7, reviews: 189 },
-  { id: "c3", name: "Toyota Innova", type: "SUV",       cc: "2700cc", fuel: "Diesel", seats: 7, pricePerHour: 200, image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&q=80", rating: 4.8, reviews: 421 },
-  { id: "c4", name: "Honda City",    type: "Sedan",     cc: "1500cc", fuel: "Petrol", seats: 5, pricePerHour: 160, image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80", rating: 4.7, reviews: 334 },
-  { id: "c5", name: "Mahindra Thar", type: "SUV",       cc: "2000cc", fuel: "Diesel", seats: 4, pricePerHour: 220, image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80", rating: 4.9, reviews: 567 },
-  { id: "c6", name: "Maruti Ertiga", type: "MPV",       cc: "1500cc", fuel: "Petrol", seats: 7, pricePerHour: 175, image: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=600&q=80", rating: 4.5, reviews: 198 },
-];
 
 const calcHours = (pickup, drop) => {
   if (!pickup || !drop) return 0;
@@ -137,9 +123,23 @@ export default function VehicleResults() {
   const [filterCC, setFilterCC] = useState("all");
   const [selected, setSelected] = useState(null);
   const [booked,   setBooked]   = useState(false);
+  const [dbVehicles, setDbVehicles] = useState([]);
+  const [loading, setLoading]       = useState(true);
 
   const isBike   = vehicleType.toLowerCase().includes("bike");
-  const vehicles = isBike ? BIKES : CARS;
+  const targetCategory = isBike ? "Bike" : "Car";
+
+  useEffect(() => {
+    const q = query(collection(db, "vehicles"), where("category", "==", targetCategory));
+    const unsub = onSnapshot(q, (snap) => {
+      const docs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      setDbVehicles(docs);
+      setLoading(false);
+    });
+    return () => unsub();
+  }, [targetCategory]);
+
+  const vehicles = dbVehicles;
   const types    = ["all", ...new Set(vehicles.map(v => v.type))];
 
   const sorted = [...vehicles]
@@ -229,79 +229,71 @@ export default function VehicleResults() {
 
         <div className="vr-content">
           {/* Filter + Sort */}
-          <div className="vr-filterbar">
-            <div className="vr-types">
-              {types.map(t => (
-                <button key={t} onClick={() => setFilterCC(t)}
-                  className={`filter-btn${filterCC === t ? " active" : ""}`}>
-                  {t === "all" ? `All ${isBike ? "Bikes" : "Cars"}` : t}
-                </button>
-              ))}
+          {loading ? (
+            <div style={{ textAlign: "center", padding: "80px 20px" }}>
+              <div style={{ width: "32px", height: "32px", border: "3px solid #e2e8f0", borderTop: `3px solid ${RED}`, borderRadius: "50%", animation: "spin .7s linear infinite", margin: "0 auto 12px" }} />
+              <p style={{ color: "#64748b", fontSize: "13px", fontWeight: "600" }}>Fetching available {isBike ? "bikes" : "cars"}...</p>
             </div>
-            <div className="vr-sort">
-              <span style={{ fontSize: "12px", color: "#94a3b8", fontWeight: "700", whiteSpace: "nowrap", fontFamily: H, textTransform: "uppercase" }}>Sort By</span>
-              <select value={sortBy} onChange={e => setSortBy(e.target.value)}
-                style={{ padding: "8px 12px", borderRadius: "12px", border: "1.5px solid rgba(15, 23, 42, 0.08)", background: "#fff", fontSize: "13px", fontWeight: "700", color: "#0f172a", cursor: "pointer", outline: "none", fontFamily: F }}>
-                <option value="popular">Most Popular</option>
-                <option value="rating">Top Rated</option>
-                <option value="price_low">Price: Low–High</option>
-                <option value="price_high">Price: High–Low</option>
-              </select>
+          ) : sorted.length === 0 ? (
+            <div style={{ textAlign: "center", padding: "80px 20px", background: "#fff", borderRadius: "24px", border: "1.5px dashed #e2e8f0" }}>
+              <p style={{ fontSize: "16px", fontWeight: "700", color: "#64748b" }}>No {isBike ? "bikes" : "cars"} available right now.</p>
+              <p style={{ fontSize: "14px", color: "#94a3b8", marginTop: "4px" }}>Try changing your filters or searching for another type.</p>
             </div>
-          </div>
+          ) : (
+            <div className="vr-grid">
+              {sorted.map((v, i) => {
+                const total = v.pricePerHour * hours;
+                const gst   = Math.round(total * 0.18);
+                const grand = total + gst;
+                return (
+                  <motion.div key={v.id} className="vcard"
+                    initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
+                    style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.05)", border: "1.5px solid rgba(15, 23, 42, 0.05)" }}>
 
-          {hours === 0 && (
-            <div style={{ padding: "12px 14px", borderRadius: "12px", background: "#fffbeb", border: "1px solid #fcd34d", fontSize: "13px", color: "#92400e", fontWeight: "600", marginBottom: "18px" }}>
-              ⚠ Select valid pickup & drop-off times to see pricing.
+                    <div style={{ position: "relative", height: "200px", overflow: "hidden" }}>
+                      <img src={v.image} alt={v.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15, 23, 42, 0.6) 0%, transparent 60%)" }} />
+                      <span style={{ position: "absolute", top: "12px", left: "12px", background: "rgba(15, 23, 42, 0.8)", color: "#fff", fontSize: "11px", fontWeight: "800", padding: "5px 12px", borderRadius: "99px", backdropFilter: "blur(8px)", fontFamily: H, textTransform: "uppercase" }}>{v.type}</span>
+                      <div style={{ position: "absolute", top: "12px", right: "12px", display: "flex", alignItems: "center", gap: "4px", background: "rgba(255, 255, 255, 0.9)", color: "#fbbf24", fontSize: "12px", fontWeight: "900", padding: "5px 12px", borderRadius: "99px", backdropFilter: "blur(8px)", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}>
+                        <IcoStar /> {v.rating || 4.5} <span style={{ color: "#94a3b8", fontWeight: 700 }}>({v.reviews || 0})</span>
+                      </div>
+                      <div style={{ position: "absolute", bottom: "14px", left: "16px", right: "16px" }}>
+                        <h3 style={{ color: "#fff", fontSize: "18px", fontWeight: "900", margin: 0, fontFamily: H, letterSpacing: "-0.3px" }}>{v.name}</h3>
+                      </div>
+                    </div>
+
+                    <div style={{ padding: "20px" }}>
+                      <div style={{ display: "flex", gap: "14px", marginBottom: "16px", flexWrap: "wrap" }}>
+                        <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoFuel />{v.fuel}</span>
+                        <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoSeat />{v.seats} Seats</span>
+                        <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoTag />{v.cc}</span>
+                      </div>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
+                        <div>
+                          {hours > 0 ? (
+                            <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
+                              <span style={{ fontSize: "24px", fontWeight: "900", color: RED, fontFamily: H }}>₹{grand}</span>
+                              <span style={{ fontSize: "11px", color: "#94a3b8", fontWeight: "800", textTransform: "uppercase" }}>Total</span>
+                            </div>
+                          ) : (
+                            <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
+                              <span style={{ fontSize: "24px", fontWeight: "900", color: "#0f172a", fontFamily: H }}>₹{v.pricePerHour}</span>
+                              <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800" }}>/hr</span>
+                            </div>
+                          )}
+                          {hours > 0 && <p style={{ fontSize: "10px", color: "#94a3b8", fontWeight: "700", margin: "2px 0 0" }}>₹{v.pricePerHour}/hr + GST</p>}
+                        </div>
+                        <button className="book-btn" onClick={() => setSelected(v)}
+                          style={{ padding: "12px 24px", borderRadius: "14px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, border: "none", color: "#fff", fontSize: "14px", fontWeight: "900", cursor: "pointer", boxShadow: "0 8px 20px rgba(190,13,13,0.3)", whiteSpace: "nowrap", fontFamily: F }}>
+                          Book Now
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           )}
-
-          <div className="vr-grid">
-            {sorted.map((v, i) => {
-              const total = v.pricePerHour * hours;
-              const gst   = Math.round(total * 0.18);
-              const grand = total + gst;
-              return (
-                <motion.div key={v.id} className="vcard"
-                  initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
-                  style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.05)", border: "1.5px solid rgba(15, 23, 42, 0.05)" }}>
-
-                  <div style={{ position: "relative", height: "200px", overflow: "hidden" }}>
-                    <img src={v.image} alt={v.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15, 23, 42, 0.6) 0%, transparent 60%)" }} />
-                    <span style={{ position: "absolute", top: "12px", left: "12px", background: "rgba(15, 23, 42, 0.8)", color: "#fff", fontSize: "11px", fontWeight: "800", padding: "5px 12px", borderRadius: "99px", backdropFilter: "blur(8px)", fontFamily: H, textTransform: "uppercase" }}>{v.type}</span>
-                    <div style={{ position: "absolute", top: "12px", right: "12px", display: "flex", alignItems: "center", gap: "4px", background: "rgba(255, 255, 255, 0.9)", color: "#fbbf24", fontSize: "12px", fontWeight: "900", padding: "5px 12px", borderRadius: "99px", backdropFilter: "blur(8px)", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}>
-                      <IcoStar /> {v.rating} <span style={{ color: "#94a3b8", fontWeight: 700 }}>({v.reviews})</span>
-                    </div>
-                    <div style={{ position: "absolute", bottom: "14px", left: "16px", right: "16px" }}>
-                      <h3 style={{ color: "#fff", fontSize: "18px", fontWeight: "900", margin: 0, fontFamily: H, letterSpacing: "-0.3px" }}>{v.name}</h3>
-                    </div>
-                  </div>
-
-                  <div style={{ padding: "20px" }}>
-                    <div style={{ display: "flex", gap: "14px", marginBottom: "16px", flexWrap: "wrap" }}>
-                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoFuel />{v.fuel}</span>
-                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoSeat />{v.seats} Seats</span>
-                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoTag />{v.cc}</span>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
-                      <div>
-                        <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
-                          <span style={{ fontSize: "24px", fontWeight: "900", color: "#0f172a", fontFamily: H }}>₹{v.pricePerHour}</span>
-                          <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800" }}>/hr</span>
-                        </div>
-                        {hours > 0 && <p style={{ fontSize: "11px", color: "#94a3b8", fontWeight: "700", margin: "2px 0 0" }}>₹{grand} total ({hours}hr + GST)</p>}
-                      </div>
-                      <button className="book-btn" onClick={() => setSelected(v)}
-                        style={{ padding: "12px 24px", borderRadius: "14px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, border: "none", color: "#fff", fontSize: "14px", fontWeight: "900", cursor: "pointer", boxShadow: "0 8px 20px rgba(190,13,13,0.3)", whiteSpace: "nowrap", fontFamily: F }}>
-                        Book Now
-                      </button>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
         </div>
       </div>
 
