@@ -117,11 +117,18 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
               </button>
             </div>
           </div>
-          <div style={{ position: "relative" }}>
-             <div style={{ width: "100%", height: "500px", background: "#fff", borderRadius: "40px", position: "relative", overflow: "hidden", boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}>
+          <motion.div 
+            style={{ position: "relative" }}
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -20, scale: 1.02 }}
+            transition={{ duration: 0.8, cubicBezier: [0.16, 1, 0.3, 1] }}
+          >
+             <div style={{ width: "100%", height: "500px", background: "#fff", borderRadius: "40px", position: "relative", overflow: "hidden", boxShadow: "0 50px 100px rgba(0,0,0,0.12), 0 20px 40px rgba(0,0,0,0.08)" }}>
                 <img src="/puri_marine_drive.jpg" alt="Puri Konark Marine Drive" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
              </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
