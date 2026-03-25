@@ -28,10 +28,9 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     // Dynamic sync with Firestore 'vehicles' collection
-    // Showing only 'available' vehicles as requested
+    // Fetching top 4 vehicles from the fleet
     const q = query(
       collection(db, "vehicles"),
-      where("status", "==", "available"),
       limit(4)
     );
 
