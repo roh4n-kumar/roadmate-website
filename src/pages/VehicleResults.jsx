@@ -155,18 +155,24 @@ export default function VehicleResults() {
   const [dbVehicles, setDbVehicles] = useState([]);
   const [loading, setLoading]       = useState(true);
 
+  const isAll    = vehicleType.toLowerCase() === "all";
   const isBike   = vehicleType.toLowerCase().includes("bike");
   const targetCategory = isBike ? "Bike" : "Car";
 
   useEffect(() => {
-    const q = query(collection(db, "vehicles"), where("category", "==", targetCategory));
+    let q;
+    if (isAll) {
+      q = query(collection(db, "vehicles"));
+    } else {
+      q = query(collection(db, "vehicles"), where("category", "==", targetCategory));
+    }
     const unsub = onSnapshot(q, (snap) => {
       const docs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
       setDbVehicles(docs);
       setLoading(false);
     });
     return () => unsub();
-  }, [targetCategory]);
+  }, [targetCategory, isAll]);
 
   const vehicles = dbVehicles;
   const types    = ["all", ...new Set(vehicles.map(v => v.type))];
@@ -242,7 +248,7 @@ export default function VehicleResults() {
           </button>
 
           <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", minWidth: 0 }}>
-            <span style={{ fontSize: "18px", fontWeight: "900", color: "#0f172a", flexShrink: 0, fontFamily: H }}>{isBike ? "Bikes" : "Cars"}</span>
+            <span style={{ fontSize: "18px", fontWeight: "900", color: "#0f172a", flexShrink: 0, fontFamily: H }}>{isAll ? "All Vehicles" : isBike ? "Bikes" : "Cars"}</span>
             {date && <>
               <span style={{ color: "rgba(15, 23, 42, 0.1)" }}>·</span>
               <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}><IcoCalendar /> {fmt(date)}</span>
@@ -263,11 +269,11 @@ export default function VehicleResults() {
           {loading ? (
             <div style={{ textAlign: "center", padding: "80px 20px" }}>
               <div style={{ width: "32px", height: "32px", border: "3px solid #e2e8f0", borderTop: `3px solid ${RED}`, borderRadius: "50%", animation: "spin .7s linear infinite", margin: "0 auto 12px" }} />
-              <p style={{ color: "#64748b", fontSize: "13px", fontWeight: "600" }}>Fetching available {isBike ? "bikes" : "cars"}...</p>
+              <p style={{ color: "#64748b", fontSize: "13px", fontWeight: "600" }}>Fetching available {isAll ? "vehicles" : isBike ? "bikes" : "cars"}...</p>
             </div>
           ) : sorted.length === 0 ? (
             <div style={{ textAlign: "center", padding: "80px 20px", background: "#fff", borderRadius: "24px", border: "1.5px dashed #e2e8f0" }}>
-              <p style={{ fontSize: "16px", fontWeight: "700", color: "#64748b" }}>No {isBike ? "bikes" : "cars"} available right now.</p>
+              <p style={{ fontSize: "16px", fontWeight: "700", color: "#64748b" }}>No {isAll ? "vehicles" : isBike ? "bikes" : "cars"} available right now.</p>
               <p style={{ fontSize: "14px", color: "#94a3b8", marginTop: "4px" }}>Try changing your filters or searching for another type.</p>
             </div>
           ) : (

@@ -28,10 +28,10 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     // Dynamic sync with Firestore 'vehicles' collection
-    // Fetching top 4 vehicles from the fleet
+    // Fetching top 6 vehicles from the fleet as requested
     const q = query(
       collection(db, "vehicles"),
-      limit(4)
+      limit(6)
     );
 
     const unsub = onSnapshot(q, (snap) => {
@@ -82,7 +82,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
             <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Our Pride</span>
             <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, marginTop: "10px" }}>Featured Fleet</h2>
           </div>
-          <button onClick={() => navigate("/vehicles")} style={{ padding: "12px 24px", borderRadius: "12px", background: "rgba(15,23,42,0.05)", border: "none", fontWeight: 700, cursor: "pointer", transition: "all 0.2s" }}>
+          <button onClick={() => navigate("/vehicles?type=all")} style={{ padding: "12px 24px", borderRadius: "12px", background: "rgba(15,23,42,0.05)", border: "none", fontWeight: 700, cursor: "pointer", transition: "all 0.2s" }}>
             View All Vehicles →
           </button>
         </div>
