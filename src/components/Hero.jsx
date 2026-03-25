@@ -131,10 +131,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   }, []);
 
   const offers = [
-    { id: 1, icon: <FaGift />, title: "First Ride Offer", desc: "20% OFF on your first booking", code: "FIRST20", color: RED, bg: "rgba(190, 13, 13, 0.08)" },
-    { id: 2, icon: <FaCreditCard />, title: "HDFC Bank Offer", desc: "10% Instant Discount on CC", code: "HDFC10", color: "#004c8f", bg: "rgba(0, 76, 143, 0.08)" },
-    { id: 3, icon: <FaIdCard />, title: "ICICI Bank Offer", desc: "Flat ₹200 OFF on Debit Cards", code: "ICICI200", color: "#f58120", bg: "rgba(245, 129, 32, 0.08)" },
-    { id: 4, icon: <FaSun />, title: "Weekend Special", desc: "₹1000 OFF on 3+ day trips", code: "WEEKEND1000", color: "#f59e0b", bg: "rgba(245, 158, 11, 0.08)" }
+    { id: 1, icon: <FaGift />, title: "First Ride Offer", desc: "20% OFF on your first booking", code: "FIRST20", color: RED, colorDark: "#990a0a" },
+    { id: 2, icon: <FaCreditCard />, title: "HDFC Bank Offer", desc: "10% Instant Discount on CC", code: "HDFC10", color: "#004c8f", colorDark: "#003366" },
+    { id: 3, icon: <FaIdCard />, title: "ICICI Bank Offer", desc: "Flat ₹200 OFF on Debit Cards", code: "ICICI200", color: "#f58120", colorDark: "#d16c1a" },
+    { id: 4, icon: <FaSun />, title: "Weekend Special", desc: "₹1000 OFF on 3+ day trips", code: "WEEKEND1000", color: "#059669", colorDark: "#065f46" }
   ];
 
   const formatPrettyDate = (d) => {
@@ -754,26 +754,43 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               className="offer-card"
               whileHover={{ 
                 scale: 1.02, 
-                translateY: -5,
-                boxShadow: `0 20px 40px ${off.color}15`
+                translateY: -8,
+                boxShadow: `0 30px 60px rgba(0,0,0,0.18)`
               }}
               style={{ 
-                background: `linear-gradient(135deg, #ffffff 0%, ${off.bg} 100%)`, 
-                border: `1.5px solid ${off.color}15`, 
-                borderRadius: "24px", padding: "28px", 
-                display: "flex", gap: "20px", alignItems: "center", cursor: "pointer", transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", 
-                color: off.color, boxShadow: "0 10px 30px rgba(0,0,0,0.03)"
+                background: `linear-gradient(135deg, ${off.color} 0%, ${off.colorDark} 100%)`, 
+                borderRadius: "22px", padding: "24px", 
+                display: "flex", flexDirection: "column", gap: "10px", 
+                cursor: "pointer", transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)", 
+                color: "#fff", boxShadow: "0 15px 35px rgba(0,0,0,0.1)",
+                position: "relative", overflow: "hidden"
               }}
             >
-              <div style={{ width: "56px", height: "56px", borderRadius: "14px", background: off.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "24px", flexShrink: 0, boxShadow: `0 8px 20px ${off.color}10` }}>
-                {off.icon}
+              {/* Card Decoration */}
+              <div style={{ position: "absolute", top: "-20px", right: "-20px", width: "100px", height: "100px", borderRadius: "50%", background: "rgba(255,255,255,0.05)" }} />
+              
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "15px" }}>
+                <div style={{ width: "42px", height: "30px", background: "linear-gradient(135deg, #ffd700 0%, #daa520 100%)", borderRadius: "6px", opacity: 0.9, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                   {/* Sim chip look */}
+                   <div style={{ width: "70%", height: "60%", border: "1px solid rgba(0,0,0,0.1)", borderRadius: "2px" }} />
+                </div>
+                <div style={{ fontSize: "20px", opacity: 0.8 }}>{off.icon}</div>
               </div>
+
               <div style={{ flex: 1 }}>
-                <h4 style={{ margin: 0, fontSize: "17px", fontWeight: 800, color: "#0f172a", fontFamily: H }}>{off.title}</h4>
-                <p style={{ margin: "4px 0 10px", fontSize: "13px", color: "#64748b", fontWeight: 600, lineHeight: "1.4" }}>{off.desc}</p>
-                <div style={{ display: "inline-block", padding: "6px 14px", borderRadius: "8px", background: `${off.color}08`, border: `1px dashed ${off.color}30`, fontSize: "12px", fontWeight: 800, color: off.color, letterSpacing: "1px" }}>
+                <h4 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#ffffff", fontFamily: H }}>{off.title}</h4>
+                <p style={{ margin: "4px 0 16px", fontSize: "12px", color: "rgba(255,255,255,0.8)", fontWeight: 500, lineHeight: "1.4" }}>{off.desc}</p>
+                <div style={{ display: "inline-block", padding: "8px 16px", borderRadius: "10px", background: "rgba(255,255,255,1)", border: "1px solid rgba(255,255,255,0.2)", fontSize: "13px", fontWeight: 800, color: off.color, letterSpacing: "1px", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}>
                   {off.code}
                 </div>
+              </div>
+
+              <div style={{ marginTop: "15px", display: "flex", justifyContent: "space-between", alignItems: "center", opacity: 0.6 }}>
+                 <span style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase" }}>RoadMate Premium Pass</span>
+                 <div style={{ display: "flex", gap: "4px" }}>
+                    <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "rgba(255,255,255,0.2)" }} />
+                    <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "rgba(255,255,255,0.4)" }} />
+                 </div>
               </div>
             </motion.div>
           ))}
