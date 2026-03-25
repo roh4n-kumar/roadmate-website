@@ -593,6 +593,19 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .stats-inner { gap: 16px; }
       .section-title { font-size: 22px; }
     }
+
+    .offers-grid { 
+      display: grid; 
+      grid-template-columns: repeat(4, 1fr); 
+      gap: 24px; 
+      margin-top: 30px;
+    }
+    @media (max-width: 900px) {
+      .offers-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+    }
+    @media (max-width: 540px) {
+      .offers-grid { grid-template-columns: 1fr; gap: 12px; }
+    }
   `;
 
   const CalIcon = () => (
@@ -734,9 +747,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           </h2>
         </div>
 
-        <div 
-          style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" }}
-        >
+        <div className="offers-grid">
           {offers.map((off) => (
             <motion.div
               key={off.id}
