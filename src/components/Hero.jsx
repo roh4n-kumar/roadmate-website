@@ -735,7 +735,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
 
         <div 
-          style={{ display: "flex", flexWrap: "wrap", gap: "24px", paddingBottom: "15px", paddingRight: "20px" }}
+          style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" }}
         >
           {offers.map((off) => (
             <motion.div
@@ -743,7 +743,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               className="offer-card"
               whileHover={{ scale: 1.02, translateY: -5 }}
               style={{ 
-                minWidth: "340px", background: "#fff", border: "1.5px solid #f1f5f9", borderRadius: "24px", padding: "28px", 
+                background: "#fff", border: "1.5px solid #f1f5f9", borderRadius: "24px", padding: "28px", 
                 display: "flex", gap: "20px", alignItems: "center", cursor: "pointer", transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", 
                 color: off.color, boxShadow: "0 10px 30px rgba(0,0,0,0.03)"
               }}
