@@ -754,43 +754,36 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               className="offer-card"
               whileHover={{ 
                 scale: 1.02, 
-                translateY: -8,
-                boxShadow: `0 30px 60px rgba(0,0,0,0.18)`
+                translateY: -5,
+                boxShadow: `0 25px 50px rgba(0,0,0,0.15)`
               }}
               style={{ 
                 background: `linear-gradient(135deg, ${off.color} 0%, ${off.colorDark} 100%)`, 
-                borderRadius: "22px", padding: "24px", 
-                display: "flex", flexDirection: "column", gap: "10px", 
+                borderRadius: "20px", padding: "26px", 
+                display: "flex", alignItems: "center", gap: "24px",
                 cursor: "pointer", transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)", 
-                color: "#fff", boxShadow: "0 15px 35px rgba(0,0,0,0.1)",
+                color: "#fff", boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
                 position: "relative", overflow: "hidden"
               }}
             >
               {/* Card Decoration */}
-              <div style={{ position: "absolute", top: "-20px", right: "-20px", width: "100px", height: "100px", borderRadius: "50%", background: "rgba(255,255,255,0.05)" }} />
+              <div style={{ position: "absolute", top: "-15px", right: "-15px", width: "80px", height: "80px", borderRadius: "50%", background: "rgba(255,255,255,0.06)" }} />
               
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "15px" }}>
-                <div style={{ width: "42px", height: "30px", background: "linear-gradient(135deg, #ffd700 0%, #daa520 100%)", borderRadius: "6px", opacity: 0.9, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                   {/* Sim chip look */}
-                   <div style={{ width: "70%", height: "60%", border: "1px solid rgba(0,0,0,0.1)", borderRadius: "2px" }} />
+              {/* Left Column: Chip & Icon */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", flexShrink: 0 }}>
+                <div style={{ width: "38px", height: "26px", background: "linear-gradient(135deg, #ffd700 0%, #daa520 100%)", borderRadius: "5px", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 5px rgba(0,0,0,0.2)" }}>
+                   <div style={{ width: "70%", height: "60%", border: "1px solid rgba(0,0,0,0.15)", borderRadius: "2px" }} />
                 </div>
-                <div style={{ fontSize: "20px", opacity: 0.8 }}>{off.icon}</div>
+                <div style={{ fontSize: "22px", opacity: 0.9 }}>{off.icon}</div>
               </div>
 
+              {/* Right Column: Content */}
               <div style={{ flex: 1 }}>
-                <h4 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#ffffff", fontFamily: H }}>{off.title}</h4>
-                <p style={{ margin: "4px 0 16px", fontSize: "12px", color: "rgba(255,255,255,0.8)", fontWeight: 500, lineHeight: "1.4" }}>{off.desc}</p>
-                <div style={{ display: "inline-block", padding: "8px 16px", borderRadius: "10px", background: "rgba(255,255,255,1)", border: "1px solid rgba(255,255,255,0.2)", fontSize: "13px", fontWeight: 800, color: off.color, letterSpacing: "1px", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}>
+                <h4 style={{ margin: 0, fontSize: "17px", fontWeight: 800, color: "#ffffff", fontFamily: H }}>{off.title}</h4>
+                <p style={{ margin: "4px 0 12px", fontSize: "12px", color: "rgba(255,255,255,0.85)", fontWeight: 500, lineHeight: "1.3" }}>{off.desc}</p>
+                <div style={{ display: "inline-block", padding: "7px 14px", borderRadius: "8px", background: "#ffffff", fontWeight: 900, color: off.color, fontSize: "12px", letterSpacing: "1px", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" }}>
                   {off.code}
                 </div>
-              </div>
-
-              <div style={{ marginTop: "15px", display: "flex", justifyContent: "space-between", alignItems: "center", opacity: 0.6 }}>
-                 <span style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase" }}>RoadMate Premium Pass</span>
-                 <div style={{ display: "flex", gap: "4px" }}>
-                    <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "rgba(255,255,255,0.2)" }} />
-                    <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "rgba(255,255,255,0.4)" }} />
-                 </div>
               </div>
             </motion.div>
           ))}
