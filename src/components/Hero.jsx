@@ -755,33 +755,34 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               whileHover={{ 
                 scale: 1.02, 
                 translateY: -5,
-                boxShadow: `0 25px 50px rgba(0,0,0,0.15)`
+                boxShadow: `0 20px 40px rgba(0,0,0,0.2)`
               }}
               style={{ 
                 background: `linear-gradient(135deg, ${off.color} 0%, ${off.colorDark} 100%)`, 
-                borderRadius: "20px", padding: "26px", 
-                display: "flex", alignItems: "center", gap: "24px",
+                borderRadius: "18px", padding: "20px", 
+                display: "flex", alignItems: "center", gap: "18px",
                 cursor: "pointer", transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)", 
-                color: "#fff", boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
-                position: "relative", overflow: "hidden"
+                color: "#fff", boxShadow: "0 10px 25px rgba(0,0,0,0.12)",
+                position: "relative", overflow: "hidden",
+                aspectRatio: "1.586 / 1"
               }}
             >
               {/* Card Decoration */}
-              <div style={{ position: "absolute", top: "-15px", right: "-15px", width: "80px", height: "80px", borderRadius: "50%", background: "rgba(255,255,255,0.06)" }} />
+              <div style={{ position: "absolute", top: "-10px", right: "-10px", width: "70px", height: "70px", borderRadius: "50%", background: "rgba(255,255,255,0.06)" }} />
               
               {/* Left Column: Chip & Icon */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", flexShrink: 0 }}>
-                <div style={{ width: "38px", height: "26px", background: "linear-gradient(135deg, #ffd700 0%, #daa520 100%)", borderRadius: "5px", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 5px rgba(0,0,0,0.2)" }}>
-                   <div style={{ width: "70%", height: "60%", border: "1px solid rgba(0,0,0,0.15)", borderRadius: "2px" }} />
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "center", flexShrink: 0 }}>
+                <div style={{ width: "36px", height: "24px", background: "linear-gradient(135deg, #ffd700 0%, #daa520 100%)", borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 4px rgba(0,0,0,0.2)" }}>
+                   <div style={{ width: "65%", height: "55%", border: "1px solid rgba(0,0,0,0.15)", borderRadius: "1px" }} />
                 </div>
-                <div style={{ fontSize: "22px", opacity: 0.9 }}>{off.icon}</div>
+                <div style={{ fontSize: "20px", opacity: 0.9 }}>{off.icon}</div>
               </div>
 
               {/* Right Column: Content */}
               <div style={{ flex: 1 }}>
-                <h4 style={{ margin: 0, fontSize: "17px", fontWeight: 800, color: "#ffffff", fontFamily: H }}>{off.title}</h4>
-                <p style={{ margin: "4px 0 12px", fontSize: "12px", color: "rgba(255,255,255,0.85)", fontWeight: 500, lineHeight: "1.3" }}>{off.desc}</p>
-                <div style={{ display: "inline-block", padding: "7px 14px", borderRadius: "8px", background: "#ffffff", fontWeight: 900, color: off.color, fontSize: "12px", letterSpacing: "1px", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" }}>
+                <h4 style={{ margin: 0, fontSize: "15px", fontWeight: 800, color: "#ffffff", fontFamily: H }}>{off.title}</h4>
+                <p style={{ margin: "2px 0 10px", fontSize: "11px", color: "rgba(255,255,255,0.8)", fontWeight: 500, lineHeight: "1.2" }}>{off.desc}</p>
+                <div style={{ display: "inline-block", padding: "6px 12px", borderRadius: "7px", background: "#ffffff", fontWeight: 900, color: off.color, fontSize: "11px", letterSpacing: "1px", boxShadow: "0 3px 8px rgba(0,0,0,0.08)" }}>
                   {off.code}
                 </div>
               </div>
