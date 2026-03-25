@@ -618,7 +618,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   );
 
   return (
-    <section className="hero-section" style={{ minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "center", background: "#fbfbfb", paddingBottom: "100px" }}>
+    <section className="hero-section" style={{ minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "center", background: "#fff", paddingBottom: "100px" }}>
       <style>{css}</style>
 
       {/* SEARCH RIBBON */}
@@ -719,28 +719,43 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       </div>
 
       {/* Offers Section */}
-      <div style={{ padding: "40px 24px 20px", maxWidth: "1250px", margin: "0 auto", position: "relative", zIndex: 10 }}>
+      <div style={{ padding: "60px 24px 20px", maxWidth: "1250px", margin: "0 auto", position: "relative", zIndex: 10 }}>
+        {/* Offers Pill and Heading */}
+        <div style={{ marginBottom: "30px", marginLeft: "10px" }}>
+          <span style={{ 
+            color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "6px 16px", borderRadius: "100px", 
+            fontWeight: 800, textTransform: "uppercase", fontSize: "11px", letterSpacing: "1.2px", display: "inline-block",
+            marginBottom: "12px"
+          }}>
+            Offers
+          </span>
+          <h2 style={{ fontSize: "32px", fontWeight: 900, fontFamily: H, margin: 0, color: "#0f172a" }}>
+            Offers For You
+          </h2>
+        </div>
+
         <div 
           className="hide-scrollbar" 
-          style={{ display: "flex", overflowX: "auto", gap: "20px", paddingBottom: "10px", paddingRight: "20px" }}
+          style={{ display: "flex", overflowX: "auto", gap: "24px", paddingBottom: "15px", paddingRight: "20px" }}
         >
           {offers.map((off) => (
             <motion.div
               key={off.id}
               className="offer-card"
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.02, translateY: -5 }}
               style={{ 
-                minWidth: "280px", background: "#fff", border: "1.5px solid #f1f5f9", borderRadius: "20px", padding: "20px", 
-                display: "flex", gap: "16px", alignItems: "center", cursor: "pointer", transition: "all 0.3s ease", color: off.color
+                minWidth: "340px", background: "#fff", border: "1.5px solid #f1f5f9", borderRadius: "24px", padding: "28px", 
+                display: "flex", gap: "20px", alignItems: "center", cursor: "pointer", transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", 
+                color: off.color, boxShadow: "0 10px 30px rgba(0,0,0,0.03)"
               }}
             >
-              <div style={{ width: "48px", height: "48px", borderRadius: "12px", background: off.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px" }}>
+              <div style={{ width: "56px", height: "56px", borderRadius: "14px", background: off.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "24px", flexShrink: 0 }}>
                 {off.icon}
               </div>
               <div style={{ flex: 1 }}>
-                <h4 style={{ margin: 0, fontSize: "15px", fontWeight: 800, color: "#0f172a", fontFamily: H }}>{off.title}</h4>
-                <p style={{ margin: "2px 0 6px", fontSize: "12px", color: "#64748b", fontWeight: 600 }}>{off.desc}</p>
-                <div style={{ display: "inline-block", padding: "4px 10px", borderRadius: "6px", background: "#f8fafc", border: "1px dashed #cbd5e1", fontSize: "11px", fontWeight: 800, color: "#0f172a", letterSpacing: "0.5px" }}>
+                <h4 style={{ margin: 0, fontSize: "17px", fontWeight: 800, color: "#0f172a", fontFamily: H }}>{off.title}</h4>
+                <p style={{ margin: "4px 0 10px", fontSize: "13px", color: "#64748b", fontWeight: 600, lineHeight: "1.4" }}>{off.desc}</p>
+                <div style={{ display: "inline-block", padding: "6px 14px", borderRadius: "8px", background: "#f8fafc", border: "1px dashed #cbd5e1", fontSize: "12px", fontWeight: 800, color: "#0f172a", letterSpacing: "1px" }}>
                   {off.code}
                 </div>
               </div>
