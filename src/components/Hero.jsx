@@ -501,7 +501,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .feature-title { font-size: 18px; font-weight: 800; color: #111; margin: 0 0 12px; }
     .feature-desc { font-size: 14px; color: #777; line-height: 1.7; margin: 0; font-weight: 450; }
 
-    .how-section { padding: 60px 40px 50px; background: #fafafa; position: relative; overflow: hidden; }
+    .how-section { padding: 60px 40px 50px; background: #fff; position: relative; overflow: hidden; }
     .how-inner { max-width: 1250px; margin: 0 auto; position: relative; z-index: 1; }
     .steps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; position: relative; }
     .steps-grid-connector { 
@@ -618,7 +618,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   );
 
   return (
-    <section className="hero-section" style={{ minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "center", background: "#fff", paddingBottom: "100px" }}>
+    <section className="hero-section" style={{ minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "center", background: "#ffffff", paddingBottom: "100px" }}>
       <style>{css}</style>
 
       {/* SEARCH RIBBON */}
@@ -735,8 +735,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
 
         <div 
-          className="hide-scrollbar" 
-          style={{ display: "flex", overflowX: "auto", gap: "24px", paddingBottom: "15px", paddingRight: "20px" }}
+          style={{ display: "flex", flexWrap: "wrap", gap: "24px", paddingBottom: "15px", paddingRight: "20px" }}
         >
           {offers.map((off) => (
             <motion.div
