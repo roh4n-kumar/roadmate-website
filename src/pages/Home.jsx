@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { db } from "../firebase";
+import { collection, query, where, limit, onSnapshot } from "firebase/firestore";
 import Hero from "../components/Hero";
 import MapSection from "../components/MapSection";
 import FAQSection from "../components/FAQSection";
@@ -10,23 +12,46 @@ const RED = "#be0d0d";
 const H = "'Outfit', sans-serif";
 const F = "'Inter', sans-serif";
 
-const FEATURED_VEHICLES = [
-  { id: "b1", name: "Royal Enfield Classic 350", type: "Bike", price: 80, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80", rating: 4.8 },
-  { id: "b6", name: "KTM Duke 390", type: "Bike", price: 110, image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&q=80", rating: 4.9 },
-  { id: "c5", name: "Mahindra Thar (4x4)", type: "Car", price: 220, image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80", rating: 4.9 },
-  { id: "c3", name: "Toyota Innova Crysta", type: "Car", price: 200, image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&q=80", rating: 4.8 },
-];
+// FEATURED_VEHICLES constant removed in favor of dynamic fetch
 
 
 
 const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const navigate = useNavigate();
+  const [featuredVehicles, setFeaturedVehicles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
+
+    // Dynamic sync with Firestore 'vehicles' collection
+    // Showing only 'available' vehicles as requested
+    const q = query(
+      collection(db, "vehicles"),
+      where("status", "==", "available"),
+      limit(4)
+    );
+
+    const unsub = onSnapshot(q, (snap) => {
+      const docs = snap.docs.map(d => {
+        const data = d.data();
+        return {
+          id: d.id,
+          name: data.name,
+          type: data.category, // Map 'category' to 'type' for UI consistency
+          price: data.pricePerHour, // Map 'pricePerHour' to 'price' for UI consistency
+          image: data.image,
+          rating: data.rating || 4.5
+        };
+      });
+      setFeaturedVehicles(docs);
+      setLoading(false);
+    });
+
+    return () => unsub();
   }, []);
 
   return (
@@ -64,38 +89,49 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "30px" }}>
-          {FEATURED_VEHICLES.map((v, i) => (
-            <motion.div
-              key={v.id}
-              className="v-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              onClick={() => navigate(`/vehicles?type=${v.type}`)}
-              style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", border: "1.5px solid #f0f0f0", transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "pointer" }}
-            >
-              <div style={{ height: "220px", overflow: "hidden", position: "relative" }}>
-                <img src={v.image} alt={v.name} className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
-                <div style={{ position: "absolute", top: "15px", left: "15px", background: "#fff", padding: "6px 14px", borderRadius: "10px", fontWeight: 800, fontSize: "12px", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" }}>
-                  {v.type}
-                </div>
-              </div>
-              <div style={{ padding: "24px" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
-                  <h3 style={{ fontSize: "18px", fontWeight: 800, margin: 0, fontFamily: H }}>{v.name}</h3>
-                  <div style={{ fontSize: "14px", fontWeight: 800, color: "#fbbf24" }}>★ {v.rating}</div>
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <div>
-                    <span style={{ fontSize: "22px", fontWeight: 900, color: "#0f172a" }}>₹{v.price}</span>
-                    <span style={{ fontSize: "13px", color: "#64748b", fontWeight: 600 }}>/hr</span>
+          {loading ? (
+            <div style={{ textAlign: "center", gridColumn: "1 / -1", padding: "40px" }}>
+              <div style={{ width: "30px", height: "30px", border: "3px solid #f0f0f0", borderTop: `3px solid ${RED}`, borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto 12px" }} />
+              <p style={{ color: "#64748b", fontWeight: 600 }}>Syncing with fleet...</p>
+            </div>
+          ) : featuredVehicles.length === 0 ? (
+            <div style={{ textAlign: "center", gridColumn: "1 / -1", padding: "40px", border: "1.5px dashed #f0f0f0", borderRadius: "24px" }}>
+              <p style={{ color: "#64748b", fontWeight: 600 }}>No vehicles currently available for booking.</p>
+            </div>
+          ) : (
+            featuredVehicles.map((v, i) => (
+              <motion.div
+                key={v.id}
+                className="v-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                onClick={() => navigate(`/vehicles?type=${v.type}`)}
+                style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", border: "1.5px solid #f0f0f0", transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "pointer" }}
+              >
+                <div style={{ height: "220px", overflow: "hidden", position: "relative" }}>
+                  <img src={v.image} alt={v.name} className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
+                  <div style={{ position: "absolute", top: "15px", left: "15px", background: "#fff", padding: "6px 14px", borderRadius: "10px", fontWeight: 800, fontSize: "12px", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" }}>
+                    {v.type}
                   </div>
-                  <button style={{ padding: "10px 18px", borderRadius: "10px", background: RED, color: "#fff", border: "none", fontWeight: 700, fontSize: "14px" }}>Book Now</button>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+                <div style={{ padding: "24px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+                    <h3 style={{ fontSize: "18px", fontWeight: 800, margin: 0, fontFamily: H }}>{v.name}</h3>
+                    <div style={{ fontSize: "14px", fontWeight: 800, color: "#fbbf24" }}>★ {v.rating}</div>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div>
+                      <span style={{ fontSize: "22px", fontWeight: 900, color: "#0f172a" }}>₹{v.price}</span>
+                      <span style={{ fontSize: "13px", color: "#64748b", fontWeight: 600 }}>/hr</span>
+                    </div>
+                    <button style={{ padding: "10px 18px", borderRadius: "10px", background: RED, color: "#fff", border: "none", fontWeight: 700, fontSize: "14px" }}>Book Now</button>
+                  </div>
+                </div>
+              </motion.div>
+            ))
+          )}
         </div>
       </section>
 
