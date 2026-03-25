@@ -3,6 +3,8 @@ import TimePopup from "./TimePopup";
 import { useState, useRef, useEffect } from "react";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { motion } from "framer-motion";
+import { FaGift, FaCreditCard, FaIdCard, FaSun } from "react-icons/fa";
 
 const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
@@ -127,6 +129,13 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     const unsub = onAuthStateChanged(auth, u => setUser(u));
     return () => unsub();
   }, []);
+
+  const offers = [
+    { id: 1, icon: <FaGift />, title: "First Ride Offer", desc: "20% OFF on your first booking", code: "FIRST20", color: RED, bg: "rgba(190, 13, 13, 0.05)" },
+    { id: 2, icon: <FaCreditCard />, title: "HDFC Bank Offer", desc: "10% Instant Discount on CC", code: "HDFC10", color: "#004c8f", bg: "rgba(0, 76, 143, 0.05)" },
+    { id: 3, icon: <FaIdCard />, title: "ICICI Bank Offer", desc: "Flat ₹200 OFF on Debit Cards", code: "ICICI200", color: "#f58120", bg: "rgba(245, 129, 32, 0.05)" },
+    { id: 4, icon: <FaSun />, title: "Weekend Special", desc: "₹1000 OFF on 3+ day trips", code: "WEEKEND1000", color: "#f59e0b", bg: "rgba(245, 158, 11, 0.05)" }
+  ];
 
   const formatPrettyDate = (d) => {
     const day   = d.getDate().toString().padStart(2, "0");
@@ -256,6 +265,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     
     * { box-sizing: border-box; }
     .hero-section { font-family: 'Outfit', sans-serif; background: #fff; overflow: visible; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .offer-card:hover { transform: translateY(-5px); border-color: currentColor !important; }
 
     .search-ribbon {
       background: linear-gradient(180deg, #111 0%, #0f172a 100%);
@@ -706,8 +718,36 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
       </div>
 
-
-
+      {/* Offers Section */}
+      <div style={{ padding: "40px 24px 20px", maxWidth: "1250px", margin: "0 auto", position: "relative", zIndex: 10 }}>
+        <div 
+          className="hide-scrollbar" 
+          style={{ display: "flex", overflowX: "auto", gap: "20px", paddingBottom: "10px", paddingRight: "20px" }}
+        >
+          {offers.map((off) => (
+            <motion.div
+              key={off.id}
+              className="offer-card"
+              whileHover={{ scale: 1.02 }}
+              style={{ 
+                minWidth: "280px", background: "#fff", border: "1.5px solid #f1f5f9", borderRadius: "20px", padding: "20px", 
+                display: "flex", gap: "16px", alignItems: "center", cursor: "pointer", transition: "all 0.3s ease", color: off.color
+              }}
+            >
+              <div style={{ width: "48px", height: "48px", borderRadius: "12px", background: off.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px" }}>
+                {off.icon}
+              </div>
+              <div style={{ flex: 1 }}>
+                <h4 style={{ margin: 0, fontSize: "15px", fontWeight: 800, color: "#0f172a", fontFamily: H }}>{off.title}</h4>
+                <p style={{ margin: "2px 0 6px", fontSize: "12px", color: "#64748b", fontWeight: 600 }}>{off.desc}</p>
+                <div style={{ display: "inline-block", padding: "4px 10px", borderRadius: "6px", background: "#f8fafc", border: "1px dashed #cbd5e1", fontSize: "11px", fontWeight: 800, color: "#0f172a", letterSpacing: "0.5px" }}>
+                  {off.code}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
 
       {/* WHY CHOOSE US */}
       <div className="why-section" style={{ paddingTop: "80px" }}>
@@ -754,8 +794,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           </div>
         </div>
       </div>
-
-
     </section>
   );
 };

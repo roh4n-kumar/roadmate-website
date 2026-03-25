@@ -7,7 +7,6 @@ import Hero from "../components/Hero";
 import MapSection from "../components/MapSection";
 import FAQSection from "../components/FAQSection";
 import Footer from "../components/Footer";
-import { FaGift, FaCreditCard, FaIdCard, FaSun } from "react-icons/fa";
 
 const RED = "#be0d0d";
 const H = "'Outfit', sans-serif";
@@ -21,13 +20,6 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const navigate = useNavigate();
   const [featuredVehicles, setFeaturedVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const offers = [
-    { id: 1, icon: <FaGift />, title: "First Ride Offer", desc: "20% OFF on your first booking", code: "FIRST20", color: RED, bg: "rgba(190, 13, 13, 0.05)" },
-    { id: 2, icon: <FaCreditCard />, title: "HDFC Bank Offer", desc: "10% Instant Discount on CC", code: "HDFC10", color: "#004c8f", bg: "rgba(0, 76, 143, 0.05)" },
-    { id: 3, icon: <FaIdCard />, title: "ICICI Bank Offer", desc: "Flat ₹200 OFF on Debit Cards", code: "ICICI200", color: "#f58120", bg: "rgba(245, 129, 32, 0.05)" },
-    { id: 4, icon: <FaSun />, title: "Weekend Special", desc: "₹1000 OFF on 3+ day trips", code: "WEEKEND1000", color: "#f59e0b", bg: "rgba(245, 158, 11, 0.05)" }
-  ];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -69,9 +61,6 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
           body { -ms-overflow-style: none !important; scrollbar-width: none !important; margin: 0; padding: 0; }
           .v-card:hover .v-img { transform: scale(1.1); }
           .v-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-          .hide-scrollbar::-webkit-scrollbar { display: none; }
-          .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-          .offer-card:hover { transform: translateY(-5px); border-color: currentColor !important; }
         `}
       </style>
 
@@ -85,46 +74,6 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
           <Hero isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
         </motion.div>
       </div>
-
-      {/* Offers Section */}
-      <section style={{ padding: "40px 24px 0", maxWidth: "1250px", margin: "0 auto" }}>
-        <div 
-          className="hide-scrollbar" 
-          style={{ display: "flex", overflowX: "auto", gap: "20px", paddingBottom: "10px", paddingRight: "20px" }}
-        >
-          {offers.map((off) => (
-            <motion.div
-              key={off.id}
-              className="offer-card"
-              whileHover={{ scale: 1.02 }}
-              style={{ 
-                minWidth: "280px", 
-                background: "#fff", 
-                border: "1.5px solid #f1f5f9", 
-                borderRadius: "20px", 
-                padding: "20px", 
-                display: "flex", 
-                gap: "16px", 
-                alignItems: "center",
-                cursor: "pointer",
-                transition: "all 0.3s ease",
-                color: off.color
-              }}
-            >
-              <div style={{ width: "48px", height: "48px", borderRadius: "12px", background: off.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px" }}>
-                {off.icon}
-              </div>
-              <div style={{ flex: 1 }}>
-                <h4 style={{ margin: 0, fontSize: "15px", fontWeight: 800, color: "#0f172a", fontFamily: H }}>{off.title}</h4>
-                <p style={{ margin: "2px 0 6px", fontSize: "12px", color: "#64748b", fontWeight: 600 }}>{off.desc}</p>
-                <div style={{ display: "inline-block", padding: "4px 10px", borderRadius: "6px", background: "#f8fafc", border: "1px dashed #cbd5e1", fontSize: "11px", fontWeight: 800, color: "#0f172a", letterSpacing: "0.5px" }}>
-                  {off.code}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
 
       {/* Featured Fleet */}
       <section style={{ padding: "100px 24px", maxWidth: "1250px", margin: "0 auto" }}>
