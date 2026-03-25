@@ -131,10 +131,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   }, []);
 
   const offers = [
-    { id: 1, icon: <FaGift />, title: "First Ride Offer", desc: "20% OFF on your first booking", code: "FIRST20", color: RED, bg: "rgba(190, 13, 13, 0.05)" },
-    { id: 2, icon: <FaCreditCard />, title: "HDFC Bank Offer", desc: "10% Instant Discount on CC", code: "HDFC10", color: "#004c8f", bg: "rgba(0, 76, 143, 0.05)" },
-    { id: 3, icon: <FaIdCard />, title: "ICICI Bank Offer", desc: "Flat ₹200 OFF on Debit Cards", code: "ICICI200", color: "#f58120", bg: "rgba(245, 129, 32, 0.05)" },
-    { id: 4, icon: <FaSun />, title: "Weekend Special", desc: "₹1000 OFF on 3+ day trips", code: "WEEKEND1000", color: "#f59e0b", bg: "rgba(245, 158, 11, 0.05)" }
+    { id: 1, icon: <FaGift />, title: "First Ride Offer", desc: "20% OFF on your first booking", code: "FIRST20", color: RED, bg: "rgba(190, 13, 13, 0.08)" },
+    { id: 2, icon: <FaCreditCard />, title: "HDFC Bank Offer", desc: "10% Instant Discount on CC", code: "HDFC10", color: "#004c8f", bg: "rgba(0, 76, 143, 0.08)" },
+    { id: 3, icon: <FaIdCard />, title: "ICICI Bank Offer", desc: "Flat ₹200 OFF on Debit Cards", code: "ICICI200", color: "#f58120", bg: "rgba(245, 129, 32, 0.08)" },
+    { id: 4, icon: <FaSun />, title: "Weekend Special", desc: "₹1000 OFF on 3+ day trips", code: "WEEKEND1000", color: "#f59e0b", bg: "rgba(245, 158, 11, 0.08)" }
   ];
 
   const formatPrettyDate = (d) => {
@@ -752,20 +752,26 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             <motion.div
               key={off.id}
               className="offer-card"
-              whileHover={{ scale: 1.02, translateY: -5 }}
+              whileHover={{ 
+                scale: 1.02, 
+                translateY: -5,
+                boxShadow: `0 20px 40px ${off.color}15`
+              }}
               style={{ 
-                background: "#fff", border: "1.5px solid #f1f5f9", borderRadius: "24px", padding: "28px", 
+                background: `linear-gradient(135deg, #ffffff 0%, ${off.bg} 100%)`, 
+                border: `1.5px solid ${off.color}15`, 
+                borderRadius: "24px", padding: "28px", 
                 display: "flex", gap: "20px", alignItems: "center", cursor: "pointer", transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", 
                 color: off.color, boxShadow: "0 10px 30px rgba(0,0,0,0.03)"
               }}
             >
-              <div style={{ width: "56px", height: "56px", borderRadius: "14px", background: off.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "24px", flexShrink: 0 }}>
+              <div style={{ width: "56px", height: "56px", borderRadius: "14px", background: off.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "24px", flexShrink: 0, boxShadow: `0 8px 20px ${off.color}10` }}>
                 {off.icon}
               </div>
               <div style={{ flex: 1 }}>
                 <h4 style={{ margin: 0, fontSize: "17px", fontWeight: 800, color: "#0f172a", fontFamily: H }}>{off.title}</h4>
                 <p style={{ margin: "4px 0 10px", fontSize: "13px", color: "#64748b", fontWeight: 600, lineHeight: "1.4" }}>{off.desc}</p>
-                <div style={{ display: "inline-block", padding: "6px 14px", borderRadius: "8px", background: "#f8fafc", border: "1px dashed #cbd5e1", fontSize: "12px", fontWeight: 800, color: "#0f172a", letterSpacing: "1px" }}>
+                <div style={{ display: "inline-block", padding: "6px 14px", borderRadius: "8px", background: `${off.color}08`, border: `1px dashed ${off.color}30`, fontSize: "12px", fontWeight: 800, color: off.color, letterSpacing: "1px" }}>
                   {off.code}
                 </div>
               </div>
