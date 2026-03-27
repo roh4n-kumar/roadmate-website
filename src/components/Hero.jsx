@@ -186,6 +186,119 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     </svg>
   );
 
+  const CardChip = () => (
+    <svg width="48" height="36" viewBox="0 0 48 36" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.3))" }}>
+      <rect width="48" height="36" rx="6" fill="url(#chipGrad)" />
+      <path d="M0 12H14M0 24H14M34 12H48M34 24H48M14 0V36M34 0V36" stroke="rgba(0,0,0,0.2)" strokeWidth="1" />
+      <rect x="18" y="10" width="12" height="16" rx="2" stroke="rgba(0,0,0,0.3)" strokeWidth="1.5" />
+      <defs>
+        <linearGradient id="chipGrad" x1="0" y1="0" x2="48" y2="36" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FFE47A" />
+          <stop offset="0.45" stopColor="#D4AF37" />
+          <stop offset="0.55" stopColor="#A67C00" />
+          <stop offset="1" stopColor="#FFD700" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+
+  const ContactlessIcon = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6">
+      <path d="M5 8c2.5-2.5 5.5-2.5 8 0" />
+      <path d="M3 5c4.5-4.5 9.5-4.5 14 0" />
+      <path d="M7 11c1.5-1.5 3.5-1.5 5 0" />
+      <circle cx="12" cy="18" r="1" fill="currentColor" />
+    </svg>
+  );
+
+  const OfferCard = ({ off }) => {
+    const [rotate, setRotate] = useState({ x: 0, y: 0 });
+    const [glare, setGlare] = useState({ x: 50, y: 50 });
+
+    const handleMouseMove = (e) => {
+      const card = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - card.left;
+      const y = e.clientY - card.top;
+      const centerX = card.width / 2;
+      const centerY = card.height / 2;
+      
+      setRotate({
+        x: (y - centerY) / 8,
+        y: -(x - centerX) / 8
+      });
+
+      setGlare({
+        x: (x / card.width) * 100,
+        y: (y / card.height) * 100
+      });
+    };
+
+    const handleMouseLeave = () => {
+      setRotate({ x: 0, y: 0 });
+    };
+
+    return (
+      <motion.div
+        className="offer-card"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        animate={{ rotateX: rotate.x, rotateY: rotate.y }}
+        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        style={{ 
+          background: `linear-gradient(135deg, ${off.color} 0%, ${off.colorDark} 100%)`, 
+          "--x": `${glare.x}%`,
+          "--y": `${glare.y}%`
+        }}
+      >
+        <div className="card-glare" />
+        <div className="card-noise" />
+        
+        {/* Top Row: Chip and Contactless */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", zIndex: 3 }}>
+          <CardChip />
+          <ContactlessIcon />
+        </div>
+
+        {/* Middle Row: Content */}
+        <div style={{ zIndex: 3 }}>
+          <h4 style={{ margin: 0, fontSize: "22px", fontWeight: 800, color: "#ffffff", fontFamily: H }}>
+            {off.title}
+          </h4>
+          <p style={{ margin: "6px 0 0", fontSize: "14px", color: "rgba(255,255,255,0.8)", fontWeight: 500, lineHeight: "1.4" }}>
+            {off.desc}
+          </p>
+        </div>
+
+        {/* Bottom Row: Icon and Code */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", zIndex: 3 }}>
+          <div style={{ fontSize: "28px", opacity: 0.8, color: "rgba(255,255,255,0.9)" }}>
+            {off.icon}
+          </div>
+          <div style={{ textAlign: "right" }}>
+            <span style={{ display: "block", fontSize: "10px", textTransform: "uppercase", letterSpacing: "1px", opacity: 0.6, marginBottom: "4px" }}>
+              Promo Code
+            </span>
+            <div className="card-monaco" style={{ 
+              background: "rgba(255,255,255,0.15)", 
+              backdropFilter: "blur(10px)",
+              padding: "8px 16px", 
+              borderRadius: "12px", 
+              fontSize: "16px",
+              border: "1px solid rgba(255,255,255,0.2)"
+            }}>
+              {off.code}
+            </div>
+          </div>
+        </div>
+
+        {/* Subtle Brand Watermark */}
+        <div style={{ position: "absolute", bottom: "10%", right: "35%", fontSize: "40px", fontWeight: 900, opacity: 0.03, pointerEvents: "none", whiteSpace: "nowrap", transform: "rotate(-10deg)" }}>
+          ROADMATE
+        </div>
+      </motion.div>
+    );
+  };
+
   const IconCharges = () => (
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -596,15 +709,58 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .offers-grid { 
       display: grid; 
-      grid-template-columns: repeat(4, 1fr); 
-      gap: 24px; 
-      margin-top: 30px;
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 30px; 
+      margin-top: 40px;
     }
-    @media (max-width: 900px) {
-      .offers-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+    @media (max-width: 1100px) {
+      .offers-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width: 540px) {
-      .offers-grid { grid-template-columns: 1fr; gap: 12px; }
+    @media (max-width: 650px) {
+      .offers-grid { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    .offer-card {
+      position: relative;
+      background: #111;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 1.586 / 1;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+      padding: 32px;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      transition: box-shadow 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .offer-card:hover {
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+    }
+
+    .card-glare {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.15) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .card-noise {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      opacity: 0.05;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .card-monaco {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      letter-spacing: 2px;
+      font-weight: 700;
     }
   `;
 
@@ -749,44 +905,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
         <div className="offers-grid">
           {offers.map((off) => (
-            <motion.div
-              key={off.id}
-              className="offer-card"
-              whileHover={{ 
-                scale: 1.02, 
-                translateY: -5,
-                boxShadow: `0 25px 50px rgba(0,0,0,0.2)`
-              }}
-              style={{ 
-                background: `linear-gradient(135deg, ${off.color} 0%, ${off.colorDark} 100%)`, 
-                borderRadius: "20px", padding: "28px 32px", 
-                display: "flex", alignItems: "center", gap: "24px",
-                cursor: "pointer", transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)", 
-                color: "#fff", boxShadow: "0 12px 30px rgba(0,0,0,0.12)",
-                position: "relative", overflow: "hidden",
-                aspectRatio: "2.1 / 1"
-              }}
-            >
-              {/* Card Decoration */}
-              <div style={{ position: "absolute", top: "-15px", right: "-15px", width: "80px", height: "80px", borderRadius: "50%", background: "rgba(255,255,255,0.06)" }} />
-              
-              {/* Left Column: Chip & Icon */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", flexShrink: 0 }}>
-                <div style={{ width: "40px", height: "28px", background: "linear-gradient(135deg, #ffd700 0%, #daa520 100%)", borderRadius: "5px", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 5px rgba(0,0,0,0.2)" }}>
-                   <div style={{ width: "65%", height: "55%", border: "1px solid rgba(0,0,0,0.15)", borderRadius: "1px" }} />
-                </div>
-                <div style={{ fontSize: "22px", opacity: 0.9 }}>{off.icon}</div>
-              </div>
-
-              {/* Right Column: Content */}
-              <div style={{ flex: 1 }}>
-                <h4 style={{ margin: 0, fontSize: "18px", fontWeight: 800, color: "#ffffff", fontFamily: H }}>{off.title}</h4>
-                <p style={{ margin: "4px 0 14px", fontSize: "12px", color: "rgba(255,255,255,0.85)", fontWeight: 500, lineHeight: "1.3" }}>{off.desc}</p>
-                <div style={{ display: "inline-block", padding: "8px 16px", borderRadius: "8px", background: "#ffffff", fontWeight: 900, color: off.color, fontSize: "13px", letterSpacing: "1.5px", boxShadow: "0 4px 10px rgba(0,0,0,0.08)" }}>
-                  {off.code}
-                </div>
-              </div>
-            </motion.div>
+            <OfferCard key={off.id} off={off} />
           ))}
         </div>
       </div>
