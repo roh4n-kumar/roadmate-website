@@ -130,13 +130,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     return () => unsub();
   }, []);
 
-  const offers = [
-    { id: 1, icon: <FaGift />, title: "First Ride Offer", desc: "20% OFF on your first booking", code: "FIRST20", color: RED, colorDark: "#990a0a" },
-    { id: 2, icon: <FaCreditCard />, title: "HDFC Bank Offer", desc: "10% Instant Discount on CC", code: "HDFC10", color: "#004c8f", colorDark: "#003366" },
-    { id: 3, icon: <FaIdCard />, title: "ICICI Bank Offer", desc: "Flat ₹200 OFF on Debit Cards", code: "ICICI200", color: "#f58120", colorDark: "#d16c1a" },
-    { id: 4, icon: <FaSun />, title: "Weekend Special", desc: "₹1000 OFF on 3+ day trips", code: "WEEKEND1000", color: "#059669", colorDark: "#065f46" }
-  ];
-
   const formatPrettyDate = (d) => {
     const day   = d.getDate().toString().padStart(2, "0");
     const month = d.toLocaleString("en-US", { month: "short" });
@@ -186,119 +179,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     </svg>
   );
 
-  const CardChip = () => (
-    <svg width="48" height="36" viewBox="0 0 48 36" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.3))" }}>
-      <rect width="48" height="36" rx="6" fill="url(#chipGrad)" />
-      <path d="M0 12H14M0 24H14M34 12H48M34 24H48M14 0V36M34 0V36" stroke="rgba(0,0,0,0.2)" strokeWidth="1" />
-      <rect x="18" y="10" width="12" height="16" rx="2" stroke="rgba(0,0,0,0.3)" strokeWidth="1.5" />
-      <defs>
-        <linearGradient id="chipGrad" x1="0" y1="0" x2="48" y2="36" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#FFE47A" />
-          <stop offset="0.45" stopColor="#D4AF37" />
-          <stop offset="0.55" stopColor="#A67C00" />
-          <stop offset="1" stopColor="#FFD700" />
-        </linearGradient>
-      </defs>
-    </svg>
-  );
-
-  const ContactlessIcon = () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6">
-      <path d="M5 8c2.5-2.5 5.5-2.5 8 0" />
-      <path d="M3 5c4.5-4.5 9.5-4.5 14 0" />
-      <path d="M7 11c1.5-1.5 3.5-1.5 5 0" />
-      <circle cx="12" cy="18" r="1" fill="currentColor" />
-    </svg>
-  );
-
-  const OfferCard = ({ off }) => {
-    const [rotate, setRotate] = useState({ x: 0, y: 0 });
-    const [glare, setGlare] = useState({ x: 50, y: 50 });
-
-    const handleMouseMove = (e) => {
-      const card = e.currentTarget.getBoundingClientRect();
-      const x = e.clientX - card.left;
-      const y = e.clientY - card.top;
-      const centerX = card.width / 2;
-      const centerY = card.height / 2;
-      
-      setRotate({
-        x: (y - centerY) / 8,
-        y: -(x - centerX) / 8
-      });
-
-      setGlare({
-        x: (x / card.width) * 100,
-        y: (y / card.height) * 100
-      });
-    };
-
-    const handleMouseLeave = () => {
-      setRotate({ x: 0, y: 0 });
-    };
-
-    return (
-      <motion.div
-        className="offer-card"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        animate={{ rotateX: rotate.x, rotateY: rotate.y }}
-        transition={{ type: "spring", stiffness: 200, damping: 20 }}
-        style={{ 
-          background: `linear-gradient(135deg, ${off.color} 0%, ${off.colorDark} 100%)`, 
-          "--x": `${glare.x}%`,
-          "--y": `${glare.y}%`
-        }}
-      >
-        <div className="card-glare" />
-        <div className="card-noise" />
-        
-        {/* Top Row: Chip and Contactless */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", zIndex: 3 }}>
-          <CardChip />
-          <ContactlessIcon />
-        </div>
-
-        {/* Middle Row: Content */}
-        <div style={{ zIndex: 3 }}>
-          <h4 style={{ margin: 0, fontSize: "22px", fontWeight: 800, color: "#ffffff", fontFamily: H }}>
-            {off.title}
-          </h4>
-          <p style={{ margin: "6px 0 0", fontSize: "14px", color: "rgba(255,255,255,0.8)", fontWeight: 500, lineHeight: "1.4" }}>
-            {off.desc}
-          </p>
-        </div>
-
-        {/* Bottom Row: Icon and Code */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", zIndex: 3 }}>
-          <div style={{ fontSize: "28px", opacity: 0.8, color: "rgba(255,255,255,0.9)" }}>
-            {off.icon}
-          </div>
-          <div style={{ textAlign: "right" }}>
-            <span style={{ display: "block", fontSize: "10px", textTransform: "uppercase", letterSpacing: "1px", opacity: 0.6, marginBottom: "4px" }}>
-              Promo Code
-            </span>
-            <div className="card-monaco" style={{ 
-              background: "rgba(255,255,255,0.15)", 
-              backdropFilter: "blur(10px)",
-              padding: "8px 16px", 
-              borderRadius: "12px", 
-              fontSize: "16px",
-              border: "1px solid rgba(255,255,255,0.2)"
-            }}>
-              {off.code}
-            </div>
-          </div>
-        </div>
-
-        {/* Subtle Brand Watermark */}
-        <div style={{ position: "absolute", bottom: "10%", right: "35%", fontSize: "40px", fontWeight: 900, opacity: 0.03, pointerEvents: "none", whiteSpace: "nowrap", transform: "rotate(-10deg)" }}>
-          ROADMATE
-        </div>
-      </motion.div>
-    );
-  };
-
   const IconCharges = () => (
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -307,15 +187,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           <stop offset="100%" stopColor="#d97706" />
         </linearGradient>
       </defs>
-      {/* Dynamic Stack Effect */}
       <circle cx="12" cy="14" r="8" fill="#d97706" opacity="0.4" />
       <circle cx="12" cy="12" r="9" fill="url(#gradC)" />
-      {/* Inner detail */}
       <circle cx="12" cy="12" r="7" stroke="#fff" strokeWidth="1" strokeDasharray="2 2" opacity="0.3" />
-      {/* Dollar Sign */}
       <path d="M12 7V17" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
       <path d="M14.5 9.5H11C10.1716 9.5 9.5 10.1716 9.5 11C9.5 11.8284 10.1716 12.5 11 12.5H13C13.8284 12.5 14.5 13.1716 14.5 14C14.5 14.8284 13.8284 15.5 13 15.5H9.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-      {/* Sparkle */}
       <circle cx="17" cy="7" r="1.5" fill="#fff" opacity="0.8" />
     </svg>
   );
@@ -347,16 +223,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           <stop offset="100%" stopColor="#f97316" />
         </linearGradient>
       </defs>
-      {/* Flame */}
       <path d="M12 18C12 18 10 20 10 22C10 24 12 24 12 24C12 24 14 24 14 22C14 20 12 18 12 18Z" fill="url(#gradFlame)" />
-      {/* Rocket Body */}
       <path d="M12 2C12 2 7 6 7 12V17H17V12C17 6 12 2 12 2Z" fill="url(#gradR)" />
-      {/* Fins */}
       <path d="M7 14L4 18V20H7V17" fill="#991b1b" />
       <path d="M17 14L20 18V20H17V17" fill="#991b1b" />
-      {/* Window */}
       <circle cx="12" cy="8" r="2" fill="#fff" opacity="0.3" stroke="#fff" strokeWidth="1" />
-      {/* Nose cone point */}
       <path d="M11 4L12 2L13 4" fill="#fff" opacity="0.2" />
     </svg>
   );
@@ -380,7 +251,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .hero-section { font-family: 'Outfit', sans-serif; background: #fff; overflow: visible; }
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .offer-card:hover { transform: translateY(-5px); border-color: currentColor !important; }
 
     .search-ribbon {
       background: linear-gradient(180deg, #111 0%, #0f172a 100%);
@@ -402,14 +272,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       -webkit-backdrop-filter: blur(40px);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 28px;
-      padding: 40px 40px 60px; /* Extra bottom padding to clear the button */
+      padding: 40px 40px 60px;
       display: flex;
       align-items: flex-end;
       gap: 0;
       box-shadow: 0 40px 100px rgba(0,0,0,0.5);
       position: relative;
       z-index: 100;
-      margin-bottom: 40px; /* Give space for half-button hanging below */
+      margin-bottom: 40px;
     }
 
     .search-field { 
@@ -459,7 +329,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       position: absolute;
       bottom: 0;
       left: 50%;
-      transform: translate(-50%, 50%); /* Centered on the bottom edge */
+      transform: translate(-50%, 50%);
       z-index: 150;
       white-space: nowrap;
     }
@@ -488,8 +358,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       filter: brightness(1.1);
     }
     .search-btn:active { transform: translateY(0) scale(0.98); }
-
-
 
     .date-sub-row { display: flex; gap: 10px; align-items: center; }
     .date-trigger { flex: 1; }
@@ -546,12 +414,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       border: 1px solid #f0f0f0; 
       z-index: 9999; 
     }
-
-
-    .offer-section { padding: 100px 40px 60px; background: #fff; }
-    .offer-inner { max-width: 1250px; margin: 0 auto; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.08); transition: transform 0.4s; }
-    .offer-inner:hover { transform: scale(1.01); }
-    .offer-inner img { width: 100%; height: auto; display: block; }
 
     .why-section { padding: 40px 40px 100px; background: #fff; }
     .why-inner { max-width: 1250px; margin: 0 auto; }
@@ -661,15 +523,12 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .search-btn { width: 100%; justify-content: center; border-radius: 16px; height: 56px; }
       .search-btn:hover { transform: none; }
       
-      
-      .offer-section { padding: 180px 20px 40px; }
       .why-section { padding: 40px 20px 60px; }
       .features-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
       .how-section { padding: 40px 20px 60px; }
       .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
       .steps-grid-connector { display: none; }
       
-      .hero-banner { display: block !important; }
       .hero-section { margin-top: 56px !important; }
       .search-ribbon { padding-top: 30px !important; }
     }
@@ -678,91 +537,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .features-grid { grid-template-columns: 1fr; }
       .steps-grid { grid-template-columns: 1fr; }
       .section-title { font-size: 26px; }
-      .stat-item { width: 45%; justify-content: center; }
     }
-
-    @media (max-width: 900px) {
-      .search-ribbon { padding: 20px 20px 60px; }
-      .search-inner { flex-direction: column; gap: 10px; align-items: stretch; }
-      .search-field { flex: none; border-right: none !important; padding-right: 0 !important; margin-right: 0 !important; }
-      .search-btn { width: 100%; justify-content: center; border-radius: 14px; height: 50px; }
-      .search-btn:hover { transform: none; }
-      .offer-section { padding: 40px 20px 30px; }
-      .why-section { padding: 20px 20px 50px; }
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
-      .how-section { padding: 30px 20px 50px; }
-      .steps-grid { grid-template-columns: repeat(2, 1fr); }
-      .steps-grid::before { display: none; }
-      .cal-popup { left: 0; right: 0; width: auto !important; }
-      .hero-banner { display: none !important; }
-      .hero-section { margin-top: 56px !important; padding-bottom: 70px; }
-      .search-ribbon { padding-top: 16px !important; }
-    }
-
-    @media (max-width: 540px) {
-      .features-grid { grid-template-columns: 1fr; }
-      .steps-grid { grid-template-columns: 1fr; }
-      .stat-divider { display: none; }
-      .stats-inner { gap: 16px; }
-      .section-title { font-size: 22px; }
-    }
-
-    .offers-grid { 
-      display: grid; 
-      grid-template-columns: repeat(3, 1fr); 
-      gap: 30px; 
-      margin-top: 40px;
-    }
-    @media (max-width: 1100px) {
-      .offers-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 650px) {
-      .offers-grid { grid-template-columns: 1fr; gap: 20px; }
-    }
-
-    .offer-card {
-      position: relative;
-      background: #111;
-      border-radius: 24px;
-      overflow: hidden;
-      aspect-ratio: 1.586 / 1;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: #fff;
-      padding: 32px;
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      transition: box-shadow 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    .offer-card:hover {
-      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
-    }
-
-    .card-glare {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.15) 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    .card-noise {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      opacity: 0.05;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    }
-
-    .card-monaco {
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      letter-spacing: 2px;
-      font-weight: 700;
-    }
-  `;
+  \`;
 
   const CalIcon = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -810,7 +586,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               {showVehiclePopup && (
                 <div className="v-dropdown">
                   {["Bike","Car"].map(v => (
-                    <div key={v} className={`v-option${formData.vehicle===v?" active":""}`}
+                    <div key={v} className={`v-option\${formData.vehicle===v?" active":""}`}
                       onClick={e => { e.stopPropagation(); setFormData(p=>({...p,vehicle:v})); setShowVehiclePopup(false); }}>
                       {v}
                     </div>
@@ -884,29 +660,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               </button>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Offers Section */}
-      <div style={{ padding: "60px 24px 20px", maxWidth: "1400px", margin: "0 auto", position: "relative", zIndex: 10 }}>
-        {/* Offers Pill and Heading */}
-        <div style={{ marginBottom: "30px", marginLeft: "10px" }}>
-          <span style={{ 
-            color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "6px 16px", borderRadius: "100px", 
-            fontWeight: 800, textTransform: "uppercase", fontSize: "11px", letterSpacing: "1.2px", display: "inline-block",
-            marginBottom: "12px"
-          }}>
-            Offers
-          </span>
-          <h2 style={{ fontSize: "32px", fontWeight: 900, fontFamily: H, margin: 0, color: "#0f172a" }}>
-            Offers For You
-          </h2>
-        </div>
-
-        <div className="offers-grid">
-          {offers.map((off) => (
-            <OfferCard key={off.id} off={off} />
-          ))}
         </div>
       </div>
 
