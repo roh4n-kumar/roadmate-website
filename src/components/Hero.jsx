@@ -538,7 +538,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .steps-grid { grid-template-columns: 1fr; }
       .section-title { font-size: 26px; }
     }
-  \`;
+  `;
 
   const CalIcon = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -586,7 +586,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               {showVehiclePopup && (
                 <div className="v-dropdown">
                   {["Bike","Car"].map(v => (
-                    <div key={v} className={`v-option\${formData.vehicle===v?" active":""}`}
+                    <div key={v} className={`v-option ${formData.vehicle===v?" active":""}`}
                       onClick={e => { e.stopPropagation(); setFormData(p=>({...p,vehicle:v})); setShowVehiclePopup(false); }}>
                       {v}
                     </div>
