@@ -165,6 +165,10 @@ const Offers = () => {
       {/* 5-Card 3D Stack Carousel */}
       <style>
         {`
+          .offers-slider-section {
+            background-color: #ffffff;
+            background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%230f172a' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M10 20c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v6h-16v-6zm2 10h12v4h-12v-4zM80 60c0-1.1.9-2 2-2h8c1.1 0 2 .9 2 2v20c0 1.1-.9 2-2 2h-8a2 2 0 0 1-2-2v-20zM30 90h10v10h-10z' /%3E%3Ccircle cx='50' cy='30' r='2' /%3E%3Ccircle cx='100' cy='10' r='3' /%3E%3Cpath d='M95 95a5 5 0 1 1-10 0 5 5 0 0 1 10 0z' /%3E%3Cpath d='M20 50l10-10 10 10-10 10-10-10z' /%3E%3Cpath d='M60 10l5 5-5 5-5-5 5-5z' /%3E%3C/g%3E%3C/svg%3E");
+          }
           .card-glass {
             position: absolute; top: 0; left: 0; right: 0; height: 100%;
             background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 40%, rgba(255,255,255,0.1) 100%);
