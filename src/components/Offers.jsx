@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const RED = "#be0d0d";
 const NAVY = "#0f172a"; 
@@ -89,6 +90,7 @@ const offersData = [
 
 const Offers = () => {
   const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -163,52 +165,66 @@ const Offers = () => {
       id="offers-slider"
       className="offers-slider-section" 
       style={{ 
-        padding: "40px 20px 80px", 
+        padding: "80px 24px 100px", 
         background: "#ffffff", 
         overflow: "visible", 
         position: "relative",
-        zIndex: 10
+        zIndex: 10,
+        maxWidth: "1250px",
+        margin: "0 auto"
       }}
     >
       <style>
         {`
-          .off-tab:hover { background: rgba(15,23,42,0.1) !important; transform: translateY(-2px); }
-          .off-active { box-shadow: 0 10px 25px rgba(190,13,13,0.3) !important; }
           .card-glass {
             position: absolute; top: 0; left: 0; right: 0; height: 100%;
             background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 40%, rgba(255,255,255,0.1) 100%);
             pointer-events: none;
           }
+          .view-all-btn {
+            padding: 12px 24px; borderRadius: 12px; background: rgba(15,23,42,0.05);
+            border: none; fontWeight: 700; cursor: pointer; transition: all 0.2s;
+            fontFamily: ${F};
+          }
+          .view-all-btn:hover { background: rgba(15,23,42,0.1); transform: translateX(5px); }
         `}
       </style>
 
-      {/* Tabs / Selection - Centered like mockup */}
-      <div style={{ maxWidth: "1250px", margin: "0 auto", textAlign: "center", marginBottom: "50px" }}>
-        <div style={{ display: "inline-flex", background: "rgba(15,23,42,0.04)", padding: "5px", borderRadius: "100px", gap: "5px", flexWrap: "wrap", justifyContent: "center" }}>
-          {offersData.map((off, i) => (
-            <button
-              key={off.id}
-              onClick={() => setIndex(i)}
-              className={`off-tab ${index === i ? "off-active" : ""}`}
-              style={{
-                padding: "8px 20px",
-                borderRadius: "100px",
-                border: "none",
-                background: index === i ? RED : "transparent",
-                color: index === i ? "#fff" : "#111",
-                fontSize: "13px",
-                fontWeight: 700,
-                cursor: "pointer",
-                transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-                fontFamily: H,
-                textTransform: "uppercase",
-                letterSpacing: "0.5px"
-              }}
-            >
-              {off.subtitle}
-            </button>
-          ))}
+      {/* NEW HEADER SECTION */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "50px" }}>
+        <div>
+          <span style={{ 
+            color: RED, 
+            background: "rgba(190, 13, 13, 0.08)", 
+            padding: "8px 20px", 
+            borderRadius: "100px", 
+            fontWeight: 800, 
+            textTransform: "uppercase", 
+            fontSize: "12px", 
+            letterSpacing: "1.5px", 
+            display: "inline-block",
+            fontFamily: F
+          }}>
+            Offers For You
+          </span>
+          <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, marginTop: "10px", margin: "10px 0 0" }}>Exclusive Deals</h2>
         </div>
+        <button 
+          onClick={() => navigate("/offers")} 
+          className="view-all-btn"
+          style={{
+            padding: "12px 24px",
+            borderRadius: "12px",
+            background: "rgba(15,23,42,0.05)",
+            border: "none",
+            fontWeight: 700,
+            cursor: "pointer",
+            transition: "all 0.2s",
+            fontFamily: F
+          }}
+        >
+          View All Offers →
+        </button>
       </div>
 
       {/* 5-Card 3D Stack Carousel */}
@@ -218,9 +234,9 @@ const Offers = () => {
         display: "flex", 
         alignItems: "center", 
         justifyContent: "center",
-        perspective: "1500px", // Enhanced depth
+        perspective: "1500px", 
         margin: "0 auto",
-        maxWidth: "1400px"
+        width: "100%"
       }}>
         <AnimatePresence mode="popLayout">
           {offersData.map((off, i) => {
