@@ -5,6 +5,7 @@ import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { motion } from "framer-motion";
 import { FaGift, FaCreditCard, FaIdCard, FaSun } from "react-icons/fa";
+import Offers from "./Offers";
 
 const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
@@ -661,6 +662,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div style={{ position: "relative", zIndex: 10, marginTop: "-50px" }}>
+        <Offers />
       </div>
 
       {/* WHY CHOOSE US */}

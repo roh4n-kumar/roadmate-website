@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { db } from "../firebase";
 import { collection, query, limit, onSnapshot } from "firebase/firestore";
 import Hero from "../components/Hero";
@@ -12,23 +12,32 @@ const RED = "#be0d0d";
 const H = "'Outfit', sans-serif";
 const F = "'Inter', sans-serif";
 
-// FEATURED_VEHICLES constant removed in favor of dynamic fetch
-
-
-
 const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [featuredVehicles, setFeaturedVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const params = new URLSearchParams(location.search);
+    if (params.get("scroll") === "offers") {
+      setTimeout(() => {
+        const el = document.getElementById("offers-slider");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          // Optional: clear the query param after scrolling
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+      }, 800);
+    } else {
+      window.scrollTo(0, 0);
+    }
+
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
 
     // Dynamic sync with Firestore 'vehicles' collection
-    // Fetching top 6 vehicles from the fleet as requested
     const q = query(
       collection(db, "vehicles"),
       limit(6)
@@ -40,8 +49,8 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
         return {
           id: d.id,
           name: data.name,
-          type: data.category, // Map 'category' to 'type' for UI consistency
-          price: data.pricePerHour, // Map 'pricePerHour' to 'price' for UI consistency
+          type: data.category,
+          price: data.pricePerHour,
           image: data.image,
           rating: data.rating || 4.5
         };
@@ -51,7 +60,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
     });
 
     return () => unsub();
-  }, []);
+  }, [location]);
 
   return (
     <div className="home-container" style={{ overflowX: "hidden", background: "#fff" }}>
@@ -134,8 +143,6 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
       </section>
 
-
-
       {/* Experience / App Section */}
       <section style={{ background: "#fafafa", padding: "100px 24px", overflow: "hidden", position: "relative" }}>
         <div style={{ maxWidth: "1250px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px", alignItems: "center" }}>
@@ -167,8 +174,6 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
           </motion.div>
         </div>
       </section>
-
-
 
       {/* Network Map Section */}
       <MapSection />
