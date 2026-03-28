@@ -664,9 +664,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
       </div>
 
-      <div style={{ position: "relative", zIndex: 10, marginTop: "-10px" }}>
-        <Offers />
-      </div>
 
       {/* WHY CHOOSE US */}
       <div className="why-section" style={{ paddingTop: "80px" }}>
