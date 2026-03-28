@@ -165,7 +165,7 @@ const Offers = () => {
       id="offers-slider"
       className="offers-slider-section" 
       style={{ 
-        padding: "80px 24px 100px", 
+        padding: "100px 24px", // Matched with Home.jsx sections
         background: "#ffffff", 
         overflow: "visible", 
         position: "relative",
@@ -190,32 +190,29 @@ const Offers = () => {
         `}
       </style>
 
-      {/* MATCHED HEADER SECTION */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "60px" }}>
+      {/* EXACT MATCHED HEADER FROM HOME.JSX (FEATURED FLEET SECTION) */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "50px" }}>
         <div>
           <span style={{ 
-            display: "inline-block", 
-            background: "#fff0f0", // Exact match from Hero.jsx
             color: RED, 
-            fontSize: "12px", 
+            background: "rgba(190, 13, 13, 0.08)", // Exact matching Home.jsx transparency
+            padding: "8px 20px", 
+            borderRadius: "100px", 
             fontWeight: 800, 
             textTransform: "uppercase", 
-            letterSpacing: "2px", 
-            padding: "8px 18px", 
-            borderRadius: "99px", 
-            marginBottom: "18px",
+            fontSize: "12px", 
+            letterSpacing: "1.5px", // Exact match from Home.jsx inline style
+            display: "inline-block",
             fontFamily: F
           }}>
             Offers For You
           </span>
           <h2 style={{ 
-            fontSize: "clamp(28px, 4vw, 44px)", // Exact match from Hero.jsx
+            fontSize: "clamp(32px, 4vw, 48px)", // Exact matching Home.jsx title clamp
             fontWeight: 900, 
-            color: "#111", 
-            margin: "0", 
-            lineHeight: 1.1, 
-            letterSpacing: "-0.5px",
-            fontFamily: H 
+            fontFamily: H, 
+            color: "#0f172a", // Exact match for deep navy headings
+            marginTop: "10px" 
           }}>
             Exclusive Deals
           </h2>
