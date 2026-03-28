@@ -255,7 +255,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .search-ribbon {
       background: linear-gradient(180deg, #111 0%, #0f172a 100%);
-      padding: 60px 40px 40px;
+      padding: 60px 40px 80px;
       position: relative;
       overflow: visible;
       border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -664,7 +664,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
       </div>
 
-      <div style={{ position: "relative", zIndex: 10, marginTop: "-50px" }}>
+      <div style={{ position: "relative", zIndex: 10, marginTop: "-10px" }}>
         <Offers />
       </div>
 
