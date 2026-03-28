@@ -1,15 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 100">
-  <!-- RuPay Wordmark - Hand-optimized for authentic look -->
-  <g transform="skewX(-12)">
-    <text x="10" y="70" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="72" fill="#ffffff" letter-spacing="-2">RuPay</text>
+  <!-- RuPay Wordmark - Standardized slant -->
+  <g transform="skewX(-15)">
+    <text x="10" y="72" font-family="'Inter', Arial, sans-serif" font-weight="900" font-size="74" fill="#ffffff" letter-spacing="-2.5">RuPay</text>
   </g>
 
-  <!-- Official RuPay Double Chevron Arrowhead -->
-  <!-- This is the 'Double Arrow' made of two layered chevron segments -->
-  <g transform="translate(260, 15) skewX(-12)">
-    <!-- Back Layer (Orange/Saffron) -->
-    <path d="M0,5 L25,40 L0,75 L15,75 L40,40 L15,5 Z" fill="#F37021" />
-    <!-- Front Layer (Green) -->
-    <path d="M20,5 L45,40 L20,75 L35,75 L60,40 L35,5 Z" fill="#097A3A" />
+  <!-- Official Solid Double-Arrowhead -->
+  <g transform="translate(255, 18) skewX(-15)">
+    <!-- Orange Saffron Arrowhead (Solid) -->
+    <path d="M0,0 L35,32 L0,64 L15,32 Z" fill="#F37021" />
+    <!-- Green Arrowhead (Solid) -->
+    <path d="M22,0 L57,32 L22,64 L37,32 Z" fill="#097A3A" />
   </g>
 </svg>
