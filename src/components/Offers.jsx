@@ -160,6 +160,73 @@ const Offers = () => {
     },
   };
 
+  /* Doodle SVG icons — large, scattered, behind cards */
+  const doodleColor = "rgba(190, 13, 13, 0.07)";
+  const doodleStroke = 1.5;
+
+  const DoodleCar = ({ style }) => (
+    <svg style={{ position: "absolute", pointerEvents: "none", ...style }} width="140" height="60" viewBox="0 0 140 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 40h12l4-8h14l6-12h48l6 12h14l4 8h12v6H10v-6z" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinejoin="round" strokeLinecap="round"/>
+      <path d="M42 20h56" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinecap="round"/>
+      <path d="M52 20v-8c0-2 2-4 4-4h28c2 0 4 2 4 4v8" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinejoin="round"/>
+      <circle cx="35" cy="48" r="8" stroke={doodleColor} strokeWidth={doodleStroke}/>
+      <circle cx="35" cy="48" r="3" stroke={doodleColor} strokeWidth={doodleStroke}/>
+      <circle cx="105" cy="48" r="8" stroke={doodleColor} strokeWidth={doodleStroke}/>
+      <circle cx="105" cy="48" r="3" stroke={doodleColor} strokeWidth={doodleStroke}/>
+      <path d="M62 32h16" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinecap="round"/>
+      <path d="M18 36h8" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinecap="round"/>
+      <path d="M114 36h8" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinecap="round"/>
+    </svg>
+  );
+
+  const DoodleBike = ({ style }) => (
+    <svg style={{ position: "absolute", pointerEvents: "none", ...style }} width="120" height="80" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="25" cy="58" r="18" stroke={doodleColor} strokeWidth={doodleStroke}/>
+      <circle cx="25" cy="58" r="6" stroke={doodleColor} strokeWidth={doodleStroke}/>
+      <circle cx="95" cy="58" r="18" stroke={doodleColor} strokeWidth={doodleStroke}/>
+      <circle cx="95" cy="58" r="6" stroke={doodleColor} strokeWidth={doodleStroke}/>
+      <path d="M25 58l20-30h20l10-18" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinejoin="round" strokeLinecap="round"/>
+      <path d="M45 28l30 0l20 30" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinejoin="round" strokeLinecap="round"/>
+      <path d="M55 28l-5 14h20l5-14" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinejoin="round"/>
+      <path d="M75 10l-8 0l3-6h10l-2 6" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinejoin="round" strokeLinecap="round"/>
+      <circle cx="50" cy="42" r="2" fill={doodleColor}/>
+    </svg>
+  );
+
+  const DoodleKey = ({ style }) => (
+    <svg style={{ position: "absolute", pointerEvents: "none", ...style }} width="60" height="30" viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="15" r="10" stroke={doodleColor} strokeWidth={doodleStroke}/>
+      <circle cx="12" cy="15" r="4" stroke={doodleColor} strokeWidth={doodleStroke}/>
+      <path d="M22 15h32" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinecap="round"/>
+      <path d="M44 15v8" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinecap="round"/>
+      <path d="M50 15v6" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinecap="round"/>
+    </svg>
+  );
+
+  const DoodleMapPin = ({ style }) => (
+    <svg style={{ position: "absolute", pointerEvents: "none", ...style }} width="36" height="50" viewBox="0 0 36 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 46s-14-16-14-28a14 14 0 1 1 28 0c0 12-14 28-14 28z" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinejoin="round"/>
+      <circle cx="18" cy="18" r="6" stroke={doodleColor} strokeWidth={doodleStroke}/>
+    </svg>
+  );
+
+  const DoodleSteering = ({ style }) => (
+    <svg style={{ position: "absolute", pointerEvents: "none", ...style }} width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="30" r="26" stroke={doodleColor} strokeWidth={doodleStroke}/>
+      <circle cx="30" cy="30" r="8" stroke={doodleColor} strokeWidth={doodleStroke}/>
+      <path d="M30 22v-18" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinecap="round"/>
+      <path d="M23 36l-14 10" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinecap="round"/>
+      <path d="M37 36l14 10" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinecap="round"/>
+    </svg>
+  );
+
+  const DoodleRoad = ({ style }) => (
+    <svg style={{ position: "absolute", pointerEvents: "none", ...style }} width="200" height="100" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 80 C40 80, 40 20, 80 20 S120 80, 160 80 S200 20, 200 20" stroke={doodleColor} strokeWidth={doodleStroke} strokeLinecap="round" strokeDasharray="8 6"/>
+      <polygon points="195,16 200,20 195,24" fill={doodleColor}/>
+    </svg>
+  );
+
   return (
     <section 
       id="offers-slider" 
@@ -169,19 +236,38 @@ const Offers = () => {
         maxWidth: "1250px", 
         margin: "0 auto", 
         position: "relative", 
-        overflow: "visible", 
-        zIndex: 10 
+        overflow: "hidden", 
+        zIndex: 10,
+        background: "#ffffff"
       }}
     >
-      {/* 5-Card 3D Stack Carousel */}
+      {/* === DOODLE LAYER — sits behind everything === */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 0, overflow: "hidden", pointerEvents: "none" }}>
+        {/* Top-left area */}
+        <DoodleCar style={{ top: "8%", left: "2%", transform: "rotate(-8deg)" }} />
+        <DoodleMapPin style={{ top: "5%", left: "32%", transform: "rotate(10deg)" }} />
+        <DoodleKey style={{ top: "18%", right: "8%", transform: "rotate(-12deg)" }} />
+        
+        {/* Middle-left */}
+        <DoodleBike style={{ top: "38%", left: "-1%", transform: "rotate(5deg)" }} />
+        <DoodleSteering style={{ top: "32%", left: "28%", transform: "rotate(-15deg)" }} />
+        
+        {/* Middle-right */}
+        <DoodleSteering style={{ top: "35%", right: "5%", transform: "rotate(20deg)" }} />
+        <DoodleMapPin style={{ top: "50%", right: "18%", transform: "rotate(-8deg)" }} />
+        
+        {/* Bottom area */}
+        <DoodleCar style={{ bottom: "10%", right: "3%", transform: "rotate(6deg) scaleX(-1)" }} />
+        <DoodleBike style={{ bottom: "8%", left: "5%", transform: "rotate(-5deg) scaleX(-1)" }} />
+        <DoodleKey style={{ bottom: "20%", left: "38%", transform: "rotate(15deg)" }} />
+        
+        {/* Curvy road paths */}
+        <DoodleRoad style={{ top: "15%", left: "5%", transform: "rotate(-3deg)" }} />
+        <DoodleRoad style={{ bottom: "18%", right: "2%", transform: "rotate(5deg) scaleX(-1)" }} />
+      </div>
+
       <style>
         {`
-          .offers-slider-section {
-            background-color: #ffffff;
-            /* Stitch-Inspired Premium Automotive Doodle Pattern */
-            /* High-fidelity thin lines, luxury vehicle silhouettes, and journey paths */
-            background-image: url("data:image/svg+xml,%3Csvg width='240' height='240' viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23be0d0d' stroke-opacity='0.04' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Luxury Car --%3E%3Cpath d='M20 180h40l8-12h60l8 12h40v-20l-20-20h-100l-20 20v20z' /%3E%3Ccircle cx='45' cy='185' r='6' /%3E%3Ccircle cx='125' cy='185' r='6' /%3E%3C!-- Sport Bike --%3E%3Ccircle cx='180' cy='60' r='10' /%3E%3Ccircle cx='220' cy='60' r='10' /%3E%3Cpath d='M180 60l15-20h15l10 20' /%3E%3Cpath d='M195 40l5-10h10' /%3E%3C!-- Winding Travel Paths (Curly) --%3E%3Cpath d='M30 150c30-60 90-20 120-100' stroke-dasharray='4,8' /%3E%3Cpath d='M210 100c-40 50-80 10-140 80' stroke-dasharray='4,8' /%3E%3Cpath d='M50 40c60 20 20 80 150 120' stroke-dasharray='4,8' /%3E%3C!-- Decorative Arrows --%3E%3Cpolyline points='145 55 150 50 145 45' /%3E%3Cpolyline points='75 175 70 180 75 185' /%3E%3C!-- Map Pins --%3E%3Cpath d='M110 30c0 8-8 16-8 16s-8-8-8-16a8 8 0 1 1 16 0z' /%3E%3Ccircle cx='102' cy='30' r='2' /%3E%3Cpath d='M40 90c0 8-8 16-8 16s-8-8-8-16a8 8 0 1 1 16 0z' /%3E%3C/g%3E%3C/svg%3E");
-          }
           .card-glass {
             position: absolute; top: 0; left: 0; right: 0; height: 100%;
             background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 40%, rgba(255,255,255,0.1) 100%);
@@ -191,7 +277,7 @@ const Offers = () => {
       </style>
 
       {/* HEADER SECTION - 100% IDENTICAL TO USER SNIPPET */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "50px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "50px", position: "relative", zIndex: 2 }}>
         <div>
           <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Offers For You</span>
           <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, marginTop: "10px" }}>Exclusive Deals</h2>
@@ -209,7 +295,8 @@ const Offers = () => {
         justifyContent: "center",
         perspective: "1500px", 
         margin: "0 auto",
-        width: "100%"
+        width: "100%",
+        zIndex: 2
       }}>
         <AnimatePresence mode="popLayout">
           {offersData.map((off, i) => {
