@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60">
+  <!-- U shape -->
+  <path d="M10 8 L10 35 Q10 50 25 50 L30 50 Q45 50 45 35 L45 8" fill="none" stroke="#77787B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- P shape -->
+  <path d="M55 50 L55 8 L75 8 Q88 8 88 20 Q88 32 75 32 L55 32" fill="none" stroke="#77787B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- I shape -->
+  <line x1="98" y1="8" x2="98" y2="50" stroke="#77787B" stroke-width="10" stroke-linecap="round"/>
+  <!-- Arrow -->
+  <polygon points="120,15 145,30 120,45" fill="#F37021"/>
+  <polygon points="108,22 128,30 108,38" fill="#3EAB4E"/>
+</svg>

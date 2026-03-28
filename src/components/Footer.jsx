@@ -149,30 +149,11 @@ const Footer = () => {
           <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", fontWeight: 500 }}>
             © {new Date().getFullYear()} RoadMate Technologies Pvt Ltd. All rights reserved.
           </p>
-          <div style={{ display: "flex", gap: "22px", alignItems: "center" }}>
-            {/* VISA - Real logo */}
-            <svg width="60" height="20" viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg">
-              <path d="M23.64 1.27L15.53 18.73H10.18L6.18 4.82C5.94 3.89 5.73 3.55 5 3.16C3.8 2.53 1.87 1.94 0.18 1.58L0.3 1.27H8.53C9.56 1.27 10.47 1.95 10.69 3.13L12.7 13.67L17.94 1.27H23.64ZM42.18 12.87C42.2 8.27 35.73 7.99 35.77 5.93C35.78 5.3 36.38 4.63 37.7 4.46C38.35 4.38 40.12 4.32 42.12 5.24L42.92 1.72C41.85 1.33 40.49 0.95 38.82 0.95C33.44 0.95 29.62 3.83 29.59 7.92C29.55 10.93 32.28 12.59 34.35 13.59C36.48 14.6 37.18 15.27 37.17 16.17C37.16 17.56 35.5 18.19 33.94 18.22C31.65 18.26 30.33 17.59 29.27 17.08L28.44 20.71C29.52 21.21 31.52 21.65 33.6 21.67C39.32 21.67 43.07 18.83 42.18 12.87ZM55.09 18.73H60L55.73 1.27H51.38C50.47 1.27 49.7 1.81 49.35 2.65L41.35 18.73H47.06L48.18 15.67H55.09V18.73ZM49.67 11.87L52.53 4.07L54.19 11.87H49.67ZM33.73 1.27L29.18 18.73H23.73L28.27 1.27H33.73Z" fill="#1434CB" opacity="0.8"/>
-            </svg>
-            {/* Mastercard - Real logo */}
-            <svg width="44" height="28" viewBox="0 0 44 28" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="15" cy="12" r="11" fill="#EB001B" opacity="0.85"/>
-              <circle cx="29" cy="12" r="11" fill="#F79E1B" opacity="0.85"/>
-              <path d="M22 3.07A10.96 10.96 0 0 1 26 12 10.96 10.96 0 0 1 22 20.93 10.96 10.96 0 0 1 18 12 10.96 10.96 0 0 1 22 3.07z" fill="#FF5F00" opacity="0.9"/>
-              <text x="22" y="27" textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize="5" fontWeight="600" fontFamily="'Inter', sans-serif" letterSpacing="0.5">mastercard</text>
-            </svg>
-            {/* RuPay - Real logo */}
-            <svg width="65" height="22" viewBox="0 0 65 22" xmlns="http://www.w3.org/2000/svg">
-              <text x="0" y="18" fontSize="19" fontWeight="800" fontFamily="'Inter', sans-serif" fontStyle="italic" fill="rgba(255,255,255,0.7)" letterSpacing="-0.5">RuPay</text>
-              <path d="M56 6l6 5.5-6 5.5z" fill="#F37021" opacity="0.85"/>
-              <path d="M52 9l5 3-5 3z" fill="#3EAB4E" opacity="0.85"/>
-            </svg>
-            {/* UPI - Real logo */}
-            <svg width="50" height="22" viewBox="0 0 50 22" xmlns="http://www.w3.org/2000/svg">
-              <text x="0" y="18" fontSize="20" fontWeight="800" fontFamily="'Inter', sans-serif" fill="rgba(255,255,255,0.5)" letterSpacing="-0.5">UPI</text>
-              <path d="M40 5l7 6.5-7 6.5z" fill="#F37021" opacity="0.85"/>
-              <path d="M36 8l5.5 3.5-5.5 3.5z" fill="#3EAB4E" opacity="0.85"/>
-            </svg>
+          <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
+            <img src="/payment/visa.svg" alt="Visa" style={{ height: "18px", opacity: 0.6 }} />
+            <img src="/payment/mastercard.svg" alt="Mastercard" style={{ height: "28px", opacity: 0.7 }} />
+            <img src="/payment/rupay.svg" alt="RuPay" style={{ height: "20px", opacity: 0.7 }} />
+            <img src="/payment/upi.svg" alt="UPI" style={{ height: "22px", opacity: 0.7 }} />
           </div>
         </div>
       </div>
