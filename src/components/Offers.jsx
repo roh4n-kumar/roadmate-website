@@ -190,24 +190,35 @@ const Offers = () => {
         `}
       </style>
 
-      {/* NEW HEADER SECTION */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "50px" }}>
+      {/* MATCHED HEADER SECTION */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "60px" }}>
         <div>
           <span style={{ 
+            display: "inline-block", 
+            background: "#fff0f0", // Exact match from Hero.jsx
             color: RED, 
-            background: "rgba(190, 13, 13, 0.08)", 
-            padding: "8px 20px", 
-            borderRadius: "100px", 
+            fontSize: "12px", 
             fontWeight: 800, 
             textTransform: "uppercase", 
-            fontSize: "12px", 
-            letterSpacing: "1.5px", 
-            display: "inline-block",
+            letterSpacing: "2px", 
+            padding: "8px 18px", 
+            borderRadius: "99px", 
+            marginBottom: "18px",
             fontFamily: F
           }}>
             Offers For You
           </span>
-          <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, marginTop: "10px", margin: "10px 0 0" }}>Exclusive Deals</h2>
+          <h2 style={{ 
+            fontSize: "clamp(28px, 4vw, 44px)", // Exact match from Hero.jsx
+            fontWeight: 900, 
+            color: "#111", 
+            margin: "0", 
+            lineHeight: 1.1, 
+            letterSpacing: "-0.5px",
+            fontFamily: H 
+          }}>
+            Exclusive Deals
+          </h2>
         </div>
         <button 
           onClick={() => navigate("/offers")} 
