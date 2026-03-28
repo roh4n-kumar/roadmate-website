@@ -1,10 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 65">
-  <!-- RuPay text - bold italic white -->
-  <text x="5" y="50" font-size="52" font-weight="700" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-style="italic" fill="#ffffff" letter-spacing="-1">RuPay</text>
-  
-  <!-- Arrow chevron icon - right pointing, split orange/green -->
-  <!-- Orange top chevron half -->
-  <path d="M186,10 L208,33 L196,33 L174,10 Z" fill="#FF9933"/>
-  <!-- Green bottom chevron half -->
-  <path d="M174,56 L196,33 L208,33 L186,56 Z" fill="#138808"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 100">
+  <!-- RuPay Wordmark - Hand-optimized for authentic look -->
+  <g transform="skewX(-12)">
+    <text x="10" y="70" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="72" fill="#ffffff" letter-spacing="-2">RuPay</text>
+  </g>
+
+  <!-- Official RuPay Double Chevron Arrowhead -->
+  <!-- This is the 'Double Arrow' made of two layered chevron segments -->
+  <g transform="translate(260, 15) skewX(-12)">
+    <!-- Back Layer (Orange/Saffron) -->
+    <path d="M0,5 L25,40 L0,75 L15,75 L40,40 L15,5 Z" fill="#F37021" />
+    <!-- Front Layer (Green) -->
+    <path d="M20,5 L45,40 L20,75 L35,75 L60,40 L35,5 Z" fill="#097A3A" />
+  </g>
 </svg>
