@@ -255,7 +255,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .search-ribbon {
       background: linear-gradient(180deg, #111 0%, #0f172a 100%);
-      padding: 60px 40px 60px;
+      padding: 60px 40px 30px;
       position: relative;
       overflow: visible;
       border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -568,7 +568,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <style>{css}</style>
 
       {/* SEARCH RIBBON */}
-      <div className="search-ribbon" style={{ paddingTop: "60px", paddingBottom: "80px" }}>
+      <div className="search-ribbon" style={{ paddingTop: "60px", paddingBottom: "30px" }}>
         <div className="search-inner-wrapper">
           <div style={{ textAlign: "center", marginBottom: "50px" }}>
             <h1 style={{ fontSize: "clamp(34px, 5vw, 64px)", fontWeight: 900, color: "#fff", marginBottom: "15px", letterSpacing: "-2px" }}>
