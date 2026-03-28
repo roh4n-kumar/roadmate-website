@@ -161,19 +161,8 @@ const Offers = () => {
   };
 
   return (
-    <section 
-      id="offers-slider"
-      className="offers-slider-section" 
-      style={{ 
-        padding: "100px 24px", // Matched with Home.jsx sections
-        background: "#ffffff", 
-        overflow: "visible", 
-        position: "relative",
-        zIndex: 10,
-        maxWidth: "1250px",
-        margin: "0 auto"
-      }}
-    >
+    <section id="offers-slider" style={{ padding: "100px 24px", maxWidth: "1250px", margin: "0 auto", position: "relative", overflow: "visible", zIndex: 10 }}>
+      {/* 5-Card 3D Stack Carousel */}
       <style>
         {`
           .card-glass {
@@ -181,61 +170,20 @@ const Offers = () => {
             background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 40%, rgba(255,255,255,0.1) 100%);
             pointer-events: none;
           }
-          .view-all-btn {
-            padding: 12px 24px; borderRadius: 12px; background: rgba(15,23,42,0.05);
-            border: none; fontWeight: 700; cursor: pointer; transition: all 0.2s;
-            fontFamily: ${F};
-          }
-          .view-all-btn:hover { background: rgba(15,23,42,0.1); transform: translateX(5px); }
         `}
       </style>
 
-      {/* EXACT MATCHED HEADER FROM HOME.JSX (FEATURED FLEET SECTION) */}
+      {/* HEADER SECTION - 100% IDENTICAL TO USER SNIPPET */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "50px" }}>
         <div>
-          <span style={{ 
-            color: RED, 
-            background: "rgba(190, 13, 13, 0.08)", // Exact matching Home.jsx transparency
-            padding: "8px 20px", 
-            borderRadius: "100px", 
-            fontWeight: 800, 
-            textTransform: "uppercase", 
-            fontSize: "12px", 
-            letterSpacing: "1.5px", // Exact match from Home.jsx inline style
-            display: "inline-block",
-            fontFamily: F
-          }}>
-            Offers For You
-          </span>
-          <h2 style={{ 
-            fontSize: "clamp(32px, 4vw, 48px)", // Exact matching Home.jsx title clamp
-            fontWeight: 900, 
-            fontFamily: H, 
-            color: "#0f172a", // Exact match for deep navy headings
-            marginTop: "10px" 
-          }}>
-            Exclusive Deals
-          </h2>
+          <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Offers For You</span>
+          <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, marginTop: "10px" }}>Exclusive Deals</h2>
         </div>
-        <button 
-          onClick={() => navigate("/offers")} 
-          className="view-all-btn"
-          style={{
-            padding: "12px 24px",
-            borderRadius: "12px",
-            background: "rgba(15,23,42,0.05)",
-            border: "none",
-            fontWeight: 700,
-            cursor: "pointer",
-            transition: "all 0.2s",
-            fontFamily: F
-          }}
-        >
+        <button onClick={() => navigate("/offers")} style={{ padding: "12px 24px", borderRadius: "12px", background: "rgba(15,23,42,0.05)", border: "none", fontWeight: 700, cursor: "pointer", transition: "all 0.2s" }}>
           View All Offers →
         </button>
       </div>
 
-      {/* 5-Card 3D Stack Carousel */}
       <div style={{ 
         position: "relative", 
         height: "440px", 
