@@ -149,10 +149,37 @@ const Footer = () => {
           <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", fontWeight: 500 }}>
             © {new Date().getFullYear()} RoadMate Technologies Pvt Ltd. All rights reserved.
           </p>
-          <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-             <VisaIcon />
-             <MastercardIcon />
-             <UPIIcon />
+          <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+            {/* Visa */}
+            <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: "6px", padding: "6px 14px", display: "flex", alignItems: "center" }}>
+              <svg width="48" height="16" viewBox="0 0 48 16" xmlns="http://www.w3.org/2000/svg">
+                <text x="0" y="14" fill="#1a1f71" fontSize="18" fontWeight="800" fontFamily="'Inter', sans-serif" fontStyle="italic" opacity="0.9">VISA</text>
+              </svg>
+            </div>
+            {/* Mastercard */}
+            <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: "6px", padding: "6px 12px", display: "flex", alignItems: "center", gap: "6px" }}>
+              <svg width="28" height="18" viewBox="0 0 28 18" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="9" cy="9" r="9" fill="#EB001B" opacity="0.85"/>
+                <circle cx="19" cy="9" r="9" fill="#F79E1B" opacity="0.85"/>
+                <path d="M14 2.36A8.96 8.96 0 0 1 17.5 9 8.96 8.96 0 0 1 14 15.64 8.96 8.96 0 0 1 10.5 9 8.96 8.96 0 0 1 14 2.36z" fill="#FF5F00" opacity="0.9"/>
+              </svg>
+            </div>
+            {/* RuPay */}
+            <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: "6px", padding: "6px 12px", display: "flex", alignItems: "center" }}>
+              <svg width="52" height="16" viewBox="0 0 52 16" xmlns="http://www.w3.org/2000/svg">
+                <text x="0" y="13" fontSize="13" fontWeight="800" fontFamily="'Inter', sans-serif">
+                  <tspan fill="#3d7ab3">Ru</tspan><tspan fill="#f37021">Pay</tspan>
+                </text>
+              </svg>
+            </div>
+            {/* UPI */}
+            <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: "6px", padding: "6px 12px", display: "flex", alignItems: "center" }}>
+              <svg width="32" height="16" viewBox="0 0 32 16" xmlns="http://www.w3.org/2000/svg">
+                <text x="0" y="13" fontSize="13" fontWeight="800" fontFamily="'Inter', sans-serif">
+                  <tspan fill="#689f38">U</tspan><tspan fill="#689f38">P</tspan><tspan fill="#ef6c00">I</tspan>
+                </text>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
