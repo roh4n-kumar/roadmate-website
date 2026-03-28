@@ -125,7 +125,7 @@ const Offers = () => {
       scale: 0.85, 
       opacity: 0.6, 
       zIndex: 7, 
-      rotateY: 20,
+      rotateY: 0,
       filter: "blur(4px) brightness(0.85)",
     },
     right: { 
@@ -133,7 +133,7 @@ const Offers = () => {
       scale: 0.85, 
       opacity: 0.6, 
       zIndex: 7, 
-      rotateY: -20,
+      rotateY: 0,
       filter: "blur(4px) brightness(0.85)",
     },
     farLeft: { 
@@ -141,7 +141,7 @@ const Offers = () => {
       scale: 0.7, 
       opacity: 0.3, 
       zIndex: 5, 
-      rotateY: 35,
+      rotateY: 0,
       filter: "blur(8px) brightness(0.7)",
     },
     farRight: { 
@@ -149,7 +149,7 @@ const Offers = () => {
       scale: 0.7, 
       opacity: 0.3, 
       zIndex: 5, 
-      rotateY: -35,
+      rotateY: 0,
       filter: "blur(8px) brightness(0.7)",
     },
     hidden: { 
