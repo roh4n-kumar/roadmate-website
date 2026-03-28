@@ -1,11 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
-  <defs>
-    <linearGradient id="rg" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#fff"/>
-      <stop offset="100%" stop-color="#ddd"/>
-    </linearGradient>
-  </defs>
-  <text x="5" y="45" font-size="48" font-weight="800" font-family="Inter, Arial, sans-serif" font-style="italic" fill="url(#rg)" letter-spacing="-1">RuPay</text>
-  <polygon points="168,15 188,30 168,45" fill="#F37021"/>
-  <polygon points="158,22 173,30 158,38" fill="#3EAB4E"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70">
+  <!-- RuPay text - bold italic white -->
+  <text x="5" y="53" font-size="54" font-weight="800" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-style="italic" fill="#ffffff" letter-spacing="-1.5">RuPay</text>
+  
+  <!-- Arrow icon - two chevrons: orange top, green bottom -->
+  <!-- Orange arrow (top half) -->
+  <path d="M188,12 L210,35 L188,35 Z" fill="#F37021"/>
+  <path d="M198,12 L220,35 L198,35 Z" fill="#F37021"/>
+  
+  <!-- Green arrow (bottom half) -->  
+  <path d="M188,35 L210,58 L188,58 Z" fill="#128807"/>
+  <path d="M198,35 L220,58 L198,58 Z" fill="#3EAB4E"/>
 </svg>
