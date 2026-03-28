@@ -1,13 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 65">
   <!-- RuPay text - bold italic white -->
-  <text x="5" y="53" font-size="54" font-weight="800" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-style="italic" fill="#ffffff" letter-spacing="-1.5">RuPay</text>
+  <text x="5" y="50" font-size="52" font-weight="700" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-style="italic" fill="#ffffff" letter-spacing="-1">RuPay</text>
   
-  <!-- Arrow icon - two chevrons: orange top, green bottom -->
-  <!-- Orange arrow (top half) -->
-  <path d="M188,12 L210,35 L188,35 Z" fill="#F37021"/>
-  <path d="M198,12 L220,35 L198,35 Z" fill="#F37021"/>
-  
-  <!-- Green arrow (bottom half) -->  
-  <path d="M188,35 L210,58 L188,58 Z" fill="#128807"/>
-  <path d="M198,35 L220,58 L198,58 Z" fill="#3EAB4E"/>
+  <!-- Arrow chevron icon - right pointing, split orange/green -->
+  <!-- Orange top chevron half -->
+  <path d="M186,10 L208,33 L196,33 L174,10 Z" fill="#FF9933"/>
+  <!-- Green bottom chevron half -->
+  <path d="M174,56 L196,33 L208,33 L186,56 Z" fill="#138808"/>
 </svg>
