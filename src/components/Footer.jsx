@@ -150,7 +150,7 @@ const Footer = () => {
             © {new Date().getFullYear()} RoadMate Technologies Pvt Ltd. All rights reserved.
           </p>
           <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
-            <img src="/payment/visa.svg" alt="Visa" style={{ height: "18px", opacity: 0.6 }} />
+            <img src="/payment/visa.svg" alt="Visa" style={{ height: "24px", opacity: 0.7 }} />
             <img src="/payment/mastercard.svg" alt="Mastercard" style={{ height: "28px", opacity: 0.7 }} />
             <img src="/payment/rupay.svg" alt="RuPay" style={{ height: "20px", opacity: 0.7 }} />
             <img src="/payment/upi.svg" alt="UPI" style={{ height: "22px", opacity: 0.7 }} />
