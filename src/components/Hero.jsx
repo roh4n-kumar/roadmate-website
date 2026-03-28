@@ -664,7 +664,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
       </div>
 
-      <div style={{ position: "relative", zIndex: 10, marginTop: "-45px" }}>
+      <div style={{ position: "relative", zIndex: 10, marginTop: "-10px" }}>
         <Offers />
       </div>
 
