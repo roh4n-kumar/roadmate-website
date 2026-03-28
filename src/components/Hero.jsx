@@ -255,7 +255,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .search-ribbon {
       background: linear-gradient(180deg, #111 0%, #0f172a 100%);
-      padding: 60px 40px 120px;
+      padding: 60px 40px 60px;
       position: relative;
       overflow: visible;
       border-bottom: 1px solid rgba(255,255,255,0.05);
