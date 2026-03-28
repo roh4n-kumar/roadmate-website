@@ -123,40 +123,40 @@ const Offers = () => {
     left: { 
       x: "-55%", 
       scale: 0.85, 
-      opacity: 0.6, 
+      opacity: 1, 
       zIndex: 7, 
       rotateY: 0,
-      filter: "blur(4px) brightness(0.85)",
+      filter: "blur(4px) saturate(0.8) brightness(0.9)",
     },
     right: { 
       x: "55%", 
       scale: 0.85, 
-      opacity: 0.6, 
+      opacity: 1, 
       zIndex: 7, 
       rotateY: 0,
-      filter: "blur(4px) brightness(0.85)",
+      filter: "blur(4px) saturate(0.8) brightness(0.9)",
     },
     farLeft: { 
       x: "-100%", 
       scale: 0.7, 
-      opacity: 0.3, 
+      opacity: 1, 
       zIndex: 5, 
       rotateY: 0,
-      filter: "blur(8px) brightness(0.7)",
+      filter: "blur(12px) saturate(0.5) brightness(0.8)",
     },
     farRight: { 
       x: "100%", 
       scale: 0.7, 
-      opacity: 0.3, 
+      opacity: 1, 
       zIndex: 5, 
       rotateY: 0,
-      filter: "blur(8px) brightness(0.7)",
+      filter: "blur(12px) saturate(0.5) brightness(0.8)",
     },
     hidden: { 
       scale: 0.5, 
       opacity: 0, 
       zIndex: 0, 
-      filter: "blur(12px) brightness(0)",
+      filter: "blur(20px) brightness(0)",
     },
   };
 
@@ -178,8 +178,9 @@ const Offers = () => {
         {`
           .offers-slider-section {
             background-color: #ffffff;
-            /* Premium Red Doodle Background with curly arrows, cars, and bikes */
-            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23be0d0d' stroke-opacity='0.1' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Car --%3E%3Cpath d='M20 150h30l5-10h40l5 10h30v-15l-15-15h-70l-15 15v15z' /%3E%3Ccircle cx='40' cy='155' r='5' fill='%23be0d0d' fill-opacity='0.1' /%3E%3Ccircle cx='100' cy='155' r='5' fill='%23be0d0d' fill-opacity='0.1' /%3E%3C!-- Bike --%3E%3Cpath d='M150 50h20l5 10h-30l5-10z' /%3E%3Ccircle cx='145' cy='65' r='8' /%3E%3Ccircle cx='180' cy='65' r='8' /%3E%3Cpath d='M145 65l10-15h15l10 15' /%3E%3C!-- Curly Arrows/Paths --%3E%3Cpath d='M40 130c20-40 60-10 80-60' stroke-dasharray='4,6' /%3E%3Cpath d='M150 80c-30 40-70 10-100 60' stroke-dasharray='4,6' /%3E%3Cpolyline points='115 75 120 70 115 65' /%3E%3Cpolyline points='55 135 50 140 55 145' /%3E%3C!-- Pin --%3E%3Cpath d='M110 30c0 10-10 20-10 20s-10-10-10-20a10 10 0 1 1 20 0z' /%3E%3Ccircle cx='100' cy='30' r='3' /%3E%3C/g%3E%3C/svg%3E");
+            /* Stitch-Inspired Premium Automotive Doodle Pattern */
+            /* High-fidelity thin lines, luxury vehicle silhouettes, and journey paths */
+            background-image: url("data:image/svg+xml,%3Csvg width='240' height='240' viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23be0d0d' stroke-opacity='0.04' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Luxury Car --%3E%3Cpath d='M20 180h40l8-12h60l8 12h40v-20l-20-20h-100l-20 20v20z' /%3E%3Ccircle cx='45' cy='185' r='6' /%3E%3Ccircle cx='125' cy='185' r='6' /%3E%3C!-- Sport Bike --%3E%3Ccircle cx='180' cy='60' r='10' /%3E%3Ccircle cx='220' cy='60' r='10' /%3E%3Cpath d='M180 60l15-20h15l10 20' /%3E%3Cpath d='M195 40l5-10h10' /%3E%3C!-- Winding Travel Paths (Curly) --%3E%3Cpath d='M30 150c30-60 90-20 120-100' stroke-dasharray='4,8' /%3E%3Cpath d='M210 100c-40 50-80 10-140 80' stroke-dasharray='4,8' /%3E%3Cpath d='M50 40c60 20 20 80 150 120' stroke-dasharray='4,8' /%3E%3C!-- Decorative Arrows --%3E%3Cpolyline points='145 55 150 50 145 45' /%3E%3Cpolyline points='75 175 70 180 75 185' /%3E%3C!-- Map Pins --%3E%3Cpath d='M110 30c0 8-8 16-8 16s-8-8-8-16a8 8 0 1 1 16 0z' /%3E%3Ccircle cx='102' cy='30' r='2' /%3E%3Cpath d='M40 90c0 8-8 16-8 16s-8-8-8-16a8 8 0 1 1 16 0z' /%3E%3C/g%3E%3C/svg%3E");
           }
           .card-glass {
             position: absolute; top: 0; left: 0; right: 0; height: 100%;
