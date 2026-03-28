@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const RED = "#be0d0d";
-const NAVY = "#0f172a"; // Premium Navy
+const NAVY = "#0f172a"; 
 const H = "'Outfit', sans-serif";
 const F = "'Inter', sans-serif";
 
@@ -14,7 +14,7 @@ const offersData = [
     desc: "Use code: FIRST50 at checkout",
     color: RED,
     icon: (
-      <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4" />
         <path d="M4 6v12c0 1.1.9 2 2 2h14v-4" />
         <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z" />
@@ -29,7 +29,7 @@ const offersData = [
     desc: "Ride with trust — No hidden security deposits",
     color: "#1e40af",
     icon: (
-      <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
         <path d="M7 11V7a5 5 0 0 1 10 0v4" />
       </svg>
@@ -43,7 +43,7 @@ const offersData = [
     desc: "Earn wallet credits for every friend joined",
     color: "#15803d",
     icon: (
-      <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
         <circle cx="9" cy="7" r="4" />
         <polyline points="16 11 18 13 22 9" />
@@ -53,12 +53,30 @@ const offersData = [
   },
   {
     id: 4,
+    title: "FREE RIDE",
+    subtitle: "NEW MILESTONE",
+    desc: "Complete 10 rides to get your 11th free",
+    color: "#7c3aed",
+    icon: (
+      <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+        <path d="M4 22h16" />
+        <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+        <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+        <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+      </svg>
+    ),
+    gradient: "linear-gradient(145deg, #7c3aed 0%, #4c1d95 100%)",
+  },
+  {
+    id: 5,
     title: "LONG DRIVE",
     subtitle: "WEEKEND PASS",
     desc: "Flat 20% off on all weekend car rentals",
     color: "#4338ca",
     icon: (
-      <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M2 12h20M2 17h20" />
         <path d="M4 12V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4" />
         <circle cx="7" cy="17" r="2" />
@@ -80,10 +98,14 @@ const Offers = () => {
   }, []);
 
   const getPos = (i) => {
-    const diff = (i - index + offersData.length) % offersData.length;
+    const len = offersData.length;
+    const diff = (i - index + len) % len;
+    
     if (diff === 0) return "active";
     if (diff === 1) return "right";
-    if (diff === offersData.length - 1) return "left";
+    if (diff === 2) return "farRight";
+    if (diff === len - 2) return "farLeft";
+    if (diff === len - 1) return "left";
     return "hidden";
   };
 
@@ -97,26 +119,42 @@ const Offers = () => {
       filter: "blur(0px) brightness(1)",
     },
     left: { 
-      x: "-70%", 
-      scale: 0.8, 
-      opacity: 0.5, 
-      zIndex: 5, 
-      rotateY: 25,
-      filter: "blur(4px) brightness(0.8)",
+      x: "-55%", 
+      scale: 0.85, 
+      opacity: 0.6, 
+      zIndex: 7, 
+      rotateY: 20,
+      filter: "blur(4px) brightness(0.85)",
     },
     right: { 
-      x: "70%", 
-      scale: 0.8, 
-      opacity: 0.5, 
+      x: "55%", 
+      scale: 0.85, 
+      opacity: 0.6, 
+      zIndex: 7, 
+      rotateY: -20,
+      filter: "blur(4px) brightness(0.85)",
+    },
+    farLeft: { 
+      x: "-100%", 
+      scale: 0.7, 
+      opacity: 0.3, 
       zIndex: 5, 
-      rotateY: -25,
-      filter: "blur(4px) brightness(0.8)",
+      rotateY: 35,
+      filter: "blur(8px) brightness(0.7)",
+    },
+    farRight: { 
+      x: "100%", 
+      scale: 0.7, 
+      opacity: 0.3, 
+      zIndex: 5, 
+      rotateY: -35,
+      filter: "blur(8px) brightness(0.7)",
     },
     hidden: { 
       scale: 0.5, 
       opacity: 0, 
       zIndex: 0, 
-      filter: "blur(10px) brightness(0)",
+      filter: "blur(12px) brightness(0)",
     },
   };
 
@@ -125,7 +163,7 @@ const Offers = () => {
       id="offers-slider"
       className="offers-slider-section" 
       style={{ 
-        padding: "60px 20px 100px", 
+        padding: "40px 20px 80px", 
         background: "#ffffff", 
         overflow: "visible", 
         position: "relative",
@@ -145,24 +183,26 @@ const Offers = () => {
       </style>
 
       {/* Tabs / Selection - Centered like mockup */}
-      <div style={{ maxWidth: "1250px", margin: "0 auto", textAlign: "center", marginBottom: "60px" }}>
-        <div style={{ display: "inline-flex", background: "rgba(15,23,42,0.04)", padding: "6px", borderRadius: "100px", gap: "6px" }}>
+      <div style={{ maxWidth: "1250px", margin: "0 auto", textAlign: "center", marginBottom: "50px" }}>
+        <div style={{ display: "inline-flex", background: "rgba(15,23,42,0.04)", padding: "5px", borderRadius: "100px", gap: "5px", flexWrap: "wrap", justifyContent: "center" }}>
           {offersData.map((off, i) => (
             <button
               key={off.id}
               onClick={() => setIndex(i)}
               className={`off-tab ${index === i ? "off-active" : ""}`}
               style={{
-                padding: "10px 24px",
+                padding: "8px 20px",
                 borderRadius: "100px",
                 border: "none",
                 background: index === i ? RED : "transparent",
                 color: index === i ? "#fff" : "#111",
-                fontSize: "14px",
+                fontSize: "13px",
                 fontWeight: 700,
                 cursor: "pointer",
                 transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
                 fontFamily: H,
+                textTransform: "uppercase",
+                letterSpacing: "0.5px"
               }}
             >
               {off.subtitle}
@@ -171,14 +211,16 @@ const Offers = () => {
         </div>
       </div>
 
-      {/* 3D Stack Carousel */}
+      {/* 5-Card 3D Stack Carousel */}
       <div style={{ 
         position: "relative", 
-        height: "500px", 
+        height: "440px", 
         display: "flex", 
         alignItems: "center", 
         justifyContent: "center",
-        perspective: "1200px" // Crucial for 3D rotation
+        perspective: "1500px", // Enhanced depth
+        margin: "0 auto",
+        maxWidth: "1400px"
       }}>
         <AnimatePresence mode="popLayout">
           {offersData.map((off, i) => {
@@ -194,11 +236,11 @@ const Offers = () => {
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 style={{
                   position: "absolute",
-                  width: "min(380px, 85vw)",
-                  height: "540px", 
-                  borderRadius: "40px",
+                  width: "min(340px, 80vw)",
+                  height: "420px", 
+                  borderRadius: "36px",
                   background: off.gradient,
-                  padding: "60px 40px",
+                  padding: "45px 35px",
                   color: "#fff",
                   display: "flex",
                   flexDirection: "column",
@@ -211,7 +253,7 @@ const Offers = () => {
               >
                 <div className="card-glass" />
                 
-                {/* Large Background SVG */}
+                {/* Background Icon */}
                 <div style={{ 
                   position: "absolute", 
                   top: "10%", 
@@ -226,15 +268,15 @@ const Offers = () => {
                 {pos === "active" && (
                    <div style={{ 
                     position: "absolute", 
-                    top: "50%", 
+                    top: "45%", 
                     left: "50%", 
                     transform: "translate(-50%, -50%)",
-                    width: "80px", height: "80px",
+                    width: "70px", height: "70px",
                     background: "rgba(15,23,42,0.8)",
                     backdropFilter: "blur(20px)",
                     borderRadius: "50%",
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "#fff", fontSize: "11px", fontWeight: 900,
+                    color: "#fff", fontSize: "10px", fontWeight: 900,
                     letterSpacing: "1.5px", border: "1.5px solid rgba(255,255,255,0.2)",
                     zIndex: 20, boxShadow: "0 20px 40px rgba(0,0,0,0.2)"
                   }}>
@@ -251,48 +293,49 @@ const Offers = () => {
                     transition={{ delay: 0.3 }}
                   >
                     <span style={{ 
-                      fontSize: "13px", 
+                      fontSize: "12px", 
                       fontWeight: 800, 
-                      letterSpacing: "2.5px",
+                      letterSpacing: "2px",
                       opacity: 0.8,
                       fontFamily: H,
                       display: "block",
-                      marginBottom: "10px"
+                      marginBottom: "8px"
                     }}>
                       {off.subtitle}
                     </span>
                     
                     <h3 style={{ 
-                      fontSize: "clamp(34px, 4vw, 48px)", 
+                      fontSize: "clamp(32px, 3.5vw, 44px)", 
                       fontWeight: 900, 
-                      margin: "0 0 15px", 
+                      margin: "0 0 12px", 
                       fontFamily: H, 
                       lineHeight: 1,
-                      letterSpacing: "-1px"
+                      letterSpacing: "-0.5px"
                     }}>
                       {off.title}
                     </h3>
                     
                     <p style={{ 
-                      fontSize: "15px", 
+                      fontSize: "14px", 
                       fontWeight: 500, 
                       opacity: 0.7, 
                       fontFamily: F,
-                      maxWidth: "240px",
-                      lineHeight: 1.6
+                      maxWidth: "220px",
+                      lineHeight: 1.5,
+                      marginBottom: "20px"
                     }}>
                       {off.desc}
                     </p>
                     
                     <button style={{ 
-                      marginTop: "35px", 
-                      padding: "16px 36px", 
-                      borderRadius: "16px", 
+                      marginTop: "10px", 
+                      padding: "14px 30px", 
+                      borderRadius: "14px", 
                       background: "#fff", 
                       color: index === i ? "#000" : "#111", 
                       border: "none", 
                       fontWeight: 800, 
-                      fontSize: "15px",
+                      fontSize: "14px",
                       cursor: "pointer",
                       boxShadow: "0 15px 35px rgba(0,0,0,0.15)",
                       display: "flex",
@@ -305,7 +348,7 @@ const Offers = () => {
                     onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
                     >
                       Claim Now 
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     </button>
                   </motion.div>
                 </div>
@@ -315,11 +358,11 @@ const Offers = () => {
                   position: "absolute",
                   bottom: "-5%",
                   right: "-5%",
-                  width: "180px",
-                  height: "180px",
+                  width: "140px",
+                  height: "140px",
                   background: "rgba(255,255,255,0.05)",
                   borderRadius: "50%",
-                  filter: "blur(60px)",
+                  filter: "blur(50px)",
                   zIndex: 1
                 }} />
               </motion.div>
