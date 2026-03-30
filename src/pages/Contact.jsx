@@ -118,32 +118,17 @@ const Contact = () => {
                 </div>
             </section>
 
-            {/* MAP HERO SECTION (REDBUS STYLE) */}
-            <section style={{ height: "450px", position: "relative", width: "100%", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <img 
-                    src="/puri_marine_drive.jpg" 
-                    alt="Map Background" 
-                    style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.3, filter: "grayscale(1) brightness(1.2)" }} 
-                />
-                <div style={{ position: "absolute", textAlign: "center" }}>
-                    <div style={{ background: "#fff", width: "70px", height: "70px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 15px", boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}>
-                        <MapPinIcon />
-                    </div>
-                    <h2 style={{ fontSize: "52px", fontWeight: 900, fontFamily: H, color: BLUE, textTransform: "capitalize" }}>Contact Us</h2>
-                </div>
-            </section>
-
-            {/* OFFICE INFO SECTION (DARK RIBBON STYLE) */}
-            <section style={{ background: DARK_GRADIENT, color: "#fff", padding: "100px 24px" }}>
+            {/* CORPORATE INFO SECTION (WHITE STYLE) */}
+            <section style={{ background: "#ffffff", color: SLATE, padding: "100px 24px" }}>
                 <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-                    <h3 style={{ fontSize: "28px", fontWeight: 900, fontFamily: H, textAlign: "center", marginBottom: "60px", letterSpacing: "-0.5px" }}>Corporate Head Office — Bhubaneswar</h3>
+                    <h3 style={{ fontSize: "28px", fontWeight: 900, fontFamily: H, textAlign: "center", marginBottom: "60px", letterSpacing: "-0.5px", color: SLATE }}>Corporate Head Office — Bhubaneswar</h3>
                     
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px" }}>
                         {/* Address Side */}
                         <div>
-                            <h4 style={{ fontSize: "18px", fontWeight: 800, fontFamily: H, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "20px" }}>BHUBANESWAR</h4>
-                            <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.8)", fontWeight: 700, marginBottom: "15px", textTransform: "uppercase", letterSpacing: "1px" }}>ROADMATE PRIVATE LIMITED</p>
-                            <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.6)", lineHeight: "1.8", fontWeight: 500 }}>
+                            <h4 style={{ fontSize: "18px", fontWeight: 800, fontFamily: H, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "20px", color: SLATE }}>BHUBANESWAR</h4>
+                            <p style={{ fontSize: "15px", color: SLATE, fontWeight: 700, marginBottom: "15px", textTransform: "uppercase", letterSpacing: "1px" }}>ROADMATE PRIVATE LIMITED</p>
+                            <p style={{ fontSize: "15px", color: "rgba(15,23,42,0.7)", lineHeight: "1.8", fontWeight: 500 }}>
                                 Indiqube Leela Galleria,<br/>
                                 5th Floor, #No 23, Jayadev Vihar,<br/>
                                 Old Airport Road, Biju Patnaik Int'l,<br/>
@@ -155,73 +140,20 @@ const Contact = () => {
                         <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
                             <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
                                 <PhoneIcon />
-                                <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.8)", fontWeight: 600 }}>Ph: +91 98765 43210, +91 88765 43210</span>
+                                <span style={{ fontSize: "15px", color: SLATE, fontWeight: 600 }}>Ph: +91 98765 43210, +91 88765 43210</span>
                             </div>
                             <div>
-                                <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.6)", marginBottom: "8px" }}>For any Support or Complaints:</p>
+                                <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px" }}>For any Support or Complaints:</p>
                                 <a href="#" style={{ color: "#3b82f6", textDecoration: "none", fontWeight: 700, fontSize: "16px" }}>Chat with Us</a>
-                                <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", marginTop: "4px" }}>Support Time: 24*7</p>
+                                <p style={{ fontSize: "13px", color: "rgba(15,23,42,0.5)", marginTop: "4px" }}>Support Time: 24*7</p>
                             </div>
-                            <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "20px" }}>
-                                <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.6)", marginBottom: "8px" }}>For Media enquiries:</p>
-                                <a href="mailto:press@roadmate.in" style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontWeight: 700 }}>press@roadmate.in</a>
-                                <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", marginTop: "4px", fontStyle: "italic" }}>Only for Press/Media enquiries</p>
+                            <div style={{ borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "20px" }}>
+                                <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px" }}>For Media enquiries:</p>
+                                <a href="mailto:press@roadmate.in" style={{ color: SLATE, textDecoration: "none", fontWeight: 700 }}>press@roadmate.in</a>
+                                <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.5)", marginTop: "4px", fontStyle: "italic" }}>Only for Press/Media enquiries</p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            {/* FORM SECTION (PRESERVED) */}
-            <section style={{ padding: "100px 24px", background: "#f8f9fa" }}>
-                <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-                    <motion.div 
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="glass-card"
-                    >
-                        {submitted ? (
-                            <div style={{ textAlign: "center", padding: "40px 0" }}>
-                                <div style={{ width: "80px", height: "80px", borderRadius: "40px", background: RED, margin: "0 auto 30px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                                </div>
-                                <h2 style={{ fontSize: "28px", fontWeight: 900, fontFamily: H, marginBottom: "15px" }}>Message Sent!</h2>
-                                <p style={{ color: "rgba(15,23,42,0.6)", fontSize: "16px", marginBottom: "30px" }}>Thank you for reaching out. Our team will get back to you shortly.</p>
-                                <button onClick={() => setSubmitted(false)} style={{ background: BLUE, color: "#fff", border: "none", padding: "14px 30px", borderRadius: "14px", fontWeight: 700, cursor: "pointer" }}>Send Another Message</button>
-                            </div>
-                        ) : (
-                            <form onSubmit={handleSubmit}>
-                                <h3 style={{ fontSize: "28px", fontWeight: 900, fontFamily: H, marginBottom: "10px", textAlign: "center" }}>Quick Message</h3>
-                                <p style={{ color: "rgba(15,23,42,0.5)", marginBottom: "40px", textAlign: "center" }}>Drop us a line and we'll reply within 24 hours.</p>
-                                
-                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "20px" }}>
-                                    <div>
-                                        <label style={{ display: "block", fontSize: "13px", fontWeight: 800, color: BLUE, marginBottom: "10px", paddingLeft: "4px" }}>Full Name</label>
-                                        <input required type="text" className="contact-input" placeholder="Rohan Chaudhary" value={formState.name} onChange={(e) => setFormState({...formState, name: e.target.value})} style={{ width: "100%", padding: "16px 20px", borderRadius: "16px", border: "1.5px solid #eee", background: "#fff", outline: "none", transition: "all 0.2s" }} />
-                                    </div>
-                                    <div>
-                                        <label style={{ display: "block", fontSize: "13px", fontWeight: 800, color: BLUE, marginBottom: "10px", paddingLeft: "4px" }}>Email Address</label>
-                                        <input required type="email" className="contact-input" placeholder="rohan@example.com" value={formState.email} onChange={(e) => setFormState({...formState, email: e.target.value})} style={{ width: "100%", padding: "16px 20px", borderRadius: "16px", border: "1.5px solid #eee", background: "#fff", outline: "none", transition: "all 0.2s" }} />
-                                    </div>
-                                </div>
-
-                                <div style={{ marginBottom: "20px" }}>
-                                    <label style={{ display: "block", fontSize: "13px", fontWeight: 800, color: BLUE, marginBottom: "10px", paddingLeft: "4px" }}>Subject</label>
-                                    <input required type="text" className="contact-input" placeholder="How can we help?" value={formState.subject} onChange={(e) => setFormState({...formState, subject: e.target.value})} style={{ width: "100%", padding: "16px 20px", borderRadius: "16px", border: "1.5px solid #eee", background: "#fff", outline: "none", transition: "all 0.2s" }} />
-                                </div>
-
-                                <div style={{ marginBottom: "35px" }}>
-                                    <label style={{ display: "block", fontSize: "13px", fontWeight: 800, color: BLUE, marginBottom: "10px", paddingLeft: "4px" }}>Message</label>
-                                    <textarea required rows="5" className="contact-input" placeholder="Tell us more about your inquiry..." value={formState.message} onChange={(e) => setFormState({...formState, message: e.target.value})} style={{ width: "100%", padding: "16px 20px", borderRadius: "16px", border: "1.5px solid #eee", background: "#fff", outline: "none", transition: "all 0.2s", resize: "none" }} />
-                                </div>
-
-                                <button disabled={isSubmitting} style={{ width: "100%", background: RED, color: "#fff", border: "none", padding: "20px", borderRadius: "20px", fontWeight: 800, fontSize: "16px", cursor: "pointer", boxShadow: `0 15px 30px ${RED}33`, transition: "all 0.3s", display: "flex", alignItems: "center", justifyContent: "center", gap: "12px" }} onMouseEnter={(e) => e.target.style.transform = "translateY(-3px)"} onMouseLeave={(e) => e.target.style.transform = "translateY(0)"}>
-                                    {isSubmitting ? <div style={{ width: "20px", height: "20px", border: "3px solid rgba(255,255,255,0.3)", borderTop: "3px solid #fff", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} /> : <span>Send Message</span>}
-                                </button>
-                            </form>
-                        )}
-                    </motion.div>
                 </div>
             </section>
 
