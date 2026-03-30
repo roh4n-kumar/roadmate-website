@@ -125,9 +125,11 @@ const Contact = () => {
                     
                     <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "40px" }}>
                         {/* Address Side */}
-                        <div style={{ maxWidth: "350px" }}>
-                            <h4 style={{ fontSize: "18px", fontWeight: 800, fontFamily: H, textTransform: "uppercase", letterSpacing: "1px", margin: "0 0 20px 0", color: RED }}>BHUBANESWAR</h4>
-                            <p style={{ fontSize: "15px", color: SLATE, fontWeight: 800, marginBottom: 0, textTransform: "uppercase", letterSpacing: "1px", marginTop: 0 }}>ROADMATE PRIVATE LIMITED</p>
+                        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", maxWidth: "350px" }}>
+                            <div>
+                                <h4 style={{ fontSize: "18px", fontWeight: 800, fontFamily: H, textTransform: "uppercase", letterSpacing: "1px", margin: "0 0 20px 0", color: RED }}>BHUBANESWAR</h4>
+                                <p style={{ fontSize: "15px", color: SLATE, fontWeight: 800, marginBottom: 0, textTransform: "uppercase", letterSpacing: "1px", marginTop: 0 }}>ROADMATE PRIVATE LIMITED</p>
+                            </div>
                             <p style={{ fontSize: "15px", color: "rgba(15,23,42,0.7)", lineHeight: "1.8", fontWeight: 500, margin: 0 }}>
                                 Indiqube Leela Galleria,<br/>
                                 5th Floor, #No 23, Jayadev Vihar,<br/>
@@ -137,7 +139,7 @@ const Contact = () => {
                         </div>
 
                         {/* Contacts Side */}
-                        <div style={{ display: "flex", flexDirection: "column", gap: "25px", maxWidth: "350px", alignItems: "flex-start" }}>
+                        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", maxWidth: "350px", alignItems: "flex-start" }}>
                             <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
                                 <PhoneIcon />
                                 <span style={{ fontSize: "15px", color: SLATE, fontWeight: 600 }}>Ph: +91 98765 43210</span>
@@ -149,7 +151,7 @@ const Contact = () => {
                             </div>
                             <div style={{ width: "100%" }}>
                                 <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px", marginTop: 0 }}>For any enquiries:</p>
-                                <a href="mailto:enquiry@roadmate.in" style={{ color: SLATE, textDecoration: "none", fontWeight: 700 }}>enquiry@roadmate.in</a>
+                                <a href="mailto:enquiry@roadmate.in" style={{ color: SLATE, textDecoration: "none", fontWeight: 500, fontSize: "15px" }}>enquiry@roadmate.in</a>
                             </div>
                         </div>
                     </div>
