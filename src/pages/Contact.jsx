@@ -150,7 +150,7 @@ const Contact = () => {
                                 <p style={{ fontSize: "13px", color: "rgba(15,23,42,0.5)", marginTop: "4px", marginBottom: 0 }}>Support Time: 24x7</p>
                             </div>
                             <div style={{ width: "100%" }}>
-                                <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px", marginTop: 0 }}>For any enquiries:</p>
+                                <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: 0, marginTop: 0 }}>For any enquiries:</p>
                                 <a href="mailto:enquiry@roadmate.in" style={{ display: "block", color: SLATE, textDecoration: "none", fontWeight: 500, fontSize: "15px", lineHeight: "1.8" }}>enquiry@roadmate.in</a>
                             </div>
                         </div>
