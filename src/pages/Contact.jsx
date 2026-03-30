@@ -119,9 +119,9 @@ const Contact = () => {
             </section>
 
             {/* CORPORATE INFO SECTION (WHITE STYLE) */}
-            <section style={{ background: "#ffffff", color: SLATE, padding: "100px 24px" }}>
+            <section style={{ background: "#ffffff", color: SLATE, padding: "40px 24px" }}>
                 <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-                    <h3 style={{ fontSize: "28px", fontWeight: 900, fontFamily: H, textAlign: "center", marginBottom: "60px", letterSpacing: "-0.5px", color: SLATE }}>Corporate Head Office — Bhubaneswar</h3>
+                    <h3 style={{ fontSize: "28px", fontWeight: 900, fontFamily: H, textAlign: "center", marginBottom: "60px", letterSpacing: "-0.5px", color: SLATE }}>Corporate Head Office — <span style={{ color: RED }}>Bhubaneswar</span></h3>
                     
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px" }}>
                         {/* Address Side */}
