@@ -96,11 +96,21 @@ const Footer = () => {
               Bhubaneswar's leading vehicle rental platform. Experience the freedom of the road with our quality, 100% verified fleet.
             </p>
             <div style={{ display: "flex", gap: "15px" }}>
-              {["instagram", "twitter", "facebook", "linkedin"].map(social => (
-                <div key={social} style={{ width: "40px", height: "40px", borderRadius: "12px", background: RED, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "all 0.3s" }}>
-                  {socialIcons[social]}
-                </div>
-              ))}
+              {["instagram", "twitter", "facebook", "linkedin"].map(social => {
+                const links = {
+                  instagram: "https://www.instagram.com/roh4n.chaudhary?igsh=MXM5b25lcTlsODg0OQ==",
+                  twitter: "https://x.com/roh4n_chaudhary",
+                  facebook: "https://www.facebook.com/share/1CXSdCGZj9/",
+                  linkedin: "https://www.linkedin.com/in/rohan-k-54aa08259?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                };
+                return (
+                  <a key={social} href={links[social]} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+                    <div style={{ width: "40px", height: "40px", borderRadius: "12px", background: RED, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "all 0.3s" }}>
+                      {socialIcons[social]}
+                    </div>
+                  </a>
+                );
+              })}
             </div>
           </div>
 
