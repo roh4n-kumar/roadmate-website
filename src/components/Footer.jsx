@@ -96,7 +96,7 @@ const Footer = () => {
               Bhubaneswar's leading vehicle rental platform. Experience the freedom of the road with our quality, 100% verified fleet.
             </p>
             <div style={{ display: "flex", gap: "15px" }}>
-              {["facebook", "twitter", "instagram", "linkedin"].map(social => (
+              {["instagram", "twitter", "facebook", "linkedin"].map(social => (
                 <div key={social} style={{ width: "40px", height: "40px", borderRadius: "12px", background: RED, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "all 0.3s" }}>
                   {socialIcons[social]}
                 </div>
