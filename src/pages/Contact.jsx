@@ -7,6 +7,7 @@ const SLATE = "#0f172a";
 const DARK_GRADIENT = "linear-gradient(180deg, #111 0%, #0f172a 100%)";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
+const BLUE = "#0f172a";
 
 /* Icons */
 const MapPinIcon = () => (
@@ -94,7 +95,7 @@ const Contact = () => {
                             border: `1px solid ${RED}33`
                         }}
                     >
-                        Get In Touch
+                        Connect With Us
                     </motion.div>
                     <motion.h1 
                         initial={{ opacity: 0, y: 30 }}
@@ -103,7 +104,7 @@ const Contact = () => {
                         className="animate-box delay-1"
                         style={{ fontSize: "56px", fontWeight: 900, fontFamily: H, marginBottom: "20px", letterSpacing: "-1.5px", lineHeight: 1.1 }}
                     >
-                        Let's Talk <span style={{ color: RED }}>RoadMate</span>
+                        We're Here to <span style={{ color: RED }}>Help You</span>
                     </motion.h1>
                     <motion.p 
                         initial={{ opacity: 0, y: 20 }}
@@ -112,7 +113,7 @@ const Contact = () => {
                         className="animate-box delay-2"
                         style={{ fontSize: "18px", color: "rgba(255,255,255,0.7)", lineHeight: 1.6, maxWidth: "600px", margin: "0 auto 30px" }}
                     >
-                        Have questions about our fleet or services? Our team is here to help you get on the road faster.
+                        Whether you have a question about booking, partnerships, or anything else, our team is ready to answer all your queries.
                     </motion.p>
                 </div>
             </section>
