@@ -4,18 +4,16 @@
         <text x="0" y="0" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="78" fill="#ffffff" letter-spacing="-3">RuPay</text>
     </g>
 
-    <!-- Arrow Mark (Geometric Identical Overlapping Triangles) -->
-    <!-- Positioned elegantly 265px right. -->
-    <!-- Saffron Bottom tip reaches exactly the baseline descender of 'y'. -->
-    <!-- Green is shifted UP and RIGHT relative to Saffron. -->
-    <g transform="translate(265, 0) skewX(-15)">
-        <!-- Green Triangle (Background) -->
-        <!-- Shifted by X=13, Y=-12. Height = 80, Width = 26 -->
-        <!-- Top: 13,-2 | Right Tip: 39,38 | Bottom: 13,78 -->
-        <polygon points="13,-2 39,38 13,78" fill="#008c44"/>
+    <!-- Arrow Mark (Nested Triangles) -->
+    <!-- Tuned spacing to EXACTLY replicate the user's zoomed-in image crop -->
+    <!-- X-offset set to tightly parallel the 'y' stem -->
+    <g transform="translate(258, 6) skewX(-15)">
+        <!-- Green Triangle -->
+        <!-- Placed X=12 right, Y=10 up. Creates deep top V-gap (23px) and tiny bottom V-gap (3.3px) -->
+        <polygon points="12,-10 48,30 12,70" fill="#008c44"/>
         
-        <!-- Saffron Triangle (Foreground) -->
-        <!-- Top: 0,10 | Right Tip: 26,50 | Bottom: 0,90 -->
-        <polygon points="0,10 26,50 0,90" fill="#f37021"/>
+        <!-- Saffron Triangle -->
+        <!-- Exact 1:2.2 aspect ratio (36x80) representing the true geometry. -->
+        <polygon points="0,0 36,40 0,80" fill="#f37021"/>
     </g>
 </svg>
