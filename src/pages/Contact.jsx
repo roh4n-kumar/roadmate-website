@@ -140,17 +140,16 @@ const Contact = () => {
                         <div style={{ display: "flex", flexDirection: "column", gap: "25px", maxWidth: "350px", alignItems: "flex-start" }}>
                             <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
                                 <PhoneIcon />
-                                <span style={{ fontSize: "15px", color: SLATE, fontWeight: 600 }}>Ph: +91 98765 43210, +91 88765 43210</span>
+                                <span style={{ fontSize: "15px", color: SLATE, fontWeight: 600 }}>Ph: +91 98765 43210</span>
                             </div>
                             <div>
                                 <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px", marginTop: 0 }}>For any Support or Complaints:</p>
                                 <a href="#" style={{ color: "#3b82f6", textDecoration: "none", fontWeight: 700, fontSize: "16px" }}>Chat with Us</a>
-                                <p style={{ fontSize: "13px", color: "rgba(15,23,42,0.5)", marginTop: "4px", marginBottom: 0 }}>Support Time: 24*7</p>
+                                <p style={{ fontSize: "13px", color: "rgba(15,23,42,0.5)", marginTop: "4px", marginBottom: 0 }}>Support Time: 24x7</p>
                             </div>
                             <div style={{ width: "100%" }}>
-                                <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px", marginTop: 0 }}>For Media enquiries:</p>
-                                <a href="mailto:press@roadmate.in" style={{ color: SLATE, textDecoration: "none", fontWeight: 700 }}>press@roadmate.in</a>
-                                <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.5)", marginTop: "4px", fontStyle: "italic", marginBottom: 0 }}>Only for Press/Media enquiries</p>
+                                <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px", marginTop: 0 }}>For any enquiries:</p>
+                                <a href="mailto:enquiry@roadmate.in" style={{ color: SLATE, textDecoration: "none", fontWeight: 700 }}>enquiry@roadmate.in</a>
                             </div>
                         </div>
                     </div>
