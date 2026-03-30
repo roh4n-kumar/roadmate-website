@@ -4,12 +4,15 @@
         <text x="0" y="0" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="78" fill="#ffffff" letter-spacing="-3">RuPay</text>
     </g>
 
-    <!-- Arrow Mark (Double Chevrons) -->
-    <g transform="translate(240, 15) skewX(-15)">
-        <!-- Green Chevron (Background) -->
-        <polygon points="18,0 58,35 18,70 33,35" fill="#008c44"/>
+    <!-- Arrow Mark (Double TRIANGLES) -->
+    <!-- Applying exact same skewX(-15) to perfectly match the wordmark's slant -->
+    <g transform="translate(245, 10) skewX(-15)">
+        <!-- Green Triangle (Drawn in background, shifted UP and RIGHT) -->
+        <!-- Top: 15,-6 | RightTip: 55,34 | Bottom: 15,74 -->
+        <polygon points="15,-6 55,34 15,74" fill="#008c44"/>
         
-        <!-- Saffron Chevron (Foreground) -->
-        <polygon points="0,0 40,35 0,70 15,35" fill="#f37021"/>
+        <!-- Saffron Triangle (Drawn in foreground, perfectly clipping the green one) -->
+        <!-- Top: 0,0 | RightTip: 40,40 | Bottom: 0,80 -->
+        <polygon points="0,0 40,40 0,80" fill="#f37021"/>
     </g>
 </svg>
