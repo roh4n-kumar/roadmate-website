@@ -123,11 +123,11 @@ const Contact = () => {
                 <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
                     <h3 style={{ fontSize: "28px", fontWeight: 900, fontFamily: H, textAlign: "center", marginBottom: "60px", letterSpacing: "-0.5px", color: SLATE }}>Corporate Head Office — <span style={{ color: RED }}>Bhubaneswar</span></h3>
                     
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px" }}>
+                    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "40px", textAlign: "center" }}>
                         {/* Address Side */}
-                        <div>
-                            <h4 style={{ fontSize: "18px", fontWeight: 800, fontFamily: H, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "20px", color: SLATE }}>BHUBANESWAR</h4>
-                            <p style={{ fontSize: "15px", color: SLATE, fontWeight: 700, marginBottom: "15px", textTransform: "uppercase", letterSpacing: "1px" }}>ROADMATE PRIVATE LIMITED</p>
+                        <div style={{ maxWidth: "350px" }}>
+                            <h4 style={{ fontSize: "18px", fontWeight: 800, fontFamily: H, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "20px", color: RED }}>BHUBANESWAR</h4>
+                            <p style={{ fontSize: "15px", color: SLATE, fontWeight: 800, marginBottom: "15px", textTransform: "uppercase", letterSpacing: "1px" }}>ROADMATE PRIVATE LIMITED</p>
                             <p style={{ fontSize: "15px", color: "rgba(15,23,42,0.7)", lineHeight: "1.8", fontWeight: 500 }}>
                                 Indiqube Leela Galleria,<br/>
                                 5th Floor, #No 23, Jayadev Vihar,<br/>
@@ -137,8 +137,8 @@ const Contact = () => {
                         </div>
 
                         {/* Contacts Side */}
-                        <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
-                            <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "25px", maxWidth: "350px", alignItems: "center" }}>
+                            <div style={{ display: "flex", gap: "10px", alignItems: "center", justifyContent: "center" }}>
                                 <PhoneIcon />
                                 <span style={{ fontSize: "15px", color: SLATE, fontWeight: 600 }}>Ph: +91 98765 43210, +91 88765 43210</span>
                             </div>
@@ -147,7 +147,7 @@ const Contact = () => {
                                 <a href="#" style={{ color: "#3b82f6", textDecoration: "none", fontWeight: 700, fontSize: "16px" }}>Chat with Us</a>
                                 <p style={{ fontSize: "13px", color: "rgba(15,23,42,0.5)", marginTop: "4px" }}>Support Time: 24*7</p>
                             </div>
-                            <div style={{ borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "20px" }}>
+                            <div style={{ borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "20px", width: "100%" }}>
                                 <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px" }}>For Media enquiries:</p>
                                 <a href="mailto:press@roadmate.in" style={{ color: SLATE, textDecoration: "none", fontWeight: 700 }}>press@roadmate.in</a>
                                 <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.5)", marginTop: "4px", fontStyle: "italic" }}>Only for Press/Media enquiries</p>
