@@ -151,8 +151,8 @@ const Footer = () => {
           </p>
           <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
             <img src="/payment/visa.svg" alt="Visa" style={{ height: "26px", filter: "brightness(0) invert(1)" }} />
-            <img src="/payment/mastercard.svg" alt="Mastercard" style={{ height: "26px" }} />
-            <img src="/payment/upi.svg" alt="UPI" style={{ height: "26px" }} />
+            <img src="/payment/mastercard.svg" alt="Mastercard" style={{ height: "24px" }} />
+            <img src="/payment/upi.svg" alt="UPI" style={{ height: "20px" }} />
           </div>
         </div>
       </div>
