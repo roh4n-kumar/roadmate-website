@@ -1,16 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 100">
-    <!-- RuPay Wordmark: Pure White to match the real logo on dark background -->
-    <g transform="translate(10, 75) skewX(-15)">
+    <!-- RuPay Wordmark -->
+    <g transform="translate(15, 75) skewX(-15)">
         <text x="0" y="0" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="78" fill="#ffffff" letter-spacing="-3">RuPay</text>
     </g>
 
     <!-- Arrow Mark (Double Chevrons) -->
-    <!-- Applying exact same skewX(-15) to perfectly match the wordmark's italic slant -->
-    <g transform="translate(230, 15) skewX(-15)">
-        <!-- Green Chevron (Drawn first so it goes in background) -->
-        <polygon points="41,0 71,35 41,70 23,35" fill="#008c44"/>
+    <g transform="translate(240, 15) skewX(-15)">
+        <!-- Green Chevron (Background) -->
+        <polygon points="18,0 58,35 18,70 33,35" fill="#008c44"/>
         
-        <!-- Saffron (Orange) Chevron (Drawn on top) -->
-        <polygon points="25,0 55,35 25,70 7,35" fill="#f37021"/>
+        <!-- Saffron Chevron (Foreground) -->
+        <polygon points="0,0 40,35 0,70 15,35" fill="#f37021"/>
     </g>
 </svg>
