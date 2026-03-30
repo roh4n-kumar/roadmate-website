@@ -158,7 +158,7 @@ const Footer = () => {
 
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "30px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
           <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", fontWeight: 500 }}>
-            © {new Date().getFullYear()} RoadMate Technologies Pvt Ltd. All rights reserved.
+            © {new Date().getFullYear()} RoadMate Pvt Ltd. All rights reserved.
           </p>
           <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
             <img src="/payment/visa.svg" alt="Visa" style={{ height: "50px", filter: "brightness(0) invert(1)" }} />
