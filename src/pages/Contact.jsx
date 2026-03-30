@@ -118,32 +118,17 @@ const Contact = () => {
                 </div>
             </section>
 
-            {/* CORPORATE INFO SECTION (ROAD-MATE STYLED) */}
-            <section style={{ background: "#ffffff", color: SLATE, padding: "40px 24px 100px" }}>
+            {/* CORPORATE INFO SECTION (WHITE STYLE) */}
+            <section style={{ background: "#ffffff", color: SLATE, padding: "100px 24px" }}>
                 <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+                    <h3 style={{ fontSize: "28px", fontWeight: 900, fontFamily: H, textAlign: "center", marginBottom: "60px", letterSpacing: "-0.5px", color: SLATE }}>Corporate Head Office — Bhubaneswar</h3>
                     
-                    <div style={{ textAlign: "center", marginBottom: "50px" }}>
-                        <div style={{ display: "inline-block", background: `${RED}11`, color: RED, fontSize: "13px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "2px", padding: "8px 20px", borderRadius: "99px", marginBottom: "15px" }}>
-                            Our Location
-                        </div>
-                        <h3 style={{ fontSize: "36px", fontWeight: 900, fontFamily: H, color: SLATE, letterSpacing: "-1px" }}>
-                            Corporate Head Office<span style={{ color: RED }}>.</span>
-                        </h3>
-                    </div>
-                    
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "40px", alignItems: "start" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px" }}>
                         {/* Address Side */}
-                        <div style={{ background: "#f8fafc", padding: "40px", borderRadius: "24px", border: "1px solid #e2e8f0", position: "relative", overflow: "hidden" }}>
-                            <div style={{ position: "absolute", top: 0, left: 0, width: "6px", height: "100%", background: RED }}></div>
-                            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-                                <div style={{ background: `${RED}15`, width: "40px", height: "40px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                    <MapPinIcon />
-                                </div>
-                                <h4 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, textTransform: "uppercase", letterSpacing: "1px", color: SLATE, margin: 0 }}>BHUBANESWAR</h4>
-                            </div>
-                            
-                            <p style={{ fontSize: "16px", color: RED, fontWeight: 800, marginBottom: "15px", textTransform: "uppercase", letterSpacing: "1px" }}>ROADMATE PRIVATE LIMITED</p>
-                            <p style={{ fontSize: "16px", color: "rgba(15,23,42,0.7)", lineHeight: "1.8", fontWeight: 500 }}>
+                        <div>
+                            <h4 style={{ fontSize: "18px", fontWeight: 800, fontFamily: H, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "20px", color: SLATE }}>BHUBANESWAR</h4>
+                            <p style={{ fontSize: "15px", color: SLATE, fontWeight: 700, marginBottom: "15px", textTransform: "uppercase", letterSpacing: "1px" }}>ROADMATE PRIVATE LIMITED</p>
+                            <p style={{ fontSize: "15px", color: "rgba(15,23,42,0.7)", lineHeight: "1.8", fontWeight: 500 }}>
                                 Indiqube Leela Galleria,<br/>
                                 5th Floor, #No 23, Jayadev Vihar,<br/>
                                 Old Airport Road, Biju Patnaik Int'l,<br/>
@@ -152,28 +137,20 @@ const Contact = () => {
                         </div>
 
                         {/* Contacts Side */}
-                        <div style={{ background: "#f8fafc", padding: "40px", borderRadius: "24px", border: "1px solid #e2e8f0", display: "flex", flexDirection: "column", gap: "30px" }}>
-                            
-                            <div style={{ display: "flex", gap: "15px", alignItems: "flex-start" }}>
-                                <div style={{ background: `${RED}15`, width: "40px", height: "40px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                                    <PhoneIcon />
-                                </div>
-                                <div>
-                                    <p style={{ fontSize: "13px", fontWeight: 800, color: "rgba(15,23,42,0.5)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "5px" }}>Call Us 24/7</p>
-                                    <span style={{ fontSize: "18px", color: SLATE, fontWeight: 800 }}>+91 98765 43210<br/>+91 88765 43210</span>
-                                </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
+                            <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
+                                <PhoneIcon />
+                                <span style={{ fontSize: "15px", color: SLATE, fontWeight: 600 }}>Ph: +91 98765 43210, +91 88765 43210</span>
                             </div>
-
-                            <div style={{ width: "100%", height: "1px", background: "rgba(15,23,42,0.08)" }}></div>
-                            
-                            <div style={{ display: "flex", gap: "15px", alignItems: "flex-start" }}>
-                                <div style={{ background: `${RED}15`, width: "40px", height: "40px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                                    <MailIcon />
-                                </div>
-                                <div>
-                                    <p style={{ fontSize: "13px", fontWeight: 800, color: "rgba(15,23,42,0.5)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "5px" }}>Press & Media</p>
-                                    <a href="mailto:press@roadmate.in" style={{ color: RED, textDecoration: "none", fontWeight: 800, fontSize: "16px" }}>press@roadmate.in</a>
-                                </div>
+                            <div>
+                                <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px" }}>For any Support or Complaints:</p>
+                                <a href="#" style={{ color: "#3b82f6", textDecoration: "none", fontWeight: 700, fontSize: "16px" }}>Chat with Us</a>
+                                <p style={{ fontSize: "13px", color: "rgba(15,23,42,0.5)", marginTop: "4px" }}>Support Time: 24*7</p>
+                            </div>
+                            <div style={{ borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "20px" }}>
+                                <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px" }}>For Media enquiries:</p>
+                                <a href="mailto:press@roadmate.in" style={{ color: SLATE, textDecoration: "none", fontWeight: 700 }}>press@roadmate.in</a>
+                                <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.5)", marginTop: "4px", fontStyle: "italic" }}>Only for Press/Media enquiries</p>
                             </div>
                         </div>
                     </div>
