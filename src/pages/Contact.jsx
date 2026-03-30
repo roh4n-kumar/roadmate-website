@@ -126,9 +126,9 @@ const Contact = () => {
                     <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "40px" }}>
                         {/* Address Side */}
                         <div style={{ maxWidth: "350px" }}>
-                            <h4 style={{ fontSize: "18px", fontWeight: 800, fontFamily: H, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "20px", color: RED }}>BHUBANESWAR</h4>
-                            <p style={{ fontSize: "15px", color: SLATE, fontWeight: 800, marginBottom: "15px", textTransform: "uppercase", letterSpacing: "1px" }}>ROADMATE PRIVATE LIMITED</p>
-                            <p style={{ fontSize: "15px", color: "rgba(15,23,42,0.7)", lineHeight: "1.8", fontWeight: 500 }}>
+                            <h4 style={{ fontSize: "18px", fontWeight: 800, fontFamily: H, textTransform: "uppercase", letterSpacing: "1px", margin: "0 0 20px 0", color: RED }}>BHUBANESWAR</h4>
+                            <p style={{ fontSize: "15px", color: SLATE, fontWeight: 800, marginBottom: "15px", textTransform: "uppercase", letterSpacing: "1px", marginTop: 0 }}>ROADMATE PRIVATE LIMITED</p>
+                            <p style={{ fontSize: "15px", color: "rgba(15,23,42,0.7)", lineHeight: "1.8", fontWeight: 500, margin: 0 }}>
                                 Indiqube Leela Galleria,<br/>
                                 5th Floor, #No 23, Jayadev Vihar,<br/>
                                 Old Airport Road, Biju Patnaik Int'l,<br/>
@@ -143,14 +143,14 @@ const Contact = () => {
                                 <span style={{ fontSize: "15px", color: SLATE, fontWeight: 600 }}>Ph: +91 98765 43210, +91 88765 43210</span>
                             </div>
                             <div>
-                                <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px" }}>For any Support or Complaints:</p>
+                                <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px", marginTop: 0 }}>For any Support or Complaints:</p>
                                 <a href="#" style={{ color: "#3b82f6", textDecoration: "none", fontWeight: 700, fontSize: "16px" }}>Chat with Us</a>
-                                <p style={{ fontSize: "13px", color: "rgba(15,23,42,0.5)", marginTop: "4px" }}>Support Time: 24*7</p>
+                                <p style={{ fontSize: "13px", color: "rgba(15,23,42,0.5)", marginTop: "4px", marginBottom: 0 }}>Support Time: 24*7</p>
                             </div>
-                            <div style={{ borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "20px", width: "100%" }}>
-                                <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px" }}>For Media enquiries:</p>
+                            <div style={{ width: "100%" }}>
+                                <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px", marginTop: 0 }}>For Media enquiries:</p>
                                 <a href="mailto:press@roadmate.in" style={{ color: SLATE, textDecoration: "none", fontWeight: 700 }}>press@roadmate.in</a>
-                                <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.5)", marginTop: "4px", fontStyle: "italic" }}>Only for Press/Media enquiries</p>
+                                <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.5)", marginTop: "4px", fontStyle: "italic", marginBottom: 0 }}>Only for Press/Media enquiries</p>
                             </div>
                         </div>
                     </div>
