@@ -127,7 +127,7 @@ const Contact = () => {
                         {/* Address Side */}
                         <div style={{ maxWidth: "350px" }}>
                             <h4 style={{ fontSize: "18px", fontWeight: 800, fontFamily: H, textTransform: "uppercase", letterSpacing: "1px", margin: "0 0 20px 0", color: RED }}>BHUBANESWAR</h4>
-                            <p style={{ fontSize: "15px", color: SLATE, fontWeight: 800, marginBottom: "15px", textTransform: "uppercase", letterSpacing: "1px", marginTop: 0 }}>ROADMATE PRIVATE LIMITED</p>
+                            <p style={{ fontSize: "15px", color: SLATE, fontWeight: 800, marginBottom: 0, textTransform: "uppercase", letterSpacing: "1px", marginTop: 0 }}>ROADMATE PRIVATE LIMITED</p>
                             <p style={{ fontSize: "15px", color: "rgba(15,23,42,0.7)", lineHeight: "1.8", fontWeight: 500, margin: 0 }}>
                                 Indiqube Leela Galleria,<br/>
                                 5th Floor, #No 23, Jayadev Vihar,<br/>
