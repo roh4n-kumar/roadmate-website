@@ -151,7 +151,7 @@ const Contact = () => {
                             </div>
                             <div style={{ width: "100%" }}>
                                 <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)", marginBottom: "8px", marginTop: 0 }}>For any enquiries:</p>
-                                <a href="mailto:enquiry@roadmate.in" style={{ color: SLATE, textDecoration: "none", fontWeight: 500, fontSize: "15px" }}>enquiry@roadmate.in</a>
+                                <a href="mailto:enquiry@roadmate.in" style={{ display: "block", color: SLATE, textDecoration: "none", fontWeight: 500, fontSize: "15px", lineHeight: "1.8" }}>enquiry@roadmate.in</a>
                             </div>
                         </div>
                     </div>
