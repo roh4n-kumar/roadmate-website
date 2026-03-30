@@ -4,15 +4,14 @@
         <text x="0" y="0" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="78" fill="#ffffff" letter-spacing="-3">RuPay</text>
     </g>
 
-    <!-- Arrow Mark (Nested Identical-Baseline Triangles) -->
-    <!-- Fixed the background gap! Both share X=0 so they perfectly seal on the left. -->
-    <g transform="translate(260, 15) skewX(-15)">
+    <!-- Official Extracted RuPay Arrow Geometry -->
+    <!-- Placed cleanly right of the text. The specific slant is built into the coordinates, no skew required. -->
+    <g transform="translate(265, 10)">
         <!-- Green Triangle -->
-        <!-- Extended higher (Y=-10) and wider (X=42) but shares the exact left edge -->
-        <polygon points="0,-10 42,26 0,62" fill="#008c44"/>
+        <!-- Exact identical path. A pure horizontal shift of 14px perfectly creates the top/bottom inter-arrow gap. -->
+        <polygon points="14,0 34,40 -8,80" fill="#008c44"/>
         
         <!-- Saffron Triangle -->
-        <!-- Fits completely inside the left section of Green, creating a seamless boundary -->
-        <polygon points="0,0 32,36 0,72" fill="#f37021"/>
+        <polygon points="0,0 20,40 -22,80" fill="#f37021"/>
     </g>
 </svg>
