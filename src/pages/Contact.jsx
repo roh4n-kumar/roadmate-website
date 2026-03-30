@@ -78,28 +78,49 @@ const Contact = () => {
 
             {/* HERO SECTION */}
             <section style={{ 
-                padding: "160px 40px 100px", 
-                background: "linear-gradient(180deg, #0f172a 0%, #111 100%)", 
+                padding: "120px 40px 70px", 
+                background: "linear-gradient(180deg, #111 0%, #0f172a 100%)", 
                 color: "#fff", 
                 textAlign: "center",
                 position: "relative",
                 overflow: "hidden"
             }}>
-                <div style={{ position: "absolute", top: "-50%", left: "-10%", width: "60%", height: "200%", background: `radial-gradient(circle, ${RED}15 0%, transparent 70%)`, pointerEvents: "none" }} />
-                <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-                    <motion.span 
+                <div style={{ position: "absolute", top: "-50%", left: "-10%", width: "60%", height: "200%", background: `radial-gradient(circle, ${RED}11 0%, transparent 70%)`, pointerEvents: "none" }} />
+                <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+                    <motion.div 
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.6 }}
-                        style={{ color: RED, background: `${RED}15`, padding: "10px 24px", borderRadius: "100px", fontWeight: 800, fontSize: "14px", letterSpacing: "2px", textTransform: "uppercase", display: "inline-block", marginBottom: "25px", border: `1px solid ${RED}33` }}
+                        className="animate-box"
+                        style={{ 
+                            display: "inline-block", 
+                            background: `${RED}22`, 
+                            color: RED, 
+                            fontSize: "14px", 
+                            fontWeight: 900, 
+                            textTransform: "uppercase", 
+                            letterSpacing: "3px", 
+                            padding: "10px 24px", 
+                            borderRadius: "99px", 
+                            marginBottom: "30px",
+                            border: `1px solid ${RED}33`
+                        }}
                     >
                         Get In Touch
-                    </motion.span>
+                    </motion.div>
                     <motion.h1 
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.1 }}
-                        style={{ fontSize: "clamp(40px, 6vw, 72px)", fontWeight: 900, fontFamily: H, marginBottom: "20px", letterSpacing: "-2px" }}
+                        className="animate-box delay-1"
+                        style={{ 
+                            fontSize: "56px", 
+                            fontWeight: 900, 
+                            fontFamily: H, 
+                            marginBottom: "20px", 
+                            letterSpacing: "-1.5px",
+                            lineHeight: 1.1
+                        }}
                     >
                         Let's Talk <span style={{ color: RED }}>RoadMate</span>
                     </motion.h1>
@@ -107,7 +128,14 @@ const Contact = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        style={{ fontSize: "18px", color: "rgba(255,255,255,0.6)", maxWidth: "600px", margin: "0 auto" }}
+                        className="animate-box delay-2"
+                        style={{ 
+                            fontSize: "18px", 
+                            color: "rgba(255,255,255,0.7)", 
+                            lineHeight: 1.6, 
+                            maxWidth: "600px", 
+                            margin: "0 auto 30px" 
+                        }}
                     >
                         Have questions about our fleet or services? Our team is here to help you get on the road faster.
                     </motion.p>

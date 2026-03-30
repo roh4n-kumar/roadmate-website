@@ -121,7 +121,7 @@ const Footer = () => {
               <Link to="/about" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>About Us</Link>
               <Link to="/vehicles?type=all" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Our Fleet</Link>
               <Link to="#" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Pricing</Link>
-              <Link to="/contact" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Contact</Link>
+              <Link to="/contact" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Contact Us</Link>
             </div>
           </div>
 
