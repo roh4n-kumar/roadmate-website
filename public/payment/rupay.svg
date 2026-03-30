@@ -1,22 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 100">
-    <!-- 
-      Fresh Start: Clean, pure vector recreation of the RuPay logo.
-      Instead of manual tracing which caused distortion, we use semantic text 
-      with exact brand colors and perfectly calculated geometric chevrons.
-    -->
-    
-    <!-- RuPay Wordmark -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 100">
+    <!-- RuPay Wordmark: Pure White to match the real logo on dark background -->
     <g transform="translate(10, 75) skewX(-15)">
-        <text x="0" y="0" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="78" fill="#1b3281" letter-spacing="-3">RuPay</text>
-        <text x="245" y="-55" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="#1b3281">TM</text>
+        <text x="0" y="0" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="78" fill="#ffffff" letter-spacing="-3">RuPay</text>
     </g>
 
     <!-- Arrow Mark (Double Chevrons) -->
-    <g transform="translate(255, 15)">
-        <!-- Saffron (Orange) Chevron -->
-        <polygon points="0,0 28,35 0,70 14,35" fill="#f47920"/>
+    <!-- Applying exact same skewX(-15) to perfectly match the wordmark's italic slant -->
+    <g transform="translate(230, 15) skewX(-15)">
+        <!-- Green Chevron (Drawn first so it goes in background) -->
+        <polygon points="41,0 71,35 41,70 23,35" fill="#008c44"/>
         
-        <!-- Green Chevron -->
-        <polygon points="18,0 46,35 18,70 32,35" fill="#008c44"/>
+        <!-- Saffron (Orange) Chevron (Drawn on top) -->
+        <polygon points="25,0 55,35 25,70 7,35" fill="#f37021"/>
     </g>
 </svg>
