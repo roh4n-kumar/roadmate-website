@@ -123,7 +123,7 @@ const Contact = () => {
                 <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
                     <h3 style={{ fontSize: "28px", fontWeight: 900, fontFamily: H, textAlign: "center", marginBottom: "60px", letterSpacing: "-0.5px", color: SLATE }}>Corporate Head Office — <span style={{ color: RED }}>Bhubaneswar</span></h3>
                     
-                    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "40px", textAlign: "center" }}>
+                    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "40px" }}>
                         {/* Address Side */}
                         <div style={{ maxWidth: "350px" }}>
                             <h4 style={{ fontSize: "18px", fontWeight: 800, fontFamily: H, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "20px", color: RED }}>BHUBANESWAR</h4>
@@ -137,8 +137,8 @@ const Contact = () => {
                         </div>
 
                         {/* Contacts Side */}
-                        <div style={{ display: "flex", flexDirection: "column", gap: "25px", maxWidth: "350px", alignItems: "center" }}>
-                            <div style={{ display: "flex", gap: "10px", alignItems: "center", justifyContent: "center" }}>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "25px", maxWidth: "350px", alignItems: "flex-start" }}>
+                            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
                                 <PhoneIcon />
                                 <span style={{ fontSize: "15px", color: SLATE, fontWeight: 600 }}>Ph: +91 98765 43210, +91 88765 43210</span>
                             </div>
