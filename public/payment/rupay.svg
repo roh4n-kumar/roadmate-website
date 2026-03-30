@@ -4,16 +4,15 @@
         <text x="0" y="0" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="78" fill="#ffffff" letter-spacing="-3">RuPay</text>
     </g>
 
-    <!-- Arrow Mark (Nested Triangles) -->
-    <!-- Tuned spacing to EXACTLY replicate the user's zoomed-in image crop -->
-    <!-- X-offset set to tightly parallel the 'y' stem -->
-    <g transform="translate(258, 6) skewX(-15)">
+    <!-- Arrow Mark (Nested Identical-Baseline Triangles) -->
+    <!-- Fixed the background gap! Both share X=0 so they perfectly seal on the left. -->
+    <g transform="translate(260, 15) skewX(-15)">
         <!-- Green Triangle -->
-        <!-- Placed X=12 right, Y=10 up. Creates deep top V-gap (23px) and tiny bottom V-gap (3.3px) -->
-        <polygon points="12,-10 48,30 12,70" fill="#008c44"/>
+        <!-- Extended higher (Y=-10) and wider (X=42) but shares the exact left edge -->
+        <polygon points="0,-10 42,26 0,62" fill="#008c44"/>
         
         <!-- Saffron Triangle -->
-        <!-- Exact 1:2.2 aspect ratio (36x80) representing the true geometry. -->
-        <polygon points="0,0 36,40 0,80" fill="#f37021"/>
+        <!-- Fits completely inside the left section of Green, creating a seamless boundary -->
+        <polygon points="0,0 32,36 0,72" fill="#f37021"/>
     </g>
 </svg>
