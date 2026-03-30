@@ -149,17 +149,11 @@ const Footer = () => {
           <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", fontWeight: 500 }}>
             © {new Date().getFullYear()} RoadMate Technologies Pvt Ltd. All rights reserved.
           </p>
-          <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
-            {[
-              { src: "/payment/visa.svg", alt: "Visa", h: "16px" },
-              { src: "/payment/mastercard.svg", alt: "Mastercard", h: "28px" },
-              { src: "/payment/rupay.svg", alt: "RuPay", h: "22px" },
-              { src: "/payment/upi.svg", alt: "UPI", h: "21px" },
-            ].map((card) => (
-              <div key={card.alt} style={{ width: "75px", height: "30px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <img src={card.src} alt={card.alt} style={{ maxHeight: card.h, maxWidth: "100%", width: "auto", objectFit: "contain", filter: card.alt === 'Visa' ? 'brightness(0) invert(1)' : 'none' }} />
-              </div>
-            ))}
+          <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+            <img src="/payment/visa.svg" alt="Visa" style={{ height: "20px", filter: "brightness(0) invert(1)" }} />
+            <img src="/payment/mastercard.svg" alt="Mastercard" style={{ height: "28px" }} />
+            <img src="/payment/rupay.svg" alt="RuPay" style={{ height: "24px" }} />
+            <img src="/payment/upi.svg" alt="UPI" style={{ height: "24px" }} />
           </div>
         </div>
       </div>
