@@ -6,7 +6,8 @@
 
     <!-- Official Extracted RuPay Arrow Geometry -->
     <!-- Placed cleanly right of the text. The specific slant is built into the coordinates, no skew required. -->
-    <g transform="translate(305, 10)">
+    <!-- Adjusted translation to tightly nestle the arrow next to the 'y'. -->
+    <g transform="translate(268, 10)">
         <!-- Green Triangle -->
         <!-- Exact identical path. A pure horizontal shift of 14px perfectly creates the top/bottom inter-arrow gap. -->
         <polygon points="14,0 34,40 -8,80" fill="#008c44"/>
