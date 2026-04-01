@@ -340,8 +340,8 @@ const HelpCenter = () => {
                     </motion.div>
 
                     {/* RIGHT SIDE (Symmetry & Precise Alignment) */}
-                    <div style={{ width: "100%", maxWidth: "500px", color: SLATE, textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
-                        <div style={{ marginTop: "30px" }}>
+                    <div style={{ width: "100%", maxWidth: "500px", color: SLATE, textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                        <div>
                             <motion.h1 
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -382,7 +382,7 @@ const HelpCenter = () => {
                         </div>
 
                         {/* Aligned with Card Bottom */}
-                        <div style={{ marginTop: "15px" }}>
+                        <div style={{ marginTop: "40px" }}>
                             <motion.div 
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
