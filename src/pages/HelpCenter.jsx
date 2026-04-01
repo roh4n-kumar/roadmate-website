@@ -187,7 +187,7 @@ const HelpCenter = () => {
                     </motion.div>
 
                     {/* RIGHT SIDE (Symmetry & Precise Alignment) */}
-                    <div style={{ flex: 1, minWidth: "400px", color: SLATE, textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                    <div style={{ width: "100%", maxWidth: "500px", color: SLATE, textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                         <div style={{ marginTop: "80px" }}>
                             <motion.h1 
                                 initial={{ opacity: 0, y: 20 }}
