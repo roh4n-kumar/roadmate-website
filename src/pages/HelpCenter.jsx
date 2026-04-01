@@ -25,8 +25,59 @@ const HelpCenter = () => {
     };
 
     return (
-        <div style={{ background: RED, fontFamily: F, color: "#1a1a1a", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-            <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "100px 20px 60px" }}>
+        <div style={{ background: "#fff", fontFamily: F, color: "#1a1a1a", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+            
+            {/* HERO SECTION (Standard Cover) */}
+            <section style={{ 
+                padding: "120px 40px 70px", 
+                background: "linear-gradient(180deg, #111 0%, #0f172a 100%)", 
+                color: "#fff", 
+                textAlign: "center",
+                position: "relative",
+                overflow: "hidden"
+            }}>
+                <div style={{ position: "absolute", top: "-50%", left: "-10%", width: "60%", height: "200%", background: `radial-gradient(circle, ${RED}11 0%, transparent 70%)`, pointerEvents: "none" }} />
+                <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        style={{ 
+                            display: "inline-block", 
+                            background: `${RED}22`, 
+                            color: RED, 
+                            fontSize: "14px", 
+                            fontWeight: 900, 
+                            textTransform: "uppercase", 
+                            letterSpacing: "3px", 
+                            padding: "10px 24px", 
+                            borderRadius: "99px", 
+                            marginBottom: "30px",
+                            border: `1px solid ${RED}33`
+                        }}
+                    >
+                        24/7 Support
+                    </motion.div>
+                    <motion.h1 
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.1 }}
+                        style={{ fontSize: "56px", fontWeight: 900, fontFamily: H, marginBottom: "20px", letterSpacing: "-1.5px", lineHeight: 1.1 }}
+                    >
+                        Help <span style={{ color: RED }}>Center</span>
+                    </motion.h1>
+                    <motion.p 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        style={{ fontSize: "18px", color: "rgba(255,255,255,0.7)", lineHeight: 1.6, maxWidth: "600px", margin: "0 auto" }}
+                    >
+                        Welcome to RoadMate Support. We're here to ensure your journey is smooth and worry-free.
+                    </motion.p>
+                </div>
+            </section>
+
+            {/* CONTENT SECTION (White Background) */}
+            <div style={{ flex: 1, background: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", padding: "80px 20px" }}>
                 <div style={{ maxWidth: "1200px", width: "100%", display: "flex", flexWrap: "wrap", gap: "60px", alignItems: "center" }}>
                     
                     {/* LEFT CARD (The Sidebar/Card) */}
@@ -38,7 +89,8 @@ const HelpCenter = () => {
                             width: "100%", 
                             maxWidth: "400px", 
                             borderRadius: "32px", 
-                            boxShadow: "0 40px 100px rgba(0,0,0,0.15)", 
+                            boxShadow: "0 40px 100px rgba(15, 23, 42, 0.1)", 
+                            border: "1px solid rgba(15, 23, 42, 0.05)",
                             overflow: "hidden",
                             display: "flex",
                             flexDirection: "column"
@@ -133,11 +185,11 @@ const HelpCenter = () => {
                     </motion.div>
 
                     {/* RIGHT SIDE (Branding & Illustration) */}
-                    <div style={{ flex: 1, color: "#fff", textAlign: "center" }}>
+                    <div style={{ flex: 1, color: SLATE, textAlign: "center" }}>
                         <motion.h1 
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            style={{ fontSize: "64px", fontWeight: 900, fontFamily: H, marginBottom: "10px", letterSpacing: "-2px" }}
+                            style={{ fontSize: "64px", fontWeight: 900, fontFamily: H, marginBottom: "10px", letterSpacing: "-2px", color: SLATE }}
                         >
                             RoadMate Help
                         </motion.h1>
@@ -145,7 +197,7 @@ const HelpCenter = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            style={{ fontSize: "20px", color: "rgba(255,255,255,0.7)", marginBottom: "40px", fontWeight: 600 }}
+                            style={{ fontSize: "20px", color: "rgba(15, 23, 42, 0.6)", marginBottom: "40px", fontWeight: 600 }}
                         >
                             Your support partner on every journey
                         </motion.p>
@@ -159,7 +211,7 @@ const HelpCenter = () => {
                             <img 
                                 src="/customer_support_illustration.png" 
                                 alt="Support Agent" 
-                                style={{ width: "100%", height: "auto", filter: "drop-shadow(0 20px 50px rgba(0,0,0,0.2))" }} 
+                                style={{ width: "100%", height: "auto", filter: "drop-shadow(0 20px 50px rgba(15, 23, 42, 0.1))" }} 
                             />
                         </motion.div>
 
@@ -167,9 +219,9 @@ const HelpCenter = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.3 }}
-                            style={{ fontSize: "32px", fontWeight: 900, fontFamily: H, marginTop: "40px", letterSpacing: "-0.5px" }}
+                            style={{ fontSize: "32px", fontWeight: 900, fontFamily: H, marginTop: "40px", letterSpacing: "-0.5px", color: SLATE }}
                         >
-                            24/7 <span style={{ color: SLATE }}>Customer Support</span>
+                            24/7 <span style={{ color: RED }}>Customer Support</span>
                         </motion.h2>
                     </div>
 
