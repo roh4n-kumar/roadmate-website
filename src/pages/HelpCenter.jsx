@@ -102,11 +102,11 @@ const HelpCenter = () => {
                             <h2 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, margin: 0, color: SLATE, letterSpacing: "-0.8px" }}>Help</h2>
                             <div style={{ padding: "6px", borderRadius: "8px", background: `${RED}11` }}>
                                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M4 10V9a8 8 0 0 1 16 0v1" />
-                                    <rect x="2" y="10" width="4" height="8" rx="2" />
-                                    <rect x="18" y="10" width="4" height="8" rx="2" />
-                                    <path d="M19 15c0 2-2 3-5 3" />
-                                    <circle cx="14" cy="18" r="1.2" fill={RED} stroke="none" />
+                                    <path d="M4 12V11a8 8 0 0 1 16 0v1" />
+                                    <rect x="2" y="12" width="4" height="8" rx="2" />
+                                    <rect x="18" y="12" width="4" height="8" rx="2" />
+                                    <path d="M19 17c0 2-2 3-5 3" />
+                                    <circle cx="14" cy="20" r="1.2" fill={RED} stroke="none" />
                                 </svg>
                             </div>
                         </div>
