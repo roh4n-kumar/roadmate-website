@@ -93,7 +93,7 @@ const HelpCenter = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        style={{ fontSize: "18px", color: "rgba(255,255,255,0.7)", lineHeight: 1.6, maxWidth: "600px", margin: "0 auto" }}
+                        style={{ fontSize: "18px", color: "rgba(255,255,255,0.7)", lineHeight: 1.6, maxWidth: "600px", margin: "0 auto 30px" }}
                     >
                         Welcome to RoadMate Support. We're here to ensure your journey is smooth and worry-free.
                     </motion.p>
@@ -340,8 +340,8 @@ const HelpCenter = () => {
                     </motion.div>
 
                     {/* RIGHT SIDE (Symmetry & Precise Alignment) */}
-                    <div style={{ width: "100%", maxWidth: "500px", color: SLATE, textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                        <div style={{ marginTop: "80px" }}>
+                    <div style={{ width: "100%", maxWidth: "500px", color: SLATE, textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+                        <div style={{ marginTop: "30px" }}>
                             <motion.h1 
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -359,7 +359,7 @@ const HelpCenter = () => {
                             </motion.p>
                         </div>
                         
-                        <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <div style={{ marginTop: "20px" }}>
                             <motion.div 
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -382,7 +382,7 @@ const HelpCenter = () => {
                         </div>
 
                         {/* Aligned with Card Bottom */}
-                        <div style={{ marginTop: "20px" }}>
+                        <div style={{ marginTop: "15px" }}>
                             <motion.div 
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
