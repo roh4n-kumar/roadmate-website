@@ -208,7 +208,7 @@ const HelpCenter = () => {
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.2 }}
-                            style={{ maxWidth: "500px", margin: "0 auto", position: "relative" }}
+                            style={{ maxWidth: "650px", margin: "0 auto", position: "relative" }}
                         >
                             <img 
                                 src="/customer_support_illustration.png" 
@@ -216,9 +216,10 @@ const HelpCenter = () => {
                                 style={{ 
                                     width: "100%", 
                                     height: "auto", 
-                                    borderRadius: "32px",
-                                    boxShadow: `0 30px 60px ${RED}22`,
-                                    filter: "brightness(1.02)"
+                                    borderRadius: "28px",
+                                    boxShadow: `0 30px 80px rgba(190, 13, 13, 0.15)`,
+                                    filter: "brightness(1.02)",
+                                    border: `1px solid rgba(190, 13, 13, 0.1)`
                                 }} 
                             />
                         </motion.div>
