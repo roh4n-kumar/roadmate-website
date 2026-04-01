@@ -255,16 +255,12 @@ const HelpCenter = () => {
                                 ) : (
                                     <motion.div 
                                         key="drawer"
-                                        initial={{ y: "100%" }}
-                                        animate={{ y: 0 }}
-                                        exit={{ y: "100%" }}
+                                        initial={{ y: "20px", opacity: 0 }}
+                                        animate={{ y: 0, opacity: 1 }}
+                                        exit={{ y: "20px", opacity: 0 }}
                                         transition={{ type: "spring", damping: 30, stiffness: 200 }}
                                         style={{ 
-                                            position: "absolute", 
-                                            top: 0, 
-                                            left: 0, 
-                                            right: 0, 
-                                            bottom: 0, 
+                                            flex: 1,
                                             background: "#fff", 
                                             zIndex: 10,
                                             display: "flex",
