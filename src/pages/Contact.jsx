@@ -104,7 +104,7 @@ const Contact = () => {
                         className="animate-box delay-1"
                         style={{ fontSize: "56px", fontWeight: 900, fontFamily: H, marginBottom: "20px", letterSpacing: "-1.5px", lineHeight: 1.1 }}
                     >
-                        We're Here to <span style={{ color: RED }}>Help You</span>
+                        Contact <span style={{ color: RED }}>Us</span>
                     </motion.h1>
                     <motion.p 
                         initial={{ opacity: 0, y: 20 }}
@@ -113,7 +113,7 @@ const Contact = () => {
                         className="animate-box delay-2"
                         style={{ fontSize: "18px", color: "rgba(255,255,255,0.7)", lineHeight: 1.6, maxWidth: "600px", margin: "0 auto 30px" }}
                     >
-                        Whether you have a question about booking, partnerships, or anything else, our team is ready to answer all your queries.
+                        Find our corporate office address and direct contact lines below. Reach out to our team for any assistance or inquiries.
                     </motion.p>
                 </div>
             </section>
