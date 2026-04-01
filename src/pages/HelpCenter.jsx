@@ -186,12 +186,20 @@ const HelpCenter = () => {
                                         name: "Bike FAQ", 
                                         renderIcon: () => (
                                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                                                <ellipse cx="12" cy="19" rx="7" ry="1" fill="rgba(15,23,42,0.04)" />
-                                                <path d="M5 14l3-6h4l2 3h5" stroke={RED} strokeWidth="2.5" strokeLinecap="round" />
-                                                <circle cx="5" cy="16" r="3.5" fill={SLATE} />
-                                                <circle cx="5" cy="16" r="1.5" fill="#fff" />
-                                                <circle cx="18" cy="16" r="3.5" fill={SLATE} />
-                                                <circle cx="18" cy="16" r="1.5" fill="#fff" />
+                                                <ellipse cx="12" cy="19.5" rx="8" ry="1.2" fill="rgba(15,23,42,0.05)" />
+                                                {/* Fork/Handlebar - Slate */}
+                                                <path d="M7 16l2.5-9h2.5" stroke={SLATE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                                                {/* Engine/Exhaust - Slate */}
+                                                <rect x="10" y="14" width="6" height="2" rx="1" fill={SLATE} fillOpacity="0.8" />
+                                                {/* Main Body/Tank - Brand Red */}
+                                                <path d="M9 7.5h5.5l3.5 6.5h-9l-1-3z" fill={RED} />
+                                                {/* Seat - Slate */}
+                                                <path d="M12.5 10.5h5.5c.5 0 1 .5 1 1v1h-6.5z" fill={SLATE} />
+                                                {/* Detailed Wheels */}
+                                                <circle cx="6" cy="16.5" r="3.5" fill={SLATE} />
+                                                <circle cx="6" cy="16.5" r="1.5" fill="#fff" />
+                                                <circle cx="18" cy="16.5" r="3.5" fill={SLATE} />
+                                                <circle cx="18" cy="16.5" r="1.5" fill="#fff" />
                                             </svg>
                                         )
                                     },
