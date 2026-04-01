@@ -15,6 +15,7 @@ const HelpCenter = () => {
     const [question, setQuestion] = useState("");
     const [submitted, setSubmitted] = useState(false);
     const [activeCategory, setActiveCategory] = useState(null);
+    const [expandedFaqIndex, setExpandedFaqIndex] = useState(null);
 
     const faqData = {
         "Car FAQ": [
