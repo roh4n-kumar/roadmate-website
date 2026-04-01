@@ -278,28 +278,47 @@ const HelpCenter = () => {
                                             <h4 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: SLATE, margin: 0 }}>{activeCategory}</h4>
                                         </div>
                                         <div style={{ flex: 1, overflowY: "auto", paddingBottom: "20px" }}>
-                                            {faqData[activeCategory].map((faq, idx) => (
-                                                <div 
-                                                    key={idx} 
-                                                    style={{ display: "flex", alignItems: "flex-start", gap: "16px", padding: "20px 0", borderBottom: "1px solid rgba(0,0,0,0.05)", position: "relative" }}
-                                                >
-                                                    <div style={{ marginTop: "2px" }}>
-                                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={SLATE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
-                                                            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
-                                                        </svg>
+                                            {(faqData[activeCategory] || []).map((faq, idx) => {
+                                                const isExpanded = expandedFaqIndex === idx;
+                                                return (
+                                                    <div 
+                                                        key={idx} 
+                                                        onClick={() => setExpandedFaqIndex(isExpanded ? null : idx)}
+                                                        style={{ padding: "18px 0", borderBottom: "1px solid rgba(0,0,0,0.05)", cursor: "pointer" }}
+                                                    >
+                                                        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                                                            <div style={{ minWidth: "22px" }}>
+                                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={SLATE} strokeWidth="1.8">
+                                                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                                                                </svg>
+                                                            </div>
+                                                            <p style={{ flex: 1, margin: 0, fontSize: "15px", fontWeight: 700, color: SLATE, fontFamily: H }}>{faq.q}</p>
+                                                            <motion.div
+                                                                animate={{ rotate: isExpanded ? 90 : 0 }}
+                                                                transition={{ duration: 0.2 }}
+                                                            >
+                                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(15,23,42,0.3)" strokeWidth="2.5">
+                                                                    <polyline points="9 18 15 12 9 6"/>
+                                                                </svg>
+                                                            </motion.div>
+                                                        </div>
+                                                        
+                                                        <AnimatePresence>
+                                                            {isExpanded && (
+                                                                <motion.div
+                                                                    initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                                                                    animate={{ height: "auto", opacity: 1, marginTop: 12 }}
+                                                                    exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                                                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                                                    style={{ overflow: "hidden", paddingLeft: "38px" }}
+                                                                >
+                                                                    <p style={{ margin: 0, fontSize: "13.5px", color: "rgba(15,23,42,0.6)", lineHeight: 1.6 }}>{faq.a}</p>
+                                                                </motion.div>
+                                                            )}
+                                                        </AnimatePresence>
                                                     </div>
-                                                    <div style={{ flex: 1, paddingRight: "30px" }}>
-                                                        <p style={{ margin: "0 0 6px", fontSize: "15px", fontWeight: 700, color: SLATE, fontFamily: H, lineHeight: 1.4 }}>{faq.q}</p>
-                                                        <p style={{ margin: 0, fontSize: "13.5px", color: "rgba(15,23,42,0.6)", lineHeight: 1.5 }}>{faq.a}</p>
-                                                    </div>
-                                                    <div style={{ position: "absolute", right: "0", top: "50%", transform: "translateY(-50%)" }}>
-                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(15,23,42,0.3)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                                            <polyline points="9 18 15 12 9 6"/>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            ))}
+                                                );
+                                            })}
                                         </div>
                                     </motion.div>
                                 )}
