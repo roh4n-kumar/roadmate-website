@@ -84,7 +84,7 @@ export default function Payment() {
     const fmtDate = s => { if (!s) return ""; const d = new Date(s); return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }); };
 
     return (
-        <div style={{ minHeight: "100vh", background: "#f8fafc", paddingTop: "50px", paddingBottom: "100px", fontFamily: F }}>
+        <div style={{ minHeight: "100vh", background: "#f8fafc", paddingTop: "100px", paddingBottom: "100px", fontFamily: F }}>
             <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 20px" }}>
                 
                 {/* Header with Security Branding */}
