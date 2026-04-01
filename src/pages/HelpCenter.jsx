@@ -133,8 +133,8 @@ const HelpCenter = () => {
                             </div>
                         </div>
 
-                        <div style={{ flex: 1, position: "relative", overflow: "hidden", display: "flex", flexDirection: "column" }}>
-                            <AnimatePresence mode="wait">
+                        <div style={{ height: "550px", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column" }}>
+                            <AnimatePresence>
                                 {!activeCategory ? (
                                     <motion.div 
                                         key="dashboard"
