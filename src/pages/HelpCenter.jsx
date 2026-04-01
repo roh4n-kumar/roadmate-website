@@ -154,11 +154,8 @@ const HelpCenter = () => {
                                             <path d="M4 4h6l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill={RED} />
                                             {/* Accent Line */}
                                             <path d="M2 10.5h20" stroke="rgba(0,0,0,0.1)" strokeWidth="0.8" />
-                                            {/* Alert Badge - Slate */}
-                                            <circle cx="16" cy="15" r="5.5" fill={SLATE} stroke="#fff" strokeWidth="1.5" />
-                                            {/* Alert Icon (Warning Exclamation) */}
-                                            <path d="M16 12.5v3" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" />
-                                            <circle cx="16" cy="17.5" r="0.8" fill="#fff" />
+                                            {/* Inner Tab Detail */}
+                                            <path d="M7 8h10v1H7V8z" fill="#fff" opacity="0.2" />
                                         </svg>
                                     </div>
                                     <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.4)", fontWeight: 500, margin: 0 }}>No recent issues found</p>
