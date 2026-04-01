@@ -186,21 +186,22 @@ const HelpCenter = () => {
                                         name: "Bike FAQ", 
                                         renderIcon: () => (
                                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                                                <ellipse cx="12" cy="20" rx="8" ry="1.2" fill="rgba(15,23,42,0.05)" />
-                                                {/* Fork & Handlebars - Slate */}
-                                                <path d="M16.5 17.5l-3-11h-3" stroke={SLATE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                                                {/* Main Engine/Bottom Frame - Slate */}
-                                                <path d="M8 14.5h7.5v2.5H8.5l-.5-2.5z" fill={SLATE} opacity="0.4" />
-                                                {/* Body/Tank/Fender - Brand Red */}
-                                                <path d="M7 14.5c0-3 1.5-6 4-6h3.5l2 6h-9.5z" fill={RED} />
-                                                <path d="M14.5 8.5h2l2 6h-4" fill={RED} opacity="0.7" />
+                                                <ellipse cx="12" cy="19.5" rx="9" ry="1.2" fill="rgba(15,23,42,0.05)" />
+                                                {/* Elongated Front Fork - Slate */}
+                                                <path d="M18.5 17.5l-3.5-12h-3" stroke={SLATE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                                                {/* Rear Shadow/Fender - Red tinted */}
+                                                <path d="M5 14c0-3 1.5-4.5 4-4.5v4.5l-4 0z" fill={RED} opacity="0.4" />
+                                                {/* Teardrop Fuel Tank - Brand Red */}
+                                                <path d="M10 7.5c2 0 6 1.5 6 4s-1.5 3.5-6 3.5H8.5V10c0-1.5 0-2.5 1.5-2.5z" fill={RED} />
                                                 {/* Seat - Slate */}
-                                                <path d="M6.5 11h5c.5 0 1 .5 1 1.5v2h-6.5l.5-3.5z" fill={SLATE} />
-                                                {/* Wheels - Detailed */}
-                                                <circle cx="6" cy="17.5" r="3.5" fill={SLATE} />
-                                                <circle cx="6" cy="17.5" r="1.4" fill="#fff" />
-                                                <circle cx="18" cy="17.5" r="3.5" fill={SLATE} />
-                                                <circle cx="18" cy="17.5" r="1.4" fill="#fff" />
+                                                <path d="M7 11.5h4.5c.5 0 1 .5 1 1s-.5 1-1 1H7v-2z" fill={SLATE} />
+                                                {/* Mechanical engine core - Slate */}
+                                                <rect x="9" y="14" width="6" height="2.5" rx="1" fill={SLATE} fillOpacity="0.7" />
+                                                {/* Detailed Wheels with White highlights */}
+                                                <circle cx="5" cy="17" r="3.5" fill={SLATE} stroke="#fff" strokeWidth="0.5" />
+                                                <circle cx="5" cy="17" r="1.3" fill="#fff" />
+                                                <circle cx="19" cy="17" r="3.5" fill={SLATE} stroke="#fff" strokeWidth="0.5" />
+                                                <circle cx="19" cy="17" r="1.3" fill="#fff" />
                                             </svg>
                                         )
                                     },
