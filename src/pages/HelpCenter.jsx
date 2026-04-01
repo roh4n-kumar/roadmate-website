@@ -171,11 +171,14 @@ const HelpCenter = () => {
                                         name: "Car FAQ", 
                                         renderIcon: () => (
                                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                                                <ellipse cx="12" cy="19" rx="8" ry="1.5" fill="rgba(15,23,42,0.05)" />
-                                                <path d="M4 11l2-4h12l2 4h4v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3h4z" fill={RED} />
-                                                <path d="M7 11l1.5-3.5h7L17 11H7z" fill={SLATE} fillOpacity="0.2" />
+                                                <ellipse cx="12" cy="19.5" rx="8" ry="1.5" fill="rgba(15,23,42,0.05)" />
+                                                <path d="M6 10l1.5-4h9L18 10" stroke={RED} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M3 10h18a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2z" fill={RED} />
+                                                <path d="M7 10h10v-2.5l-1-1h-8l-1 1v2.5z" fill={SLATE} fillOpacity="0.2" />
                                                 <circle cx="7" cy="17" r="2.5" fill={SLATE} />
+                                                <circle cx="7" cy="17" r="1" fill="#fff" />
                                                 <circle cx="17" cy="17" r="2.5" fill={SLATE} />
+                                                <circle cx="17" cy="17" r="1" fill="#fff" />
                                             </svg>
                                         )
                                     },
