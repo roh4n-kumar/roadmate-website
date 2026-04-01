@@ -134,14 +134,14 @@ const HelpCenter = () => {
                         </div>
 
                         <div style={{ height: "550px", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column" }}>
-                            <AnimatePresence>
+                            <AnimatePresence mode="wait">
                                 {!activeCategory ? (
                                     <motion.div 
                                         key="dashboard"
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.2 }}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -10 }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
                                         style={{ flex: 1, padding: "20px 30px", overflowY: "auto" }}
                                     >
                                         {/* Trip Help Section */}
@@ -255,10 +255,10 @@ const HelpCenter = () => {
                                 ) : (
                                     <motion.div 
                                         key="drawer"
-                                        initial={{ y: "20px", opacity: 0 }}
-                                        animate={{ y: 0, opacity: 1 }}
-                                        exit={{ y: "20px", opacity: 0 }}
-                                        transition={{ type: "spring", damping: 30, stiffness: 200 }}
+                                        initial={{ x: 10, opacity: 0 }}
+                                        animate={{ x: 0, opacity: 1 }}
+                                        exit={{ x: 10, opacity: 0 }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
                                         style={{ 
                                             flex: 1,
                                             background: "#fff", 
