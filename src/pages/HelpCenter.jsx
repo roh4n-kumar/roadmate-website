@@ -208,7 +208,7 @@ const HelpCenter = () => {
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.2 }}
-                            style={{ maxWidth: "650px", margin: "0 auto", position: "relative" }}
+                            style={{ maxWidth: "480px", margin: "0 auto", position: "relative" }}
                         >
                             <img 
                                 src="/customer_support_illustration.png" 
