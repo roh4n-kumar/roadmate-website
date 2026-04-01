@@ -81,14 +81,14 @@ const HelpCenter = () => {
             <div style={{ flex: 1, background: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", padding: "80px 20px" }}>
                 <div style={{ maxWidth: "1200px", width: "100%", display: "flex", flexWrap: "wrap", gap: "60px", alignItems: "center" }}>
                     
-                    {/* LEFT CARD (Smaller & More Compact) */}
+                    {/* LEFT CARD (Restored Width, Reduced Height) */}
                     <motion.div 
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
                         style={{ 
                             background: "#fff", 
                             width: "100%", 
-                            maxWidth: "340px", 
+                            maxWidth: "400px", 
                             borderRadius: "28px", 
                             boxShadow: "0 40px 100px rgba(15, 23, 42, 0.08)", 
                             border: "1px solid rgba(15, 23, 42, 0.05)",
@@ -98,8 +98,8 @@ const HelpCenter = () => {
                             height: "fit-content"
                         }}
                     >
-                        <div style={{ padding: "30px", borderBottom: "1px solid rgba(0,0,0,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                            <h2 style={{ fontSize: "24px", fontWeight: 900, fontFamily: H, margin: 0, color: SLATE, letterSpacing: "-0.8px" }}>Help</h2>
+                        <div style={{ padding: "24px 30px", borderBottom: "1px solid rgba(0,0,0,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                            <h2 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, margin: 0, color: SLATE, letterSpacing: "-0.8px" }}>Help</h2>
                             <div style={{ padding: "6px", borderRadius: "8px", background: `${RED}11` }}>
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -107,37 +107,37 @@ const HelpCenter = () => {
                             </div>
                         </div>
 
-                        <div style={{ padding: "24px", maxHeight: "550px", overflowY: "auto" }}>
+                        <div style={{ padding: "20px 30px", maxHeight: "500px", overflowY: "auto" }}>
                             
-                            {/* Trip Help Section */}
-                            <div style={{ marginBottom: "30px" }}>
-                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}>
+                            {/* Trip Help Section (Compact) */}
+                            <div style={{ marginBottom: "25px" }}>
+                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
                                     <h4 style={{ fontSize: "14px", fontWeight: 800, fontFamily: H, color: SLATE, margin: 0 }}>Need help with this trip?</h4>
                                     <a href="#" style={{ color: RED, textDecoration: "none", fontSize: "12px", fontWeight: 700 }}>View all</a>
                                 </div>
-                                <div style={{ textAlign: "center", padding: "24px", background: "#f8fafc", borderRadius: "16px", border: "1px dashed rgba(0,0,0,0.1)" }}>
-                                    <div style={{ marginBottom: "12px", color: "rgba(15,23,42,0.1)" }}>
-                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                <div style={{ textAlign: "center", padding: "16px", background: "#f8fafc", borderRadius: "16px", border: "1px dashed rgba(0,0,0,0.1)" }}>
+                                    <div style={{ marginBottom: "8px", color: "rgba(15,23,42,0.1)" }}>
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                             <rect x="1" y="3" width="15" height="13"/><polyline points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
                                         </svg>
                                     </div>
-                                    <p style={{ fontSize: "13px", color: "rgba(15,23,42,0.4)", fontWeight: 500, margin: 0 }}>No recent trips found</p>
+                                    <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.4)", fontWeight: 500, margin: 0 }}>No recent trips found</p>
                                 </div>
                             </div>
 
-                            {/* Recent Issues Section */}
-                            <div style={{ marginBottom: "30px" }}>
-                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}>
+                            {/* Recent Issues Section (Compact) */}
+                            <div style={{ marginBottom: "25px" }}>
+                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
                                     <h4 style={{ fontSize: "14px", fontWeight: 800, fontFamily: H, color: SLATE, margin: 0 }}>Recent issues</h4>
                                     <a href="#" style={{ color: RED, textDecoration: "none", fontSize: "12px", fontWeight: 700 }}>View all</a>
                                 </div>
-                                <div style={{ textAlign: "center", padding: "24px", background: "#f8fafc", borderRadius: "16px", border: "1px dashed rgba(0,0,0,0.1)" }}>
-                                    <div style={{ marginBottom: "12px", color: "rgba(15,23,42,0.1)" }}>
-                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                <div style={{ textAlign: "center", padding: "16px", background: "#f8fafc", borderRadius: "16px", border: "1px dashed rgba(0,0,0,0.1)" }}>
+                                    <div style={{ marginBottom: "8px", color: "rgba(15,23,42,0.1)" }}>
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
                                         </svg>
                                     </div>
-                                    <p style={{ fontSize: "13px", color: "rgba(15,23,42,0.4)", fontWeight: 500, margin: 0 }}>No recent issues found</p>
+                                    <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.4)", fontWeight: 500, margin: 0 }}>No recent issues found</p>
                                 </div>
                             </div>
 
@@ -172,13 +172,13 @@ const HelpCenter = () => {
                             </div>
                         </div>
 
-                        {/* Ask a Question trigger (Floating or bottom) */}
-                        <div style={{ padding: "20px 30px 40px" }}>
+                        {/* Ask a Question trigger (Compact Button) */}
+                        <div style={{ padding: "20px 30px" }}>
                             <button 
                                 onClick={() => document.getElementById('ask-form').scrollIntoView({ behavior: 'smooth' })}
-                                style={{ width: "100%", padding: "16px", background: SLATE, color: "#fff", border: "none", borderRadius: "14px", fontSize: "14px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}
+                                style={{ width: "100%", padding: "14px", background: SLATE, color: "#fff", border: "none", borderRadius: "14px", fontSize: "13px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}
                             >
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
                                 </svg>
                                 Ask a Question
