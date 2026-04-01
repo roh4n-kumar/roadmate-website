@@ -186,10 +186,18 @@ export default function VehicleResults() {
       return b.reviews - a.reviews;
     });
 
-  const handleConfirm = () => { 
+  const handleConfirm = (v, total) => { 
     setSelected(null); 
-    setBooked(true); 
-    setTimeout(() => navigate("/my-bookings"), 2000); 
+    navigate("/payment", { 
+      state: { 
+        vehicle: v, 
+        total: total,
+        date,
+        pickup,
+        drop,
+        totalMins
+      } 
+    });
   };
 
   return (

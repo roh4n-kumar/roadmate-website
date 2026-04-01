@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
 import HelpCenter from "./pages/HelpCenter";
+import Payment from "./pages/Payment";
 import SafetyInformation from "./pages/SafetyInformation";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -133,6 +134,7 @@ function App() {
         <Route path="/"                   element={<Home isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />} />
         <Route path="/profile"            element={<ProtectedRoute><PersonalInfo /></ProtectedRoute>} />
         <Route path="/vehicles"           element={<ProtectedRoute><VehicleResults /></ProtectedRoute>} />
+        <Route path="/payment"            element={<ProtectedRoute><Payment /></ProtectedRoute>} />
         <Route path="/my-bookings"        element={<ProtectedRoute><MyBookings /></ProtectedRoute>} />
         <Route path="/documents/:docType" element={<ProtectedRoute><DocumentVerification /></ProtectedRoute>} />
         <Route path="/documents"          element={<ProtectedRoute><DocumentVerification /></ProtectedRoute>} />
