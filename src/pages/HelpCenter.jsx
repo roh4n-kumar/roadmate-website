@@ -116,16 +116,28 @@ const HelpCenter = () => {
                             {/* Trip Help Section (Compact) */}
                             <div style={{ marginBottom: "25px" }}>
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
-                                    <h4 style={{ fontSize: "14px", fontWeight: 800, fontFamily: H, color: SLATE, margin: 0 }}>Need help with this trip?</h4>
+                                    <h4 style={{ fontSize: "14px", fontWeight: 800, fontFamily: H, color: SLATE, margin: 0 }}>Need help with this ride?</h4>
                                     <a href="#" style={{ color: RED, textDecoration: "none", fontSize: "12px", fontWeight: 700 }}>View all</a>
                                 </div>
-                                <div style={{ textAlign: "center", padding: "16px", background: "#f8fafc", borderRadius: "16px", border: "1px dashed rgba(0,0,0,0.1)" }}>
-                                    <div style={{ marginBottom: "8px", color: "rgba(15,23,42,0.1)" }}>
-                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                            <rect x="1" y="3" width="15" height="13"/><polyline points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                                <div style={{ textAlign: "center", padding: "20px", background: "#f8fafc", borderRadius: "16px", border: "1px dashed rgba(0,0,0,0.1)" }}>
+                                    <div style={{ marginBottom: "12px" }}>
+                                        <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
+                                            {/* Shadow/Ground */}
+                                            <ellipse cx="12" cy="19.5" rx="8" ry="1.5" fill="rgba(15,23,42,0.05)" />
+                                            {/* Body Top - Red Tints */}
+                                            <path d="M6 10l1.5-4h9L18 10" stroke={RED} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                            {/* Main Body - Brand Red */}
+                                            <path d="M3 10h18a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2z" fill={RED} />
+                                            {/* Windows - Slate Tints */}
+                                            <path d="M7 10h10v-2.5l-1-1h-8l-1 1v2.5z" fill={SLATE} fillOpacity="0.2" />
+                                            {/* Wheels - Slate with white rim */}
+                                            <circle cx="7" cy="17" r="2.5" fill={SLATE} />
+                                            <circle cx="7" cy="17" r="1" fill="#fff" />
+                                            <circle cx="17" cy="17" r="2.5" fill={SLATE} />
+                                            <circle cx="17" cy="17" r="1" fill="#fff" />
                                         </svg>
                                     </div>
-                                    <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.4)", fontWeight: 500, margin: 0 }}>No recent trips found</p>
+                                    <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.4)", fontWeight: 500, margin: 0 }}>No recent rides found</p>
                                 </div>
                             </div>
 
