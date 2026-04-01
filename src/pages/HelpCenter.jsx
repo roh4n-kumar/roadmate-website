@@ -143,7 +143,7 @@ const HelpCenter = () => {
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -10 }}
                                         transition={{ duration: 0.3, ease: "easeInOut" }}
-                                        style={{ flex: 1, padding: "20px 30px", overflowY: "auto" }}
+                                        style={{ flex: 1, padding: "20px 30px", overflowY: "auto", overflowX: "hidden" }}
                                     >
                                         {/* Trip Help Section */}
                                         <div style={{ marginBottom: "25px" }}>
@@ -277,7 +277,7 @@ const HelpCenter = () => {
                                             </div>
                                             <h4 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: SLATE, margin: 0 }}>{activeCategory}</h4>
                                         </div>
-                                        <div style={{ flex: 1, overflowY: "auto", paddingBottom: "20px" }}>
+                                        <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden", paddingBottom: "20px" }}>
                                             {(faqData[activeCategory] || []).map((faq, idx) => {
                                                 const isExpanded = expandedFaqIndex === idx;
                                                 return (
