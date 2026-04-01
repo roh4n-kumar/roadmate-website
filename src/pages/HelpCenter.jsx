@@ -215,14 +215,26 @@ const HelpCenter = () => {
                             />
                         </motion.div>
 
-                        <motion.h2 
+                        <motion.div 
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.3 }}
-                            style={{ fontSize: "32px", fontWeight: 900, fontFamily: H, marginTop: "40px", letterSpacing: "-0.5px", color: SLATE }}
+                            style={{ 
+                                display: "inline-block", 
+                                background: `${RED}11`, 
+                                color: RED, 
+                                fontSize: "14px", 
+                                fontWeight: 900, 
+                                textTransform: "uppercase", 
+                                letterSpacing: "3px", 
+                                padding: "10px 24px", 
+                                borderRadius: "99px", 
+                                marginTop: "40px",
+                                border: `1px solid ${RED}22`
+                            }}
                         >
-                            24/7 <span style={{ color: RED }}>Customer Support</span>
-                        </motion.h2>
+                            24/7 Customer Support
+                        </motion.div>
                     </div>
 
                 </div>
