@@ -25,165 +25,235 @@ const HelpCenter = () => {
     };
 
     return (
-        <div style={{ background: "#f8fafc", fontFamily: F, color: "#1a1a1a", minHeight: "100vh" }}>
-            <style>{`
-                .help-input:focus {
-                    border-color: ${RED} !important;
-                    box-shadow: 0 0 0 4px ${RED}11 !important;
-                }
-                .category-card:hover {
-                    transform: translateY(-5px);
-                    border-color: ${RED}33 !important;
-                    background: #fff !important;
-                }
-            `}</style>
-
-            {/* HERO SECTION with SEARCH */}
-            <section style={{ 
-                padding: "140px 40px 100px", 
-                background: "linear-gradient(180deg, #111 0%, #0f172a 100%)", 
-                color: "#fff", 
-                textAlign: "center",
-                position: "relative",
-                overflow: "hidden"
-            }}>
-                <div style={{ position: "absolute", top: "-50%", left: "-10%", width: "60%", height: "200%", background: `radial-gradient(circle, ${RED}11 0%, transparent 70%)`, pointerEvents: "none" }} />
-                <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-                    <motion.h1 
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        style={{ fontSize: "56px", fontWeight: 900, fontFamily: H, marginBottom: "30px", letterSpacing: "-1.5px" }}
-                    >
-                        How can we <span style={{ color: RED }}>help?</span>
-                    </motion.h1>
+        <div style={{ background: RED, fontFamily: F, color: "#1a1a1a", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+            <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "100px 20px 60px" }}>
+                <div style={{ maxWidth: "1200px", width: "100%", display: "flex", flexWrap: "wrap", gap: "60px", alignItems: "center" }}>
                     
-                    <div style={{ position: "relative", maxWidth: "600px", margin: "0 auto" }}>
-                        <input 
-                            type="text" 
-                            placeholder="Search for help, articles, or issues..." 
-                            style={{ 
-                                width: "100%", 
-                                padding: "22px 30px 22px 60px", 
-                                borderRadius: "20px", 
-                                border: "none", 
-                                background: "rgba(255,255,255,0.1)", 
-                                backdropFilter: "blur(10px)",
-                                color: "#fff",
-                                fontSize: "16px",
-                                outline: "none",
-                                border: "1px solid rgba(255,255,255,0.1)"
-                            }}
-                        />
-                        <svg style={{ position: "absolute", left: "22px", top: "50%", transform: "translateY(-50%)" }} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                        </svg>
-                    </div>
-                </div>
-            </section>
-
-            {/* QUICK CATEGORIES */}
-            <section style={{ padding: "80px 24px", background: "#fff" }}>
-                <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "24px", marginBottom: "80px" }}>
-                        {[
-                            { title: "Bookings", icon: "M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" },
-                            { title: "Payments", icon: "M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" },
-                            { title: "Safety", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" },
-                            { title: "Accounts", icon: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" }
-                        ].map((cat, i) => (
-                            <div key={i} className="category-card" style={{ padding: "40px", borderRadius: "24px", background: "#f8fafc", border: "1px solid rgba(0,0,0,0.04)", textAlign: "center", transition: "all 0.3s", cursor: "pointer" }}>
-                                <div style={{ width: "60px", height: "60px", background: "#fff", borderRadius: "18px", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px", boxShadow: "0 10px 20px rgba(0,0,0,0.03)" }}>
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d={cat.icon}/>
-                                        {cat.title === "Bookings" && <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>}
-                                        {cat.title === "Accounts" && <circle cx="12" cy="7" r="4"/>}
-                                    </svg>
-                                </div>
-                                <h4 style={{ fontSize: "18px", fontWeight: 800, fontFamily: H, color: SLATE, marginBottom: "8px" }}>{cat.title}</h4>
-                                <span style={{ fontSize: "13px", color: "rgba(15,23,42,0.4)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "1px" }}>Browse Issues</span>
+                    {/* LEFT CARD (The Sidebar/Card) */}
+                    <motion.div 
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        style={{ 
+                            background: "#fff", 
+                            width: "100%", 
+                            maxWidth: "400px", 
+                            borderRadius: "32px", 
+                            boxShadow: "0 40px 100px rgba(0,0,0,0.15)", 
+                            overflow: "hidden",
+                            display: "flex",
+                            flexDirection: "column"
+                        }}
+                    >
+                        <div style={{ padding: "40px", borderBottom: "1px solid rgba(0,0,0,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                            <h2 style={{ fontSize: "28px", fontWeight: 900, fontFamily: H, margin: 0, color: SLATE, letterSpacing: "-1px" }}>Help</h2>
+                            <div style={{ padding: "8px", borderRadius: "8px", background: `${RED}11` }}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
                             </div>
-                        ))}
-                    </div>
-
-                    {/* ASK A QUESTION FORM */}
-                    <div style={{ maxWidth: "800px", margin: "0 auto", padding: "60px", background: "#f8fafc", borderRadius: "32px", border: "1px solid rgba(0,0,0,0.05)", position: "relative" }}>
-                        <div style={{ textAlign: "center", marginBottom: "40px" }}>
-                            <h3 style={{ fontSize: "32px", fontWeight: 900, fontFamily: H, color: SLATE, marginBottom: "10px" }}>Ask a <span style={{ color: RED }}>Question</span></h3>
-                            <p style={{ fontSize: "16px", color: "rgba(15,23,42,0.6)" }}>Can't find what you're looking for? Type your question below and our expert team will respond within 15 minutes.</p>
                         </div>
 
-                        <form onSubmit={handleAsk}>
-                            <textarea 
-                                required
-                                value={question}
-                                onChange={(e) => setQuestion(e.target.value)}
-                                placeholder="Type your question here details..."
-                                className="help-input"
-                                style={{ 
-                                    width: "100%", 
-                                    minHeight: "150px", 
-                                    padding: "24px", 
-                                    borderRadius: "18px", 
-                                    border: "1px solid rgba(0,0,0,0.1)", 
-                                    background: "#fff",
-                                    fontSize: "16px",
-                                    fontFamily: F,
-                                    outline: "none",
-                                    transition: "all 0.2s",
-                                    resize: "none",
-                                    marginBottom: "24px"
-                                }}
-                            />
+                        <div style={{ padding: "30px", maxHeight: "600px", overflowY: "auto" }}>
                             
-                            <motion.button 
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                type="submit"
-                                style={{ 
-                                    width: "100%", 
-                                    padding: "20px", 
-                                    background: RED, 
-                                    color: "#fff", 
-                                    border: "none", 
-                                    borderRadius: "18px", 
-                                    fontSize: "16px", 
-                                    fontWeight: 800, 
-                                    cursor: "pointer",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    gap: "12px",
-                                    boxShadow: `0 10px 25px ${RED}33`
-                                }}
-                            >
-                                {submitted ? "Sending..." : "Submit Question"}
-                                {!submitted && (
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                                    </svg>
-                                )}
-                            </motion.button>
-                        </form>
+                            {/* Trip Help Section */}
+                            <div style={{ marginBottom: "40px" }}>
+                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+                                    <h4 style={{ fontSize: "16px", fontWeight: 800, fontFamily: H, color: SLATE, margin: 0 }}>Need help with this trip?</h4>
+                                    <a href="#" style={{ color: RED, textDecoration: "none", fontSize: "13px", fontWeight: 700 }}>View all</a>
+                                </div>
+                                <div style={{ textAlign: "center", padding: "30px", background: "#f8fafc", borderRadius: "20px", border: "1px dashed rgba(0,0,0,0.1)" }}>
+                                    <div style={{ marginBottom: "15px", color: "rgba(15,23,42,0.1)" }}>
+                                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <rect x="1" y="3" width="15" height="13"/><polyline points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                                        </svg>
+                                    </div>
+                                    <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.4)", fontWeight: 500, margin: 0 }}>No recent trips found</p>
+                                </div>
+                            </div>
 
-                        {submitted && (
-                            <motion.div 
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                style={{ 
-                                    marginTop: "20px", 
-                                    padding: "15px", 
-                                    background: "#10b981", 
-                                    color: "#fff", 
-                                    borderRadius: "12px", 
-                                    textAlign: "center", 
-                                    fontSize: "14px", 
-                                    fontWeight: 700 
-                                }}
+                            {/* Recent Issues Section */}
+                            <div style={{ marginBottom: "40px" }}>
+                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+                                    <h4 style={{ fontSize: "16px", fontWeight: 800, fontFamily: H, color: SLATE, margin: 0 }}>Recent issues</h4>
+                                    <a href="#" style={{ color: RED, textDecoration: "none", fontSize: "13px", fontWeight: 700 }}>View all</a>
+                                </div>
+                                <div style={{ textAlign: "center", padding: "30px", background: "#f8fafc", borderRadius: "20px", border: "1px dashed rgba(0,0,0,0.1)" }}>
+                                    <div style={{ marginBottom: "15px", color: "rgba(15,23,42,0.1)" }}>
+                                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                                        </svg>
+                                    </div>
+                                    <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.4)", fontWeight: 500, margin: 0 }}>No recent issues found</p>
+                                </div>
+                            </div>
+
+                            {/* FAQ Categories Section */}
+                            <div>
+                                <h4 style={{ fontSize: "16px", fontWeight: 800, fontFamily: H, color: SLATE, marginBottom: "20px" }}>FAQ</h4>
+                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+                                    {[
+                                        { name: "Car FAQ", icon: "M1 3h15v13H1zM16 8h4l3 3v5h-7M5.5 18.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM18.5 18.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" },
+                                        { name: "Bike FAQ", icon: "M5.5 17.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM18.5 17.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM8 15h12M12 6l-3 7h10" },
+                                        { name: "Payments", icon: "M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" }
+                                    ].map((cat, i) => (
+                                        <div key={i} style={{ 
+                                            padding: "20px 15px", 
+                                            background: "#fff", 
+                                            borderRadius: "16px", 
+                                            border: "1px solid rgba(0,0,0,0.08)", 
+                                            textAlign: "center",
+                                            cursor: "pointer",
+                                            transition: "all 0.2s",
+                                            gridColumn: i === 2 ? "span 2" : "span 1"
+                                        }}>
+                                            <div style={{ marginBottom: "10px", color: RED }}>
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d={cat.icon}/>
+                                                </svg>
+                                            </div>
+                                            <span style={{ fontSize: "14px", fontWeight: 700, color: SLATE }}>{cat.name}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Ask a Question trigger (Floating or bottom) */}
+                        <div style={{ padding: "20px 30px 40px" }}>
+                            <button 
+                                onClick={() => document.getElementById('ask-form').scrollIntoView({ behavior: 'smooth' })}
+                                style={{ width: "100%", padding: "18px", background: SLATE, color: "#fff", border: "none", borderRadius: "16px", fontSize: "15px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}
                             >
-                                Your question has been sent! We'll get back to you shortly.
-                            </motion.div>
-                        )}
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                                Ask a Question
+                            </button>
+                        </div>
+                    </motion.div>
+
+                    {/* RIGHT SIDE (Branding & Illustration) */}
+                    <div style={{ flex: 1, color: "#fff", textAlign: "center" }}>
+                        <motion.h1 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            style={{ fontSize: "64px", fontWeight: 900, fontFamily: H, marginBottom: "10px", letterSpacing: "-2px" }}
+                        >
+                            RoadMate Help
+                        </motion.h1>
+                        <motion.p 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            style={{ fontSize: "20px", color: "rgba(255,255,255,0.7)", marginBottom: "40px", fontWeight: 600 }}
+                        >
+                            Your support partner on every journey
+                        </motion.p>
+                        
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.2 }}
+                            style={{ maxWidth: "600px", margin: "0 auto", position: "relative" }}
+                        >
+                            <img 
+                                src="/customer_support_illustration.png" 
+                                alt="Support Agent" 
+                                style={{ width: "100%", height: "auto", filter: "drop-shadow(0 20px 50px rgba(0,0,0,0.2))" }} 
+                            />
+                        </motion.div>
+
+                        <motion.h2 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.3 }}
+                            style={{ fontSize: "32px", fontWeight: 900, fontFamily: H, marginTop: "40px", letterSpacing: "-0.5px" }}
+                        >
+                            24/7 <span style={{ color: SLATE }}>Customer Support</span>
+                        </motion.h2>
                     </div>
+
+                </div>
+            </div>
+
+            {/* Hidden/Separate Question Form Section for the button to scroll to */}
+            <section id="ask-form" style={{ padding: "100px 24px", background: "#f8fafc" }}>
+                <div style={{ maxWidth: "800px", margin: "0 auto", padding: "60px", background: "#fff", borderRadius: "32px", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.03)" }}>
+                    <div style={{ textAlign: "center", marginBottom: "40px" }}>
+                        <h3 style={{ fontSize: "32px", fontWeight: 900, fontFamily: H, color: SLATE, marginBottom: "10px" }}>Ask a <span style={{ color: RED }}>Question</span></h3>
+                        <p style={{ fontSize: "16px", color: "rgba(15,23,42,0.6)" }}>Can't find what you're looking for? Type your question below and our expert team will respond within 15 minutes.</p>
+                    </div>
+
+                    <form onSubmit={handleAsk}>
+                        <textarea 
+                            required
+                            value={question}
+                            onChange={(e) => setQuestion(e.target.value)}
+                            placeholder="Type your question here details..."
+                            style={{ 
+                                width: "100%", 
+                                minHeight: "150px", 
+                                padding: "24px", 
+                                borderRadius: "18px", 
+                                border: "1px solid rgba(0,0,0,0.1)", 
+                                background: "#fff",
+                                fontSize: "16px",
+                                fontFamily: F,
+                                outline: "none",
+                                transition: "all 0.2s",
+                                resize: "none",
+                                marginBottom: "24px"
+                            }}
+                        />
+                        
+                        <motion.button 
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            type="submit"
+                            style={{ 
+                                width: "100%", 
+                                padding: "20px", 
+                                background: RED, 
+                                color: "#fff", 
+                                border: "none", 
+                                borderRadius: "18px", 
+                                fontSize: "16px", 
+                                fontWeight: 800, 
+                                cursor: "pointer",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: "12px",
+                                boxShadow: `0 10px 25px ${RED}33`
+                            }}
+                        >
+                            {submitted ? "Sending..." : "Submit Question"}
+                            {!submitted && (
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                                </svg>
+                            )}
+                        </motion.button>
+                    </form>
+
+                    {submitted && (
+                        <motion.div 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            style={{ 
+                                marginTop: "20px", 
+                                padding: "15px", 
+                                background: "#10b981", 
+                                color: "#fff", 
+                                borderRadius: "12px", 
+                                textAlign: "center", 
+                                fontSize: "14px", 
+                                fontWeight: 700 
+                            }}
+                        >
+                            Your question has been sent! We'll get back to you shortly.
+                        </motion.div>
+                    )}
                 </div>
             </section>
 
