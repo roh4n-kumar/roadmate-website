@@ -81,27 +81,28 @@ const HelpCenter = () => {
             <div style={{ flex: 1, background: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", padding: "80px 20px" }}>
                 <div style={{ maxWidth: "1200px", width: "100%", display: "flex", flexWrap: "wrap", gap: "60px", alignItems: "center" }}>
                     
-                    {/* LEFT CARD (Restored Width, Reduced Height) */}
+                    {/* LEFT CARD (Branding Red Style) */}
                     <motion.div 
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
                         style={{ 
-                            background: "#fff", 
+                            background: RED, 
                             width: "100%", 
                             maxWidth: "400px", 
                             borderRadius: "28px", 
-                            boxShadow: "0 40px 100px rgba(15, 23, 42, 0.08)", 
-                            border: "1px solid rgba(15, 23, 42, 0.05)",
+                            boxShadow: `0 40px 100px ${RED}33`, 
+                            border: `1px solid ${RED}aa`,
                             overflow: "hidden",
                             display: "flex",
                             flexDirection: "column",
-                            height: "fit-content"
+                            height: "fit-content",
+                            color: "#fff"
                         }}
                     >
-                        <div style={{ padding: "24px 30px", borderBottom: "1px solid rgba(0,0,0,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                            <h2 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, margin: 0, color: SLATE, letterSpacing: "-0.8px" }}>Help</h2>
-                            <div style={{ padding: "6px", borderRadius: "8px", background: `${RED}11` }}>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <div style={{ padding: "24px 30px", borderBottom: "1px solid rgba(255,255,255,0.1)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                            <h2 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, margin: 0, color: "#fff", letterSpacing: "-0.8px" }}>Help</h2>
+                            <div style={{ padding: "6px", borderRadius: "8px", background: "rgba(255,255,255,0.2)" }}>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                                 </svg>
                             </div>
@@ -109,76 +110,76 @@ const HelpCenter = () => {
 
                         <div style={{ padding: "20px 30px", maxHeight: "500px", overflowY: "auto" }}>
                             
-                            {/* Trip Help Section (Compact) */}
+                            {/* Trip Help Section (White on Red) */}
                             <div style={{ marginBottom: "25px" }}>
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
-                                    <h4 style={{ fontSize: "14px", fontWeight: 800, fontFamily: H, color: SLATE, margin: 0 }}>Need help with this trip?</h4>
-                                    <a href="#" style={{ color: RED, textDecoration: "none", fontSize: "12px", fontWeight: 700 }}>View all</a>
+                                    <h4 style={{ fontSize: "14px", fontWeight: 800, fontFamily: H, color: "#fff", margin: 0 }}>Need help with this trip?</h4>
+                                    <a href="#" style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: "12px", fontWeight: 700 }}>View all</a>
                                 </div>
-                                <div style={{ textAlign: "center", padding: "16px", background: "#f8fafc", borderRadius: "16px", border: "1px dashed rgba(0,0,0,0.1)" }}>
-                                    <div style={{ marginBottom: "8px", color: "rgba(15,23,42,0.1)" }}>
+                                <div style={{ textAlign: "center", padding: "16px", background: "rgba(255,255,255,0.1)", borderRadius: "16px", border: "1px dashed rgba(255,255,255,0.2)" }}>
+                                    <div style={{ marginBottom: "8px", color: "rgba(255,255,255,0.2)" }}>
                                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                             <rect x="1" y="3" width="15" height="13"/><polyline points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
                                         </svg>
                                     </div>
-                                    <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.4)", fontWeight: 500, margin: 0 }}>No recent trips found</p>
+                                    <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.5)", fontWeight: 500, margin: 0 }}>No recent trips found</p>
                                 </div>
                             </div>
 
-                            {/* Recent Issues Section (Compact) */}
+                            {/* Recent Issues Section (White on Red) */}
                             <div style={{ marginBottom: "25px" }}>
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
-                                    <h4 style={{ fontSize: "14px", fontWeight: 800, fontFamily: H, color: SLATE, margin: 0 }}>Recent issues</h4>
-                                    <a href="#" style={{ color: RED, textDecoration: "none", fontSize: "12px", fontWeight: 700 }}>View all</a>
+                                    <h4 style={{ fontSize: "14px", fontWeight: 800, fontFamily: H, color: "#fff", margin: 0 }}>Recent issues</h4>
+                                    <a href="#" style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: "12px", fontWeight: 700 }}>View all</a>
                                 </div>
-                                <div style={{ textAlign: "center", padding: "16px", background: "#f8fafc", borderRadius: "16px", border: "1px dashed rgba(0,0,0,0.1)" }}>
-                                    <div style={{ marginBottom: "8px", color: "rgba(15,23,42,0.1)" }}>
+                                <div style={{ textAlign: "center", padding: "16px", background: "rgba(255,255,255,0.1)", borderRadius: "16px", border: "1px dashed rgba(255,255,255,0.2)" }}>
+                                    <div style={{ marginBottom: "8px", color: "rgba(255,255,255,0.2)" }}>
                                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
                                         </svg>
                                     </div>
-                                    <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.4)", fontWeight: 500, margin: 0 }}>No recent issues found</p>
+                                    <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.5)", fontWeight: 500, margin: 0 }}>No recent issues found</p>
                                 </div>
                             </div>
 
-                            {/* FAQ Categories Section */}
+                            {/* FAQ Categories Section (Red style) */}
                             <div>
-                                <h4 style={{ fontSize: "16px", fontWeight: 800, fontFamily: H, color: SLATE, marginBottom: "20px" }}>FAQ</h4>
-                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+                                <h4 style={{ fontSize: "14px", fontWeight: 800, fontFamily: H, color: "#fff", marginBottom: "15px" }}>FAQ</h4>
+                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
                                     {[
                                         { name: "Car FAQ", icon: "M1 3h15v13H1zM16 8h4l3 3v5h-7M5.5 18.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM18.5 18.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" },
                                         { name: "Bike FAQ", icon: "M5.5 17.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM18.5 17.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM8 15h12M12 6l-3 7h10" },
                                         { name: "Payments", icon: "M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" }
                                     ].map((cat, i) => (
                                         <div key={i} style={{ 
-                                            padding: "20px 15px", 
-                                            background: "#fff", 
-                                            borderRadius: "16px", 
-                                            border: "1px solid rgba(0,0,0,0.08)", 
+                                            padding: "15px 10px", 
+                                            background: "rgba(255,255,255,0.08)", 
+                                            borderRadius: "14px", 
+                                            border: "1px solid rgba(255,255,255,0.1)", 
                                             textAlign: "center",
                                             cursor: "pointer",
                                             transition: "all 0.2s",
                                             gridColumn: i === 2 ? "span 2" : "span 1"
                                         }}>
-                                            <div style={{ marginBottom: "10px", color: RED }}>
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <div style={{ marginBottom: "8px", color: "#fff" }}>
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                     <path d={cat.icon}/>
                                                 </svg>
                                             </div>
-                                            <span style={{ fontSize: "14px", fontWeight: 700, color: SLATE }}>{cat.name}</span>
+                                            <span style={{ fontSize: "13px", fontWeight: 700, color: "#fff" }}>{cat.name}</span>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                         </div>
 
-                        {/* Ask a Question trigger (Compact Button) */}
-                        <div style={{ padding: "20px 30px" }}>
+                        {/* Ask a Question trigger (Inverted for visibility) */}
+                        <div style={{ padding: "15px 30px 25px" }}>
                             <button 
                                 onClick={() => document.getElementById('ask-form').scrollIntoView({ behavior: 'smooth' })}
-                                style={{ width: "100%", padding: "14px", background: SLATE, color: "#fff", border: "none", borderRadius: "14px", fontSize: "13px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}
+                                style={{ width: "100%", padding: "16px", background: "#fff", color: RED, border: "none", borderRadius: "14px", fontSize: "14px", fontWeight: 900, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", boxShadow: "0 10px 30px rgba(0,0,0,0.15)" }}
                             >
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
                                 </svg>
                                 Ask a Question
