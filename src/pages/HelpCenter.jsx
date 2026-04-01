@@ -38,25 +38,26 @@ const HelpCenter = () => {
             }}>
                 <div style={{ position: "absolute", top: "-50%", left: "-10%", width: "60%", height: "200%", background: `radial-gradient(circle, ${RED}11 0%, transparent 70%)`, pointerEvents: "none" }} />
                 <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-                    <motion.div 
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        style={{ 
-                            display: "inline-block", 
-                            background: `${RED}22`, 
-                            color: RED, 
-                            fontSize: "14px", 
-                            fontWeight: 900, 
-                            textTransform: "uppercase", 
-                            letterSpacing: "3px", 
-                            padding: "10px 24px", 
-                            borderRadius: "99px", 
-                            marginBottom: "30px",
-                            border: `1px solid ${RED}33`
-                        }}
-                    >
-                        24/7 Support
-                    </motion.div>
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            style={{ 
+                                display: "inline-block", 
+                                background: `${RED}11`, 
+                                color: RED, 
+                                fontSize: "14px", 
+                                fontWeight: 900, 
+                                textTransform: "uppercase", 
+                                letterSpacing: "3px", 
+                                padding: "12px 32px", 
+                                borderRadius: "99px", 
+                                marginBottom: "30px",
+                                border: `1.5px solid ${RED}33`,
+                                backdropFilter: "blur(5px)"
+                            }}
+                        >
+                            24/7 Support
+                        </motion.div>
                     <motion.h1 
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -227,10 +228,11 @@ const HelpCenter = () => {
                                 fontWeight: 900, 
                                 textTransform: "uppercase", 
                                 letterSpacing: "3px", 
-                                padding: "10px 24px", 
+                                padding: "12px 32px", 
                                 borderRadius: "99px", 
                                 marginTop: "40px",
-                                border: `1px solid ${RED}22`
+                                border: `1.5px solid ${RED}33`,
+                                backdropFilter: "blur(10px)"
                             }}
                         >
                             24/7 Customer Support
