@@ -5,6 +5,7 @@ import { db } from "../firebase";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 
 const RED = "#be0d0d";
+const SLATE = "#0f172a";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
