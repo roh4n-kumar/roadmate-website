@@ -353,7 +353,7 @@ const HelpCenter = () => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                style={{ fontSize: "17px", color: "rgba(15, 23, 42, 0.5)", marginBottom: "20px", fontWeight: 600 }}
+                                style={{ fontSize: "17px", color: "rgba(15, 23, 42, 0.5)", marginBottom: "20px", fontWeight: 600, marginTop: "-5px" }}
                             >
                                 Your support partner on every journey
                             </motion.p>
