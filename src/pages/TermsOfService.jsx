@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
 
-const RED = "#be0d0d";
+const RED = "#be0d0dff";
 const SLATE = "#0f172a";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
