@@ -129,8 +129,13 @@ const Footer = () => {
           <div>
             <h4 style={{ fontSize: "18px", fontWeight: 800, marginBottom: "25px", fontFamily: H }}>Support</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-              {["Help Center", "Safety Information", "Terms of Service", "Privacy Policy"].map(item => (
-                <Link key={item} to="#" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "14px", fontWeight: 500 }}>{item}</Link>
+              {[
+                { name: "Help Center", path: "/help-center" }, 
+                { name: "Safety Information", path: "#" }, 
+                { name: "Terms of Service", path: "#" }, 
+                { name: "Privacy Policy", path: "#" }
+              ].map(item => (
+                <Link key={item.name} to={item.path} style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "14px", fontWeight: 500 }}>{item.name}</Link>
               ))}
             </div>
           </div>

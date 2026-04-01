@@ -11,6 +11,7 @@ import DocumentVerification from "./pages/DocumentVerification";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
+import HelpCenter from "./pages/HelpCenter";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -135,6 +136,7 @@ function App() {
         <Route path="/about"               element={<About />} />
         <Route path="/contact"             element={<Contact />} />
         <Route path="/pricing"             element={<Pricing />} />
+        <Route path="/help-center"         element={<HelpCenter />} />
       </Routes>
     </>
   );
