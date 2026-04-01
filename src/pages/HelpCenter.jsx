@@ -101,10 +101,12 @@ const HelpCenter = () => {
                         <div style={{ padding: "24px 30px", borderBottom: "1px solid rgba(0,0,0,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                             <h2 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, margin: 0, color: SLATE, letterSpacing: "-0.8px" }}>Help</h2>
                             <div style={{ padding: "6px", borderRadius: "8px", background: `${RED}11` }}>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-                                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-                                    <path d="M20 10c0-4.418-3.582-8-8-8s-8 3.582-8 8m16 4.5v1a2 2 0 0 1-2 2h-3" />
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M4 14c0-4.418 3.582-8 8-8s8 3.582 8 8" />
+                                    <rect x="2" y="14" width="4" height="6" rx="1" />
+                                    <rect x="18" y="14" width="4" height="6" rx="1" />
+                                    <path d="M19 18c0 2-2 3-5 3" />
+                                    <circle cx="14" cy="21" r="1" fill={RED} />
                                 </svg>
                             </div>
                         </div>
