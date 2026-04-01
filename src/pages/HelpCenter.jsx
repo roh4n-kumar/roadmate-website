@@ -101,20 +101,20 @@ const HelpCenter = () => {
                         <div style={{ padding: "24px 30px", borderBottom: "1px solid rgba(0,0,0,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                             <h2 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, margin: 0, color: SLATE, letterSpacing: "-0.8px" }}>Help</h2>
                             <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                                {/* Language Toggle Icon (High-Fidelity Detail) */}
+                                {/* Language Toggle Icon (Clean High-Fidelity) */}
                                 <div style={{ padding: "6px", borderRadius: "8px", background: `${RED}11`, cursor: "pointer" }}>
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        {/* Back Page (Light Gray) */}
-                                        <path d="M8 4h11c1.1 0 2 .9 2 2v11c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="#f1f5f9" />
-                                        <text x="13.5" y="13.5" fontSize="10" fill="#94a3b8" textAnchor="middle" fontWeight="900" style={{ fontFamily: "Outfit" }}>अ</text>
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                        {/* Back Page: The White/Gray Symbol Plate */}
+                                        <path d="M9 3h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="#f8fafc" stroke="rgba(15, 23, 42, 0.05)" />
+                                        <text x="15.5" y="13" fontSize="10" fill="#94a3b8" textAnchor="middle" fontWeight="900" style={{ fontFamily: "Outfit" }}>अ</text>
                                         
-                                        {/* Front Page (Brand Red - Folded Look) */}
-                                        <path d="M3 4h12l3 11H6l-3-3V4z" fill={RED} />
-                                        {/* Bottom Shadow Fold */}
-                                        <path d="M15 15l3 0l-3 6l0-6z" fill="#800909" />
+                                        {/* Front Page: The Brand Red 'A' Plate */}
+                                        <path d="M2.5 7h12c1.1 0 2 .9 2 2v8.5l-3.5 3.5H4.5c-1.1 0-2-.9-2-2V9c0-1.1.9-2 2-2z" fill={RED} />
                                         
-                                        {/* Front Letter */}
-                                        <text x="9.5" y="11.5" fontSize="10" fill="#fff" textAnchor="middle" fontWeight="900" style={{ fontFamily: "Outfit" }}>A</text>
+                                        {/* The Characteristic Translate Fold */}
+                                        <path d="M13 17.5l3.5 0l-3.5 3.5l0-3.5z" fill="#800909" />
+                                        
+                                        <text x="9" y="15" fontSize="11" fill="#fff" textAnchor="middle" fontWeight="900" style={{ fontFamily: "Outfit" }}>A</text>
                                     </svg>
                                 </div>
 
