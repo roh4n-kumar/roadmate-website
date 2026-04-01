@@ -169,7 +169,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           borderBottom: "1.5px solid rgba(15, 23, 42, 0.05)",
-          boxShadow: "0 10px 40px rgba(0, 0, 0, 0.1)",
+          boxShadow: "0 2px 10px rgba(0, 0, 0, 0.15)",
         }}
       >
         <div style={{ maxWidth: "1250px", margin: "0 auto", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
