@@ -79,7 +79,7 @@ const HelpCenter = () => {
 
             {/* CONTENT SECTION (White Background) */}
             <div style={{ flex: 1, background: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", padding: "80px 20px" }}>
-                <div style={{ maxWidth: "1200px", width: "100%", display: "flex", flexWrap: "wrap", gap: "60px", alignItems: "center" }}>
+                <div style={{ maxWidth: "1200px", width: "100%", display: "flex", flexWrap: "wrap", gap: "60px", alignItems: "stretch", justifyContent: "center" }}>
                     
                     {/* LEFT CARD (Restored Width, Reduced Height) */}
                     <motion.div 
@@ -186,65 +186,69 @@ const HelpCenter = () => {
                         </div>
                     </motion.div>
 
-                    {/* RIGHT SIDE (Slightly more compact) */}
-                    <div style={{ flex: 1, minWidth: "400px", color: SLATE, textAlign: "center" }}>
-                        <motion.h1 
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            style={{ fontSize: "48px", fontWeight: 900, fontFamily: H, marginBottom: "5px", letterSpacing: "-1.5px", color: SLATE }}
-                        >
-                            RoadMate Help
-                        </motion.h1>
-                        <motion.p 
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                            style={{ fontSize: "18px", color: "rgba(15, 23, 42, 0.5)", marginBottom: "30px", fontWeight: 600 }}
-                        >
-                            Your support partner on every journey
-                        </motion.p>
-                        
-                        <motion.div 
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.2 }}
-                            style={{ maxWidth: "480px", margin: "0 auto", position: "relative" }}
-                        >
-                            <img 
-                                src="/customer_support_illustration.png" 
-                                alt="Support Agent" 
-                                style={{ 
-                                    width: "100%", 
-                                    height: "auto", 
-                                    borderRadius: "28px",
-                                    boxShadow: `0 30px 80px rgba(190, 13, 13, 0.15)`,
-                                    filter: "brightness(1.02)",
-                                    border: `1px solid rgba(190, 13, 13, 0.1)`
-                                }} 
-                            />
-                        </motion.div>
+                    {/* RIGHT SIDE (Symmetry & Logic) */}
+                    <div style={{ flex: 1, minWidth: "400px", color: SLATE, textAlign: "center", display: "flex", flexDirection: "column" }}>
+                        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                            <motion.h1 
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                style={{ fontSize: "44px", fontWeight: 900, fontFamily: H, marginBottom: "5px", letterSpacing: "-1.5px", color: SLATE }}
+                            >
+                                RoadMate Help
+                            </motion.h1>
+                            <motion.p 
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 }}
+                                style={{ fontSize: "17px", color: "rgba(15, 23, 42, 0.5)", marginBottom: "25px", fontWeight: 600 }}
+                            >
+                                Your support partner on every journey
+                            </motion.p>
+                            
+                            <motion.div 
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.2 }}
+                                style={{ maxWidth: "380px", width: "100%", margin: "0 auto", position: "relative" }}
+                            >
+                                <img 
+                                    src="/customer_support_illustration.png" 
+                                    alt="Support Agent" 
+                                    style={{ 
+                                        width: "100%", 
+                                        height: "auto", 
+                                        borderRadius: "28px",
+                                        boxShadow: `0 30px 80px rgba(190, 13, 13, 0.15)`,
+                                        filter: "brightness(1.02)",
+                                        border: `1px solid rgba(190, 13, 13, 0.1)`
+                                    }} 
+                                />
+                            </motion.div>
+                        </div>
 
-                        <motion.div 
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.3 }}
-                            style={{ 
-                                display: "inline-block", 
-                                background: "rgba(190, 13, 13, 0.08)", 
-                                color: RED, 
-                                fontSize: "12px", 
-                                fontWeight: 900, 
-                                textTransform: "uppercase", 
-                                letterSpacing: "4px", 
-                                padding: "12px 36px", 
-                                borderRadius: "99px", 
-                                marginTop: "40px",
-                                border: `1.5px solid rgba(190, 13, 13, 0.25)`,
-                                backdropFilter: "blur(8px)"
-                            }}
-                        >
-                            24/7 Customer Support
-                        </motion.div>
+                        {/* Aligned with Card Bottom */}
+                        <div style={{ marginTop: "30px" }}>
+                            <motion.div 
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.3 }}
+                                style={{ 
+                                    display: "inline-block", 
+                                    background: "rgba(190, 13, 13, 0.08)", 
+                                    color: RED, 
+                                    fontSize: "12px", 
+                                    fontWeight: 900, 
+                                    textTransform: "uppercase", 
+                                    letterSpacing: "4px", 
+                                    padding: "12px 36px", 
+                                    borderRadius: "99px", 
+                                    border: `1.5px solid rgba(190, 13, 13, 0.25)`,
+                                    backdropFilter: "blur(8px)"
+                                }}
+                            >
+                                24/7 Customer Support
+                            </motion.div>
+                        </div>
                     </div>
 
                 </div>
