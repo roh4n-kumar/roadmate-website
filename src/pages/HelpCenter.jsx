@@ -203,7 +203,7 @@ const HelpCenter = () => {
                                         )
                                     },
                                     { 
-                                        name: "Payments", 
+                                        name: "Payments FAQ", 
                                         renderIcon: () => (
                                             <svg width="42" height="22" viewBox="0 0 512 265.788" fill="none">
                                                 <path fill={RED} d="M0 0h512v265.789H0z"/>
