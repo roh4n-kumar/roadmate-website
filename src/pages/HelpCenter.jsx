@@ -43,17 +43,17 @@ const HelpCenter = () => {
                             animate={{ opacity: 1, scale: 1 }}
                             style={{ 
                                 display: "inline-block", 
-                                background: `${RED}11`, 
+                                background: "rgba(190, 13, 13, 0.12)", 
                                 color: RED, 
-                                fontSize: "14px", 
+                                fontSize: "12px", 
                                 fontWeight: 900, 
                                 textTransform: "uppercase", 
-                                letterSpacing: "3px", 
-                                padding: "12px 32px", 
+                                letterSpacing: "4px", 
+                                padding: "12px 36px", 
                                 borderRadius: "99px", 
                                 marginBottom: "30px",
-                                border: `1.5px solid ${RED}33`,
-                                backdropFilter: "blur(5px)"
+                                border: `1.5px solid rgba(190, 13, 13, 0.3)`,
+                                backdropFilter: "blur(4px)"
                             }}
                         >
                             24/7 Support
@@ -222,17 +222,17 @@ const HelpCenter = () => {
                             transition={{ delay: 0.3 }}
                             style={{ 
                                 display: "inline-block", 
-                                background: `${RED}11`, 
+                                background: "rgba(190, 13, 13, 0.08)", 
                                 color: RED, 
-                                fontSize: "14px", 
+                                fontSize: "12px", 
                                 fontWeight: 900, 
                                 textTransform: "uppercase", 
-                                letterSpacing: "3px", 
-                                padding: "12px 32px", 
+                                letterSpacing: "4px", 
+                                padding: "12px 36px", 
                                 borderRadius: "99px", 
                                 marginTop: "40px",
-                                border: `1.5px solid ${RED}33`,
-                                backdropFilter: "blur(10px)"
+                                border: `1.5px solid rgba(190, 13, 13, 0.25)`,
+                                backdropFilter: "blur(8px)"
                             }}
                         >
                             24/7 Customer Support
