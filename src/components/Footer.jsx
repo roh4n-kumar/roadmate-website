@@ -131,9 +131,9 @@ const Footer = () => {
             <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
               {[
                 { name: "Help Center", path: "/help-center" }, 
-                { name: "Safety Information", path: "#" }, 
-                { name: "Terms of Service", path: "#" }, 
-                { name: "Privacy Policy", path: "#" }
+                { name: "Safety Information", path: "/safety-information" }, 
+                { name: "Terms of Service", path: "/terms-of-service" }, 
+                { name: "Privacy Policy", path: "/privacy-policy" }
               ].map(item => (
                 <Link key={item.name} to={item.path} style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "14px", fontWeight: 500 }}>{item.name}</Link>
               ))}

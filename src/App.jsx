@@ -12,6 +12,9 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
 import HelpCenter from "./pages/HelpCenter";
+import SafetyInformation from "./pages/SafetyInformation";
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -137,6 +140,9 @@ function App() {
         <Route path="/contact"             element={<Contact />} />
         <Route path="/pricing"             element={<Pricing />} />
         <Route path="/help-center"         element={<HelpCenter />} />
+        <Route path="/safety-information"  element={<SafetyInformation />} />
+        <Route path="/terms-of-service"    element={<TermsOfService />} />
+        <Route path="/privacy-policy"      element={<PrivacyPolicy />} />
       </Routes>
     </>
   );
