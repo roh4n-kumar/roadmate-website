@@ -103,12 +103,12 @@ const BookingModal = ({ vehicle, totalMins, date, pickup, drop, onClose, onConfi
         </div>
 
         <div style={{ padding: "20px 20px 35px" }}>
-          <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "20px", padding: "20px", marginBottom: "20px", border: "1px solid rgba(255,255,255,0.05)" }}>
+          <div style={{ background: "rgba(15,23,42,0.03)", borderRadius: "20px", padding: "20px", marginBottom: "20px", border: "1px solid rgba(15,23,42,0.05)" }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
               {[{ label: "DATE", val: fmt(date) }, { label: "DURATION", val: fmtDuration(totalMins) }, { label: "PICKUP", val: fmtTime(pickup) }, { label: "DROP-OFF", val: fmtTime(drop) }].map(({ label, val }) => (
                 <div key={label}>
-                  <p style={{ fontSize: "10px", fontWeight: "800", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1.2px", margin: 0 }}>{label}</p>
-                  <p style={{ fontSize: "14px", fontWeight: "700", color: "#fff", margin: "4px 0 0" }}>{val}</p>
+                  <p style={{ fontSize: "10px", fontWeight: "800", color: "rgba(15,23,42,0.4)", textTransform: "uppercase", letterSpacing: "1.2px", margin: 0 }}>{label}</p>
+                  <p style={{ fontSize: "14px", fontWeight: "700", color: SLATE, margin: "4px 0 0" }}>{val}</p>
                 </div>
               ))}
             </div>
@@ -116,14 +116,14 @@ const BookingModal = ({ vehicle, totalMins, date, pickup, drop, onClose, onConfi
 
           <div style={{ marginBottom: "25px", padding: "0 5px" }}>
             {[{ label: `Base Fare (₹${vehicle.pricePerHour}/hr × ${Number((totalMins/60).toFixed(2))} hrs)`, val: `₹${total}` }, { label: "Taxes & GST (18%)", val: `₹${gst}` }].map(({ label, val }) => (
-              <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-                <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.6)" }}>{label}</span>
-                <span style={{ fontSize: "14px", fontWeight: "700", color: "#fff" }}>{val}</span>
+              <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid rgba(15,23,42,0.05)" }}>
+                <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)" }}>{label}</span>
+                <span style={{ fontSize: "14px", fontWeight: "700", color: SLATE }}>{val}</span>
               </div>
             ))}
             <div style={{ display: "flex", justifyContent: "space-between", padding: "15px 0 0" }}>
-              <span style={{ fontSize: "16px", fontWeight: "800", color: "#fff" }}>Grand Total</span>
-              <span style={{ fontSize: "26px", fontWeight: "900", color: "var(--brand-primary-light)" }}>₹{grand}</span>
+              <span style={{ fontSize: "16px", fontWeight: "800", color: SLATE }}>Grand Total</span>
+              <span style={{ fontSize: "26px", fontWeight: "900", color: RED }}>₹{grand}</span>
             </div>
           </div>
 
