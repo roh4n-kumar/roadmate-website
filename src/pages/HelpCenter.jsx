@@ -101,15 +101,20 @@ const HelpCenter = () => {
                         <div style={{ padding: "24px 30px", borderBottom: "1px solid rgba(0,0,0,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                             <h2 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, margin: 0, color: SLATE, letterSpacing: "-0.8px" }}>Help</h2>
                             <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                                {/* Language Toggle Icon (Custom Build) */}
+                                {/* Language Toggle Icon (High-Fidelity Detail) */}
                                 <div style={{ padding: "6px", borderRadius: "8px", background: `${RED}11`, cursor: "pointer" }}>
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                                        {/* Background layer */}
-                                        <rect x="3" y="3" width="14" height="14" rx="3" fill="rgba(15, 23, 42, 0.04)" />
-                                        <text x="10" y="13.5" fontSize="11" fill="rgba(15, 23, 42, 0.35)" textAnchor="middle" fontWeight="900" style={{ fontFamily: "Outfit" }}>अ</text>
-                                        {/* Front Folded layer (Brand Red) */}
-                                        <path d="M9 7h11c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1h-8l-3-3V7z" fill={RED} />
-                                        <text x="15" y="16" fontSize="11" fill="#fff" textAnchor="middle" fontWeight="900" style={{ fontFamily: "Outfit" }}>A</text>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        {/* Back Page (Light Gray) */}
+                                        <path d="M8 4h11c1.1 0 2 .9 2 2v11c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="#f1f5f9" />
+                                        <text x="13.5" y="13.5" fontSize="10" fill="#94a3b8" textAnchor="middle" fontWeight="900" style={{ fontFamily: "Outfit" }}>अ</text>
+                                        
+                                        {/* Front Page (Brand Red - Folded Look) */}
+                                        <path d="M3 4h12l3 11H6l-3-3V4z" fill={RED} />
+                                        {/* Bottom Shadow Fold */}
+                                        <path d="M15 15l3 0l-3 6l0-6z" fill="#800909" />
+                                        
+                                        {/* Front Letter */}
+                                        <text x="9.5" y="11.5" fontSize="10" fill="#fff" textAnchor="middle" fontWeight="900" style={{ fontFamily: "Outfit" }}>A</text>
                                     </svg>
                                 </div>
 
