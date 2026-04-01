@@ -78,7 +78,7 @@ const HelpCenter = () => {
             </section>
 
             {/* CONTENT SECTION (White Background) */}
-            <div style={{ flex: 1, background: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", padding: "80px 20px" }}>
+            <div style={{ flex: 1, background: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 20px 80px" }}>
                 <div style={{ maxWidth: "1200px", width: "100%", display: "flex", flexWrap: "wrap", gap: "60px", alignItems: "stretch", justifyContent: "center" }}>
                     
                     {/* LEFT CARD (Restored Width, Reduced Height) */}
@@ -192,9 +192,9 @@ const HelpCenter = () => {
                             <motion.h1 
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                style={{ fontSize: "44px", fontWeight: 900, fontFamily: H, marginBottom: "5px", letterSpacing: "-1.5px", color: SLATE }}
+                                style={{ fontSize: "44px", fontWeight: 900, fontFamily: H, marginBottom: "5px", letterSpacing: "-1.5px" }}
                             >
-                                RoadMate Help
+                                <span style={{ color: SLATE }}>Road</span><span style={{ color: RED }}>Mate</span> Help
                             </motion.h1>
                             <motion.p 
                                 initial={{ opacity: 0, y: 20 }}
