@@ -88,7 +88,7 @@ const HelpCenter = () => {
                         style={{ 
                             background: "#fff", 
                             width: "100%", 
-                            maxWidth: "400px", 
+                            maxWidth: "450px", 
                             borderRadius: "28px", 
                             boxShadow: "0 40px 100px rgba(15, 23, 42, 0.08)", 
                             border: "1px solid rgba(15, 23, 42, 0.05)",
