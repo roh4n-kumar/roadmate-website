@@ -81,7 +81,7 @@ const HelpCenter = () => {
             <div style={{ flex: 1, background: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", padding: "10px 20px 80px" }}>
                 <div style={{ maxWidth: "1200px", width: "100%", display: "flex", flexWrap: "wrap", gap: "60px", alignItems: "stretch", justifyContent: "center" }}>
                     
-                    {/* LEFT CARD (Restored Width, Reduced Height) */}
+                    {/* LEFT CARD (Stretched to match Right Side height) */}
                     <motion.div 
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -95,7 +95,7 @@ const HelpCenter = () => {
                             overflow: "hidden",
                             display: "flex",
                             flexDirection: "column",
-                            height: "fit-content"
+                            height: "100%"
                         }}
                     >
                         <div style={{ padding: "24px 30px", borderBottom: "1px solid rgba(0,0,0,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -186,13 +186,13 @@ const HelpCenter = () => {
                         </div>
                     </motion.div>
 
-                    {/* RIGHT SIDE (Symmetry & Logic) */}
-                    <div style={{ flex: 1, minWidth: "400px", color: SLATE, textAlign: "center", display: "flex", flexDirection: "column" }}>
-                        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                    {/* RIGHT SIDE (Symmetry & Precise Alignment) */}
+                    <div style={{ flex: 1, minWidth: "400px", color: SLATE, textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                        <div>
                             <motion.h1 
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                style={{ fontSize: "44px", fontWeight: 900, fontFamily: H, marginBottom: "5px", letterSpacing: "-1.5px" }}
+                                style={{ fontSize: "44px", fontWeight: 900, fontFamily: H, marginBottom: "5px", letterSpacing: "-1.5px", marginTop: 0 }}
                             >
                                 <span style={{ color: SLATE }}>Road</span><span style={{ color: RED }}>Mate</span> Help
                             </motion.h1>
@@ -200,11 +200,13 @@ const HelpCenter = () => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                style={{ fontSize: "17px", color: "rgba(15, 23, 42, 0.5)", marginBottom: "25px", fontWeight: 600 }}
+                                style={{ fontSize: "17px", color: "rgba(15, 23, 42, 0.5)", marginBottom: "20px", fontWeight: 600 }}
                             >
                                 Your support partner on every journey
                             </motion.p>
-                            
+                        </div>
+                        
+                        <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <motion.div 
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -226,8 +228,8 @@ const HelpCenter = () => {
                             </motion.div>
                         </div>
 
-                        {/* Aligned closer to Image */}
-                        <div style={{ marginTop: "12px" }}>
+                        {/* Aligned with Card Bottom */}
+                        <div style={{ marginTop: "20px" }}>
                             <motion.div 
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -243,7 +245,8 @@ const HelpCenter = () => {
                                     padding: "12px 36px", 
                                     borderRadius: "99px", 
                                     border: `1.5px solid rgba(190, 13, 13, 0.25)`,
-                                    backdropFilter: "blur(8px)"
+                                    backdropFilter: "blur(8px)",
+                                    marginBottom: 0
                                 }}
                             >
                                 24/7 Customer Support
