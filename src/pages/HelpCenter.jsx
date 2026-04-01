@@ -166,29 +166,58 @@ const HelpCenter = () => {
                             <div>
                                 <h4 style={{ fontSize: "16px", fontWeight: 800, fontFamily: H, color: SLATE, marginBottom: "20px" }}>FAQ</h4>
                                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
-                                    {[
-                                        { name: "Car FAQ", icon: "M1 3h15v13H1zM16 8h4l3 3v5h-7M5.5 18.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM18.5 18.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" },
-                                        { name: "Bike FAQ", icon: "M5.5 17.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM18.5 17.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM8 15h12M12 6l-3 7h10" },
-                                        { name: "Payments", icon: "M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" }
-                                    ].map((cat, i) => (
-                                        <div key={i} style={{ 
-                                            padding: "20px 15px", 
-                                            background: "#fff", 
-                                            borderRadius: "16px", 
-                                            border: "1px solid rgba(0,0,0,0.08)", 
-                                            textAlign: "center",
-                                            cursor: "pointer",
-                                            transition: "all 0.2s",
-                                            gridColumn: i === 2 ? "span 2" : "span 1"
-                                        }}>
-                                            <div style={{ marginBottom: "10px", color: RED }}>
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                    <path d={cat.icon}/>
-                                                </svg>
-                                            </div>
-                                            <span style={{ fontSize: "14px", fontWeight: 700, color: SLATE }}>{cat.name}</span>
+                                {[
+                                    { 
+                                        name: "Car FAQ", 
+                                        renderIcon: () => (
+                                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                                <ellipse cx="12" cy="19" rx="8" ry="1.5" fill="rgba(15,23,42,0.05)" />
+                                                <path d="M4 11l2-4h12l2 4h4v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3h4z" fill={RED} />
+                                                <path d="M7 11l1.5-3.5h7L17 11H7z" fill={SLATE} fillOpacity="0.2" />
+                                                <circle cx="7" cy="17" r="2.5" fill={SLATE} />
+                                                <circle cx="17" cy="17" r="2.5" fill={SLATE} />
+                                            </svg>
+                                        )
+                                    },
+                                    { 
+                                        name: "Bike FAQ", 
+                                        renderIcon: () => (
+                                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                                <ellipse cx="12" cy="19" rx="7" ry="1" fill="rgba(15,23,42,0.04)" />
+                                                <path d="M5 14l3-6h4l2 3h5" stroke={RED} strokeWidth="2.5" strokeLinecap="round" />
+                                                <circle cx="5" cy="16" r="3.5" fill={SLATE} />
+                                                <circle cx="5" cy="16" r="1.5" fill="#fff" />
+                                                <circle cx="18" cy="16" r="3.5" fill={SLATE} />
+                                                <circle cx="18" cy="16" r="1.5" fill="#fff" />
+                                            </svg>
+                                        )
+                                    },
+                                    { 
+                                        name: "Payments", 
+                                        renderIcon: () => (
+                                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                                <circle cx="12" cy="12" r="11" fill={`${RED}11`} />
+                                                <path d="M7 8h10M7 11h10M13.5 11c0 0-6.5 0-6.5 4s6.5 5 6.5 5M12 11l4 9" stroke={RED} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                        )
+                                    }
+                                ].map((cat, i) => (
+                                    <div key={i} style={{ 
+                                        padding: "24px 15px", 
+                                        background: "#fff", 
+                                        borderRadius: "16px", 
+                                        border: "1px solid rgba(0,0,0,0.08)", 
+                                        textAlign: "center",
+                                        cursor: "pointer",
+                                        transition: "all 0.2s",
+                                        gridColumn: i === 2 ? "span 2" : "span 1"
+                                    }}>
+                                        <div style={{ marginBottom: "12px", display: "flex", justifyContent: "center" }}>
+                                            {cat.renderIcon()}
                                         </div>
-                                    ))}
+                                        <span style={{ fontSize: "14px", fontWeight: 800, color: SLATE, fontFamily: H, letterSpacing: "-0.2px" }}>{cat.name}</span>
+                                    </div>
+                                ))}
                                 </div>
                             </div>
                         </div>
