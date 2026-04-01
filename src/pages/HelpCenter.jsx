@@ -270,7 +270,7 @@ const HelpCenter = () => {
                                         }}
                                     >
                                         <div style={{ display: "flex", alignItems: "center", gap: "16px", padding: "20px 0", borderBottom: "1px solid rgba(0,0,0,0.08)", marginBottom: "8px" }}>
-                                            <div onClick={() => setActiveCategory(null)} style={{ cursor: "pointer" }}>
+                                            <div onClick={() => { setActiveCategory(null); setExpandedFaqIndex(null); }} style={{ cursor: "pointer" }}>
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={SLATE} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                                                     <path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/>
                                                 </svg>
@@ -297,7 +297,7 @@ const HelpCenter = () => {
                                                                 animate={{ rotate: isExpanded ? 90 : 0 }}
                                                                 transition={{ duration: 0.2 }}
                                                             >
-                                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(15,23,42,0.3)" strokeWidth="2.5">
+                                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isExpanded ? RED : "rgba(15,23,42,0.3)"} strokeWidth="2.5">
                                                                     <polyline points="9 18 15 12 9 6"/>
                                                                 </svg>
                                                             </motion.div>
