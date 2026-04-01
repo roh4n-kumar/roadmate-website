@@ -213,7 +213,13 @@ const HelpCenter = () => {
                             <img 
                                 src="/customer_support_illustration.png" 
                                 alt="Support Agent" 
-                                style={{ width: "100%", height: "auto", filter: "drop-shadow(0 20px 50px rgba(15, 23, 42, 0.08))" }} 
+                                style={{ 
+                                    width: "100%", 
+                                    height: "auto", 
+                                    borderRadius: "32px",
+                                    boxShadow: `0 30px 60px ${RED}22`,
+                                    filter: "brightness(1.02)"
+                                }} 
                             />
                         </motion.div>
 
