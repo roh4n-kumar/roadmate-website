@@ -78,7 +78,7 @@ const HelpCenter = () => {
             </section>
 
             {/* CONTENT SECTION (White Background) */}
-            <div style={{ flex: 1, background: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 20px 80px" }}>
+            <div style={{ flex: 1, background: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", padding: "10px 20px 80px" }}>
                 <div style={{ maxWidth: "1200px", width: "100%", display: "flex", flexWrap: "wrap", gap: "60px", alignItems: "stretch", justifyContent: "center" }}>
                     
                     {/* LEFT CARD (Restored Width, Reduced Height) */}
