@@ -147,10 +147,18 @@ const HelpCenter = () => {
                                     <h4 style={{ fontSize: "14px", fontWeight: 800, fontFamily: H, color: SLATE, margin: 0 }}>Recent issues</h4>
                                     <a href="#" style={{ color: RED, textDecoration: "none", fontSize: "12px", fontWeight: 700 }}>View all</a>
                                 </div>
-                                <div style={{ textAlign: "center", padding: "16px", background: "#f8fafc", borderRadius: "16px", border: "1px dashed rgba(0,0,0,0.1)" }}>
-                                    <div style={{ marginBottom: "8px", color: "rgba(15,23,42,0.1)" }}>
-                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                                <div style={{ textAlign: "center", padding: "20px", background: "#f8fafc", borderRadius: "16px", border: "1px dashed rgba(0,0,0,0.1)" }}>
+                                    <div style={{ marginBottom: "12px" }}>
+                                        <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
+                                            {/* Folder Body - Brand Red */}
+                                            <path d="M4 4h6l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill={RED} />
+                                            {/* Accent Line */}
+                                            <path d="M2 10.5h20" stroke="rgba(0,0,0,0.1)" strokeWidth="0.8" />
+                                            {/* Alert Badge - Slate */}
+                                            <circle cx="16" cy="15" r="5.5" fill={SLATE} stroke="#fff" strokeWidth="1.5" />
+                                            {/* Alert Icon (Warning Exclamation) */}
+                                            <path d="M16 12.5v3" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" />
+                                            <circle cx="16" cy="17.5" r="0.8" fill="#fff" />
                                         </svg>
                                     </div>
                                     <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.4)", fontWeight: 500, margin: 0 }}>No recent issues found</p>
