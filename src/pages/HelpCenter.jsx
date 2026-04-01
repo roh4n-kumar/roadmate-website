@@ -100,14 +100,29 @@ const HelpCenter = () => {
                     >
                         <div style={{ padding: "24px 30px", borderBottom: "1px solid rgba(0,0,0,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                             <h2 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, margin: 0, color: SLATE, letterSpacing: "-0.8px" }}>Help</h2>
-                            <div style={{ padding: "6px", borderRadius: "8px", background: `${RED}11` }}>
-                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M4 12V11a8 8 0 0 1 16 0v1" />
-                                    <rect x="2" y="12" width="4" height="8" rx="2" />
-                                    <rect x="18" y="12" width="4" height="8" rx="2" />
-                                    <path d="M19 17c0 2-2 3-5 3" />
-                                    <circle cx="14" cy="20" r="1.2" fill={RED} stroke="none" />
-                                </svg>
+                            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                                {/* Language Toggle Icon (Custom Build) */}
+                                <div style={{ padding: "6px", borderRadius: "8px", background: `${RED}11`, cursor: "pointer" }}>
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                        {/* Background layer */}
+                                        <rect x="3" y="3" width="14" height="14" rx="3" fill="rgba(15, 23, 42, 0.04)" />
+                                        <text x="10" y="13.5" fontSize="11" fill="rgba(15, 23, 42, 0.35)" textAnchor="middle" fontWeight="900" style={{ fontFamily: "Outfit" }}>अ</text>
+                                        {/* Front Folded layer (Brand Red) */}
+                                        <path d="M9 7h11c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1h-8l-3-3V7z" fill={RED} />
+                                        <text x="15" y="16" fontSize="11" fill="#fff" textAnchor="middle" fontWeight="900" style={{ fontFamily: "Outfit" }}>A</text>
+                                    </svg>
+                                </div>
+
+                                {/* Support Headset Icon */}
+                                <div style={{ padding: "6px", borderRadius: "8px", background: `${RED}11`, cursor: "pointer" }}>
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M4 12V11a8 8 0 0 1 16 0v1" />
+                                        <rect x="2" y="12" width="4" height="8" rx="2" />
+                                        <rect x="18" y="12" width="4" height="8" rx="2" />
+                                        <path d="M19 17c0 2-2 3-5 3" />
+                                        <circle cx="14" cy="20" r="1.2" fill={RED} stroke="none" />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
 
