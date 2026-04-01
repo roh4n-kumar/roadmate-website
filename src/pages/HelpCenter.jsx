@@ -226,8 +226,8 @@ const HelpCenter = () => {
                             </motion.div>
                         </div>
 
-                        {/* Aligned with Card Bottom */}
-                        <div style={{ marginTop: "30px" }}>
+                        {/* Aligned closer to Image */}
+                        <div style={{ marginTop: "12px" }}>
                             <motion.div 
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
