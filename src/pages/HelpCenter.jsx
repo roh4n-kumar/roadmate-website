@@ -101,18 +101,12 @@ const HelpCenter = () => {
                         <div style={{ padding: "24px 30px", borderBottom: "1px solid rgba(0,0,0,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                             <h2 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, margin: 0, color: SLATE, letterSpacing: "-0.8px" }}>Help</h2>
                             <div style={{ padding: "6px", borderRadius: "8px", background: `${RED}11` }}>
-                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                                    {/* Professional Headband */}
-                                    <path d="M5 14.5C5 10.3579 8.13401 7 12 7C15.866 7 19 10.3579 19 14.5" />
-                                    {/* Detailed Ear Pads */}
-                                    <rect x="2" y="14" width="4" height="7" rx="1.5" />
-                                    <rect x="18" y="14" width="4" height="7" rx="1.5" />
-                                    {/* Mic Rig */}
-                                    <path d="M19 18.5c0 2-1.5 3.5-3.5 3.5h-1" />
-                                    <rect x="12.5" y="21" width="3" height="2" rx="1" fill={RED} stroke="none" />
-                                    {/* Internal Pad Detail */}
-                                    <line x1="19.5" y1="16" x2="19.5" y2="19" opacity="0.5" strokeWidth="1" />
-                                    <line x1="4.5" y1="16" x2="4.5" y2="19" opacity="0.5" strokeWidth="1" />
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M4 13V12a8 8 0 0 1 16 0v1" />
+                                    <rect x="2" y="13" width="4" height="8" rx="2" />
+                                    <rect x="18" y="13" width="4" height="8" rx="2" />
+                                    <path d="M19 18c0 2-2 3-5 3" />
+                                    <circle cx="14" cy="21" r="1.2" fill={RED} stroke="none" />
                                 </svg>
                             </div>
                         </div>
