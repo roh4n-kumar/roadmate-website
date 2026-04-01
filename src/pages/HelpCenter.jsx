@@ -187,34 +187,44 @@ const HelpCenter = () => {
                                         renderIcon: () => (
                                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                                                 {/* Ground Shadow */}
-                                                <ellipse cx="12" cy="20.5" rx="9" ry="1.2" fill="rgba(15,23,42,0.05)" />
+                                                <ellipse cx="12" cy="21.5" rx="9" ry="1.2" fill="rgba(15,23,42,0.05)" />
                                                 
-                                                {/* Fork, Handlebar & Mirror - Slate */}
-                                                <path d="M19 18l-3.5-11h-2.5" stroke={SLATE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                                                <path d="M15.5 7v-2.5c0-.5-.5-1-1-1" stroke={SLATE} strokeWidth="1.2" strokeLinecap="round" />
-                                                
-                                                {/* Headlight Node */}
-                                                <path d="M16.5 8.5c1.2 0 2.2 1.2 2.2 2.2s-1 2.2-2.2 2.2" fill={SLATE} opacity="0.8" />
-                                                
-                                                {/* Main Body Frame - Slate */}
-                                                <path d="M5 13.5h11l1.5 4.5H5.5l-.5-4.5z" fill={SLATE} opacity="1" />
-                                                
-                                                {/* Tank - Brand Red (Matching Reference) */}
-                                                <path d="M10 7.5c2 0 6.5 1.5 6.5 4s-1.5 3.5-6.5 3.5H8.5V10c0-2.5 0-2.5 1.5-2.5z" fill={RED} />
-                                                
-                                                {/* Seat - Slate Padding */}
-                                                <path d="M5 11c0-1.5 1.5-2.5 4-2.5v3.5l-4 0z" fill={SLATE} />
+                                                {/* Fork, Handlebar, Mirror & Cluster - Slate */}
+                                                <path d="M19 18l-3.2-11.5" stroke={SLATE} strokeWidth="1.8" strokeLinecap="round" />
+                                                <path d="M16 6.5h-3.5" stroke={SLATE} strokeWidth="1.5" strokeLinecap="round" />
+                                                {/* Instrument Cluster */}
+                                                <rect x="13.5" y="4.2" width="2.2" height="2" rx="0.5" fill={SLATE} /> 
+                                                {/* S-Curve Mirror */}
+                                                <path d="M13.5 4.2c0-1.5-.5-2-1.2-2.5" stroke={SLATE} strokeWidth="0.8" strokeLinecap="round" />
+                                                <circle cx="12.3" cy="1.7" r="0.8" fill={SLATE} />
 
-                                                {/* Exhaust Pipe Detail */}
-                                                <path d="M6 18.5h10.5l.8-1h-10.5l-.8 1z" fill={SLATE} opacity="0.4" />
+                                                {/* Headlight (Teardrop focus) */}
+                                                <path d="M16 9c1.5 0 3 1 3 2.5s-1.5 2.5-3 2.5" fill={SLATE} opacity="0.8" />
                                                 
-                                                {/* Detailed Wheels with Spokes (Reference Match) */}
-                                                <circle cx="6" cy="18" r="4.5" fill={SLATE} stroke="#fff" strokeWidth="0.5" />
-                                                <path d="M6 14.5v7M2.5 18h7M4.2 16.2l3.6 3.6M4.2 19.8l3.6-3.6" stroke="#fff" strokeWidth="0.3" opacity="0.7" />
+                                                {/* Exhaust (Thick and Slanted) */}
+                                                <path d="M7 19.8h10.5l1.5-1.5h-10.5l-1.5 1.5z" fill={SLATE} opacity="0.3" />
+                                                
+                                                {/* Engine Core with Cooling Fin details */}
+                                                <path d="M9.5 13.5h7v3.5H10l-.5-3.5z" fill={SLATE} opacity="0.9" />
+                                                <rect x="10.5" y="14.5" width="2" height="2" rx="0.3" fill="#fff" fillOpacity="0.2" />
+                                                <rect x="13.5" y="14.5" width="2" height="2" rx="0.3" fill="#fff" fillOpacity="0.2" />
+                                                
+                                                {/* Main Tank (Brand Hero) - Red */}
+                                                <path d="M10.5 7.5c2.5 0 6.5 1.5 6.5 4.5s-1.5 4-6.5 4H8.5V11c0-3 1-3.5 2-3.5z" fill={RED} />
+                                                
+                                                {/* Seat (Classic Design) */}
+                                                <path d="M5.5 12c0-2.5 2-3.5 4-3.5v4.5h-4z" fill={SLATE} />
+
+                                                {/* Rear Shadow Fender Edge */}
+                                                <path d="M4 12c0-2.5 1.5-4 4-4" stroke={RED} strokeWidth="1" strokeLinecap="round" opacity="0.3" />
+
+                                                {/* Detailed Wheels (Star Spoke Pattern) */}
+                                                <circle cx="6" cy="18" r="4.8" fill={SLATE} stroke="#fff" strokeWidth="0.5" />
+                                                <path d="M6 13.2v9.6M1.2 18h9.6M2.5 14.5l7 7M2.5 21.5l7-7" stroke="#fff" strokeWidth="0.3" opacity="0.5" />
                                                 <circle cx="6" cy="18" r="1.5" fill="#fff" />
                                                 
-                                                <circle cx="19" cy="18" r="4.5" fill={SLATE} stroke="#fff" strokeWidth="0.5" />
-                                                <path d="M19 14.5v7M15.5 18h7M17.2 16.2l3.6 3.6M17.2 19.8l3.6-3.6" stroke="#fff" strokeWidth="0.3" opacity="0.7" />
+                                                <circle cx="19" cy="18" r="4.8" fill={SLATE} stroke="#fff" strokeWidth="0.5" />
+                                                <path d="M19 13.2v9.6M14.2 18h9.6M15.5 14.5l7 7M15.5 21.5l7-7" stroke="#fff" strokeWidth="0.3" opacity="0.5" />
                                                 <circle cx="19" cy="18" r="1.5" fill="#fff" />
                                             </svg>
                                         )
