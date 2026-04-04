@@ -381,11 +381,13 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .cal-box {
       position: absolute;
       top: 48px; /* Starts just below the label */
-      left: 25px;
+      left: 0;
       background: #fff;
       z-index: 1000;
       box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 0 0 1.5px rgba(0,0,0,0.05);
       border-radius: 14px;
+      min-width: 100%;
+      width: max-content;
       animation: dropdownFade 0.15s ease-out;
       transform-origin: top left;
     }
