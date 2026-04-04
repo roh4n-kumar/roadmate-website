@@ -214,16 +214,37 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     
     .search-ribbon-v2 {
       background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
-      padding: 60px 20px 80px;
+      padding: 100px 20px 140px;
       position: relative;
     }
 
+    .hero-header-block {
+      max-width: 1240px;
+      margin: 0 auto 50px;
+      text-align: center;
+    }
+    .hero-title {
+      font-size: 56px;
+      font-weight: 900;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+    .hero-subtitle {
+      font-size: 20px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+    }
+
     .trip-type-row {
-      max-width: 1200px;
-      margin: 0 auto 20px;
+      max-width: 1240px;
+      margin: 0 auto 30px;
       display: flex;
       align-items: center;
       gap: 30px;
+      padding-top: 10px;
     }
     
     .trip-option {
@@ -390,7 +411,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .search-main-card { flex-wrap: wrap; }
       .search-col { flex: 1 1 33.33%; border-right: none !important; border-bottom: 1.5px solid #edf2f7; }
       .search-col:nth-child(3) { border-bottom: none; }
-      .trip-type-row { justify-content: center; overflow-x: auto; padding-bottom: 10px; }
+      .trip-type-row { justify-content: center; overflow-x: auto; padding-bottom: 20px; }
+      .hero-title { font-size: 40px; }
+      .hero-subtitle { font-size: 16px; }
       .special-fares-row { flex-direction: column; align-items: stretch; }
       .fares-label { margin-top: 0; text-align: center; }
     }
@@ -398,6 +421,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .search-col { flex: 1 1 100%; }
       .search-main-card { border-radius: 16px; }
       .hero-section { margin-top: 60px; }
+      .hero-title { font-size: 32px; }
     }
   `;
 
@@ -406,6 +430,12 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <style>{css}</style>
       
       <div className="search-ribbon-v2">
+        {/* HEADER BLOCK */}
+        <div className="hero-header-block">
+           <h1 className="hero-title">Premium Self-Drive Rentals</h1>
+           <p className="hero-subtitle">Rent high-quality verified bikes and cars in your city</p>
+        </div>
+
         {/* TRIP TYPE ROW */}
         <div className="trip-type-row">
           {["Daily", "Weekly/Monthly", "Subscription"].map(t => (
@@ -419,7 +449,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
 
         {/* MAIN SEARCH AREA */}
-        <div style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto' }}>
+        <div style={{ position: 'relative', maxWidth: '1240px', margin: '0 auto' }}>
           <div className="search-main-card">
             {/* 1. Pickup */}
             <div className="search-col" style={{ flex: 1.2 }}>
@@ -476,7 +506,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
 
         {/* SPECIAL FEATURES ROW */}
-        <div className="special-fares-row">
+        <div className="special-fares-row" style={{ maxWidth: '1240px' }}>
           <div className="fares-label">Special Features</div>
           <div className="fares-list">
             {[
