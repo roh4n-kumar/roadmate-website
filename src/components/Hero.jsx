@@ -511,20 +511,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
         {/* MASTER SEARCH CONTAINER */}
         <div className="search-master-card">
-          {/* TRIP TYPE ROW */}
-          <div className="trip-type-row">
-            {["Daily", "Weekly/Monthly", "Subscription"].map(t => (
-              <div key={t} className={`trip-option ${formData.tripType === t ? 'active' : ''}`}
-                onClick={() => setFormData({...formData, tripType: t})}>
-                <div className="trip-radio" />
-                <span>{t}</span>
-              </div>
-            ))}
-            <div style={{ marginLeft: "auto", color: "#718096", fontSize: "11px", fontWeight: 800, letterSpacing: "0.5px", textTransform: "uppercase" }}>
-              Book Verified Bikes and Cars
-            </div>
-          </div>
-
           {/* MAIN SEARCH AREA */}
           <div style={{ position: 'relative' }}>
             <div className="search-main-card">
