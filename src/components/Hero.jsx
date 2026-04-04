@@ -525,7 +525,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         <div style={{ position: 'relative', maxWidth: '1240px', margin: '0 auto' }}>
           <div className="search-main-card">
             {/* 1. Vehicle Category */}
-            <div className="search-col" onClick={() => setShowCat(!showCat)}>
+            <div className="search-col" onClick={() => setShowCat(!showCat)} style={{ zIndex: showCat ? 50 : 1 }}>
               <div className="col-label" style={{ color: showCat ? RED : '#718096' }}>Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 {formData.vehicleType === 'Bike' ? 
@@ -563,7 +563,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </div>
 
             {/* 2. Booking Date */}
-            <div className="search-col" onClick={() => setShowCal(!showCal)}>
+            <div className="search-col" onClick={() => setShowCal(!showCal)} style={{ zIndex: showCal ? 50 : 1 }}>
               <div className="col-label" style={{ color: showCal ? RED : '#718096' }}>Booking Date <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value">{formData.dateDisplay}</div>
               <div className="col-sub">{formData.dayName}</div>
@@ -575,7 +575,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </div>
 
             {/* 3. Pickup Time */}
-            <div className="search-col" onClick={() => setShowPickTime(!showPickTime)}>
+            <div className="search-col" onClick={() => setShowPickTime(!showPickTime)} style={{ zIndex: showPickTime ? 50 : 1 }}>
               <div className="col-label" style={{ color: showPickTime ? RED : '#718096' }}>Pickup Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value">{formData.pickupTime}</div>
               <div className="col-sub">Select start time</div>
@@ -587,7 +587,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </div>
 
             {/* 4. Dropoff Time */}
-            <div className="search-col" onClick={() => setShowDropTime(!showDropTime)}>
+            <div className="search-col" onClick={() => setShowDropTime(!showDropTime)} style={{ zIndex: showDropTime ? 50 : 1 }}>
               <div className="col-label" style={{ color: showDropTime ? RED : '#718096' }}>Dropoff Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value">{formData.dropoffTime}</div>
               <div className="col-sub">Select end time</div>
