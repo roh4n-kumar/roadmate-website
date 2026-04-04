@@ -253,6 +253,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .trip-option.active .trip-radio::after { opacity: 1; }
 
     .search-main-card {
+      width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       background: #fff;
@@ -268,9 +269,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       cursor: pointer;
       transition: background 0.2s;
       position: relative;
+      min-width: 0;
     }
     .search-col:hover { background: #f8fafc; }
     .search-col:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
+    .search-col:last-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px; }
     .search-col:not(:last-child) { border-right: 1.5px solid #edf2f7; }
 
     .col-label {
