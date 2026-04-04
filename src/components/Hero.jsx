@@ -176,7 +176,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .hero-section { font-family: 'Inter', sans-serif; background: #fff; position: relative; }
     
     .search-ribbon-v2 {
-      background: #01081a;
+      background: linear-gradient(rgba(1, 8, 26, 0.55), rgba(1, 8, 26, 0.85)), url('/roadmate_hero_background_1775339193812.png');
+      background-size: cover;
+      background-position: center;
       padding: 100px 20px 140px;
       position: relative;
     }
