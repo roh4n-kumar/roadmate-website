@@ -237,7 +237,6 @@ const Offers = () => {
             align-items: center;
             gap: 22px;
             overflow-x: auto;
-            overflow-y: hidden;
             scrollbar-width: none;
             position: relative;
             border-bottom: 2px solid #e5e5e5;
