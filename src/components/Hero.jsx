@@ -110,17 +110,18 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    pickup: "Bhubaneswar", pickupSub: "Saheed Nagar, Odisha",
-    dropoff: "Bhubaneswar", dropoffSub: "Airport Area",
-    selectedDate: new Date(), dateDisplay: "5 Apr'26", dayName: "Sunday",
-    dropDate: null, dropDateDisplay: "Tap to add return",
-    category: "Bikes / All", categorySub: "Standard / Premium",
-    tripType: "Daily"
+    vehicleType: "Bike", 
+    selectedDate: new Date(),
+    dateDisplay: "5 Apr'26", 
+    dayName: "Sunday",
+    pickupTime: "09:00 AM",
+    dropoffTime: "09:00 PM",
   });
 
-  const [showCal,     setShowCal]     = useState(false);
-  const [showDropCal, setShowDropCal] = useState(false);
-  const [activeTab,   setActiveTab]   = useState("Regular");
+  const [showCat,      setShowCat]      = useState(false);
+  const [showCal,      setShowCal]      = useState(false);
+  const [showPickTime, setShowPickTime] = useState(false);
+  const [showDropTime, setShowDropTime] = useState(false);
 
   const formatPrettyDate = (d) => {
     const day   = d.getDate().toString();
@@ -132,12 +133,12 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const getDayName = (d) => d.toLocaleDateString("en-US", { weekday: "long" });
 
   const handleSearch = () => {
-    const { pickup, selectedDate } = formData;
-    if (!pickup || !selectedDate) {
-      alert("Please select pick-up location and date!");
+    const { vehicleType, selectedDate, pickupTime } = formData;
+    if (!vehicleType || !selectedDate) {
+      alert("Please complete the search criteria!");
       return;
     }
-    navigate(`/vehicles?loc=${encodeURIComponent(pickup)}`);
+    navigate(`/vehicles?type=${encodeURIComponent(vehicleType)}`);
   };
 
   const IconVerified = () => (
@@ -516,52 +517,57 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         {/* MAIN SEARCH AREA */}
         <div style={{ position: 'relative', maxWidth: '1240px', margin: '0 auto' }}>
           <div className="search-main-card">
-            {/* 1. From */}
-            <div className="search-col">
-              <div className="col-label">From <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-              <div className="col-value">Bhubaneswar</div>
-              <div className="col-sub">Saheed Nagar, Odisha</div>
+            {/* 1. Vehicle Category */}
+            <div className="search-col" onClick={() => setShowCat(!showCat)}>
+              <div className="col-label">Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className="col-value">{formData.vehicleType}</div>
+              <div className="col-sub">Select preferred type</div>
+              {showCat && (
+                <div className="cal-box" style={{ padding: "10px", width: "180px" }}>
+                  {["Bike", "Car"].map(t => (
+                    <div key={t} onClick={(e) => { e.stopPropagation(); setFormData({...formData, vehicleType: t}); setShowCat(false); }}
+                      style={{ padding: "12px 16px", borderRadius: "8px", fontWeight: 700, color: formData.vehicleType === t ? RED : "#111", background: formData.vehicleType === t ? `${RED}08` : "transparent", cursor: "pointer", fontSize: "15px" }}>
+                      {t}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* 2. To */}
-            <div className="search-col" style={{ borderRight: '1.5px solid #edf2f7' }}>
-              <div className="swap-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16"/></svg></div>
-              <div className="col-label">To <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-              <div className="col-value">Bhubaneswar</div>
-              <div className="col-sub">Airport Area</div>
-            </div>
-
-            {/* 3. Departure */}
+            {/* 2. Booking Date */}
             <div className="search-col" onClick={() => setShowCal(!showCal)}>
-              <div className="col-label">Departure <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-              <div className="col-value">5 Apr'26</div>
-              <div className="col-sub">Sunday</div>
+              <div className="col-label">Booking Date <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className="col-value">{formData.dateDisplay}</div>
+              <div className="col-sub">{formData.dayName}</div>
               {showCal && (
                 <div className="cal-box" onClick={e => e.stopPropagation()}>
-                    <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d)}); setShowCal(false); }} />
+                    <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)}); setShowCal(false); }} />
                 </div>
               )}
             </div>
 
-            {/* 4. Return */}
-            <div className="search-col" onClick={() => setShowDropCal(!showDropCal)}>
-              <div className="col-label">Return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-              <div className="col-value" style={{ color: "#718096", fontSize: "16px", fontWeight: 700 }}>
-                {formData.dropDateDisplay}
-              </div>
-              {formData.dropDate && <div className="col-sub">{getDayName(formData.dropDate)}</div>}
-              {showDropCal && (
-                <div className="cal-box" onClick={e => e.stopPropagation()}>
-                    <CalendarInline selected={formData.dropDate} onSelect={d => { setFormData({...formData, dropDate:d, dropDateDisplay: formatPrettyDate(d)}); setShowDropCal(false); }} />
+            {/* 3. Pickup Time */}
+            <div className="search-col" onClick={() => setShowPickTime(!showPickTime)}>
+              <div className="col-label">Pickup Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className="col-value">{formData.pickupTime}</div>
+              <div className="col-sub">Select start time</div>
+              {showPickTime && (
+                <div className="cal-box" style={{ padding: 0, width: "240px" }} onClick={e => e.stopPropagation()}>
+                    <TimePopup onSelect={t => { setFormData({...formData, pickupTime: t}); setShowPickTime(false); }} />
                 </div>
               )}
             </div>
 
-            {/* 5. Category */}
-            <div className="search-col" style={{ flex: 1.3 }}>
-              <div className="col-label">Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-              <div className="col-value">All</div>
-              <div className="col-sub">Select preferred category</div>
+            {/* 4. Dropoff Time */}
+            <div className="search-col" onClick={() => setShowDropTime(!showDropTime)}>
+              <div className="col-label">Dropoff Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className="col-value">{formData.dropoffTime}</div>
+              <div className="col-sub">Select end time</div>
+              {showDropTime && (
+                <div className="cal-box" style={{ padding: 0, width: "240px" }} onClick={e => e.stopPropagation()}>
+                    <TimePopup onSelect={t => { setFormData({...formData, dropoffTime: t}); setShowDropTime(false); }} />
+                </div>
+              )}
             </div>
           </div>
 
