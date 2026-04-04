@@ -538,15 +538,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5"><path d="M5.5 17.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 17.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM9 12h5.5l1.5-4H10L9 12zM7.5 14.5l1.5-2.5h7l1.5 2.5"/></svg> :
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5"><rect x="3" y="11" width="18" height="6" rx="2"/><path d="M5 11l1.5-4.5h11L19 11"/></svg>
                   }
-                  <span style={{ display: 'flex', flexDirection: 'column' }}>
-                    <span style={{ lineHeight: 1 }}>{formData.vehicleType}</span>
-                    <span style={{ fontSize: '12px', fontWeight: 600, color: '#718096', marginTop: '2px' }}>
-                      {formData.vehicleType === 'Bike' ? (formData.withHelmet ? 'With Helmet' : 'No Helmet') : (formData.withDriver ? 'Choice: Driver' : 'Self Drive')}
-                    </span>
+                  <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1 }}>
+                    {formData.vehicleType}
                   </span>
                 </div>
               </div>
-              <div className="col-sub">Select preferred type</div>
+              <div className="col-sub">
+                {formData.vehicleType === 'Bike' ? (formData.withHelmet ? 'With Helmet' : 'No Helmet') : (formData.withDriver ? 'Choice: Driver' : 'Self Drive')}
+              </div>
               {showCat && (
                 <div className="cal-box" style={{ padding: "16px", width: "280px" }}>
                   {/* BIKE SECTION */}
