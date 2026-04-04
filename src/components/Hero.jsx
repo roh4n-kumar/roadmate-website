@@ -664,6 +664,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
       </div>
 
+      {/* OFFERS SECTION */}
+      <Offers />
 
       {/* WHY CHOOSE US */}
       <div className="why-section" style={{ paddingTop: "80px" }}>
