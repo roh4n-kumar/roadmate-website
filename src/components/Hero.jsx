@@ -11,8 +11,6 @@ const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
-
-
 // ── Custom Calendar (no external dependency) ──────────────────────────────────
 const DAYS_SHORT = ["SU","MO","TU","WE","TH","FR","SA"];
 const MONTHS_FULL = ["January","February","March","April","May","June",
@@ -106,70 +104,41 @@ const CalendarInline = ({ selected, onSelect }) => {
   );
 };
 
-// ── Hero ──────────────────────────────────────────────────────────────────────
-
+// ── Hero Component ──────────────────────────────────────────────────────────
 
 const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const navigate = useNavigate();
 
-  const vehicleRef = useRef(null);
-  const dateRef    = useRef(null);
-  const pickupRef  = useRef(null);
-  const dropRef    = useRef(null);
-
   const [formData, setFormData] = useState({
-    vehicle: "", selectedDate: null, dateDisplay: "", pickupTime: "", dropTime: ""
+    pickup: "Bhubaneswar", pickupSub: "Saheed Nagar, Odisha",
+    dropoff: "Bhubaneswar", dropoffSub: "Airport Area",
+    selectedDate: new Date(), dateDisplay: "5 Apr'26", dayName: "Sunday",
+    dropDate: null, dropDateDisplay: "Tap to add return",
+    category: "Bikes / All", categorySub: "Standard / Premium",
+    tripType: "Daily"
   });
-  const [showPickup,      setShowPickup]      = useState(false);
-  const [showDrop,        setShowDrop]        = useState(false);
-  const [showCal,         setShowCal]         = useState(false);
-  const [showVehiclePopup,setShowVehiclePopup]= useState(false);
-  const [user,            setUser]            = useState(null);
 
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, u => setUser(u));
-    return () => unsub();
-  }, []);
+  const [showCal,     setShowCal]     = useState(false);
+  const [showDropCal, setShowDropCal] = useState(false);
+  const [activeTab,   setActiveTab]   = useState("Regular");
 
   const formatPrettyDate = (d) => {
-    const day   = d.getDate().toString().padStart(2, "0");
+    const day   = d.getDate().toString();
     const month = d.toLocaleString("en-US", { month: "short" });
-    return `${day} ${month}, ${d.getFullYear()}`;
+    const year  = d.getFullYear().toString().slice(-2);
+    return `${day} ${month}'${year}`;
   };
 
-  const selectToday = () => {
-    const d = new Date();
-    setFormData(prev => ({ ...prev, selectedDate: d, dateDisplay: formatPrettyDate(d) }));
-    setShowCal(false);
-  };
-
-  const selectTomorrow = () => {
-    const d = new Date();
-    d.setDate(d.getDate() + 1);
-    setFormData(prev => ({ ...prev, selectedDate: d, dateDisplay: formatPrettyDate(d) }));
-    setShowCal(false);
-  };
+  const getDayName = (d) => d.toLocaleDateString("en-US", { weekday: "long" });
 
   const handleSearch = () => {
-    const { vehicle, selectedDate, pickupTime, dropTime } = formData;
-    if (!vehicle || !selectedDate || !pickupTime || !dropTime) {
-      alert("Please fill all fields before searching!");
+    const { pickup, selectedDate } = formData;
+    if (!pickup || !selectedDate) {
+      alert("Please select pick-up location and date!");
       return;
     }
-    const dateStr = selectedDate.toISOString().split("T")[0];
-    navigate(`/vehicles?type=${encodeURIComponent(vehicle)}&date=${dateStr}&pickup=${encodeURIComponent(pickupTime)}&drop=${encodeURIComponent(dropTime)}`);
+    navigate(`/vehicles?loc=${encodeURIComponent(pickup)}`);
   };
-
-  useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (vehicleRef.current && !vehicleRef.current.contains(e.target)) setShowVehiclePopup(false);
-      if (dateRef.current    && !dateRef.current.contains(e.target))    setShowCal(false);
-      if (pickupRef.current  && !pickupRef.current.contains(e.target))  setShowPickup(false);
-      if (dropRef.current    && !dropRef.current.contains(e.target))    setShowDrop(false);
-    };
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => document.removeEventListener("mousedown", handleOutsideClick);
-  }, []);
 
   const IconVerified = () => (
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -240,428 +209,284 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     { icon: <IconRocket />,   title: "Instant Booking",         desc: "Book your ride in under 2 minutes. No paperwork, no waiting." },
   ];
 
-
   const css = `
-    :root {
-      --brand-red: ${RED};
-      --ribbon-dark: #111;
-    }
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
+    .hero-section { font-family: 'Inter', sans-serif; background: #fff; position: relative; }
     
-    * { box-sizing: border-box; }
-    .hero-section { font-family: 'Outfit', sans-serif; background: #fff; overflow: visible; }
-    .hide-scrollbar::-webkit-scrollbar { display: none; }
-    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    .search-ribbon {
-      background: linear-gradient(180deg, #111 0%, #0f172a 100%);
-      padding: 60px 40px 30px;
-      position: relative;
-      overflow: visible;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    
-    .search-inner-wrapper {
-      max-width: 1250px;
-      margin: 0 auto;
+    .search-ribbon-v2 {
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      padding: 60px 20px 80px;
       position: relative;
     }
 
-    .glass-search-container {
-      background: #ffffff;
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: 12px;
-      padding: 40px 40px 60px;
+    .trip-type-row {
+      max-width: 1200px;
+      margin: 0 auto 20px;
       display: flex;
-      align-items: flex-end;
-      gap: 0;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .trip-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .trip-radio {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
       position: relative;
-      z-index: 100;
-      margin-bottom: 40px;
+      transition: all 0.2s;
     }
-
-    .search-field { 
-      flex: 1; 
-      display: flex; 
-      flex-direction: column; 
-      gap: 10px; 
-      position: relative; 
-      padding-right: 25px; 
-      margin-right: 25px; 
-      border-right: 1px solid rgba(0,0,0,0.08); 
-    }
-    .search-field:nth-last-child(2) { border-right: none; padding-right: 0; margin-right: 0; }
-    
-    .search-label { 
-      font-size: 11px; 
-      color: #64748b; 
-      font-weight: 800; 
-      text-transform: uppercase; 
-      letter-spacing: 1.2px; 
-      padding-left: 4px;
-      font-family: ${H};
-    }
-    
-    .search-input-box { 
-      background: #f8fafc; 
-      border: 1.5px solid #e2e8f0; 
-      border-radius: 12px; 
-      height: 56px; 
-      padding: 0 18px; 
-      display: flex; 
-      align-items: center; 
-      justify-content: space-between; 
-      cursor: pointer; 
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-      color: #1e293b; 
-    }
-    .search-input-box:hover { 
-      border-color: ${RED}; 
-      background: #fff; 
-      box-shadow: 0 4px 12px rgba(190, 13, 13, 0.1);
-    }
-    .search-input-box span { font-size: 15px; font-weight: 500; color: #94a3b8; }
-    .search-input-box span.filled { color: #1e293b; font-weight: 700; }
-
-    .search-btn-container {
+    .trip-option.active .trip-radio { border-color: #3b82f6; background: #3b82f6; }
+    .trip-radio::after {
+      content: '';
       position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%, 50%);
-      z-index: 150;
-      white-space: nowrap;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 6px; height: 6px; background: #fff; border-radius: 50%; opacity: 0;
     }
+    .trip-option.active .trip-radio::after { opacity: 1; }
 
-    .search-btn { 
-      background: ${RED}; 
-      color: #fff; 
-      border: none; 
-      padding: 0 50px; 
-      height: 60px; 
-      border-radius: 12px; 
-      font-size: 16px; 
-      font-weight: 800; 
-      cursor: pointer; 
-      display: flex; 
-      align-items: center; 
-      gap: 12px; 
-      white-space: nowrap; 
-      box-shadow: 0 15px 35px rgba(190,13,13,0.35); 
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-      font-family: 'Outfit', sans-serif; 
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .search-btn:hover { 
-      transform: translate(-50%, 45%) scale(1.02); 
-      box-shadow: 0 20px 40px rgba(190,13,13,0.45); 
-      filter: brightness(1.1);
-    }
-    /* Fixed hover transform issue by correctly referencing the container relative position */
-    .search-btn:hover { transform: scale(1.02); }
-    .search-btn:active { transform: scale(0.98); }
-
-    .date-sub-row { display: flex; gap: 10px; align-items: center; }
-    .date-trigger { flex: 1; }
-    .quick-btn { 
-      background: #f1f5f9; 
-      border: 1.5px solid #e2e8f0; 
-      color: #64748b; 
-      padding: 0 16px; 
-      height: 56px; 
-      border-radius: 12px; 
-      font-size: 13px; 
-      font-weight: 700; 
-      cursor: pointer; 
-      transition: all 0.2s; 
-      font-family: ${H}; 
-    }
-    .quick-btn:hover { background: #fff; color: ${RED}; border-color: ${RED}; }
-
-    .v-dropdown { 
-      position: absolute; 
-      top: calc(100% + 12px); 
-      left: 0; 
-      width: 100%; 
-      background: #fff; 
-      border-radius: 20px; 
-      overflow: hidden; 
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15); 
-      border: 1px solid #eee; 
-      z-index: 5000; 
-      padding: 8px;
-    }
-    .v-option { 
-      padding: 14px 18px; 
-      font-size: 15px; 
-      font-weight: 600; 
-      color: #333; 
-      cursor: pointer; 
+    .search-main-card {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #fff;
       border-radius: 12px;
-      transition: all 0.2s; 
+      display: flex;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      position: relative;
+    }
+
+    .search-col {
+      flex: 1;
+      padding: 18px 25px;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+    }
+    .search-col:hover { background: #f8fafc; }
+    .search-col:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
+    .search-col:not(:last-child) { border-right: 1.5px solid #edf2f7; }
+
+    .col-label {
+      font-size: 13px;
+      color: #718096;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .col-value {
+      font-size: 32px;
+      font-weight: 900;
+      color: #1a202c;
+      font-family: 'Outfit', sans-serif;
       margin-bottom: 4px;
+      line-height: 1;
     }
-    .v-option:last-child { margin-bottom: 0; }
-    .v-option:hover { background: #fff0f0; color: var(--brand-red); }
-    .v-option.active { background: var(--brand-red); color: #fff; }
-
-    .cal-popup { 
-      position: absolute; 
-      top: calc(100% + 12px); 
-      left: 0; 
-      background: #fff; 
-      border-radius: 24px; 
-      padding: 24px; 
-      box-shadow: 0 25px 60px rgba(0,0,0,0.12); 
-      border: 1px solid #f0f0f0; 
-      z-index: 9999; 
+    .col-sub {
+      font-size: 13px;
+      color: #4a5568;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .why-section { padding: 40px 40px 100px; background: #fff; }
-    .why-inner { max-width: 1250px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 60px; }
-    .section-tag { 
-      display: inline-block; 
-      background: #fff0f0; 
-      color: var(--brand-red); 
-      font-size: 12px; 
-      font-weight: 800; 
-      text-transform: uppercase; 
-      letter-spacing: 2px; 
-      padding: 8px 18px; 
-      border-radius: 99px; 
-      margin-bottom: 18px; 
+    .swap-btn {
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: #fff;
+      border: 1.5px solid #edf2f7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      cursor: pointer;
     }
-    .section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 900; color: #111; margin: 0 0 15px; line-height: 1.1; letter-spacing: -0.5px; }
-    .section-sub { font-size: 17px; color: #666; font-weight: 400; max-width: 550px; margin: 0 auto; }
-    
-    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-    .feature-card { 
-      background: #fff; 
-      border-radius: 28px; 
-      padding: 40px 30px; 
-      border: 1px solid #f0f0f0; 
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-      cursor: default; 
-      position: relative; 
-      overflow: hidden; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-    }
-    .feature-card::before { 
-      content: ''; 
-      position: absolute; 
-      bottom: 0; left: 0; right: 0; height: 4px; 
-      background: var(--brand-red); 
-      transform: scaleX(0); 
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-      transform-origin: center; 
-    }
-    .feature-card:hover { 
-      transform: translateY(-10px); 
-      box-shadow: 0 25px 50px rgba(0,0,0,0.07); 
-      border-color: #ffd5d5; 
-    }
-    .feature-card:hover::before { transform: scaleX(1); }
-    .feature-icon { 
-      width: 64px; 
-      height: 64px; 
-      background: #fff5f5; 
-      border-radius: 20px; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      font-size: 28px; 
-      margin-bottom: 24px; 
-      transition: transform 0.3s;
-    }
-    .feature-card:hover .feature-icon { transform: rotate(10deg) scale(1.1); }
-    .feature-title { font-size: 18px; font-weight: 800; color: #111; margin: 0 0 12px; }
-    .feature-desc { font-size: 14px; color: #777; line-height: 1.7; margin: 0; font-weight: 450; }
+    .swap-btn:hover { border-color: #3b82f6; color: #3b82f6; }
 
-    .how-section { padding: 60px 40px 50px; background: #fff; position: relative; overflow: hidden; }
-    .how-inner { max-width: 1250px; margin: 0 auto; position: relative; z-index: 1; }
-    .steps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; position: relative; }
-    .steps-grid-connector { 
-      position: absolute; 
-      top: 40px; 
-      left: 10%; 
-      right: 10%; 
-      height: 2px; 
-      background: repeating-linear-gradient(to right, transparent, transparent 10px, rgba(190,13,13,0.2) 10px, rgba(190,13,13,0.2) 20px);
-      z-index: 0;
+    .special-fares-row {
+      max-width: 1200px;
+      margin: 25px auto 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
     }
-    .step-card { text-align: center; position: relative; z-index: 1; }
-    .step-num { 
-      width: 80px; 
-      height: 80px; 
-      background: #fff; 
-      border: 3px solid var(--brand-red); 
-      border-radius: 50%; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      margin: 0 auto 24px; 
-      font-size: 28px; 
-      font-weight: 900; 
-      color: var(--brand-red); 
-      box-shadow: 0 10px 25px rgba(190,13,13,0.15); 
+    .fares-label {
+      font-size: 12px;
+      font-weight: 900;
+      color: #fff;
+      text-transform: uppercase;
+      margin-top: 15px;
+      letter-spacing: 1px;
+    }
+    .fares-list { display: flex; gap: 12px; flex-wrap: wrap; }
+    .fare-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 10px 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+      min-width: 140px;
+    }
+    .fare-card:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.08); }
+    .fare-card.active { border-color: #3b82f6; background: #3b82f615; }
+    .f-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .fare-card.active .f-title { color: #3b82f6; }
+    .f-sub { font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 500; }
+
+    .floating-search-btn {
+      position: absolute;
+      bottom: -32px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 64px;
+      padding: 0 60px;
+      background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+      color: #fff;
+      border: none;
+      border-radius: 99px;
+      font-size: 20px;
+      font-weight: 900;
+      font-family: 'Outfit', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 15px 30px rgba(37,99,235,0.4);
       transition: all 0.3s;
+      z-index: 20;
     }
-    .step-card:hover .step-num { background: var(--brand-red); color: #fff; transform: scale(1.1); }
-    .step-title { font-size: 18px; font-weight: 800; color: #111; margin: 0 0 10px; }
-    .step-desc { font-size: 14px; color: #777; line-height: 1.6; font-weight: 400; max-width: 220px; margin: 0 auto; }
+    .floating-search-btn:hover { transform: translateX(-50%) translateY(-3px) scale(1.02); box-shadow: 0 20px 40px rgba(37,99,235,0.5); }
 
-
-    @media (max-width: 900px) {
-      .search-ribbon { padding: 30px 20px 100px; }
-      .glass-search-container { 
-        flex-direction: column; 
-        gap: 15px; 
-        align-items: stretch; 
-        padding: 24px;
-        margin-bottom: -150px;
-      }
-      .search-field { flex: none; border-right: none !important; padding-right: 0 !important; margin-right: 0 !important; }
-      .search-btn { width: 100%; justify-content: center; border-radius: 16px; height: 56px; }
-      .search-btn:hover { transform: none; }
-      
-      .why-section { padding: 40px 20px 60px; }
-      .features-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-      .how-section { padding: 40px 20px 60px; }
-      .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
-      .steps-grid-connector { display: none; }
-      
-      .hero-section { margin-top: 56px !important; }
-      .search-ribbon { padding-top: 30px !important; }
+    .cal-box {
+      position: absolute;
+      top: 105%;
+      left: 0;
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      z-index: 1000;
+      border: 1px solid #edf2f7;
     }
 
-    @media (max-width: 540px) {
-      .features-grid { grid-template-columns: 1fr; }
-      .steps-grid { grid-template-columns: 1fr; }
-      .section-title { font-size: 26px; }
+    @media (max-width: 1024px) {
+      .search-main-card { flex-wrap: wrap; }
+      .search-col { flex: 1 1 33.33%; border-right: none !important; border-bottom: 1.5px solid #edf2f7; }
+      .search-col:nth-child(3) { border-bottom: none; }
+      .trip-type-row { justify-content: center; overflow-x: auto; padding-bottom: 10px; }
+      .special-fares-row { flex-direction: column; align-items: stretch; }
+      .fares-label { margin-top: 0; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .search-col { flex: 1 1 100%; }
+      .search-main-card { border-radius: 16px; }
+      .hero-section { margin-top: 60px; }
     }
   `;
 
-  const CalIcon = () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-    </svg>
-  );
-  const ClockIcon = () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-    </svg>
-  );
-  const ChevronIcon = ({ flip }) => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-      style={{ transition:"transform .2s", transform: flip ? "rotate(180deg)" : "none" }}>
-      <polyline points="6 9 12 15 18 9"/>
-    </svg>
-  );
-  const SearchIcon = () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-    </svg>
-  );
-
   return (
-    <section className="hero-section" style={{ minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "center", background: "#ffffff", paddingBottom: "100px" }}>
+    <section className="hero-section">
       <style>{css}</style>
+      
+      <div className="search-ribbon-v2">
+        {/* TRIP TYPE ROW */}
+        <div className="trip-type-row">
+          {["Daily", "Weekly/Monthly", "Subscription"].map(t => (
+            <div key={t} className={`trip-option ${formData.tripType === t ? 'active' : ''}`}
+              onClick={() => setFormData({...formData, tripType: t})}>
+              <div className="trip-radio" />
+              <span>{t}</span>
+            </div>
+          ))}
+          <div style={{ marginLeft: "auto", color: "rgba(255,255,255,0.6)", fontSize: "12px", fontWeight: 700 }}>Book Verified Bikes and Cars</div>
+        </div>
 
-      {/* SEARCH RIBBON */}
-      <div className="search-ribbon" style={{ paddingTop: "60px", paddingBottom: "30px" }}>
-        <div className="search-inner-wrapper">
-          <div style={{ textAlign: "center", marginBottom: "50px" }}>
-            <h1 style={{ fontSize: "clamp(34px, 5vw, 64px)", fontWeight: 900, color: "#fff", marginBottom: "15px", letterSpacing: "-2px" }}>
-              Smart Way to <span style={{ color: RED }}>Rent</span> Bikes and Cars
-            </h1>
-            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "18px", fontWeight: 500 }}>Start renting vehicles in simple and accessible way in Bhubaneswar.</p>
+        {/* MAIN SEARCH CARD */}
+        <div className="search-main-card">
+          {/* 1. Pickup */}
+          <div className="search-col" style={{ flex: 1.2 }}>
+            <div className="col-label">From</div>
+            <div className="col-value">{formData.pickup}</div>
+            <div className="col-sub">{formData.pickupSub}</div>
+            <div className="swap-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="16 3 21 8 16 13"/><line x1="21" y1="8" x2="9" y2="8"/><polyline points="8 21 3 16 8 11"/><line x1="3" y1="16" x2="15" y2="16"/></svg>
+            </div>
           </div>
-          <div className="glass-search-container">
-            {/* 1. Vehicle */}
-            <div ref={vehicleRef} className="search-field">
-              <span className="search-label">Type of Vehicle</span>
-              <div className="search-input-box" onClick={() => setShowVehiclePopup(p => !p)}>
-                <span className={formData.vehicle ? "filled" : ""}>{formData.vehicle || "Select Vehicle"}</span>
-                <ChevronIcon flip={showVehiclePopup} />
+
+          {/* 2. Dropoff */}
+          <div className="search-col" style={{ flex: 1 }}>
+            <div className="col-label">To</div>
+            <div className="col-value">{formData.dropoff}</div>
+            <div className="col-sub">{formData.dropoffSub}</div>
+          </div>
+
+          {/* 3. Date */}
+          <div className="search-col" onClick={() => setShowCal(!showCal)}>
+            <div className="col-label">Departure <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+            <div className="col-value">{formData.dateDisplay}</div>
+            <div className="col-sub">{formData.dayName}</div>
+            {showCal && (
+              <div className="cal-box" onClick={e => e.stopPropagation()}>
+                 <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)}); setShowCal(false); }} />
               </div>
-              {showVehiclePopup && (
-                <div className="v-dropdown">
-                  {["Bike","Car"].map(v => (
-                    <div key={v} className={`v-option ${formData.vehicle===v?" active":""}`}
-                      onClick={e => { e.stopPropagation(); setFormData(p=>({...p,vehicle:v})); setShowVehiclePopup(false); }}>
-                      {v}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            )}
+          </div>
 
-            {/* 2. Date */}
-            <div ref={dateRef} className="search-field" style={{ flex:1.8 }}>
-              <span className="search-label">Date of Booking</span>
-              <div className="date-sub-row">
-                <div className="search-input-box date-trigger"
-                  onClick={e => { e.stopPropagation(); setShowCal(p=>!p); }}>
-                  <span className={formData.dateDisplay ? "filled" : ""}>{formData.dateDisplay || "Select date"}</span>
-                  <CalIcon />
-                </div>
-                <button className="quick-btn" onClick={selectToday}>Today</button>
-                <button className="quick-btn" onClick={selectTomorrow}>Tomorrow</button>
+          {/* 4. Return */}
+          <div className="search-col" onClick={() => setShowDropCal(!showDropCal)}>
+            <div className="col-label">Return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+            <div className="col-value" style={{ color: formData.dropDate ? "#1a202c" : "#718096", fontSize: formData.dropDate ? "32px" : "14px", marginTop: formData.dropDate ? "0" : "10px" }}>
+              {formData.dropDateDisplay}
+            </div>
+            {formData.dropDate && <div className="col-sub">{getDayName(formData.dropDate)}</div>}
+            {showDropCal && (
+              <div className="cal-box" onClick={e => e.stopPropagation()}>
+                 <CalendarInline selected={formData.dropDate} onSelect={d => { setFormData({...formData, dropDate:d, dropDateDisplay: formatPrettyDate(d)}); setShowDropCal(false); }} />
               </div>
+            )}
+          </div>
 
-              {/* ── Custom Calendar Popup ── */}
-              {showCal && (
-                <div className="cal-popup"
-                  style={{ width: dateRef.current ? dateRef.current.offsetWidth+"px" : "340px" }}>
-                  <CalendarInline
-                    selected={formData.selectedDate}
-                    onSelect={d => {
-                      setFormData(p => ({ ...p, selectedDate: d, dateDisplay: formatPrettyDate(d) }));
-                      setShowCal(false);
-                    }}
-                  />
-                </div>
-              )}
-            </div>
+          {/* 5. Category */}
+          <div className="search-col">
+            <div className="col-label">Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+            <div className="col-value">All</div>
+            <div className="col-sub">Select preferred category</div>
+          </div>
 
-            {/* 3. Pickup Time */}
-            <div ref={pickupRef} className="search-field">
-              <span className="search-label">Pickup Time</span>
-              <div className="search-input-box" onClick={e => { e.stopPropagation(); setShowPickup(p=>!p); }}>
-                <span className={formData.pickupTime ? "filled" : ""}>{formData.pickupTime || "Select time"}</span>
-                <ClockIcon />
+          <button className="floating-search-btn" onClick={handleSearch}>Search</button>
+        </div>
+
+        {/* SPECIAL FEATURES ROW */}
+        <div className="special-fares-row">
+          <div className="fares-label">Special Features</div>
+          <div className="fares-list">
+            {[
+              { t:"Regular",  s:"Standard Pricing" },
+              { t:"Student",  s:"Extra ID Discounts" },
+              { t:"Military", s:"Armed Forces Spl" },
+              { t:"Premium",  s:"Home Delivery" },
+              { t:"Elite",    s:"No Deposit Option" },
+            ].map(f => (
+              <div key={f.t} className={`fare-card ${activeTab === f.t ? 'active' : ''}`} onClick={() => setActiveTab(f.t)}>
+                <div className="f-title">{f.t}</div>
+                <div className="f-sub">{f.s}</div>
               </div>
-              {showPickup && (
-                <div style={{ position:"absolute", top:"115%", left:0, zIndex:9999,
-                  width: pickupRef.current ? pickupRef.current.offsetWidth+"px" : "190px" }}>
-                  <TimePopup onSelect={t => { setFormData(p=>({...p,pickupTime:t})); setShowPickup(false); }} />
-                </div>
-              )}
-            </div>
-
-            {/* 4. Drop Time */}
-            <div ref={dropRef} className="search-field">
-              <span className="search-label">Drop Time</span>
-              <div className="search-input-box" onClick={e => { e.stopPropagation(); setShowDrop(p=>!p); }}>
-                <span className={formData.dropTime ? "filled" : ""}>{formData.dropTime || "Select time"}</span>
-                <ClockIcon />
-              </div>
-              {showDrop && (
-                <div style={{ position:"absolute", top:"115%", left:0, zIndex:9999,
-                  width: dropRef.current ? dropRef.current.offsetWidth+"px" : "190px" }}>
-                  <TimePopup onSelect={t => { setFormData(p=>({...p,dropTime:t})); setShowDrop(false); }} alignRight />
-                </div>
-              )}
-            </div>
-
-            {/* SEARCH BUTTON moved inside for edge positioning */}
-            <div className="search-btn-container">
-              <button className="search-btn" onClick={handleSearch}>
-                <SearchIcon /> Search Availability
-              </button>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -673,15 +498,16 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <div className="why-section" style={{ paddingTop: "80px" }}>
         <div className="why-inner">
           <div className="section-header">
-            <h2 className="section-title">Bhubaneswar's Own<br/>Vehicle Rental Platform</h2>
-            <p className="section-sub">Experience the freedom of smart mobility with RoadMate's verified fleet and seamless booking.</p>
+            <div style={{ display: "inline-block", background: "#f8fafc", color: "#64748b", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "2px", padding: "8px 18px", borderRadius: "99px", marginBottom: "18px" }}>RoadMate Fleet</div>
+            <h2 style={{ fontSize: "44px", fontWeight: 900, color: "#111", margin: "0 0 15px" }}>The Perfect Ride for Every Journey</h2>
+            <p style={{ fontSize: "18px", color: "#666", maxWidth: "600px", margin: "0 auto" }}>Choose from our wide range of bikes and cars tailored to your needs.</p>
           </div>
-          <div className="features-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "25px" }}>
             {featureCards.map((f,i) => (
-              <div key={i} className="feature-card">
-                <div className="feature-icon">{f.icon}</div>
-                <h3 className="feature-title">{f.title}</h3>
-                <p className="feature-desc">{f.desc}</p>
+              <div key={i} className="feature-card" style={{ padding: "40px 30px", background: "#fff", border: "1.5px solid #f0f0f0", borderRadius: "20px" }}>
+                 <div style={{ fontSize: "32px", marginBottom: "20px" }}>{f.icon}</div>
+                 <h3 style={{ fontSize: "20px", fontWeight: 800, color: "#111", marginBottom: "10px" }}>{f.title}</h3>
+                 <p style={{ fontSize: "14px", color: "#666", lineHeight: 1.6 }}>{f.desc}</p>
               </div>
             ))}
           </div>
@@ -689,15 +515,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       </div>
 
       {/* HOW IT WORKS */}
-      <div className="how-section">
-        <div className="how-inner">
-          <div className="section-header">
-            <div className="section-tag">Seamless Process</div>
-            <h2 className="section-title">Book Your Ride in 5 Easy Steps</h2>
-            <p className="section-sub">Simple, fast, and completely online — no paperwork, no hassle.</p>
+      <div className="how-section" style={{ padding: "80px 40px", background: "#fff" }}>
+        <div className="how-inner" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div className="section-header" style={{ textAlign: "center", marginBottom: "60px" }}>
+            <div style={{ display: "inline-block", background: "#3b82f615", color: "#3b82f6", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "2px", padding: "8px 18px", borderRadius: "99px", marginBottom: "18px" }}>Seamless Process</div>
+            <h2 style={{ fontSize: "44px", fontWeight: 900, color: "#111", margin: "0 0 15px" }}>Book Your Ride in 5 Easy Steps</h2>
+            <p style={{ fontSize: "18px", color: "#666", maxWidth: "600px", margin: "0 auto" }}>Simple, fast, and completely online — no paperwork, no hassle.</p>
           </div>
-          <div className="steps-grid">
-            <div className="steps-grid-connector" />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "30px" }}>
             {[
               { step:"01", title:"Verify Docs",    desc:"Quick digital verification with zero physical paperwork." },
               { step:"02", title:"Choose Vehicle",  desc:"Select your preferred bike or car from our highly curated, verified fleet." },
@@ -705,10 +530,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               { step:"04", title:"Confirm Booking", desc:"Review the transparent pricing and confirm your booking instantly." },
               { step:"05", title:"Enjoy Ride",       desc:"Pick up your vehicle and enjoy the ride. It's that simple!" },
             ].map((s,i) => (
-              <div key={i} className="step-card">
-                <div className="step-num">{s.step}</div>
-                <h3 className="step-title">{s.title}</h3>
-                <p className="step-desc">{s.desc}</p>
+              <div key={i} style={{ textAlign: "center" }}>
+                <div style={{ width: "80px", height: "80px", background: "#fff", border: "3px solid #3b82f6", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px", fontSize: "28px", fontWeight: 900, color: "#3b82f6", boxShadow: "0 10px 25px rgba(59,130,246,0.15)" }}>{s.step}</div>
+                <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "10px" }}>{s.title}</h3>
+                <p style={{ fontSize: "14px", color: "#777", lineHeight: 1.6 }}>{s.desc}</p>
               </div>
             ))}
           </div>
