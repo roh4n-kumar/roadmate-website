@@ -100,7 +100,7 @@ const Offers = () => {
             background: #fff;
             border-radius: 28px;
             padding: 30px 40px 45px;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.06);
+            box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
             border: 1px solid #f0f0f0;
           }
           
@@ -206,8 +206,13 @@ const Offers = () => {
             position: relative;
             overflow: hidden;
             min-height: 180px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
           }
-          .o-card:hover { border-color: #e2e8f0; transform: scale(1.005); }
+          .o-card:hover { 
+            border-color: #e2e8f0; 
+            transform: translateY(-4px); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+          }
 
           .o-img-box {
             width: 130px;
