@@ -566,24 +566,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </div>
           </div>
 
-          {/* SPECIAL FEATURES ROW */}
-          <div className="special-fares-row">
-            <div className="fares-label">Special Features</div>
-            <div className="fares-list">
-              {[
-                { t:"Regular",  s:"Standard Pricing" },
-                { t:"Student",  s:"Extra ID Discounts" },
-                { t:"Military", s:"Armed Forces Spl" },
-                { t:"Premium",  s:"Home Delivery" },
-                { t:"Elite",    s:"No Deposit Option" },
-              ].map(f => (
-                <div key={f.t} className={`fare-card ${activeTab === f.t ? 'active' : ''}`} onClick={() => setActiveTab(f.t)}>
-                  <div className="f-title" style={{ color: "#1a202c" }}>{f.t}</div>
-                  <div className="f-sub" style={{ color: "#718096" }}>{f.s}</div>
-                </div>
-              ))}
-            </div>
-          </div>
 
           <button className="floating-search-btn" onClick={handleSearch}>Search</button>
         </div>
