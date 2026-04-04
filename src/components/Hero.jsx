@@ -255,21 +255,25 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       width: 100%;
       background: #fff;
       border: 1.5px solid #edf2f7;
-      border-radius: 12px;
+      border-radius: 16px;
       display: flex;
       box-shadow: 0 10px 30px rgba(0,0,0,0.03);
       position: relative;
       overflow: hidden;
       margin-bottom: 30px;
+      min-height: 130px;
     }
 
     .search-col {
       flex: 1;
-      padding: 22px 30px;
+      padding: 28px 30px 48px;
       cursor: pointer;
       transition: background 0.2s;
       position: relative;
       min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .search-col:hover { background: #fcfcfc; }
     .search-col:not(:last-child) { border-right: 1.5px solid #edf2f7; }
@@ -562,7 +566,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           </div>
 
           <button className="floating-search-btn" onClick={handleSearch} 
-            style={{ position: 'absolute', bottom: '-32px', left: '50%', transform: 'translateX(-50%)', margin: 0 }}>
+            style={{ 
+              position: 'absolute', 
+              bottom: '-38px', 
+              left: '50%', 
+              transform: 'translateX(-50%)', 
+              margin: 0,
+              width: '360px'
+            }}>
             Search
           </button>
         </div>
