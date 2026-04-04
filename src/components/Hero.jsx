@@ -491,7 +491,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         {/* HEADER BLOCK */}
         <div className="hero-header-block">
            <h1 className="hero-title">Self-Drive <span style={{ color: RED }}>Rentals</span> in Bhubaneswar</h1>
-           <p className="hero-subtitle">Rent high-quality verified bikes and cars in your city</p>
+           <p className="hero-subtitle">Start renting vehicles in simple and accessible way.</p>
         </div>
 
         {/* TRIP TYPE ROW */}
