@@ -308,7 +308,7 @@ const Offers = () => {
             className="offer-grid"
           >
             {displayOffers.map(off => (
-              <div key={off.id} className="o-card" style={{ borderBottom: `2.5px solid ${RED}` }}>
+              <div key={off.id} className="o-card">
                 <div className="o-tc">T&C's APPLY</div>
                 
                 <div className="o-img-box">
