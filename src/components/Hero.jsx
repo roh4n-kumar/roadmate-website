@@ -141,65 +141,27 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   };
 
   const IconVerified = () => (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs><linearGradient id="gradV" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#be0d0d"/><stop offset="100%" stopColor="#ef4444"/></linearGradient></defs>
-      <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" fill="url(#gradV)" opacity="0.2"/>
-      <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="url(#gradV)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M9 12L11 14L15 10" stroke="url(#gradV)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
+    <div style={{ width: 60, height: 60, borderRadius: "50%", background: "#fdf2f2", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#be0d0d" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    </div>
   );
 
   const IconCharges = () => (
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="gradC" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#fbbf24" />
-          <stop offset="100%" stopColor="#d97706" />
-        </linearGradient>
-      </defs>
-      <circle cx="12" cy="14" r="8" fill="#d97706" opacity="0.4" />
-      <circle cx="12" cy="12" r="9" fill="url(#gradC)" />
-      <circle cx="12" cy="12" r="7" stroke="#fff" strokeWidth="1" strokeDasharray="2 2" opacity="0.3" />
-      <path d="M12 7V17" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-      <path d="M14.5 9.5H11C10.1716 9.5 9.5 10.1716 9.5 11C9.5 11.8284 10.1716 12.5 11 12.5H13C13.8284 12.5 14.5 13.1716 14.5 14C14.5 14.8284 13.8284 15.5 13 15.5H9.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-      <circle cx="17" cy="7" r="1.5" fill="#fff" opacity="0.8" />
-    </svg>
+    <div style={{ width: 60, height: 60, borderRadius: "50%", background: "#fff9f0", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+    </div>
   );
 
   const IconSupport = () => (
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="gradS" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#be0d0d" />
-          <stop offset="100%" stopColor="#990a0a" />
-        </linearGradient>
-      </defs>
-      <circle cx="12" cy="12" r="10" fill="url(#gradS)" opacity="0.15" />
-      <circle cx="12" cy="12" r="10" stroke="url(#gradS)" strokeWidth="2" />
-      <path d="M12 6V12L16 14" stroke="url(#gradS)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="url(#gradS)" opacity="0.1" />
-    </svg>
+    <div style={{ width: 60, height: 60, borderRadius: "50%", background: "#f0f9ff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    </div>
   );
 
   const IconRocket = () => (
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="gradR" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#f43f5e" />
-          <stop offset="100%" stopColor="#b91c1c" />
-        </linearGradient>
-        <linearGradient id="gradFlame" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#fbbf24" />
-          <stop offset="100%" stopColor="#f97316" />
-        </linearGradient>
-      </defs>
-      <path d="M12 18C12 18 10 20 10 22C10 24 12 24 12 24C12 24 14 24 14 22C14 20 12 18 12 18Z" fill="url(#gradFlame)" />
-      <path d="M12 2C12 2 7 6 7 12V17H17V12C17 6 12 2 12 2Z" fill="url(#gradR)" />
-      <path d="M7 14L4 18V20H7V17" fill="#991b1b" />
-      <path d="M17 14L20 18V20H17V17" fill="#991b1b" />
-      <circle cx="12" cy="8" r="2" fill="#fff" opacity="0.3" stroke="#fff" strokeWidth="1" />
-      <path d="M11 4L12 2L13 4" fill="#fff" opacity="0.2" />
-    </svg>
+    <div style={{ width: 60, height: 60, borderRadius: "50%", background: "#fef2f2", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#be0d0d" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.71-2.13.71-2.13l-1.58-1.58s-1.29 0-2.13.71z"/><path d="M12 18l-3.5-1.5-1.5-3.5c0 0 2.5-3 5.5-3.5s7-4.5 7-4.5 4.5 4 4.5 7-3.5 5.5-3.5 5.5l-3.5-1.5-1.5-3.5z"/><circle cx="16.5" cy="7.5" r=".75"/></svg>
+    </div>
   );
 
   const featureCards = [
@@ -528,20 +490,23 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       {/* OFFERS SECTION */}
       <Offers />
 
-      {/* WHY CHOOSE US */}
-      <div className="why-section" style={{ paddingTop: "80px" }}>
-        <div className="why-inner">
-          <div className="section-header">
-            <div style={{ display: "inline-block", background: "#f8fafc", color: "#64748b", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "2px", padding: "8px 18px", borderRadius: "99px", marginBottom: "18px" }}>RoadMate Fleet</div>
-            <h2 style={{ fontSize: "44px", fontWeight: 900, color: "#111", margin: "0 0 15px" }}>The Perfect Ride for Every Journey</h2>
-            <p style={{ fontSize: "18px", color: "#666", maxWidth: "600px", margin: "0 auto" }}>Choose from our wide range of bikes and cars tailored to your needs.</p>
+      {/* WHY CHOOSE US - RESTORED */}
+      <div className="why-section" style={{ padding: "100px 24px", background: "#fff" }}>
+        <div className="why-inner" style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
+          <div className="section-header" style={{ marginBottom: "60px" }}>
+            <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, color: "#111", marginBottom: "15px", lineHeight: "1.2" }}>
+              Bhubaneswar's Own <br/>Vehicle Rental Platform
+            </h2>
+            <p style={{ fontSize: "18px", color: "#64748b", maxWidth: "700px", margin: "0 auto", fontWeight: 500 }}>
+              Experience the freedom of smart mobility with RoadMate's verified fleet and seamless booking.
+            </p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "25px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "24px" }}>
             {featureCards.map((f,i) => (
-              <div key={i} className="feature-card" style={{ padding: "40px 30px", background: "#fff", border: "1.5px solid #f0f0f0", borderRadius: "20px" }}>
-                 <div style={{ fontSize: "32px", marginBottom: "20px" }}>{f.icon}</div>
-                 <h3 style={{ fontSize: "20px", fontWeight: 800, color: "#111", marginBottom: "10px" }}>{f.title}</h3>
-                 <p style={{ fontSize: "14px", color: "#666", lineHeight: 1.6 }}>{f.desc}</p>
+              <div key={i} className="feature-card" style={{ padding: "45px 30px", background: "#fff", border: "1px solid #f1f5f9", borderRadius: "24px", boxShadow: "0 10px 30px rgba(0,0,0,0.03)", transition: "all 0.3s ease", textAlign: "left" }}>
+                 <div style={{ marginBottom: "25px" }}>{f.icon}</div>
+                 <h3 style={{ fontSize: "20px", fontWeight: 800, color: "#111", marginBottom: "12px", fontFamily: H }}>{f.title}</h3>
+                 <p style={{ fontSize: "14px", color: "#64748b", lineHeight: 1.6, fontWeight: 500 }}>{f.desc}</p>
               </div>
             ))}
           </div>
