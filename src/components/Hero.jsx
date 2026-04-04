@@ -513,15 +513,19 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
       </div>
 
-      {/* HOW IT WORKS */}
-      <div className="how-section" style={{ padding: "80px 40px", background: "#fff" }}>
-        <div className="how-inner" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div className="section-header" style={{ textAlign: "center", marginBottom: "60px" }}>
-            <div style={{ display: "inline-block", background: "#3b82f615", color: "#3b82f6", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "2px", padding: "8px 18px", borderRadius: "99px", marginBottom: "18px" }}>Seamless Process</div>
-            <h2 style={{ fontSize: "44px", fontWeight: 900, color: "#111", margin: "0 0 15px" }}>Book Your Ride in 5 Easy Steps</h2>
-            <p style={{ fontSize: "18px", color: "#666", maxWidth: "600px", margin: "0 auto" }}>Simple, fast, and completely online — no paperwork, no hassle.</p>
+      {/* HOW IT WORKS - RESTORED */}
+      <div className="how-section" style={{ padding: "100px 40px", background: "#fff", borderTop: "1px solid #f1f5f9" }}>
+        <div className="how-inner" style={{ maxWidth: "1100px", margin: "0 auto", textAlign: "center" }}>
+          <div className="section-header" style={{ marginBottom: "80px" }}>
+            <div style={{ display: "inline-block", background: "#be0d0d10", color: "#be0d0d", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "2px", padding: "8px 18px", borderRadius: "99px", marginBottom: "18px" }}>Seamless Process</div>
+            <h2 style={{ fontSize: "clamp(32px, 4vw, 42px)", fontWeight: 900, color: "#111", margin: "0 0 15px", fontFamily: H }}>Book Your Ride in 5 Easy Steps</h2>
+            <p style={{ fontSize: "17px", color: "#64748b", maxWidth: "600px", margin: "0 auto", fontWeight: 500 }}>Simple, fast, and completely online — no paperwork, no hassle.</p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "30px" }}>
+
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "20px", position: "relative", flexWrap: "wrap" }}>
+            {/* Dotted Line Connection (Desktop) */}
+            <div className="desktop-line" style={{ position: "absolute", top: "45px", left: "10%", right: "10%", height: "2px", borderTop: "2px dashed #be0d0d20", zIndex: 0 }} />
+
             {[
               { step:"01", title:"Verify Docs",    desc:"Quick digital verification with zero physical paperwork." },
               { step:"02", title:"Choose Vehicle",  desc:"Select your preferred bike or car from our highly curated, verified fleet." },
@@ -529,14 +533,40 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               { step:"04", title:"Confirm Booking", desc:"Review the transparent pricing and confirm your booking instantly." },
               { step:"05", title:"Enjoy Ride",       desc:"Pick up your vehicle and enjoy the ride. It's that simple!" },
             ].map((s,i) => (
-              <div key={i} style={{ textAlign: "center" }}>
-                <div style={{ width: "80px", height: "80px", background: "#fff", border: "3px solid #3b82f6", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px", fontSize: "28px", fontWeight: 900, color: "#3b82f6", boxShadow: "0 10px 25px rgba(59,130,246,0.15)" }}>{s.step}</div>
-                <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "10px" }}>{s.title}</h3>
-                <p style={{ fontSize: "14px", color: "#777", lineHeight: 1.6 }}>{s.desc}</p>
+              <div key={i} className="step-item" style={{ flex: "1 1 180px", textAlign: "center", position: "relative", zIndex: 1 }}>
+                <div className="step-circle" style={{
+                  width: "90px", height: "90px",
+                  background: s.step === "04" ? "#be0d0d" : "#fff",
+                  border: "2.5px solid #be0d0d",
+                  borderRadius: "50%",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  margin: "0 auto 28px",
+                  fontSize: "30px", fontWeight: 900,
+                  color: s.step === "04" ? "#fff" : "#be0d0d",
+                  boxShadow: s.step === "04" ? "0 10px 25px rgba(190,13,13,0.3)" : "0 10px 20px rgba(0,0,0,0.04)",
+                  transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                  cursor: "default"
+                }}>
+                  {s.step}
+                </div>
+                <h3 style={{ fontSize: "16px", fontWeight: 800, color: "#111", marginBottom: "10px", fontFamily: H }}>{s.title}</h3>
+                <p style={{ fontSize: "12.5px", color: "#64748b", lineHeight: 1.6, fontWeight: 500, padding: "0 10px" }}>{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
+
+        <style>{`
+          .step-item:hover .step-circle {
+            background: #be0d0d !important;
+            color: #fff !important;
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(190,13,13,0.3) !important;
+          }
+          @media (max-width: 900px) {
+            .desktop-line { display: none; }
+          }
+        `}</style>
       </div>
     </section>
   );
