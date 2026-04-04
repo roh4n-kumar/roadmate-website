@@ -198,14 +198,14 @@ const Offers = () => {
           .o-card {
             display: flex;
             background: #fff;
-            border: 1.5px solid #f0f0f0;
-            border-radius: 20px;
-            padding: 20px;
+            border: 1.2px solid #f0f0f0;
+            border-radius: 8px;
+            padding: 18px;
             gap: 24px;
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
-            min-height: 180px;
+            min-height: 170px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
           }
           .o-card:hover { 
@@ -215,10 +215,10 @@ const Offers = () => {
           }
 
           .o-img-box {
-            width: 130px;
-            height: 130px;
+            width: 120px;
+            height: 120px;
             flex-shrink: 0;
-            border-radius: 12px;
+            border-radius: 4px;
             overflow: hidden;
             background: #f9f9f9;
             align-self: center;
