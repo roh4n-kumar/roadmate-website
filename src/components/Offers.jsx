@@ -215,6 +215,7 @@ const Offers = () => {
             padding: 16px 45px 50px;
             box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
             border: 1.2px solid #f2f2f2;
+            overflow: hidden;
           }
           
           .top-bar {
@@ -240,7 +241,7 @@ const Offers = () => {
             scrollbar-width: none;
             position: relative;
             border-bottom: 2px solid #e5e5e5;
-            padding: 0;
+            padding: 0 0 2px;
             margin-right: 15px;
           }
           .tabs-wrapper::-webkit-scrollbar { display: none; }
