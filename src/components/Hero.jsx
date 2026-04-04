@@ -303,8 +303,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
     .col-sub {
       font-size: 13px;
-      color: #4a5568;
-      font-weight: 500;
+      color: #718096;
+      font-weight: 600;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
