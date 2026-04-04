@@ -388,6 +388,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       border-radius: 14px;
       min-width: 100%;
       width: max-content;
+      overflow: visible !important;
       animation: dropdownFade 0.15s ease-out;
       transform-origin: top left;
     }
@@ -568,7 +569,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               <div className="col-value">{formData.dateDisplay}</div>
               <div className="col-sub">{formData.dayName}</div>
               {showCal && (
-                <div className="cal-box" onClick={e => e.stopPropagation()}>
+                <div className="cal-box" style={{ width: "350px" }} onClick={e => e.stopPropagation()}>
                     <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)}); setShowCal(false); }} />
                 </div>
               )}
