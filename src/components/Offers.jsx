@@ -82,10 +82,10 @@ const Offers = () => {
         {`
           .outer-card {
             background: #fff;
-            border-radius: 40px;
+            border-radius: 12px;
             padding: 35px 45px 50px;
             box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
-            border: 1px solid #f2f2f2;
+            border: 1.2px solid #f2f2f2;
           }
           
           .top-bar {
