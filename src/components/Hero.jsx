@@ -142,7 +142,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
   const IconVerified = () => (
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs><linearGradient id="gradV" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6"/><stop offset="100%" stopColor="#6366f1"/></linearGradient></defs>
+      <defs><linearGradient id="gradV" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#be0d0d"/><stop offset="100%" stopColor="#ef4444"/></linearGradient></defs>
       <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" fill="url(#gradV)" opacity="0.2"/>
       <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="url(#gradV)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       <path d="M9 12L11 14L15 10" stroke="url(#gradV)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -170,8 +170,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="gradS" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#06b6d4" />
-          <stop offset="100%" stopColor="#0891b2" />
+          <stop offset="0%" stopColor="#be0d0d" />
+          <stop offset="100%" stopColor="#990a0a" />
         </linearGradient>
       </defs>
       <circle cx="12" cy="12" r="10" fill="url(#gradS)" opacity="0.15" />
@@ -264,7 +264,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       position: relative;
       transition: all 0.2s;
     }
-    .trip-option.active .trip-radio { border-color: #3b82f6; background: #3b82f6; }
+    .trip-option.active .trip-radio { border-color: #be0d0d; background: #be0d0d; }
     .trip-radio::after {
       content: '';
       position: absolute;
@@ -339,7 +339,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       cursor: pointer;
     }
-    .swap-btn:hover { border-color: #3b82f6; color: #3b82f6; }
+    .swap-btn:hover { border-color: #be0d0d; color: #be0d0d; }
 
     .special-fares-row {
       max-width: 1200px;
@@ -367,9 +367,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       min-width: 140px;
     }
     .fare-card:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.08); }
-    .fare-card.active { border-color: #3b82f6; background: #3b82f615; }
+    .fare-card.active { border-color: #be0d0d; background: #be0d0d15; }
     .f-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
-    .fare-card.active .f-title { color: #3b82f6; }
+    .fare-card.active .f-title { color: #be0d0d; }
     .f-sub { font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 500; }
 
     .floating-search-btn {
@@ -379,7 +379,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       transform: translateX(-50%);
       height: 64px;
       padding: 0 60px;
-      background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+      background: linear-gradient(90deg, #be0d0d 0%, #990a0a 100%);
       color: #fff;
       border: none;
       border-radius: 99px;
@@ -389,11 +389,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       text-transform: uppercase;
       letter-spacing: 1px;
       cursor: pointer;
-      box-shadow: 0 15px 30px rgba(37,99,235,0.4);
+      box-shadow: 0 15px 30px rgba(190,13,13,0.4);
       transition: all 0.3s;
       z-index: 20;
     }
-    .floating-search-btn:hover { transform: translateX(-50%) translateY(-3px) scale(1.02); box-shadow: 0 20px 40px rgba(37,99,235,0.5); }
+    .floating-search-btn:hover { transform: translateX(-50%) translateY(-3px) scale(1.02); box-shadow: 0 20px 40px rgba(190,13,13,0.5); }
 
     .cal-box {
       position: absolute;
