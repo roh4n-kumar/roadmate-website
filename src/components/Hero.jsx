@@ -176,9 +176,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .hero-section { font-family: 'Inter', sans-serif; background: #fff; position: relative; }
     
     .search-ribbon-v2 {
-      background: linear-gradient(rgba(1, 8, 26, 0.25), rgba(1, 8, 26, 0.6)), url('/XUV.jpg');
+      background: linear-gradient(rgba(1, 8, 26, 0.25), rgba(1, 8, 26, 0.6)), url('/XUV.jpeg');
       background-size: cover;
-      background-position: center;
+      background-position: center top;
       padding: 100px 20px 140px;
       position: relative;
     }
