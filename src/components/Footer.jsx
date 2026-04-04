@@ -83,7 +83,7 @@ const socialIcons = {
 
 const Footer = () => {
   return (
-    <footer style={{ background: "#0f172a", color: "#fff", paddingTop: "80px", paddingBottom: "40px", fontFamily: F }}>
+    <footer style={{ background: "#01081a", color: "#fff", paddingTop: "80px", paddingBottom: "40px", fontFamily: F }}>
       <div style={{ maxWidth: "1250px", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "50px", marginBottom: "60px" }}>
           
