@@ -201,12 +201,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     .trip-type-row {
-      max-width: 1240px;
-      margin: 0 auto 30px;
       display: flex;
       align-items: center;
       gap: 30px;
-      padding-top: 10px;
+      margin-bottom: 25px;
     }
     
     .trip-option {
@@ -217,7 +215,12 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       color: #fff;
       font-size: 14px;
       font-weight: 500;
+      opacity: 0.8;
+      transition: opacity 0.2s;
     }
+    .trip-option:hover { opacity: 1; }
+    .trip-option.active { opacity: 1; }
+
     .trip-radio {
       width: 18px;
       height: 18px;
@@ -226,7 +229,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       position: relative;
       transition: all 0.2s;
     }
-    .trip-option.active .trip-radio { border-color: #be0d0d; background: #be0d0d; }
+    .trip-option.active .trip-radio { border-color: ${RED}; background: ${RED}; }
     .trip-radio::after {
       content: '';
       position: absolute;
@@ -235,43 +238,56 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
     .trip-option.active .trip-radio::after { opacity: 1; }
 
+    /* MASTER CONTAINER */
+    .search-master-card {
+      max-width: 1240px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 32px;
+      padding: 40px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 20;
+    }
+
     .search-main-card {
       width: 100%;
       background: #fff;
-      border-radius: 12px;
+      border-radius: 16px;
       display: flex;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
       position: relative;
       overflow: hidden;
+      margin-bottom: 30px;
     }
 
     .search-col {
       flex: 1;
-      padding: 18px 25px;
+      padding: 22px 30px;
       cursor: pointer;
       transition: background 0.2s;
       position: relative;
       min-width: 0;
     }
     .search-col:hover { background: #f8fafc; }
-    .search-col:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
-    .search-col:last-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px; }
     .search-col:not(:last-child) { border-right: 1.5px solid #edf2f7; }
 
     .col-label {
       font-size: 13px;
       color: #718096;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
     .col-value {
       font-size: 32px;
       font-weight: 900;
       color: #1a202c;
-      font-family: 'Outfit', sans-serif;
+      font-family: ${H};
       margin-bottom: 4px;
       line-height: 1;
     }
@@ -300,23 +316,23 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       z-index: 10;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       cursor: pointer;
+      transition: all 0.2s;
     }
-    .swap-btn:hover { border-color: #be0d0d; color: #be0d0d; }
+    .swap-btn:hover { border-color: ${RED}; color: ${RED}; transform: translateY(-50%) rotate(180deg); }
 
     .special-fares-row {
-      max-width: 1200px;
-      margin: 25px auto 0;
       display: flex;
       align-items: flex-start;
-      gap: 20px;
+      gap: 25px;
     }
     .fares-label {
       font-size: 12px;
       font-weight: 900;
-      color: #fff;
+      color: rgba(255, 255, 255, 0.4);
       text-transform: uppercase;
-      margin-top: 15px;
-      letter-spacing: 1px;
+      margin-top: 18px;
+      white-space: nowrap;
+      letter-spacing: 1.5px;
     }
     .fares-list { display: flex; gap: 12px; flex-wrap: wrap; }
     .fare-card {
@@ -494,91 +510,96 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
            <p className="hero-subtitle">Start renting vehicles in simple and accessible way.</p>
         </div>
 
-        {/* TRIP TYPE ROW */}
-        <div className="trip-type-row">
-          {["Daily", "Weekly/Monthly", "Subscription"].map(t => (
-            <div key={t} className={`trip-option ${formData.tripType === t ? 'active' : ''}`}
-              onClick={() => setFormData({...formData, tripType: t})}>
-              <div className="trip-radio" />
-              <span>{t}</span>
-            </div>
-          ))}
-          <div style={{ marginLeft: "auto", color: "rgba(255,255,255,0.6)", fontSize: "12px", fontWeight: 700 }}>Book Verified Bikes and Cars</div>
-        </div>
-
-        {/* MAIN SEARCH AREA */}
-        <div style={{ position: 'relative', maxWidth: '1240px', margin: '0 auto' }}>
-          <div className="search-main-card">
-            {/* 1. Pickup */}
-            <div className="search-col" style={{ flex: 1.2 }}>
-              <div className="col-label">From</div>
-              <div className="col-value">{formData.pickup}</div>
-              <div className="col-sub">{formData.pickupSub}</div>
-              <div className="swap-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="16 3 21 8 16 13"/><line x1="21" y1="8" x2="9" y2="8"/><polyline points="8 21 3 16 8 11"/><line x1="3" y1="16" x2="15" y2="16"/></svg>
+        {/* MASTER SEARCH CONTAINER */}
+        <div className="search-master-card">
+          {/* TRIP TYPE ROW */}
+          <div className="trip-type-row">
+            {["Daily", "Weekly/Monthly", "Subscription"].map(t => (
+              <div key={t} className={`trip-option ${formData.tripType === t ? 'active' : ''}`}
+                onClick={() => setFormData({...formData, tripType: t})}>
+                <div className="trip-radio" />
+                <span>{t}</span>
               </div>
-            </div>
-
-            {/* 2. Dropoff */}
-            <div className="search-col" style={{ flex: 1 }}>
-              <div className="col-label">To</div>
-              <div className="col-value">{formData.dropoff}</div>
-              <div className="col-sub">{formData.dropoffSub}</div>
-            </div>
-
-            {/* 3. Date */}
-            <div className="search-col" onClick={() => setShowCal(!showCal)}>
-              <div className="col-label">Departure <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-              <div className="col-value">{formData.dateDisplay}</div>
-              <div className="col-sub">{formData.dayName}</div>
-              {showCal && (
-                <div className="cal-box" onClick={e => e.stopPropagation()}>
-                   <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)}); setShowCal(false); }} />
-                </div>
-              )}
-            </div>
-
-            {/* 4. Return */}
-            <div className="search-col" onClick={() => setShowDropCal(!showDropCal)}>
-              <div className="col-label">Return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-              <div className="col-value" style={{ color: formData.dropDate ? "#1a202c" : "#718096", fontSize: formData.dropDate ? "32px" : "14px", marginTop: formData.dropDate ? "0" : "10px" }}>
-                {formData.dropDateDisplay}
-              </div>
-              {formData.dropDate && <div className="col-sub">{getDayName(formData.dropDate)}</div>}
-              {showDropCal && (
-                <div className="cal-box" onClick={e => e.stopPropagation()}>
-                   <CalendarInline selected={formData.dropDate} onSelect={d => { setFormData({...formData, dropDate:d, dropDateDisplay: formatPrettyDate(d)}); setShowDropCal(false); }} />
-                </div>
-              )}
-            </div>
-
-            {/* 5. Category */}
-            <div className="search-col" style={{ flex: 1.3 }}>
-              <div className="col-label">Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-              <div className="col-value">All</div>
-              <div className="col-sub">Select preferred category</div>
+            ))}
+            <div style={{ marginLeft: "auto", color: "rgba(255,255,255,0.4)", fontSize: "12px", fontWeight: 700, letterSpacing: "0.5px" }}>
+              Book Verified Bikes and Cars
             </div>
           </div>
 
-          <button className="floating-search-btn" onClick={handleSearch}>Search</button>
-        </div>
-
-        {/* SPECIAL FEATURES ROW */}
-        <div className="special-fares-row" style={{ maxWidth: '1240px' }}>
-          <div className="fares-label">Special Features</div>
-          <div className="fares-list">
-            {[
-              { t:"Regular",  s:"Standard Pricing" },
-              { t:"Student",  s:"Extra ID Discounts" },
-              { t:"Military", s:"Armed Forces Spl" },
-              { t:"Premium",  s:"Home Delivery" },
-              { t:"Elite",    s:"No Deposit Option" },
-            ].map(f => (
-              <div key={f.t} className={`fare-card ${activeTab === f.t ? 'active' : ''}`} onClick={() => setActiveTab(f.t)}>
-                <div className="f-title">{f.t}</div>
-                <div className="f-sub">{f.s}</div>
+          {/* MAIN SEARCH AREA */}
+          <div style={{ position: 'relative' }}>
+            <div className="search-main-card">
+              {/* 1. Pickup */}
+              <div className="search-col" style={{ flex: 1.2 }}>
+                <div className="col-label">From</div>
+                <div className="col-value">{formData.pickup}</div>
+                <div className="col-sub">{formData.pickupSub}</div>
+                <div className="swap-btn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="16 3 21 8 16 13"/><line x1="21" y1="8" x2="9" y2="8"/><polyline points="8 21 3 16 8 11"/><line x1="3" y1="16" x2="15" y2="16"/></svg>
+                </div>
               </div>
-            ))}
+
+              {/* 2. Dropoff */}
+              <div className="search-col" style={{ flex: 1 }}>
+                <div className="col-label">To</div>
+                <div className="col-value">{formData.dropoff}</div>
+                <div className="col-sub">{formData.dropoffSub}</div>
+              </div>
+
+              {/* 3. Date */}
+              <div className="search-col" onClick={() => setShowCal(!showCal)}>
+                <div className="col-label">Departure <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+                <div className="col-value">{formData.dateDisplay}</div>
+                <div className="col-sub">{formData.dayName}</div>
+                {showCal && (
+                  <div className="cal-box" onClick={e => e.stopPropagation()}>
+                     <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)}); setShowCal(false); }} />
+                  </div>
+                )}
+              </div>
+
+              {/* 4. Return */}
+              <div className="search-col" onClick={() => setShowDropCal(!showDropCal)}>
+                <div className="col-label">Return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+                <div className="col-value" style={{ color: formData.dropDate ? "#1a202c" : "#718096", fontSize: formData.dropDate ? "32px" : "14px", marginTop: formData.dropDate ? "0" : "10px" }}>
+                  {formData.dropDateDisplay}
+                </div>
+                {formData.dropDate && <div className="col-sub">{getDayName(formData.dropDate)}</div>}
+                {showDropCal && (
+                  <div className="cal-box" onClick={e => e.stopPropagation()}>
+                     <CalendarInline selected={formData.dropDate} onSelect={d => { setFormData({...formData, dropDate:d, dropDateDisplay: formatPrettyDate(d)}); setShowDropCal(false); }} />
+                  </div>
+                )}
+              </div>
+
+              {/* 5. Category */}
+              <div className="search-col" style={{ flex: 1.3 }}>
+                <div className="col-label">Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+                <div className="col-value">All</div>
+                <div className="col-sub">Select preferred category</div>
+              </div>
+            </div>
+
+            <button className="floating-search-btn" onClick={handleSearch}>Search</button>
+          </div>
+
+          {/* SPECIAL FEATURES ROW */}
+          <div className="special-fares-row">
+            <div className="fares-label">Special Features</div>
+            <div className="fares-list">
+              {[
+                { t:"Regular",  s:"Standard Pricing" },
+                { t:"Student",  s:"Extra ID Discounts" },
+                { t:"Military", s:"Armed Forces Spl" },
+                { t:"Premium",  s:"Home Delivery" },
+                { t:"Elite",    s:"No Deposit Option" },
+              ].map(f => (
+                <div key={f.t} className={`fare-card ${activeTab === f.t ? 'active' : ''}`} onClick={() => setActiveTab(f.t)}>
+                  <div className="f-title">{f.t}</div>
+                  <div className="f-sub">{f.s}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
