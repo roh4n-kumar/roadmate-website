@@ -360,6 +360,15 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .cal-box {
       position: absolute;
       top: 105%;
+      left: 0;
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      z-index: 1000;
+      border: 1px solid #edf2f7;
+    }
+
     @media (max-width: 900px) {
       .search-ribbon { padding: 20px 20px 60px; }
       .search-inner { flex-direction: column; gap: 10px; align-items: stretch; }
