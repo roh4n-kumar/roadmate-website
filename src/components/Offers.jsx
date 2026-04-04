@@ -237,6 +237,7 @@ const Offers = () => {
             align-items: center;
             gap: 22px;
             overflow-x: auto;
+            overflow-y: hidden;
             scrollbar-width: none;
             position: relative;
             border-bottom: 2px solid #e5e5e5;
@@ -261,10 +262,10 @@ const Offers = () => {
           .tab-link.active::after {
             content: '';
             position: absolute;
-            bottom: -3px;
+            bottom: -2.5px;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: ${RED};
             border-radius: 2px;
             z-index: 10;
