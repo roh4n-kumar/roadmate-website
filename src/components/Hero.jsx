@@ -270,13 +270,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       flex: 1;
       padding: 28px 30px 48px;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       min-width: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
+    .search-col:hover { background: ${RED}08; }
     .search-col:not(:last-child) { border-right: 1.5px solid #edf2f7; }
 
     .col-label {
