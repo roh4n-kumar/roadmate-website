@@ -83,7 +83,7 @@ const Offers = () => {
           .outer-card {
             background: #fff;
             border-radius: 12px;
-            padding: 22px 45px 50px;
+            padding: 16px 45px 50px;
             box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
             border: 1.2px solid #f2f2f2;
           }
@@ -113,7 +113,7 @@ const Offers = () => {
             scrollbar-width: none;
             position: relative;
             transform: translateY(2px);
-            border-bottom: 1.5px solid #f0f0f0;
+            border-bottom: 2px solid #e5e5e5;
           }
           .tabs-wrapper::-webkit-scrollbar { display: none; }
 
