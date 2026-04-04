@@ -490,7 +490,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <div className="search-ribbon-v2">
         {/* HEADER BLOCK */}
         <div className="hero-header-block">
-           <h1 className="hero-title">Premium Self-Drive Rentals</h1>
+           <h1 className="hero-title">Self-Drive <span style={{ color: RED }}>Rentals</span> in Bhubaneswar</h1>
            <p className="hero-subtitle">Rent high-quality verified bikes and cars in your city</p>
         </div>
 
