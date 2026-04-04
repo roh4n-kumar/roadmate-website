@@ -558,8 +558,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   {formData.vehicleType === 'Bike' ? 
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5"><path d="M5.5 17.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 17.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM9 12h5.5l1.5-4H10L9 12zM7.5 14.5l1.5-2.5h7l1.5 2.5"/></svg> :
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5"><rect x="3" y="11" width="18" height="6" rx="2"/><path d="M5 11l1.5-4.5h11L19 11"/></svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5.5 17.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/><path d="M18.5 17.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                      <path d="M8 15h8"/><path d="M16 15 11.5 6H8L3 13h5"/><path d="M12 11l-3-4"/><path d="M13 13h4l2 3"/>
+                    </svg> :
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 1.4C2.1 10.3 2 11.2 2 12.1V16c0 .6.4 1 1 1h2"/>
+                      <circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M7 17h10"/>
+                    </svg>
                   }
                   <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1 }}>
                     {formData.vehicleType}
@@ -572,10 +578,26 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               {showCat && (
                 <div className="cal-box" style={{ padding: "8px", width: "240px" }}>
                   {[
-                    { label: 'Bike With Helmet', type: 'Bike', helmet: true, driver: false, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5.5 17.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 17.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM9 12h5.5l1.5-4H10L9 12zM7.5 14.5l1.5-2.5h7l1.5 2.5"/></svg> },
-                    { label: 'Bike Without Helmet', type: 'Bike', helmet: false, driver: false, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5.5 17.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 17.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM9 12h5.5l1.5-4H10L9 12zM7.5 14.5l1.5-2.5h7l1.5 2.5"/></svg> },
-                    { label: 'Car With Driver', type: 'Car', helmet: false, driver: true, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="11" width="18" height="6" rx="2"/><path d="M5 11l1.5-4.5h11L19 11"/></svg> },
-                    { label: 'Car With Self Drive', type: 'Car', helmet: false, driver: false, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="11" width="18" height="6" rx="2"/><path d="M5 11l1.5-4.5h11L19 11"/></svg> }
+                    { label: 'Bike With Helmet', type: 'Bike', helmet: true, driver: false, 
+                      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M5.5 17.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/><path d="M18.5 17.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                              <path d="M8 15h8"/><path d="M16 15 11.5 6H8L3 13h5"/><path d="M12 11l-3-4"/><path d="M13 13h4l2 3"/>
+                            </svg> },
+                    { label: 'Bike Without Helmet', type: 'Bike', helmet: false, driver: false, 
+                      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M5.5 17.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/><path d="M18.5 17.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                              <path d="M8 15h8"/><path d="M16 15 11.5 6H8L3 13h5"/><path d="M12 11l-3-4"/><path d="M13 13h4l2 3"/>
+                            </svg> },
+                    { label: 'Car With Driver', type: 'Car', helmet: false, driver: true, 
+                      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 1.4C2.1 10.3 2 11.2 2 12.1V16c0 .6.4 1 1 1h2"/>
+                              <circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M7 17h10"/>
+                            </svg> },
+                    { label: 'Car With Self Drive', type: 'Car', helmet: false, driver: false, 
+                      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 1.4C2.1 10.3 2 11.2 2 12.1V16c0 .6.4 1 1 1h2"/>
+                              <circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M7 17h10"/>
+                            </svg> }
                   ].map(opt => {
                     const isSelected = formData.vehicleType === opt.type && (opt.type === 'Bike' ? formData.withHelmet === opt.helmet : formData.withDriver === opt.driver);
                     return (
