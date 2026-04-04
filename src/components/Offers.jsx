@@ -56,22 +56,6 @@ const offersData = [
     desc: "Rent premium bikes like Royal Enfield at low rates.",
     code: "BIKERIDE12",
     image: "/bike_offer.png"
-  },
-  {
-    id: 6,
-    category: "Car Offers",
-    title: "Grab FLAT 25% OFF*",
-    desc: "Book any SUV for 3+ days and save big this season.",
-    code: "SUVCOOL25",
-    image: "/car_offer.png"
-  },
-  {
-    id: 7,
-    category: "Long Trips",
-    title: "Grab FLAT 30% OFF*",
-    desc: "Plan your long-distance adventure travel with RoadMate.",
-    code: "ADVENTURE30",
-    image: "/adventure_offer.png"
   }
 ];
 
@@ -87,7 +71,7 @@ const Offers = () => {
       id="offers-slider" 
       style={{ 
         padding: "60px 24px 100px", 
-        maxWidth: "1250px", 
+        maxWidth: "1300px", 
         margin: "0 auto", 
         position: "relative", 
         zIndex: 10,
@@ -98,10 +82,10 @@ const Offers = () => {
         {`
           .outer-card {
             background: #fff;
-            border-radius: 28px;
-            padding: 30px 40px 45px;
+            border-radius: 40px;
+            padding: 35px 45px 50px;
             box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
-            border: 1px solid #f0f0f0;
+            border: 1px solid #f2f2f2;
           }
           
           .top-bar {
@@ -109,37 +93,38 @@ const Offers = () => {
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
+            gap: 20px;
           }
 
           .offers-title {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 900;
             font-family: ${H};
             color: #111;
-            margin-right: 40px;
           }
 
           .tabs-wrapper {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 28px;
             flex: 1;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 2px;
+            padding: 0 10px;
             overflow-x: auto;
             scrollbar-width: none;
+            position: relative;
+            transform: translateY(2px);
           }
           .tabs-wrapper::-webkit-scrollbar { display: none; }
 
           .tab-link {
             font-size: 13.5px;
-            font-weight: 700;
+            font-weight: 800;
             color: #64748b;
             cursor: pointer;
             white-space: nowrap;
-            padding: 10px 4px;
+            padding: 10px 2px;
             position: relative;
-            transition: color 0.2s;
+            transition: all 0.2s;
             text-transform: uppercase;
             letter-spacing: 0.5px;
           }
@@ -150,75 +135,76 @@ const Offers = () => {
             bottom: -2px;
             left: 0;
             right: 0;
-            height: 2.5px;
+            height: 3px;
             background: ${RED};
-            border-radius: 4px;
+            border-radius: 10px;
           }
 
           .nav-controls {
             display: flex;
             align-items: center;
-            gap: 20px;
-            margin-left: 30px;
+            gap: 24px;
           }
           .view-all-btn {
             font-size: 14px;
-            font-weight: 800;
+            font-weight: 900;
             color: ${RED};
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             cursor: pointer;
             text-transform: uppercase;
+            white-space: nowrap;
           }
           .arrow-btns {
             display: flex;
-            gap: 10px;
+            gap: 12px;
           }
           .arrow-btn {
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            border: 1px solid #eee;
+            border: 1.5px solid #f0f0f0;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #94a3b8;
             cursor: pointer;
             transition: all 0.2s;
+            background: #fff;
           }
-          .arrow-btn:hover { border-color: ${RED}; color: ${RED}; }
+          .arrow-btn:hover { border-color: ${RED}; color: ${RED}; box-shadow: 0 4px 12px rgba(190, 13, 13, 0.1); }
 
           .offer-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 24px;
           }
 
           .o-card {
             display: flex;
             background: #fff;
-            border: 1.2px solid #f0f0f0;
-            border-radius: 8px;
-            padding: 18px;
+            border: 1.2px solid #efefef;
+            border-radius: 12px;
+            padding: 20px;
             gap: 24px;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
-            min-height: 170px;
+            min-height: 180px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
           }
           .o-card:hover { 
-            border-color: #e2e8f0; 
-            transform: translateY(-4px); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-color: #e5e5e5; 
+            transform: translateY(-5px); 
+            box-shadow: 0 20px 45px rgba(0,0,0,0.1);
           }
 
           .o-img-box {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             flex-shrink: 0;
-            border-radius: 4px;
+            border-radius: 6px;
             overflow: hidden;
             background: #f9f9f9;
             align-self: center;
@@ -239,21 +225,22 @@ const Offers = () => {
             position: absolute;
             top: 20px;
             right: 20px;
+            text-transform: uppercase;
           }
           .o-title {
-            font-size: 20px;
+            font-size: clamp(18px, 1.5vw, 22px);
             font-weight: 900;
             font-family: ${H};
             color: #111;
-            margin: 15px 0 8px;
+            margin: 15px 0 6px;
             line-height: 1.2;
           }
           .o-desc {
-            font-size: 13px;
+            font-size: 13.5px;
             color: #64748b;
             font-weight: 500;
-            line-height: 1.4;
-            max-width: 90%;
+            line-height: 1.5;
+            max-width: 95%;
           }
 
           .o-footer {
@@ -268,7 +255,7 @@ const Offers = () => {
             font-weight: 600;
             color: #64748b;
           }
-          .o-code span { color: #111; font-weight: 800; }
+          .o-code span { color: #111; font-weight: 900; }
           .o-action {
              font-size: 14px;
              font-weight: 900;
@@ -278,11 +265,10 @@ const Offers = () => {
              text-transform: uppercase;
           }
 
-          @media (max-width: 950px) {
+          @media (max-width: 1000px) {
             .offer-grid { grid-template-columns: 1fr; }
             .top-bar { flex-direction: column; align-items: flex-start; gap: 20px; }
-            .tabs-wrapper { width: 100%; }
-            .nav-controls { display: none; }
+            .nav-controls { width: 100%; justify-content: space-between; }
           }
         `}
       </style>
@@ -315,14 +301,14 @@ const Offers = () => {
         <AnimatePresence mode="wait">
           <motion.div 
             key={selectedTab}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
             className="offer-grid"
           >
             {displayOffers.map(off => (
-              <div key={off.id} className="o-card">
+              <div key={off.id} className="o-card" style={{ borderBottom: `2.5px solid ${RED}` }}>
                 <div className="o-tc">T&C's APPLY</div>
                 
                 <div className="o-img-box">
