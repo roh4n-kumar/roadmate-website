@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +9,7 @@ const F = "'Inter', sans-serif";
 
 const categories = [
   "ON 1st BOOKING",
+  "All Offers",
   "Bank Offers",
   "Bike Offers",
   "Car Offers",
@@ -22,62 +23,55 @@ const offersData = [
     title: "Grab FLAT 50% OFF*",
     desc: "on your first bike or car booking with RoadMate.",
     code: "WELCOME50",
-    image: "/bike_offer.png",
-    tc: "T&C's APPLY"
+    image: "/bike_offer.png"
   },
   {
     id: 2,
     category: "ON 1st BOOKING",
-    title: "Get ₹200 Cashback",
+    title: "Grab FLAT ₹200 Cashback*",
     desc: "on your very first ride in Bhubaneswar.",
     code: "FIRST200",
-    image: "/adventure_offer.png",
-    tc: "T&C's APPLY"
+    image: "/adventure_offer.png"
   },
   {
     id: 3,
     category: "Bank Offers",
-    title: "Flat 10% Discount",
+    title: "Grab FLAT 10% OFF*",
     desc: "using HDFC Bank Credit/Debit cards on weekdays.",
     code: "HDFCRM10",
-    image: "/car_offer.png",
-    tc: "T&C's APPLY"
+    image: "/car_offer.png"
   },
   {
     id: 4,
     category: "Bank Offers",
-    title: "Instant 15% OFF",
+    title: "Grab FLAT 15% OFF*",
     desc: "exclusive offer for ICICI Bank users on long trips.",
     code: "ICICIRM15",
-    image: "/adventure_offer.png",
-    tc: "T&C's APPLY"
+    image: "/adventure_offer.png"
   },
   {
     id: 5,
     category: "Bike Offers",
-    title: "Weekend Special: 12% OFF",
+    title: "Grab FLAT 12% OFF*",
     desc: "Rent premium bikes like Royal Enfield at low rates.",
     code: "BIKERIDE12",
-    image: "/bike_offer.png",
-    tc: "T&C's APPLY"
+    image: "/bike_offer.png"
   },
   {
     id: 6,
     category: "Car Offers",
-    title: "SUV Summer Sale: 25% OFF",
+    title: "Grab FLAT 25% OFF*",
     desc: "Book any SUV for 3+ days and save big this season.",
     code: "SUVCOOL25",
-    image: "/car_offer.png",
-    tc: "T&C's APPLY"
+    image: "/car_offer.png"
   },
   {
     id: 7,
     category: "Long Trips",
-    title: "7+ Days: Flat 30% OFF",
+    title: "Grab FLAT 30% OFF*",
     desc: "Plan your long-distance adventure travel with RoadMate.",
     code: "ADVENTURE30",
-    image: "/adventure_offer.png",
-    tc: "T&C's APPLY"
+    image: "/adventure_offer.png"
   }
 ];
 
@@ -85,285 +79,265 @@ const Offers = () => {
   const [selectedTab, setSelectedTab] = useState(categories[0]);
   const navigate = useNavigate();
 
-  const filteredOffers = offersData.filter(o => o.category === selectedTab);
-
-  // Fallback if no offers for a category (show relevant ones anyway)
+  const filteredOffers = offersData.filter(o => o.category === selectedTab || (selectedTab === "All Offers" && o.id <= 4));
   const displayOffers = filteredOffers.length > 0 ? filteredOffers : offersData.slice(0, 4);
 
   return (
     <section 
       id="offers-slider" 
       style={{ 
-        padding: "80px 24px", 
+        padding: "60px 24px 100px", 
         maxWidth: "1250px", 
         margin: "0 auto", 
         position: "relative", 
-        overflow: "hidden", 
         zIndex: 10,
-        background: "#ffffff",
         fontFamily: F
       }}
     >
       <style>
         {`
-          .tabs-container {
+          .outer-card {
+            background: #fff;
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.06);
+            border: 1px solid #f0f0f0;
+          }
+          
+          .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+          }
+
+          .offers-title {
+            font-size: 32px;
+            font-weight: 900;
+            font-family: ${H};
+            color: #111;
+            margin-right: 40px;
+          }
+
+          .tabs-wrapper {
             display: flex;
             align-items: center;
-            border-bottom: 2px solid #f0f0f0;
-            margin-bottom: 40px;
+            gap: 24px;
+            flex: 1;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 2px;
             overflow-x: auto;
             scrollbar-width: none;
-            -ms-overflow-style: none;
-            gap: 30px;
-            padding-bottom: 2px;
           }
-          .tabs-container::-webkit-scrollbar { display: none; }
-          
-          .tab-item {
-            padding: 12px 4px;
+          .tabs-wrapper::-webkit-scrollbar { display: none; }
+
+          .tab-link {
             font-size: 14px;
             font-weight: 700;
             color: #64748b;
             cursor: pointer;
             white-space: nowrap;
+            padding: 10px 4px;
             position: relative;
-            transition: all 0.3s;
+            transition: color 0.2s;
             text-transform: uppercase;
             letter-spacing: 0.5px;
           }
-          .tab-item.active { color: ${RED}; }
-          .tab-indicator {
+          .tab-link.active { color: #3b82f6; } /* Matches Screenshot Blue but keep indicator red if brand */
+          .tab-link.active::after {
+            content: '';
             position: absolute;
             bottom: -2px;
             left: 0;
             right: 0;
-            height: 3px;
-            background: ${RED};
-            border-radius: 10px;
+            height: 2.5px;
+            background: #3b82f6; /* Matching Screenshot precisely */
+            border-radius: 4px;
           }
+
+          .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-left: 30px;
+          }
+          .view-all-btn {
+            font-size: 14px;
+            font-weight: 800;
+            color: #3b82f6;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+          }
+          .arrow-btns {
+            display: flex;
+            gap: 10px;
+          }
+          .arrow-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.2s;
+          }
+          .arrow-btn:hover { border-color: #3b82f6; color: #3b82f6; }
 
           .offer-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+            gap: 20px;
           }
 
-          .offer-card {
+          .o-card {
             display: flex;
             background: #fff;
-            border: 1px solid #f0f0f0;
+            border: 1.5px solid #f0f0f0;
             border-radius: 20px;
             padding: 20px;
-            gap: 20px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            gap: 24px;
+            transition: all 0.3s;
             position: relative;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-            align-items: center;
-          }
-          .offer-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            border-color: #ffd5d5;
-          }
-
-          .offer-image-container {
-            width: 140px;
-            height: 140px;
-            flex-shrink: 0;
-            border-radius: 16px;
             overflow: hidden;
-            background: #f9fafb;
+            min-height: 180px;
           }
-          .offer-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s;
-          }
-          .offer-card:hover .offer-image { transform: scale(1.1); }
+          .o-card:hover { border-color: #e2e8f0; transform: scale(1.01); }
 
-          .offer-content {
+          .o-img-box {
+            width: 130px;
+            height: 130px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f9f9f9;
+            align-self: center;
+          }
+          .o-img { width: 100%; height: 100%; object-fit: cover; }
+
+          .o-content {
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
           }
-          .tc-text {
+          .o-tc {
             font-size: 9px;
-            font-weight: 700;
+            font-weight: 800;
             color: #94a3b8;
-            align-self: flex-end;
-            margin-bottom: 5px;
+            text-align: right;
+            position: absolute;
+            top: 20px;
+            right: 20px;
           }
-          .offer-title {
-            font-size: clamp(18px, 1.5vw, 24px);
+          .o-title {
+            font-size: 20px;
             font-weight: 900;
-            color: #0f172a;
             font-family: ${H};
-            margin-bottom: 8px;
-            line-height: 1.1;
+            color: #111;
+            margin: 15px 0 8px;
+            line-height: 1.2;
           }
-          .offer-desc {
-            font-size: 13px;
+          .o-desc {
+            font-size: 13.5px;
             color: #64748b;
-            line-height: 1.5;
-            margin-bottom: 15px;
             font-weight: 500;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            line-height: 1.4;
+            max-width: 90%;
           }
 
-          .offer-footer {
+          .o-footer {
+            margin-top: auto;
+            padding-top: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px dashed #e2e8f0;
-            padding-top: 12px;
           }
-          .code-badge {
-            font-size: 11px;
-            font-weight: 700;
-            color: #475569;
-            background: #f1f5f9;
-            padding: 4px 10px;
-            border-radius: 6px;
-            letter-spacing: 0.5px;
-          }
-          .book-now-link {
-            font-size: 13px;
-            font-weight: 800;
-            color: ${RED};
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: gap 0.2s;
-            cursor: pointer;
-            text-transform: uppercase;
-          }
-          .book-now-link:hover { gap: 8px; }
-
-          .nav-arrows {
-            display: flex;
-            gap: 10px;
-          }
-          .nav-btn {
-            width: 36px;
-            height: 36px;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          .o-code {
+            font-size: 12px;
+            font-weight: 600;
             color: #64748b;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: #fff;
           }
-          .nav-btn:hover {
-            border-color: ${RED};
-            color: ${RED};
-            box-shadow: 0 4px 12px rgba(190, 13, 13, 0.15);
+          .o-code span { color: #111; font-weight: 800; }
+          .o-action {
+             font-size: 14px;
+             font-weight: 900;
+             color: #3b82f6;
+             letter-spacing: 0.5px;
+             cursor: pointer;
+             text-transform: uppercase;
           }
 
-          @media (max-width: 900px) {
-            .offer-grid {
-              grid-template-columns: 1fr;
-            }
-            .nav-arrows { display: none; }
-          }
-          @media (max-width: 500px) {
-            .offer-card { padding: 15px; gap: 15px; }
-            .offer-image-container { width: 100px; height: 100px; }
+          @media (max-width: 950px) {
+            .offer-grid { grid-template-columns: 1fr; }
+            .top-bar { flex-direction: column; align-items: flex-start; gap: 20px; }
+            .tabs-wrapper { width: 100%; }
+            .nav-controls { display: none; }
           }
         `}
       </style>
 
-      {/* HEADER SECTION */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "30px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <h2 style={{ fontSize: "clamp(28px, 3.5vw, 40px)", fontWeight: 900, fontFamily: H, color: NAVY }}>Offers</h2>
+      <div className="outer-card">
+        {/* TOP BAR */}
+        <div className="top-bar">
+          <h2 className="offers-title">Offers</h2>
           
-          {/* NAV ARROWS - Desktop only */}
-          <div className="nav-arrows">
-            <div className="nav-btn">
-               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          <div className="tabs-wrapper">
+             {categories.map(cat => (
+               <div key={cat} className={`tab-link ${selectedTab === cat ? 'active' : ''}`} onClick={() => setSelectedTab(cat)}>
+                 {cat}
+               </div>
+             ))}
+          </div>
+
+          <div className="nav-controls">
+            <div className="view-all-btn" onClick={() => navigate("/offers")}>
+               VIEW ALL <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </div>
-            <div className="nav-btn">
-               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            <div className="arrow-btns">
+               <div className="arrow-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg></div>
+               <div className="arrow-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
             </div>
           </div>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-           <button 
-            onClick={() => navigate("/offers")} 
-            style={{ 
-              color: "#3b82f6", 
-              background: "none", 
-              border: "none", 
-              fontWeight: 800, 
-              cursor: "pointer", 
-              fontSize: "14px", 
-              display: "flex", 
-              alignItems: "center", 
-              gap: "8px",
-              textTransform: "uppercase"
-            }}
+        {/* OFFERS GRID */}
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={selectedTab}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            className="offer-grid"
           >
-            View All <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
-        </div>
-      </div>
+            {displayOffers.map(off => (
+              <div key={off.id} className="o-card">
+                <div className="o-tc">T&C's APPLY</div>
+                
+                <div className="o-img-box">
+                   <img src={off.image} alt={off.title} className="o-img" />
+                </div>
 
-      {/* TABS MENU */}
-      <div className="tabs-container">
-        {categories.map(cat => (
-          <div 
-            key={cat} 
-            className={`tab-item ${selectedTab === cat ? 'active' : ''}`}
-            onClick={() => setSelectedTab(cat)}
-          >
-            {cat}
-            {selectedTab === cat && (
-              <motion.div layoutId="tab-underline" className="tab-indicator" />
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* OFFERS GRID */}
-      <AnimatePresence mode="wait">
-        <motion.div 
-          key={selectedTab}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.3 }}
-          className="offer-grid"
-        >
-          {displayOffers.map(off => (
-            <div key={off.id} className="offer-card">
-              <div className="offer-image-container">
-                <img src={off.image} alt={off.title} className="offer-image" />
-              </div>
-              <div className="offer-content">
-                <span className="tc-text">{off.tc}</span>
-                <h3 className="offer-title">{off.title}</h3>
-                <p className="offer-desc">{off.desc}</p>
-                <div className="offer-footer">
-                  <div className="code-badge">Code: {off.code}</div>
-                  <a className="book-now-link" onClick={() => navigate("/vehicles")}>
-                    Book Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                  </a>
+                <div className="o-content">
+                   <h3 className="o-title">{off.title}</h3>
+                   <p className="o-desc">{off.desc}</p>
+                   
+                   <div className="o-footer">
+                      <div className="o-code">Code: <span>{off.code}</span></div>
+                      <div className="o-action" onClick={() => navigate("/vehicles")}>BOOK NOW</div>
+                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </motion.div>
-      </AnimatePresence>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </section>
   );
 };
