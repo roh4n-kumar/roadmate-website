@@ -99,7 +99,7 @@ const Offers = () => {
           .outer-card {
             background: #fff;
             border-radius: 28px;
-            padding: 40px;
+            padding: 30px 40px 45px;
             box-shadow: 0 40px 100px rgba(0,0,0,0.06);
             border: 1px solid #f0f0f0;
           }
@@ -108,7 +108,7 @@ const Offers = () => {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
           }
 
           .offers-title {
@@ -132,7 +132,7 @@ const Offers = () => {
           .tabs-wrapper::-webkit-scrollbar { display: none; }
 
           .tab-link {
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 700;
             color: #64748b;
             cursor: pointer;
@@ -143,7 +143,7 @@ const Offers = () => {
             text-transform: uppercase;
             letter-spacing: 0.5px;
           }
-          .tab-link.active { color: #3b82f6; } /* Matches Screenshot Blue but keep indicator red if brand */
+          .tab-link.active { color: ${RED}; }
           .tab-link.active::after {
             content: '';
             position: absolute;
@@ -151,7 +151,7 @@ const Offers = () => {
             left: 0;
             right: 0;
             height: 2.5px;
-            background: #3b82f6; /* Matching Screenshot precisely */
+            background: ${RED};
             border-radius: 4px;
           }
 
@@ -164,7 +164,7 @@ const Offers = () => {
           .view-all-btn {
             font-size: 14px;
             font-weight: 800;
-            color: #3b82f6;
+            color: ${RED};
             display: flex;
             align-items: center;
             gap: 8px;
@@ -187,7 +187,7 @@ const Offers = () => {
             cursor: pointer;
             transition: all 0.2s;
           }
-          .arrow-btn:hover { border-color: #3b82f6; color: #3b82f6; }
+          .arrow-btn:hover { border-color: ${RED}; color: ${RED}; }
 
           .offer-grid {
             display: grid;
@@ -207,7 +207,7 @@ const Offers = () => {
             overflow: hidden;
             min-height: 180px;
           }
-          .o-card:hover { border-color: #e2e8f0; transform: scale(1.01); }
+          .o-card:hover { border-color: #e2e8f0; transform: scale(1.005); }
 
           .o-img-box {
             width: 130px;
@@ -244,7 +244,7 @@ const Offers = () => {
             line-height: 1.2;
           }
           .o-desc {
-            font-size: 13.5px;
+            font-size: 13px;
             color: #64748b;
             font-weight: 500;
             line-height: 1.4;
@@ -267,7 +267,7 @@ const Offers = () => {
           .o-action {
              font-size: 14px;
              font-weight: 900;
-             color: #3b82f6;
+             color: ${RED};
              letter-spacing: 0.5px;
              cursor: pointer;
              text-transform: uppercase;
