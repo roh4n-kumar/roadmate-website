@@ -192,12 +192,12 @@ const Offers = () => {
             position: relative;
             overflow: hidden;
             min-height: 180px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
           }
           .o-card:hover { 
             border-color: #e5e5e5; 
             transform: translateY(-5px); 
-            box-shadow: 0 20px 45px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.12);
           }
 
           .o-img-box {
