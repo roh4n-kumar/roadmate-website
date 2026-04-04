@@ -277,7 +277,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       flex-direction: column;
       justify-content: center;
     }
-    .search-col:hover { background: ${RED}08; }
+    .search-col:hover { background: ${RED}12; }
     .search-col:not(:last-child) { border-right: 1.5px solid #edf2f7; }
 
     .col-label {
