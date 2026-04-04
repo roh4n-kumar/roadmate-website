@@ -175,7 +175,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .hero-section { font-family: 'Inter', sans-serif; background: #fff; position: relative; }
     
     .search-ribbon-v2 {
-      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      background: #0f172a;
       padding: 100px 20px 140px;
       position: relative;
     }
