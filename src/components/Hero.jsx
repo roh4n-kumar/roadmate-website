@@ -515,59 +515,62 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           <div style={{ position: 'relative' }}>
             <div className="search-main-card">
               {/* 1. Pickup */}
-              <div className="search-col" style={{ flex: 1.2 }}>
-                <div className="col-label">From</div>
-                <div className="col-value">{formData.pickup}</div>
-                <div className="col-sub">{formData.pickupSub}</div>
-                <div className="swap-btn">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="16 3 21 8 16 13"/><line x1="21" y1="8" x2="9" y2="8"/><polyline points="8 21 3 16 8 11"/><line x1="3" y1="16" x2="15" y2="16"/></svg>
+        {/* MAIN SEARCH AREA */}
+        <div style={{ position: 'relative', maxWidth: '1240px', margin: '0 auto' }}>
+          <div className="search-main-card">
+            {/* 1. From */}
+            <div className="search-col" onClick={() => setShowFrom(!showFrom)}>
+              <div className="col-label">From <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className="col-value">Bhubaneswar</div>
+              <div className="col-sub">Saheed Nagar, Odisha</div>
+            </div>
+
+            {/* 2. To */}
+            <div className="search-col" style={{ borderRight: '1.5px solid #edf2f7' }}>
+              <div className="swap-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16"/></svg></div>
+              <div className="col-label">To <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className="col-value">Bhubaneswar</div>
+              <div className="col-sub">Airport Area</div>
+            </div>
+
+            {/* 3. Departure */}
+            <div className="search-col" onClick={() => setShowPickCal(!showPickCal)}>
+              <div className="col-label">Departure <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className="col-value">5 Apr'26</div>
+              <div className="col-sub">Sunday</div>
+              {showPickCal && (
+                <div className="cal-box" onClick={e => e.stopPropagation()}>
+                    <CalendarInline selected={formData.pickDate} onSelect={d => { setFormData({...formData, pickDate:d, pickDateDisplay: formatPrettyDate(d)}); setShowPickCal(false); }} />
                 </div>
-              </div>
+              )}
+            </div>
 
-              {/* 2. Dropoff */}
-              <div className="search-col" style={{ flex: 1 }}>
-                <div className="col-label">To</div>
-                <div className="col-value">{formData.dropoff}</div>
-                <div className="col-sub">{formData.dropoffSub}</div>
+            {/* 4. Return */}
+            <div className="search-col" onClick={() => setShowDropCal(!showDropCal)}>
+              <div className="col-label">Return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className="col-value" style={{ color: "#718096", fontSize: "16px", fontWeight: 700 }}>
+                {formData.dropDateDisplay}
               </div>
-
-              {/* 3. Date */}
-              <div className="search-col" onClick={() => setShowCal(!showCal)}>
-                <div className="col-label">Departure <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-                <div className="col-value">{formData.dateDisplay}</div>
-                <div className="col-sub">{formData.dayName}</div>
-                {showCal && (
-                  <div className="cal-box" onClick={e => e.stopPropagation()}>
-                     <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)}); setShowCal(false); }} />
-                  </div>
-                )}
-              </div>
-
-              {/* 4. Return */}
-              <div className="search-col" onClick={() => setShowDropCal(!showDropCal)}>
-                <div className="col-label">Return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-                <div className="col-value" style={{ color: formData.dropDate ? "#1a202c" : "#718096", fontSize: formData.dropDate ? "32px" : "14px", marginTop: formData.dropDate ? "0" : "10px" }}>
-                  {formData.dropDateDisplay}
+              {formData.dropDate && <div className="col-sub">{getDayName(formData.dropDate)}</div>}
+              {showDropCal && (
+                <div className="cal-box" onClick={e => e.stopPropagation()}>
+                    <CalendarInline selected={formData.dropDate} onSelect={d => { setFormData({...formData, dropDate:d, dropDateDisplay: formatPrettyDate(d)}); setShowDropCal(false); }} />
                 </div>
-                {formData.dropDate && <div className="col-sub">{getDayName(formData.dropDate)}</div>}
-                {showDropCal && (
-                  <div className="cal-box" onClick={e => e.stopPropagation()}>
-                     <CalendarInline selected={formData.dropDate} onSelect={d => { setFormData({...formData, dropDate:d, dropDateDisplay: formatPrettyDate(d)}); setShowDropCal(false); }} />
-                  </div>
-                )}
-              </div>
+              )}
+            </div>
 
-              {/* 5. Category */}
-              <div className="search-col" style={{ flex: 1.3 }}>
-                <div className="col-label">Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-                <div className="col-value">All</div>
-                <div className="col-sub">Select preferred category</div>
-              </div>
+            {/* 5. Category */}
+            <div className="search-col" style={{ flex: 1.3 }}>
+              <div className="col-label">Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className="col-value">All</div>
+              <div className="col-sub">Select preferred category</div>
             </div>
           </div>
 
-
-          <button className="floating-search-btn" onClick={handleSearch}>Search</button>
+          <button className="floating-search-btn" onClick={handleSearch} 
+            style={{ position: 'absolute', bottom: '-32px', left: '50%', transform: 'translateX(-50%)', margin: 0 }}>
+            Search
+          </button>
         </div>
       </div>
 
