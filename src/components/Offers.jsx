@@ -127,19 +127,18 @@ const Offers = () => {
             transition: all 0.2s;
             text-transform: uppercase;
             letter-spacing: 0.4px;
-            margin-bottom: -2px;
           }
           .tab-link.active { color: ${RED}; }
           .tab-link.active::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -2px;
             left: 0;
             right: 0;
             height: 3px;
             background: ${RED};
             border-radius: 10px;
-            z-index: 2;
+            z-index: 5;
           }
 
           .nav-controls {
