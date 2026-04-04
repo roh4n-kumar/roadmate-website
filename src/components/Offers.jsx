@@ -106,29 +106,28 @@ const Offers = () => {
           .tabs-wrapper {
             display: flex;
             align-items: center;
-            gap: 28px;
-            flex: 1;
-            padding: 0 10px;
+            gap: 22px;
             overflow-x: auto;
             scrollbar-width: none;
             position: relative;
-            transform: translateY(2px);
             border-bottom: 2px solid #e5e5e5;
+            padding: 0;
+            margin-right: 15px;
           }
           .tabs-wrapper::-webkit-scrollbar { display: none; }
 
           .tab-link {
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 800;
             color: #64748b;
             cursor: pointer;
             white-space: nowrap;
-            padding: 10px 2px;
+            padding: 8px 0;
             position: relative;
             transition: all 0.2s;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: -1.5px;
+            letter-spacing: 0.4px;
+            margin-bottom: -2px;
           }
           .tab-link.active { color: ${RED}; }
           .tab-link.active::after {
