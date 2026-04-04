@@ -43,7 +43,7 @@ const CalendarInline = ({ selected, onSelect }) => {
   for (let d = 1; d <= dim; d++) cells.push(d);
 
   return (
-    <div style={{ fontFamily: F, minWidth: 280 }}>
+    <div style={{ fontFamily: F, width: 320, padding: "10px" }}>
       {/* Month nav */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", paddingBottom:"12px", borderBottom:"1px solid #f0f0f0", marginBottom:"10px" }}>
         <span style={{ fontSize:"15px", fontWeight:800, color:"#111" }}>
@@ -569,7 +569,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               <div className="col-value">{formData.dateDisplay}</div>
               <div className="col-sub">{formData.dayName}</div>
               {showCal && (
-                <div className="cal-box" style={{ width: "350px" }} onClick={e => e.stopPropagation()}>
+                <div className="cal-box" style={{ padding: 0 }} onClick={e => e.stopPropagation()}>
                     <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)}); setShowCal(false); }} />
                 </div>
               )}
