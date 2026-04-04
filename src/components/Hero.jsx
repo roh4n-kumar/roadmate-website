@@ -212,19 +212,19 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       align-items: center;
       gap: 8px;
       cursor: pointer;
-      color: #fff;
+      color: #1e293b;
       font-size: 14px;
-      font-weight: 500;
-      opacity: 0.8;
-      transition: opacity 0.2s;
+      font-weight: 600;
+      opacity: 0.6;
+      transition: all 0.2s;
     }
     .trip-option:hover { opacity: 1; }
-    .trip-option.active { opacity: 1; }
+    .trip-option.active { opacity: 1; color: ${RED}; }
 
     .trip-radio {
       width: 18px;
       height: 18px;
-      border: 2px solid rgba(255,255,255,0.3);
+      border: 2px solid rgba(0,0,0,0.1);
       border-radius: 50%;
       position: relative;
       transition: all 0.2s;
@@ -238,16 +238,15 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
     .trip-option.active .trip-radio::after { opacity: 1; }
 
-    /* MASTER CONTAINER */
+    /* MASTER CONTAINER - WHITE SQUARISH */
     .search-master-card {
       max-width: 1240px;
       margin: 0 auto;
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 32px;
-      padding: 40px;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+      background: #ffffff;
+      border: 1.2px solid #f2f2f2;
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.06), 0 10px 30px rgba(0,0,0,0.04);
       position: relative;
       z-index: 20;
     }
@@ -255,9 +254,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-main-card {
       width: 100%;
       background: #fff;
-      border-radius: 16px;
+      border: 1.5px solid #edf2f7;
+      border-radius: 12px;
       display: flex;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
       position: relative;
       overflow: hidden;
       margin-bottom: 30px;
@@ -271,7 +271,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       position: relative;
       min-width: 0;
     }
-    .search-col:hover { background: #f8fafc; }
+    .search-col:hover { background: #fcfcfc; }
     .search-col:not(:last-child) { border-right: 1.5px solid #edf2f7; }
 
     .col-label {
@@ -328,20 +328,19 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .fares-label {
       font-size: 12px;
       font-weight: 900;
-      color: rgba(255, 255, 255, 0.4);
+      color: #718096;
       text-transform: uppercase;
       margin-top: 18px;
       white-space: nowrap;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
     }
     .fares-list { display: flex; gap: 12px; flex-wrap: wrap; }
     .fare-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
       padding: 10px 18px;
       cursor: pointer;
-      transition: all 0.2s;
       min-width: 140px;
     }
     .fare-card:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.08); }
@@ -521,7 +520,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 <span>{t}</span>
               </div>
             ))}
-            <div style={{ marginLeft: "auto", color: "rgba(255,255,255,0.4)", fontSize: "12px", fontWeight: 700, letterSpacing: "0.5px" }}>
+            <div style={{ marginLeft: "auto", color: "#718096", fontSize: "11px", fontWeight: 800, letterSpacing: "0.5px", textTransform: "uppercase" }}>
               Book Verified Bikes and Cars
             </div>
           </div>
