@@ -254,13 +254,12 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .search-main-card {
       width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
       background: #fff;
       border-radius: 12px;
       display: flex;
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
       position: relative;
+      overflow: hidden;
     }
 
     .search-col {
@@ -419,56 +418,58 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           <div style={{ marginLeft: "auto", color: "rgba(255,255,255,0.6)", fontSize: "12px", fontWeight: 700 }}>Book Verified Bikes and Cars</div>
         </div>
 
-        {/* MAIN SEARCH CARD */}
-        <div className="search-main-card">
-          {/* 1. Pickup */}
-          <div className="search-col" style={{ flex: 1.2 }}>
-            <div className="col-label">From</div>
-            <div className="col-value">{formData.pickup}</div>
-            <div className="col-sub">{formData.pickupSub}</div>
-            <div className="swap-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="16 3 21 8 16 13"/><line x1="21" y1="8" x2="9" y2="8"/><polyline points="8 21 3 16 8 11"/><line x1="3" y1="16" x2="15" y2="16"/></svg>
-            </div>
-          </div>
-
-          {/* 2. Dropoff */}
-          <div className="search-col" style={{ flex: 1 }}>
-            <div className="col-label">To</div>
-            <div className="col-value">{formData.dropoff}</div>
-            <div className="col-sub">{formData.dropoffSub}</div>
-          </div>
-
-          {/* 3. Date */}
-          <div className="search-col" onClick={() => setShowCal(!showCal)}>
-            <div className="col-label">Departure <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-            <div className="col-value">{formData.dateDisplay}</div>
-            <div className="col-sub">{formData.dayName}</div>
-            {showCal && (
-              <div className="cal-box" onClick={e => e.stopPropagation()}>
-                 <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)}); setShowCal(false); }} />
+        {/* MAIN SEARCH AREA */}
+        <div style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto' }}>
+          <div className="search-main-card">
+            {/* 1. Pickup */}
+            <div className="search-col" style={{ flex: 1.2 }}>
+              <div className="col-label">From</div>
+              <div className="col-value">{formData.pickup}</div>
+              <div className="col-sub">{formData.pickupSub}</div>
+              <div className="swap-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="16 3 21 8 16 13"/><line x1="21" y1="8" x2="9" y2="8"/><polyline points="8 21 3 16 8 11"/><line x1="3" y1="16" x2="15" y2="16"/></svg>
               </div>
-            )}
-          </div>
-
-          {/* 4. Return */}
-          <div className="search-col" onClick={() => setShowDropCal(!showDropCal)}>
-            <div className="col-label">Return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-            <div className="col-value" style={{ color: formData.dropDate ? "#1a202c" : "#718096", fontSize: formData.dropDate ? "32px" : "14px", marginTop: formData.dropDate ? "0" : "10px" }}>
-              {formData.dropDateDisplay}
             </div>
-            {formData.dropDate && <div className="col-sub">{getDayName(formData.dropDate)}</div>}
-            {showDropCal && (
-              <div className="cal-box" onClick={e => e.stopPropagation()}>
-                 <CalendarInline selected={formData.dropDate} onSelect={d => { setFormData({...formData, dropDate:d, dropDateDisplay: formatPrettyDate(d)}); setShowDropCal(false); }} />
-              </div>
-            )}
-          </div>
 
-          {/* 5. Category */}
-          <div className="search-col">
-            <div className="col-label">Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
-            <div className="col-value">All</div>
-            <div className="col-sub">Select preferred category</div>
+            {/* 2. Dropoff */}
+            <div className="search-col" style={{ flex: 1 }}>
+              <div className="col-label">To</div>
+              <div className="col-value">{formData.dropoff}</div>
+              <div className="col-sub">{formData.dropoffSub}</div>
+            </div>
+
+            {/* 3. Date */}
+            <div className="search-col" onClick={() => setShowCal(!showCal)}>
+              <div className="col-label">Departure <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className="col-value">{formData.dateDisplay}</div>
+              <div className="col-sub">{formData.dayName}</div>
+              {showCal && (
+                <div className="cal-box" onClick={e => e.stopPropagation()}>
+                   <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)}); setShowCal(false); }} />
+                </div>
+              )}
+            </div>
+
+            {/* 4. Return */}
+            <div className="search-col" onClick={() => setShowDropCal(!showDropCal)}>
+              <div className="col-label">Return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className="col-value" style={{ color: formData.dropDate ? "#1a202c" : "#718096", fontSize: formData.dropDate ? "32px" : "14px", marginTop: formData.dropDate ? "0" : "10px" }}>
+                {formData.dropDateDisplay}
+              </div>
+              {formData.dropDate && <div className="col-sub">{getDayName(formData.dropDate)}</div>}
+              {showDropCal && (
+                <div className="cal-box" onClick={e => e.stopPropagation()}>
+                   <CalendarInline selected={formData.dropDate} onSelect={d => { setFormData({...formData, dropDate:d, dropDateDisplay: formatPrettyDate(d)}); setShowDropCal(false); }} />
+                </div>
+              )}
+            </div>
+
+            {/* 5. Category */}
+            <div className="search-col" style={{ flex: 1.3 }}>
+              <div className="col-label">Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className="col-value">All</div>
+              <div className="col-sub">Select preferred category</div>
+            </div>
           </div>
 
           <button className="floating-search-btn" onClick={handleSearch}>Search</button>
