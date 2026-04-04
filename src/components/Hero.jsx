@@ -509,17 +509,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
            <p className="hero-subtitle">Start renting vehicles in simple and accessible way.</p>
         </div>
 
-        {/* MASTER SEARCH CONTAINER */}
-        <div className="search-master-card">
-          {/* MAIN SEARCH AREA */}
-          <div style={{ position: 'relative' }}>
-            <div className="search-main-card">
-              {/* 1. Pickup */}
         {/* MAIN SEARCH AREA */}
         <div style={{ position: 'relative', maxWidth: '1240px', margin: '0 auto' }}>
           <div className="search-main-card">
             {/* 1. From */}
-            <div className="search-col" onClick={() => setShowFrom(!showFrom)}>
+            <div className="search-col">
               <div className="col-label">From <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value">Bhubaneswar</div>
               <div className="col-sub">Saheed Nagar, Odisha</div>
@@ -534,13 +528,13 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </div>
 
             {/* 3. Departure */}
-            <div className="search-col" onClick={() => setShowPickCal(!showPickCal)}>
+            <div className="search-col" onClick={() => setShowCal(!showCal)}>
               <div className="col-label">Departure <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value">5 Apr'26</div>
               <div className="col-sub">Sunday</div>
-              {showPickCal && (
+              {showCal && (
                 <div className="cal-box" onClick={e => e.stopPropagation()}>
-                    <CalendarInline selected={formData.pickDate} onSelect={d => { setFormData({...formData, pickDate:d, pickDateDisplay: formatPrettyDate(d)}); setShowPickCal(false); }} />
+                    <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d)}); setShowCal(false); }} />
                 </div>
               )}
             </div>
