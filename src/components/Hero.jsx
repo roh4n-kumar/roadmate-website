@@ -125,6 +125,28 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const [showPickTime, setShowPickTime] = useState(false);
   const [showDropTime, setShowDropTime] = useState(false);
 
+  const searchRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setShowCat(false);
+        setShowCal(false);
+        setShowPickTime(false);
+        setShowDropTime(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const openDropdown = (type) => {
+    setShowCat(type === 'cat' ? !showCat : false);
+    setShowCal(type === 'cal' ? !showCal : false);
+    setShowPickTime(type === 'pick' ? !showPickTime : false);
+    setShowDropTime(type === 'drop' ? !showDropTime : false);
+  };
+
   const formatPrettyDate = (d) => {
     const day   = d.getDate().toString();
     const month = d.toLocaleString("en-US", { month: "short" });
@@ -527,10 +549,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
 
         {/* MAIN SEARCH AREA */}
-        <div style={{ position: 'relative', maxWidth: '1240px', margin: '0 auto' }}>
+        <div ref={searchRef} style={{ position: 'relative', maxWidth: '1240px', margin: '0 auto' }}>
           <div className="search-main-card">
             {/* 1. Vehicle Category */}
-            <div className="search-col" onClick={() => setShowCat(!showCat)} style={{ zIndex: showCat ? 50 : 1 }}>
+            <div className="search-col" onClick={() => openDropdown('cat')} style={{ zIndex: showCat ? 50 : 1 }}>
               <div className="col-label" style={{ color: showCat ? RED : '#718096' }}>Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -547,120 +569,104 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 {formData.vehicleType === 'Bike' ? (formData.withHelmet ? 'With Helmet' : 'No Helmet') : (formData.withDriver ? 'Choice: Driver' : 'Self Drive')}
               </div>
               {showCat && (
-                <div className="cal-box" style={{ padding: "16px", width: "280px" }}>
-                  {/* BIKE SECTION */}
-                  <div style={{ marginBottom: "16px" }}>
-                    <div 
-                      onClick={(e) => { e.stopPropagation(); setFormData({...formData, vehicleType: 'Bike'}); }}
+                <div className="cal-box" style={{ padding: "12px", width: "240px" }}>
+                  {/* BIKE HEADER */}
+                  <div style={{ padding: "8px 12px", fontSize: "14px", fontWeight: 800, color: "#111", display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5"><path d="M5.5 17.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 17.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM9 12h5.5l1.5-4H10L9 12zM7.5 14.5l1.5-2.5h7l1.5 2.5"/></svg>
+                    Bikes
+                  </div>
+                  {/* BIKE RADIOS */}
+                  {[
+                    { label: 'With Helmet', val: true },
+                    { label: 'Without Helmet', val: false }
+                  ].map(opt => (
+                    <div key={opt.label}
+                      onClick={(e) => { e.stopPropagation(); setFormData({...formData, vehicleType: 'Bike', withHelmet: opt.val}); }}
                       style={{ 
-                        padding: "10px 12px", borderRadius: "10px", fontWeight: 700, 
-                        display: 'flex', alignItems: 'center', gap: '12px',
-                        color: formData.vehicleType === 'Bike' ? RED : "#444", 
-                        background: formData.vehicleType === 'Bike' ? `${RED}08` : "transparent", 
-                        cursor: "pointer", fontSize: "15px", transition: "all 0.2s"
+                        padding: "10px 32px", display: 'flex', alignItems: 'center', gap: '10px', 
+                        cursor: 'pointer', transition: 'all 0.2s',
+                        color: (formData.vehicleType === 'Bike' && formData.withHelmet === opt.val) ? RED : "#64748b",
+                        fontWeight: (formData.vehicleType === 'Bike' && formData.withHelmet === opt.val) ? 700 : 500,
+                        fontSize: '13px'
                       }}
                     >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5.5 17.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 17.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM9 12h5.5l1.5-4H10L9 12zM7.5 14.5l1.5-2.5h7l1.5 2.5"/></svg>
-                      Bike
-                      {formData.vehicleType === 'Bike' && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="3" style={{ marginLeft: 'auto' }}><polyline points="20 6 9 17 4 12"/></svg>}
-                    </div>
-
-                    {formData.vehicleType === 'Bike' && (
-                      <div style={{ display: 'flex', gap: '8px', paddingLeft: '32px', marginTop: '8px' }}>
-                        {[
-                          { label: 'With Helmet', val: true },
-                          { label: 'Without', val: false }
-                        ].map(opt => (
-                          <div key={opt.label}
-                            onClick={(e) => { e.stopPropagation(); setFormData({...formData, withHelmet: opt.val}); }}
-                            style={{
-                              padding: "6px 12px", borderRadius: "20px", fontSize: "11px", fontWeight: 700,
-                              background: formData.withHelmet === opt.val ? RED : "#f1f5f9",
-                              color: formData.withHelmet === opt.val ? "#fff" : "#64748b",
-                              cursor: 'pointer', transition: 'all 0.2s', border: '1px solid transparent'
-                            }}
-                          >
-                            {opt.label}
-                          </div>
-                        ))}
+                      <div style={{ 
+                        width: '16px', height: '16px', borderRadius: '50%', border: `1.5px solid ${(formData.vehicleType === 'Bike' && formData.withHelmet === opt.val) ? RED : "#cbd5e1"}`,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center'
+                      }}>
+                        {(formData.vehicleType === 'Bike' && formData.withHelmet === opt.val) && <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: RED }} />}
                       </div>
-                    )}
-                  </div>
+                      {opt.label}
+                    </div>
+                  ))}
 
-                  {/* CAR SECTION */}
-                  <div>
-                    <div 
-                      onClick={(e) => { e.stopPropagation(); setFormData({...formData, vehicleType: 'Car'}); }}
+                  <div style={{ margin: '8px 12px', borderBottom: '1px solid #f1f5f9' }} />
+
+                  {/* CAR HEADER */}
+                  <div style={{ padding: "8px 12px", fontSize: "14px", fontWeight: 800, color: "#111", display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5"><rect x="3" y="11" width="18" height="6" rx="2"/><path d="M5 11l1.5-4.5h11L19 11"/></svg>
+                    Cars
+                  </div>
+                  {/* CAR RADIOS */}
+                  {[
+                    { label: 'With Driver', val: true },
+                    { label: 'Self Drive', val: false }
+                  ].map(opt => (
+                    <div key={opt.label}
+                      onClick={(e) => { e.stopPropagation(); setFormData({...formData, vehicleType: 'Car', withDriver: opt.val}); }}
                       style={{ 
-                        padding: "10px 12px", borderRadius: "10px", fontWeight: 700, 
-                        display: 'flex', alignItems: 'center', gap: '12px',
-                        color: formData.vehicleType === 'Car' ? RED : "#444", 
-                        background: formData.vehicleType === 'Car' ? `${RED}08` : "transparent", 
-                        cursor: "pointer", fontSize: "15px", transition: "all 0.2s"
+                        padding: "10px 32px", display: 'flex', alignItems: 'center', gap: '10px', 
+                        cursor: 'pointer', transition: 'all 0.2s',
+                        color: (formData.vehicleType === 'Car' && formData.withDriver === opt.val) ? RED : "#64748b",
+                        fontWeight: (formData.vehicleType === 'Car' && formData.withDriver === opt.val) ? 700 : 500,
+                        fontSize: '13px'
                       }}
                     >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="11" width="18" height="6" rx="2"/><path d="M5 11l1.5-4.5h11L19 11"/></svg>
-                      Car
-                      {formData.vehicleType === 'Car' && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="3" style={{ marginLeft: 'auto' }}><polyline points="20 6 9 17 4 12"/></svg>}
-                    </div>
-
-                    {formData.vehicleType === 'Car' && (
-                      <div style={{ display: 'flex', gap: '8px', paddingLeft: '32px', marginTop: '8px' }}>
-                        {[
-                          { label: 'With Driver', val: true },
-                          { label: 'Self Drive', val: false }
-                        ].map(opt => (
-                          <div key={opt.label}
-                            onClick={(e) => { e.stopPropagation(); setFormData({...formData, withDriver: opt.val}); }}
-                            style={{
-                              padding: "6px 12px", borderRadius: "20px", fontSize: "11px", fontWeight: 700,
-                              background: formData.withDriver === opt.val ? RED : "#f1f5f9",
-                              color: formData.withDriver === opt.val ? "#fff" : "#64748b",
-                              cursor: 'pointer', transition: 'all 0.2s', border: '1px solid transparent'
-                            }}
-                          >
-                            {opt.label}
-                          </div>
-                        ))}
+                      <div style={{ 
+                        width: '16px', height: '16px', borderRadius: '50%', border: `1.5px solid ${(formData.vehicleType === 'Car' && formData.withDriver === opt.val) ? RED : "#cbd5e1"}`,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center'
+                      }}>
+                        {(formData.vehicleType === 'Car' && formData.withDriver === opt.val) && <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: RED }} />}
                       </div>
-                    )}
-                  </div>
+                      {opt.label}
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
 
             {/* 2. Booking Date */}
-            <div className="search-col" onClick={() => setShowCal(!showCal)} style={{ zIndex: showCal ? 50 : 1 }}>
+            <div className="search-col" onClick={() => openDropdown('cal')} style={{ zIndex: showCal ? 50 : 1 }}>
               <div className="col-label" style={{ color: showCal ? RED : '#718096' }}>Booking Date <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value">{formData.dateDisplay}</div>
               <div className="col-sub">{formData.dayName}</div>
               {showCal && (
                 <div className="cal-box" style={{ padding: 0 }} onClick={e => e.stopPropagation()}>
-                    <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)}); setShowCal(false); }} />
+                    <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)}); openDropdown('off'); }} />
                 </div>
               )}
             </div>
 
             {/* 3. Pickup Time */}
-            <div className="search-col" onClick={() => setShowPickTime(!showPickTime)} style={{ zIndex: showPickTime ? 50 : 1 }}>
+            <div className="search-col" onClick={() => openDropdown('pick')} style={{ zIndex: showPickTime ? 50 : 1 }}>
               <div className="col-label" style={{ color: showPickTime ? RED : '#718096' }}>Pickup Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value">{formData.pickupTime}</div>
               <div className="col-sub">Select start time</div>
               {showPickTime && (
                 <div className="cal-box" style={{ padding: 0, width: "240px" }} onClick={e => e.stopPropagation()}>
-                    <TimePopup onSelect={t => { setFormData({...formData, pickupTime: t}); setShowPickTime(false); }} />
+                    <TimePopup onSelect={t => { setFormData({...formData, pickupTime: t}); openDropdown('off'); }} />
                 </div>
               )}
             </div>
 
             {/* 4. Dropoff Time */}
-            <div className="search-col" onClick={() => setShowDropTime(!showDropTime)} style={{ zIndex: showDropTime ? 50 : 1 }}>
+            <div className="search-col" onClick={() => openDropdown('drop')} style={{ zIndex: showDropTime ? 50 : 1 }}>
               <div className="col-label" style={{ color: showDropTime ? RED : '#718096' }}>Dropoff Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value">{formData.dropoffTime}</div>
               <div className="col-sub">Select end time</div>
               {showDropTime && (
                 <div className="cal-box" style={{ padding: 0, width: "240px" }} onClick={e => e.stopPropagation()}>
-                    <TimePopup onSelect={t => { setFormData({...formData, dropoffTime: t}); setShowDropTime(false); }} />
+                    <TimePopup onSelect={t => { setFormData({...formData, dropoffTime: t}); openDropdown('off'); }} />
                 </div>
               )}
             </div>
