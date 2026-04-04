@@ -132,13 +132,13 @@ const Offers = () => {
           .tab-link.active::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: -3px;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 4px;
             background: ${RED};
-            border-radius: 10px;
-            z-index: 5;
+            border-radius: 2px;
+            z-index: 10;
           }
 
           .nav-controls {
