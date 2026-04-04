@@ -113,6 +113,7 @@ const Offers = () => {
             scrollbar-width: none;
             position: relative;
             transform: translateY(2px);
+            border-bottom: 1.5px solid #f0f0f0;
           }
           .tabs-wrapper::-webkit-scrollbar { display: none; }
 
@@ -127,17 +128,19 @@ const Offers = () => {
             transition: all 0.2s;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            margin-bottom: -1.5px;
           }
           .tab-link.active { color: ${RED}; }
           .tab-link.active::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: 0;
             left: 0;
             right: 0;
             height: 3px;
             background: ${RED};
             border-radius: 10px;
+            z-index: 2;
           }
 
           .nav-controls {
