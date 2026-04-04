@@ -350,10 +350,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .f-sub { font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 500; }
 
     .floating-search-btn {
-      position: absolute;
-      bottom: -32px;
-      left: 50%;
-      transform: translateX(-50%);
+      display: block;
+      margin: 30px auto 0;
+      width: 400px;
+      max-width: 96%;
       height: 64px;
       padding: 0 60px;
       background: linear-gradient(90deg, #be0d0d 0%, #990a0a 100%);
@@ -564,8 +564,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 <div className="col-sub">Select preferred category</div>
               </div>
             </div>
-
-            <button className="floating-search-btn" onClick={handleSearch}>Search</button>
           </div>
 
           {/* SPECIAL FEATURES ROW */}
@@ -580,12 +578,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 { t:"Elite",    s:"No Deposit Option" },
               ].map(f => (
                 <div key={f.t} className={`fare-card ${activeTab === f.t ? 'active' : ''}`} onClick={() => setActiveTab(f.t)}>
-                  <div className="f-title">{f.t}</div>
-                  <div className="f-sub">{f.s}</div>
+                  <div className="f-title" style={{ color: "#1a202c" }}>{f.t}</div>
+                  <div className="f-sub" style={{ color: "#718096" }}>{f.s}</div>
                 </div>
               ))}
             </div>
           </div>
+
+          <button className="floating-search-btn" onClick={handleSearch}>Search</button>
         </div>
       </div>
 
