@@ -380,14 +380,18 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .cal-box {
       position: absolute;
-      top: 105%;
-      left: 0;
+      top: 48px; /* Starts just below the label */
+      left: 25px;
       background: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
       z-index: 1000;
-      border: 1px solid #edf2f7;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 0 0 1.5px rgba(0,0,0,0.05);
+      border-radius: 14px;
+      animation: dropdownFade 0.15s ease-out;
+      transform-origin: top left;
+    }
+    @keyframes dropdownFade {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 900px) {
