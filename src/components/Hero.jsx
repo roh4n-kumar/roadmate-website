@@ -268,16 +268,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     .glass-search-container {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 28px;
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 12px;
       padding: 40px 40px 60px;
       display: flex;
       align-items: flex-end;
       gap: 0;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.1);
       position: relative;
       z-index: 100;
       margin-bottom: 40px;
@@ -291,14 +289,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       position: relative; 
       padding-right: 25px; 
       margin-right: 25px; 
-      border-right: 1px solid rgba(255,255,255,0.1); 
+      border-right: 1px solid rgba(0,0,0,0.08); 
     }
     .search-field:nth-last-child(2) { border-right: none; padding-right: 0; margin-right: 0; }
     
     .search-label { 
       font-size: 11px; 
-      color: rgba(255, 255, 255, 0.6); 
-      font-weight: 700; 
+      color: #64748b; 
+      font-weight: 800; 
       text-transform: uppercase; 
       letter-spacing: 1.2px; 
       padding-left: 4px;
@@ -306,9 +304,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
     
     .search-input-box { 
-      background: rgba(255,255,255,0.05); 
-      border: 1px solid rgba(255,255,255,0.1); 
-      border-radius: 16px; 
+      background: #f8fafc; 
+      border: 1.5px solid #e2e8f0; 
+      border-radius: 12px; 
       height: 56px; 
       padding: 0 18px; 
       display: flex; 
@@ -316,15 +314,15 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       justify-content: space-between; 
       cursor: pointer; 
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-      color: #fff; 
+      color: #1e293b; 
     }
     .search-input-box:hover { 
       border-color: ${RED}; 
-      background: rgba(255,255,255,0.08); 
-      box-shadow: 0 0 20px rgba(190, 13, 13, 0.2);
+      background: #fff; 
+      box-shadow: 0 4px 12px rgba(190, 13, 13, 0.1);
     }
-    .search-input-box span { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.4); }
-    .search-input-box span.filled { color: #fff; font-weight: 600; }
+    .search-input-box span { font-size: 15px; font-weight: 500; color: #94a3b8; }
+    .search-input-box span.filled { color: #1e293b; font-weight: 700; }
 
     .search-btn-container {
       position: absolute;
@@ -341,41 +339,45 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       border: none; 
       padding: 0 50px; 
       height: 60px; 
-      border-radius: 20px; 
+      border-radius: 12px; 
       font-size: 16px; 
-      font-weight: 700; 
+      font-weight: 800; 
       cursor: pointer; 
       display: flex; 
       align-items: center; 
       gap: 12px; 
       white-space: nowrap; 
-      box-shadow: 0 15px 35px rgba(190,13,13,0.4); 
+      box-shadow: 0 15px 35px rgba(190,13,13,0.35); 
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
       font-family: 'Outfit', sans-serif; 
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     .search-btn:hover { 
-      transform: translateY(-3px) scale(1.02); 
-      box-shadow: 0 15px 40px rgba(190,13,13,0.5); 
+      transform: translate(-50%, 45%) scale(1.02); 
+      box-shadow: 0 20px 40px rgba(190,13,13,0.45); 
       filter: brightness(1.1);
     }
-    .search-btn:active { transform: translateY(0) scale(0.98); }
+    /* Fixed hover transform issue by correctly referencing the container relative position */
+    .search-btn:hover { transform: scale(1.02); }
+    .search-btn:active { transform: scale(0.98); }
 
     .date-sub-row { display: flex; gap: 10px; align-items: center; }
     .date-trigger { flex: 1; }
     .quick-btn { 
-      background: rgba(255,255,255,0.08); 
-      border: 1px solid rgba(255,255,255,0.1); 
-      color: rgba(255,255,255,0.7); 
+      background: #f1f5f9; 
+      border: 1.5px solid #e2e8f0; 
+      color: #64748b; 
       padding: 0 16px; 
       height: 56px; 
-      border-radius: 16px; 
+      border-radius: 12px; 
       font-size: 13px; 
-      font-weight: 600; 
+      font-weight: 700; 
       cursor: pointer; 
       transition: all 0.2s; 
       font-family: ${H}; 
     }
-    .quick-btn:hover { background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.3); }
+    .quick-btn:hover { background: #fff; color: ${RED}; border-color: ${RED}; }
 
     .v-dropdown { 
       position: absolute; 
