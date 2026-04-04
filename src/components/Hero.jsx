@@ -360,31 +360,118 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .cal-box {
       position: absolute;
       top: 105%;
-      left: 0;
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-      z-index: 1000;
-      border: 1px solid #edf2f7;
+    @media (max-width: 900px) {
+      .search-ribbon { padding: 20px 20px 60px; }
+      .search-inner { flex-direction: column; gap: 10px; align-items: stretch; }
+      .search-field { flex: none; border-right: none !important; padding-right: 0 !important; margin-right: 0 !important; }
+      .search-btn { width: 100%; justify-content: center; border-radius: 14px; height: 50px; }
+      .search-btn:hover { transform: none; }
+      .offer-section { padding: 40px 20px 30px; }
+      .why-section { padding: 20px 20px 50px; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .how-section { padding: 30px 20px 50px; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid::before { display: none; }
+      .cal-popup { left: 0; right: 0; width: auto !important; }
+      .hero-banner { display: none !important; }
+      .hero-section { margin-top: 56px !important; padding-bottom: 70px; }
+      .search-ribbon { padding-top: 16px !important; }
     }
 
-    @media (max-width: 1024px) {
-      .search-main-card { flex-wrap: wrap; }
-      .search-col { flex: 1 1 33.33%; border-right: none !important; border-bottom: 1.5px solid #edf2f7; }
-      .search-col:nth-child(3) { border-bottom: none; }
-      .trip-type-row { justify-content: center; overflow-x: auto; padding-bottom: 20px; }
-      .hero-title { font-size: 40px; }
-      .hero-subtitle { font-size: 16px; }
-      .special-fares-row { flex-direction: column; align-items: stretch; }
-      .fares-label { margin-top: 0; text-align: center; }
+    /* ORIGINAL HIGH-FIDELITY RESTORATION */
+    .why-section { padding: 40px 40px 100px; background: #fff; }
+    .why-inner { max-width: 1250px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-tag { 
+      display: inline-block; 
+      background: #fff0f0; 
+      color: ${RED}; 
+      font-size: 12px; 
+      font-weight: 800; 
+      text-transform: uppercase; 
+      letter-spacing: 2px; 
+      padding: 8px 18px; 
+      border-radius: 99px; 
+      margin-bottom: 18px; 
     }
-    @media (max-width: 600px) {
-      .search-col { flex: 1 1 100%; }
-      .search-main-card { border-radius: 16px; }
-      .hero-section { margin-top: 60px; }
-      .hero-title { font-size: 32px; }
+    .section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 900; color: #111; margin: 0 0 15px; line-height: 1.1; letter-spacing: -0.5px; font-family: ${H}; }
+    .section-sub { font-size: 17px; color: #666; font-weight: 400; max-width: 550px; margin: 0 auto; }
+    
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .feature-card { 
+      background: #fff; 
+      border-radius: 28px; 
+      padding: 40px 30px; 
+      border: 1px solid #f0f0f0; 
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+      cursor: default; 
+      position: relative; 
+      overflow: hidden; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
     }
+    .feature-card::before { 
+      content: ''; 
+      position: absolute; 
+      bottom: 0; left: 0; right: 0; height: 4px; 
+      background: ${RED}; 
+      transform: scaleX(0); 
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+      transform-origin: center; 
+    }
+    .feature-card:hover { 
+      transform: translateY(-10px); 
+      box-shadow: 0 25px 50px rgba(0,0,0,0.07); 
+      border-color: #ffd5d5; 
+    }
+    .feature-card:hover::before { transform: scaleX(1); }
+    .feature-icon { 
+      width: 64px; 
+      height: 64px; 
+      background: #fff5f5; 
+      border-radius: 20px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      font-size: 28px; 
+      margin-bottom: 24px; 
+      transition: transform 0.3s;
+    }
+    .feature-card:hover .feature-icon { transform: rotate(10deg) scale(1.1); }
+    .feature-title { font-size: 18px; font-weight: 800; color: #111; margin: 0 0 12px; font-family: ${H}; }
+    .feature-desc { font-size: 14px; color: #777; line-height: 1.7; margin: 0; font-weight: 450; }
+
+    .how-section { padding: 80px 40px 100px; background: #fafafa; position: relative; overflow: hidden; }
+    .how-inner { max-width: 1250px; margin: 0 auto; position: relative; z-index: 1; }
+    .steps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; position: relative; }
+    .steps-grid-connector { 
+      position: absolute; 
+      top: 40px; 
+      left: 15%; 
+      right: 15%; 
+      height: 2px; 
+      background: repeating-linear-gradient(to right, transparent, transparent 10px, rgba(190,13,13,0.2) 10px, rgba(190,13,13,0.2) 20px);
+      z-index: 0;
+    }
+    .step-card { text-align: center; position: relative; z-index: 1; }
+    .step-num { 
+      width: 80px; 
+      height: 80px; 
+      background: #fff; 
+      border: 3px solid ${RED}; 
+      border-radius: 50%; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      margin: 0 auto 24px; 
+      font-size: 28px; 
+      font-weight: 900; 
+      color: ${RED}; 
+      box-shadow: 0 10px 25px rgba(190,13,13,0.15); 
+      transition: all 0.3s;
+    }
+    .step-card:hover .step-num { background: ${RED}; color: #fff; transform: scale(1.1); }
+    .step-title { font-size: 18px; font-weight: 800; color: #111; margin: 0 0 10px; font-family: ${H}; }
+    .step-desc { font-size: 14px; color: #777; line-height: 1.6; font-weight: 400; max-width: 220px; margin: 0 auto; }
   `;
 
   return (
@@ -490,83 +577,51 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       {/* OFFERS SECTION */}
       <Offers />
 
-      {/* WHY CHOOSE US - RESTORED */}
-      <div className="why-section" style={{ padding: "100px 24px", background: "#fff" }}>
-        <div className="why-inner" style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
-          <div className="section-header" style={{ marginBottom: "60px" }}>
-            <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, color: "#111", marginBottom: "15px", lineHeight: "1.2" }}>
-              Bhubaneswar's Own <br/>Vehicle Rental Platform
-            </h2>
-            <p style={{ fontSize: "18px", color: "#64748b", maxWidth: "700px", margin: "0 auto", fontWeight: 500 }}>
-              Experience the freedom of smart mobility with RoadMate's verified fleet and seamless booking.
-            </p>
+      {/* WHY CHOOSE US - ORIGINAL HIGH-FIDELITY RESTORATION */}
+      <div className="why-section">
+        <div className="why-inner">
+          <div className="section-header">
+            <div className="section-tag">Why Choose Us</div>
+            <h2 className="section-title">Bhubaneswar's Own<br/>Vehicle Rental Platform</h2>
+            <p className="section-sub">Experience the freedom of smart mobility with RoadMate's verified fleet and seamless booking.</p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "24px" }}>
+          <div className="features-grid">
             {featureCards.map((f,i) => (
-              <div key={i} className="feature-card" style={{ padding: "45px 30px", background: "#fff", border: "1px solid #f1f5f9", borderRadius: "24px", boxShadow: "0 10px 30px rgba(0,0,0,0.03)", transition: "all 0.3s ease", textAlign: "left" }}>
-                 <div style={{ marginBottom: "25px" }}>{f.icon}</div>
-                 <h3 style={{ fontSize: "20px", fontWeight: 800, color: "#111", marginBottom: "12px", fontFamily: H }}>{f.title}</h3>
-                 <p style={{ fontSize: "14px", color: "#64748b", lineHeight: 1.6, fontWeight: 500 }}>{f.desc}</p>
+              <div key={i} className="feature-card">
+                <div className="feature-icon">{f.icon}</div>
+                <h3 className="feature-title">{f.title}</h3>
+                <p className="feature-desc">{f.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* HOW IT WORKS - RESTORED */}
-      <div className="how-section" style={{ padding: "100px 40px", background: "#fff", borderTop: "1px solid #f1f5f9" }}>
-        <div className="how-inner" style={{ maxWidth: "1100px", margin: "0 auto", textAlign: "center" }}>
-          <div className="section-header" style={{ marginBottom: "80px" }}>
-            <div style={{ display: "inline-block", background: "#be0d0d10", color: "#be0d0d", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "2px", padding: "8px 18px", borderRadius: "99px", marginBottom: "18px" }}>Seamless Process</div>
-            <h2 style={{ fontSize: "clamp(32px, 4vw, 42px)", fontWeight: 900, color: "#111", margin: "0 0 15px", fontFamily: H }}>Book Your Ride in 5 Easy Steps</h2>
-            <p style={{ fontSize: "17px", color: "#64748b", maxWidth: "600px", margin: "0 auto", fontWeight: 500 }}>Simple, fast, and completely online — no paperwork, no hassle.</p>
+      {/* HOW IT WORKS - ORIGINAL HIGH-FIDELITY RESTORATION */}
+      <div className="how-section">
+        <div className="how-inner">
+          <div className="section-header">
+            <div className="section-tag">Seamless Process</div>
+            <h2 className="section-title">Book Your Ride in 5 Easy Steps</h2>
+            <p className="section-sub">Simple, fast, and completely online — no paperwork, no hassle.</p>
           </div>
-
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "20px", position: "relative", flexWrap: "wrap" }}>
-            {/* Dotted Line Connection (Desktop) */}
-            <div className="desktop-line" style={{ position: "absolute", top: "45px", left: "10%", right: "10%", height: "2px", borderTop: "2px dashed #be0d0d20", zIndex: 0 }} />
-
+          <div className="steps-grid">
+            <div className="steps-grid-connector" />
             {[
               { step:"01", title:"Verify Docs",    desc:"Quick digital verification with zero physical paperwork." },
               { step:"02", title:"Choose Vehicle",  desc:"Select your preferred bike or car from our highly curated, verified fleet." },
               { step:"03", title:"Pick Date & Time",desc:"Set your rental date, pickup and drop-off time as per your convenience." },
               { step:"04", title:"Confirm Booking", desc:"Review the transparent pricing and confirm your booking instantly." },
-              { step:"05", title:"Enjoy Ride",       desc:"Pick up your vehicle and enjoy the ride. It's that simple!" },
+              { step:"05", title:"Ride Away",        desc:"Pick up your vehicle and enjoy the ride. It's that simple!" },
             ].map((s,i) => (
-              <div key={i} className="step-item" style={{ flex: "1 1 180px", textAlign: "center", position: "relative", zIndex: 1 }}>
-                <div className="step-circle" style={{
-                  width: "90px", height: "90px",
-                  background: s.step === "04" ? "#be0d0d" : "#fff",
-                  border: "2.5px solid #be0d0d",
-                  borderRadius: "50%",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  margin: "0 auto 28px",
-                  fontSize: "30px", fontWeight: 900,
-                  color: s.step === "04" ? "#fff" : "#be0d0d",
-                  boxShadow: s.step === "04" ? "0 10px 25px rgba(190,13,13,0.3)" : "0 10px 20px rgba(0,0,0,0.04)",
-                  transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                  cursor: "default"
-                }}>
-                  {s.step}
-                </div>
-                <h3 style={{ fontSize: "16px", fontWeight: 800, color: "#111", marginBottom: "10px", fontFamily: H }}>{s.title}</h3>
-                <p style={{ fontSize: "12.5px", color: "#64748b", lineHeight: 1.6, fontWeight: 500, padding: "0 10px" }}>{s.desc}</p>
+              <div key={i} className="step-card">
+                <div className="step-num">{s.step}</div>
+                <h3 className="step-title">{s.title}</h3>
+                <p className="step-desc">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
-
-        <style>{`
-          .step-item:hover .step-circle {
-            background: #be0d0d !important;
-            color: #fff !important;
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 15px 30px rgba(190,13,13,0.3) !important;
-          }
-          @media (max-width: 900px) {
-            .desktop-line { display: none; }
-          }
-        `}</style>
       </div>
     </section>
   );
