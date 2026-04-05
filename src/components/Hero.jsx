@@ -653,7 +653,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               </div>
               <div className="col-sub" style={{ color: '#718096' }}>Select start time</div>
               {showPickTime && (
-                <div className="cal-box" style={{ padding: 0, width: "240px" }} onClick={e => e.stopPropagation()}>
+                <div style={{ position: 'absolute', top: '48px', left: 0, zIndex: 1000 }} onClick={e => e.stopPropagation()}>
                     <TimePopup onSelect={t => { setFormData({...formData, pickupTime: t}); openDropdown('off'); }} />
                 </div>
               )}
@@ -673,7 +673,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               </div>
               <div className="col-sub" style={{ color: '#718096' }}>Select end time</div>
               {showDropTime && (
-                <div className="cal-box" style={{ padding: 0, width: "240px" }} onClick={e => e.stopPropagation()}>
+                <div style={{ position: 'absolute', top: '48px', left: 0, zIndex: 1000 }} onClick={e => e.stopPropagation()}>
                     <TimePopup onSelect={t => { setFormData({...formData, dropoffTime: t}); openDropdown('off'); }} />
                 </div>
               )}
