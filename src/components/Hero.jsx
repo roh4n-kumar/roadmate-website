@@ -296,20 +296,20 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     .search-main-card {
-      width: 100%;
+      width: fit-content;
+      margin: 0 auto 30px;
       background: #fff;
       border: 1.5px solid #cbd5e1; /* Darkened from #edf2f7 */
       border-radius: 16px;
       display: flex;
       box-shadow: 0 10px 30px rgba(0,0,0,0.03);
       position: relative;
-      margin-bottom: 30px;
       min-height: 130px;
     }
 
     .search-col {
-      flex: 1;
-      padding: 28px 30px 48px;
+      flex: 0 1 auto;
+      padding: 28px 24px 48px;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
@@ -667,7 +667,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
             {/* 2. Booking Date */}
             <div className="search-col" onClick={() => openDropdown('cal')} 
-              style={{ zIndex: showCal ? 50 : 1, background: showCal ? `${RED}12` : 'transparent', flex: 1.4 }}>
+              style={{ zIndex: showCal ? 50 : 1, background: showCal ? `${RED}12` : 'transparent' }}>
               <div className={`col-label ${showCal ? 'active' : ''}`}>
                 Booking Date <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showCal ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg>
               </div>
