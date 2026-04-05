@@ -306,8 +306,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       box-shadow: 0 8px 24px rgba(0,0,0,0.04);
       position: relative;
       min-height: auto;
-      overflow: hidden;
     }
+
+    .search-col:first-child { border-radius: 16px 0 0 16px; }
+    .search-col:last-child { border-radius: 0 16px 16px 0; }
 
     .search-col {
       flex: 0 1 auto;
@@ -759,7 +761,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               </div>
               <div className="col-sub" style={{ color: '#718096' }}>Select start time</div>
               {showPickTime && (
-                <div className="cal-box" style={{ width: '260px' }} onClick={e => e.stopPropagation()}>
+                <div className="cal-box" style={{ width: '100%', minWidth: '240px' }} onClick={e => e.stopPropagation()}>
                     <TimePopup onSelect={t => { setFormData({...formData, pickupTime: t}); openDropdown('off'); }} />
                 </div>
               )}
@@ -779,7 +781,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               </div>
               <div className="col-sub" style={{ color: '#718096' }}>Select end time</div>
               {showDropTime && (
-                <div className="cal-box" style={{ width: '260px' }} onClick={e => e.stopPropagation()}>
+                <div className="cal-box" style={{ width: '100%', minWidth: '240px' }} onClick={e => e.stopPropagation()}>
                     <TimePopup onSelect={t => { setFormData({...formData, dropoffTime: t}); openDropdown('off'); }} />
                 </div>
               )}
