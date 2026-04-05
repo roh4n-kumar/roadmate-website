@@ -167,14 +167,22 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   };
 
   const handleSearch = () => {
-    const { vehicleType, selectedDate, pickupTime, withHelmet, withDriver } = formData;
-    if (!vehicleType || !selectedDate) {
-      alert("Please complete the search criteria!");
+    const { vehicleType, selectedDate, pickupTime, dropoffTime, withHelmet, withDriver } = formData;
+    if (!vehicleType || !selectedDate || !pickupTime || !dropoffTime) {
+      alert("Please complete the search criteria (Dates and Times)!");
       return;
     }
-    const helmetParam = vehicleType === 'Bike' ? `&helmet=${withHelmet}` : "";
-    const driverParam = vehicleType === 'Car' ? `&driver=${withDriver}` : "";
-    navigate(`/vehicles?type=${encodeURIComponent(vehicleType)}${helmetParam}${driverParam}`);
+    
+    const params = new URLSearchParams({
+      type: vehicleType,
+      date: selectedDate.toISOString(),
+      pickup: pickupTime,
+      drop: dropoffTime,
+      helmet: withHelmet,
+      driver: withDriver
+    });
+
+    navigate(`/vehicles?${params.toString()}`);
   };
 
   const jumpToday = (e) => {

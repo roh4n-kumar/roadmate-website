@@ -60,10 +60,15 @@ const IcoCalendar = () => <Svg><rect x="3" y="4" width="18" height="18" rx="2"/>
 const IcoTag      = () => <Svg><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></Svg>;
 
 // ── Booking Modal (bottom sheet on mobile) ────────────────────────────────────
-const BookingModal = ({ vehicle, totalMins, date, pickup, drop, onClose, onConfirm }) => {
-  const total = Math.round((vehicle.pricePerHour * totalMins) / 60);
-  const gst   = Math.round(total * 0.18);
-  const grand = total + gst;
+const BookingModal = ({ vehicle, totalMins, date, pickup, drop, withHelmet, withDriver, onClose, onConfirm }) => {
+  const isBike = vehicle.category === 'Bike';
+  const isCar  = vehicle.category === 'Car';
+  
+  const baseTotal    = Math.round((vehicle.pricePerHour * totalMins) / 60);
+  const gst          = Math.round(baseTotal * 0.18);
+  const helmetCharge = (isBike && withHelmet) ? 50 : 0;
+  const driverCharge = (isCar && withDriver) ? 400 : 0;
+  const grandTotal   = baseTotal + gst + helmetCharge + driverCharge;
 
   return (
     <motion.div
@@ -116,7 +121,12 @@ const BookingModal = ({ vehicle, totalMins, date, pickup, drop, onClose, onConfi
           </div>
 
           <div style={{ marginBottom: "25px", padding: "0 5px" }}>
-            {[{ label: `Base Fare (₹${vehicle.pricePerHour}/hr × ${Number((totalMins/60).toFixed(2))} hrs)`, val: `₹${total}` }, { label: "Taxes & GST (18%)", val: `₹${gst}` }].map(({ label, val }) => (
+            {[
+              { label: `Base Fare (₹${vehicle.pricePerHour}/hr × ${Number((totalMins/60).toFixed(1))} hrs)`, val: `₹${baseTotal}` },
+              { label: "Taxes & GST (18% on Base)", val: `₹${gst}` },
+              ...(helmetCharge > 0 ? [{ label: "Helmet Charges", val: "₹50" }] : []),
+              ...(driverCharge > 0 ? [{ label: "Driver Charges", val: "₹400" }] : [])
+            ].map(({ label, val }) => (
               <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid rgba(15,23,42,0.05)" }}>
                 <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.6)" }}>{label}</span>
                 <span style={{ fontSize: "14px", fontWeight: "700", color: SLATE }}>{val}</span>
@@ -124,7 +134,7 @@ const BookingModal = ({ vehicle, totalMins, date, pickup, drop, onClose, onConfi
             ))}
             <div style={{ display: "flex", justifyContent: "space-between", padding: "15px 0 0" }}>
               <span style={{ fontSize: "16px", fontWeight: "800", color: SLATE }}>Grand Total</span>
-              <span style={{ fontSize: "26px", fontWeight: "900", color: RED }}>₹{grand}</span>
+              <span style={{ fontSize: "26px", fontWeight: "900", color: RED }}>₹{grandTotal}</span>
             </div>
           </div>
 
@@ -147,6 +157,8 @@ export default function VehicleResults() {
   const date        = params.get("date")   || "";
   const pickup      = params.get("pickup") || "";
   const drop        = params.get("drop")   || "";
+  const withHelmet  = params.get("helmet") === 'true';
+  const withDriver  = params.get("driver") === 'true';
   const totalMins   = calcMinutes(pickup, drop);
 
   const [sortBy,   setSortBy]   = useState("popular");
@@ -196,7 +208,9 @@ export default function VehicleResults() {
         date,
         pickup,
         drop,
-        totalMins
+        totalMins,
+        withHelmet,
+        withDriver
       } 
     });
   };
@@ -345,7 +359,8 @@ export default function VehicleResults() {
 
       <AnimatePresence>
         {selected && (
-          <BookingModal vehicle={selected} totalMins={totalMins} date={date} pickup={pickup} drop={drop}
+          <BookingModal vehicle={selected} totalMins={totalMins} date={date} pickup={pickup} drop={drop} 
+            withHelmet={withHelmet} withDriver={withDriver}
             onClose={() => setSelected(null)} onConfirm={handleConfirm} />
         )}
       </AnimatePresence>
