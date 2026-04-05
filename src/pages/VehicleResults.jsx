@@ -223,8 +223,9 @@ export default function VehicleResults() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
         * { box-sizing: border-box; }
-        .vcard { transition: all .3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .vcard:hover { transform: translateY(-8px); boxShadow: 0 30px 60px rgba(0,0,0,0.12) !important; border-color: ${RED}30 !important; }
+        .vcard { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
+        .vcard:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important; }
+        .vcard:hover .v-img { transform: scale(1.1); }
         .book-btn { transition: all .3s cubic-bezier(0.16, 1, 0.3, 1); }
         .book-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(190,13,13,0.3); }
 
@@ -356,7 +357,7 @@ export default function VehicleResults() {
                     style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.05)", border: "1.5px solid rgba(15, 23, 42, 0.05)" }}>
 
                     <div style={{ position: "relative", height: "200px", overflow: "hidden" }}>
-                      <img src={v.image} alt={v.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      <img src={v.image} alt={v.name} className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
                       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15, 23, 42, 0.6) 0%, transparent 60%)" }} />
                       <span style={{ position: "absolute", top: "12px", left: "12px", background: "rgba(15, 23, 42, 0.8)", color: "#fff", fontSize: "11px", fontWeight: "800", padding: "5px 12px", borderRadius: "99px", backdropFilter: "blur(8px)", fontFamily: H, textTransform: "uppercase" }}>{v.type}</span>
                       <div style={{ position: "absolute", top: "12px", right: "12px", display: "flex", alignItems: "center", gap: "4px", background: "rgba(255, 255, 255, 0.9)", color: "#fbbf24", fontSize: "12px", fontWeight: "900", padding: "5px 12px", borderRadius: "99px", backdropFilter: "blur(8px)", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}>
