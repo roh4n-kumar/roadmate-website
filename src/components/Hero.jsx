@@ -301,7 +301,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       min-width: 0;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
     }
     .search-col:hover { 
       background: ${RED}12 !important; 
