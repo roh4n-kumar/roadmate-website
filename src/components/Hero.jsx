@@ -325,7 +325,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       padding: 40px 45px 70px; /* Increased bottom padding for pills */
       box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
       position: relative;
-      z-index: 20;
+      z-index: 100;
       overflow: visible;
     }
 
@@ -479,7 +479,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       display: flex;
       align-items: center;
       gap: 0;
-      z-index: 40;
+      z-index: 5;
       white-space: nowrap;
     }
     .info-item {
