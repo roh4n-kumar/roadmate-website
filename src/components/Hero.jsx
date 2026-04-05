@@ -309,13 +309,19 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-col:not(:last-child) { border-right: 1.5px solid #cbd5e1; } /* Darkened from #edf2f7 */
 
     .col-label {
-      font-size: 13px;
-      color: #718096;
+      font-size: 14px;
       font-weight: 600;
+      color: ${RED};
       margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
+    }
+    .col-label svg {
+      transition: transform 0.3s ease;
+    }
+    .col-label.active svg {
+      transform: rotate(90deg);
     }
     .col-value {
       font-size: 32px;
@@ -556,7 +562,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             {/* 1. Vehicle Category */}
             <div className="search-col" onClick={() => openDropdown('cat')} 
               style={{ zIndex: showCat ? 50 : 1, background: showCat ? `${RED}12` : 'transparent' }}>
-              <div className="col-label" style={{ color: showCat ? RED : '#718096' }}>Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className={`col-label ${showCat ? 'active' : ''}`}>Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showCat ? 'rotate(180deg)' : 'rotate(270deg)' }}><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   {formData.vehicleType === 'Bike' ? 
@@ -619,7 +625,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             {/* 2. Booking Date */}
             <div className="search-col" onClick={() => openDropdown('cal')} 
               style={{ zIndex: showCal ? 50 : 1, background: showCal ? `${RED}12` : 'transparent' }}>
-              <div className="col-label" style={{ color: showCal ? RED : '#718096' }}>Booking Date <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className={`col-label ${showCal ? 'active' : ''}`}>Booking Date <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showCal ? 'rotate(180deg)' : 'rotate(270deg)' }}><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1a202c' }}>
                 <svg width="42" height="42" viewBox="0 0 24 24" fill={RED}>
                   <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/>
@@ -639,7 +645,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             {/* 3. Pickup Time */}
             <div className="search-col" onClick={() => openDropdown('pick')} 
               style={{ zIndex: showPickTime ? 50 : 1, background: showPickTime ? `${RED}12` : 'transparent' }}>
-              <div className="col-label" style={{ color: showPickTime ? RED : '#718096' }}>Pickup Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className={`col-label ${showPickTime ? 'active' : ''}`}>Pickup Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showPickTime ? 'rotate(180deg)' : 'rotate(270deg)' }}><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1a202c' }}>
                 <svg width="42" height="42" viewBox="0 0 24 24" fill={RED}>
                   <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
@@ -659,7 +665,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             {/* 4. Dropoff Time */}
             <div className="search-col" onClick={() => openDropdown('drop')} 
               style={{ zIndex: showDropTime ? 50 : 1, background: showDropTime ? `${RED}12` : 'transparent' }}>
-              <div className="col-label" style={{ color: showDropTime ? RED : '#718096' }}>Dropoff Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <div className={`col-label ${showDropTime ? 'active' : ''}`}>Dropoff Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showDropTime ? 'rotate(180deg)' : 'rotate(270deg)' }}><polyline points="6 9 12 15 18 9"/></svg></div>
               <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1a202c' }}>
                 <svg width="42" height="42" viewBox="0 0 24 24" fill={RED}>
                   <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
