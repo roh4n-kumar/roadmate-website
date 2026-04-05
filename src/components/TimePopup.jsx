@@ -21,17 +21,17 @@ const TimePopup = ({ onSelect }) => {
     <button 
       onClick={onClick}
       style={{
-        width: "44px", height: "44px",
-        borderRadius: "12px", border: "1px solid #f1f5f9",
+        width: "36px", height: "36px",
+        borderRadius: "10px", border: "1px solid #f1f5f9",
         background: "#fff", color: "#64748b",
         display: "flex", alignItems: "center", justifyContent: "center",
         cursor: "pointer", transition: "all 0.2s",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.05)"
+        boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
       }}
       onMouseOver={(e) => { e.currentTarget.style.color = RED; e.currentTarget.style.borderColor = RED; e.currentTarget.style.background = `${RED}08`; }}
       onMouseOut={(e) => { e.currentTarget.style.color = "#64748b"; e.currentTarget.style.borderColor = "#f1f5f9"; e.currentTarget.style.background = "#fff"; }}
     >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: direction === 'down' ? 'rotate(180deg)' : 'none' }}>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: direction === 'down' ? 'rotate(180deg)' : 'none' }}>
         <polyline points="18 15 12 9 6 15"/>
       </svg>
     </button>
@@ -39,10 +39,10 @@ const TimePopup = ({ onSelect }) => {
 
   return (
     <div style={{
-      width: "320px",
+      width: "280px",
       background: "#fff",
-      borderRadius: "24px",
-      padding: "24px",
+      borderRadius: "20px",
+      padding: "20px",
       boxShadow: "0 20px 60px rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.08)",
       fontFamily: F,
       zIndex: 9999,
@@ -51,33 +51,39 @@ const TimePopup = ({ onSelect }) => {
     }}>
       
       <p style={{ 
-        fontSize: "12px", 
+        fontSize: "11px", 
         fontWeight: "800", 
         color: "#94a3b8", 
         textTransform: "uppercase", 
-        letterSpacing: "1.5px", 
-        margin: "0 0 24px",
+        letterSpacing: "1.2px", 
+        margin: "0 0 20px",
         textAlign: "center"
       }}>Set Time</p>
 
       {/* Clock Display */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "24px", marginBottom: "32px" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", marginBottom: "24px" }}>
         
         {/* Hour Column */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", width: "60px" }}>
           <ArrowBtn direction="up" onClick={incrementHour} />
-          <div style={{ fontSize: "56px", fontWeight: "900", fontFamily: H, color: "#1e293b", lineHeight: 1 }}>
+          <div style={{ 
+            fontSize: "42px", fontWeight: "900", fontFamily: H, color: "#1e293b", 
+            lineHeight: 1, fontVariantNumeric: "tabular-nums" 
+          }}>
             {formatNum(hour)}
           </div>
           <ArrowBtn direction="down" onClick={decrementHour} />
         </div>
 
-        <div style={{ fontSize: "40px", fontWeight: "900", color: "#cbd5e1", marginTop: "44px", height: "56px", display: "flex", alignItems: "center" }}>:</div>
+        <div style={{ fontSize: "28px", fontWeight: "900", color: "#cbd5e1", marginTop: "36px", height: "42px", display: "flex", alignItems: "center" }}>:</div>
 
         {/* Minute Column */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", width: "60px" }}>
           <ArrowBtn direction="up" onClick={incrementMinute} />
-          <div style={{ fontSize: "56px", fontWeight: "900", fontFamily: H, color: "#1e293b", lineHeight: 1 }}>
+          <div style={{ 
+            fontSize: "42px", fontWeight: "900", fontFamily: H, color: "#1e293b", 
+            lineHeight: 1, fontVariantNumeric: "tabular-nums" 
+          }}>
             {formatNum(minute)}
           </div>
           <ArrowBtn direction="down" onClick={decrementMinute} />
@@ -89,9 +95,9 @@ const TimePopup = ({ onSelect }) => {
       <div style={{ 
         display: "flex", 
         background: "#f8fafc", 
-        borderRadius: "16px", 
+        borderRadius: "14px", 
         padding: "4px", 
-        marginBottom: "24px",
+        marginBottom: "20px",
         gap: "4px",
         border: "1px solid #f1f5f9"
       }}>
@@ -100,13 +106,13 @@ const TimePopup = ({ onSelect }) => {
             key={v} 
             onClick={() => setAmpm(v)}
             style={{
-              flex: 1, padding: "12px", borderRadius: "12px", border: "none",
+              flex: 1, padding: "10px", borderRadius: "10px", border: "none",
               background: ampm === v ? "#fff" : "transparent",
               color: ampm === v ? RED : "#64748b",
-              fontWeight: "800", fontSize: "14px", 
+              fontWeight: "800", fontSize: "13px", 
               cursor: "pointer",
               transition: "all 0.2s ease",
-              boxShadow: ampm === v ? "0 4px 12px rgba(0,0,0,0.05)" : "none",
+              boxShadow: ampm === v ? "0 4px 10px rgba(0,0,0,0.04)" : "none",
               fontFamily: H
             }}
           >{v}</button>
@@ -121,19 +127,19 @@ const TimePopup = ({ onSelect }) => {
           background: RED,
           color: "#fff", 
           border: "none", 
-          padding: "18px", 
-          borderRadius: "16px",
+          padding: "14px", 
+          borderRadius: "14px",
           fontWeight: "800", 
           cursor: "pointer", 
-          fontSize: "16px",
-          boxShadow: `0 10px 25px rgba(190,13,13,0.3)`,
+          fontSize: "14px",
+          boxShadow: `0 8px 20px rgba(190,13,13,0.25)`,
           fontFamily: H,
           transition: "all 0.3s ease"
         }}
-        onMouseOver={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `0 15px 30px rgba(190,13,13,0.4)`; }}
-        onMouseOut={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = `0 10px 25px rgba(190,13,13,0.3)`; }}
+        onMouseOver={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; e.currentTarget.style.boxShadow = `0 12px 25px rgba(190,13,13,0.35)`; }}
+        onMouseOut={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = `0 8px 20px rgba(190,13,13,0.25)`; }}
       >
-        Confirm Selection
+        Confirm Time
       </button>
 
     </div>
