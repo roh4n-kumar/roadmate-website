@@ -459,6 +459,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       align-items: center;
       line-height: 1;
       height: 24px;
+      margin-top: -2px; /* Pull it slightly up to align with text baseline */
     }
     .date-pill:hover {
       border-color: ${RED};
@@ -666,23 +667,24 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
             {/* 2. Booking Date */}
             <div className="search-col" onClick={() => openDropdown('cal')} 
-              style={{ zIndex: showCal ? 50 : 1, background: showCal ? `${RED}12` : 'transparent' }}>
-              <div className={`col-label ${showCal ? 'active' : ''}`} style={{ justifyContent: 'space-between' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  Booking Date <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showCal ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg>
+              style={{ zIndex: showCal ? 50 : 1, background: showCal ? `${RED}12` : 'transparent', flex: 1.4 }}>
+              <div className={`col-label ${showCal ? 'active' : ''}`}>
+                Booking Date <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showCal ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg>
+              </div>
+              <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1a202c' }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill={RED}>
+                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 11H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/>
+                  </svg>
+                  <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1 }}>
+                    {formData.dateDisplay}
+                  </span>
                 </div>
-                <div style={{ display: 'flex', gap: '6px' }}>
+                {/* Pills moved here */}
+                <div style={{ display: 'flex', gap: '6px', marginLeft: '6px' }}>
                   <button onClick={jumpToday} className="date-pill">Today</button>
                   <button onClick={jumpTomm} className="date-pill">Tomm</button>
                 </div>
-              </div>
-              <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1a202c' }}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill={RED}>
-                  <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 11H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/>
-                </svg>
-                <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1 }}>
-                  {formData.dateDisplay}
-                </span>
               </div>
               <div className="col-sub" style={{ color: '#718096' }}>{formData.dayName}</div>
               {showCal && (
