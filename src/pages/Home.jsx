@@ -134,14 +134,14 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
                       <span style={{ fontSize: "22px", fontWeight: 900, color: "#0f172a" }}>₹{v.price}</span>
                       <span style={{ fontSize: "13px", color: "#64748b", fontWeight: 600 }}>/hr</span>
                     </div>
-                    <button style={{ padding: "10px 18px", borderRadius: "10px", background: RED, color: "#fff", border: "none", fontWeight: 700, fontSize: "14px", transition: "all .3s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "pointer" }}
+                    <button style={{ padding: "10px 18px", borderRadius: "10px", background: RED, color: "#fff", border: "none", fontWeight: 700, fontSize: "14px", transition: "all .3s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "pointer", boxShadow: "0 8px 20px rgba(190,13,13,0.3)" }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.transform = "translateY(-2px)";
                         e.currentTarget.style.boxShadow = "0 10px 20px rgba(190,13,13,0.3)";
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.transform = "translateY(0)";
-                        e.currentTarget.style.boxShadow = "none";
+                        e.currentTarget.style.boxShadow = "0 8px 20px rgba(190,13,13,0.3)";
                       }}>
                       Book Now
                     </button>
