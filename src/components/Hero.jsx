@@ -437,9 +437,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       background: #fff;
       border: 1.5px solid #e5e7eb;
       border-radius: 14px;
-      transition: all 0.2s;
+      transition: none;
       color: #334155;
       cursor: default;
+    }
+    .disclaimer-pill:hover {
+      background: #fff !important;
+      border-color: #e5e7eb !important;
+      transform: none !important;
     }
     .pill-icon-box {
       width: 32px;
@@ -788,7 +793,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                   </svg>
                </div>
                <div className="pill-text">
-                  <span>* Special Item</span>
+                  <span>* Item Info</span>
                   Helmet Includes Extra Charges
                </div>
             </div>
@@ -799,7 +804,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                   </svg>
                </div>
                <div className="pill-text">
-                  <span>* Add-on Service</span>
+                  <span>* Driver Info</span>
                   Driver Includes Extra Charges
                </div>
             </div>
