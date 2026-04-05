@@ -474,8 +474,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       height: 56px;
       padding: 0 30px;
       border-radius: 99px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.08);
-      border: 1.2px solid #f2f2f2;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.06);
+      border: none;
       display: flex;
       align-items: center;
       gap: 0;
