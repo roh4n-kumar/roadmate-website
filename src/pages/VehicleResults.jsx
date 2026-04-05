@@ -296,7 +296,7 @@ export default function VehicleResults() {
             </>}
             {(withDriver && isCar) && <>
               <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.4)", fontWeight: "500" }}>|</span>
-              <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#0ea5e9", fontWeight: "800", background: "#0ea5e915", padding: "6px 12px", borderRadius: "99px", letterSpacing: "0.4px" }}>
+              <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: RED, fontWeight: "800", background: `${RED}10`, padding: "6px 14px", borderRadius: "99px", letterSpacing: "0.4px" }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
                 WITH DRIVER
               </span>
