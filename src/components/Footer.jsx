@@ -85,7 +85,7 @@ const Footer = () => {
   return (
     <footer style={{ background: "#f1f5f9", color: "#111827", borderTop: "1px solid rgba(0,0,0,0.05)", paddingTop: "80px", paddingBottom: "40px", fontFamily: F }}>
       <div style={{ maxWidth: "1250px", margin: "0 auto", padding: "0 24px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "50px", marginBottom: "60px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "50px", marginBottom: "20px" }}>
           
           {/* Brand Column */}
           <div style={{ gridColumn: "span 2" }}>
