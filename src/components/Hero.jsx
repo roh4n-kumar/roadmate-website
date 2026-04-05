@@ -43,10 +43,10 @@ const CalendarInline = ({ selected, onSelect }) => {
   for (let d = 1; d <= dim; d++) cells.push(d);
 
   return (
-    <div style={{ fontFamily: F, width: 320, padding: "10px" }}>
+    <div style={{ fontFamily: F, width: "100%", padding: "20px", boxSizing: "border-box" }}>
       {/* Month nav */}
-      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", paddingBottom:"12px", borderBottom:"1px solid #f0f0f0", marginBottom:"10px" }}>
-        <span style={{ fontSize:"15px", fontWeight:800, color:"#111" }}>
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", paddingBottom:"16px", borderBottom:"1px solid #f0f0f0", marginBottom:"15px" }}>
+        <span style={{ fontSize:"17px", fontWeight:900, color:"#111" }}>
           {MONTHS_FULL[vm]} <span style={{ color:RED }}>{vy}</span>
         </span>
         <div style={{ display:"flex", gap:"4px" }}>
@@ -62,18 +62,18 @@ const CalendarInline = ({ selected, onSelect }) => {
       </div>
 
       {/* Day headers */}
-      <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", marginBottom:"4px" }}>
+      <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", marginBottom:"8px" }}>
         {DAYS_SHORT.map(d => (
           <div key={d} style={{
-            textAlign:"center", fontSize:"10px", fontWeight:700,
-            letterSpacing:"1px", padding:"4px 0",
-            color: "#bbb",
+            textAlign:"center", fontSize:"11px", fontWeight:800,
+            letterSpacing:"1.2px", padding:"8px 0",
+            color: "#94a3b8",
           }}>{d}</div>
         ))}
       </div>
 
       {/* Date grid */}
-      <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:"2px" }}>
+      <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:"4px" }}>
         {cells.map((day, i) => {
           if (!day) return <div key={`e${i}`} />;
           const col  = (firstDay + day - 1) % 7;
@@ -84,18 +84,18 @@ const CalendarInline = ({ selected, onSelect }) => {
           return (
             <button key={day} disabled={past} onClick={() => onSelect(new Date(vy, vm, day))}
               style={{
-                aspectRatio:"1", borderRadius:"9px", border:"none",
+                aspectRatio:"1", borderRadius:"10px", border:"none",
                 outline: sel ? `2px solid ${RED}` : tod ? `2px solid ${RED}50` : "2px solid transparent",
                 background: sel ? RED : tod ? `${RED}12` : "transparent",
-                color: past ? "#ddd" : sel ? "#fff" : "#222",
-                fontSize:"13px", fontWeight: sel ? 700 : tod ? 600 : 400,
+                color: past ? "#e2e8f0" : sel ? "#fff" : "#1e293b",
+                fontSize:"15px", fontWeight: sel ? 800 : tod ? 700 : 500,
                 cursor: past ? "default" : "pointer",
                 display:"flex", alignItems:"center", justifyContent:"center",
-                transition:"all .12s", fontFamily: F,
-                boxShadow: sel ? `0 4px 12px rgba(190,13,13,0.35)` : "none",
+                transition:"all .15s cubic-bezier(0.4, 0, 0.2, 1)", fontFamily: H,
+                boxShadow: sel ? `0 8px 16px rgba(190,13,13,0.3)` : "none",
               }}
-              onMouseEnter={e => { if (!sel && !past) e.currentTarget.style.background = `${RED}15`; }}
-              onMouseLeave={e => { if (!sel && !past) e.currentTarget.style.background = tod ? `${RED}12` : "transparent"; }}
+              onMouseEnter={e => { if (!sel && !past) { e.currentTarget.style.background = `${RED}10`; e.currentTarget.style.transform = "scale(1.05)"; } }}
+              onMouseLeave={e => { if (!sel && !past) { e.currentTarget.style.background = tod ? `${RED}12` : "transparent"; e.currentTarget.style.transform = "scale(1)"; } }}
             >{day}</button>
           );
         })}
@@ -433,9 +433,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       box-shadow: 0 30px 90px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.08);
       border-radius: 12px;
       min-width: 100%;
-      width: max-content;
+      width: 340px;
       overflow: visible !important;
       padding: 0;
+      box-sizing: border-box;
       animation: dropdownFade 0.15s ease-out;
       transform-origin: top left;
     }
