@@ -289,7 +289,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       background: #ffffff;
       border: 1.2px solid #f2f2f2;
       border-radius: 12px;
-      padding: 40px 45px 35px;
+      padding: 40px 45px 70px; /* Increased bottom padding for pills */
       box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
       position: relative;
       z-index: 20;
@@ -404,7 +404,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .floating-search-btn {
       display: block;
-      margin: 40px auto 0;
+      margin: 0 auto;
       width: 400px;
       max-width: 96%;
       height: 64px;
@@ -422,9 +422,53 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       box-shadow: 0 15px 30px rgba(190,13,13,0.4);
       transition: all 0.3s;
       z-index: 20;
-      position: relative;
+      position: absolute;
+      bottom: -32px;
+      left: 50%;
+      transform: translateX(-50%);
     }
-    .floating-search-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 40px rgba(190,13,13,0.5); }
+    .floating-search-btn:hover { transform: translateX(-50%) translateY(-3px) scale(1.02); box-shadow: 0 20px 40px rgba(190,13,13,0.5); }
+
+    .disclaimer-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      background: #fff;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 14px;
+      transition: all 0.2s;
+      color: #334155;
+      cursor: default;
+    }
+    .disclaimer-pill:hover {
+      border-color: ${RED}60;
+      background: #fdf2f2;
+    }
+    .pill-icon-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: ${RED};
+      font-size: 16px;
+    }
+    .pill-text {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .pill-text span {
+      display: block;
+      color: ${RED};
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
 
     .cal-box {
       position: absolute;
@@ -740,19 +784,31 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </div>
           </div>
 
-          <div style={{ color: RED, fontSize: '12.5px', fontWeight: 800, marginTop: '22px', display: 'flex', flexDirection: 'column', gap: '6px', paddingLeft: '4px', letterSpacing: '0.2px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-               <span style={{ fontSize: '18px', lineHeight: 0, marginTop: '4px' }}>*</span> helmet includes extra charges
+          <div style={{ display: 'flex', gap: '16px', marginTop: '25px' }}>
+            <div className="disclaimer-pill">
+               <div className="pill-icon-box">
+                  <FaGift />
+               </div>
+               <div className="pill-text">
+                  <span>* Special Item</span>
+                  Helmet Includes Extra Charges
+               </div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-               <span style={{ fontSize: '18px', lineHeight: 0, marginTop: '4px' }}>*</span> driver includes extra charges
+            <div className="disclaimer-pill">
+               <div className="pill-icon-box">
+                  <FaIdCard />
+               </div>
+               <div className="pill-text">
+                  <span>* Add-on Service</span>
+                  Driver Includes Extra Charges
+               </div>
             </div>
           </div>
-        </div>
 
-        <button className="floating-search-btn" onClick={handleSearch}>
-          Search
-        </button>
+          <button className="floating-search-btn" onClick={handleSearch}>
+            Search
+          </button>
+        </div>
       </div>
 
       {/* OFFERS SECTION */}
