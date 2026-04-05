@@ -476,7 +476,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .cal-box {
       position: absolute;
-      top: 48px;
+      top: 40px;
       left: 0;
       right: 0;
       background: #fff;
