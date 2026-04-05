@@ -156,6 +156,16 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
   const getDayName = (d) => d.toLocaleDateString("en-US", { weekday: "long" });
 
+  const isSelectedToday = () => {
+    const today = new Date();
+    return formData.selectedDate.toDateString() === today.toDateString();
+  };
+  const isSelectedTomorrow = () => {
+    const tomm = new Date();
+    tomm.setDate(tomm.getDate() + 1);
+    return formData.selectedDate.toDateString() === tomm.toDateString();
+  };
+
   const handleSearch = () => {
     const { vehicleType, selectedDate, pickupTime, withHelmet, withDriver } = formData;
     if (!vehicleType || !selectedDate) {
@@ -520,12 +530,12 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .date-pill {
       padding: 6px 16px;
-      background: #000;
-      border: 1.5px solid #000;
+      background: #f1f5f9;
+      border: 1.5px solid #e2e8f0;
       border-radius: 20px;
       font-size: 13px;
       font-weight: 800;
-      color: #fff;
+      color: #64748b;
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       text-transform: uppercase;
@@ -534,20 +544,20 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       align-items: center;
       line-height: 1;
       height: 32px;
-      margin-top: -2px; /* Pull it slightly up to align with text baseline */
+      margin-top: -2px;
     }
     .date-pill:hover {
-      background: ${RED};
-      border-color: ${RED};
-      color: #fff;
+      background: #fff;
+      border-color: ${RED}30;
+      color: ${RED};
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
     .date-pill.active {
-      background: ${RED};
+      background: #000;
       color: #fff;
-      border-color: ${RED};
-      box-shadow: 0 4px 10px rgba(190,13,13,0.2);
+      border-color: #000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
     @media (max-width: 900px) {
@@ -760,8 +770,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 </div>
                 {/* Pills moved here */}
                 <div style={{ display: 'flex', gap: '8px', marginLeft: '12px' }}>
-                  <button onClick={jumpToday} className="date-pill">Today</button>
-                  <button onClick={jumpTomm} className="date-pill">Tomorrow</button>
+                  <button onClick={jumpToday} className={`date-pill ${isSelectedToday() ? 'active' : ''}`}>Today</button>
+                  <button onClick={jumpTomm} className={`date-pill ${isSelectedTomorrow() ? 'active' : ''}`}>Tomorrow</button>
                 </div>
               </div>
               <div className="col-sub" style={{ color: '#718096' }}>{formData.dayName}</div>
