@@ -89,7 +89,7 @@ const Footer = () => {
           
           {/* Brand Column */}
           <div style={{ gridColumn: "span 2" }}>
-            <Link to="/" style={{ fontSize: "28px", fontWeight: 900, textDecoration: "none", color: "#111827", letterSpacing: "-1px", fontFamily: H, display: "block", marginTop: "0", marginBottom: "20px", lineHeight: "1" }}>
+            <Link to="/" style={{ fontSize: "28px", fontWeight: 900, textDecoration: "none", color: "#111827", letterSpacing: "-1px", fontFamily: H, display: "block", marginTop: "0", marginBottom: "15px", lineHeight: "1" }}>
               Road<span style={{ color: RED }}>Mate</span>
             </Link>
             <p style={{ color: "#4b5563", lineHeight: "1.8", fontSize: "15px", maxWidth: "320px", marginBottom: "30px" }}>
@@ -99,7 +99,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H }}>Company</h4>
+            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "12px", fontFamily: H }}>Company</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
               <Link to="/about" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>About Us</Link>
               <Link to="/vehicles?type=all" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Our Fleet</Link>
@@ -110,7 +110,7 @@ const Footer = () => {
 
           {/* Support */}
           <div>
-            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H }}>Support</h4>
+            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "12px", fontFamily: H }}>Support</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
               {[
                 { name: "Help Center", path: "/help-center" }, 
@@ -125,7 +125,7 @@ const Footer = () => {
 
           {/* Contact Details */}
           <div>
-            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H }}>Contact Us</h4>
+            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "12px", fontFamily: H }}>Contact Us</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
               <div style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                 <MapPinIcon />
