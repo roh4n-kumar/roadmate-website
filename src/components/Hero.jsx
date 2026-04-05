@@ -289,7 +289,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       background: #ffffff;
       border: 1.2px solid #f2f2f2;
       border-radius: 12px;
-      padding: 40px 45px 80px;
+      padding: 40px 45px 35px;
       box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
       position: relative;
       z-index: 20;
@@ -404,7 +404,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .floating-search-btn {
       display: block;
-      margin: 0 auto;
+      margin: 40px auto 0;
       width: 400px;
       max-width: 96%;
       height: 64px;
@@ -422,12 +422,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       box-shadow: 0 15px 30px rgba(190,13,13,0.4);
       transition: all 0.3s;
       z-index: 20;
-      position: absolute;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
+      position: relative;
     }
-    .floating-search-btn:hover { transform: translateX(-50%) translateY(-3px) scale(1.02); box-shadow: 0 20px 40px rgba(190,13,13,0.5); }
+    .floating-search-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 40px rgba(190,13,13,0.5); }
 
     .cal-box {
       position: absolute;
@@ -743,10 +740,19 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </div>
           </div>
 
-          <button className="floating-search-btn" onClick={handleSearch}>
-            Search
-          </button>
+          <div style={{ color: RED, fontSize: '12.5px', fontWeight: 800, marginTop: '22px', display: 'flex', flexDirection: 'column', gap: '6px', paddingLeft: '4px', letterSpacing: '0.2px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+               <span style={{ fontSize: '18px', lineHeight: 0, marginTop: '4px' }}>*</span> helmet includes extra charges
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+               <span style={{ fontSize: '18px', lineHeight: 0, marginTop: '4px' }}>*</span> driver includes extra charges
+            </div>
+          </div>
         </div>
+
+        <button className="floating-search-btn" onClick={handleSearch}>
+          Search
+        </button>
       </div>
 
       {/* OFFERS SECTION */}
