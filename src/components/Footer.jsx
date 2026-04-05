@@ -123,22 +123,18 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact Details */}
+          {/* Explore Section */}
           <div>
-            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H }}>Contact Us</h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-              <div style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                <MapPinIcon />
-                <span style={{ fontSize: "14px", color: "#111827", lineHeight: "1.5" }}>Jayadev Vihar, Bhubaneswar,<br/>Odisha 751013</span>
-              </div>
-              <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-                <PhoneIcon />
-                <span style={{ fontSize: "14px", color: "#111827" }}>+91 98765 43210</span>
-              </div>
-              <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-                <MailIcon />
-                <span style={{ fontSize: "14px", color: "#111827" }}>support@roadmate.in</span>
-              </div>
+            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H }}>Explore</h4>
+            <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+              {[
+                { name: "Special Offers", path: "/#offers" }, 
+                { name: "Trust & Safety", path: "/safety-information" }, 
+                { name: "RoadMate Blogs", path: "/#blog" }, 
+                { name: "Partner With Us", path: "/contact" }
+              ].map(item => (
+                <Link key={item.name} to={item.path} style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>{item.name}</Link>
+              ))}
             </div>
           </div>
 
