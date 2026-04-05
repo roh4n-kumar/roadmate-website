@@ -244,6 +244,29 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       font-weight: 500;
     }
 
+    .search-tab-popup {
+      position: absolute;
+      top: -50px;
+      left: 45px;
+      background: #ffffff;
+      padding: 14px 30px;
+      border-radius: 12px 12px 0 0;
+      box-shadow: 0 -15px 40px rgba(0,0,0,0.06);
+      border: 1.2px solid #f2f2f2;
+      border-bottom: none;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+    }
+    .search-tab-text {
+      font-size: 14px;
+      font-weight: 800;
+      color: ${RED};
+      font-family: ${H};
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
     .trip-type-row {
       display: flex;
       align-items: center;
@@ -649,11 +672,13 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         {/* HEADER BLOCK */}
         <div className="hero-header-block">
            <h1 className="hero-title">Self-Drive <span style={{ color: RED }}>Rentals</span> in Bhubaneswar</h1>
-           <p className="hero-subtitle">Start renting vehicles in simple and accessible way.</p>
         </div>
 
         {/* MAIN SEARCH AREA */}
         <div className="search-master-card">
+          <div className="search-tab-popup">
+            <span className="search-tab-text">Start renting vehicles in simple and accessible way</span>
+          </div>
           <div ref={searchRef} className="search-main-card">
             {/* 1. Vehicle Category */}
             <div className="search-col" onClick={() => openDropdown('cat')} 
