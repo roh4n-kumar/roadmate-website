@@ -138,10 +138,10 @@ const BookingModal = ({ vehicle, totalMins, date, pickup, drop, withHelmet, with
             </div>
           </div>
 
-          <button onClick={() => onConfirm(vehicle, grand)} style={{ width: "100%", padding: "16px", borderRadius: "16px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, border: "none", color: "#fff", fontSize: "16px", fontWeight: "900", cursor: "pointer", boxShadow: "0 12px 30px rgba(190,13,13,0.35)", fontFamily: F, transition: "all .3s ease" }}>
+          <button onClick={() => onConfirm(vehicle, grandTotal)} style={{ width: "100%", padding: "16px", borderRadius: "16px", background: RED, border: "none", color: "#fff", fontSize: "16px", fontWeight: "900", cursor: "pointer", fontFamily: F, transition: "all .3s ease" }}>
             Confirm Booking
           </button>
-          <p style={{ textAlign: "center", fontSize: "11px", color: "#94a3b8", marginTop: "12px", marginBottom: 0, fontWeight: 600 }}>Free cancellation up to 1 hour before pickup</p>
+          <p style={{ textAlign: "center", fontSize: "11px", color: "rgba(15,23,42,0.4)", marginTop: "16px", marginBottom: 0, fontWeight: 700, letterSpacing: "0.3px" }}>Free cancellation up to 1 hour before pickup</p>
         </div>
       </motion.div>
     </motion.div>
