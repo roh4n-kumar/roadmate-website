@@ -150,9 +150,27 @@ const Footer = () => {
                 facebook: "https://www.facebook.com/share/1CXSdCGZj9/",
                 linkedin: "https://www.linkedin.com/in/rohan-k-54aa08259?utm_source=share_via&utm_content=profile&utm_medium=member_android"
               };
+              
+              const shapes = {
+                facebook: "50%",
+                instagram: "8px",
+                twitter: "4px",
+                linkedin: "4px"
+              };
+
               return (
                 <a key={social} href={links[social]} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-                  <div style={{ width: "36px", height: "36px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: RED, borderRadius: "8px", cursor: "pointer", transition: "all 0.3s" }}>
+                  <div style={{ 
+                    width: "36px", 
+                    height: "36px", 
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center", 
+                    backgroundColor: RED, 
+                    borderRadius: shapes[social], 
+                    cursor: "pointer", 
+                    transition: "all 0.3s" 
+                  }}>
                     {socialIcons[social]}
                   </div>
                 </a>
