@@ -390,7 +390,7 @@ export default function VehicleResults() {
                           {totalMins > 0 && <p style={{ fontSize: "10px", color: "#94a3b8", fontWeight: "700", margin: "2px 0 0" }}>₹{v.pricePerHour}/hr + GST</p>}
                         </div>
                         <button className="book-btn" onClick={() => setSelected(v)}
-                          style={{ padding: "12px 24px", borderRadius: "14px", background: `linear-gradient(135deg,${RED},#ff4d4d)`, border: "none", color: "#fff", fontSize: "14px", fontWeight: "900", cursor: "pointer", boxShadow: "0 8px 20px rgba(190,13,13,0.3)", whiteSpace: "nowrap", fontFamily: F }}>
+                          style={{ padding: "12px 24px", borderRadius: "14px", background: RED, border: "none", color: "#fff", fontSize: "14px", fontWeight: "900", cursor: "pointer", boxShadow: "0 8px 20px rgba(190,13,13,0.3)", whiteSpace: "nowrap", fontFamily: F }}>
                           Book Now
                         </button>
                       </div>
