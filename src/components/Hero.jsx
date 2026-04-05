@@ -426,15 +426,16 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .cal-box {
       position: absolute;
-      top: 48px; /* Starts just below the label */
+      top: 48px;
       left: 0;
       background: #fff;
       z-index: 1000;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 0 0 1.5px rgba(0,0,0,0.05);
-      border-radius: 14px;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.08);
+      border-radius: 12px;
       min-width: 100%;
       width: max-content;
       overflow: visible !important;
+      padding: 0;
       animation: dropdownFade 0.15s ease-out;
       transform-origin: top left;
     }
@@ -709,7 +710,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               </div>
               <div className="col-sub" style={{ color: '#718096' }}>Select start time</div>
               {showPickTime && (
-                <div style={{ position: 'absolute', top: '48px', left: 0, zIndex: 1000 }} onClick={e => e.stopPropagation()}>
+                <div className="cal-box" onClick={e => e.stopPropagation()}>
                     <TimePopup onSelect={t => { setFormData({...formData, pickupTime: t}); openDropdown('off'); }} />
                 </div>
               )}
@@ -729,7 +730,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               </div>
               <div className="col-sub" style={{ color: '#718096' }}>Select end time</div>
               {showDropTime && (
-                <div style={{ position: 'absolute', top: '48px', left: 0, zIndex: 1000 }} onClick={e => e.stopPropagation()}>
+                <div className="cal-box" onClick={e => e.stopPropagation()}>
                     <TimePopup onSelect={t => { setFormData({...formData, dropoffTime: t}); openDropdown('off'); }} />
                 </div>
               )}

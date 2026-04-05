@@ -39,15 +39,14 @@ const TimePopup = ({ onSelect }) => {
 
   return (
     <div style={{
-      width: "280px",
-      background: "#fff",
-      borderRadius: "20px",
+      width: "100%",
       padding: "20px",
-      boxShadow: "0 20px 60px rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.08)",
       fontFamily: F,
       zIndex: 9999,
-      border: "1px solid #f0f0f0",
-      userSelect: "none"
+      userSelect: "none",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
     }}>
       
       <p style={{ 
