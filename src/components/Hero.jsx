@@ -476,13 +476,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .cal-box {
       position: absolute;
-      top: 48px;
+      top: 100%;
       left: 0;
+      right: 0;
       background: #fff;
       z-index: 1000;
       box-shadow: 0 30px 90px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.08);
       border-radius: 12px;
-      width: 100%;
+      margin-top: 4px;
       overflow: visible !important;
       padding: 0;
       box-sizing: border-box;
@@ -652,8 +653,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
 
         {/* MAIN SEARCH AREA */}
-        <div ref={searchRef} className="search-master-card">
-          <div className="search-main-card">
+        <div className="search-master-card">
+          <div ref={searchRef} className="search-main-card">
             {/* 1. Vehicle Category */}
             <div className="search-col" onClick={() => openDropdown('cat')} 
               style={{ zIndex: showCat ? 50 : 1, background: showCat ? `${RED}12` : 'transparent' }}>
@@ -760,7 +761,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               </div>
               <div className="col-sub" style={{ color: '#718096' }}>Select start time</div>
               {showPickTime && (
-                <div className="cal-box" style={{ width: '100%' }} onClick={e => e.stopPropagation()}>
+                <div className="cal-box" onClick={e => e.stopPropagation()}>
                     <TimePopup onSelect={t => { setFormData({...formData, pickupTime: t}); openDropdown('off'); }} />
                 </div>
               )}
@@ -780,7 +781,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               </div>
               <div className="col-sub" style={{ color: '#718096' }}>Select end time</div>
               {showDropTime && (
-                <div className="cal-box" style={{ width: '100%' }} onClick={e => e.stopPropagation()}>
+                <div className="cal-box" onClick={e => e.stopPropagation()}>
                     <TimePopup onSelect={t => { setFormData({...formData, dropoffTime: t}); openDropdown('off'); }} />
                 </div>
               )}
