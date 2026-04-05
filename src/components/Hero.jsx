@@ -655,6 +655,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             {/* 1. Vehicle Category */}
             <div className="search-col" onClick={() => openDropdown('cat')} 
               style={{ zIndex: showCat ? 50 : 1, background: showCat ? `${RED}12` : 'transparent' }}>
+              <div className={`col-label ${showCat ? 'active' : ''}`}>Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showCat ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg></div>
               <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1a202c' }}>
                    {formData.vehicleType === 'Bike' ? 
