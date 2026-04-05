@@ -100,25 +100,25 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H }}>Company</h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-              <Link to="/about" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>About Us</Link>
-              <Link to="/vehicles?type=all" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Our Fleet</Link>
-              <Link to="/pricing" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Pricing</Link>
-              <Link to="/contact" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Contact Us</Link>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+              <Link to="/about" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }}>About Us</Link>
+              <Link to="/vehicles?type=all" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }}>Our Fleet</Link>
+              <Link to="/pricing" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }}>Pricing</Link>
+              <Link to="/contact" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }}>Contact Us</Link>
             </div>
           </div>
 
           {/* Support */}
           <div>
             <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H }}>Support</h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {[
                 { name: "Help Center", path: "/help-center" }, 
                 { name: "Safety Information", path: "/safety-information" }, 
                 { name: "Terms of Service", path: "/terms-of-service" }, 
                 { name: "Privacy Policy", path: "/privacy-policy" }
               ].map(item => (
-                <Link key={item.name} to={item.path} style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500 }}>{item.name}</Link>
+                <Link key={item.name} to={item.path} style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, lineHeight: "1.6" }}>{item.name}</Link>
               ))}
             </div>
           </div>
@@ -126,14 +126,14 @@ const Footer = () => {
           {/* Explore Section */}
           <div>
             <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H }}>Explore</h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {[
                 { name: "Special Offers", path: "/#offers" }, 
                 { name: "Trust & Safety", path: "/safety-information" }, 
                 { name: "RoadMate Blogs", path: "/#blog" }, 
                 { name: "Partner With Us", path: "/contact" }
               ].map(item => (
-                <Link key={item.name} to={item.path} style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>{item.name}</Link>
+                <Link key={item.name} to={item.path} style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }}>{item.name}</Link>
               ))}
             </div>
           </div>
