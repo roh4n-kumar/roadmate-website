@@ -157,8 +157,8 @@ export default function VehicleResults() {
   const date        = params.get("date")   || "";
   const pickup      = params.get("pickup") || "";
   const drop        = params.get("drop")   || "";
-  const withHelmet  = params.get("helmet") === 'true';
-  const withDriver  = params.get("driver") === 'true';
+  const withHelmet  = params.get("helmet") === '1' || params.get("helmet") === 'true';
+  const withDriver  = params.get("driver") === '1' || params.get("driver") === 'true';
   const totalMins   = calcMinutes(pickup, drop);
 
   const [sortBy,   setSortBy]   = useState("popular");
@@ -321,9 +321,13 @@ export default function VehicleResults() {
           ) : (
             <div className="vr-grid">
               {sorted.map((v, i) => {
-                const total = Math.round((v.pricePerHour * totalMins) / 60);
-                const gst   = Math.round(total * 0.18);
-                const grand = total + gst;
+                const bTotal = Math.round((v.pricePerHour * totalMins) / 60);
+                const gst    = Math.round(bTotal * 0.18);
+                const isBike = v.category === 'Bike';
+                const isCar  = v.category === 'Car';
+                const hCharge = (isBike && withHelmet) ? 50 : 0;
+                const dCharge = (isCar && withDriver) ? 400 : 0;
+                const grand = bTotal + gst + hCharge + dCharge;
                 return (
                   <motion.div key={v.id} className="vcard"
                     initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}

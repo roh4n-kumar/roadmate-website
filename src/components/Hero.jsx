@@ -178,8 +178,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       date: selectedDate.toISOString(),
       pickup: pickupTime,
       drop: dropoffTime,
-      helmet: withHelmet,
-      driver: withDriver
+      helmet: withHelmet ? "1" : "0",
+      driver: withDriver ? "1" : "0"
     });
 
     navigate(`/vehicles?${params.toString()}`);
