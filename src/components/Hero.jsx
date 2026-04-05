@@ -167,6 +167,21 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     navigate(`/vehicles?type=${encodeURIComponent(vehicleType)}${helmetParam}${driverParam}`);
   };
 
+  const jumpToday = (e) => {
+    e.stopPropagation();
+    const d = new Date();
+    setFormData({...formData, selectedDate: d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)});
+    setShowCal(false);
+  };
+
+  const jumpTomm = (e) => {
+    e.stopPropagation();
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    setFormData({...formData, selectedDate: d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)});
+    setShowCal(false);
+  };
+
   const IconVerified = () => (
     <div style={{ width: 60, height: 60, borderRadius: "50%", background: "#fdf2f2", display: "flex", alignItems: "center", justifyContent: "center" }}>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#be0d0d" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
@@ -428,6 +443,36 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .date-pill {
+      padding: 3px 12px;
+      background: #f8fafc;
+      border: 1.5px solid #f1f5f9;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      line-height: 1;
+      height: 24px;
+    }
+    .date-pill:hover {
+      border-color: ${RED};
+      color: ${RED};
+      background: ${RED}10;
+      transform: translateY(-1px);
+    }
+    .date-pill.active {
+      background: ${RED};
+      color: #fff;
+      border-color: ${RED};
+      box-shadow: 0 4px 10px rgba(190,13,13,0.2);
+    }
+
     @media (max-width: 900px) {
       .search-ribbon { padding: 20px 20px 60px; }
       .search-inner { flex-direction: column; gap: 10px; align-items: stretch; }
@@ -622,7 +667,15 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             {/* 2. Booking Date */}
             <div className="search-col" onClick={() => openDropdown('cal')} 
               style={{ zIndex: showCal ? 50 : 1, background: showCal ? `${RED}12` : 'transparent' }}>
-              <div className={`col-label ${showCal ? 'active' : ''}`}>Booking Date <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showCal ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg></div>
+              <div className={`col-label ${showCal ? 'active' : ''}`} style={{ justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  Booking Date <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showCal ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg>
+                </div>
+                <div style={{ display: 'flex', gap: '6px' }}>
+                  <button onClick={jumpToday} className="date-pill">Today</button>
+                  <button onClick={jumpTomm} className="date-pill">Tomm</button>
+                </div>
+              </div>
               <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1a202c' }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill={RED}>
                   <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 11H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/>
