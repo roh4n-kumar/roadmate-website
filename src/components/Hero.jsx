@@ -289,20 +289,21 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       background: #ffffff;
       border: 1.2px solid #f2f2f2;
       border-radius: 12px;
-      padding: 30px 40px;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.06), 0 10px 30px rgba(0,0,0,0.04);
+      padding: 40px 45px 80px;
+      box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
       position: relative;
       z-index: 20;
+      overflow: visible;
     }
 
     .search-main-card {
       width: fit-content;
-      margin: 0 auto 30px;
+      margin: 0 auto;
       background: #fff;
-      border: 1.5px solid #cbd5e1; /* Darkened from #edf2f7 */
+      border: 1.5px solid #cbd5e1;
       border-radius: 16px;
       display: flex;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
       position: relative;
       min-height: 130px;
     }
@@ -403,7 +404,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .floating-search-btn {
       display: block;
-      margin: 30px auto 0;
+      margin: 0 auto;
       width: 400px;
       max-width: 96%;
       height: 64px;
@@ -421,6 +422,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       box-shadow: 0 15px 30px rgba(190,13,13,0.4);
       transition: all 0.3s;
       z-index: 20;
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
     }
     .floating-search-btn:hover { transform: translateX(-50%) translateY(-3px) scale(1.02); box-shadow: 0 20px 40px rgba(190,13,13,0.5); }
 
@@ -603,7 +608,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
 
         {/* MAIN SEARCH AREA */}
-        <div ref={searchRef} style={{ position: 'relative', maxWidth: '1240px', margin: '0 auto' }}>
+        <div ref={searchRef} className="search-master-card">
           <div className="search-main-card">
             {/* 1. Vehicle Category */}
             <div className="search-col" onClick={() => openDropdown('cat')} 
@@ -738,15 +743,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </div>
           </div>
 
-          <button className="floating-search-btn" onClick={handleSearch} 
-            style={{ 
-              position: 'absolute', 
-              bottom: '-38px', 
-              left: '50%', 
-              transform: 'translateX(-50%)', 
-              margin: 0,
-              width: '360px'
-            }}>
+          <button className="floating-search-btn" onClick={handleSearch}>
             Search
           </button>
         </div>
