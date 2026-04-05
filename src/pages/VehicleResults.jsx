@@ -170,14 +170,17 @@ export default function VehicleResults() {
 
   const isAll    = vehicleType.toLowerCase() === "all";
   const isBike   = vehicleType.toLowerCase().includes("bike");
+  const isCar    = vehicleType.toLowerCase().includes("car");
+  // Multi-plural support for DB matching
   const targetCategory = isBike ? "Bike" : "Car";
+  const pluralCategory = isBike ? "Bikes" : "Cars";
 
   useEffect(() => {
     let q;
     if (isAll) {
       q = query(collection(db, "vehicles"));
     } else {
-      q = query(collection(db, "vehicles"), where("category", "==", targetCategory));
+      q = query(collection(db, "vehicles"), where("category", "in", [targetCategory, pluralCategory]));
     }
     const unsub = onSnapshot(q, (snap) => {
       const docs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
@@ -276,6 +279,12 @@ export default function VehicleResults() {
               <span style={{ color: "rgba(15, 23, 42, 0.1)" }}>·</span>
               <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}><IcoCalendar /> {fmt(date)}</span>
             </>}
+            {totalMins > 0 && <>
+              <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.4)", fontWeight: "500" }}>|</span>
+              <span className="vr-hide-mob" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#64748b", fontSize: "14px", fontWeight: "700", background: "rgba(15, 23, 42, 0.04)", padding: "8px 16px", borderRadius: "12px", border: "1px solid rgba(15, 23, 42, 0.05)" }}>
+                <IcoClock /> {fmtDuration(totalMins)} ({fmtTime(pickup)} – {fmtTime(drop)})
+              </span>
+            </>}
             {(withHelmet && isBike) && <>
               <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.4)", fontWeight: "500" }}>|</span>
               <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: RED, fontWeight: "800", background: `${RED}10`, padding: "6px 12px", borderRadius: "99px", letterSpacing: "0.4px" }}>
@@ -335,18 +344,6 @@ export default function VehicleResults() {
                         <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoFuel />{v.fuel}</span>
                         <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoSeat />{v.seats} Seats</span>
                         <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoTag />{v.cc}</span>
-                        {(withHelmet && isBike) && (
-                          <span style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "#10b981", fontWeight: "800" }}>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                            Helmet Included
-                          </span>
-                        )}
-                        {(withDriver && isCar) && (
-                          <span style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "#3b82f6", fontWeight: "800" }}>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                            Driver Included
-                          </span>
-                        )}
                       </div>
                       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
                         <div>
