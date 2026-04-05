@@ -444,28 +444,29 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     .date-pill {
-      padding: 3px 12px;
-      background: #f8fafc;
-      border: 1.5px solid #f1f5f9;
+      padding: 6px 16px;
+      background: #000;
+      border: 1.5px solid #000;
       border-radius: 20px;
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 800;
-      color: #64748b;
+      color: #fff;
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
       display: flex;
       align-items: center;
       line-height: 1;
-      height: 24px;
+      height: 32px;
       margin-top: -2px; /* Pull it slightly up to align with text baseline */
     }
     .date-pill:hover {
+      background: ${RED};
       border-color: ${RED};
-      color: ${RED};
-      background: ${RED}10;
-      transform: translateY(-1px);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     .date-pill.active {
       background: ${RED};
@@ -681,9 +682,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                   </span>
                 </div>
                 {/* Pills moved here */}
-                <div style={{ display: 'flex', gap: '6px', marginLeft: '6px' }}>
+                <div style={{ display: 'flex', gap: '8px', marginLeft: '12px' }}>
                   <button onClick={jumpToday} className="date-pill">Today</button>
-                  <button onClick={jumpTomm} className="date-pill">Tomm</button>
+                  <button onClick={jumpTomm} className="date-pill">Tomorrow</button>
                 </div>
               </div>
               <div className="col-sub" style={{ color: '#718096' }}>{formData.dayName}</div>
