@@ -83,16 +83,16 @@ const socialIcons = {
 
 const Footer = () => {
   return (
-    <footer style={{ background: "#f8fafc", color: "#0f172a", paddingTop: "80px", paddingBottom: "40px", fontFamily: F }}>
+    <footer style={{ background: "#f1f5f9", color: "#111827", borderTop: "1px solid rgba(0,0,0,0.05)", paddingTop: "80px", paddingBottom: "40px", fontFamily: F }}>
       <div style={{ maxWidth: "1250px", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "50px", marginBottom: "60px" }}>
           
           {/* Brand Column */}
           <div style={{ gridColumn: "span 2" }}>
-            <Link to="/" style={{ fontSize: "28px", fontWeight: 900, textDecoration: "none", color: "#0f172a", letterSpacing: "-1px", fontFamily: H, display: "block", marginTop: "0", marginBottom: "20px", lineHeight: "1" }}>
+            <Link to="/" style={{ fontSize: "28px", fontWeight: 900, textDecoration: "none", color: "#111827", letterSpacing: "-1px", fontFamily: H, display: "block", marginTop: "0", marginBottom: "20px", lineHeight: "1" }}>
               Road<span style={{ color: RED }}>Mate</span>
             </Link>
-            <p style={{ color: "#475569", lineHeight: "1.8", fontSize: "15px", maxWidth: "320px", marginBottom: "30px" }}>
+            <p style={{ color: "#4b5563", lineHeight: "1.8", fontSize: "15px", maxWidth: "320px", marginBottom: "30px" }}>
               Bhubaneswar's leading vehicle rental platform. Experience the freedom of the road with our quality, 100% verified fleet.
             </p>
           </div>
@@ -101,10 +101,10 @@ const Footer = () => {
           <div>
             <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H }}>Company</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-              <Link to="/about" style={{ color: "#0f172a", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>About Us</Link>
-              <Link to="/vehicles?type=all" style={{ color: "#0f172a", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Our Fleet</Link>
-              <Link to="/pricing" style={{ color: "#0f172a", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Pricing</Link>
-              <Link to="/contact" style={{ color: "#0f172a", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Contact Us</Link>
+              <Link to="/about" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>About Us</Link>
+              <Link to="/vehicles?type=all" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Our Fleet</Link>
+              <Link to="/pricing" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Pricing</Link>
+              <Link to="/contact" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s" }}>Contact Us</Link>
             </div>
           </div>
 
@@ -118,7 +118,7 @@ const Footer = () => {
                 { name: "Terms of Service", path: "/terms-of-service" }, 
                 { name: "Privacy Policy", path: "/privacy-policy" }
               ].map(item => (
-                <Link key={item.name} to={item.path} style={{ color: "#0f172a", textDecoration: "none", fontSize: "14px", fontWeight: 500 }}>{item.name}</Link>
+                <Link key={item.name} to={item.path} style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500 }}>{item.name}</Link>
               ))}
             </div>
           </div>
@@ -129,23 +129,23 @@ const Footer = () => {
             <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
               <div style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                 <MapPinIcon />
-                <span style={{ fontSize: "14px", color: "#0f172a", lineHeight: "1.5" }}>Jayadev Vihar, Bhubaneswar,<br/>Odisha 751013</span>
+                <span style={{ fontSize: "14px", color: "#111827", lineHeight: "1.5" }}>Jayadev Vihar, Bhubaneswar,<br/>Odisha 751013</span>
               </div>
               <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
                 <PhoneIcon />
-                <span style={{ fontSize: "14px", color: "#0f172a" }}>+91 98765 43210</span>
+                <span style={{ fontSize: "14px", color: "#111827" }}>+91 98765 43210</span>
               </div>
               <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
                 <MailIcon />
-                <span style={{ fontSize: "14px", color: "#0f172a" }}>support@roadmate.in</span>
+                <span style={{ fontSize: "14px", color: "#111827" }}>support@roadmate.in</span>
               </div>
             </div>
           </div>
 
         </div>
 
-        <div style={{ borderTop: "1px solid rgba(15, 23, 42, 0.08)", paddingTop: "30px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
-          <p style={{ fontSize: "13px", color: "#64748b", fontWeight: 500 }}>
+        <div style={{ borderTop: "1px solid rgba(0, 0, 0, 0.05)", paddingTop: "30px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
+          <p style={{ fontSize: "13px", color: "#6b7280", fontWeight: 500 }}>
             © {new Date().getFullYear()} RoadMate Private Limited. All rights reserved.
           </p>
           <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
