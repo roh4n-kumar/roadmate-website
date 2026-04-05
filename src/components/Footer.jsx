@@ -95,23 +95,6 @@ const Footer = () => {
             <p style={{ color: "#475569", lineHeight: "1.8", fontSize: "15px", maxWidth: "320px", marginBottom: "30px" }}>
               Bhubaneswar's leading vehicle rental platform. Experience the freedom of the road with our quality, 100% verified fleet.
             </p>
-            <div style={{ display: "flex", gap: "15px" }}>
-              {["instagram", "twitter", "facebook", "linkedin"].map(social => {
-                const links = {
-                  instagram: "https://www.instagram.com/roh4n.chaudhary?igsh=MXM5b25lcTlsODg0OQ==",
-                  twitter: "https://x.com/roh4n_chaudhary",
-                  facebook: "https://www.facebook.com/share/1CXSdCGZj9/",
-                  linkedin: "https://www.linkedin.com/in/rohan-k-54aa08259?utm_source=share_via&utm_content=profile&utm_medium=member_android"
-                };
-                return (
-                  <a key={social} href={links[social]} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-                    <div style={{ width: "40px", height: "40px", borderRadius: "12px", background: "#f1f5f9", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "all 0.3s" }}>
-                      {socialIcons[social]}
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -165,10 +148,22 @@ const Footer = () => {
           <p style={{ fontSize: "13px", color: "#64748b", fontWeight: 500 }}>
             © {new Date().getFullYear()} RoadMate Private Limited. All rights reserved.
           </p>
-          <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-            <img src="/payment/visa.svg" alt="Visa" style={{ height: "40px", filter: "brightness(0)" }} />
-            <img src="/payment/mastercard.svg" alt="Mastercard" style={{ height: "24px", filter: "grayscale(1) brightness(0)" }} />
-            <img src="/payment/upi.svg" alt="UPI" style={{ height: "18px", filter: "brightness(0)" }} />
+          <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
+            {["instagram", "twitter", "facebook", "linkedin"].map(social => {
+              const links = {
+                instagram: "https://www.instagram.com/roh4n.chaudhary?igsh=MXM5b25lcTlsODg0OQ==",
+                twitter: "https://x.com/roh4n_chaudhary",
+                facebook: "https://www.facebook.com/share/1CXSdCGZj9/",
+                linkedin: "https://www.linkedin.com/in/rohan-k-54aa08259?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+              };
+              return (
+                <a key={social} href={links[social]} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+                  <div style={{ width: "36px", height: "36px", borderRadius: "10px", background: "#f1f5f9", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "all 0.3s" }}>
+                    {socialIcons[social]}
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>
