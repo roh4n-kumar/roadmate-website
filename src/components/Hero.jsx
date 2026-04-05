@@ -783,8 +783,20 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           <div style={{ display: 'flex', gap: '16px', marginTop: '25px' }}>
             <div className="disclaimer-pill">
                <div className="pill-icon-box">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12,2C7.03,2,3,6.03,3,11V12C3,13.66,4.34,15,6,15H7V18C7,19.1 7.9,20 9,20H15C16.1,20 17,19.1 17,18V15H18C19.66,15 21,13.66 21,12V11C21,6.03,16.97,2,12,2M12,4C15.87,4 19,7.13 19,11V12C19,12.55,18.55,13 18,13H6C5.45,13 5,12.55,5,12V11C5,7.13,8.13,4,12,4M9,15H15V18H9V15Z"/>
+                  <svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor">
+                    {/* Racing Helmet Shell */}
+                    <path d="M85,60 C85,75 75,85 60,90 L20,90 C15,90 10,85 10,75 L10,50 C10,25 30,10 55,10 C80,10 95,30 95,50 C95,53 94,56 93,59 Z" />
+                    {/* High-fidelity Visor */}
+                    <path d="M50,35 L88,35 C90,40 91,48 91,55 C91,62 88,70 85,73 L52,73 C48,73 44,70 42,63 C40,56 40,48 42,42 C44,38 47,35 50,35 Z" fill="white" />
+                    {/* Visor shine/lines */}
+                    <line x1="75" y1="40" x2="75" y2="68" stroke="currentColor" strokeWidth="3" />
+                    <line x1="82" y1="42" x2="82" y2="66" stroke="currentColor" strokeWidth="2" />
+                    {/* Side Pivot Point */}
+                    <circle cx="48" cy="54" r="5" fill="currentColor" />
+                    <circle cx="48" cy="54" r="1.5" fill="white" />
+                    {/* Graphic Stripes */}
+                    <path d="M25,18 L35,18 L50,32 L40,32 Z" fill="white" />
+                    <path d="M42,16 L49,16 L59,26 L52,26 Z" fill="white" />
                   </svg>
                </div>
                <div className="pill-text">
