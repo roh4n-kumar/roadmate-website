@@ -116,7 +116,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 onClick={() => navigate(`/vehicles?type=${v.type}`)}
-                style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", border: "1px solid rgba(15, 23, 42, 0.05)", transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "pointer", boxShadow: "0 0 20px rgba(0,0,0,0.08)" }}
+                style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", border: "none", transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "pointer", boxShadow: "0 0 0 1.5px rgba(15, 23, 42, 0.1), 0 10px 30px rgba(0,0,0,0.08)" }}
               >
                 <div style={{ height: "220px", overflow: "hidden", position: "relative" }}>
                   <img src={v.image} alt={v.name} className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />

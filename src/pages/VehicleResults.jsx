@@ -354,7 +354,7 @@ export default function VehicleResults() {
                 return (
                   <motion.div key={v.id} className="vcard"
                     initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
-                    style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", border: "1px solid rgba(15, 23, 42, 0.05)", boxShadow: "0 0 20px rgba(0,0,0,0.08)" }}>
+                    style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", border: "none", boxShadow: "0 0 0 1.5px rgba(15, 23, 42, 0.1), 0 10px 30px rgba(0,0,0,0.08)" }}>
 
                     <div style={{ position: "relative", height: "200px", overflow: "hidden" }}>
                       <img src={v.image} alt={v.name} className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
