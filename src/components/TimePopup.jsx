@@ -21,8 +21,8 @@ const TimePopup = ({ onSelect }) => {
     <button 
       onClick={onClick}
       style={{
-        width: "36px", height: "36px",
-        borderRadius: "10px", border: "1px solid #f1f5f9",
+        width: "32px", height: "32px",
+        borderRadius: "8px", border: "1px solid #f1f5f9",
         background: "#fff", color: "#64748b",
         display: "flex", alignItems: "center", justifyContent: "center",
         cursor: "pointer", transition: "all 0.2s",
@@ -40,7 +40,7 @@ const TimePopup = ({ onSelect }) => {
   return (
     <div style={{
       width: "100%",
-      padding: "16px",
+      padding: "12px",
       fontFamily: F,
       zIndex: 9999,
       userSelect: "none",
@@ -60,13 +60,13 @@ const TimePopup = ({ onSelect }) => {
       }}>Set Time</p>
 
       {/* Clock Display */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", marginBottom: "24px" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", marginBottom: "20px" }}>
         
         {/* Hour Column */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", width: "54px" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px", width: "48px" }}>
           <ArrowBtn direction="up" onClick={incrementHour} />
           <div style={{ 
-            fontSize: "36px", fontWeight: "900", fontFamily: H, color: "#1e293b", 
+            fontSize: "32px", fontWeight: "900", fontFamily: H, color: "#1e293b", 
             lineHeight: 1, fontVariantNumeric: "tabular-nums" 
           }}>
             {formatNum(hour)}
@@ -74,13 +74,13 @@ const TimePopup = ({ onSelect }) => {
           <ArrowBtn direction="down" onClick={decrementHour} />
         </div>
 
-        <div style={{ fontSize: "24px", fontWeight: "900", color: "#cbd5e1", marginTop: "32px", height: "36px", display: "flex", alignItems: "center" }}>:</div>
+        <div style={{ fontSize: "20px", fontWeight: "900", color: "#cbd5e1", marginTop: "28px", height: "32px", display: "flex", alignItems: "center" }}>:</div>
 
         {/* Minute Column */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", width: "54px" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px", width: "48px" }}>
           <ArrowBtn direction="up" onClick={incrementMinute} />
           <div style={{ 
-            fontSize: "36px", fontWeight: "900", fontFamily: H, color: "#1e293b", 
+            fontSize: "32px", fontWeight: "900", fontFamily: H, color: "#1e293b", 
             lineHeight: 1, fontVariantNumeric: "tabular-nums" 
           }}>
             {formatNum(minute)}
