@@ -441,10 +441,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       color: #334155;
       cursor: default;
     }
-    .disclaimer-pill:hover {
-      border-color: ${RED}60;
-      background: #fdf2f2;
-    }
     .pill-icon-box {
       width: 32px;
       height: 32px;
@@ -787,7 +783,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           <div style={{ display: 'flex', gap: '16px', marginTop: '25px' }}>
             <div className="disclaimer-pill">
                <div className="pill-icon-box">
-                  <FaGift />
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12,2C7.03,2,3,6.03,3,11V12C3,13.66,4.34,15,6,15H7V18C7,19.1 7.9,20 9,20H15C16.1,20 17,19.1 17,18V15H18C19.66,15 21,13.66 21,12V11C21,6.03,16.97,2,12,2M12,4C15.87,4 19,7.13 19,11V12C19,12.55,18.55,13 18,13H6C5.45,13 5,12.55,5,12V11C5,7.13,8.13,4,12,4M9,15H15V18H9V15Z"/>
+                  </svg>
                </div>
                <div className="pill-text">
                   <span>* Special Item</span>
@@ -796,7 +794,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </div>
             <div className="disclaimer-pill">
                <div className="pill-icon-box">
-                  <FaIdCard />
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                  </svg>
                </div>
                <div className="pill-text">
                   <span>* Add-on Service</span>
