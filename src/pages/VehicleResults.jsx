@@ -276,10 +276,18 @@ export default function VehicleResults() {
               <span style={{ color: "rgba(15, 23, 42, 0.1)" }}>·</span>
               <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}><IcoCalendar /> {fmt(date)}</span>
             </>}
-            {totalMins > 0 && <>
+            {(withHelmet && isBike) && <>
               <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.4)", fontWeight: "500" }}>|</span>
-              <span className="vr-hide-mob" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#64748b", fontSize: "14px", fontWeight: "700", background: "rgba(15, 23, 42, 0.04)", padding: "8px 16px", borderRadius: "12px", border: "1px solid rgba(15, 23, 42, 0.05)" }}>
-                <IcoClock /> {fmtDuration(totalMins)} ({fmtTime(pickup)} – {fmtTime(drop)})
+              <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: RED, fontWeight: "800", background: `${RED}10`, padding: "6px 12px", borderRadius: "99px", letterSpacing: "0.4px" }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                WITH HELMET
+              </span>
+            </>}
+            {(withDriver && isCar) && <>
+              <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.4)", fontWeight: "500" }}>|</span>
+              <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#0ea5e9", fontWeight: "800", background: "#0ea5e915", padding: "6px 12px", borderRadius: "99px", letterSpacing: "0.4px" }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                WITH DRIVER
               </span>
             </>}
           </div>
@@ -327,6 +335,18 @@ export default function VehicleResults() {
                         <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoFuel />{v.fuel}</span>
                         <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoSeat />{v.seats} Seats</span>
                         <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: "700" }}><IcoTag />{v.cc}</span>
+                        {(withHelmet && isBike) && (
+                          <span style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "#10b981", fontWeight: "800" }}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Helmet Included
+                          </span>
+                        )}
+                        {(withDriver && isCar) && (
+                          <span style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "#3b82f6", fontWeight: "800" }}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Driver Included
+                          </span>
+                        )}
                       </div>
                       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
                         <div>
