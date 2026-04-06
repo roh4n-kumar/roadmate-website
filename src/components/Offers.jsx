@@ -202,7 +202,8 @@ const Offers = () => {
             align-items: center;
             margin-bottom: 30px;
             gap: 20px;
-            padding: 0 45px;
+            padding: 0 50px;
+
           }
 
           .title-pill {
@@ -212,14 +213,15 @@ const Offers = () => {
             border-radius: 100px;
             font-weight: 800;
             text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 1.5px;
+            font-size: 11px;
+            letter-spacing: 1.2px;
             display: inline-block;
             margin-bottom: 10px;
             font-family: ${H};
           }
           .main-heading {
-            font-size: clamp(32px, 4vw, 48px);
+            font-size: clamp(28px, 3.5vw, 36px);
+
             font-weight: 900;
             font-family: ${H};
             color: #111;
@@ -257,11 +259,11 @@ const Offers = () => {
             flex-wrap: nowrap;
             overflow-x: auto;
             gap: 24px;
-            padding: 10px 60px 25px;
+            padding: 10px 50px 25px;
             scrollbar-width: none;
             -ms-overflow-style: none;
             scroll-snap-type: x mandatory;
-            scroll-padding-left: 60px;
+            scroll-padding-left: 50px;
             -webkit-overflow-scrolling: touch;
           }
           .offer-grid::-webkit-scrollbar { display: none; }
