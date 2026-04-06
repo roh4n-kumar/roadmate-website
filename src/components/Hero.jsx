@@ -629,10 +629,10 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
     .date-pill.active {
-      background: #000;
+      background: ${RED};
       color: #fff;
-      border-color: #000;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      border-color: ${RED};
+      box-shadow: 0 4px 10px rgba(190,13,13,0.3);
     }
 
     @media (max-width: 900px) {
