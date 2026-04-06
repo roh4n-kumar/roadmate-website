@@ -346,13 +346,13 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     .search-main-card {
-      width: 100%;
+      width: fit-content;
       margin: -20px auto 0; /* Adjusted from -25px to be 5px lower */
       background: #fff;
       border: 1.5px solid #cbd5e1;
       border-radius: 16px;
       display: grid;
-      grid-template-columns: 220px 1fr 240px 240px;
+      grid-template-columns: 220px 420px 240px 240px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.04);
       position: relative;
       min-height: auto;
