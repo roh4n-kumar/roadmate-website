@@ -818,11 +818,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 Booking Date <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showCal ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg>
               </div>
               <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1a202c' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1a202c', flexShrink: 0 }}>
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="#000000">
                     <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 11H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/>
                   </svg>
-                  <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1 }}>
+                  <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1, whiteSpace: 'nowrap' }}>
                     {formData.dateDisplay}
                   </span>
                 </div>
