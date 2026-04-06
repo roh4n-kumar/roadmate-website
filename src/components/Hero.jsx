@@ -743,7 +743,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <div className="search-ribbon-v2">
         {/* HEADER BLOCK */}
         <div className="hero-header-block">
-           <h1 className="hero-title">Self-Drive <span style={{ color: RED, textShadow: '0.5px 0.5px 0 #fff, -0.5px -0.5px 0 #fff, 0.5px -0.5px 0 #fff, -0.5px 0.5px 0 #fff' }}>Rentals</span> in Bhubaneswar</h1>
+           <h1 className="hero-title">Self-Drive <span style={{ color: RED }}>Rentals</span> in Bhubaneswar</h1>
         </div>
 
         {/* MAIN SEARCH AREA */}
