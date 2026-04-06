@@ -190,7 +190,7 @@ const Offers = () => {
           .outer-card {
             background: #fff;
             border-radius: 12px;
-            padding: 16px 45px 50px;
+            padding: 16px 0 50px;
             box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
             border: 1.2px solid #f2f2f2;
             overflow: hidden;
@@ -202,6 +202,7 @@ const Offers = () => {
             align-items: center;
             margin-bottom: 30px;
             gap: 20px;
+            padding: 0 45px;
           }
 
           .offers-title {
@@ -241,7 +242,7 @@ const Offers = () => {
             flex-wrap: nowrap;
             overflow-x: auto;
             gap: 24px;
-            padding: 10px 0 25px;
+            padding: 10px 45px 25px;
             scrollbar-width: none;
             -ms-overflow-style: none;
             scroll-snap-type: x mandatory;
