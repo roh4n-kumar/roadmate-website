@@ -7,6 +7,8 @@ import Hero from "../components/Hero";
 import MapSection from "../components/MapSection";
 import FAQSection from "../components/FAQSection";
 import Footer from "../components/Footer";
+import Offers from "../components/Offers";
+
 
 const RED = "#be0d0d";
 const H = "'Outfit', sans-serif";
@@ -83,6 +85,9 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
           <Hero isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
         </motion.div>
       </div>
+
+      {/* OFFERS SECTION - Reordered below Hero */}
+      <Offers />
 
       {/* Featured Fleet */}
       <section style={{ padding: "100px 24px", maxWidth: "1250px", margin: "0 auto" }}>
