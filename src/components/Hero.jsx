@@ -117,14 +117,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     const year = d.getFullYear().toString().slice(-2);
     const dayName = d.toLocaleDateString("en-US", { weekday: "long" });
     return {
-      vehicleType: "Bike", 
+      vehicleType: null, // Initially null for caption
       withHelmet: true,
       withDriver: false,
       selectedDate: d,
       dateDisplay: `${day} ${month}'${year}`, 
       dayName: dayName,
-      pickupTime: "09:00 AM",
-      dropoffTime: "09:00 PM",
+      pickupTime: null, // Initially null for caption
+      dropoffTime: null, // Initially null for caption
     };
   });
 
@@ -177,7 +177,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const handleSearch = () => {
     const { vehicleType, selectedDate, pickupTime, dropoffTime, withHelmet, withDriver } = formData;
     if (!vehicleType || !selectedDate || !pickupTime || !dropoffTime) {
-      alert("Please complete the search criteria (Dates and Times)!");
+      alert("Please select Vehicle Category, Pickup and Dropoff Times to search!");
       return;
     }
     
@@ -748,14 +748,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         {/* MAIN SEARCH AREA */}
         <div className="search-master-card">
           <div className="search-tab-popup">
-            <span className="search-tab-text">Start renting vehicles in simple and accessible way</span>
-          </div>
-          <div ref={searchRef} className="search-main-card">
-            {/* 1. Vehicle Category */}
-            <div className="search-col" onClick={() => openDropdown('cat')} 
+            <span className="se            <div className="search-col" onClick={() => openDropdown('cat')} 
               style={{ zIndex: showCat ? 50 : 1, background: showCat ? `${RED}12` : 'transparent' }}>
               <div className={`col-label ${showCat ? 'active' : ''}`}>Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showCat ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg></div>
-              <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '32px' }}>
+                {formData.vehicleType ? (
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1a202c' }}>
                    {formData.vehicleType === 'Bike' ? 
                     <svg width="28" height="28" viewBox="0 0 122.88 82.71" fill="#000000" style={{ flexShrink: 0 }}>
@@ -763,13 +760,20 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                     <svg width="28" height="28" viewBox="0 0 122.88 92.02" fill="#000000" style={{ flexShrink: 0 }}>
                       <path fillRule="evenodd" d="M10.17,34.23c-10.98-5.58-9.72-11.8,1.31-11.15l2.47,4.63l5.09-15.83C21.04,5.65,24.37,0,30.9,0H96 c6.53,0,10.29,5.54,11.87,11.87l3.82,15.35l2.2-4.14c11.34-0.66,12.35,5.93,0.35,11.62l1.95,2.99c7.89,8.11,7.15,22.45,5.92,42.48 v8.14c0,2.04-1.67,3.71-3.71,3.71h-15.83c-2.04,0-3.71-1.67-3.71-3.71v-4.54H24.04v4.54c0,2.04-1.67,3.71-3.71,3.71H4.5 c-2.04,0-3.71-1.67-3.71-3.71V78.2c0-0.2,0.02-0.39,0.04-0.58C-0.37,62.25-2.06,42.15,10.17,34.23L10.17,34.23z M30.38,58.7 l-14.06-1.77c-3.32-0.37-4.21,1.03-3.08,3.89l1.52,3.69c0.49,0.95,1.14,1.64,1.9,2.12c0.89,0.55,1.96,0.82,3.15,0.87l12.54,0.1 c3.03-0.01,4.34-1.22,3.39-4C34.96,60.99,33.18,59.35,30.38,58.7L30.38,58.7z M54.38,52.79h14.4c0.85,0,1.55,0.7,1.55,1.55l0,0 c0,0.85-0.7,1.55-1.55,1.55h-14.4c-0.85,0-1.55-0.7-1.55-1.55l0,0C52.82,53.49,53.52,52.79,54.38,52.79L54.38,52.79z M89.96,73.15 h14.4c0.85,0,1.55,0.7,1.55,1.55l0,0c0,0.85-0.7,1.55-1.55,1.55h-14.4c-0.85,0-1.55-0.7-1.55-1.55l0,0 C88.41,73.85,89.1,73.15,89.96,73.15L89.96,73.15z M92.5,58.7l14.06-1.77c3.32-0.37,4.21,1.03,3.08,3.89l-1.52,3.69 c-0.49,0.95-1.14,1.64-1.9,2.12c-0.89,0.55,1.96,0.82,3.15,0.87l-12.54,0.1c-3.03-0.01-4.34-1.22-3.39-4 C87.92,60.99,89.7,59.35,92.5,58.7L92.5,58.7z M18.41,73.15h14.4c0.85,0,1.55,0.7,1.55,1.55l0,0c0,0.85-0.7,1.55-1.55,1.55h-14.4 c-0.85,0-1.55-0.7-1.55-1.55l0,0C16.86,73.85,17.56,73.15,18.41,73.15L18.41,73.15z M19.23,31.2h86.82l-3.83-15.92 c-1.05-4.85-4.07-9.05-9.05-9.05H33.06c-4.97,0-7.52,4.31-9.05,9.05L19.23,31.2v0.75V31.2L19.23,31.2z"/>
                     </svg>
-                  }
-                  <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1 }}>
+                   }
+                   <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1 }}>
                     {formData.vehicleType}
+                   </span>
+                  </div>
+                ) : (
+                  <span style={{ fontSize: '20px', fontWeight: 600, color: '#94a3b8', fontStyle: 'italic' }}>
+                    Tap to choose your ride
                   </span>
-                </div>
+                )}
               </div>
               <div className="col-sub" style={{ color: '#718096' }}>
+                {formData.vehicleType ? (formData.vehicleType === 'Bike' ? (formData.withHelmet ? 'With Helmet' : 'No Helmet') : (formData.withDriver ? 'Choice: Driver' : 'Self Drive')) : 'Selection Required'}
+              </div>718096' }}>
                 {formData.vehicleType === 'Bike' ? (formData.withHelmet ? 'With Helmet' : 'No Helmet') : (formData.withDriver ? 'Choice: Driver' : 'Self Drive')}
               </div>
               {showCat && (
@@ -847,15 +851,23 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             <div className="search-col" onClick={() => openDropdown('pick')} 
               style={{ zIndex: showPickTime ? 50 : 1, background: showPickTime ? `${RED}12` : 'transparent' }}>
               <div className={`col-label ${showPickTime ? 'active' : ''}`}>Pickup Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showPickTime ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg></div>
-              <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1a202c', flexShrink: 0 }}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="#000000" style={{ flexShrink: 0 }}>
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm3.33 15.25L11 14.41V7h2v6.59l3.75 2.22l-.42-.44z"/>
-                </svg>
-                <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1, whiteSpace: 'nowrap' }}>
-                  {formData.pickupTime}
-                </span>
+              <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1a202c', flexShrink: 0, minHeight: '32px' }}>
+                {formData.pickupTime ? (
+                  <>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#000000" style={{ flexShrink: 0 }}>
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm3.33 15.25L11 14.41V7h2v6.59l3.75 2.22l-.42-.44z"/>
+                    </svg>
+                    <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1, whiteSpace: 'nowrap' }}>
+                      {formData.pickupTime}
+                    </span>
+                  </>
+                ) : (
+                  <span style={{ fontSize: '20px', fontWeight: 600, color: '#94a3b8', fontStyle: 'italic' }}>
+                    Tap to set pickup time
+                  </span>
+                )}
               </div>
-              <div className="col-sub" style={{ color: '#718096' }}>Select start time</div>
+              <div className="col-sub" style={{ color: '#718096' }}>{formData.pickupTime ? 'Selected start time' : 'Entry Required'}</div>
               {showPickTime && (
                 <div className="cal-box" onClick={e => e.stopPropagation()}>
                     <TimePopup onSelect={t => { setFormData({...formData, pickupTime: t}); openDropdown('off'); }} />
@@ -867,15 +879,23 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             <div className="search-col" onClick={() => openDropdown('drop')} 
               style={{ zIndex: showDropTime ? 50 : 1, background: showDropTime ? `${RED}12` : 'transparent' }}>
               <div className={`col-label ${showDropTime ? 'active' : ''}`}>Dropoff Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showDropTime ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg></div>
-              <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1a202c', flexShrink: 0 }}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="#000000" style={{ flexShrink: 0 }}>
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm3.33 15.25L11 14.41V7h2v6.59l3.75 2.22l-.42-.44z"/>
-                </svg>
-                <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1, whiteSpace: 'nowrap' }}>
-                  {formData.dropoffTime}
-                </span>
+              <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1a202c', flexShrink: 0, minHeight: '32px' }}>
+                {formData.dropoffTime ? (
+                  <>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#000000" style={{ flexShrink: 0 }}>
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm3.33 15.25L11 14.41V7h2v6.59l3.75 2.22l-.42-.44z"/>
+                    </svg>
+                    <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1, whiteSpace: 'nowrap' }}>
+                      {formData.dropoffTime}
+                    </span>
+                  </>
+                ) : (
+                  <span style={{ fontSize: '20px', fontWeight: 600, color: '#94a3b8', fontStyle: 'italic' }}>
+                    Tap to set return time
+                  </span>
+                )}
               </div>
-              <div className="col-sub" style={{ color: '#718096' }}>Select end time</div>
+              <div className="col-sub" style={{ color: '#718096' }}>{formData.dropoffTime ? 'Selected end time' : 'Entry Required'}</div>
               {showDropTime && (
                 <div className="cal-box" onClick={e => e.stopPropagation()}>
                     <TimePopup onSelect={t => { setFormData({...formData, dropoffTime: t}); openDropdown('off'); }} />
