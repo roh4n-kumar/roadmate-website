@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -6,11 +6,6 @@ const RED = "#be0d0d";
 const NAVY = "#0f172a"; 
 const H = "'Outfit', sans-serif";
 const F = "'Inter', sans-serif";
-
-const categories = [
-  "BIKE",
-  "CAR"
-];
 
 const offersData = [
   {
@@ -176,11 +171,7 @@ const offersData = [
 ];
 
 const Offers = () => {
-  const [selectedTab, setSelectedTab] = useState(categories[0]);
   const navigate = useNavigate();
-
-  const filteredOffers = offersData.filter(o => o.category === selectedTab || (selectedTab === "All Offers" && o.id <= 4));
-  const displayOffers = filteredOffers.length > 0 ? filteredOffers : offersData.slice(0, 4);
 
   return (
     <section 
@@ -218,44 +209,6 @@ const Offers = () => {
             font-weight: 900;
             font-family: ${H};
             color: #111;
-          }
-
-          .tabs-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 22px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            position: relative;
-            border-bottom: 2px solid #e5e5e5;
-            padding: 0 0 2px;
-            margin-right: 15px;
-          }
-          .tabs-wrapper::-webkit-scrollbar { display: none; }
-
-          .tab-link {
-            font-size: 13px;
-            font-weight: 800;
-            color: #64748b;
-            cursor: pointer;
-            white-space: nowrap;
-            padding: 8px 0;
-            position: relative;
-            transition: all 0.2s;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-          }
-          .tab-link.active { color: ${RED}; }
-          .tab-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2.5px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: ${RED};
-            border-radius: 2px;
-            z-index: 10;
           }
 
           .nav-controls {
@@ -393,7 +346,6 @@ const Offers = () => {
           }
 
           @media (max-width: 1000px) {
-            .offer-grid { grid-template-columns: 1fr; }
             .top-bar { flex-direction: column; align-items: flex-start; gap: 20px; }
             .nav-controls { width: 100%; justify-content: space-between; }
           }
@@ -403,15 +355,7 @@ const Offers = () => {
       <div className="outer-card">
         {/* TOP BAR */}
         <div className="top-bar">
-          <h2 className="offers-title">Offers</h2>
-          
-          <div className="tabs-wrapper">
-             {categories.map(cat => (
-               <div key={cat} className={`tab-link ${selectedTab === cat ? 'active' : ''}`} onClick={() => setSelectedTab(cat)}>
-                 {cat}
-               </div>
-             ))}
-          </div>
+          <h2 className="offers-title">Offers for you</h2>
 
           <div className="nav-controls">
             <div className="view-all-btn" onClick={() => navigate("/offers")}>
@@ -427,14 +371,14 @@ const Offers = () => {
         {/* OFFERS GRID */}
         <AnimatePresence mode="wait">
           <motion.div 
-            key={selectedTab}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
+            key="all-offers"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
             className="offer-grid"
           >
-            {displayOffers.map(off => (
+            {offersData.map(off => (
               <div key={off.id} className="o-card">
                 <div className="o-tc">T&C's APPLY</div>
                 
