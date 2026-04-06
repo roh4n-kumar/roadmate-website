@@ -333,7 +333,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     /* MASTER CONTAINER - WHITE SQUARISH */
     .search-master-card {
-      max-width: 1320px;
+      max-width: 1300px;
       margin: 0 auto;
       background: #ffffff;
       border: 1.2px solid #f2f2f2;
