@@ -307,10 +307,18 @@ const Offers = () => {
           .arrow-btn:hover { border-color: ${RED}; color: ${RED}; box-shadow: 0 4px 12px rgba(190, 13, 13, 0.1); }
 
           .offer-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
             gap: 24px;
+            padding: 10px 0 25px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
           }
+          .offer-grid::-webkit-scrollbar { display: none; }
+          .offer-grid > * { flex-shrink: 0; }
 
           .o-card {
             display: flex;
@@ -323,6 +331,9 @@ const Offers = () => {
             position: relative;
             overflow: hidden;
             min-height: 180px;
+            width: 450px;
+            flex-shrink: 0;
+            scroll-snap-align: start;
             box-shadow: 0 6px 12px -2px rgba(0,0,0,0.08), 0 3px 6px -2px rgba(0,0,0,0.05);
           }
           .o-card:hover { 
