@@ -352,7 +352,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       border: 1.5px solid #cbd5e1;
       border-radius: 16px;
       display: grid;
-      grid-template-columns: 1fr 2.2fr 0.8fr 0.8fr;
+      grid-template-columns: 1fr 1.8fr auto auto;
       box-shadow: 0 8px 24px rgba(0,0,0,0.04);
       position: relative;
       min-height: auto;
@@ -387,6 +387,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       display: flex;
       align-items: center;
       gap: 4px;
+      white-space: nowrap;
     }
     .col-label svg {
       transition: transform 0.3s ease;
@@ -846,11 +847,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             <div className="search-col" onClick={() => openDropdown('pick')} 
               style={{ zIndex: showPickTime ? 50 : 1, background: showPickTime ? `${RED}12` : 'transparent' }}>
               <div className={`col-label ${showPickTime ? 'active' : ''}`}>Pickup Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showPickTime ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg></div>
-              <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1a202c' }}>
+              <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1a202c', flexShrink: 0 }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="#000000">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm3.33 15.25L11 14.41V7h2v6.59l3.75 2.22l-.42-.44z"/>
                 </svg>
-                <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1 }}>
+                <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1, whiteSpace: 'nowrap' }}>
                   {formData.pickupTime}
                 </span>
               </div>
@@ -866,11 +867,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             <div className="search-col" onClick={() => openDropdown('drop')} 
               style={{ zIndex: showDropTime ? 50 : 1, background: showDropTime ? `${RED}12` : 'transparent' }}>
               <div className={`col-label ${showDropTime ? 'active' : ''}`}>Dropoff Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showDropTime ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg></div>
-              <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1a202c' }}>
+              <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1a202c', flexShrink: 0 }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="#000000">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm3.33 15.25L11 14.41V7h2v6.59l3.75 2.22l-.42-.44z"/>
                 </svg>
-                <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1 }}>
+                <span style={{ fontSize: '32px', fontWeight: 700, fontFamily: H, color: '#111', lineHeight: 1, whiteSpace: 'nowrap' }}>
                   {formData.dropoffTime}
                 </span>
               </div>
