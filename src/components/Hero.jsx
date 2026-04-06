@@ -271,7 +271,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .search-tab-popup {
       position: absolute;
-      top: -50px;
+      top: -43px;
       left: 45px;
       background: #ffffff;
       padding: 14px 30px;
@@ -337,7 +337,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       background: #ffffff;
       border: 1.2px solid #f2f2f2;
       border-radius: 12px;
-      padding: 40px 45px 50px; /* Reduced bottom padding for a tighter fit */
+      padding: 28px 45px 50px; /* Reduced top padding to move search fields up */
       box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
       position: relative;
       z-index: 100;
