@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import TimePopup from "./TimePopup";
+/* ROADMATE - Hero Component - Stable Build */
 import { useState, useRef, useEffect } from "react";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
