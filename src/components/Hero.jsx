@@ -770,7 +770,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                    </span>
                   </div>
                 ) : (
-                  <div style={{ display: 'flex', flexDirection: 'column', fontSize: '13px', color: '#718096', fontWeight: 600, lineHeight: 1.3 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', fontSize: '13px', color: '#718096', fontWeight: 600, lineHeight: 1.2 }}>
                     <span>Tap to</span>
                     <span>choose your</span>
                     <span>vehicle</span>
@@ -868,7 +868,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                     </span>
                   </>
                 ) : (
-                  <div style={{ display: 'flex', flexDirection: 'column', fontSize: '13px', color: '#718096', fontWeight: 600, lineHeight: 1.3 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', fontSize: '13px', color: '#718096', fontWeight: 600, lineHeight: 1.2 }}>
                     <span>Tap to</span>
                     <span>set pickup</span>
                     <span>time</span>
@@ -898,7 +898,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                     </span>
                   </>
                 ) : (
-                  <div style={{ display: 'flex', flexDirection: 'column', fontSize: '13px', color: '#718096', fontWeight: 600, lineHeight: 1.3 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', fontSize: '13px', color: '#718096', fontWeight: 600, lineHeight: 1.2 }}>
                     <span>Tap to</span>
                     <span>set return</span>
                     <span>time</span>
