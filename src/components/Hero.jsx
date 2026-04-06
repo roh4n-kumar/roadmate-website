@@ -337,7 +337,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       background: #ffffff;
       border: 1.2px solid #f2f2f2;
       border-radius: 12px;
-      padding: 40px 45px 70px; /* Increased bottom padding for pills */
+      padding: 40px 45px 50px; /* Reduced bottom padding for a tighter fit */
       box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
       position: relative;
       z-index: 100;
@@ -884,7 +884,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           </button>
 
           {/* Restored Disclaimer Pills */}
-          <div style={{ display: 'flex', gap: '16px', marginTop: '25px', marginBottom: '10px' }}>
+          <div style={{ display: 'flex', gap: '16px', marginTop: '18px', marginBottom: '0px' }}>
             <div className="disclaimer-pill">
                <div className="pill-icon-box">
                   <svg viewBox="0 0 512 512" width="22" height="22" fill="currentColor">
