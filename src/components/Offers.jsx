@@ -205,11 +205,26 @@ const Offers = () => {
             padding: 0 45px;
           }
 
-          .offers-title {
-            font-size: 30px;
+          .title-pill {
+            color: ${RED};
+            background: rgba(190, 13, 13, 0.08);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-family: ${H};
+          }
+          .main-heading {
+            font-size: clamp(32px, 4vw, 48px);
             font-weight: 900;
             font-family: ${H};
             color: #111;
+            margin: 0;
+            line-height:1.2;
           }
 
           .nav-controls {
@@ -347,7 +362,10 @@ const Offers = () => {
       <div className="outer-card">
         {/* TOP BAR */}
         <div className="top-bar">
-          <h2 className="offers-title">Offers for you</h2>
+          <div className="title-area">
+            <span className="title-pill">EXCLUSIVE DEALS</span>
+            <h2 className="main-heading">Offers For You</h2>
+          </div>
 
           <div className="nav-controls">
             <div className="view-all-btn" onClick={() => navigate("/offers")}>
