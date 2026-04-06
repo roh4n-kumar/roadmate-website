@@ -748,7 +748,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         {/* MAIN SEARCH AREA */}
         <div className="search-master-card">
           <div className="search-tab-popup">
-            <span className="se            <div className="search-col" onClick={() => openDropdown('cat')} 
+            <span className="search-tab-text">Start renting vehicles in simple and accessible way</span>
+          </div>
+          <div ref={searchRef} className="search-main-card">
+            {/* 1. Vehicle Category */}
+            <div className="search-col" onClick={() => openDropdown('cat')} 
               style={{ zIndex: showCat ? 50 : 1, background: showCat ? `${RED}12` : 'transparent' }}>
               <div className={`col-label ${showCat ? 'active' : ''}`}>Vehicle Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showCat ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg></div>
               <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '32px' }}>
@@ -773,8 +777,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               </div>
               <div className="col-sub" style={{ color: '#718096' }}>
                 {formData.vehicleType ? (formData.vehicleType === 'Bike' ? (formData.withHelmet ? 'With Helmet' : 'No Helmet') : (formData.withDriver ? 'Choice: Driver' : 'Self Drive')) : 'Selection Required'}
-              </div>718096' }}>
-                {formData.vehicleType === 'Bike' ? (formData.withHelmet ? 'With Helmet' : 'No Helmet') : (formData.withDriver ? 'Choice: Driver' : 'Self Drive')}
               </div>
               {showCat && (
                 <div className="cal-box" style={{ padding: "8px", width: "240px" }}>
