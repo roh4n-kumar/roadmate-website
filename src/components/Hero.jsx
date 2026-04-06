@@ -383,7 +383,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .col-label {
       font-size: 14px;
       font-weight: 600;
-      color: ${RED};
+      color: #000000;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
