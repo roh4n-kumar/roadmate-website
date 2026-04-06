@@ -351,7 +351,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       background: #fff;
       border: 1.5px solid #cbd5e1;
       border-radius: 16px;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr 1fr 1fr;
       box-shadow: 0 8px 24px rgba(0,0,0,0.04);
       position: relative;
       min-height: auto;
@@ -361,7 +362,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-col:last-child { border-radius: 0 16px 16px 0; }
 
     .search-col {
-      flex: 1;
       padding: 24px 24px;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -370,6 +370,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      overflow: hidden;
     }
     .search-col:hover { 
       background: ${RED}12 !important; 
