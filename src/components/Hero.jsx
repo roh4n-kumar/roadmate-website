@@ -262,6 +262,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       font-family: 'Outfit', sans-serif;
       margin-bottom: 12px;
       letter-spacing: -1px;
+      transform: translateY(-20px);
       line-height: 1.1;
     }
     .hero-subtitle {
