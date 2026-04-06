@@ -242,10 +242,11 @@ const Offers = () => {
             flex-wrap: nowrap;
             overflow-x: auto;
             gap: 24px;
-            padding: 10px 45px 25px;
+            padding: 10px 60px 25px;
             scrollbar-width: none;
             -ms-overflow-style: none;
             scroll-snap-type: x mandatory;
+            scroll-padding-left: 60px;
             -webkit-overflow-scrolling: touch;
           }
           .offer-grid::-webkit-scrollbar { display: none; }
