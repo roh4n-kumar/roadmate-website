@@ -245,13 +245,13 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       background: linear-gradient(rgba(1, 8, 26, 0.25), rgba(1, 8, 26, 0.6)), url('/XUV.jpeg');
       background-size: cover;
       background-position: center top;
-      padding: 100px 20px 140px;
+      padding: 70px 20px 130px;
       position: relative;
     }
 
     .hero-header-block {
       max-width: 1240px;
-      margin: 0 auto 50px;
+      margin: 0 auto 30px;
       text-align: center;
     }
     .hero-title {
