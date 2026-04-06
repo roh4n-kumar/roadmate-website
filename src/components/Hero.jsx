@@ -333,12 +333,12 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     /* MASTER CONTAINER - WHITE SQUARISH */
     .search-master-card {
-      max-width: 1240px;
+      max-width: 1320px;
       margin: 0 auto;
       background: #ffffff;
       border: 1.2px solid #f2f2f2;
       border-radius: 12px;
-      padding: 40px 40px 50px; /* Restored top padding, matched side padding */
+      padding: 40px 24px 50px; /* Restored top padding, matched side padding */
       box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
       position: relative;
       z-index: 100;
@@ -346,7 +346,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     .search-main-card {
-      width: fit-content;
+      width: 100%;
       margin: -20px auto 0; /* Adjusted from -25px to be 5px lower */
       background: #fff;
       border: 1.5px solid #cbd5e1;
@@ -361,7 +361,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-col:last-child { border-radius: 0 16px 16px 0; }
 
     .search-col {
-      flex: 0 1 auto;
+      flex: 1;
       padding: 24px 24px;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
