@@ -346,7 +346,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .search-main-card {
       width: fit-content;
-      margin: -25px auto 0; /* Shifted up with negative margin */
+      margin: -20px auto 0; /* Adjusted from -25px to be 5px lower */
       background: #fff;
       border: 1.5px solid #cbd5e1;
       border-radius: 16px;
