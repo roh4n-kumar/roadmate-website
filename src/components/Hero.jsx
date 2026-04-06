@@ -352,7 +352,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       border: 1.5px solid #cbd5e1;
       border-radius: 16px;
       display: grid;
-      grid-template-columns: 1fr 1.8fr auto auto;
+      grid-template-columns: 1fr 2fr 195px 195px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.04);
       position: relative;
       min-height: auto;
