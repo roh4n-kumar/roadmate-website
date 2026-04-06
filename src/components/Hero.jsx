@@ -931,7 +931,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         <div className="why-inner">
           <div className="section-header">
             <div className="section-tag">Why Choose Us</div>
-            <h2 className="section-title">Bhubaneswar's Own<br/>Vehicle Rental Platform</h2>
+            <h2 className="section-title">Bhubaneswar's Own Vehicle Rental Platform</h2>
             <p className="section-sub">Experience the freedom of smart mobility with RoadMate's verified fleet and seamless booking.</p>
           </div>
           <div className="features-grid">
