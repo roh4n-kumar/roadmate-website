@@ -352,7 +352,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       border: 1.5px solid #cbd5e1;
       border-radius: 16px;
       display: grid;
-      grid-template-columns: 1fr 1.6fr 1fr 1fr;
+      grid-template-columns: 1fr 2.2fr 0.8fr 0.8fr;
       box-shadow: 0 8px 24px rgba(0,0,0,0.04);
       position: relative;
       min-height: auto;
@@ -362,7 +362,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-col:last-child { border-radius: 0 16px 16px 0; }
 
     .search-col {
-      padding: 24px 24px;
+      padding: 24px 20px;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
@@ -370,6 +370,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+    }
+    .search-col:nth-child(3), .search-col:nth-child(4) {
+      padding: 24px 14px;
     }
     .search-col:hover { 
       background: ${RED}12 !important; 
