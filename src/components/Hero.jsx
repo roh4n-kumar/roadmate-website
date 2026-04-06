@@ -370,7 +370,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      overflow: hidden;
     }
     .search-col:hover { 
       background: ${RED}12 !important; 
