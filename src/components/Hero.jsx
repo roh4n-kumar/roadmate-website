@@ -287,7 +287,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-tab-text {
       font-size: 14px;
       font-weight: 800;
-      color: ${RED};
+      color: #000000;
       font-family: ${H};
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -748,7 +748,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         {/* MAIN SEARCH AREA */}
         <div className="search-master-card">
           <div className="search-tab-popup">
-            <span className="search-tab-text">Start renting vehicles in simple and accessible way</span>
+            <span className="search-tab-text">
+              Start renting vehicles in <span style={{ color: RED }}>simple and accessible</span> way
+            </span>
           </div>
           <div ref={searchRef} className="search-main-card">
             {/* 1. Vehicle Category */}
