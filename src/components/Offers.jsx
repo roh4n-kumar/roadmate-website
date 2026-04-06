@@ -234,24 +234,7 @@ const Offers = () => {
           .view-all-btn:hover {
             background: rgba(15,23,42,0.08);
           }
-          .arrow-btns {
-            display: flex;
-            gap: 12px;
-          }
-          .arrow-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1.5px solid #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: #fff;
-          }
-          .arrow-btn:hover { border-color: ${RED}; color: ${RED}; box-shadow: 0 4px 12px rgba(190, 13, 13, 0.1); }
+
 
           .offer-grid {
             display: flex;
@@ -368,10 +351,7 @@ const Offers = () => {
             <div className="view-all-btn" onClick={() => navigate("/offers")}>
                View All Offers →
             </div>
-            <div className="arrow-btns">
-               <div className="arrow-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg></div>
-               <div className="arrow-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
-            </div>
+
           </div>
         </div>
 
