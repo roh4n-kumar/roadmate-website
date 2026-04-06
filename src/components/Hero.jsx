@@ -770,14 +770,18 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                    </span>
                   </div>
                 ) : (
-                  <span style={{ fontSize: '20px', fontWeight: 600, color: '#94a3b8', fontStyle: 'italic' }}>
-                    Tap to choose your ride
-                  </span>
+                  <div style={{ display: 'flex', flexDirection: 'column', fontSize: '13px', color: '#718096', fontWeight: 600, lineHeight: 1.3 }}>
+                    <span>Tap to</span>
+                    <span>choose your</span>
+                    <span>vehicle</span>
+                  </div>
                 )}
               </div>
-              <div className="col-sub" style={{ color: '#718096' }}>
-                {formData.vehicleType ? (formData.vehicleType === 'Bike' ? (formData.withHelmet ? 'With Helmet' : 'No Helmet') : (formData.withDriver ? 'Choice: Driver' : 'Self Drive')) : 'Selection Required'}
-              </div>
+              {formData.vehicleType && (
+                <div className="col-sub" style={{ color: '#718096' }}>
+                  {formData.vehicleType === 'Bike' ? (formData.withHelmet ? 'With Helmet' : 'No Helmet') : (formData.withDriver ? 'Choice: Driver' : 'Self Drive')}
+                </div>
+              )}
               {showCat && (
                 <div className="cal-box" style={{ padding: "8px", width: "240px" }}>
                   {[
@@ -864,12 +868,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                     </span>
                   </>
                 ) : (
-                  <span style={{ fontSize: '20px', fontWeight: 600, color: '#94a3b8', fontStyle: 'italic' }}>
-                    Tap to set pickup time
-                  </span>
+                  <div style={{ display: 'flex', flexDirection: 'column', fontSize: '13px', color: '#718096', fontWeight: 600, lineHeight: 1.3 }}>
+                    <span>Tap to</span>
+                    <span>set pickup</span>
+                    <span>time</span>
+                  </div>
                 )}
               </div>
-              <div className="col-sub" style={{ color: '#718096' }}>{formData.pickupTime ? 'Selected start time' : 'Entry Required'}</div>
+              {formData.pickupTime && <div className="col-sub" style={{ color: '#718096' }}>Selected start time</div>}
               {showPickTime && (
                 <div className="cal-box" onClick={e => e.stopPropagation()}>
                     <TimePopup onSelect={t => { setFormData({...formData, pickupTime: t}); openDropdown('off'); }} />
@@ -880,7 +886,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
             {/* 4. Dropoff Time */}
             <div className="search-col" onClick={() => openDropdown('drop')} 
               style={{ zIndex: showDropTime ? 50 : 1, background: showDropTime ? `${RED}12` : 'transparent' }}>
-              <div className={`col-label ${showDropTime ? 'active' : ''}`}>Dropoff Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showDropTime ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg></div>
+              <div className={`col-label ${showDropTime ? 'active' : ''}`}>Return Time <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: showDropTime ? 'rotate(90deg)' : 'rotate(0deg)' }}><polyline points="9 6 15 12 9 18"/></svg></div>
               <div className="col-value" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1a202c', flexShrink: 0, minHeight: '32px' }}>
                 {formData.dropoffTime ? (
                   <>
@@ -892,12 +898,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                     </span>
                   </>
                 ) : (
-                  <span style={{ fontSize: '20px', fontWeight: 600, color: '#94a3b8', fontStyle: 'italic' }}>
-                    Tap to set return time
-                  </span>
+                  <div style={{ display: 'flex', flexDirection: 'column', fontSize: '13px', color: '#718096', fontWeight: 600, lineHeight: 1.3 }}>
+                    <span>Tap to</span>
+                    <span>set return</span>
+                    <span>time</span>
+                  </div>
                 )}
               </div>
-              <div className="col-sub" style={{ color: '#718096' }}>{formData.dropoffTime ? 'Selected end time' : 'Entry Required'}</div>
+              {formData.dropoffTime && <div className="col-sub" style={{ color: '#718096' }}>Selected end time</div>}
               {showDropTime && (
                 <div className="cal-box" onClick={e => e.stopPropagation()}>
                     <TimePopup onSelect={t => { setFormData({...formData, dropoffTime: t}); openDropdown('off'); }} />
