@@ -83,6 +83,9 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
           transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.1 }}
         >
           <Hero isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
+      
+      {/* Offers for You Section */}
+      <Offers />
         </motion.div>
       </div>
 
