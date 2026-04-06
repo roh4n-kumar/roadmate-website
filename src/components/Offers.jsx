@@ -8,35 +8,30 @@ const H = "'Outfit', sans-serif";
 const F = "'Inter', sans-serif";
 
 const categories = [
-  "ON 1st BOOKING",
-  "All Offers",
-  "Bank Offers",
-  "Bike Offers",
-  "Car Offers",
-  "Long Trips"
+  "BIKE",
+  "CAR"
 ];
 
 const offersData = [
-  // ON 1st BOOKING (4)
   {
     id: 1,
-    category: "ON 1st BOOKING",
+    category: "CAR",
     title: "Grab FLAT 50% OFF*",
-    desc: "on your first bike or car booking with RoadMate.",
+    desc: "on your first car booking with RoadMate.",
     code: "WELCOME50",
     image: "/assets/offers/car_luxury.png"
   },
   {
     id: 2,
-    category: "ON 1st BOOKING",
+    category: "BIKE",
     title: "Grab FLAT ₹200 Cashback*",
-    desc: "on your very first ride in Bhubaneswar.",
+    desc: "on your very first bike ride in Bhubaneswar.",
     code: "FIRST200",
     image: "/assets/offers/bike_adventure.png"
   },
   {
     id: 3,
-    category: "ON 1st BOOKING",
+    category: "CAR",
     title: "Grab UPTO ₹500 OFF*",
     desc: "on your first premium vehicle rental today.",
     code: "ROADSTART",
@@ -44,17 +39,15 @@ const offersData = [
   },
   {
     id: 4,
-    category: "ON 1st BOOKING",
+    category: "BIKE",
     title: "Grab FREE HELMET*",
     desc: "on your first bike rental for extra safety.",
     code: "SAFETY1ST",
     image: "/assets/offers/urban_lifestyle.png"
   },
-
-  // Bank Offers (4)
   {
     id: 101,
-    category: "Bank Offers",
+    category: "CAR",
     title: "Grab FLAT 10% OFF*",
     desc: "using HDFC Bank Credit/Debit cards on weekdays.",
     code: "HDFCRM10",
@@ -62,7 +55,7 @@ const offersData = [
   },
   {
     id: 102,
-    category: "Bank Offers",
+    category: "CAR",
     title: "Grab FLAT 15% OFF*",
     desc: "exclusive offer for ICICI Bank users on long trips.",
     code: "ICICIRM15",
@@ -70,7 +63,7 @@ const offersData = [
   },
   {
     id: 103,
-    category: "Bank Offers",
+    category: "BIKE",
     title: "Grab ₹300 CASHBACK*",
     desc: "using SBI Yono for all city bike rentals.",
     code: "SBIYONO300",
@@ -78,17 +71,15 @@ const offersData = [
   },
   {
     id: 104,
-    category: "Bank Offers",
+    category: "CAR",
     title: "Grab 20% DISCOUNT*",
     desc: "on your first Axis Bank card transaction.",
     code: "AXISRM20",
     image: "/assets/offers/urban_lifestyle.png"
   },
-
-  // Bike Offers (4)
   {
     id: 201,
-    category: "Bike Offers",
+    category: "BIKE",
     title: "Grab FLAT 12% OFF*",
     desc: "Rent premium bikes like Royal Enfield at low rates.",
     code: "BIKERIDE12",
@@ -96,7 +87,7 @@ const offersData = [
   },
   {
     id: 202,
-    category: "Bike Offers",
+    category: "BIKE",
     title: "Grab WEEKEND 10% OFF*",
     desc: "on all scooty and bike rentals for city rides.",
     code: "WEEKEND10",
@@ -104,7 +95,7 @@ const offersData = [
   },
   {
     id: 203,
-    category: "Bike Offers",
+    category: "BIKE",
     title: "Grab RIDE & SAVE*",
     desc: "Rent for 3+ days and get a special bike discount.",
     code: "RIDE3DAYS",
@@ -112,17 +103,15 @@ const offersData = [
   },
   {
     id: 204,
-    category: "Bike Offers",
+    category: "BIKE",
     title: "Grab NIGHT RIDER*",
     desc: "Special rates for overnight bike rentals this week.",
     code: "NIGHT15",
     image: "/assets/offers/suv_forest.png"
   },
-
-  // Car Offers (4)
   {
     id: 301,
-    category: "Car Offers",
+    category: "CAR",
     title: "Grab FLAT 15% OFF*",
     desc: "on all premium sedan rentals for city travel.",
     code: "SEDAN15",
@@ -130,7 +119,7 @@ const offersData = [
   },
   {
     id: 302,
-    category: "Car Offers",
+    category: "CAR",
     title: "Grab SUV SPECIAL*",
     desc: "Get ₹500 off on any SUV rental for 24+ hours.",
     code: "SUVPOWER",
@@ -138,7 +127,7 @@ const offersData = [
   },
   {
     id: 303,
-    category: "Car Offers",
+    category: "CAR",
     title: "Grab CLEAN CARS*",
     desc: "Enjoy sanitized and fuel-efficient urban cars.",
     code: "HYGIENE10",
@@ -146,17 +135,15 @@ const offersData = [
   },
   {
     id: 304,
-    category: "Car Offers",
+    category: "CAR",
     title: "Grab LUXURY RENTALS*",
     desc: "Experience high-end cars at unbeatable prices.",
     code: "LUXURY20",
     image: "/assets/offers/bike_adventure.png"
   },
-
-  // Long Trips (4)
   {
     id: 401,
-    category: "Long Trips",
+    category: "CAR",
     title: "Grab FLAT 20% OFF*",
     desc: "on inter-state rentals above 500 kilometres.",
     code: "LONGTRIP20",
@@ -164,7 +151,7 @@ const offersData = [
   },
   {
     id: 402,
-    category: "Long Trips",
+    category: "CAR",
     title: "Grab FREE MILEAGE*",
     desc: "Unlimited kms on 3+ day rentals this month.",
     code: "UNLIMITED",
@@ -172,7 +159,7 @@ const offersData = [
   },
   {
     id: 403,
-    category: "Long Trips",
+    category: "BIKE",
     title: "Grab HILL STATION*",
     desc: "Special adventure package for bike expeditions.",
     code: "HILLS25",
@@ -180,7 +167,7 @@ const offersData = [
   },
   {
     id: 404,
-    category: "Long Trips",
+    category: "CAR",
     title: "Grab FAMILY SAVER*",
     desc: "Rent a 7-seater SUV and save on your next trip.",
     code: "FAMILYSUV",
