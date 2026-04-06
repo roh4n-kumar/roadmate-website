@@ -260,8 +260,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       font-weight: 900;
       color: #fff;
       font-family: 'Outfit', sans-serif;
-      margin-top: -25px;
-      margin-bottom: 37px;
+      margin-bottom: 12px;
       letter-spacing: -1px;
       line-height: 1.1;
     }
