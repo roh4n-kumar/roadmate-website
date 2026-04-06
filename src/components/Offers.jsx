@@ -217,15 +217,22 @@ const Offers = () => {
             gap: 24px;
           }
           .view-all-btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            background: rgba(15,23,42,0.05);
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
             font-size: 14px;
-            font-weight: 900;
-            color: ${RED};
+            color: #0f172a;
             display: flex;
             align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            text-transform: uppercase;
+            gap: 8px;
             white-space: nowrap;
+          }
+          .view-all-btn:hover {
+            background: rgba(15,23,42,0.08);
           }
           .arrow-btns {
             display: flex;
@@ -359,7 +366,7 @@ const Offers = () => {
 
           <div className="nav-controls">
             <div className="view-all-btn" onClick={() => navigate("/offers")}>
-               VIEW ALL <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+               View All Offers →
             </div>
             <div className="arrow-btns">
                <div className="arrow-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg></div>
