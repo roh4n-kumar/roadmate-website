@@ -2,10 +2,7 @@ import { useNavigate } from "react-router-dom";
 import TimePopup from "./TimePopup";
 /* ROADMATE - Hero Component - Stable Build */
 import { useState, useRef, useEffect } from "react";
-import { auth } from "../firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import { motion } from "framer-motion";
-import { FaGift, FaCreditCard, FaIdCard, FaSun } from "react-icons/fa";
+
 
 
 const RED = "#be0d0d";
@@ -106,6 +103,13 @@ const CalendarInline = ({ selected, onSelect }) => {
 };
 
 // ── Hero Component ──────────────────────────────────────────────────────────
+
+const featureCards = [
+  { icon: "🛡️", title: "Verified Fleet", desc: "Every vehicle undergoes a 50-point safety check before every rental." },
+  { icon: "⚡", title: "Instant Booking", desc: "No manual approvals. Book your ride and get instant confirmation." },
+  { icon: "☎️", title: "24/7 Support", desc: "Our dedicated support team is always available to help you on the road." },
+  { icon: "💎", title: "Transparent Pricing", desc: "Zero hidden costs. What you see on the screen is exactly what you pay." }
+];
 
 const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const navigate = useNavigate();
