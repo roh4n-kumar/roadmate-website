@@ -259,7 +259,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       background: linear-gradient(rgba(1, 8, 26, 0.25), rgba(1, 8, 26, 0.6)), url('/XUV.jpeg');
       background-size: cover;
       background-position: center top;
-      padding: 100px 20px 140px;
+      padding: 100px 20px 70px;
       position: relative;
     }
 
