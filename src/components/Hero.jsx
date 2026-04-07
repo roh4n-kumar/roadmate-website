@@ -262,7 +262,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-ribbon-v2 {
       background: linear-gradient(rgba(1, 8, 26, 0.25), rgba(1, 8, 26, 0.6)), url('/XUV.jpeg');
       background-size: cover;
-      background-position: center top;
+      background-position: center center;
+      background-attachment: fixed;
       padding: 100px 20px 70px;
       position: relative;
     }
@@ -279,7 +280,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       font-family: 'Outfit', sans-serif;
       margin-bottom: 12px;
       letter-spacing: -1px;
-      transform: translateY(-20px);
+      transform: translateY(-40px);
       line-height: 1.1;
     }
     .hero-subtitle {

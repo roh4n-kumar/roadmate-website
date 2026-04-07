@@ -71,7 +71,63 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
           body::-webkit-scrollbar { display: none !important; }
           body { -ms-overflow-style: none !important; scrollbar-width: none !important; margin: 0; padding: 0; }
           .v-card:hover .v-img { transform: scale(1.1); }
-          .v-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+          
+          /* FLEET OUTER CARD */
+          .fleet-outer-card {
+            max-width: 1250px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 24px;
+            padding: 40px 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            border: 1.2px solid #f2f2f2;
+            overflow: hidden;
+          }
+
+          .fleet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 50px;
+          }
+
+          .fleet-scroll-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 24px;
+            padding: 10px 50px 30px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-snap-type: x mandatory;
+            scroll-padding-left: 50px;
+            -webkit-overflow-scrolling: touch;
+          }
+          .fleet-scroll-grid::-webkit-scrollbar { display: none; }
+          .fleet-scroll-grid > * { flex-shrink: 0; width: 340px; scroll-snap-align: start; }
+
+          .fleet-title-pill {
+            color: ${RED};
+            background: rgba(190, 13, 13, 0.08);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1.2px;
+            display: inline-block;
+            margin-bottom: 12px;
+            font-family: ${H};
+          }
+          .fleet-main-heading {
+            font-size: clamp(28px, 3.5vw, 36px);
+            font-weight: 900;
+            font-family: ${H};
+            color: #111;
+            margin: 0;
+            line-height: 1.2;
+          }
         `}
       </style>
 
@@ -89,72 +145,98 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       {/* OFFERS SECTION - Reordered below Hero */}
       <Offers />
 
-      {/* Featured Fleet */}
-      <section style={{ padding: "100px 24px", maxWidth: "1250px", margin: "0 auto" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "50px" }}>
-          <div>
-            <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Our Pride</span>
-            <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, marginTop: "10px" }}>Featured Fleet</h2>
+      {/* Featured Fleet (Offers Style) */}
+      <section style={{ padding: "60px 24px 100px", maxWidth: "1350px", margin: "0 auto", position: 'relative', zIndex: 10 }}>
+        <div className="fleet-outer-card">
+          <div className="fleet-header">
+            <div>
+              <span className="fleet-title-pill">OUR PRIDE</span>
+              <h2 className="fleet-main-heading">Featured Fleet</h2>
+            </div>
+            
+            <button 
+              onClick={() => navigate("/vehicles?type=all")} 
+              style={{ 
+                padding: '10px 20px', 
+                fontSize: '12px', 
+                background: 'rgba(190, 13, 13, 0.05)', 
+                color: RED, 
+                border: '1.5px solid rgba(190, 13, 13, 0.1)', 
+                borderRadius: '12px',
+                fontWeight: 800,
+                cursor: 'pointer',
+                fontFamily: H,
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(190, 13, 13, 0.1)";
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow = "0 10px 20px rgba(190,13,13,0.1)";
+                e.currentTarget.style.borderColor = "rgba(190, 13, 13, 0.2)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(190, 13, 13, 0.05)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+                e.currentTarget.style.borderColor = "rgba(190, 13, 13, 0.1)";
+              }}
+            >
+              View All Vehicles →
+            </button>
           </div>
-          <button onClick={() => navigate("/vehicles?type=all")} style={{ padding: "12px 24px", borderRadius: "12px", background: "rgba(15,23,42,0.05)", border: "none", fontWeight: 700, cursor: "pointer", transition: "all 0.2s" }}>
-            View All Vehicles →
-          </button>
-        </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "30px" }}>
-          {loading ? (
-            <div style={{ textAlign: "center", gridColumn: "1 / -1", padding: "40px" }}>
-              <div style={{ width: "30px", height: "30px", border: "3px solid #f0f0f0", borderTop: `3px solid ${RED}`, borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto 12px" }} />
-              <p style={{ color: "#64748b", fontWeight: 600 }}>Syncing with fleet...</p>
-            </div>
-          ) : featuredVehicles.length === 0 ? (
-            <div style={{ textAlign: "center", gridColumn: "1 / -1", padding: "40px", border: "1.5px dashed #f0f0f0", borderRadius: "24px" }}>
-              <p style={{ color: "#64748b", fontWeight: 600 }}>No vehicles currently available for booking.</p>
-            </div>
-          ) : (
-            featuredVehicles.map((v, i) => (
-              <motion.div
-                key={v.id}
-                className="v-card"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                onClick={() => navigate(`/vehicles?type=${v.type}`)}
-                style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", border: "none", transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "pointer", boxShadow: "0 0 0 1.5px rgba(15, 23, 42, 0.1), 0 10px 30px rgba(0,0,0,0.08)" }}
-              >
-                <div style={{ height: "220px", overflow: "hidden", position: "relative" }}>
-                  <img src={v.image} alt={v.name} className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
-                  <div style={{ position: "absolute", top: "15px", left: "15px", background: "#fff", padding: "6px 14px", borderRadius: "10px", fontWeight: 800, fontSize: "12px", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" }}>
-                    {v.type}
-                  </div>
-                </div>
-                <div style={{ padding: "24px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
-                    <h3 style={{ fontSize: "18px", fontWeight: 800, margin: 0, fontFamily: H }}>{v.name}</h3>
-                    <div style={{ fontSize: "14px", fontWeight: 800, color: "#fbbf24" }}>★ {v.rating}</div>
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <div>
-                      <span style={{ fontSize: "22px", fontWeight: 900, color: "#0f172a" }}>₹{v.price}</span>
-                      <span style={{ fontSize: "13px", color: "#64748b", fontWeight: 600 }}>/hr</span>
+          <div className="fleet-scroll-grid">
+            {loading ? (
+              <div style={{ textAlign: "center", width: "100%", padding: "40px" }}>
+                <div style={{ width: "30px", height: "30px", border: "3px solid #f0f0f0", borderTop: `3px solid ${RED}`, borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto 12px" }} />
+                <p style={{ color: "#64748b", fontWeight: 600 }}>Syncing with fleet...</p>
+              </div>
+            ) : featuredVehicles.length === 0 ? (
+              <div style={{ textAlign: "center", width: "100%", padding: "40px", border: "1.5px dashed #f0f0f0", borderRadius: "24px" }}>
+                <p style={{ color: "#64748b", fontWeight: 600 }}>No vehicles currently available.</p>
+              </div>
+            ) : (
+              featuredVehicles.map((v, i) => (
+                <motion.div
+                  key={v.id}
+                  className="v-card vcard-premium"
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  onClick={() => navigate(`/vehicles?type=${v.type}`)}
+                  style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", border: "1px solid #f1f5f9", transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "pointer", boxShadow: "0 6px 12px -2px rgba(0,0,0,0.08), 0 3px 6px -2px rgba(0,0,0,0.05)" }}
+                >
+                  <div style={{ height: "200px", overflow: "hidden", position: "relative" }}>
+                    <img src={v.image} alt={v.name} className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
+                    <div style={{ position: "absolute", top: "15px", left: "15px", background: "#334155", color: "#fff", padding: "5px 12px", borderRadius: "8px", fontWeight: 800, fontSize: "10px", textTransform: "uppercase" }}>
+                      {v.type}
                     </div>
-                    <button style={{ padding: "10px 18px", borderRadius: "10px", background: RED, color: "#fff", border: "none", fontWeight: 700, fontSize: "14px", transition: "all .3s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "pointer", boxShadow: "0 8px 20px rgba(190,13,13,0.3)" }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = "translateY(-2px)";
-                        e.currentTarget.style.boxShadow = "0 10px 20px rgba(190,13,13,0.3)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = "translateY(0)";
-                        e.currentTarget.style.boxShadow = "0 8px 20px rgba(190,13,13,0.3)";
-                      }}>
-                      Book Now
-                    </button>
                   </div>
-                </div>
-              </motion.div>
-            ))
-          )}
+                  <div style={{ padding: "24px" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+                      <h3 style={{ fontSize: "18px", fontWeight: 800, margin: 0, fontFamily: H }}>{v.name}</h3>
+                      <div style={{ fontSize: "14px", fontWeight: 800, color: "#fbbf24" }}>★ {v.rating}</div>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div>
+                        <span style={{ fontSize: "22px", fontWeight: 900, color: "#0f172a" }}>₹{v.price}</span>
+                        <span style={{ fontSize: "13px", color: "#64748b", fontWeight: 600 }}>/hr</span>
+                      </div>
+                      <button className="rm-btn-premium" style={{ padding: '8px 16px', fontSize: '11px' }}>
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))
+            )}
+          </div>
         </div>
       </section>
 

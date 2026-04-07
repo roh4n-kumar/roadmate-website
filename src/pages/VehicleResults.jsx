@@ -226,13 +226,11 @@ export default function VehicleResults() {
         .vcard { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
         .vcard:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important; }
         .vcard:hover .v-img { transform: scale(1.1); }
-        .book-btn { transition: all .3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .book-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(190,13,13,0.3); }
 
         /* ── Desktop layout ── */
-        .vr-page       { padding-top: 70px; padding-bottom: 60px; }
+        .vr-page       { padding-top: 64px; padding-bottom: 60px; }
         .vr-subheader  { 
-          position: sticky; top: 70px; z-index: 100; 
+          position: sticky; top: 64px; z-index: 100; 
           background: rgba(255, 255, 255, 0.8); 
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
@@ -389,8 +387,7 @@ export default function VehicleResults() {
                           )}
                           {totalMins > 0 && <p style={{ fontSize: "10px", color: "#94a3b8", fontWeight: "700", margin: "2px 0 0" }}>₹{v.pricePerHour}/hr + GST</p>}
                         </div>
-                        <button className="book-btn" onClick={() => setSelected(v)}
-                          style={{ padding: "12px 24px", borderRadius: "14px", background: RED, border: "none", color: "#fff", fontSize: "14px", fontWeight: "900", cursor: "pointer", boxShadow: "0 8px 20px rgba(190,13,13,0.3)", whiteSpace: "nowrap", fontFamily: F }}>
+                        <button className="rm-btn-premium" onClick={() => setSelected(v)}>
                           Book Now
                         </button>
                       </div>

@@ -16,6 +16,7 @@ import Payment from "./pages/Payment";
 import SafetyInformation from "./pages/SafetyInformation";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import OffersPage from "./pages/OffersPage";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -145,6 +146,7 @@ function App() {
         <Route path="/safety-information"  element={<SafetyInformation />} />
         <Route path="/terms-of-service"    element={<TermsOfService />} />
         <Route path="/privacy-policy"      element={<PrivacyPolicy />} />
+        <Route path="/offers"              element={<OffersPage />} />
       </Routes>
     </>
   );

@@ -231,3 +231,36 @@ img {
   -ms-overflow-style: none !important;
   scrollbar-width: none !important;
 }
+
+/* ==========================================================================
+   🔥 ROADMATE SIGNATURE PREMIUM BUTTON ANIMATION (Global)
+   ========================================================================== */
+.rm-btn-premium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #be0d0d !important;
+  color: #ffffff !important;
+  border: none;
+  border-radius: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 8px 20px rgba(190, 13, 13, 0.2);
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+.rm-btn-premium:hover {
+  background: #a80a0a !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 25px rgba(190, 13, 13, 0.3) !important;
+  color: #ffffff !important;
+}
+
+.rm-btn-premium:active {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 15px rgba(190, 13, 13, 0.25) !important;
+}

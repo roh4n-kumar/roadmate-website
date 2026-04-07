@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { auth, db } from "../firebase";
 import ProfileCard from "./ProfileCard";
@@ -25,8 +25,23 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [authWarning, setAuthWarning] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -104,6 +119,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
     }
   };
 
+  const isNavbarSolid = !isHome || isScrolled;
+
   return (
     <>
       <style>
@@ -121,24 +138,24 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             width: 100%; padding: 14px; background: #fff;
             border: 1.5px solid rgba(15, 23, 42, 0.1); border-radius: 14px;
             display: flex; align-items: center; justify-content: center;
-            gap: 12px; font-weight: 800; font-size: 16px; color: #0f172a;
+            gap: 12px; font-weight: 800; font-size: 16px; color: #000;
             cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 10px;
             font-family: ${F};
           }
           .google-auth-btn:hover { background: #f8fafc; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
           .logout-btn {
-            background: #0f172a; color: white; border: none; padding: 16px;
+            background: #000; color: white; border: none; padding: 16px;
             border-radius: 16px; font-weight: 800; cursor: pointer; font-size: 16px;
             width: 100%; display: flex; align-items: center; justify-content: center;
             gap: 10px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             font-family: ${F};
           }
           .logout-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(190,13,13,0.3); }
-          .desktop-link { transition: all 0.2s ease; font-family: ${F}; text-decoration: none; font-size: 15px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 8px; padding: 10px 0; }
-          .desktop-link:hover { color: ${RED} !important; transform: translateY(-1px); }
-          .desktop-link.active { color: ${RED} !important; border-bottom: 3px solid ${RED}; }
+          .desktop-link { transition: color 0.2s ease; font-family: ${F}; text-decoration: none; font-size: 15px; font-weight: 700; color: #000; display: inline-block; padding: 10px 0; border: none; outline: none; }
+          .desktop-link:hover { color: ${RED} !important; }
+          .desktop-link.active { color: ${RED} !important; }
           .account-btn {
-            background: transparent; color: #0f172a; border: none;
+            background: transparent; color: #000; border: none;
             padding: 10px 0; border-radius: 0;
             font-weight: 700; font-size: 15px; cursor: pointer;
             display: flex; align-items: center; gap: 8px;
@@ -160,49 +177,75 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           left: 0,
           width: "100%",
           zIndex: 1000,
-          transition: "all 0.3s ease",
-          height: "70px",
+          transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+          height: "64px",
           display: "flex",
           alignItems: "center",
           padding: "0 24px",
-          backgroundColor: "rgba(255, 255, 255, 1)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          borderBottom: "1.5px solid rgba(15, 23, 42, 0.05)",
-          boxShadow: "0 2px 10px rgba(0, 0, 0, 0.15)",
+          backgroundColor: isNavbarSolid ? "rgba(255, 255, 255, 1)" : "transparent",
+          backdropFilter: isNavbarSolid ? "blur(20px)" : "none",
+          WebkitBackdropFilter: isNavbarSolid ? "blur(20px)" : "none",
+          borderBottom: isNavbarSolid ? "1.5px solid rgba(15, 23, 42, 0.05)" : "none",
+          boxShadow: isNavbarSolid ? "0 2px 10px rgba(0, 0, 0, 0.15)" : "none",
         }}
       >
-        <div style={{ maxWidth: "1250px", margin: "0 auto", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          {/* Logo */}
+        <div style={{ maxWidth: "1250px", margin: "0 auto", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", position: "relative" }}>
+          {/* Logo (Left) */}
           <Link
             to="/"
             style={{
               fontSize: "24px",
               fontWeight: 900,
               textDecoration: "none",
-              color: "#0f172a",
+              color: "#000",
               letterSpacing: "-1px",
-              fontFamily: H
+              fontFamily: H,
+              zIndex: 10
             }}
           >
             Road<span style={{ color: RED }}>Mate</span>
           </Link>
 
-          {/* Desktop Nav */}
-          <div style={{ display: "flex", alignItems: "center", gap: "30px" }} className="desktop-nav">
+          {/* Centered Navigation (Bookings - Help - About) */}
+          <div className="desktop-nav" style={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 5,
+            display: "flex",
+            alignItems: "center",
+            gap: "40px"
+          }}>
             <NavLink
               to="/my-bookings"
               className={({ isActive }) => `desktop-link${isActive ? " active" : ""}`}
             >
-              <BookingIcon /> <span style={{ marginTop: "1px" }}>My Bookings</span>
+              My Bookings
             </NavLink>
 
-            <button onClick={() => setIsDrawerOpen(true)} className="account-btn">
+            <NavLink
+              to="/help-center"
+              className={({ isActive }) => `desktop-link${isActive ? " active" : ""}`}
+            >
+              Help
+            </NavLink>
+
+            <NavLink
+              to="/about"
+              className={({ isActive }) => `desktop-link${isActive ? " active" : ""}`}
+            >
+              About
+            </NavLink>
+          </div>
+
+          {/* Account/Mobile Trig (Right) */}
+          <div style={{ display: "flex", alignItems: "center", gap: "20px", zIndex: 10 }}>
+            <button onClick={() => setIsDrawerOpen(true)} className="account-btn desktop-nav">
               {isLoggedIn ? (
                 <>
                   <div style={{
                     width: "24px", height: "24px", borderRadius: "50%",
-                    background: `linear-gradient(135deg, ${RED}, #ff4040)`,
+                    background: RED,
                     display: "flex", alignItems: "center", justifyContent: "center",
                     fontSize: "11px", fontWeight: "900", color: "white",
                     fontFamily: H, flexShrink: 0,
@@ -210,10 +253,20 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                   }}>
                     {(user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()}
                   </div>
-                  <span style={{ marginTop: "1px" }}>{user?.displayName?.split(" ")[0] || "Account"}</span>
+                  <span style={{
+                    fontSize: "15px",
+                    fontWeight: 750,
+                    fontFamily: H,
+                    color: "#000"
+                  }}>
+                    {user?.displayName?.split(" ")[0]}
+                  </span>
                 </>
               ) : (
-                <> <AccountIcon size={18} /> <span style={{ marginTop: "1px" }}>Account</span> </>
+                <>
+                  <AccountIcon size={18} />
+                  <span style={{ fontSize: "15px", fontWeight: 750 }}>Account</span>
+                </>
               )}
             </button>
           </div>

@@ -7,171 +7,12 @@ const NAVY = "#0f172a";
 const H = "'Outfit', sans-serif";
 const F = "'Inter', sans-serif";
 
-const offersData = [
-  {
-    id: 1,
-    category: "CAR",
-    title: "Grab FLAT 50% OFF*",
-    desc: "on your first car booking with RoadMate.",
-    code: "WELCOME50",
-    image: "/assets/offers/car_luxury.png"
-  },
-  {
-    id: 2,
-    category: "BIKE",
-    title: "Grab FLAT ₹200 Cashback*",
-    desc: "on your very first bike ride in Bhubaneswar.",
-    code: "FIRST200",
-    image: "/assets/offers/bike_adventure.png"
-  },
-  {
-    id: 3,
-    category: "CAR",
-    title: "Grab UPTO ₹500 OFF*",
-    desc: "on your first premium vehicle rental today.",
-    code: "ROADSTART",
-    image: "/assets/offers/suv_forest.png"
-  },
-  {
-    id: 4,
-    category: "BIKE",
-    title: "Grab FREE HELMET*",
-    desc: "on your first bike rental for extra safety.",
-    code: "SAFETY1ST",
-    image: "/assets/offers/urban_lifestyle.png"
-  },
-  {
-    id: 101,
-    category: "CAR",
-    title: "Grab FLAT 10% OFF*",
-    desc: "using HDFC Bank Credit/Debit cards on weekdays.",
-    code: "HDFCRM10",
-    image: "/assets/offers/car_luxury.png"
-  },
-  {
-    id: 102,
-    category: "CAR",
-    title: "Grab FLAT 15% OFF*",
-    desc: "exclusive offer for ICICI Bank users on long trips.",
-    code: "ICICIRM15",
-    image: "/assets/offers/suv_forest.png"
-  },
-  {
-    id: 103,
-    category: "BIKE",
-    title: "Grab ₹300 CASHBACK*",
-    desc: "using SBI Yono for all city bike rentals.",
-    code: "SBIYONO300",
-    image: "/assets/offers/bike_adventure.png"
-  },
-  {
-    id: 104,
-    category: "CAR",
-    title: "Grab 20% DISCOUNT*",
-    desc: "on your first Axis Bank card transaction.",
-    code: "AXISRM20",
-    image: "/assets/offers/urban_lifestyle.png"
-  },
-  {
-    id: 201,
-    category: "BIKE",
-    title: "Grab FLAT 12% OFF*",
-    desc: "Rent premium bikes like Royal Enfield at low rates.",
-    code: "BIKERIDE12",
-    image: "/assets/offers/bike_adventure.png"
-  },
-  {
-    id: 202,
-    category: "BIKE",
-    title: "Grab WEEKEND 10% OFF*",
-    desc: "on all scooty and bike rentals for city rides.",
-    code: "WEEKEND10",
-    image: "/assets/offers/urban_lifestyle.png"
-  },
-  {
-    id: 203,
-    category: "BIKE",
-    title: "Grab RIDE & SAVE*",
-    desc: "Rent for 3+ days and get a special bike discount.",
-    code: "RIDE3DAYS",
-    image: "/assets/offers/car_luxury.png"
-  },
-  {
-    id: 204,
-    category: "BIKE",
-    title: "Grab NIGHT RIDER*",
-    desc: "Special rates for overnight bike rentals this week.",
-    code: "NIGHT15",
-    image: "/assets/offers/suv_forest.png"
-  },
-  {
-    id: 301,
-    category: "CAR",
-    title: "Grab FLAT 15% OFF*",
-    desc: "on all premium sedan rentals for city travel.",
-    code: "SEDAN15",
-    image: "/assets/offers/car_luxury.png"
-  },
-  {
-    id: 302,
-    category: "CAR",
-    title: "Grab SUV SPECIAL*",
-    desc: "Get ₹500 off on any SUV rental for 24+ hours.",
-    code: "SUVPOWER",
-    image: "/assets/offers/suv_forest.png"
-  },
-  {
-    id: 303,
-    category: "CAR",
-    title: "Grab CLEAN CARS*",
-    desc: "Enjoy sanitized and fuel-efficient urban cars.",
-    code: "HYGIENE10",
-    image: "/assets/offers/urban_lifestyle.png"
-  },
-  {
-    id: 304,
-    category: "CAR",
-    title: "Grab LUXURY RENTALS*",
-    desc: "Experience high-end cars at unbeatable prices.",
-    code: "LUXURY20",
-    image: "/assets/offers/bike_adventure.png"
-  },
-  {
-    id: 401,
-    category: "CAR",
-    title: "Grab FLAT 20% OFF*",
-    desc: "on inter-state rentals above 500 kilometres.",
-    code: "LONGTRIP20",
-    image: "/assets/offers/suv_forest.png"
-  },
-  {
-    id: 402,
-    category: "CAR",
-    title: "Grab FREE MILEAGE*",
-    desc: "Unlimited kms on 3+ day rentals this month.",
-    code: "UNLIMITED",
-    image: "/assets/offers/car_luxury.png"
-  },
-  {
-    id: 403,
-    category: "BIKE",
-    title: "Grab HILL STATION*",
-    desc: "Special adventure package for bike expeditions.",
-    code: "HILLS25",
-    image: "/assets/offers/bike_adventure.png"
-  },
-  {
-    id: 404,
-    category: "CAR",
-    title: "Grab FAMILY SAVER*",
-    desc: "Rent a 7-seater SUV and save on your next trip.",
-    code: "FAMILYSUV",
-    image: "/assets/offers/urban_lifestyle.png"
-  }
-];
+import { offersData } from "../data/offers";
 
 const Offers = () => {
   const navigate = useNavigate();
+  // We only show the first 6 offers on the homepage
+  const featuredOffers = offersData.slice(0, 6);
 
   return (
     <section 
@@ -188,10 +29,12 @@ const Offers = () => {
       <style>
         {`
           .outer-card {
+            max-width: 1250px;
+            margin: 0 auto;
             background: #fff;
-            border-radius: 12px;
-            padding: 16px 0 50px;
-            box-shadow: 0 40px 120px rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
+            border-radius: 24px;
+            padding: 40px 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
             border: 1.2px solid #f2f2f2;
             overflow: hidden;
           }
@@ -216,7 +59,7 @@ const Offers = () => {
             font-size: 11px;
             letter-spacing: 1.2px;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 18px;
             font-family: ${H};
           }
           .main-heading {
@@ -235,22 +78,25 @@ const Offers = () => {
             gap: 24px;
           }
           .view-all-btn {
-            padding: 12px 24px;
-            border-radius: 12px;
-            background: rgba(15,23,42,0.05);
-            border: none;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 14px;
-            color: #0f172a;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
+             padding: 10px 20px;
+             background: rgba(190, 13, 13, 0.05);
+             border: 1.5px solid rgba(190, 13, 13, 0.1);
+             border-radius: 12px;
+             font-size: 13px;
+             font-weight: 800;
+             color: ${RED};
+             cursor: pointer;
+             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+             display: flex;
+             align-items: center;
+             gap: 8px;
+             font-family: ${H};
           }
-          .view-all-btn:hover {
-            background: rgba(15,23,42,0.08);
+          .view-all-btn:hover { 
+            background: rgba(190, 13, 13, 0.08); 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 20px rgba(190,13,13,0.1); 
+            border-color: rgba(190, 13, 13, 0.2); 
           }
 
 
@@ -289,6 +135,14 @@ const Offers = () => {
             border-color: #e5e5e5; 
           }
 
+          .offers-section {
+            padding: 90px 0 80px;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1.5px solid #f8fafc;
+          }
+
           .o-img-box {
             width: 130px;
             height: 130px;
@@ -321,7 +175,7 @@ const Offers = () => {
             font-weight: 900;
             font-family: ${H};
             color: #111;
-            margin: 15px 0 6px;
+            margin: 20px 0 2px;
             line-height: 1.2;
           }
           .o-desc {
@@ -387,7 +241,7 @@ const Offers = () => {
             transition={{ duration: 0.3 }}
             className="offer-grid"
           >
-            {offersData.map(off => (
+            {featuredOffers.map(off => (
               <div key={off.id} className="o-card">
                 <div className="o-tc">T&C's APPLY</div>
                 
@@ -401,7 +255,7 @@ const Offers = () => {
                    
                    <div className="o-footer">
                       <div className="o-code">Code: <span>{off.code}</span></div>
-                      <div className="o-action" onClick={() => navigate("/vehicles")}>BOOK NOW</div>
+                      <div className="o-action rm-btn-premium" style={{ padding: '8px 16px', fontSize: '11px' }} onClick={() => navigate("/vehicles")}>BOOK NOW</div>
                    </div>
                 </div>
               </div>
