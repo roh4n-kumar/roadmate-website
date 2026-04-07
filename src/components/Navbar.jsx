@@ -9,7 +9,6 @@ import {
   GoogleAuthProvider,
   signInWithPopup
 } from "firebase/auth";
-import { setDoc, doc, getDoc } from "firebase/firestore";
 import logo from "../assets/roadMate Red Logo 2.png";
 
 const RED = "#be0d0d";
