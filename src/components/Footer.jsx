@@ -89,7 +89,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div style={{ gridColumn: "span 2" }}>
             <Link to="/" style={{ display: "block", marginBottom: "20px" }}>
-              <img src={logo} alt="RoadMate" style={{ height: "36px", width: "auto", objectFit: "contain" }} />
+              <img src={logo} alt="RoadMate" style={{ height: "54px", width: "auto", objectFit: "contain" }} />
             </Link>
             <p style={{ color: "#4b5563", lineHeight: "1.8", fontSize: "15px", maxWidth: "320px", marginBottom: "30px" }}>
               Bhubaneswar's leading vehicle rental platform. Experience the freedom of the road with our quality, 100% verified fleet.
