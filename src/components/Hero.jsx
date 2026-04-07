@@ -257,19 +257,23 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   ];
 
   const css = `
-    .hero-section { font-family: 'Inter', sans-serif; background: #fff; position: relative; padding-top: 64px; }
+    .hero-section { 
+      font-family: 'Inter', sans-serif; 
+      background: #fff; 
+      position: relative; 
+      /* STABILITY: Force hardware acceleration to prevent jumps */
+      transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
     
     .search-ribbon-v2 {
       background: linear-gradient(rgba(1, 8, 26, 0.25), rgba(1, 8, 26, 0.6)), url('/XUV.jpeg');
       background-size: cover;
       background-position: center center;
-      background-attachment: scroll;
-      padding: 80px 20px 70px;
+      background-attachment: scroll; /* FIXED: Scroll is stable, 'fixed' jumps */
+      padding: 100px 20px 70px;
       position: relative;
-      min-height: 520px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
 
     .hero-header-block {
@@ -282,8 +286,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       font-weight: 900;
       color: #fff;
       font-family: 'Outfit', sans-serif;
-      margin: -35px 0 15px; 
+      margin-bottom: 12px;
       letter-spacing: -1px;
+      transform: translateY(-40px);
       line-height: 1.1;
     }
     .hero-subtitle {
@@ -369,7 +374,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .search-main-card {
       width: 100%;
-      margin: -10px auto 0;
+      margin: -20px auto 0; /* Restored original margin */
       background: #fff;
       border: 1.5px solid #cbd5e1;
       border-radius: 16px;
