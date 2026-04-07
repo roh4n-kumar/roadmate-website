@@ -158,13 +158,24 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             font-size: 15px; 
             font-weight: 700; 
             color: ${isNavbarSolid ? "#000" : "#fff"}; 
-            display: inline-block; 
-            padding: 10px 0; 
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+            padding: 6px 18px; 
+            border-radius: 50px;
             border: none; 
             outline: none; 
+            background: transparent;
+            box-sizing: border-box;
+            white-space: nowrap;
           }
-          .desktop-link:hover { color: ${RED} !important; }
-          .desktop-link.active { color: ${RED} !important; }
+          .desktop-link:hover { 
+            color: ${RED} !important; 
+          }
+          .desktop-link.active { 
+            color: ${RED} !important; 
+            background: rgba(190, 13, 13, 0.1); 
+          }
           .account-btn {
             background: transparent; 
             color: ${isNavbarSolid ? "#000" : "#fff"}; 
@@ -207,7 +218,14 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           boxShadow: isNavbarSolid ? "0 2px 10px rgba(0, 0, 0, 0.15)" : "none",
         }}
       >
-        <div style={{ maxWidth: "1250px", margin: "0 auto", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", position: "relative" }}>
+        <div style={{ 
+          maxWidth: "1250px", 
+          margin: "0 auto", 
+          width: "100%", 
+          display: "grid", 
+          gridTemplateColumns: "1fr auto 1fr", 
+          alignItems: "center"
+        }}>
           {/* Logo (Left) */}
           <Link to="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
             <span style={{ 
@@ -225,13 +243,10 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
 
           {/* Centered Navigation (Bookings - Help - About) */}
           <div className="desktop-nav" style={{
-            position: "absolute",
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 5,
             display: "flex",
             alignItems: "center",
-            gap: "40px"
+            gap: "5px",
+            justifyContent: "center"
           }}>
             <NavLink
               to="/my-bookings"
@@ -256,7 +271,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           </div>
 
           {/* Account/Mobile Trig (Right) */}
-          <div style={{ display: "flex", alignItems: "center", gap: "20px", zIndex: 10 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "20px", zIndex: 10, justifyContent: "flex-end" }}>
             <button onClick={() => setIsDrawerOpen(true)} className="account-btn desktop-nav">
               {isLoggedIn ? (
                 <>
