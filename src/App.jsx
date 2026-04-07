@@ -19,7 +19,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import OffersPage from "./pages/OffersPage";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import logo from "./assets/roadMate Red Logo.png";
+import logo from "./assets/roadMate Red Logo 2.png";
 
 const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/roadMate Red Logo.png";
+import logo from "../assets/roadMate Red Logo 2.png";
 
 const RED = "#be0d0d";
 const H = "'Outfit', sans-serif";
