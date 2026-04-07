@@ -9,7 +9,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup
 } from "firebase/auth";
-import logo from "../assets/roadMate Red Logo 2.png";
+
 
 const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
@@ -151,15 +151,33 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             font-family: ${F};
           }
           .logout-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(190,13,13,0.3); }
-          .desktop-link { transition: color 0.2s ease; font-family: ${F}; text-decoration: none; font-size: 15px; font-weight: 700; color: #000; display: inline-block; padding: 10px 0; border: none; outline: none; }
+          .desktop-link { 
+            transition: all 0.3s ease; 
+            font-family: ${F}; 
+            text-decoration: none; 
+            font-size: 15px; 
+            font-weight: 700; 
+            color: ${isNavbarSolid ? "#000" : "#fff"}; 
+            display: inline-block; 
+            padding: 10px 0; 
+            border: none; 
+            outline: none; 
+          }
           .desktop-link:hover { color: ${RED} !important; }
           .desktop-link.active { color: ${RED} !important; }
           .account-btn {
-            background: transparent; color: #000; border: none;
-            padding: 10px 0; border-radius: 0;
-            font-weight: 700; font-size: 15px; cursor: pointer;
-            display: flex; align-items: center; gap: 8px;
-            transition: all 0.2s ease;
+            background: transparent; 
+            color: ${isNavbarSolid ? "#000" : "#fff"}; 
+            border: none;
+            padding: 10px 0; 
+            border-radius: 0;
+            font-weight: 700; 
+            font-size: 15px; 
+            cursor: pointer;
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
+            transition: all 0.3s ease;
             font-family: ${F};
           }
           .account-btn:hover { color: ${RED} !important; transform: translateY(-1px); }
@@ -191,16 +209,19 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
       >
         <div style={{ maxWidth: "1250px", margin: "0 auto", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", position: "relative" }}>
           {/* Logo (Left) */}
-            <img 
-              src={logo} 
-              alt="RoadMate" 
-              style={{ 
-                height: "38px", 
-                width: "auto", 
-                display: "block",
-                objectFit: "contain"
-              }} 
-            />
+          <Link to="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+            <span style={{ 
+              fontFamily: H, 
+              fontSize: "24px", 
+              fontWeight: 900, 
+              color: isNavbarSolid ? RED : "#fff",
+              transition: "all 0.3s ease",
+              letterSpacing: "-0.5px",
+              lineHeight: 1
+            }}>
+              roadMate
+            </span>
+          </Link>
 
           {/* Centered Navigation (Bookings - Help - About) */}
           <div className="desktop-nav" style={{
@@ -253,7 +274,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     fontSize: "15px",
                     fontWeight: 750,
                     fontFamily: H,
-                    color: "#000"
+                    color: isNavbarSolid ? "#000" : "#fff",
+                    transition: "color 0.3s ease"
                   }}>
                     {user?.displayName?.split(" ")[0]}
                   </span>
@@ -271,7 +293,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           <div
             className="mobile-trigger"
             onClick={() => setIsDrawerOpen(true)}
-            style={{ color: "#0f172a", cursor: "pointer", display: "none" }}
+            style={{ color: isNavbarSolid ? "#0f172a" : "#fff", cursor: "pointer", display: "none", transition: "color 0.3s ease" }}
           >
              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
           </div>
