@@ -53,7 +53,7 @@ const MobileShell = ({ setIsDrawerOpen }) => {
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1.5px solid rgba(15, 23, 42, 0.05);
             padding: 0 20px;
-            height: 60px;
+            height: 72px;
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 998;
@@ -87,7 +87,7 @@ const MobileShell = ({ setIsDrawerOpen }) => {
       {/* TOP BAR */}
       <div className="rm-mobile-top">
         <a href="/" style={{ textDecoration:"none", zIndex: 10 }}>
-          <img src={logo} alt="RoadMate" style={{ height: "42px", width: "auto", objectFit: "contain" }} />
+          <img src={logo} alt="RoadMate" style={{ height: "52px", width: "auto", objectFit: "contain" }} />
         </a>
         <div style={{
           width:36, height:36, borderRadius:"12px",
