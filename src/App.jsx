@@ -19,6 +19,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import OffersPage from "./pages/OffersPage";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import logo from "./assets/roadMate Red Logo.png";
 
 const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
@@ -85,8 +86,8 @@ const MobileShell = ({ setIsDrawerOpen }) => {
 
       {/* TOP BAR */}
       <div className="rm-mobile-top">
-        <a href="/" style={{ color:"#0f172a", fontSize:"22px", fontWeight:900, textDecoration:"none", letterSpacing:"-0.8px", fontFamily:H }}>
-          Road<span style={{ color: RED }}>Mate</span>
+        <a href="/" style={{ textDecoration:"none", zIndex: 10 }}>
+          <img src={logo} alt="RoadMate" style={{ height: "28px", width: "auto", objectFit: "contain" }} />
         </a>
         <div style={{
           width:36, height:36, borderRadius:"12px",

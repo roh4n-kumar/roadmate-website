@@ -10,6 +10,7 @@ import {
   signInWithPopup
 } from "firebase/auth";
 import { setDoc, doc, getDoc } from "firebase/firestore";
+import logo from "../assets/roadMate Red Logo.png";
 
 const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
@@ -191,20 +192,16 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
       >
         <div style={{ maxWidth: "1250px", margin: "0 auto", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", position: "relative" }}>
           {/* Logo (Left) */}
-          <Link
-            to="/"
-            style={{
-              fontSize: "24px",
-              fontWeight: 900,
-              textDecoration: "none",
-              color: "#000",
-              letterSpacing: "-1px",
-              fontFamily: H,
-              zIndex: 10
-            }}
-          >
-            Road<span style={{ color: RED }}>Mate</span>
-          </Link>
+            <img 
+              src={logo} 
+              alt="RoadMate" 
+              style={{ 
+                height: "32px", 
+                width: "auto", 
+                display: "block",
+                objectFit: "contain"
+              }} 
+            />
 
           {/* Centered Navigation (Bookings - Help - About) */}
           <div className="desktop-nav" style={{
