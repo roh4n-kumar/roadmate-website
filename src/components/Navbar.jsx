@@ -179,7 +179,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           width: "100%",
           zIndex: 1000,
           transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-          height: "72px",
+          height: "80px",
           display: "flex",
           alignItems: "center",
           padding: "0 24px",
@@ -196,7 +196,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               src={logo} 
               alt="RoadMate" 
               style={{ 
-                height: "56px", 
+                height: "76px", 
                 width: "auto", 
                 display: "block",
                 objectFit: "contain"
