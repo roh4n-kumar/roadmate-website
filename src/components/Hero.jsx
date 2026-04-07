@@ -270,7 +270,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     .search-ribbon-v2 {
       background: linear-gradient(rgba(1, 8, 26, 0.25), rgba(1, 8, 26, 0.6)), url('/XUV.jpeg');
       background-size: cover;
-      background-position: center center;
+      background-position: center top;
       background-attachment: scroll; /* FIXED: Scroll is stable, 'fixed' jumps */
       padding: 100px 20px 70px;
       position: relative;
