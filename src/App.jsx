@@ -87,7 +87,7 @@ const MobileShell = ({ setIsDrawerOpen }) => {
       {/* TOP BAR */}
       <div className="rm-mobile-top">
         <a href="/" style={{ textDecoration:"none", zIndex: 10 }}>
-          <img src={logo} alt="RoadMate" style={{ height: "48px", width: "auto", objectFit: "contain" }} />
+          <img src={logo} alt="RoadMate" style={{ height: "38px", width: "auto", objectFit: "contain" }} />
         </a>
         <div style={{
           width:36, height:36, borderRadius:"12px",
