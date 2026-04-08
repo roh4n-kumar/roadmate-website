@@ -138,7 +138,7 @@ const BookingModal = ({ vehicle, totalMins, date, pickup, drop, withHelmet, with
             </div>
           </div>
 
-          <button onClick={() => onConfirm(vehicle, grandTotal)} style={{ width: "100%", padding: "16px", borderRadius: "16px", background: RED, border: "none", color: "#fff", fontSize: "16px", fontWeight: "900", cursor: "pointer", fontFamily: F, transition: "all .3s ease" }}>
+          <button onClick={() => onConfirm(vehicle, { total: grandTotal, baseTotal, gst, helmetCharge, driverCharge })} style={{ width: "100%", padding: "16px", borderRadius: "16px", background: RED, border: "none", color: "#fff", fontSize: "16px", fontWeight: "900", cursor: "pointer", fontFamily: F, transition: "all .3s ease" }}>
             Confirm Booking
           </button>
           <p style={{ textAlign: "center", fontSize: "11px", color: "rgba(15,23,42,0.4)", marginTop: "16px", marginBottom: 0, fontWeight: 700, letterSpacing: "0.3px" }}>Free cancellation up to 1 hour before pickup</p>
@@ -202,12 +202,12 @@ export default function VehicleResults() {
       return b.reviews - a.reviews;
     });
 
-  const handleConfirm = (v, total) => { 
+  const handleConfirm = (v, breakdown) => { 
     setSelected(null); 
     navigate("/payment", { 
       state: { 
         vehicle: v, 
-        total: total,
+        ...breakdown,
         date,
         pickup,
         drop,
@@ -376,8 +376,8 @@ export default function VehicleResults() {
                         <div>
                           {totalMins > 0 ? (
                             <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
-                              <span style={{ fontSize: "24px", fontWeight: "900", color: RED, fontFamily: H }}>₹{grand}</span>
-                              <span style={{ fontSize: "11px", color: "#94a3b8", fontWeight: "800", textTransform: "uppercase" }}>Total</span>
+                              <span style={{ fontSize: "24px", fontWeight: "900", color: RED, fontFamily: H }}>₹{bTotal}</span>
+                              <span style={{ fontSize: "11px", color: "#94a3b8", fontWeight: "800", textTransform: "uppercase" }}>Base Price</span>
                             </div>
                           ) : (
                             <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
@@ -385,7 +385,7 @@ export default function VehicleResults() {
                               <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800" }}>/hr</span>
                             </div>
                           )}
-                          {totalMins > 0 && <p style={{ fontSize: "10px", color: "#94a3b8", fontWeight: "700", margin: "2px 0 0" }}>₹{v.pricePerHour}/hr + GST</p>}
+                          {totalMins > 0 && <p style={{ fontSize: "10px", color: "#94a3b8", fontWeight: "700", margin: "2px 0 0" }}>₹{v.pricePerHour}/hr</p>}
                         </div>
                         <button className="rm-btn-premium" onClick={() => setSelected(v)}>
                           Book Now
