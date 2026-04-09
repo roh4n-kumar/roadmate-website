@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import { db } from "../firebase";
 import { collection, query, limit, onSnapshot } from "firebase/firestore";
