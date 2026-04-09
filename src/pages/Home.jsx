@@ -296,12 +296,27 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
       <Footer />
 
-      {/* Persistence Toast */}
       <AnimatePresence>
         {toast && (
           <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-            style={{ position: "fixed", bottom: "40px", left: "50%", transform: "translateX(-50%)", background: RED, color: "#fff", padding: "12px 24px", borderRadius: "12px", fontSize: "14px", fontWeight: "700", zIndex: 3000, boxShadow: "0 10px 30px rgba(190,13,13,0.3)", display: "flex", alignItems: "center", gap: "10px", minWidth: "300px", justifyContent: "center" }}>
-            <span style={{ fontSize: "18px" }}>⚠️</span> {toast}
+            style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 4000, padding: "0 20px" }}>
+            <div style={{ 
+              background: "rgba(190, 13, 13, 0.08)", 
+              color: RED, 
+              padding: "16px 32px", 
+              borderRadius: "16px", 
+              fontSize: "14px", 
+              fontWeight: "800", 
+              border: "1.5px solid rgba(190, 13, 13, 0.2)",
+              backdropFilter: "blur(10px)",
+              boxShadow: "0 10px 30px rgba(190,13,13,0.1)", 
+              display: "flex", 
+              alignItems: "center", 
+              gap: "12px",
+              fontFamily: H
+            }}>
+              <span style={{ fontSize: "20px" }}>⚠️</span> {toast}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
