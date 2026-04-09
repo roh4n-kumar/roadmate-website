@@ -582,14 +582,14 @@ export default function Payment() {
                     <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
                         style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 11000, padding: "0 20px", pointerEvents: "none" }}>
                         <div style={{ 
-                            background: "#ffffff", 
+                            background: toast.type === "error" ? "#fff5f5" : "#f0fff4", 
                             color: toast.type === "error" ? RED : "#22c55e", 
                             padding: "16px 32px", 
                             borderRadius: "16px", 
                             fontSize: "14px", 
                             fontWeight: "900", 
-                            border: toast.type === "error" ? `2px solid ${RED}` : "2px solid #22c55e",
-                            boxShadow: "0 20px 50px rgba(0,0,0,0.15)", 
+                            border: toast.type === "error" ? "2px solid #feb2b2" : "2px solid #bbf7d0",
+                            boxShadow: "0 10px 30px rgba(0,0,0,0.08)", 
                             display: "flex", 
                             alignItems: "center", 
                             gap: "12px",

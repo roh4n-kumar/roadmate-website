@@ -996,14 +996,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
              style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 11000, padding: "0 20px", pointerEvents: "none" }}>
             <div style={{ 
-              background: "#ffffff", 
+              background: "#fff5f5", 
               color: RED, 
               padding: "16px 32px", 
               borderRadius: "16px", 
               fontSize: "14px", 
               fontWeight: "900", 
-              border: `2px solid ${RED}`,
-              boxShadow: "0 20px 50px rgba(0,0,0,0.15)", 
+              border: "2px solid #feb2b2",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.08)", 
               display: "flex", 
               alignItems: "center", 
               gap: "12px",
