@@ -98,19 +98,56 @@ export default function Payment() {
     const [activeSection, setActiveSection] = useState(null);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
-    const [timeLeft, setTimeLeft] = useState(30); // 30 seconds
+    const [timeLeft, setTimeLeft] = useState(600); // Default 10 minutes
     const [showExpiredModal, setShowExpiredModal] = useState(false);
 
+    // Persistence & Timer Logic
     useEffect(() => {
-        if (timeLeft <= 0) {
+        // 1. Check if already marked as expired in this session
+        if (sessionStorage.getItem("roadmate_is_expired") === "true") {
             setShowExpiredModal(true);
+            setTimeLeft(0);
             return;
         }
+
+        // 2. Initialize or recover expiry timestamp
+        let expiry = sessionStorage.getItem("roadmate_expiry");
+        if (!expiry) {
+            expiry = Date.now() + 600 * 1000;
+            sessionStorage.setItem("roadmate_expiry", expiry);
+        }
+
+        // 3. Update time left immediately
+        const remaining = Math.max(0, Math.floor((parseInt(expiry) - Date.now()) / 1000));
+        setTimeLeft(remaining);
+
+        if (remaining <= 0) {
+            setShowExpiredModal(true);
+            sessionStorage.setItem("roadmate_is_expired", "true");
+            return;
+        }
+
+        // 4. Start Countdown
         const timerCount = setInterval(() => {
-            setTimeLeft(prev => prev - 1);
+            const now = Date.now();
+            const newRemaining = Math.max(0, Math.floor((parseInt(expiry) - now) / 1000));
+            setTimeLeft(newRemaining);
+
+            if (newRemaining <= 0) {
+                setShowExpiredModal(true);
+                sessionStorage.setItem("roadmate_is_expired", "true");
+                clearInterval(timerCount);
+            }
         }, 1000);
+
         return () => clearInterval(timerCount);
-    }, [timeLeft]);
+    }, []);
+
+    // Helper to clear session
+    const clearPaymentSession = () => {
+        sessionStorage.removeItem("roadmate_expiry");
+        sessionStorage.removeItem("roadmate_is_expired");
+    };
 
     const formatTimer = (seconds) => {
         const mins = Math.floor(seconds / 60);
@@ -132,6 +169,7 @@ export default function Payment() {
         setTimeout(() => {
             setLoading(false);
             setSuccess(true);
+            clearPaymentSession(); // Payment complete, clear session
             setTimeout(() => navigate("/my-bookings"), 3000);
         }, 3500);
     };
@@ -171,17 +209,15 @@ export default function Payment() {
                     </div>
                     <div />
                     <div style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: "flex-end" }}>
-                        <Svg size={20} color={RED}>
-                            <path d="M22 2H2v5l6 5-6 5v5h20v-5l-6-5 6-5V2zM4 4h16v2L12 12.5 4 6V4zm16 16H4v-2l8-6.5 8 6.5v2z"/>
-                        </Svg>
                         <span style={{ 
                             fontFamily: H, 
-                            fontSize: "22px", 
+                            fontSize: "20px", 
                             fontWeight: "500", 
                             color: RED,
-                            minWidth: "60px",
-                            textAlign: "center",
-                            letterSpacing: "-0.5px"
+                            minWidth: "65px",
+                            textAlign: "right",
+                            letterSpacing: "-0.5px",
+                            fontVariantNumeric: "tabular-nums"
                         }}>
                             {formatTimer(timeLeft)}
                         </span>
@@ -445,7 +481,10 @@ export default function Payment() {
                                 </div>
 
                                 <button 
-                                    onClick={() => navigate("/")}
+                                    onClick={() => {
+                                        clearPaymentSession();
+                                        navigate("/");
+                                    }}
                                     style={{ 
                                         width: "100%", padding: "16px", borderRadius: "16px", 
                                         background: RED, border: "none", color: "#fff", 
