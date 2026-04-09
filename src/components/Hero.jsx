@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import TimePopup from "./TimePopup";
-/* ROADMATE - Hero Component - Stable Build */
 import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 
 
@@ -113,6 +113,7 @@ const featureCards = [
 
 const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const navigate = useNavigate();
+  const [toastMsg, setToastMsg] = useState(null);
 
   const [formData, setFormData] = useState(() => {
     const d = new Date();
@@ -181,7 +182,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const handleSearch = () => {
     const { vehicleType, selectedDate, pickupTime, dropoffTime, withHelmet, withDriver } = formData;
     if (!vehicleType || !selectedDate || !pickupTime || !dropoffTime) {
-      alert("Please select Vehicle Category, Pickup and Dropoff Times to search!");
+      setToastMsg("Please select Vehicle Category, Pickup and Dropoff Times!");
+      setTimeout(() => setToastMsg(null), 4000);
       return;
     }
     
@@ -985,6 +987,31 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           </div>
         </div>
       </div>
+
+      <AnimatePresence>
+        {toastMsg && (
+          <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+             style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 9999, padding: "0 20px", pointerEvents: "none" }}>
+            <div style={{ 
+              background: "rgba(190, 13, 13, 0.08)", 
+              color: RED, 
+              padding: "16px 32px", 
+              borderRadius: "16px", 
+              fontSize: "14px", 
+              fontWeight: "800", 
+              border: "1.5px solid rgba(190, 13, 13, 0.2)",
+              backdropFilter: "blur(10px)",
+              boxShadow: "0 10px 30px rgba(190,13,13,0.1)", 
+              display: "flex", 
+              alignItems: "center", 
+              gap: "12px",
+              fontFamily: H
+            }}>
+              <span style={{ fontSize: "20px" }}>⚠️</span> {toastMsg}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
