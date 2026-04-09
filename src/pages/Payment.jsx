@@ -424,24 +424,21 @@ export default function Payment() {
                                 fontFamily: F
                             }}
                         >
-                            <div style={{ display: "flex", justifyContent: "center", padding: "12px 0 0" }}>
-                                <div style={{ width: 40, height: 4, borderRadius: 99, background: "rgba(0,0,0,0.1)" }} />
-                            </div>
-
-                            <div style={{ position: "relative", height: "240px", width: "100%", overflow: "hidden", borderRadius: "32px 32px 0 0" }}>
-                                <img src="/payment/clock timer.jpeg" alt="Time Out" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                                <button onClick={() => navigate("/")} style={{ position: "absolute", top: "20px", right: "20px", width: "36px", height: "36px", borderRadius: "50%", background: "rgba(255,255,255,0.9)", border: "none", color: SLATE, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 12px rgba(0,0,0,0.1)", zIndex: 10 }}>
-                                    <Svg size={16}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></Svg>
-                                </button>
+                            <div style={{ position: "relative", height: "350px", width: "100%", overflow: "hidden", borderRadius: "32px 32px 0 0", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                <img 
+                                    src="/payment/clock timer.jpeg" 
+                                    alt="Time Out" 
+                                    style={{ width: "100%", height: "100%", objectFit: "contain" }} 
+                                />
                             </div>
 
                             <div style={{ padding: "32px 24px 35px" }}>
                                 <div style={{ textAlign: "center", marginBottom: "24px" }}>
-                                    <p style={{ color: RED, fontSize: "12px", fontWeight: "800", margin: 0, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px" }}>SESSION STATUS</p>
+                                    <p style={{ color: RED, fontSize: "12px", fontWeight: "800", margin: 0, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px" }}>SESSION EXPIRED</p>
                                     <h3 style={{ color: SLATE, fontSize: "28px", fontWeight: "900", margin: 0, fontFamily: H, letterSpacing: "-1px" }}>You ran out of time</h3>
                                 </div>
 
-                                <div style={{ background: "rgba(15,23,42,0.03)", borderRadius: "20px", padding: "24px", marginBottom: "24px", border: "1px solid rgba(15,23,42,0.05)", textAlign: "center" }}>
+                                <div style={{ background: "rgba(15,23,42,0.03)", borderRadius: "20px", padding: "24px", marginBottom: "24px", border: "1.5px solid rgba(15,23,42,0.15)", textAlign: "center" }}>
                                     <p style={{ fontSize: "15px", fontWeight: "500", color: "rgba(15, 23, 42, 0.6)", lineHeight: 1.6, margin: 0 }}>
                                         Payment time has expired.<br/>Please select your vehicle and try again.
                                     </p>
@@ -459,7 +456,6 @@ export default function Payment() {
                                 >
                                     Back to search
                                 </button>
-                                <p style={{ textAlign: "center", fontSize: "11px", color: "rgba(15,23,42,0.4)", marginTop: "16px", marginBottom: 0, fontWeight: 700, letterSpacing: "0.3px" }}>Secure session monitoring active</p>
                             </div>
                         </motion.div>
                     </motion.div>
