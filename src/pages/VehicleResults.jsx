@@ -220,8 +220,10 @@ export default function VehicleResults() {
           name: v.name,
           image: v.image,
           type: v.type,
+          fuel: v.fuel || v.fuelType || "Petrol",
           pricePerHour: v.pricePerHour,
-          category: v.category
+          category: v.category,
+          reviews: v.reviews || 0
         },
         trip: {
           date: date,

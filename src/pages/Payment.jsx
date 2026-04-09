@@ -94,7 +94,19 @@ const PaymentMethodItem = ({ id, active, icon, title, subtitle, onClick, childre
 export default function Payment() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { bookingId, vehicle: passedVehicle, total, date, pickup, drop, totalMins, baseTotal, gst: passedGst, helmetCharge, driverCharge } = location.state || {};
+    const { 
+        bookingId, 
+        vehicle: passedVehicle = null, 
+        total = 0, 
+        date = null, 
+        pickup = "", 
+        drop = "", 
+        totalMins = 0, 
+        baseTotal = 0, 
+        gst: passedGst = 0, 
+        helmetCharge = 0, 
+        driverCharge = 0 
+    } = location.state || {}; // Safe destructuring with defaults
 
     const [coupon, setCoupon] = useState("");
     const [activeSection, setActiveSection] = useState(null);
@@ -298,7 +310,7 @@ export default function Payment() {
                                     placeholder="Enter code" 
                                     value={coupon}
                                     onClick={(e) => e.stopPropagation()}
-                                    onChange={(e) => setCoupon(e.target.value.toUpperCase())}
+                                    onChange={(e) => setCoupon(e.target.value?.toUpperCase() || "")}
                                     style={{ flex: 1, padding: "14px 20px", borderRadius: "12px", border: "1.5px solid rgba(15,23,42,0.1)", fontSize: "14px", fontWeight: 700, outline: "none", background: "#fcfcfc" }}
                                 />
                                 <button 
@@ -385,14 +397,16 @@ export default function Payment() {
                             {/* Vehicle Inline Summary */}
                             <div style={{ display: "flex", gap: "20px", paddingBottom: "25px", borderBottom: "1.5px dashed rgba(15,23,42,0.08)", marginBottom: "25px" }}>
                                 <div style={{ width: "100px", height: "75px", borderRadius: "16px", overflow: "hidden", background: "#f8fafc", border: "1px solid rgba(15,23,42,0.05)" }}>
-                                    <img src={vehicle.image} alt={vehicle.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                                    <img src={vehicle?.image} alt={vehicle?.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                                 </div>
                                 <div>
-                                    <h4 style={{ margin: 0, fontSize: "17px", fontWeight: 900, fontFamily: H, color: SLATE }}>{vehicle.name}</h4>
-                                    <p style={{ margin: "4px 0", fontSize: "12px", color: "rgba(15,23,42,0.5)", fontWeight: 800 }}>{vehicle.type.toUpperCase()} · {vehicle.fuel.toUpperCase()}</p>
+                                    <h4 style={{ margin: 0, fontSize: "17px", fontWeight: 900, fontFamily: H, color: SLATE }}>{vehicle?.name || passedVehicle?.name || "Vehicle"}</h4>
+                                    <p style={{ margin: "4px 0", fontSize: "12px", color: "rgba(15,23,42,0.5)", fontWeight: 800 }}>
+                                        {((vehicle?.type || passedVehicle?.type || "Standard")).toUpperCase()} · {((vehicle?.fuel || passedVehicle?.fuel || "Petrol")).toUpperCase()}
+                                    </p>
                                     <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "8px" }}>
                                         <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: RED }} />
-                                        <span style={{ fontSize: "13px", fontWeight: 800, color: RED }}>{fmtDate(date)} · {pickup}</span>
+                                        <span style={{ fontSize: "13px", fontWeight: 800, color: RED }}>{fmtDate(tripData.date)} · {tripData.pickupTime}</span>
                                     </div>
                                 </div>
                             </div>
