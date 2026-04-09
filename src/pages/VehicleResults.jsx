@@ -231,11 +231,12 @@ export default function VehicleResults() {
         .vr-page       { padding-top: 64px; padding-bottom: 60px; }
         .vr-subheader  { 
           position: sticky; top: 64px; z-index: 100; 
-          background: rgba(255, 255, 255, 0.8); 
+          background: #ffffff; 
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          border-bottom: 1.5px solid rgba(15, 23, 42, 0.05); 
-          padding: 14px 24px; display: flex; align-items: center; gap: 16px; 
+          border-bottom: 1.5px solid rgba(15, 23, 42, 0.25); 
+          width: 100%;
+          padding: 0 24px;
         }
         .vr-content    { max-width: 1250px; margin: 0 auto; padding: 24px 24px 60px; }
         .vr-filterbar  { display: flex; gap: 12px; margin-bottom: 24px; align-items: center; }
@@ -268,64 +269,67 @@ export default function VehicleResults() {
 
       <div className="vr-page">
         <div className="vr-subheader">
-          <button onClick={() => navigate(-1)} style={{ width: "40px", height: "40px", borderRadius: "12px", background: "rgba(15, 23, 42, 0.05)", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#0f172a", flexShrink: 0, transition: "all .2s" }}>
-            <IcoBack />
-          </button>
+          <div style={{ 
+            maxWidth: "1250px", 
+            margin: "0 auto", 
+            height: "64px", 
+            display: "grid", 
+            gridTemplateColumns: "11fr auto auto", 
+            alignItems: "center",
+            gap: "24px"
+          }}>
+            <div style={{ display: "flex", alignItems: "center", position: "relative", gap: "10px", minWidth: 0 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap", minWidth: 0 }}>
+                <h1 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, color: "#0f172a", margin: 0, letterSpacing: "-0.5px" }}>
+                  {isAll ? "All Vehicles" : isBike ? "Bikes" : "Cars"}
+                </h1>
+                
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                  {date && (
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}>
+                      <span style={{ color: "rgba(15, 23, 42, 0.1)", margin: "0 4px" }}>·</span>
+                      <IcoCalendar /> {fmt(date)}
+                    </div>
+                  )}
+                  {totalMins > 0 && (
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
+                      <div className="vr-hide-mob" style={{ display: "flex", alignItems: "center", gap: "8px", color: SLATE, fontSize: "14px", fontWeight: "800", background: "rgba(15, 23, 42, 0.04)", padding: "6px 14px", borderRadius: "10px", border: "1px solid rgba(15, 23, 42, 0.05)" }}>
+                        <IcoClock /> {fmtDuration(totalMins)} ({fmtTime(pickup)} – {fmtTime(drop)})
+                      </div>
+                    </div>
+                  )}
+                  
+                  {isBike && (
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
+                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11px", color: withHelmet ? RED : "rgba(15,23,42,0.4)", fontWeight: "900", background: withHelmet ? `${RED}10` : "rgba(15,23,42,0.05)", padding: "6px 14px", borderRadius: "99px", letterSpacing: "0.5px", textTransform: "uppercase" }}>
+                        {withHelmet ? "WITH HELMET" : "NO HELMET"}
+                      </span>
+                    </div>
+                  )}
+                  {isCar && (
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
+                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11px", color: withDriver ? RED : "rgba(15,23,42,0.4)", fontWeight: "900", background: withDriver ? `${RED}10` : "rgba(15,23,42,0.05)", padding: "6px 14px", borderRadius: "99px", letterSpacing: "0.5px", textTransform: "uppercase" }}>
+                        {withDriver ? "WITH DRIVER" : "SELF DRIVE"}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            
+            <div />
 
-          <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", minWidth: 0 }}>
-            <span style={{ fontSize: "18px", fontWeight: "900", color: "#0f172a", flexShrink: 0, fontFamily: H }}>{isAll ? "All Vehicles" : isBike ? "Bikes" : "Cars"}</span>
-            {date && <>
-              <span style={{ color: "rgba(15, 23, 42, 0.1)" }}>·</span>
-              <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}><IcoCalendar /> {fmt(date)}</span>
-            </>}
-            {totalMins > 0 && <>
-              <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.4)", fontWeight: "500" }}>|</span>
-              <span className="vr-hide-mob" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#64748b", fontSize: "14px", fontWeight: "700", background: "rgba(15, 23, 42, 0.04)", padding: "8px 16px", borderRadius: "12px", border: "1px solid rgba(15, 23, 42, 0.05)" }}>
-                <IcoClock /> {fmtDuration(totalMins)} ({fmtTime(pickup)} – {fmtTime(drop)})
+            <div style={{ justifySelf: "end" }}>
+              <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                {sorted.length} available
               </span>
-            </>}
-            {isBike && (withHelmet ? (
-              <>
-                <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.4)", fontWeight: "500" }}>|</span>
-                <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: RED, fontWeight: "800", background: `${RED}10`, padding: "6px 14px", borderRadius: "99px", letterSpacing: "0.4px" }}>
-                  <svg viewBox="0 0 512 512" width="18" height="18" fill="currentColor">
-                    <path d="M294.396 52.127c-17.944.066-35.777 1.834-52.886 4.746-86.727 14.76-135.612 53.467-161.99 107.824 31.215-2.434 62.002-5.024 91.966-4.838 24.114.15 47.696 2.097 70.54 7.37 15.15 3.5 24.652 16.647 27.607 31.735 2.954 15.088.858 32.92-5.055 51.553l-.287.904-.468.826c-7.762 13.64-24.263 24.498-45.295 35.994-21.032 11.497-46.695 22.693-72.27 32.428-25.574 9.735-51.012 17.98-71.575 23.437-7.254 1.925-13.85 3.48-19.735 4.657 2.275 31.13 6.562 63.38 12.008 95.98 140.118-38.25 273.5-79.888 403.51-123.254 25.935-44.457 29.927-86.448 16.967-126.734-22.393-69.605-60.9-107.048-105.215-126.168-27.696-11.95-57.913-16.57-87.82-16.46zM130.184 179.205c-9.06.51-18.265 1.156-27.532 1.836L59.31 329.386c3.384-.79 6.936-1.663 10.754-2.676 4.004-1.063 8.27-2.27 12.66-3.554 10.022-31.07 43.3-131.415 47.46-143.95zm-46.7 3.262c-10.868.826-21.824 1.654-32.908 2.37-.32.445-.714.947-1.318 2.267-1.58 3.45-3.375 9.418-4.912 16.724-3.075 14.612-5.37 34.727-6.705 54.877-1.333 20.15-1.73 40.438-1.193 55.582.268 7.572.79 13.905 1.442 17.96.048.306.078.312.13.59.46-.01 1.033-.044 1.546-.064l43.918-150.306zM224 183c-15.596 0-28.66 12.582-28.66 28.152s13.064 28.155 28.66 28.155 28.66-12.584 28.66-28.155c0-15.57-13.064-28.152-28.66-28.152zm0 18c6.12 0 10.66 4.567 10.66 10.152 0 5.586-4.54 10.155-10.66 10.155s-10.66-4.57-10.66-10.155c0-5.585 4.54-10.152 10.66-10.152zm230.19 144.865C330.383 386.852 203.285 426.23 70.054 462.56c.413 2.317.81 4.63 1.232 6.948 147.607-26.65 255.974-68.965 371.36-109.164 4.118-4.857 7.947-9.68 11.546-14.48z"></path>
-                  </svg>
-                  WITH HELMET
-                </span>
-              </>
-            ) : (
-              <>
-                <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.4)", fontWeight: "500" }}>|</span>
-                <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: RED, fontWeight: "800", background: `${RED}10`, padding: "6px 14px", borderRadius: "99px", letterSpacing: "0.4px" }}>
-                  <svg viewBox="0 0 512 512" width="18" height="18" fill="currentColor">
-                    <path d="M294.396 52.127c-17.944.066-35.777 1.834-52.886 4.746-86.727 14.76-135.612 53.467-161.99 107.824 31.215-2.434 62.002-5.024 91.966-4.838 24.114.15 47.696 2.097 70.54 7.37 15.15 3.5 24.652 16.647 27.607 31.735 2.954 15.088.858 32.92-5.055 51.553l-.287.904-.468.826c-7.762 13.64-24.263 24.498-45.295 35.994-21.032 11.497-46.695 22.693-72.27 32.428-25.574 9.735-51.012 17.98-71.575 23.437-7.254 1.925-13.85 3.48-19.735 4.657 2.275 31.13 6.562 63.38 12.008 95.98 140.118-38.25 273.5-79.888 403.51-123.254 25.935-44.457 29.927-86.448 16.967-126.734-22.393-69.605-60.9-107.048-105.215-126.168-27.696-11.95-57.913-16.57-87.82-16.46zM130.184 179.205c-9.06.51-18.265 1.156-27.532 1.836L59.31 329.386c3.384-.79 6.936-1.663 10.754-2.676 4.004-1.063 8.27-2.27 12.66-3.554 10.022-31.07 43.3-131.415 47.46-143.95zm-46.7 3.262c-10.868.826-21.824 1.654-32.908 2.37-.32.445-.714.947-1.318 2.267-1.58 3.45-3.375 9.418-4.912 16.724-3.075 14.612-5.37 34.727-6.705 54.877-1.333 20.15-1.73 40.438-1.193 55.582.268 7.572.79 13.905 1.442 17.96.048.306.078.312.13.59.46-.01 1.033-.044 1.546-.064l43.918-150.306zM224 183c-15.596 0-28.66 12.582-28.66 28.152s13.064 28.155 28.66 28.155 28.66-12.584 28.66-28.155c0-15.57-13.064-28.152-28.66-28.152zm0 18c6.12 0 10.66 4.567 10.66 10.152 0 5.586-4.54 10.155-10.66 10.155s-10.66-4.57-10.66-10.155c0-5.585 4.54-10.152 10.66-10.152zm230.19 144.865C330.383 386.852 203.285 426.23 70.054 462.56c.413 2.317.81 4.63 1.232 6.948 147.607-26.65 255.974-68.965 371.36-109.164 4.118-4.857 7.947-9.68 11.546-14.48z"></path>
-                  </svg>
-                  WITHOUT HELMET
-                </span>
-              </>
-            ))}
-            {isCar && (withDriver ? (
-              <>
-                <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.4)", fontWeight: "500" }}>|</span>
-                <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: RED, fontWeight: "800", background: `${RED}10`, padding: "6px 14px", borderRadius: "99px", letterSpacing: "0.4px" }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-                  WITH DRIVER
-                </span>
-              </>
-            ) : (
-              <>
-                <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.4)", fontWeight: "500" }}>|</span>
-                <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: RED, fontWeight: "800", background: `${RED}10`, padding: "6px 14px", borderRadius: "99px", letterSpacing: "0.4px" }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-                  SELF DRIVE
-                </span>
-              </>
-            ))}
+            </div>
           </div>
-
-          <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>{sorted.length} available</span>
         </div>
+
 
         <div className="vr-content">
           {/* Filter + Sort */}

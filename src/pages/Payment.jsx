@@ -16,24 +16,43 @@ const IcoShield = () => (
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
     </svg>
 );
+const IcoQR = ({ size = 24 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="7"></rect>
+        <rect x="14" y="3" width="7" height="7"></rect>
+        <rect x="14" y="14" width="7" height="7"></rect>
+        <rect x="3" y="14" width="7" height="7"></rect>
+        <rect x="7" y="7" width="0.1" height="0.1"></rect>
+        <rect x="17" y="7" width="0.1" height="0.1"></rect>
+        <rect x="17" y="17" width="0.1" height="0.1"></rect>
+        <rect x="7" y="17" width="0.1" height="0.1"></rect>
+    </svg>
+);
 
 const PaymentMethodItem = ({ id, active, icon, title, subtitle, onClick, children }) => (
-    <div 
+    <motion.div 
+        layout
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         onClick={() => onClick(id)}
-        style={{ 
-            padding: "20px", 
-            borderRadius: "28px", 
+        initial={false}
+        animate={{
             background: active ? `${RED}05` : "#fff",
-            border: `1.5px solid ${active ? RED : "rgba(15, 23, 42, 0.05)"}`,
+            border: `1.5px solid ${active ? RED : "rgba(15, 23, 42, 0.12)"}`,
+            boxShadow: active 
+                ? `0 20px 40px ${RED}15` 
+                : "0 8px 30px rgba(15, 23, 42, 0.04)"
+        }}
+        style={{ 
+            padding: "24px", 
+            borderRadius: "32px", 
             cursor: "pointer",
-            transition: "all 0.3s ease",
             overflow: "hidden"
         }}
     >
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
             <div style={{ 
-                width: "52px", height: "52px", borderRadius: "16px", 
-                background: active ? RED : "rgba(15, 23, 42, 0.05)",
+                width: "56px", height: "56px", borderRadius: "18px", 
+                background: active ? RED : "rgba(15, 23, 42, 0.04)",
                 display: "flex", alignItems: "center", justifyContent: "center", color: active ? "#fff" : SLATE,
                 transition: "all 0.3s ease"
             }}>
@@ -54,18 +73,20 @@ const PaymentMethodItem = ({ id, active, icon, title, subtitle, onClick, childre
         <AnimatePresence>
             {active && (
                 <motion.div
+                    key="accordion-content"
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ overflow: "hidden" }}
                 >
-                    <div style={{ marginTop: "24px", paddingTop: "24px", borderTop: "1px dashed rgba(15, 23, 42, 0.08)" }}>
+                    <div style={{ marginTop: "24px", paddingTop: "24px", borderTop: "1.5px dashed rgba(15, 23, 42, 0.08)" }}>
                         {children}
                     </div>
                 </motion.div>
             )}
         </AnimatePresence>
-    </div>
+    </motion.div>
 );
 
 export default function Payment() {
@@ -74,10 +95,28 @@ export default function Payment() {
     const { vehicle, total, date, pickup, drop, totalMins, baseTotal, gst: passedGst, helmetCharge, driverCharge } = location.state || {};
 
     const [coupon, setCoupon] = useState("");
-    const [showCoupon, setShowCoupon] = useState(false);
-    const [method, setMethod] = useState(null);
+    const [activeSection, setActiveSection] = useState(null);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(30); // 30 seconds
+    const [showExpiredModal, setShowExpiredModal] = useState(false);
+
+    useEffect(() => {
+        if (timeLeft <= 0) {
+            setShowExpiredModal(true);
+            return;
+        }
+        const timerCount = setInterval(() => {
+            setTimeLeft(prev => prev - 1);
+        }, 1000);
+        return () => clearInterval(timerCount);
+    }, [timeLeft]);
+
+    const formatTimer = (seconds) => {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    };
 
     useEffect(() => {
         if (!location.state) navigate("/vehicles");
@@ -100,43 +139,30 @@ export default function Payment() {
     const fmtDate = s => { if (!s) return ""; const d = new Date(s); return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }); };
 
     return (
-                <div style={{ minHeight: "100vh", background: "#f8fafc", paddingTop: "64px", paddingBottom: "100px", fontFamily: F }}>
+                <div style={{ minHeight: "100vh", background: "#f9fafbd7", paddingTop: "64px", paddingBottom: "100px", fontFamily: F }}>
             
             {/* Sticky Ribbon Header */}
             <div style={{ 
                 position: "sticky", 
                 top: "64px", 
                 zIndex: 100, 
-                background: "rgba(255, 255, 255, 0.8)", 
+                background: "#ffffff", 
                 backdropFilter: "blur(20px)",
-                borderBottom: "1.5px solid rgba(15, 23, 42, 0.05)",
+                borderBottom: "1.5px solid rgba(15, 23, 42, 0.25)", 
                 width: "100%",
                 padding: "0 24px"
             }}>
                 <div style={{ 
                     maxWidth: "1250px", 
                     margin: "0 auto", 
-                    padding: "20px 0", 
+                    height: "64px", 
                     display: "grid", 
                     gridTemplateColumns: "1fr auto 1fr", 
                     alignItems: "center" 
                 }}>
-                    <div style={{ display: "flex", alignItems: "center", position: "relative" }}>
-                        <button 
-                            onClick={() => navigate(-1)}
-                            style={{ 
-                                width: "40px", height: "40px", borderRadius: "12px", 
-                                background: "rgba(15, 23, 42, 0.05)", border: "none", 
-                                cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", 
-                                color: SLATE, flexShrink: 0, transition: "all .2s",
-                                position: "absolute",
-                                left: "-56px"
-                            }}
-                        >
-                            <Svg size={20} color={SLATE}><polyline points="15 18 9 12 15 6"/></Svg>
-                        </button>
-                        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                            <h1 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, color: SLATE, margin: 0, letterSpacing: "-0.5px" }}>Secure Checkout</h1>
+                <div style={{ display: "flex", alignItems: "center", position: "relative" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                            <h1 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, color: SLATE, margin: 0, letterSpacing: "-0.5px" }}>Payment</h1>
                             <div style={{ display: "flex", alignItems: "center", gap: "6px", background: "rgba(15,23,42,0.03)", padding: "4px 10px", borderRadius: "8px" }}>
                                 <Svg size={14} color={RED}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></Svg>
                                 <span style={{ fontSize: "11px", fontWeight: 800, color: "rgba(15,23,42,0.4)", textTransform: "uppercase", letterSpacing: "1px" }}>Safe & Encrypted</span>
@@ -144,9 +170,21 @@ export default function Payment() {
                         </div>
                     </div>
                     <div />
-                    <div style={{ display: "flex", alignItems: "center", gap: "20px", justifyContent: "flex-end" }}>
-                        <img src="/upi_official.svg" alt="UPI" style={{ height: "18px", opacity: 0.5 }} />
-                        <img src="/rupay.svg" alt="RuPay" style={{ height: "14px", opacity: 0.5 }} />
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: "flex-end" }}>
+                        <Svg size={20} color={RED}>
+                            <path d="M22 2H2v5l6 5-6 5v5h20v-5l-6-5 6-5V2zM4 4h16v2L12 12.5 4 6V4zm16 16H4v-2l8-6.5 8 6.5v2z"/>
+                        </Svg>
+                        <span style={{ 
+                            fontFamily: H, 
+                            fontSize: "22px", 
+                            fontWeight: "500", 
+                            color: RED,
+                            minWidth: "60px",
+                            textAlign: "center",
+                            letterSpacing: "-0.5px"
+                        }}>
+                            {formatTimer(timeLeft)}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -157,13 +195,13 @@ export default function Payment() {
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 400px", gap: "40px", alignItems: "start" }}>
                     
                     {/* LEFT: Payment Methods Selection */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+                    <motion.div layout transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                         
                         {/* Coupon Code Card */}
                         <PaymentMethodItem 
-                            id="coupon" title="Have a Coupon Code?" subtitle="Apply code to get extra discounts" active={showCoupon}
+                            id="coupon" title="Have a Coupon Code?" subtitle="Apply code to get extra discounts" active={activeSection === "coupon"}
                             icon={<Svg size={24}><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82zM7 7h.01"/></Svg>}
-                            onClick={() => setShowCoupon(!showCoupon)}
+                            onClick={(id) => setActiveSection(activeSection === id ? null : id)}
                         >
                             <div style={{ display: "flex", gap: "12px" }}>
                                 <input 
@@ -183,13 +221,13 @@ export default function Payment() {
                             </div>
                         </PaymentMethodItem>
 
-                        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                        <motion.div layout transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
                             <h3 style={{ fontSize: "18px", fontWeight: 900, color: SLATE, fontFamily: H, marginBottom: "4px" }}>Payment Methods</h3>
                             
                             <PaymentMethodItem 
-                                id="upi" title="UPI Payment" subtitle="Pay via Google Pay, PhonePe, or Paytm" active={method === "upi"}
-                                icon={<img src="/upi_official.svg" alt="UPI" style={{ width: "24px", height: "24px", filter: method === "upi" ? "brightness(0) invert(1)" : "none" }} />}
-                                onClick={(id) => setMethod(method === id ? null : id)}
+                                id="upi" title="UPI Payment" subtitle="Pay via Google Pay, PhonePe, or Paytm" active={activeSection === "upi"}
+                                icon={<img src="/upi_official.svg" alt="UPI" style={{ width: "24px", height: "24px", filter: activeSection === "upi" ? "brightness(0) invert(1)" : "none" }} />}
+                                onClick={(id) => setActiveSection(activeSection === id ? null : id)}
                             >
                                 <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                                     <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
@@ -210,60 +248,59 @@ export default function Payment() {
                             </PaymentMethodItem>
                             
                             <PaymentMethodItem 
-                                id="card" title="Credit / Debit Card" subtitle="All major cards accepted including RuPay" active={method === "card"}
-                                icon={<Svg size={24}><rect x="1" y="4" width="22" height="16" rx="2" ry="2" /><line x1="1" y1="10" x2="23" y2="10" /></Svg>}
-                                onClick={(id) => setMethod(method === id ? null : id)}
+                                id="qr" title="Scan & Pay / QR" subtitle="Generate a dynamic QR to pay via any UPI app" active={activeSection === "qr"}
+                                icon={<IcoQR />}
+                                onClick={(id) => setActiveSection(activeSection === id ? null : id)}
                             >
-                                <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-                                    <div>
-                                        <label style={{ fontSize: "10px", fontWeight: 900, color: SLATE, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px", display: "block" }}>Card Number</label>
-                                        <div style={{ position: "relative" }}>
-                                            <input 
-                                                type="text" placeholder="XXXX XXXX XXXX XXXX" 
-                                                onClick={(e) => e.stopPropagation()}
-                                                style={{ width: "100%", padding: "14px 20px", borderRadius: "12px", border: "1.5px solid rgba(15,23,42,0.1)", fontSize: "14px", fontWeight: 600, outline: "none", background: "#fff" }} 
-                                            />
-                                            <div style={{ position: "absolute", right: "16px", top: "50%", transform: "translateY(-50%)", display: "flex", gap: "8px", alignItems: "center" }}>
-                                                <span style={{ fontSize: "10px", fontWeight: 900, color: RED, letterSpacing: "0.5px" }}>VISA</span>
+                                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "24px", padding: "10px 0" }}>
+                                    <div style={{ 
+                                        width: "180px", height: "180px", background: "#fff", padding: "15px", borderRadius: "24px", 
+                                        border: "1.5px solid rgba(15,23,42,0.1)", display: "flex", alignItems: "center", justifyContent: "center",
+                                        position: "relative", overflow: "hidden"
+                                    }}>
+                                        <div style={{ opacity: 0.1, position: "absolute" }}>
+                                            <IcoQR size={120} />
+                                        </div>
+                                        <div style={{ textAlign: "center", zIndex: 1 }}>
+                                            <div style={{ width: "40px", height: "40px", borderRadius: "50%", background: `${RED}08`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px", color: RED }}>
+                                                <Svg size={20}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></Svg>
                                             </div>
+                                            <p style={{ fontSize: "12px", fontWeight: 800, color: SLATE, margin: 0 }}>ID: RM-PAY-4492</p>
                                         </div>
                                     </div>
-                                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
-                                        <div>
-                                            <label style={{ fontSize: "10px", fontWeight: 900, color: SLATE, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px", display: "block" }}>Valid Thru</label>
-                                            <input 
-                                                type="text" placeholder="MM/YY" 
-                                                onClick={(e) => e.stopPropagation()}
-                                                style={{ width: "100%", padding: "14px 20px", borderRadius: "12px", border: "1.5px solid rgba(15,23,42,0.1)", fontSize: "14px", fontWeight: 600, outline: "none", background: "#fff" }} 
-                                            />
-                                        </div>
-                                        <div>
-                                            <label style={{ fontSize: "10px", fontWeight: 900, color: SLATE, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px", display: "block" }}>CVV</label>
-                                            <input 
-                                                type="password" placeholder="***" 
-                                                onClick={(e) => e.stopPropagation()}
-                                                style={{ width: "100%", padding: "14px 20px", borderRadius: "12px", border: "1.5px solid rgba(15,23,42,0.1)", fontSize: "14px", fontWeight: 600, outline: "none", background: "#fff" }} 
-                                            />
-                                        </div>
+                                    
+                                    <div style={{ textAlign: "center" }}>
+                                        <button 
+                                            onClick={(e) => e.stopPropagation()}
+                                            style={{ 
+                                                background: SLATE, color: "#fff", border: "none", padding: "14px 28px", borderRadius: "14px", 
+                                                fontWeight: 800, fontSize: "14px", cursor: "pointer", boxShadow: "0 10px 30px rgba(15,23,42,0.2)" 
+                                            }}
+                                        >
+                                            Generate Payment QR
+                                        </button>
+                                        <p style={{ fontSize: "12px", color: "rgba(15,23,42,0.4)", fontWeight: 700, marginTop: "16px", maxWidth: "250px", lineHeight: 1.5 }}>
+                                            Scan this QR using Google Pay, PhonePe, or Paytm to complete your booking securely.
+                                        </p>
                                     </div>
                                 </div>
                             </PaymentMethodItem>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
 
                     {/* RIGHT: Order Summary Sidebar */}
                     <div style={{ position: "sticky", top: "100px" }}>
-                        <div style={{ background: SLATE, borderRadius: "28px", padding: "30px", color: "#fff", boxShadow: "0 30px 70px rgba(15, 23, 42, 0.25)" }}>
-                            <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, margin: "0 0 25px", color: "#fff" }}>Order Details</h3>
+                        <div style={{ background: "#fff", borderRadius: "28px", padding: "30px", color: SLATE, border: "1.5px solid rgba(15, 23, 42, 0.12)", boxShadow: "0 8px 30px rgba(15, 23, 42, 0.04)" }}>
+                            <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, margin: "0 0 25px", color: SLATE }}>Order Details</h3>
                             
                             {/* Vehicle Inline Summary */}
-                            <div style={{ display: "flex", gap: "20px", paddingBottom: "25px", borderBottom: "1px solid rgba(255,255,255,0.08)", marginBottom: "25px" }}>
-                                <div style={{ width: "100px", height: "75px", borderRadius: "16px", overflow: "hidden", background: "#fff" }}>
+                            <div style={{ display: "flex", gap: "20px", paddingBottom: "25px", borderBottom: "1.5px dashed rgba(15,23,42,0.08)", marginBottom: "25px" }}>
+                                <div style={{ width: "100px", height: "75px", borderRadius: "16px", overflow: "hidden", background: "#f8fafc", border: "1px solid rgba(15,23,42,0.05)" }}>
                                     <img src={vehicle.image} alt={vehicle.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                                 </div>
                                 <div>
-                                    <h4 style={{ margin: 0, fontSize: "17px", fontWeight: 900, fontFamily: H, color: "#fff" }}>{vehicle.name}</h4>
-                                    <p style={{ margin: "4px 0", fontSize: "12px", color: "rgba(255,255,255,0.5)", fontWeight: 800 }}>{vehicle.type.toUpperCase()} · {vehicle.fuel.toUpperCase()}</p>
+                                    <h4 style={{ margin: 0, fontSize: "17px", fontWeight: 900, fontFamily: H, color: SLATE }}>{vehicle.name}</h4>
+                                    <p style={{ margin: "4px 0", fontSize: "12px", color: "rgba(15,23,42,0.5)", fontWeight: 800 }}>{vehicle.type.toUpperCase()} · {vehicle.fuel.toUpperCase()}</p>
                                     <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "8px" }}>
                                         <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: RED }} />
                                         <span style={{ fontSize: "13px", fontWeight: 800, color: RED }}>{fmtDate(date)} · {pickup}</span>
@@ -274,31 +311,31 @@ export default function Payment() {
                             {/* Billing Overview */}
                             <div style={{ display: "flex", flexDirection: "column", gap: "15px", marginBottom: "30px" }}>
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                    <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.6)", fontWeight: 600 }}>Rental Duration</span>
+                                    <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.5)", fontWeight: 600 }}>Rental Duration</span>
                                     <span style={{ fontSize: "14px", fontWeight: 800 }}>{Math.floor(totalMins/60)}h {totalMins%60}m</span>
                                 </div>
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                    <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.6)", fontWeight: 600 }}>Base Fare</span>
+                                    <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.5)", fontWeight: 600 }}>Base Fare</span>
                                     <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{baseTotal || 0}</span>
                                 </div>
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                    <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.6)", fontWeight: 600 }}>Taxes & GST (18%)</span>
+                                    <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.5)", fontWeight: 600 }}>Taxes & GST (18%)</span>
                                     <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{passedGst || 0}</span>
                                 </div>
                                 {helmetCharge > 0 && (
                                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                        <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.6)", fontWeight: 600 }}>Helmet Charges</span>
+                                        <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.5)", fontWeight: 600 }}>Helmet Charges</span>
                                         <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{helmetCharge}</span>
                                     </div>
                                 )}
                                 {driverCharge > 0 && (
                                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                        <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.6)", fontWeight: 600 }}>Driver Charges</span>
+                                        <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.5)", fontWeight: 600 }}>Driver Charges</span>
                                         <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{driverCharge}</span>
                                     </div>
                                 )}
-                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px", paddingTop: "20px", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-                                    <span style={{ fontSize: "18px", fontWeight: 900, color: "#fff", fontFamily: H }}>Payable Amount</span>
+                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px", paddingTop: "20px", borderTop: "1.5px dashed rgba(15,23,42,0.08)" }}>
+                                    <span style={{ fontSize: "18px", fontWeight: 900, color: SLATE, fontFamily: H }}>Payable Amount</span>
                                     <span style={{ fontSize: "32px", fontWeight: 900, color: RED, fontFamily: H }}>₹{grand}</span>
                                 </div>
                             </div>
@@ -309,7 +346,7 @@ export default function Payment() {
                                 disabled={loading}
                                 style={{ 
                                     width: "100%", padding: "20px", borderRadius: "20px", 
-                                    background: `linear-gradient(135deg, ${RED}, #ff4d4d)`, 
+                                    background: RED, 
                                     color: "#fff", border: "none", fontSize: "18px", fontWeight: 900, 
                                     cursor: loading ? "default" : "pointer", 
                                     boxShadow: `0 15px 40px rgba(190, 13, 13, 0.4)`,
@@ -328,7 +365,7 @@ export default function Payment() {
                             </button>
                             
                             <div style={{ marginTop: "30px", textAlign: "center" }}>
-                                <p style={{ fontSize: "10px", fontWeight: 800, color: "rgba(255,255,255,0.3)", letterSpacing: "1.5px", textTransform: "uppercase" }}>Fully PCI DSS Compliant</p>
+                                <p style={{ fontSize: "10px", fontWeight: 800, color: "rgba(15,23,42,0.4)", letterSpacing: "1.5px", textTransform: "uppercase" }}>Fully PCI DSS Compliant</p>
                             </div>
                         </div>
                     </div>
@@ -350,6 +387,80 @@ export default function Payment() {
                             <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H, margin: "0 0 10px", letterSpacing: "-1px" }}>Payment Successful!</h2>
                             <p style={{ fontSize: "19px", color: "rgba(255,255,255,0.6)", fontWeight: 700, margin: 0 }}>Your RoadMate journey has officially begun.</p>
                             <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.4)", fontWeight: 800, marginTop: "25px", textTransform: "uppercase" }}>Redirecting to your bookings...</p>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Expiry Modal */}
+            <AnimatePresence>
+                {showExpiredModal && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        style={{ 
+                            position: "fixed", inset: 0, zIndex: 10000,
+                            background: "rgba(0,0,0,0.6)", backdropFilter: "blur(6px)",
+                            display: "flex", alignItems: "flex-end", justifyContent: "center"
+                        }}
+                        onClick={() => navigate("/")}
+                    >
+                        <motion.div 
+                            initial={{ y: "100%" }} 
+                            animate={{ y: 0 }} 
+                            exit={{ y: "100%" }}
+                            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+                            onClick={e => e.stopPropagation()}
+                            style={{ 
+                                background: "rgba(255, 255, 255, 0.9)", 
+                                backdropFilter: "blur(30px)",
+                                WebkitBackdropFilter: "blur(30px)",
+                                borderRadius: "32px 32px 0 0", 
+                                width: "100%", maxWidth: "550px", 
+                                maxHeight: "92vh", overflowY: "auto",
+                                boxShadow: "0 -20px 60px rgba(0,0,0,0.15)",
+                                border: "1px solid rgba(255, 255, 255, 0.2)",
+                                fontFamily: F
+                            }}
+                        >
+                            <div style={{ display: "flex", justifyContent: "center", padding: "12px 0 0" }}>
+                                <div style={{ width: 40, height: 4, borderRadius: 99, background: "rgba(0,0,0,0.1)" }} />
+                            </div>
+
+                            <div style={{ position: "relative", height: "240px", width: "100%", overflow: "hidden", borderRadius: "32px 32px 0 0" }}>
+                                <img src="/payment/clock timer.jpeg" alt="Time Out" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                                <button onClick={() => navigate("/")} style={{ position: "absolute", top: "20px", right: "20px", width: "36px", height: "36px", borderRadius: "50%", background: "rgba(255,255,255,0.9)", border: "none", color: SLATE, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 12px rgba(0,0,0,0.1)", zIndex: 10 }}>
+                                    <Svg size={16}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></Svg>
+                                </button>
+                            </div>
+
+                            <div style={{ padding: "32px 24px 35px" }}>
+                                <div style={{ textAlign: "center", marginBottom: "24px" }}>
+                                    <p style={{ color: RED, fontSize: "12px", fontWeight: "800", margin: 0, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px" }}>SESSION STATUS</p>
+                                    <h3 style={{ color: SLATE, fontSize: "28px", fontWeight: "900", margin: 0, fontFamily: H, letterSpacing: "-1px" }}>You ran out of time</h3>
+                                </div>
+
+                                <div style={{ background: "rgba(15,23,42,0.03)", borderRadius: "20px", padding: "24px", marginBottom: "24px", border: "1px solid rgba(15,23,42,0.05)", textAlign: "center" }}>
+                                    <p style={{ fontSize: "15px", fontWeight: "500", color: "rgba(15, 23, 42, 0.6)", lineHeight: 1.6, margin: 0 }}>
+                                        Payment time has expired.<br/>Please select your vehicle and try again.
+                                    </p>
+                                </div>
+
+                                <button 
+                                    onClick={() => navigate("/")}
+                                    style={{ 
+                                        width: "100%", padding: "16px", borderRadius: "16px", 
+                                        background: RED, border: "none", color: "#fff", 
+                                        fontSize: "16px", fontWeight: "900", cursor: "pointer", 
+                                        fontFamily: F, transition: "all .3s ease",
+                                        boxShadow: `0 10px 30px ${RED}40`
+                                    }}
+                                >
+                                    Back to search
+                                </button>
+                                <p style={{ textAlign: "center", fontSize: "11px", color: "rgba(15,23,42,0.4)", marginTop: "16px", marginBottom: 0, fontWeight: 700, letterSpacing: "0.3px" }}>Secure session monitoring active</p>
+                            </div>
                         </motion.div>
                     </motion.div>
                 )}
