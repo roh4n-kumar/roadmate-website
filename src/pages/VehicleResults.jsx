@@ -217,6 +217,9 @@ export default function VehicleResults() {
       const userSnap = await getDoc(userRef);
       const userData = userSnap.exists() ? userSnap.data() : {};
       
+      const hasPhone = !!userData.profile?.phone;
+      const isVerified = userData.verification?.status === "verified";
+
       if (!hasPhone && !isVerified) {
         setErrorToast("Please first verify your mobile number and documentations before booking.");
         setLoading(false);
