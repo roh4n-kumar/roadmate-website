@@ -399,15 +399,14 @@ const PersonalInfo = () => {
           <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
              style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 9999, padding: "0 20px", pointerEvents: "none" }}>
             <div style={{ 
-              background: "rgba(34, 197, 94, 0.08)", 
+              background: "#ffffff", 
               color: "#22c55e", 
               padding: "16px 32px", 
               borderRadius: "16px", 
               fontSize: "14px", 
-              fontWeight: "800", 
-              border: "1.5px solid rgba(34, 197, 94, 0.2)",
-              backdropFilter: "blur(10px)",
-              boxShadow: "0 10px 30px rgba(34,197,94,0.1)", 
+              fontWeight: "900", 
+              border: "2px solid #22c55e",
+              boxShadow: "0 20px 50px rgba(0,0,0,0.15)", 
               display: "flex", 
               alignItems: "center", 
               gap: "12px",
