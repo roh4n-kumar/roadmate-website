@@ -396,10 +396,24 @@ const PersonalInfo = () => {
 
       <AnimatePresence>
         {saved && (
-          <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            style={{ position: "fixed", bottom: "50px", left: 0, right: 0, display: "flex", justifyContent: "center", zIndex: 9999, pointerEvents: "none" }}>
-            <div style={{ background: "#0f172a", color: "white", padding: "18px 36px", borderRadius: "20px", display: "flex", alignItems: "center", gap: "14px", boxShadow: "0 20px 50px rgba(0,0,0,0.3)", borderLeft: `6px solid #22c55e`, fontSize: "16px", fontWeight: "700", fontFamily: F }}>
-              <div style={{ background: '#22c55e', width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px' }}>✓</div>
+          <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+             style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 9999, padding: "0 20px", pointerEvents: "none" }}>
+            <div style={{ 
+              background: "rgba(34, 197, 94, 0.08)", 
+              color: "#22c55e", 
+              padding: "16px 32px", 
+              borderRadius: "16px", 
+              fontSize: "14px", 
+              fontWeight: "800", 
+              border: "1.5px solid rgba(34, 197, 94, 0.2)",
+              backdropFilter: "blur(10px)",
+              boxShadow: "0 10px 30px rgba(34,197,94,0.1)", 
+              display: "flex", 
+              alignItems: "center", 
+              gap: "12px",
+              fontFamily: H
+            }}>
+              <div style={{ background: '#22c55e', width: '20px', height: '20px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', color: '#fff' }}>✓</div>
               Profile Updated successfully!
             </div>
           </motion.div>

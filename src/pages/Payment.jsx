@@ -115,6 +115,7 @@ export default function Payment() {
     const [timeLeft, setTimeLeft] = useState(600);
     const [showExpiredModal, setShowExpiredModal] = useState(false);
     const [dbBooking, setDbBooking] = useState(null);
+    const [toast, setToast] = useState(null); // { msg, type }
 
     // ── SYNC WITH FIRESTORE BOOKING ──
     useEffect(() => {
@@ -234,7 +235,8 @@ export default function Payment() {
         } catch (error) {
             console.error("Payment update failed:", error);
             setLoading(false);
-            alert("Payment failed to sync with our servers. Please contact support.");
+            setToast({ msg: "Payment failed to sync. Please contact support.", type: "error" });
+            setTimeout(() => setToast(null), 5000);
         }
     };
 
@@ -573,6 +575,32 @@ export default function Payment() {
                 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
                 input::placeholder { color: rgba(15,23,42,0.3); font-weight: 500; }
             `}</style>
+
+            {/* Global Styled Toast */}
+            <AnimatePresence>
+                {toast && (
+                    <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                        style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 11000, padding: "0 20px", pointerEvents: "none" }}>
+                        <div style={{ 
+                            background: toast.type === "error" ? "rgba(190, 13, 13, 0.08)" : "rgba(34, 197, 94, 0.08)", 
+                            color: toast.type === "error" ? RED : "#22c55e", 
+                            padding: "16px 32px", 
+                            borderRadius: "16px", 
+                            fontSize: "14px", 
+                            fontWeight: "800", 
+                            border: toast.type === "error" ? "1.5px solid rgba(190, 13, 13, 0.2)" : "1.5px solid rgba(34, 197, 94, 0.2)",
+                            backdropFilter: "blur(10px)",
+                            boxShadow: toast.type === "error" ? "0 10px 30px rgba(190,13,13,0.1)" : "0 10px 30px rgba(34,197,94,0.1)", 
+                            display: "flex", 
+                            alignItems: "center", 
+                            gap: "12px",
+                            fontFamily: H
+                        }}>
+                            <span style={{ fontSize: "20px" }}>{toast.type === "error" ? "⚠️" : "✅"}</span> {toast.msg}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

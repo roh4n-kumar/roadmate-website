@@ -205,8 +205,8 @@ export default function VehicleResults() {
 
   const handleConfirm = async (v, breakdown) => { 
     if (!auth.currentUser) {
-      alert("Please login to continue with booking.");
-      navigate("/");
+      setErrorToast("Please login to continue with booking.");
+      setTimeout(() => navigate("/"), 2000);
       return;
     }
 
@@ -285,7 +285,8 @@ export default function VehicleResults() {
       });
     } catch (error) {
       console.error("Error creating booking:", error);
-      alert("Failed to initialize booking. Please try again.");
+      setErrorToast("Failed to initialize booking. Please try again.");
+      setLoading(false);
     }
   };
 
@@ -333,9 +334,25 @@ export default function VehicleResults() {
       {/* Toast */}
       <AnimatePresence>
         {booked && (
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-            style={{ position: "fixed", top: "72px", left: "50%", transform: "translateX(-50%)", background: "#111", color: "#fff", padding: "11px 22px", borderRadius: "99px", fontSize: "13px", fontWeight: "700", zIndex: 2000, boxShadow: "0 8px 24px rgba(0,0,0,0.2)", whiteSpace: "nowrap" }}>
-            🎉 Booking confirmed! Redirecting…
+          <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+            style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 4000, padding: "0 20px" }}>
+            <div style={{ 
+              background: "rgba(34, 197, 94, 0.08)", 
+              color: "#22c55e", 
+              padding: "16px 32px", 
+              borderRadius: "16px", 
+              fontSize: "14px", 
+              fontWeight: "800", 
+              border: "1.5px solid rgba(34, 197, 94, 0.2)",
+              backdropFilter: "blur(10px)",
+              boxShadow: "0 10px 30px rgba(34,197,94,0.1)", 
+              display: "flex", 
+              alignItems: "center", 
+              gap: "12px",
+              fontFamily: H
+            }}>
+              🎉 Booking confirmed! Redirecting…
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -487,12 +504,27 @@ export default function VehicleResults() {
         )}
       </AnimatePresence>
 
-      {/* Error Toast */}
       <AnimatePresence>
         {errorToast && (
           <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-            style={{ position: "fixed", bottom: "80px", left: "50%", transform: "translateX(-50%)", background: RED, color: "#fff", padding: "12px 24px", borderRadius: "12px", fontSize: "14px", fontWeight: "700", zIndex: 3000, boxShadow: "0 10px 30px rgba(190,13,13,0.3)", display: "flex", alignItems: "center", gap: "10px", minWidth: "300px", justifyContent: "center" }}>
-            <span style={{ fontSize: "18px" }}>⚠️</span> {errorToast}
+             style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 9000, padding: "0 20px" }}>
+            <div style={{ 
+              background: "rgba(190, 13, 13, 0.08)", 
+              color: RED, 
+              padding: "16px 32px", 
+              borderRadius: "16px", 
+              fontSize: "14px", 
+              fontWeight: "800", 
+              border: "1.5px solid rgba(190, 13, 13, 0.2)",
+              backdropFilter: "blur(10px)",
+              boxShadow: "0 10px 30px rgba(190,13,13,0.1)", 
+              display: "flex", 
+              alignItems: "center", 
+              gap: "12px",
+              fontFamily: H
+            }}>
+              <span style={{ fontSize: "20px" }}>⚠️</span> {errorToast}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
