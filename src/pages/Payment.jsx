@@ -193,9 +193,12 @@ export default function Payment() {
         window.scrollTo(0, 0);
     }, [location.state, navigate]);
 
+    const vehicle = dbBooking?.vehicle || passedVehicle;
     if (!vehicle) return null;
 
-    const grand = total || 0;
+    const tripData  = dbBooking?.trip || { date, pickupTime: pickup, dropTime: drop, totalMins };
+    const costs     = dbBooking?.breakdown || { baseTotal, gst: passedGst, helmetCharge, driverCharge, grandTotal: total };
+    const grand     = costs.grandTotal || costs.total || total || 0;
 
     const handlePay = async () => {
         setLoading(true);
@@ -398,26 +401,26 @@ export default function Payment() {
                             <div style={{ display: "flex", flexDirection: "column", gap: "15px", marginBottom: "30px" }}>
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                     <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.5)", fontWeight: 600 }}>Rental Duration</span>
-                                    <span style={{ fontSize: "14px", fontWeight: 800 }}>{Math.floor(totalMins/60)}h {totalMins%60}m</span>
+                                    <span style={{ fontSize: "14px", fontWeight: 800 }}>{Math.floor((tripData.totalMins || 0)/60)}h {(tripData.totalMins || 0)%60}m</span>
                                 </div>
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                     <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.5)", fontWeight: 600 }}>Base Fare</span>
-                                    <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{baseTotal || 0}</span>
+                                    <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{costs.baseTotal || 0}</span>
                                 </div>
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                     <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.5)", fontWeight: 600 }}>Taxes & GST (18%)</span>
-                                    <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{passedGst || 0}</span>
+                                    <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{costs.gst || 0}</span>
                                 </div>
-                                {helmetCharge > 0 && (
+                                {(costs.helmetCharge > 0) && (
                                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                         <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.5)", fontWeight: 600 }}>Helmet Charges</span>
-                                        <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{helmetCharge}</span>
+                                        <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{costs.helmetCharge}</span>
                                     </div>
                                 )}
-                                {driverCharge > 0 && (
+                                {(costs.driverCharge > 0) && (
                                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                         <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.5)", fontWeight: 600 }}>Driver Charges</span>
-                                        <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{driverCharge}</span>
+                                        <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{costs.driverCharge}</span>
                                     </div>
                                 )}
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px", paddingTop: "20px", borderTop: "1.5px dashed rgba(15,23,42,0.08)" }}>
