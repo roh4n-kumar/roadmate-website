@@ -726,8 +726,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
   `;
 
   return (
-    <section className="hero-section">
-      <style>{css}</style>
+    <>
+      <section className="hero-section">
+        <style>{css}</style>
       
       <div className="search-ribbon-v2">
         {/* HEADER BLOCK */}
@@ -988,10 +989,12 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </div>
       </div>
 
+      </section>
+
       <AnimatePresence>
         {toastMsg && (
           <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-             style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 9999, padding: "0 20px", pointerEvents: "none" }}>
+             style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 11000, padding: "0 20px", pointerEvents: "none" }}>
             <div style={{ 
               background: "rgba(190, 13, 13, 0.08)", 
               color: RED, 
@@ -1005,14 +1008,15 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               display: "flex", 
               alignItems: "center", 
               gap: "12px",
-              fontFamily: H
+              fontFamily: H,
+              pointerEvents: "auto"
             }}>
               <span style={{ fontSize: "20px" }}>⚠️</span> {toastMsg}
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </>
   );
 };
 
