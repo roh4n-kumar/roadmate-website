@@ -193,9 +193,23 @@ const PersonalInfo = () => {
       if (!u) { navigate("/"); return; }
       setUser(u);
       const snap = await getDoc(doc(db, "users", u.uid));
-      let data = snap.exists() ? { ...snap.data(), email: u.email } : { name: u.displayName || "", email: u.email };
-      const phone   = data.phone   ? data.phone.replace("+91","").replace(/\s/g,"").replace(/\D/g,"").slice(0,10) : "";
+      const rootData = snap.exists() ? snap.data() : {};
+      const profile  = rootData.profile || {};
+      
+      let data = { 
+        name: profile.name || u.displayName || "", 
+        email: u.email, 
+        phone: profile.phone || "",
+        dob: profile.dob || "",
+        gender: profile.gender || "",
+        city: profile.city || "",
+        address: profile.address || "",
+        pincode: profile.pincode || ""
+      };
+
+      const phone   = data.phone ? data.phone.replace("+91","").replace(/\s/g,"").replace(/\D/g,"").slice(0,10) : "";
       const pincode = data.pincode ? data.pincode.replace(/\D/g,"").slice(0,6) : "";
+      
       setFormData(data);          setOriginalData(data);
       setPhoneDigits(phone);      setOriginalPhoneDigits(phone);
       setPincodeDigits(pincode);  setOriginalPincodeDigits(pincode);
@@ -213,8 +227,11 @@ const PersonalInfo = () => {
     if (!checkPhone() || !checkPincode()) return;
     setSaving(true);
     try {
-      const saveData = { ...formData, phone: "+91 " + phoneDigits, pincode: pincodeDigits, updatedAt: new Date() };
-      await setDoc(doc(db, "users", user.uid), saveData, { merge: true });
+      const saveData = { ...formData, phone: "+91 " + phoneDigits, pincode: pincodeDigits };
+      await setDoc(doc(db, "users", user.uid), { 
+        profile: saveData, 
+        updatedAt: new Date() 
+      }, { merge: true });
       if (formData.name) await updateProfile(user, { displayName: formData.name });
       setOriginalData(formData); setOriginalPhoneDigits(phoneDigits); setOriginalPincodeDigits(pincodeDigits);
       setSaved(true); setEditMode(false);

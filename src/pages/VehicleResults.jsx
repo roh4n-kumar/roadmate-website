@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { db } from "../firebase";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { db, auth } from "../firebase";
+import { collection, onSnapshot, query, where, addDoc, serverTimestamp } from "firebase/firestore";
 
 const RED = "#be0d0d";
 const SLATE = "#0f172a";
@@ -202,20 +202,66 @@ export default function VehicleResults() {
       return b.reviews - a.reviews;
     });
 
-  const handleConfirm = (v, breakdown) => { 
-    setSelected(null); 
-    navigate("/payment", { 
-      state: { 
-        vehicle: v, 
-        ...breakdown,
-        date,
-        pickup,
-        drop,
-        totalMins,
-        withHelmet,
-        withDriver
-      } 
-    });
+  const handleConfirm = async (v, breakdown) => { 
+    if (!auth.currentUser) {
+      alert("Please login to continue with booking.");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      // Create a professional root-level booking document
+      const bookingData = {
+        userId: auth.currentUser.uid,
+        userName: auth.currentUser.displayName || "User",
+        userEmail: auth.currentUser.email,
+        vehicle: {
+          id: v.id,
+          name: v.name,
+          image: v.image,
+          type: v.type,
+          pricePerHour: v.pricePerHour,
+          category: v.category
+        },
+        trip: {
+          date: date,
+          pickupTime: pickup,
+          dropTime: drop,
+          totalMins: totalMins
+        },
+        breakdown: {
+          baseTotal: breakdown.baseTotal,
+          gst: breakdown.gst,
+          helmetCharge: breakdown.helmetCharge || 0,
+          driverCharge: breakdown.driverCharge || 0,
+          grandTotal: breakdown.total
+        },
+        status: "pending",
+        paymentStatus: "unpaid",
+        createdAt: serverTimestamp(),
+        expiresAt: new Date(Date.now() + 10 * 60 * 1000) // 10 min window
+      };
+
+      const docRef = await addDoc(collection(db, "bookings"), bookingData);
+      
+      setSelected(null); 
+      navigate("/payment", { 
+        state: { 
+          bookingId: docRef.id,
+          vehicle: v, 
+          ...breakdown,
+          date,
+          pickup,
+          drop,
+          totalMins,
+          withHelmet,
+          withDriver
+        } 
+      });
+    } catch (error) {
+      console.error("Error creating booking:", error);
+      alert("Failed to initialize booking. Please try again.");
+    }
   };
 
   return (

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { db } from "../firebase";
+import { doc, getDoc, updateDoc, onSnapshot, serverTimestamp } from "firebase/firestore";
 
 const RED = "#be0d0d";
 const SLATE = "#0f172a";
@@ -92,56 +94,87 @@ const PaymentMethodItem = ({ id, active, icon, title, subtitle, onClick, childre
 export default function Payment() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { vehicle, total, date, pickup, drop, totalMins, baseTotal, gst: passedGst, helmetCharge, driverCharge } = location.state || {};
+    const { bookingId, vehicle: passedVehicle, total, date, pickup, drop, totalMins, baseTotal, gst: passedGst, helmetCharge, driverCharge } = location.state || {};
 
     const [coupon, setCoupon] = useState("");
     const [activeSection, setActiveSection] = useState(null);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
-    const [timeLeft, setTimeLeft] = useState(600); // Default 10 minutes
+    const [timeLeft, setTimeLeft] = useState(600);
     const [showExpiredModal, setShowExpiredModal] = useState(false);
+    const [dbBooking, setDbBooking] = useState(null);
 
-    // Persistence & Timer Logic
+    // ── SYNC WITH FIRESTORE BOOKING ──
     useEffect(() => {
-        // 1. Check if already marked as expired in this session
+        if (!bookingId) return;
+
+        const unsub = onSnapshot(doc(db, "bookings", bookingId), (snap) => {
+            if (snap.exists()) {
+                const data = snap.data();
+                setDbBooking(data);
+                
+                // If payment was already completed elsewhere
+                if (data.status === "upcoming" || data.status === "completed") {
+                    setSuccess(true);
+                    setTimeout(() => navigate("/my-bookings"), 2000);
+                }
+
+                // Sync Timer with server-side createdAt
+                if (data.createdAt) {
+                    const createdNode = data.createdAt.toDate();
+                    const expiryTime = createdNode.getTime() + (10 * 60 * 1000);
+                    
+                    const updateTimer = () => {
+                        const now = Date.now();
+                        const remaining = Math.max(0, Math.floor((expiryTime - now) / 1000));
+                        setTimeLeft(remaining);
+
+                        if (remaining <= 0) {
+                            setShowExpiredModal(true);
+                            // We could also update Firestore status to "expired" here
+                            updateDoc(doc(db, "bookings", bookingId), { status: "expired" }).catch(() => {});
+                        }
+                    };
+
+                    updateTimer();
+                    const interval = setInterval(updateTimer, 1000);
+                    return () => clearInterval(interval);
+                }
+            }
+        });
+
+        return () => unsub();
+    }, [bookingId, navigate]);
+
+    // Fallback for non-Firestore legacy flow (if any)
+    useEffect(() => {
+        if (bookingId) return; // Skip if using Firestore
+
         if (sessionStorage.getItem("roadmate_is_expired") === "true") {
             setShowExpiredModal(true);
             setTimeLeft(0);
             return;
         }
-
-        // 2. Initialize or recover expiry timestamp
         let expiry = sessionStorage.getItem("roadmate_expiry");
         if (!expiry) {
             expiry = Date.now() + 600 * 1000;
             sessionStorage.setItem("roadmate_expiry", expiry);
         }
-
-        // 3. Update time left immediately
         const remaining = Math.max(0, Math.floor((parseInt(expiry) - Date.now()) / 1000));
         setTimeLeft(remaining);
 
-        if (remaining <= 0) {
-            setShowExpiredModal(true);
-            sessionStorage.setItem("roadmate_is_expired", "true");
-            return;
-        }
-
-        // 4. Start Countdown
         const timerCount = setInterval(() => {
             const now = Date.now();
             const newRemaining = Math.max(0, Math.floor((parseInt(expiry) - now) / 1000));
             setTimeLeft(newRemaining);
-
             if (newRemaining <= 0) {
                 setShowExpiredModal(true);
                 sessionStorage.setItem("roadmate_is_expired", "true");
                 clearInterval(timerCount);
             }
         }, 1000);
-
         return () => clearInterval(timerCount);
-    }, []);
+    }, [bookingId]);
 
     // Helper to clear session
     const clearPaymentSession = () => {
@@ -164,14 +197,30 @@ export default function Payment() {
 
     const grand = total || 0;
 
-    const handlePay = () => {
+    const handlePay = async () => {
         setLoading(true);
-        setTimeout(() => {
+        try {
+            // Update Firestore document status
+            if (bookingId) {
+                await updateDoc(doc(db, "bookings", bookingId), {
+                    status: "upcoming",
+                    paymentStatus: "paid",
+                    paidAt: serverTimestamp(),
+                    paymentMethod: "UPI/QR (Simulated)"
+                });
+            }
+
+            setTimeout(() => {
+                setLoading(false);
+                setSuccess(true);
+                clearPaymentSession();
+                setTimeout(() => navigate("/my-bookings"), 3000);
+            }, 1500);
+        } catch (error) {
+            console.error("Payment update failed:", error);
             setLoading(false);
-            setSuccess(true);
-            clearPaymentSession(); // Payment complete, clear session
-            setTimeout(() => navigate("/my-bookings"), 3000);
-        }, 3500);
+            alert("Payment failed to sync with our servers. Please contact support.");
+        }
     };
 
     const fmtDate = s => { if (!s) return ""; const d = new Date(s); return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }); };

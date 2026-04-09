@@ -178,7 +178,7 @@ const MyBookings = () => {
                   </div>
 
                   <h3 style={{ margin: "0 0 16px 0", color: "#0f172a", fontSize: "22px", fontWeight: "900", textTransform: "capitalize", fontFamily: H }}>
-                    {b.vehicleType}
+                    {b.vehicle?.name || b.vehicleType}
                   </h3>
 
                   <div style={{
@@ -190,17 +190,17 @@ const MyBookings = () => {
                     <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                       <FontAwesomeIcon icon={faCalendarAlt} style={{ color: RED, fontSize: "14px" }} />
                       <span style={{ fontWeight: "800", color: "#0f172a", fontSize: "15px" }}>
-                        {formatDate(b.date || b.createdAt)}
+                        {formatDate(b.trip?.date || b.date || b.createdAt)}
                       </span>
                     </div>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px", color: RED, fontSize: "13px", fontWeight: "800" }}>
                       <FontAwesomeIcon icon={faClock} />
-                      <span>{b.pickupTime || "09:00 AM"} – {b.dropOffTime || "09:00 PM"}</span>
+                      <span>{b.trip?.pickupTime || b.pickupTime || "09:00 AM"} – {b.trip?.dropTime || b.dropOffTime || "09:00 PM"}</span>
                     </div>
-                    <div style={{ marginTop: "4px", fontSize: "15px", fontWeight: "900", color: "#1e293b" }}>Total: ₹{b.totalPrice || "0"}</div>
+                    <div style={{ marginTop: "4px", fontSize: "15px", fontWeight: "900", color: "#1e293b" }}>Total: ₹{b.breakdown?.grandTotal || b.totalPrice || "0"}</div>
                   </div>
 
-                  {activeTab === "upcoming" ? (
+                  {b.status === "upcoming" ? (
                     <button onClick={() => handleCancel(b.id)} style={{
                       width: "100%", padding: "14px",
                       background: "transparent", border: `1.5px solid ${RED}`,

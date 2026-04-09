@@ -257,16 +257,49 @@ const DocumentVerification = () => {
       firestoreUnsub = onSnapshot(doc(db, "users", u.uid), (snap) => {
         if (snap.exists()) {
           const d = snap.data();
-          const newStatus = { "driving-licence":d.dlStatus||"not_uploaded", aadhaar:d.aadhaarStatus||"not_uploaded", selfie:d.selfieStatus||"not_uploaded" };
+          const v = d.verification || {};
+          const dl = v.drivingLicence || {};
+          const aad = v.aadhaar || {};
+          const slf = v.selfie || {};
+
+          const newStatus = { 
+            "driving-licence": dl.status || "not_uploaded", 
+            aadhaar: aad.status || "not_uploaded", 
+            selfie: slf.status || "not_uploaded" 
+          };
+
           setDocStatus(newStatus);
-          setExpandedCards({ "driving-licence":!allPendingOrDone(newStatus["driving-licence"]), aadhaar:!allPendingOrDone(newStatus.aadhaar), selfie:!allPendingOrDone(newStatus.selfie) });
-          if (d.dlStatus==="rejected"||d.dlStatus==="not_uploaded") { setDlNumber(""); setDlExpiry(""); setDlClass(""); setDlFront(null); setDlImageUrl(null); setDlErrors({}); setDlBorderColor(undefined); }
-          else { if (d.dlNumber) setDlNumber(d.dlNumber); if (d.dlExpiry) setDlExpiry(d.dlExpiry); if (d.dlClass) setDlClass(d.dlClass); if (d.dlImage) setDlImageUrl(d.dlImage); }
-          if (d.aadhaarStatus==="rejected"||d.aadhaarStatus==="not_uploaded") { setAadhaarFront(null); setAadhaarBack(null); setAadhaarNumber(""); setAadhaarFrontUrl(null); setAadhaarBackUrl(null); setAadhaarErrors({}); }
-          else { if (d.aadhaarNumber) setAadhaarNumber(d.aadhaarNumber); if (d.aadhaarFrontImage) setAadhaarFrontUrl(d.aadhaarFrontImage); if (d.aadhaarBackImage) setAadhaarBackUrl(d.aadhaarBackImage); }
-          if (d.selfieStatus==="rejected"||d.selfieStatus==="not_uploaded") setSelfieImg(null);
-          else { if (d.selfieImage) setSelfieImg(d.selfieImage); }
-          if (d.notification && !d.notification.read) { setNotification(d.notification); setDoc(doc(db,"users",u.uid), { notification:{ ...d.notification, read:true } }, { merge:true }); }
+          setExpandedCards({ 
+            "driving-licence": !allPendingOrDone(newStatus["driving-licence"]), 
+            aadhaar: !allPendingOrDone(newStatus.aadhaar), 
+            selfie: !allPendingOrDone(newStatus.selfie) 
+          });
+
+          if (newStatus["driving-licence"] === "rejected" || newStatus["driving-licence"] === "not_uploaded") { 
+            setDlNumber(""); setDlExpiry(""); setDlClass(""); setDlFront(null); setDlImageUrl(null); setDlErrors({}); setDlBorderColor(undefined); 
+          } else { 
+            if (dl.number) setDlNumber(dl.number); 
+            if (dl.expiry) setDlExpiry(dl.expiry); 
+            if (dl.class)  setDlClass(dl.class); 
+            if (dl.image)  setDlImageUrl(dl.image); 
+          }
+
+          if (newStatus.aadhaar === "rejected" || newStatus.aadhaar === "not_uploaded") { 
+            setAadhaarFront(null); setAadhaarBack(null); setAadhaarNumber(""); setAadhaarFrontUrl(null); setAadhaarBackUrl(null); setAadhaarErrors({}); 
+          } else { 
+            if (aad.number) setAadhaarNumber(aad.number); 
+            if (aad.frontImage) setAadhaarFrontUrl(aad.frontImage); 
+            if (aad.backImage) setAadhaarBackUrl(aad.backImage); 
+          }
+
+          if (newStatus.selfie === "rejected" || newStatus.selfie === "not_uploaded") setSelfieImg(null);
+          else { 
+            if (slf.image) setSelfieImg(slf.image); 
+          }
+
+          if (d.notification && !d.notification.read) { 
+            setDoc(doc(db,"users",u.uid), { notification:{ ...d.notification, read:true } }, { merge:true }); 
+          }
         }
         setLoading(false);
       });
@@ -331,12 +364,46 @@ const DocumentVerification = () => {
       if (!selfiePend && selfieImg && selfieImg.startsWith("data:")) { const blob=await fetch(selfieImg).then(r=>r.blob()); const selfieFile=new File([blob],"selfie.jpg",{type:"image/jpeg"}); uploadPromises.push(uploadToCloudinary(selfieFile).then(url=>({ key:"selfieImage", url }))); }
       const uploadedImgs = await Promise.all(uploadPromises);
       const imgMap = {}; uploadedImgs.forEach(({ key, url }) => { imgMap[key]=url; });
-      const updates = {};
-      if (!dlPending) Object.assign(updates, { dlNumber:dlNumber.replace(/-/g,"").toUpperCase(), dlExpiry, dlClass, dlStatus:"pending", dlSubmittedAt:new Date(), ...(imgMap.dlImage?{dlImage:imgMap.dlImage}:{}) });
-      if (!aadPending) Object.assign(updates, { aadhaarNumber, aadhaarStatus:"pending", aadhaarSubmittedAt:new Date(), ...(imgMap.aadhaarFrontImage?{aadhaarFrontImage:imgMap.aadhaarFrontImage}:{}), ...(imgMap.aadhaarBackImage?{aadhaarBackImage:imgMap.aadhaarBackImage}:{}) });
-      if (!selfiePend) Object.assign(updates, { selfieStatus:"pending", selfieSubmittedAt:new Date(), ...(imgMap.selfieImage?{selfieImage:imgMap.selfieImage}:{}) });
-      if (Object.keys(updates).length===0) { showToast("All documents already submitted!", "error"); return; }
-      await setDoc(doc(db,"users",user.uid), updates, { merge:true });
+      const verificationData = {};
+      
+      if (!dlPending) {
+        verificationData.drivingLicence = {
+          number: dlNumber.replace(/-/g,"").toUpperCase(),
+          expiry: dlExpiry,
+          class: dlClass,
+          status: "pending",
+          submittedAt: new Date(),
+          ...(imgMap.dlImage ? { image: imgMap.dlImage } : {})
+        };
+      }
+      
+      if (!aadPending) {
+        verificationData.aadhaar = {
+          number: aadhaarNumber,
+          status: "pending",
+          submittedAt: new Date(),
+          ...(imgMap.aadhaarFrontImage ? { frontImage: imgMap.aadhaarFrontImage } : {}),
+          ...(imgMap.aadhaarBackImage  ? { backImage: imgMap.aadhaarBackImage } : {})
+        };
+      }
+      
+      if (!selfiePend) {
+        verificationData.selfie = {
+          status: "pending",
+          submittedAt: new Date(),
+          ...(imgMap.selfieImage ? { image: imgMap.selfieImage } : {})
+        };
+      }
+
+      if (Object.keys(verificationData).length === 0) { 
+        showToast("All documents already submitted!", "error"); 
+        return; 
+      }
+      
+      await setDoc(doc(db, "users", user.uid), { 
+        verification: verificationData 
+      }, { merge: true });
+      
       showToast("Documents submitted for review!");
       setExpandedCards({ "driving-licence":false, aadhaar:false, selfie:false });
       window.scrollTo({ top:0, behavior:"smooth" });
