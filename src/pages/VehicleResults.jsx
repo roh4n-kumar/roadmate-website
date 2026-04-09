@@ -221,24 +221,15 @@ export default function VehicleResults() {
       const isVerified = userData.verification?.status === "verified";
 
       if (!hasPhone && !isVerified) {
-        setErrorToast("Please first verify your mobile number and documentations before booking.");
-        setLoading(false);
-        setSelected(null);
-        setTimeout(() => navigate("/"), 2500);
+        navigate("/?error=both");
         return;
       }
       if (!hasPhone) {
-        setErrorToast("Please verify your mobile number first.");
-        setLoading(false);
-        setSelected(null);
-        setTimeout(() => navigate("/"), 2500);
+        navigate("/?error=phone");
         return;
       }
       if (!isVerified) {
-        setErrorToast("Please verify your documents first.");
-        setLoading(false);
-        setSelected(null);
-        setTimeout(() => navigate("/"), 2500);
+        navigate("/?error=docs");
         return;
       }
 

@@ -19,9 +19,25 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const location = useLocation();
   const [featuredVehicles, setFeaturedVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [toast, setToast] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
+    
+    // Check for validation errors from redirection
+    const errorType = params.get("error");
+    if (errorType) {
+      const msgs = {
+        both: "Please verify your mobile number and documents before booking.",
+        phone: "Please verify your mobile number first.",
+        docs: "Please verify your documents first."
+      };
+      setToast(msgs[errorType] || "Verification required.");
+      // Clear param
+      window.history.replaceState({}, document.title, "/");
+      setTimeout(() => setToast(""), 5000);
+    }
+
     if (params.get("scroll") === "offers") {
       setTimeout(() => {
         const el = document.getElementById("offers-slider");
@@ -279,6 +295,16 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <FAQSection />
 
       <Footer />
+
+      {/* Persistence Toast */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+            style={{ position: "fixed", bottom: "40px", left: "50%", transform: "translateX(-50%)", background: RED, color: "#fff", padding: "12px 24px", borderRadius: "12px", fontSize: "14px", fontWeight: "700", zIndex: 3000, boxShadow: "0 10px 30px rgba(190,13,13,0.3)", display: "flex", alignItems: "center", gap: "10px", minWidth: "300px", justifyContent: "center" }}>
+            <span style={{ fontSize: "18px" }}>⚠️</span> {toast}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
