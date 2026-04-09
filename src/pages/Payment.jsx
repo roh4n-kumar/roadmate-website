@@ -225,7 +225,8 @@ export default function Payment() {
                 </div>
             </div>
 
-            <div style={{ maxWidth: "1100px", margin: "40px auto 0", padding: "0 20px" }}>
+            <div style={{ padding: "0 24px" }}>
+                <div style={{ maxWidth: "1250px", margin: "40px auto 0" }}>
 
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 400px", gap: "40px", alignItems: "start" }}>
@@ -408,6 +409,7 @@ export default function Payment() {
 
                 </div>
             </div>
+        </div>
 
             {/* Premium Success Celebration Overlay */}
             <AnimatePresence>

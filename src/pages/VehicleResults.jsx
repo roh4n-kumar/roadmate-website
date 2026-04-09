@@ -238,7 +238,8 @@ export default function VehicleResults() {
           width: 100%;
           padding: 0 24px;
         }
-        .vr-content    { max-width: 1250px; margin: 0 auto; padding: 24px 24px 60px; }
+        .vr-content-wrapper { padding: 0 24px; }
+        .vr-content    { max-width: 1250px; margin: 0 auto; padding: 24px 0 60px; }
         .vr-filterbar  { display: flex; gap: 12px; margin-bottom: 24px; align-items: center; }
         .vr-types      { display: flex; gap: 8px; flex-wrap: wrap; }
         .vr-sort       { margin-left: auto; display: flex; align-items: center; gap: 10px; }
@@ -249,7 +250,8 @@ export default function VehicleResults() {
           .vr-page      { padding-top: 60px !important; padding-bottom: 70px !important; }
           .vr-subheader { top: 60px !important; padding: 12px 16px !important; }
           .vr-hide-mob  { display: none !important; }
-          .vr-content   { padding: 16px 16px 30px !important; }
+          .vr-content   { padding: 16px 0 30px !important; }
+          .vr-content-wrapper { padding: 0 16px !important; }
           .vr-filterbar { flex-wrap: nowrap !important; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
           .vr-types     { flex-wrap: nowrap !important; }
           .vr-sort      { margin-left: 0 !important; flex-shrink: 0; }
@@ -331,20 +333,21 @@ export default function VehicleResults() {
         </div>
 
 
-        <div className="vr-content">
-          {/* Filter + Sort */}
-          {loading ? (
-            <div style={{ textAlign: "center", padding: "80px 20px" }}>
-              <div style={{ width: "32px", height: "32px", border: "3px solid #e2e8f0", borderTop: `3px solid ${RED}`, borderRadius: "50%", animation: "spin .7s linear infinite", margin: "0 auto 12px" }} />
-              <p style={{ color: "#64748b", fontSize: "13px", fontWeight: "600" }}>Fetching available {isAll ? "vehicles" : isBike ? "bikes" : "cars"}...</p>
-            </div>
-          ) : sorted.length === 0 ? (
-            <div style={{ textAlign: "center", padding: "80px 20px", background: "#fff", borderRadius: "24px", border: "1.5px dashed #e2e8f0" }}>
-              <p style={{ fontSize: "16px", fontWeight: "700", color: "#64748b" }}>No {isAll ? "vehicles" : isBike ? "bikes" : "cars"} available right now.</p>
-              <p style={{ fontSize: "14px", color: "#94a3b8", marginTop: "4px" }}>Try changing your filters or searching for another type.</p>
-            </div>
-          ) : (
-            <div className="vr-grid">
+        <div className="vr-content-wrapper">
+          <div className="vr-content">
+            {/* Filter + Sort */}
+            {loading ? (
+              <div style={{ textAlign: "center", padding: "80px 20px" }}>
+                <div style={{ width: "32px", height: "32px", border: "3px solid #e2e8f0", borderTop: `3px solid ${RED}`, borderRadius: "50%", animation: "spin .7s linear infinite", margin: "0 auto 12px" }} />
+                <p style={{ color: "#64748b", fontSize: "13px", fontWeight: "600" }}>Fetching available {isAll ? "vehicles" : isBike ? "bikes" : "cars"}...</p>
+              </div>
+            ) : sorted.length === 0 ? (
+              <div style={{ textAlign: "center", padding: "80px 20px", background: "#fff", borderRadius: "24px", border: "1.5px dashed #e2e8f0" }}>
+                <p style={{ fontSize: "16px", fontWeight: "700", color: "#64748b" }}>No {isAll ? "vehicles" : isBike ? "bikes" : "cars"} available right now.</p>
+                <p style={{ fontSize: "14px", color: "#94a3b8", marginTop: "4px" }}>Try changing your filters or searching for another type.</p>
+              </div>
+            ) : (
+              <div className="vr-grid">
               {sorted.map((v, i) => {
                 const bTotal = Math.round((v.pricePerHour * totalMins) / 60);
                 const gst    = Math.round(bTotal * 0.18);
@@ -401,6 +404,7 @@ export default function VehicleResults() {
               })}
             </div>
           )}
+          </div>
         </div>
       </div>
 
