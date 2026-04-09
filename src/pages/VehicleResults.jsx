@@ -58,69 +58,6 @@ const IcoClock    = () => <Svg><circle cx="12" cy="12" r="10"/><polyline points=
 const IcoBack     = () => <Svg size={20}><polyline points="15 18 9 12 15 6"/></Svg>;
 const IcoCalendar = () => <Svg><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></Svg>;
 const IcoTag      = () => <Svg><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></Svg>;
-const IcoShield   = () => <Svg size={40}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></Svg>;
-const IcoPhone    = () => <Svg size={40}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></Svg>;
-
-// ── Validation Modal ──────────────────────────────────────────────────────────
-const ValidationModal = ({ type, onClose, onAction }) => {
-  const isBoth = type === "both";
-  const isPhone = type === "phone";
-  const isDocs = type === "docs";
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.8)", backdropFilter: "blur(12px)", zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}
-      onClick={onClose}
-    >
-      <motion.div
-        initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }}
-        onClick={e => e.stopPropagation()}
-        style={{ 
-          background: "#fff", borderRadius: "32px", width: "100%", maxWidth: "420px", 
-          padding: "40px 30px", textAlign: "center", boxShadow: "0 25px 50px rgba(0,0,0,0.2)"
-        }}
-      >
-        <div style={{ width: "80px", height: "80px", borderRadius: "50%", background: `${RED}10`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px", color: RED }}>
-          {isPhone ? <IcoPhone /> : <IcoShield />}
-        </div>
-
-        <h2 style={{ fontSize: "24px", fontWeight: 900, fontFamily: H, color: SLATE, margin: "0 0 12px" }}>
-          Verification Required
-        </h2>
-        
-        <p style={{ fontSize: "15px", color: "#64748b", fontWeight: 600, lineHeight: 1.6, margin: "0 0 30px" }}>
-          {isBoth && "Please verify your mobile number and documents before booking your ride."}
-          {isPhone && "Please verify your mobile number first. This helps us ensure a secure and fake-free experience."}
-          {isDocs && "Your account's document verification is pending. Please verify your DL & Aadhaar to proceed."}
-        </p>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-          <button 
-            onClick={onAction}
-            style={{ 
-              width: "100%", padding: "16px", borderRadius: "16px", background: RED, 
-              color: "#fff", border: "none", fontSize: "16px", fontWeight: "800", 
-              cursor: "pointer", fontFamily: F, boxShadow: `0 10px 20px ${RED}30`
-            }}
-          >
-            {isPhone ? "Verify Mobile Number" : "Verify Documents"}
-          </button>
-          <button 
-            onClick={onClose}
-            style={{ 
-              width: "100%", padding: "16px", borderRadius: "16px", background: "transparent", 
-              color: "#64748b", border: "none", fontSize: "14px", fontWeight: "700", 
-              cursor: "pointer", fontFamily: F
-            }}
-          >
-            Maybe Later
-          </button>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-};
 
 // ── Booking Modal (bottom sheet on mobile) ────────────────────────────────────
 const BookingModal = ({ vehicle, totalMins, date, pickup, drop, withHelmet, withDriver, onClose, onConfirm }) => {
@@ -230,7 +167,7 @@ export default function VehicleResults() {
   const [booked,   setBooked]   = useState(false);
   const [dbVehicles, setDbVehicles] = useState([]);
   const [loading, setLoading]       = useState(true);
-  const [validationError, setValidationError] = useState(null);
+  const [errorToast, setErrorToast] = useState("");
 
   const isAll    = vehicleType.toLowerCase() === "all";
   const isBike   = vehicleType.toLowerCase().includes("bike");
@@ -280,22 +217,25 @@ export default function VehicleResults() {
       const userSnap = await getDoc(userRef);
       const userData = userSnap.exists() ? userSnap.data() : {};
       
-      const hasPhone = !!userData.profile?.phone;
-      const isVerified = userData.verification?.status === "verified";
-
       if (!hasPhone && !isVerified) {
-        setValidationError("both");
+        setErrorToast("Please first verify your mobile number and documentations before booking.");
         setLoading(false);
+        setSelected(null);
+        setTimeout(() => navigate("/"), 2500);
         return;
       }
       if (!hasPhone) {
-        setValidationError("phone");
+        setErrorToast("Please verify your mobile number first.");
         setLoading(false);
+        setSelected(null);
+        setTimeout(() => navigate("/"), 2500);
         return;
       }
       if (!isVerified) {
-        setValidationError("docs");
+        setErrorToast("Please verify your documents first.");
         setLoading(false);
+        setSelected(null);
+        setTimeout(() => navigate("/"), 2500);
         return;
       }
 
@@ -553,19 +493,13 @@ export default function VehicleResults() {
         )}
       </AnimatePresence>
 
+      {/* Error Toast */}
       <AnimatePresence>
-        {validationError && (
-          <ValidationModal 
-            type={validationError} 
-            onClose={() => setValidationError(null)} 
-            onAction={() => {
-              const type = validationError;
-              setValidationError(null);
-              setSelected(null);
-              if (type === "phone" || type === "both") navigate("/profile");
-              else navigate("/documents");
-            }}
-          />
+        {errorToast && (
+          <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+            style={{ position: "fixed", bottom: "80px", left: "50%", transform: "translateX(-50%)", background: RED, color: "#fff", padding: "12px 24px", borderRadius: "12px", fontSize: "14px", fontWeight: "700", zIndex: 3000, boxShadow: "0 10px 30px rgba(190,13,13,0.3)", display: "flex", alignItems: "center", gap: "10px", minWidth: "300px", justifyContent: "center" }}>
+            <span style={{ fontSize: "18px" }}>⚠️</span> {errorToast}
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
