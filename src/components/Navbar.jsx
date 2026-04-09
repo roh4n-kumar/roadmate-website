@@ -84,11 +84,27 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
       const userSnap = await getDoc(userRef);
       if (!userSnap.exists()) {
         await setDoc(userRef, {
-          name: loggedUser.displayName,
-          email: loggedUser.email,
           uid: loggedUser.uid,
+          email: loggedUser.email,
           createdAt: new Date(),
-          provider: "google"
+          provider: "google",
+          profile: {
+            name: loggedUser.displayName || "",
+            email: loggedUser.email || "",
+            avatar: loggedUser.photoURL || "",
+            phone: "",
+            dob: "",
+            address: "",
+            bio: ""
+          },
+          verification: {
+            status: "unverified",
+            updatedAt: null
+          },
+          notification: {
+            unreadCount: 0,
+            messages: []
+          }
         });
       }
       window.location.href = "/";
