@@ -30,6 +30,8 @@ export const useUserSync = () => {
                 phone: "",
                 dob: "",
                 gender: "",
+                city: "",
+                pincode: "",
                 address: "",
                 bio: "",
                 avatar: user.photoURL || ""
