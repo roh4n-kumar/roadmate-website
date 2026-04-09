@@ -16,6 +16,8 @@ import Payment from "./pages/Payment";
 import SafetyInformation from "./pages/SafetyInformation";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import OffersPage from "./pages/OffersPage";
+import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import logo from "./assets/roadMate Red Logo 2.png";
 import MigrationTool from "./pages/MigrationTool";
