@@ -158,11 +158,11 @@ const UploadBox = ({ label, hint, file, onChange, accept="image/*", disabled, fa
   }, [file]);
   const displaySrc = preview || fallbackUrl || null;
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column" }}>
       <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.5px", marginBottom:"8px", fontFamily:H }}>{label}</p>
       <div
         onClick={() => !disabled && inputRef.current?.click()}
-        style={{ border:`1.5px dashed ${(file||fallbackUrl)?"rgba(34, 197, 94, 0.4)":"rgba(15, 23, 42, 0.1)"}`, borderRadius:"14px", padding:"20px", textAlign:"center", cursor:disabled?"default":"pointer", background:(file||fallbackUrl)?"#f0fdf4":"rgba(15, 23, 42, 0.02)", transition:"all 0.3s ease", minHeight:"100px", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"8px" }}
+        style={{ border:`1.5px dashed ${(file||fallbackUrl)?"rgba(34, 197, 94, 0.4)":"rgba(15, 23, 42, 0.1)"}`, borderRadius:"14px", padding:"20px", textAlign:"center", cursor:disabled?"default":"pointer", background:(file||fallbackUrl)?"#f0fdf4":"rgba(15, 23, 42, 0.02)", transition:"all 0.3s ease", minHeight:"120px", flex: 1, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"8px" }}
       >
         {displaySrc ? (
           <div style={{ position:"relative" }}>
@@ -419,8 +419,8 @@ const DocumentVerification = () => {
           overflow: hidden;
           animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .dv-split   { display: flex; gap: 40px; align-items: flex-start; }
-        .dv-side-upload { flex: 1; min-width: 0; }
+        .dv-split   { display: flex; gap: 40px; align-items: stretch; }
+        .dv-side-upload { flex: 1; min-width: 0; display: flex; flex-direction: column; }
         .dv-side-details { flex: 1; min-width: 0; }
 
         .pi-grid   { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
