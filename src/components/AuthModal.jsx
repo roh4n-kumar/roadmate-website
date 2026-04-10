@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { auth, db } from "../firebase";
 import {
@@ -14,53 +14,67 @@ import illustration from "../assets/login_illustration_v2.jpeg";
 import logo from "../assets/roadMate Red Logo 2.png";
 
 const RED = "#be0d0d";
-const F = "'Inter', sans-serif";
 const H = "'Outfit', sans-serif";
+
+// Static Image Dimensions
+const IMG_NATURAL_W = 2048;
+const IMG_NATURAL_H = 3052;
+
+// Pure function to calculate dimensions instantly without state lag
+const getModalDimensions = () => {
+  if (typeof window === "undefined") return { width: 400, height: 500 };
+  
+  const maxH = window.innerHeight * 0.60; 
+  const maxW = window.innerWidth * 0.85;
+  
+  let targetH = IMG_NATURAL_H;
+  let targetW = IMG_NATURAL_W;
+  
+  if (targetH > maxH) {
+    const hRatio = maxH / targetH;
+    targetH = maxH;
+    targetW = targetW * hRatio;
+  }
+  
+  if (targetW * 2 > maxW) {
+    const wRatio = maxW / (targetW * 2);
+    targetW = maxW / 2;
+    targetH = targetH * wRatio;
+  }
+
+  return { width: targetW, height: targetH };
+};
 
 const AuthModal = ({ isOpen, onClose }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-  const [mode, setMode] = useState("phone"); // 'phone' or 'otp'
+  const [mode, setMode] = useState("phone");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  
+  // Initialize with pre-calculated dimensions to PREVENT flicker on first load
+  const [dimensions, setDimensions] = useState(getModalDimensions);
 
-  // Dynamically calculate Perfect Dimensions based on Image
+  // Handle Dynamic Resizing
+  useEffect(() => {
+    const handleResize = () => setDimensions(getModalDimensions());
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Reset modal state
   useEffect(() => {
     if (isOpen) {
-      const img = new Image();
-      img.src = illustration;
-      img.onload = () => {
-        const { naturalWidth, naturalHeight } = img;
-        
-        // Auto-Scale Logic: Compact size (60% of screen height)
-        const maxH = window.innerHeight * 0.60; 
-        const maxW = window.innerWidth * 0.80;
-        
-        let targetH = naturalHeight;
-        let targetW = naturalWidth;
-        
-        // Height Constraint
-        if (targetH > maxH) {
-          const hRatio = maxH / targetH;
-          targetH = maxH;
-          targetW = targetW * hRatio;
-        }
-        
-        // Width Constraint (Since Modal is 50/50, Total width is targetW * 2)
-        if (targetW * 2 > maxW) {
-          const wRatio = maxW / (targetW * 2);
-          targetW = maxW / 2;
-          targetH = targetH * wRatio;
-        }
-
-        setDimensions({ width: targetW, height: targetH });
-      };
+      setMode("phone");
+      setError("");
+      setPhoneNumber("");
+      setOtp(["", "", "", "", "", ""]);
+      // Refresh dimensions just in case window size changed while modal was closed
+      setDimensions(getModalDimensions());
     }
   }, [isOpen]);
 
-  // Initialize Recaptcha
   const setupRecaptcha = () => {
     if (!window.recaptchaVerifier) {
       window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
@@ -170,9 +184,8 @@ const AuthModal = ({ isOpen, onClose }) => {
             position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
           }
           .auth-modal-card {
-            background: #fff; border-radius: 20px; overflow: hidden; position: relative;
+            background: #fff; border-radius: 24px; overflow: hidden; position: relative;
             box-shadow: 0 40px 100px rgba(0,0,0,0.25); display: flex;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             max-width: 95vw; max-height: 85vh;
           }
           .left-pane {
@@ -186,9 +199,8 @@ const AuthModal = ({ isOpen, onClose }) => {
           }
           .phone-input-group {
             display: flex; align-items: center; border: 1.2px solid #cbd5e1;
-            border-radius: 10px; margin: 25px 0 15px; overflow: hidden; transition: border-color 0.2s;
+            border-radius: 12px; margin: 25px 0 15px; overflow: hidden;
           }
-          .phone-input-group:focus-within { border-color: ${RED}; }
           .country-code-box {
             padding: 12px 15px; border-right: 1.2px solid #cbd5e1; background: #fff;
             color: #111; font-weight: 700; font-size: 14px;
@@ -198,24 +210,22 @@ const AuthModal = ({ isOpen, onClose }) => {
             font-size: 14px; font-weight: 600; color: #111;
           }
           .cta-btn {
-            width: 100%; padding: 15px; background: ${RED}; color: #fff;
-            border: none; border-radius: 10px; font-size: 14px; font-weight: 800;
+            width: 100%; padding: 16px; background: ${RED}; color: #fff;
+            border: none; border-radius: 12px; font-size: 14px; font-weight: 800;
             cursor: pointer; transition: all 0.2s; margin-top: 10px;
             text-transform: uppercase; letter-spacing: 0.8px;
           }
-          .cta-btn:hover { filter: brightness(1.1); }
           .google-btn {
-            width: 100%; padding: 12px; border: 1.2px solid #cbd5e1; border-radius: 10px;
+            width: 100%; padding: 13px; border: 1.2px solid #cbd5e1; border-radius: 12px;
             background: #fff; display: flex; align-items: center; justify-content: center;
             gap: 10px; font-weight: 700; font-size: 13px; cursor: pointer;
-            margin-top: 15px; transition: background 0.2s;
+            margin-top: 15px;
           }
-          .google-btn:hover { background: #f8fafc; }
           
           @media (max-width: 850px) {
             .left-pane { display: none; }
             .auth-modal-card { width: 100% !important; height: auto !important; max-width: 420px; }
-            .right-pane { width: 100% !important; }
+            .right-pane { width: 100% !important; height: auto !important; padding: 40px 30px; }
           }
         `}
       </style>
@@ -226,25 +236,24 @@ const AuthModal = ({ isOpen, onClose }) => {
       />
 
       <motion.div
-        initial={{ scale: 0.95, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.95, opacity: 0 }}
+        initial={{ scale: 0.92, opacity: 0, y: 15 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.92, opacity: 0, y: 15 }}
+        transition={{ type: "spring", damping: 25, stiffness: 350 }}
         className="auth-modal-card"
         style={{ 
-          width: dimensions.width ? `${dimensions.width * 2}px` : "auto", 
-          height: dimensions.height ? `${dimensions.height}px` : "auto" 
+          width: `${dimensions.width * 2}px`, 
+          height: `${dimensions.height}px` 
         }}
       >
         <button onClick={onClose} style={{ position: "absolute", top: "15px", right: "20px", border: "none", background: "none", fontSize: "28px", cursor: "pointer", color: "#94a3b8", zIndex: 10 }}>&times;</button>
         
         <div className="left-pane" style={{ width: `${dimensions.width}px`, height: '100%' }}>
-          {dimensions.width > 0 && (
-             <img 
-               src={illustration} 
-               style={{ width: "100%", height: "100%", objectFit: "fill", display: "block" }} 
-               alt="" 
-             />
-          )}
+           <img 
+             src={illustration} 
+             style={{ width: "100%", height: "100%", objectFit: "fill", display: "block" }} 
+             alt="" 
+           />
         </div>
 
         <div className="right-pane" style={{ width: `${dimensions.width}px`, height: '100%' }}>
