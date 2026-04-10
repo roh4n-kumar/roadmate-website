@@ -400,15 +400,51 @@ const DocumentVerification = () => {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
         @keyframes fadeInScale { from { opacity: 0; transform: scale(0.98) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .pi-inner  { max-width: 1250px; margin: 0 auto; padding: 0 24px; }
-        .pi-card   { background: #fff; border-radius: 12px; padding: 40px; margin-bottom: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.03); border: 1.5px solid #e2e8f0; position: relative; overflow: hidden; animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .dv-grid   { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; }
-        .divider   { height: 1.2px; background: #e2e8f0; margin-left: -40px; margin-right: -40px; margin-top: 40px; margin-bottom: 40px; }
         
+        .pi-wrap   { padding-bottom: 120px; position: relative; z-index: 10; }
+        .pi-inner  { max-width: 1250px; margin: 0 auto; padding: 0 24px; }
+        .pi-card   { 
+          background: #fff; 
+          border-radius: 12px; 
+          padding: 40px; 
+          margin-bottom: 24px; 
+          box-shadow: 0 15px 40px rgba(0,0,0,0.03); 
+          border: 1.5px solid #e2e8f0; 
+          position: relative;
+          overflow: hidden;
+          animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .dv-split   { display: flex; gap: 40px; align-items: flex-start; }
+        .dv-side-upload { flex: 0 0 350px; }
+        .dv-side-details { flex: 1; }
+
+        .pi-grid   { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .pi-title  { font-size: 30px; margin-bottom: 24px; letter-spacing: -1px; }
+        .pi-avatar { width: 100px; height: 100px; font-size: 38px; border: 4px solid #fff; }
+        .pi-name   { font-size: 26px; }
+        .pi-btns   { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
+
+        /* Avatar Hover Effect */
         .avatar-box { position: relative; overflow: hidden; cursor: pointer; transition: all 0.3s ease; }
         .avatar-box:hover { transform: scale(1.02); }
-        .avatar-overlay { position: absolute; bottom: -50px; left: 0; right: 0; height: 50px; background: rgba(37, 99, 235, 0.7); backdrop-filter: blur(4px); display: flex; alignItems: center; justifyContent: center; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); color: white; }
+        .avatar-overlay {
+          position: absolute;
+          bottom: -50px;
+          left: 0;
+          right: 0;
+          height: 50px;
+          background: rgba(37, 99, 235, 0.7);
+          backdrop-filter: blur(4px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          color: white;
+        }
         .avatar-box:hover .avatar-overlay { bottom: 0; }
+        .avatar-box:hover img { filter: brightness(0.8); }
+
+        .divider   { height: 1.2px; background: #e2e8f0; margin-left: -40px; margin-right: -40px; margin-top: 40px; margin-bottom: 40px; }
         
         @media (max-width: 900px) {
           .pi-inner { padding: 0 16px !important; }
@@ -453,50 +489,63 @@ const DocumentVerification = () => {
           <div style={{ height: '1.2px', background: '#e2e8f0', marginLeft: '-40px', marginRight: '-40px', marginBottom: '40px' }} />
 
           {/* DRIVING LICENCE SECTION */}
-          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"25px" }}>
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"30px" }}>
             <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
-              <div style={{ width:"44px", height:"44px", borderRadius:"12px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><LicenceIcon /></div>
-              <h3 style={{ margin:0, fontSize:"18px", fontWeight:"800", fontFamily:H, color:"#1e293b" }}>Driving Licence</h3>
+              <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><LicenceIcon /></div>
+              <div>
+                <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Driving Licence</h3>
+                <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your valid Indian Driving Licence</p>
+              </div>
             </div>
             <StatusBadge status={docStatus["driving-licence"]} />
           </div>
           
-          <div className="dv-grid">
-            <UploadBox label="DL Front Photo" hint="Clear photo for verification" file={dlFront} onChange={setDlFront} disabled={docStatus["driving-licence"]!=="not_uploaded" && docStatus["driving-licence"]!=="rejected"} fallbackUrl={dlImageUrl} />
-            <div>
-              <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.5px", marginBottom:"8px", fontFamily:H }}>DL Number</p>
-              <input value={dlNumber} onChange={e => setDlNumber(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,15))} placeholder="OD0420XXXXXXXXX" style={inputStyle(docStatus["driving-licence"]==="not_uploaded" || docStatus["driving-licence"]==="rejected")} disabled={docStatus["driving-licence"]!=="not_uploaded" && docStatus["driving-licence"]!=="rejected"} />
-              {dlErrors.dlNumber && <p style={{ margin:"6px 0 0", fontSize:"11px", color:RED, fontWeight:"700" }}>⚠ {dlErrors.dlNumber}</p>}
+          <div className="dv-split">
+            <div className="dv-side-upload">
+              <UploadBox label="DL Front Photo" hint="Clear photo for verification" file={dlFront} onChange={setDlFront} disabled={docStatus["driving-licence"]!=="not_uploaded" && docStatus["driving-licence"]!=="rejected"} fallbackUrl={dlImageUrl} />
             </div>
-            <div style={{ display:"flex", flexDirection:"column", gap:"15px" }}>
-               <div>
-                 <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.5px", marginBottom:"8px", fontFamily:H }}>Expiry Date</p>
-                 <ExpiryDatePicker value={dlExpiry} onChange={setDlExpiry} disabled={docStatus["driving-licence"]!=="not_uploaded" && docStatus["driving-licence"]!=="rejected"} hasError={!!dlErrors.dlExpiry} />
-               </div>
-               <div>
-                  <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.5px", marginBottom:"8px", fontFamily:H }}>Vehicle Category</p>
+            <div className="dv-side-details">
+              <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"20px" }}>
+                <div style={{ gridColumn: "1 / -1" }}>
+                  <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>DL Number</p>
+                  <input value={dlNumber} onChange={e => setDlNumber(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,15))} placeholder="OD0420XXXXXXXXX" style={inputStyle(docStatus["driving-licence"]==="not_uploaded" || docStatus["driving-licence"]==="rejected")} disabled={docStatus["driving-licence"]!=="not_uploaded" && docStatus["driving-licence"]!=="rejected"} />
+                  {dlErrors.dlNumber && <p style={{ margin:"6px 0 0", fontSize:"11px", color:RED, fontWeight:"700" }}>⚠ {dlErrors.dlNumber}</p>}
+                </div>
+                <div>
+                  <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Expiry Date</p>
+                  <ExpiryDatePicker value={dlExpiry} onChange={setDlExpiry} disabled={docStatus["driving-licence"]!=="not_uploaded" && docStatus["driving-licence"]!=="rejected"} hasError={!!dlErrors.dlExpiry} />
+                </div>
+                <div>
+                  <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Vehicle Category</p>
                   <MiniDropdown options={[{value:"LMV",label:"LMV (Car)"},{value:"MCWG",label:"MCWG (Bike)"},{value:"LMV+MCWG",label:"Both Car & Bike"}]} value={dlClass} onChange={setDlClass} width="100%" disabled={docStatus["driving-licence"]!=="not_uploaded" && docStatus["driving-licence"]!=="rejected"} />
-               </div>
+                </div>
+              </div>
             </div>
           </div>
 
           <div className="divider" />
 
           {/* AADHAAR SECTION */}
-          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"25px" }}>
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"30px" }}>
             <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
-              <div style={{ width:"44px", height:"44px", borderRadius:"12px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><AadhaarIcon /></div>
-              <h3 style={{ margin:0, fontSize:"18px", fontWeight:"800", fontFamily:H, color:"#1e293b" }}>Aadhaar Card</h3>
+              <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><AadhaarIcon /></div>
+              <div>
+                <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Aadhaar Card</h3>
+                <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>National identity (12-digit UID)</p>
+              </div>
             </div>
             <StatusBadge status={docStatus.aadhaar} />
           </div>
           
-          <div className="dv-grid">
-            <UploadBox label="Front Side" hint="Clear Aadhaar front" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar!=="not_uploaded" && docStatus.aadhaar!=="rejected"} fallbackUrl={aadhaarFrontUrl} />
-            <UploadBox label="Back Side" hint="Clear Aadhaar back" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar!=="not_uploaded" && docStatus.aadhaar!=="rejected"} fallbackUrl={aadhaarBackUrl} />
-            <div>
-              <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.5px", marginBottom:"8px", fontFamily:H }}>Aadhaar Number</p>
-              <input value={aadhaarNumber} onChange={e => { const raw=e.target.value.replace(/\D/g,"").slice(0,12); setAadhaarNumber(raw.replace(/(\d{4})(?=\d)/g,"$1 ").trim()); }} placeholder="XXXX XXXX XXXX" style={inputStyle(docStatus.aadhaar==="not_uploaded" || docStatus.aadhaar==="rejected")} disabled={docStatus.aadhaar!=="not_uploaded" && docStatus.aadhaar!=="rejected"} />
+          <div style={{ maxWidth: "800px" }}>
+            <div style={{ marginBottom: "25px" }}>
+              <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Aadhaar Number</p>
+              <input value={aadhaarNumber} onChange={e => { const raw=e.target.value.replace(/\D/g,"").slice(0,12); setAadhaarNumber(raw.replace(/(\d{4})(?=\d)/g,"$1 ").trim()); }} placeholder="XXXX XXXX XXXX" style={{ ...inputStyle(docStatus.aadhaar==="not_uploaded" || docStatus.aadhaar==="rejected"), fontSize: "18px", letterSpacing: "2px" }} disabled={docStatus.aadhaar!=="not_uploaded" && docStatus.aadhaar!=="rejected"} />
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "25px" }} className="aadhaar-photos">
+              <UploadBox label="Front Side" hint="Clear Aadhaar front" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar!=="not_uploaded" && docStatus.aadhaar!=="rejected"} fallbackUrl={aadhaarFrontUrl} />
+              <UploadBox label="Back Side" hint="Clear Aadhaar back" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar!=="not_uploaded" && docStatus.aadhaar!=="rejected"} fallbackUrl={aadhaarBackUrl} />
             </div>
           </div>
 
