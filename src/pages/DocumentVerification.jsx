@@ -275,40 +275,53 @@ const DocumentVerification = () => {
           const curDlClass  = d.dlClass  || d.verification?.drivingLicence?.class  || d.verification?.drivingLicence?.category || d.verification?.dl?.class;
           const curDlImage  = d.dlImage  || d.verification?.drivingLicence?.image  || d.verification?.dl?.image;
 
-          if (curDlNumber && (isDlLocked || !dlNumber)) setDlNumber(curDlNumber);
-          else if (!curDlNumber && !isDlLocked) setDlNumber("");
+          // If REJECTED, do NOT auto-fill. Force empty for fresh entry.
+          if (statuses.dl === "rejected") {
+            setDlNumber(""); setDlExpiry(""); setDlClass(""); setDlImageUrl("");
+          } else {
+            if (curDlNumber && (isDlLocked || !dlNumber)) setDlNumber(curDlNumber);
+            else if (!curDlNumber && !isDlLocked) setDlNumber("");
 
-          if (curDlExpiry && (isDlLocked || !dlExpiry)) setDlExpiry(curDlExpiry);
-          else if (!curDlExpiry && !isDlLocked) setDlExpiry("");
+            if (curDlExpiry && (isDlLocked || !dlExpiry)) setDlExpiry(curDlExpiry);
+            else if (!curDlExpiry && !isDlLocked) setDlExpiry("");
 
-          if (curDlClass  && (isDlLocked || !dlClass))  setDlClass(curDlClass);
-          else if (!curDlClass && !isDlLocked) setDlClass("");
+            if (curDlClass  && (isDlLocked || !dlClass))  setDlClass(curDlClass);
+            else if (!curDlClass && !isDlLocked) setDlClass("");
 
-          if (curDlImage) setDlImageUrl(curDlImage);
-          else setDlImageUrl("");
+            if (curDlImage) setDlImageUrl(curDlImage);
+            else setDlImageUrl("");
+          }
 
           // Read Aadhaar values (Double-read)
           const curAadNumber = d.aadhaarNumber || d.verification?.aadhaar?.number;
           const curAadFront  = d.aadhaarFrontImage || d.verification?.aadhaar?.frontImage;
           const curAadBack   = d.aadhaarBackImage  || d.verification?.aadhaar?.backImage;
 
-          if (curAadNumber && (isAadLocked || !aadhaarNumber)) {
-            const raw = curAadNumber.replace(/\s/g,"");
-            setAadhaarNumber(raw.replace(/(\d{4})(?=\d)/g,"$1 ").trim());
-          } else if (!curAadNumber && !isAadLocked) {
-            setAadhaarNumber("");
+          if (statuses.aadhaar === "rejected") {
+            setAadhaarNumber(""); setAadhaarFrontUrl(""); setAadhaarBackUrl("");
+          } else {
+            if (curAadNumber && (isAadLocked || !aadhaarNumber)) {
+              const raw = curAadNumber.replace(/\s/g,"");
+              setAadhaarNumber(raw.replace(/(\d{4})(?=\d)/g,"$1 ").trim());
+            } else if (!curAadNumber && !isAadLocked) {
+              setAadhaarNumber("");
+            }
+
+            if (curAadFront) setAadhaarFrontUrl(curAadFront);
+            else setAadhaarFrontUrl("");
+
+            if (curAadBack)  setAadhaarBackUrl(curAadBack);
+            else setAadhaarBackUrl("");
           }
-
-          if (curAadFront) setAadhaarFrontUrl(curAadFront);
-          else setAadhaarFrontUrl("");
-
-          if (curAadBack)  setAadhaarBackUrl(curAadBack);
-          else setAadhaarBackUrl("");
 
           // Read Selfie values
           const curSelfie = d.selfieImage || d.verification?.selfie?.image;
-          if (curSelfie) setSelfieImg(curSelfie);
-          else setSelfieImg("");
+          if (statuses.selfie === "rejected") {
+            setSelfieImg("");
+          } else {
+            if (curSelfie) setSelfieImg(curSelfie);
+            else setSelfieImg("");
+          }
         }
         setLoading(false);
       });
