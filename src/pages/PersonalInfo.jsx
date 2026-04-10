@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { auth, db, storage } from "../firebase";
+import { auth, db } from "../firebase";
 import { onAuthStateChanged, updateProfile } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import ProfileCard from "../components/ProfileCard";
@@ -263,11 +262,36 @@ const PersonalInfo = () => {
 
   const handleImageClick = () => fileInputRef.current?.click();
 
+  const compressImage = (file, maxW=1000, quality=0.75) => new Promise((res) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const scale = Math.min(1, maxW/Math.max(img.width, img.height));
+      const w = Math.round(img.width*scale); const h = Math.round(img.height*scale);
+      const canvas = document.createElement("canvas");
+      canvas.width=w; canvas.height=h;
+      canvas.getContext("2d").drawImage(img,0,0,w,h);
+      canvas.toBlob(blob => { URL.revokeObjectURL(url); res(new File([blob], file.name, { type:"image/jpeg" })); }, "image/jpeg", quality);
+    };
+    img.src = url;
+  });
+
+  const uploadToCloudinary = async (file) => {
+    const compressed = (file.type==="image/jpeg"||file.type==="image/png"||file.type==="image/webp") ? await compressImage(file) : file;
+    const formDataBody = new FormData();
+    formDataBody.append("file", compressed);
+    formDataBody.append("upload_preset", "RoadMate Image");
+    formDataBody.append("cloud_name", "ds1cjvxyj");
+    const res = await fetch("https://api.cloudinary.com/v1_1/ds1cjvxyj/image/upload", { method:"POST", body:formDataBody });
+    const data = await res.json();
+    if (!data.secure_url) throw new Error("Upload failed");
+    return data.secure_url;
+  };
+
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (!file || !user) return;
     
-    // Check if it's an image
     if (!file.type.startsWith('image/')) {
       alert("Please upload an image file");
       return;
@@ -275,9 +299,7 @@ const PersonalInfo = () => {
 
     setUploading(true);
     try {
-      const storageRef = ref(storage, `profiles/${user.uid}`);
-      await uploadBytes(storageRef, file);
-      const url = await getDownloadURL(storageRef);
+      const url = await uploadToCloudinary(file);
       
       // Update Auth
       await updateProfile(user, { photoURL: url });
@@ -293,7 +315,7 @@ const PersonalInfo = () => {
       setTimeout(() => setSaved(false), 3000);
     } catch (err) {
       console.error("Upload error:", err);
-      alert("Failed to upload image. Make sure Firebase Storage is enabled.");
+      alert("Failed to upload image to Cloudinary.");
     } finally {
       setUploading(false);
     }
