@@ -3,6 +3,8 @@ import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { auth, db } from "../firebase";
 import ProfileCard from "./ProfileCard";
+import AuthModal from "./AuthModal";
+
 import {
   onAuthStateChanged,
   signOut,
@@ -70,50 +72,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
     };
   }, [isDrawerOpen]);
 
-  const handleGoogleSignup = async () => {
-    setIsLoginOpen(false);
-    setIsDrawerOpen(false);
+  // Removed handleGoogleSignup logic as it is now handled in AuthModal
 
-    const provider = new GoogleAuthProvider();
-    provider.setCustomParameters({ prompt: "select_account" });
-    setLoading(true);
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const loggedUser = result.user;
-      const userRef = doc(db, "users", loggedUser.uid);
-      const userSnap = await getDoc(userRef);
-      if (!userSnap.exists()) {
-        await setDoc(userRef, {
-          uid: loggedUser.uid,
-          email: loggedUser.email,
-          createdAt: new Date(),
-          provider: "google",
-          profile: {
-            name: loggedUser.displayName || "",
-            email: loggedUser.email || "",
-            avatar: loggedUser.photoURL || "",
-            phone: "",
-            dob: "",
-            address: "",
-            bio: ""
-          },
-          verification: {
-            status: "unverified",
-            updatedAt: null
-          },
-          notification: {
-            unreadCount: 0,
-            messages: []
-          }
-        });
-      }
-      window.location.href = "/";
-    } catch (err) {
-      console.error("Google Auth Error:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleProtectedAction = (path) => {
     if (!isLoggedIn) {
@@ -150,15 +110,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           @media (min-width: 901px) {
             .mobile-trigger { display: none !important; }
           }
-          .google-auth-btn {
-            width: 100%; padding: 14px; background: #fff;
-            border: 1.5px solid rgba(15, 23, 42, 0.1); border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            gap: 12px; font-weight: 800; font-size: 16px; color: #000;
-            cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 10px;
-            font-family: ${F};
-          }
-          .google-auth-btn:hover { background: #f8fafc; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+          // Removed redundant google-auth-btn style
+
           .logout-btn {
             background: #000; color: white; border: none; padding: 16px;
             border-radius: 16px; font-weight: 800; cursor: pointer; font-size: 16px;
@@ -446,38 +399,12 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
         )}
       </AnimatePresence>
 
-      {/* LOGIN MODAL */}
-      <AnimatePresence>
-        {isLoginOpen && (
-          <div style={{ position: "fixed", inset: 0, zIndex: 11000, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}>
-             <motion.div
-               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-               onClick={() => setIsLoginOpen(false)}
-               style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.6)", backdropFilter: "blur(10px)" }}
-             />
-             <motion.div
-               initial={{ scale: 0.9, opacity: 0, y: 20 }}
-               animate={{ scale: 1, opacity: 1, y: 0 }}
-               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-               style={{ position: "relative", backgroundColor: "#fff", padding: "50px 40px", borderRadius: "40px", width: "100%", maxWidth: "440px", textAlign: "center", boxShadow: "0 30px 60px rgba(0,0,0,0.2)" }}
-             >
-                <button onClick={() => setIsLoginOpen(false)} style={{ position: "absolute", top: "25px", right: "25px", border: "none", background: "none", fontSize: "32px", cursor: "pointer", color: "#ccc" }}>&times;</button>
-                <div style={{ marginBottom: "30px" }}>
-                   <h2 style={{ fontSize: "32px", fontWeight: 900, marginBottom: "10px", fontFamily: H }}>Welcome <span style={{ color: RED }}>Mate</span></h2>
-                   <p style={{ color: "#64748b", fontWeight: 600, fontFamily: F }}>Start your journey with RoadMate.</p>
-                </div>
-                <button
-                  onClick={handleGoogleSignup}
-                  disabled={loading}
-                  className="google-auth-btn"
-                >
-                  <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="24" alt="G" />
-                  {loading ? "Connecting..." : "Continue with Google"}
-                </button>
-             </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      {/* INTEGRATED AUTH MODAL */}
+      <AuthModal 
+        isOpen={isLoginOpen} 
+        onClose={() => setIsLoginOpen(false)} 
+      />
+
 
       <AnimatePresence>
         {authWarning && (
