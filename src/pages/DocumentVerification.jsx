@@ -480,7 +480,7 @@ const DocumentVerification = () => {
         .pi-card   { 
           background: #fff; 
           border-radius: 12px; 
-          padding: 32px 40px; 
+          padding: 0 40px 32px 40px; 
           margin-bottom: 24px; 
           box-shadow: 0 15px 40px rgba(0,0,0,0.03); 
           border: 1.5px solid #e2e8f0; 
@@ -557,10 +557,20 @@ const DocumentVerification = () => {
 
       <div className="pi-inner" style={{ marginTop: '30px', paddingBottom: '100px' }}>
         <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} className="pi-card">
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px", height: "40px" }}>
-            <h2 style={{ fontSize: "20px", fontWeight: "900", color: RED, margin: 0, fontFamily: H, display: "flex", alignItems: "center" }}>Document Verification</h2>
+          <div style={{ 
+            display: "flex", 
+            alignItems: "center", 
+            justifyContent: "space-between", 
+            height: "55px", 
+            borderBottom: "1.2px solid #e2e8f0", 
+            marginLeft: "-40px", 
+            marginRight: "-40px", 
+            padding: "0 40px",
+            marginBottom: "30px",
+            background: "#fafafa" 
+          }}>
+            <h2 style={{ fontSize: "17px", fontWeight: "900", color: RED, margin: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>Document Verification</h2>
           </div>
-          <div style={{ height: '1.2px', background: '#e2e8f0', marginLeft: '-40px', marginRight: '-40px', marginBottom: '25px' }} />
 
           {/* DRIVING LICENCE SECTION */}
           <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"30px" }}>
