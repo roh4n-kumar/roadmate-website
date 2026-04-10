@@ -532,15 +532,11 @@ const DocumentVerification = () => {
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url("/document.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.6)' }} />
         <div className="pi-inner" style={{ height: '100%', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: '40px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-            <input type="file" ref={fileInputRef} onChange={handleIdentityImageChange} accept="image/*" style={{ display: 'none' }} />
-            <div onClick={() => fileInputRef.current?.click()} className="avatar-box" style={{ width: '140px', height: '140px', borderRadius: '50%', background: RED, border: '5px solid rgba(255,255,255,0.2)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', marginBottom: '20px' }}>
+            <div className="avatar-box" style={{ width: '140px', height: '140px', borderRadius: '50%', background: RED, border: '5px solid rgba(255,255,255,0.2)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', marginBottom: '20px', cursor: 'default' }}>
               <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
                 {uploading ? <div style={{ fontSize: '12px', fontWeight: '900' }}>UPLOADING...</div> : (profile.profileImage || user?.photoURL) ? (
-                  <>
-                    <img src={profile.profileImage || user?.photoURL} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    <div className="avatar-overlay"><EditIcon /></div>
-                  </>
-                ) : <><CameraIcon /><span style={{ fontSize: '11px', fontWeight: '900', marginTop: '6px', textTransform: 'uppercase' }}>Add Photo</span></>}
+                  <img src={profile.profileImage || user?.photoURL} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : <><CameraIcon /><span style={{ fontSize: '11px', fontWeight: '900', marginTop: '6px', textTransform: 'uppercase' }}>User Profile</span></>}
               </div>
             </div>
             <div>
