@@ -450,15 +450,22 @@ const DocumentVerification = () => {
                   <StatusBadge status={docStatus.aadhaar} />
                 </div>
                 {docStatus.aadhaar !== "verified" && (
-                  <div className="dv-split">
-                    <div className="dv-side-upload" style={{ display:"flex", gap:"15px" }}>
-                      <UploadBox label="Front" hint="Front side of Aadhaar" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarFrontUrl} />
-                      <UploadBox label="Back" hint="Back side of Aadhaar" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarBackUrl} />
-                    </div>
-                    <div className="dv-side-details">
+                  <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
+                    {/* Aadhaar Number at Top */}
+                    <div style={{ width: "100%" }}>
                       <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Aadhaar Number</p>
                       <input value={aadhaarNumber} onChange={e => setAadhaarNumber(e.target.value.replace(/\D/g,"").replace(/(\d{4})(?=\d)/g,"$1 ").trim())} placeholder="XXXX XXXX XXXX" style={inputStyle(docStatus.aadhaar!=="pending")} disabled={docStatus.aadhaar==="pending"} />
-                      <p style={{ fontSize:"12px", color:"#64748b", marginTop:"12px", fontWeight:"500" }}>Please ensure Aadhaar details match correctly.</p>
+                      <p style={{ fontSize:"12px", color:"#64748b", marginTop:"8px", fontWeight:"500" }}>Please ensure Aadhaar details match correctly.</p>
+                    </div>
+
+                    {/* Upload Boxes Side-by-Side (50/50) */}
+                    <div style={{ display:"flex", gap:"20px" }}>
+                      <div style={{ flex: 1 }}>
+                        <UploadBox label="Front Photo" hint="Front side of Aadhaar" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarFrontUrl} />
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <UploadBox label="Back Photo" hint="Back side of Aadhaar" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarBackUrl} />
+                      </div>
                     </div>
                   </div>
                 )}
