@@ -394,7 +394,7 @@ const DocumentVerification = () => {
           return (
             <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} className="pi-card">
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
-                <h2 style={{ fontSize: "22px", fontWeight: "900", color: RED, margin: 0, fontFamily: H }}>Document Verification</h2>
+                <h2 style={{ fontSize: "22px", fontWeight: "900", color: RED, margin: 0, fontFamily: H, marginBottom: 0 }}>Document Verification</h2>
                 {(() => {
                   const globalStatus = isAnyRejected ? "rejected" : statuses.includes("pending") ? "pending" : isAllVerified ? "verified" : null;
                   return globalStatus ? <StatusBadge status={globalStatus} /> : null;
@@ -409,7 +409,7 @@ const DocumentVerification = () => {
 
               {/* DL SECTION */}
               <div>
-                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: docStatus["driving-licence"]==="verified" ? "0" : "30px" }}>
+                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: "0" }}>
                   <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
                     <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><LicenceIcon /></div>
                     <div>
@@ -419,7 +419,7 @@ const DocumentVerification = () => {
                   </div>
                 </div>
                 {docStatus["driving-licence"] !== "verified" && (
-                  <div className="dv-split">
+                  <div className="dv-split" style={{ marginTop: "30px" }}>
                     <div className="dv-side-upload">
                       <UploadBox label="DL Front Photo" hint="Clear photo for verification" file={dlFront} onChange={setDlFront} disabled={docStatus["driving-licence"]==="pending"} fallbackUrl={dlImageUrl} />
                     </div>
@@ -453,7 +453,7 @@ const DocumentVerification = () => {
 
               {/* AADHAAR SECTION */}
               <div>
-                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: docStatus.aadhaar==="verified" ? "0" : "30px" }}>
+                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: "0" }}>
                   <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
                     <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><AadhaarIcon /></div>
                     <div>
@@ -463,7 +463,7 @@ const DocumentVerification = () => {
                   </div>
                 </div>
                 {docStatus.aadhaar !== "verified" && (
-                  <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "25px", marginTop: "30px" }}>
                     {/* Aadhaar Number matched with Front Photo width */}
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
                       <div>
@@ -496,7 +496,7 @@ const DocumentVerification = () => {
 
               {/* SELFIE SECTION */}
               <div>
-                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: docStatus.selfie==="verified" ? "0" : "30px" }}>
+                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: "0" }}>
                   <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
                     <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><SelfieIcon /></div>
                     <div>
@@ -506,7 +506,7 @@ const DocumentVerification = () => {
                   </div>
                 </div>
                 {docStatus.selfie !== "verified" && (
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "25px", width: "100%" }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "25px", width: "100%", marginTop: "30px" }}>
                     {/* Square Camera Box for Selfie */}
                     <div style={{ position:"relative", width: "320px", height:"320px", borderRadius:"14px", border:"2px dashed #e2e8f0", background:"#f8fafc", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden", flexShrink: 0 }}>
                       {cameraOn ? (
