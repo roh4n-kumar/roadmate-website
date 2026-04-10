@@ -485,7 +485,9 @@ const PersonalInfo = () => {
                 ))}
               </div>
               
-              <div style={{ marginTop: '20px', fontSize: '11px', color: '#94a3b8', fontWeight: '500' }}>Required for GST purpose on your bookings.</div>
+              <div style={{ marginTop: '20px', fontSize: '12px', color: '#94a3b8', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <MailIcon /> Email is linked to your account and cannot be changed.
+              </div>
 
               <AnimatePresence>
                 {editMode && (
