@@ -268,14 +268,11 @@ const DocumentVerification = () => {
 
           if (dl.number && (isDlLocked || !dlNumber)) setDlNumber(dl.number); 
           if (dl.expiry && (isDlLocked || !dlExpiry)) setDlExpiry(dl.expiry);
-          if (dl.category && (isDlLocked || !dlClass)) setDlClass(dl.category);
-
-          if (aad.number && (isAadLocked || !aadhaarNumber)) setAadhaarNumber(aad.number);
- 
-          if (dl.class)  setDlClass(dl.class); 
+          const dlCat = dl.category || dl.class;
+          if (dlCat && (isDlLocked || !dlClass)) setDlClass(dlCat);
           if (dl.image)  setDlImageUrl(dl.image); 
 
-          if (aad.number) {
+          if (aad.number && (isAadLocked || !aadhaarNumber)) {
             const raw = aad.number.replace(/\s/g,"");
             setAadhaarNumber(raw.replace(/(\d{4})(?=\d)/g,"$1 ").trim());
           }
@@ -423,8 +420,8 @@ const DocumentVerification = () => {
           animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         .dv-split   { display: flex; gap: 40px; align-items: flex-start; }
-        .dv-side-upload { flex: 0 0 350px; }
-        .dv-side-details { flex: 1; }
+        .dv-side-upload { flex: 1; min-width: 0; }
+        .dv-side-details { flex: 1; min-width: 0; }
 
         .pi-grid   { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .pi-title  { font-size: 30px; margin-bottom: 24px; letter-spacing: -1px; }
@@ -510,7 +507,7 @@ const DocumentVerification = () => {
           
           <div className="dv-split">
             <div className="dv-side-upload">
-              <UploadBox label="DL Front Photo" hint="Clear photo for verification" file={dlFront} onChange={setDlFront} disabled={docStatus["driving-licence"]!=="not_uploaded" && docStatus["driving-licence"]!=="rejected"} fallbackUrl={dlImageUrl} />
+              <UploadBox label="DL Front Photo" hint="Clear photo for verification" file={dlFront} onChange={setDlFront} disabled={docStatus["driving-licence"]==="pending" || docStatus["driving-licence"]==="verified"} fallbackUrl={dlImageUrl} />
             </div>
             <div className="dv-side-details">
               <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"20px" }}>
@@ -545,15 +542,16 @@ const DocumentVerification = () => {
             <StatusBadge status={docStatus.aadhaar} />
           </div>
           
-          <div style={{ maxWidth: "800px" }}>
-            <div style={{ marginBottom: "25px", maxWidth: "450px" }}>
+          <div className="dv-split">
+            <div className="dv-side-upload">
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+                <UploadBox label="Front Side" hint="Aadhaar front" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified"} fallbackUrl={aadhaarFrontUrl} />
+                <UploadBox label="Back Side" hint="Aadhaar back" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified"} fallbackUrl={aadhaarBackUrl} />
+              </div>
+            </div>
+            <div className="dv-side-details">
               <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Aadhaar Number</p>
               <input value={aadhaarNumber} onChange={e => { const raw=e.target.value.replace(/\D/g,"").slice(0,12); setAadhaarNumber(raw.replace(/(\d{4})(?=\d)/g,"$1 ").trim()); }} placeholder="XXXX XXXX XXXX" style={inputStyle(docStatus.aadhaar!=="pending" && docStatus.aadhaar!=="verified")} disabled={docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified"} />
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "25px" }} className="aadhaar-photos">
-              <UploadBox label="Front Side" hint="Clear Aadhaar front" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified"} fallbackUrl={aadhaarFrontUrl} />
-              <UploadBox label="Back Side" hint="Clear Aadhaar back" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified"} fallbackUrl={aadhaarBackUrl} />
             </div>
           </div>
 
