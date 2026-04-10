@@ -83,11 +83,38 @@ const socialIcons = {
 const Footer = () => {
   return (
     <footer style={{ background: "#000000", color: "#ffffff", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "50px", paddingBottom: "40px", fontFamily: F }}>
+      <style>
+        {`
+          @media (max-width: 900px) {
+            .footer-main-row {
+              flex-direction: column !important;
+              gap: 40px !important;
+              align-items: center !important;
+              text-align: center !important;
+            }
+            .nav-columns-group {
+              width: 100% !important;
+              justify-content: space-around !important;
+              gap: 20px !important;
+            }
+            .brand-column {
+              align-items: center !important;
+              max-width: 100% !important;
+            }
+            .footer-bottom-row {
+              justify-content: center !important;
+              flex-direction: column-reverse !important;
+              gap: 30px !important;
+              text-align: center !important;
+            }
+          }
+        `}
+      </style>
       <div style={{ maxWidth: "1250px", margin: "0 auto", padding: "0 24px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "50px", marginBottom: "35px" }}>
+        <div className="footer-main-row" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "50px", marginBottom: "35px" }}>
           
           {/* Brand Column */}
-          <div style={{ flex: "1 1 300px" }}>
+          <div className="brand-column" style={{ flex: "1 1 300px", display: "flex", flexDirection: "column" }}>
             <Link to="/" style={{ display: "block", marginBottom: "20px" }}>
               <img src={logo} alt="RoadMate" style={{ height: "48px", width: "auto", objectFit: "contain" }} />
             </Link>
@@ -97,7 +124,7 @@ const Footer = () => {
           </div>
  
           {/* Nav Group */}
-          <div style={{ display: "flex", gap: "80px", flexWrap: "wrap" }}>
+          <div className="nav-columns-group" style={{ display: "flex", gap: "80px", flexWrap: "wrap" }}>
             {/* Quick Links */}
             <div>
               <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff", textAlign: "left" }}>Company</h4>
@@ -142,7 +169,7 @@ const Footer = () => {
  
         </div>
  
-        <div style={{ borderTop: "1px solid rgba(255, 255, 255, 0.1)", paddingTop: "30px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
+        <div className="footer-bottom-row" style={{ borderTop: "1px solid rgba(255, 255, 255, 0.1)", paddingTop: "30px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
           <p style={{ fontSize: "13px", color: "#ffffff", fontWeight: 500 }}>
             © {new Date().getFullYear()} RoadMate Private Limited. All rights reserved.
           </p>

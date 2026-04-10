@@ -307,12 +307,12 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              style={{ position: "fixed", top: 0, right: 0, width: "100%", maxWidth: "400px", height: "100vh", backgroundColor: "#fff", zIndex: 10002, display: "flex", flexDirection: "column", boxShadow: "-20px 0 50px rgba(0,0,0,0.1)", borderLeft: "1px solid rgba(0,0,0,0.05)" }}
+              style={{ position: "fixed", top: 0, right: 0, width: "100%", maxWidth: "340px", height: "100vh", backgroundColor: "#fff", zIndex: 10002, display: "flex", flexDirection: "column", boxShadow: "-20px 0 50px rgba(0,0,0,0.1)", borderLeft: "1px solid rgba(0,0,0,0.05)" }}
             >
-                <div style={{ padding: "20px 25px 15px", borderBottom: "1.5px solid rgba(15, 23, 42, 0.08)", marginBottom: "0px" }}>
+                <div style={{ padding: "24px 25px 18px", borderBottom: "1.5px solid rgba(15, 23, 42, 0.08)", marginBottom: "0px" }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <h2 style={{ fontSize: "24px", fontWeight: 900, fontFamily: H, margin: 0 }}>Account</h2>
-                    <button onClick={() => setIsDrawerOpen(false)} style={{ background: "none", border: "none", fontSize: "28px", cursor: "pointer", color: "#64748b", display: "flex", alignItems: "center" }}>&times;</button>
+                    <h2 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, margin: 0, color: "#1e293b", letterSpacing: "-0.5px" }}>Menu</h2>
+                    <button onClick={() => setIsDrawerOpen(false)} style={{ background: "#f1f5f9", border: "none", width: "32px", height: "32px", borderRadius: "10px", fontSize: "20px", cursor: "pointer", color: "#64748b", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "400" }}>&times;</button>
                   </div>
                 </div>
 

@@ -441,11 +441,11 @@ const PersonalInfo = () => {
               </div>
 
               {/* Name and Details */}
-              <div>
-                <h1 style={{ margin: 0, color: '#fff', fontSize: '42px', fontWeight: '900', fontFamily: H, letterSpacing: '-1px', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>
+              <div style={{ textAlign: 'center' }}>
+                <h1 className="pi-title" style={{ margin: 0, color: '#fff', fontSize: '42px', fontWeight: '900', fontFamily: H, letterSpacing: '-1px', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>
                   {formData.name || user?.displayName}
                 </h1>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '25px', marginTop: '12px', color: 'rgba(255,255,255,0.9)', fontSize: '15px', fontWeight: '600' }}>
+                <div className="pi-banner-details" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '25px', marginTop: '12px', color: 'rgba(255,255,255,0.9)', fontSize: '15px', fontWeight: '600' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <PhoneIcon /> {phoneDigits ? `+91 ${phoneDigits}` : 'Add Phone Number'}
                   </div>

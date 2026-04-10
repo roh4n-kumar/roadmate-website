@@ -364,6 +364,18 @@ const DocumentVerification = () => {
         .dv-side-upload { flex:1; min-width:0; display:flex; flex-direction:column; }
         .dv-side-details { flex:1; min-width:0; }
         .divider { height:1.2px; background:#e2e8f0; margin-left:-40px; margin-right:-40px; margin-top:40px; margin-bottom:40px; }
+
+        @media (max-width: 900px) {
+          .pi-inner { padding: 0 16px !important; }
+          .pi-card { padding: 28px !important; border-radius: 24px !important; margin-bottom: 20px !important; }
+          .dv-split { flex-direction: column !important; gap: 30px !important; }
+          .pi-banner-title { font-size: 32px !important; }
+          .pi-banner-details { flex-direction: column !important; gap: 10px !important; }
+          .divider { margin-left: -28px !important; margin-right: -28px !important; }
+          .dv-mobile-grid { grid-template-columns: 1fr !important; }
+          .dv-selfie-box { width: 100% !important; max-width: 400px !important; height: auto !important; aspect-ratio: 1/1 !important; }
+          .dv-submit-btn { width: 100% !important; padding: 18px 24px !important; }
+        }
       `}</style>
 
       {/* BANNER (Exact Sync with PersonalInfo) */}
@@ -374,8 +386,8 @@ const DocumentVerification = () => {
             <div style={{ width:'140px', height:'140px', borderRadius:'50%', background:RED, border:'5px solid rgba(255,255,255,0.2)', boxShadow:'0 10px 30px rgba(0,0,0,0.2)', marginBottom:'20px', overflow:'hidden' }}>
               {(profile.profileImage || user?.photoURL) ? <img src={profile.profileImage || user?.photoURL} style={{ width:'100%', height:'100%', objectFit:'cover' }} /> : <div style={{ height:'100%', display:'flex', alignItems:'center', justifyContent:'center', color:'#fff' }}><CameraIcon /></div>}
             </div>
-            <h1 style={{ margin:0, color:'#fff', fontSize:'42px', fontWeight:'900', fontFamily:H, letterSpacing:'-1px', textShadow:'0 2px 10px rgba(0,0,0,0.3)' }}>{profile.name || user?.displayName}</h1>
-            <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:'25px', marginTop:'12px', color:'rgba(255,255,255,0.9)', fontSize:'15px', fontWeight:'600' }}>
+            <h1 className="pi-banner-title" style={{ margin:0, color:'#fff', fontSize:'42px', fontWeight:'900', fontFamily:H, letterSpacing:'-1px', textShadow:'0 2px 10px rgba(0,0,0,0.3)' }}>{profile.name || user?.displayName}</h1>
+            <div className="pi-banner-details" style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:'25px', marginTop:'12px', color:'rgba(255,255,255,0.9)', fontSize:'15px', fontWeight:'600' }}>
               <div style={{ display:'flex', alignItems:'center', gap:'8px' }}><PhoneIcon /> +91 {profile.phone ? profile.phone.replace("+91","").trim() : 'Add Phone'}</div>
               <div style={{ height:'12px', width:'1.5px', background:'rgba(255,255,255,0.3)' }} />
               <div style={{ display:'flex', alignItems:'center', gap:'8px' }}><MailIcon /> {user?.email}</div>
@@ -428,7 +440,7 @@ const DocumentVerification = () => {
                       <UploadBox label="DL Front Photo" hint="Clear photo for verification" file={dlFront} onChange={setDlFront} disabled={docStatus["driving-licence"]==="pending"} fallbackUrl={dlImageUrl} />
                     </div>
                     <div className="dv-side-details">
-                      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"20px" }}>
+                      <div className="dv-mobile-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"20px" }}>
                         <div style={{ gridColumn: "1 / -1" }}>
                           <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>DL Number</p>
                           <input 
@@ -469,7 +481,7 @@ const DocumentVerification = () => {
                 </div>
                 {docStatus.aadhaar !== "verified" && (
                   <div style={{ display: "flex", flexDirection: "column", gap: "25px", marginTop: "30px" }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+                    <div className="dv-mobile-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
                       <div>
                         <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Aadhaar Number</p>
                         <input 
@@ -486,7 +498,7 @@ const DocumentVerification = () => {
                         <p style={{ fontSize:"12px", color:"#64748b", marginTop:"8px", fontWeight:"500" }}>Please ensure Aadhaar details match correctly.</p>
                       </div>
                     </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+                    <div className="dv-mobile-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
                       <UploadBox label="Front Photo" hint="Front side of Aadhaar" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarFrontUrl} />
                       <UploadBox label="Back Photo" hint="Back side of Aadhaar" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarBackUrl} />
                     </div>
@@ -510,7 +522,7 @@ const DocumentVerification = () => {
                 </div>
                 {docStatus.selfie !== "verified" && (
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "25px", width: "100%", marginTop: "30px" }}>
-                    <div style={{ position:"relative", width: "320px", height:"320px", borderRadius:"14px", border:"2px dashed #e2e8f0", background:"#f8fafc", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden", flexShrink: 0 }}>
+                    <div className="dv-selfie-box" style={{ position:"relative", width: "320px", height:"320px", borderRadius:"14px", border:"2px dashed #e2e8f0", background:"#f8fafc", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden", flexShrink: 0 }}>
                       {cameraOn ? (
                         <div style={{ width:"100%", height:"100%" }}>
                           <video ref={videoRef} autoPlay playsInline style={{ width:"100%", height:"100%", objectFit:"cover" }} />
@@ -541,7 +553,7 @@ const DocumentVerification = () => {
                 <>
                   <div className="divider" />
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <button onClick={handleSubmitAll} disabled={uploading} style={{ background: uploading ? "#f1f5f9" : RED, color: uploading ? "#94a3b8" : "#fff", border: 'none', padding: '16px 60px', borderRadius: '12px', fontWeight: '950', fontSize: '15px', cursor: uploading ? 'not-allowed' : 'pointer', transition: 'all 0.3s ease', boxShadow: uploading ? "none" : "0 10px 40px "+RED+"30", display:"flex", alignItems:"center", gap:"10px", letterSpacing:"1px" }}>
+                    <button className="dv-submit-btn" onClick={handleSubmitAll} disabled={uploading} style={{ background: uploading ? "#f1f5f9" : RED, color: uploading ? "#94a3b8" : "#fff", border: 'none', padding: '16px 60px', borderRadius: '12px', fontWeight: '950', fontSize: '15px', cursor: uploading ? 'not-allowed' : 'pointer', transition: 'all 0.3s ease', boxShadow: uploading ? "none" : "0 10px 40px "+RED+"30", display:"flex", alignItems:"center", gap:"10px", letterSpacing:"1px" }}>
                       {uploading ? "SUBMITTING..." : "SUBMIT FOR VERIFICATION"}
                     </button>
                   </div>
