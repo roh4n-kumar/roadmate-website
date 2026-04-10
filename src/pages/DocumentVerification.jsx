@@ -586,8 +586,10 @@ const DocumentVerification = () => {
              )}
           </div>
 
+          <div className="divider" />
+
           {/* SUBMIT BUTTON */}
-          <div style={{ marginTop:"60px", display:"flex", justifyContent:"center" }}>
+          <div style={{ marginTop:"20px", display:"flex", justifyContent:"center" }}>
             <button
                onClick={handleSubmitAll}
                disabled={uploading || (docStatus["driving-licence"]!=="not_uploaded" && docStatus.aadhaar!=="not_uploaded" && docStatus.selfie!=="not_uploaded" && docStatus["driving-licence"]!=="rejected" && docStatus.aadhaar!=="rejected" && docStatus.selfie!=="rejected")}
