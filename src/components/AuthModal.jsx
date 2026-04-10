@@ -1,12 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { auth, db } from "../firebase";
-import {
-  RecaptchaVerifier,
-  signInWithPhoneNumber,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 // Assets
@@ -16,127 +11,38 @@ import logo from "../assets/roadMate Red Logo 2.png";
 const RED = "#be0d0d";
 const H = "'Outfit', sans-serif";
 
-// Optimized Image Dimensions (Standardized to 800x1200 for calculation)
+// Optimized Image Dimensions
 const IMG_NATURAL_W = 800;
 const IMG_NATURAL_H = 1200;
 
-// Pure function to calculate dimensions instantly without state lag
 const getModalDimensions = () => {
   if (typeof window === "undefined") return { width: 400, height: 500 };
-  
-  const maxH = window.innerHeight * 0.60; 
+  const maxH = window.innerHeight * 0.60;
   const maxW = window.innerWidth * 0.85;
-  
   let targetH = IMG_NATURAL_H;
   let targetW = IMG_NATURAL_W;
-  
   if (targetH > maxH) {
     const hRatio = maxH / targetH;
     targetH = maxH;
     targetW = targetW * hRatio;
   }
-  
   if (targetW * 2 > maxW) {
     const wRatio = maxW / (targetW * 2);
     targetW = maxW / 2;
     targetH = targetH * wRatio;
   }
-
   return { width: targetW, height: targetH };
 };
 
 const AuthModal = ({ isOpen, onClose }) => {
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-  const [mode, setMode] = useState("phone");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [confirmationResult, setConfirmationResult] = useState(null);
-  
-  // Initialize with pre-calculated dimensions to PREVENT flicker on first load
   const [dimensions, setDimensions] = useState(getModalDimensions);
 
-  // Handle Dynamic Resizing
   useEffect(() => {
     const handleResize = () => setDimensions(getModalDimensions());
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  // Reset modal state
-  useEffect(() => {
-    if (isOpen) {
-      setMode("phone");
-      setError("");
-      setPhoneNumber("");
-      setOtp(["", "", "", "", "", ""]);
-      // Refresh dimensions just in case window size changed while modal was closed
-      setDimensions(getModalDimensions());
-    }
-  }, [isOpen]);
-
-  const setupRecaptcha = () => {
-    if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-        'size': 'invisible',
-        'callback': (response) => {}
-      });
-    }
-  };
-
-  const handlePhoneSubmit = async (e) => {
-    e.preventDefault();
-    if (phoneNumber.length < 10) {
-      setError("Please enter a valid phone number");
-      return;
-    }
-    setError("");
-    setLoading(true);
-    setupRecaptcha();
-    const appVerifier = window.recaptchaVerifier;
-    const formatPhone = `+91${phoneNumber}`;
-    try {
-      const result = await signInWithPhoneNumber(auth, formatPhone, appVerifier);
-      setConfirmationResult(result);
-      setMode("otp");
-    } catch (err) {
-      console.error("Phone Auth Error:", err);
-      setError("Failed to send OTP. Try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const verifyOtp = async (otpValue) => {
-    setLoading(true);
-    setError("");
-    try {
-      const result = await confirmationResult.confirm(otpValue);
-      await syncUser(result.user, "phone");
-      onClose();
-    } catch (err) {
-      console.error("OTP Error:", err);
-      setError("Invalid OTP. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleOtpChange = (index, value) => {
-    if (isNaN(value)) return;
-    const newOtp = [...otp];
-    newOtp[index] = value;
-    setOtp(newOtp);
-    if (value && index < 5) document.getElementById(`otp-${index + 1}`).focus();
-    const otpString = newOtp.join("");
-    if (otpString.length === 6) verifyOtp(otpString);
-  };
-
-  const handleBackspace = (index, e) => {
-    if (e.key === "Backspace" && !otp[index] && index > 0) {
-      document.getElementById(`otp-${index - 1}`).focus();
-    }
-  };
 
   const handleGoogleLogin = async () => {
     setLoading(true);
@@ -194,38 +100,28 @@ const AuthModal = ({ isOpen, onClose }) => {
             background: #fff; 
           }
           .right-pane {
-            padding: 40px; display: flex; flex-direction: column;
-            justify-content: center; background: #fff;
-          }
-          .phone-input-group {
-            display: flex; align-items: center; border: 1.2px solid #cbd5e1;
-            border-radius: 12px; margin: 25px 0 15px; overflow: hidden;
-          }
-          .country-code-box {
-            padding: 12px 15px; border-right: 1.2px solid #cbd5e1; background: #fff;
-            color: #111; font-weight: 700; font-size: 14px;
-          }
-          .phone-input {
-            flex: 1; padding: 12px 15px; border: none; outline: none;
-            font-size: 14px; font-weight: 600; color: #111;
-          }
-          .cta-btn {
-            width: 100%; padding: 16px; background: ${RED}; color: #fff;
-            border: none; border-radius: 12px; font-size: 14px; font-weight: 800;
-            cursor: pointer; transition: all 0.2s; margin-top: 10px;
-            text-transform: uppercase; letter-spacing: 0.8px;
+            padding: 40px 30px; display: flex; flex-direction: column;
+            justify-content: center; background: #fff; box-sizing: border-box;
           }
           .google-btn {
-            width: 100%; padding: 13px; border: 1.2px solid #cbd5e1; border-radius: 12px;
+            width: 100%; padding: 16px; border: 1.5px solid #e2e8f0; border-radius: 12px;
             background: #fff; display: flex; align-items: center; justify-content: center;
-            gap: 10px; font-weight: 700; font-size: 13px; cursor: pointer;
-            margin-top: 15px;
+            gap: 12px; font-weight: 700; font-size: 15px; cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #1e293b; font-family: ${H};
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
           }
+          .google-btn:hover:not(:disabled) {
+            background: #f8fafc; border-color: #cbd5e1; transform: translateY(-1px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+          }
+          .google-btn:active:not(:disabled) { transform: translateY(0); }
+          .google-btn:disabled { opacity: 0.6; cursor: not-allowed; }
           
           @media (max-width: 850px) {
             .left-pane { display: none; }
-            .auth-modal-card { width: 100% !important; height: auto !important; max-width: 420px; }
-            .right-pane { width: 100% !important; height: auto !important; padding: 40px 30px; }
+            .auth-modal-card { width: 100% !important; height: auto !important; max-width: 400px; }
+            .right-pane { width: 100% !important; height: auto !important; padding: 50px 30px; }
           }
         `}
       </style>
@@ -257,79 +153,26 @@ const AuthModal = ({ isOpen, onClose }) => {
         </div>
 
         <div className="right-pane" style={{ width: `${dimensions.width}px`, height: '100%' }}>
-          <div id="recaptcha-container"></div>
-          
-          <div style={{ textAlign: "center" }}>
-            <img src={logo} alt="RoadMate" style={{ height: "42px", marginBottom: "15px" }} />
-            <h3 style={{ fontSize: "19px", fontWeight: 800, color: RED, fontFamily: H, margin: "0 0 5px", lineHeight: 1.3 }}>Sign in to avail exciting <br/> discounts and cashbacks!!</h3>
-          </div>
-
-          <AnimatePresence mode="wait">
-            {mode === "phone" ? (
-              <motion.div key="phone">
-                <div className="phone-input-group">
-                  <div className="country-code-box">+ 91</div>
-                  <input
-                    autoFocus
-                    type="tel"
-                    className="phone-input"
-                    placeholder="Enter your mobile number"
-                    value={phoneNumber}
-                    maxLength={10}
-                    onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ""))}
-                  />
-                </div>
-                {error && <p style={{ color: RED, fontSize: "12px", fontWeight: 600 }}>{error}</p>}
-                
-                <button 
-                  className="cta-btn" 
-                  onClick={handlePhoneSubmit}
-                  disabled={loading || phoneNumber.length < 10}
-                >
-                  {loading ? "Sending..." : "GENERATE OTP"}
-                </button>
-              </motion.div>
-            ) : (
-              <motion.div key="otp" style={{ textAlign: "center" }}>
-                <p style={{ fontSize: "14px", color: "#64748b", margin: "15px 0" }}>
-                  OTP sent to <span style={{ color: "#000", fontWeight: 700 }}>+91 {phoneNumber}</span>
-                </p>
-                <div style={{ display: "flex", justifyContent: "center", gap: "8px", margin: "20px 0" }}>
-                  {otp.map((digit, idx) => (
-                    <input
-                      key={idx}
-                      id={`otp-${idx}`}
-                      type="text"
-                      maxLength={1}
-                      style={{ 
-                        width: "40px", height: "45px", border: "1.2px solid #cbd5e1", borderRadius: "8px",
-                        textAlign: "center", fontSize: "18px", fontWeight: 700
-                      }}
-                      value={digit}
-                      onChange={(e) => handleOtpChange(idx, e.target.value)}
-                      onKeyDown={(e) => handleBackspace(idx, e)}
-                    />
-                  ))}
-                </div>
-                <button className="cta-btn" onClick={() => verifyOtp(otp.join(""))} disabled={loading}>
-                  Verify & Login
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          <div style={{ margin: "20px 0", textAlign: "center", position: "relative" }}>
-            <span style={{ fontSize: "11px", color: "#94a3b8", fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px' }}>OR</span>
+          <div style={{ textAlign: "center", marginBottom: "30px" }}>
+            <img src={logo} alt="RoadMate" style={{ height: "45px", marginBottom: "15px", display: "inline-block" }} />
+            <h3 style={{ fontSize: "22px", fontWeight: 800, color: RED, fontFamily: H, margin: "0 0 8px", lineHeight: 1.2 }}>Sign in to start riding!!</h3>
+            <p style={{ color: "#64748b", fontSize: "14px", fontWeight: 500 }}>Join RoadMate and explore the smarter <br/> way to travel today.</p>
           </div>
 
           <button className="google-btn" onClick={handleGoogleLogin} disabled={loading}>
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" alt="G" />
-            <span style={{ color: "#475569" }}>Connect with Google</span>
+            {loading ? (
+              <span style={{ fontSize: "14px", color: "#64748b" }}>Connecting...</span>
+            ) : (
+              <>
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="22" alt="G" />
+                <span>Continue with Google</span>
+              </>
+            )}
           </button>
 
-          <p style={{ marginTop: "auto", paddingTop: "20px", fontSize: "10px", textAlign: "center", color: "#94a3b8", fontWeight: 500 }}>
-            By signing up, you agree to our <br />
-            <span style={{ color: "#3b82f6", cursor: "pointer" }}>Terms</span> & <span style={{ color: "#3b82f6", cursor: "pointer" }}>Privacy Policy</span>
+          <p style={{ marginTop: "40px", fontSize: "11px", textAlign: "center", color: "#94a3b8", fontWeight: 500, lineHeight: 1.5 }}>
+            By continuing, you agree to RoadMate's <br />
+            <span style={{ color: "#3b82f6", cursor: "pointer", fontWeight: 600 }}>Terms of Service</span> & <span style={{ color: "#3b82f6", cursor: "pointer", fontWeight: 600 }}>Privacy Policy</span>
           </p>
         </div>
       </motion.div>

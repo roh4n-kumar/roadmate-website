@@ -26,6 +26,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isLogoutHovered, setIsLogoutHovered] = useState(false);
   const [authWarning, setAuthWarning] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -113,13 +114,17 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           // Removed redundant google-auth-btn style
 
           .logout-btn {
-            background: #000; color: white; border: none; padding: 16px;
-            border-radius: 16px; font-weight: 800; cursor: pointer; font-size: 16px;
+            background: #f8fafc; color: #ef4444; border: 1.5px solid #f1f5f9; padding: 14px;
+            border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 15px;
             width: 100%; display: flex; align-items: center; justify-content: center;
-            gap: 10px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            gap: 12px; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             font-family: ${F};
           }
-          .logout-btn:hover { background: ${RED}; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(190,13,13,0.3); }
+          .logout-btn:hover { 
+            background: #fee2e2; border-color: #fecaca; transform: translateY(-2px); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+          }
+          .logout-btn:active { transform: translateY(0); }
           .desktop-link { 
             transition: all 0.3s ease; 
             font-family: ${F}; 
@@ -386,9 +391,30 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                      <div style={{ marginTop: "40px", padding: "10px 25px 20px" }}>
                        <button
                          onClick={handleLogout}
-                         className="logout-btn"
+                         onMouseEnter={() => setIsLogoutHovered(true)}
+                         onMouseLeave={() => setIsLogoutHovered(false)}
+                         style={{
+                           width: "100%",
+                           padding: "16px",
+                           backgroundColor: isLogoutHovered ? RED : "#111",
+                           color: "#fff",
+                           border: "none",
+                           borderRadius: "16px",
+                           fontSize: "16px",
+                           fontWeight: "800",
+                           cursor: "pointer",
+                           display: "flex",
+                           alignItems: "center",
+                           justifyContent: "center",
+                           gap: "12px",
+                           transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                           fontFamily: F,
+                           transform: isLogoutHovered ? "translateY(-2px)" : "none",
+                           boxShadow: isLogoutHovered ? "0 10px 25px rgba(190, 13, 13, 0.3)" : "none",
+                           outline: "none"
+                         }}
                        >
-                         <LogoutIcon size={18} /> Logout
+                         <LogoutIcon size={20} /> Logout
                        </button>
                      </div>
                    )}
