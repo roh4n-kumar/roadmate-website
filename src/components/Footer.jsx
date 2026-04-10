@@ -69,7 +69,7 @@ const MastercardIcon = () => (
 
 const UPIIcon = () => (
   <svg width="40" height="16" viewBox="0 0 40 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <text x="0" y="13" fill="#000" fontSize="13" fontWeight="700" fontFamily="'Inter', sans-serif">UPI</text>
+    <text x="0" y="13" fill="#ffffff" fontSize="13" fontWeight="700" fontFamily="'Inter', sans-serif">UPI</text>
   </svg>
 );
 
@@ -82,7 +82,7 @@ const socialIcons = {
 
 const Footer = () => {
   return (
-    <footer style={{ background: "#f1f5f9", color: "#111827", borderTop: "1px solid rgba(0,0,0,0.05)", paddingTop: "50px", paddingBottom: "40px", fontFamily: F }}>
+    <footer style={{ background: "#111111", color: "#ffffff", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "50px", paddingBottom: "40px", fontFamily: F }}>
       <div style={{ maxWidth: "1250px", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "50px", marginBottom: "35px" }}>
           
@@ -91,25 +91,25 @@ const Footer = () => {
             <Link to="/" style={{ display: "block", marginBottom: "20px" }}>
               <img src={logo} alt="RoadMate" style={{ height: "48px", width: "auto", objectFit: "contain" }} />
             </Link>
-            <p style={{ color: "#4b5563", lineHeight: "1.8", fontSize: "15px", maxWidth: "320px", marginBottom: "30px" }}>
+            <p style={{ color: "rgba(255, 255, 255, 0.7)", lineHeight: "1.8", fontSize: "15px", maxWidth: "320px", marginBottom: "30px" }}>
               Bhubaneswar's leading vehicle rental platform. Experience the freedom of the road with our quality, 100% verified fleet.
             </p>
           </div>
-
+ 
           {/* Quick Links */}
           <div>
-            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H }}>Company</h4>
+            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff" }}>Company</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              <Link to="/about" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }}>About Us</Link>
-              <Link to="/vehicles?type=all" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }}>Our Fleet</Link>
-              <Link to="/pricing" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }}>Pricing</Link>
-              <Link to="/contact" style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }}>Contact Us</Link>
+              <Link to="/about" style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>About Us</Link>
+              <Link to="/vehicles?type=all" style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>Our Fleet</Link>
+              <Link to="/pricing" style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>Pricing</Link>
+              <Link to="/contact" style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>Contact Us</Link>
             </div>
           </div>
-
+ 
           {/* Support */}
           <div>
-            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H }}>Support</h4>
+            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff" }}>Support</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {[
                 { name: "Help Center", path: "/help-center" }, 
@@ -117,14 +117,14 @@ const Footer = () => {
                 { name: "Terms of Service", path: "/terms-of-service" }, 
                 { name: "Privacy Policy", path: "/privacy-policy" }
               ].map(item => (
-                <Link key={item.name} to={item.path} style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, lineHeight: "1.6" }}>{item.name}</Link>
+                <Link key={item.name} to={item.path} style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, lineHeight: "1.6", transition: "color 0.2s" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>{item.name}</Link>
               ))}
             </div>
           </div>
-
+ 
           {/* Explore Section */}
           <div>
-            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H }}>Explore</h4>
+            <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff" }}>Explore</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {[
                 { name: "Special Offers", path: "/#offers" }, 
@@ -132,18 +132,18 @@ const Footer = () => {
                 { name: "RoadMate Blogs", path: "/#blog" }, 
                 { name: "Partner With Us", path: "/contact" }
               ].map(item => (
-                <Link key={item.name} to={item.path} style={{ color: "#111827", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }}>{item.name}</Link>
+                <Link key={item.name} to={item.path} style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>{item.name}</Link>
               ))}
             </div>
           </div>
-
+ 
         </div>
-
-        <div style={{ borderTop: "1px solid rgba(0, 0, 0, 0.05)", paddingTop: "30px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
-          <p style={{ fontSize: "13px", color: "#6b7280", fontWeight: 500 }}>
+ 
+        <div style={{ borderTop: "1px solid rgba(255, 255, 255, 0.1)", paddingTop: "30px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
+          <p style={{ fontSize: "13px", color: "rgba(255, 255, 255, 0.5)", fontWeight: 500 }}>
             © {new Date().getFullYear()} RoadMate Private Limited. All rights reserved.
           </p>
-          <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
+          <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>>
             {["instagram", "twitter", "facebook", "linkedin"].map(social => {
               const links = {
                 instagram: "https://www.instagram.com/roh4n.chaudhary?igsh=MXM5b25lcTlsODg0OQ==",
