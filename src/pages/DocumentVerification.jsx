@@ -306,6 +306,7 @@ const DocumentVerification = () => {
           else setAadhaarBackUrl("");
 
           // Read Selfie values
+          const curSelfie = d.selfieImage || d.verification?.selfie?.image;
           if (curSelfie) setSelfieImg(curSelfie);
           else setSelfieImg("");
         }
