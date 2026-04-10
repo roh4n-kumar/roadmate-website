@@ -420,7 +420,13 @@ const DocumentVerification = () => {
                       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"20px" }}>
                         <div style={{ gridColumn: "1 / -1" }}>
                           <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>DL Number</p>
-                          <input value={dlNumber} onChange={e => setDlNumber(e.target.value.toUpperCase())} placeholder="OD0420XXXXXXXXX" style={inputStyle(docStatus["driving-licence"]!=="pending")} disabled={docStatus["driving-licence"]==="pending"} />
+                          <input 
+                            value={dlNumber} 
+                            onChange={e => setDlNumber(e.target.value.toUpperCase().slice(0, 16))} 
+                            placeholder="OD0420XXXXXXXXX" 
+                            style={inputStyle(docStatus["driving-licence"]!=="pending")} 
+                            disabled={docStatus["driving-licence"]==="pending"} 
+                          />
                         </div>
                         <div>
                           <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Expiry Date</p>
@@ -456,7 +462,17 @@ const DocumentVerification = () => {
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
                       <div>
                         <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Aadhaar Number</p>
-                        <input value={aadhaarNumber} onChange={e => setAadhaarNumber(e.target.value.replace(/\D/g,"").replace(/(\d{4})(?=\d)/g,"$1 ").trim())} placeholder="XXXX XXXX XXXX" style={inputStyle(docStatus.aadhaar!=="pending")} disabled={docStatus.aadhaar==="pending"} />
+                        <input 
+                          value={aadhaarNumber} 
+                          onChange={e => {
+                            const val = e.target.value.replace(/\D/g, "").slice(0, 12);
+                            setAadhaarNumber(val.replace(/(\d{4})(?=\d)/g, "$1 ").trim());
+                          }} 
+                          placeholder="XXXX XXXX XXXX" 
+                          style={inputStyle(docStatus.aadhaar!=="pending")} 
+                          disabled={docStatus.aadhaar==="pending"} 
+                          maxLength={14}
+                        />
                         <p style={{ fontSize:"12px", color:"#64748b", marginTop:"8px", fontWeight:"500" }}>Please ensure Aadhaar details match correctly.</p>
                       </div>
                     </div>
