@@ -301,9 +301,10 @@ const DocumentVerification = () => {
 
   const startCamera = async () => {
     try {
+      setSelfieImg(null); // Clear previous capture
       const s = await navigator.mediaDevices.getUserMedia({ video: { facingMode:"user" } });
       setStream(s); setCameraOn(true);
-      setTimeout(() => { if (videoRef.current) videoRef.current.srcObject = s; }, 100);
+      setTimeout(() => { if (videoRef.current) videoRef.current.srcObject = s; }, 200);
     } catch { showToast("Camera access denied", "error"); }
   };
 
@@ -495,7 +496,7 @@ const DocumentVerification = () => {
                       ) : (selfieImg || selfieUrl) ? (
                         <div style={{ width:"100%", height:"100%" }}>
                            <img src={selfieImg || selfieUrl} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
-                           <button onClick={() => setCameraOn(true)} style={{ position:"absolute", bottom:"15px", left:"50%", transform:"translateX(-50%)", background:RED, color:"#fff", border:"none", padding:"10px 25px", borderRadius:"12px", fontWeight:"900", cursor:"pointer" }}>RETAKE PHOTO</button>
+                           <button onClick={startCamera} style={{ position:"absolute", bottom:"15px", left:"50%", transform:"translateX(-50%)", background:RED, color:"#fff", border:"none", padding:"10px 25px", borderRadius:"12px", fontWeight:"900", cursor:"pointer" }}>RETAKE PHOTO</button>
                         </div>
                       ) : (
                         <button onClick={startCamera} style={{ background:"#1e293b", color:"#fff", border:"none", padding:"15px 30px", borderRadius:"12px", fontWeight:"900", cursor:"pointer" }}>OPEN CAMERA</button>
