@@ -71,7 +71,7 @@ const ExpiryDatePicker = ({ value, onChange, disabled, hasError }) => {
   const ref = useRef();
   const today = new Date();
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const parsed = value ? (() => { const [y,m,d] = value.split('-').map(Number); return new Date(y, m-1, d); })() : null;
+  const parsed = value ? (() => { const parts = value.split('-'); if (parts.length!==3) return null; const [y,m,d] = parts.map(Number); return new Date(y, m-1, d); })() : null;
   const [viewMonth, setViewMonth] = useState(parsed ? parsed.getMonth() : today.getMonth());
   const [viewYear,  setViewYear]  = useState(parsed ? parsed.getFullYear() : today.getFullYear());
   useEffect(() => {
@@ -186,7 +186,6 @@ const UploadBox = ({ label, hint, file, onChange, accept="image/*", disabled, fa
 
 const DocumentVerification = () => {
   const navigate = useNavigate();
-  const fileInputRef = useRef(null);
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
@@ -204,12 +203,12 @@ const DocumentVerification = () => {
   const [aadhaarFront, setAadhaarFront] = useState(null);
   const [aadhaarBack, setAadhaarBack] = useState(null);
   const [aadhaarNumber, setAadhaarNumber] = useState("");
-  const [aadhaarErrors, setAadhaarErrors] = useState({});
 
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [stream, setStream] = useState(null);
   const [selfieImg, setSelfieImg] = useState(null);
+  const [selfieUrl, setSelfieUrl] = useState(null);
   const [cameraOn, setCameraOn] = useState(false);
 
   const [uploading, setUploading] = useState(false);
@@ -252,47 +251,33 @@ const DocumentVerification = () => {
           const d = snap.data();
           setProfile(d.profile || {});
           
-          // Double-read logic: root fields first (for Admin compatibility), then fallback to nested objects
           const statuses = {
              dl: (d.dlStatus || d.verification?.drivingLicence?.status || d.verification?.dl?.status || "not_uploaded").toLowerCase(),
              aadhaar: (d.aadhaarStatus || d.verification?.aadhaar?.status || "not_uploaded").toLowerCase(),
              selfie: (d.selfieStatus || d.verification?.selfie?.status || "not_uploaded").toLowerCase()
           };
           
-          setDocStatus({ 
-            "driving-licence": statuses.dl, 
-            aadhaar: statuses.aadhaar, 
-            selfie: statuses.selfie 
-          });
+          setDocStatus({ "driving-licence": statuses.dl, aadhaar: statuses.aadhaar, selfie: statuses.selfie });
 
-          // Flags for locking inputs during review
           const isDlLocked = statuses.dl === "pending" || statuses.dl === "verified";
           const isAadLocked = statuses.aadhaar === "pending" || statuses.aadhaar === "verified";
 
-          // Read DL values (Double-read)
+          // DL Logic
           const curDlNumber = d.dlNumber || d.verification?.drivingLicence?.number || d.verification?.dl?.number;
           const curDlExpiry = d.dlExpiry || d.verification?.drivingLicence?.expiry || d.verification?.dl?.expiry;
-          const curDlClass  = d.dlClass  || d.verification?.drivingLicence?.class  || d.verification?.drivingLicence?.category || d.verification?.dl?.class;
+          const curDlClass  = d.dlClass  || d.verification?.drivingLicence?.class  || d.verification?.dl?.class;
           const curDlImage  = d.dlImage  || d.verification?.drivingLicence?.image  || d.verification?.dl?.image;
 
-          // If REJECTED, do NOT auto-fill. Force empty for fresh entry.
           if (statuses.dl === "rejected") {
             setDlNumber(""); setDlExpiry(""); setDlClass(""); setDlImageUrl("");
           } else {
             if (curDlNumber && (isDlLocked || !dlNumber)) setDlNumber(curDlNumber);
-            else if (!curDlNumber && !isDlLocked) setDlNumber("");
-
             if (curDlExpiry && (isDlLocked || !dlExpiry)) setDlExpiry(curDlExpiry);
-            else if (!curDlExpiry && !isDlLocked) setDlExpiry("");
-
-            if (curDlClass  && (isDlLocked || !dlClass))  setDlClass(curDlClass);
-            else if (!curDlClass && !isDlLocked) setDlClass("");
-
+            if (curDlClass && (isDlLocked || !dlClass)) setDlClass(curDlClass);
             if (curDlImage) setDlImageUrl(curDlImage);
-            else setDlImageUrl("");
           }
 
-          // Read Aadhaar values (Double-read)
+          // Aadhaar Logic
           const curAadNumber = d.aadhaarNumber || d.verification?.aadhaar?.number;
           const curAadFront  = d.aadhaarFrontImage || d.verification?.aadhaar?.frontImage;
           const curAadBack   = d.aadhaarBackImage  || d.verification?.aadhaar?.backImage;
@@ -300,27 +285,17 @@ const DocumentVerification = () => {
           if (statuses.aadhaar === "rejected") {
             setAadhaarNumber(""); setAadhaarFrontUrl(""); setAadhaarBackUrl("");
           } else {
-            if (curAadNumber && (isAadLocked || !aadhaarNumber)) {
-              const raw = curAadNumber.replace(/\s/g,"");
-              setAadhaarNumber(raw.replace(/(\d{4})(?=\d)/g,"$1 ").trim());
-            } else if (!curAadNumber && !isAadLocked) {
-              setAadhaarNumber("");
-            }
-
+            if (curAadNumber && (isAadLocked || !aadhaarNumber)) setAadhaarNumber(curAadNumber.replace(/(\d{4})(?=\d)/g,"$1 "));
             if (curAadFront) setAadhaarFrontUrl(curAadFront);
-            else setAadhaarFrontUrl("");
-
             if (curAadBack)  setAadhaarBackUrl(curAadBack);
-            else setAadhaarBackUrl("");
           }
 
-          // Read Selfie values
+          // Selfie Logic
           const curSelfie = d.selfieImage || d.verification?.selfie?.image;
           if (statuses.selfie === "rejected") {
-            setSelfieImg("");
+            setSelfieUrl(""); setSelfieImg(null);
           } else {
-            if (curSelfie) setSelfieImg(curSelfie);
-            else setSelfieImg("");
+            if (curSelfie) setSelfieUrl(curSelfie);
           }
         }
         setLoading(false);
@@ -346,250 +321,224 @@ const DocumentVerification = () => {
     stream?.getTracks().forEach(t => t.stop()); setCameraOn(false);
   };
 
-  const validateDL = () => {
-    const errors = {};
-    if (!dlFront && !dlImageUrl) errors.photo = true;
-    const dlClean = dlNumber.replace(/-/g,"").toUpperCase().trim();
-    if (!dlClean) errors.dlNumber="DL number is required";
-    else if (!/^[A-Z]{2}([0-9]{11}|[0-9]{13})$/.test(dlClean)) errors.dlNumber="Invalid DL number format";
-    if (!dlExpiry) errors.dlExpiry="Expiry date is required";
-    if (!dlClass) errors.dlClass=true;
-    setDlErrors(errors);
-    return Object.keys(errors).length===0;
-  };
-
   const handleSubmitAll = async () => {
-    const dlPending  = docStatus["driving-licence"]==="pending"||docStatus["driving-licence"]==="verified";
-    const aadPending = docStatus.aadhaar==="pending"||docStatus.aadhaar==="verified";
-    const selfiePend = docStatus.selfie==="pending"||docStatus.selfie==="verified";
-    const dlOk   = dlPending  || validateDL();
-    const aadOk  = aadPending || (aadhaarFront && aadhaarBack && aadhaarNumber.replace(/\s/g,"").length===12);
-    const selfOk = selfiePend || !!selfieImg;
-    if (!dlOk||!aadOk||!selfOk) { showToast("Please fill in all required fields.", "error"); return; }
+    const statuses = Object.values(docStatus);
+    const dlLocked = docStatus["driving-licence"]==="pending" || docStatus["driving-licence"]==="verified";
+    const aadLocked = docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified";
+    const selfieLocked = docStatus.selfie==="pending" || docStatus.selfie==="verified";
+
     setUploading(true);
     try {
       const uploadPromises = [];
-      if (!dlPending && dlFront)       uploadPromises.push(uploadToCloudinary(dlFront).then(url=>({ key:"dlImage", url })));
-      if (!aadPending && aadhaarFront) uploadPromises.push(uploadToCloudinary(aadhaarFront).then(url=>({ key:"aadhaarFrontImage", url })));
-      if (!aadPending && aadhaarBack)  uploadPromises.push(uploadToCloudinary(aadhaarBack).then(url=>({ key:"aadhaarBackImage", url })));
-      if (!selfiePend && selfieImg && selfieImg.startsWith("data:")) { const blob=await fetch(selfieImg).then(r=>r.blob()); const selfieFile=new File([blob],"selfie.jpg",{type:"image/jpeg"}); uploadPromises.push(uploadToCloudinary(selfieFile).then(url=>({ key:"selfieImage", url }))); }
+      if (!dlLocked && dlFront) uploadPromises.push(uploadToCloudinary(dlFront).then(url=>({ key:"dlImage", url })));
+      if (!aadLocked && aadhaarFront) uploadPromises.push(uploadToCloudinary(aadhaarFront).then(url=>({ key:"aadhaarFrontImage", url })));
+      if (!aadLocked && aadhaarBack) uploadPromises.push(uploadToCloudinary(aadhaarBack).then(url=>({ key:"aadhaarBackImage", url })));
+      if (!selfieLocked && selfieImg) { 
+        const blob=await fetch(selfieImg).then(r=>r.blob()); 
+        const selfieFile=new File([blob],"selfie.jpg",{type:"image/jpeg"}); 
+        uploadPromises.push(uploadToCloudinary(selfieFile).then(url=>({ key:"selfieImage", url }))); 
+      }
+      
       const uploadedImgs = await Promise.all(uploadPromises);
       const imgMap = {}; uploadedImgs.forEach(({ key, url }) => { imgMap[key]=url; });
-      
-      const snap = await getDoc(doc(db, "users", user.uid));
-      const rootData = snap.exists() ? snap.data() : {};
-      const existingVerification = rootData.verification || {};
 
       const updates = {};
-      
-      // Update Driving Licence (Flat for Admin + Nested for Web)
-      if (!dlPending) {
-        updates.dlNumber = dlNumber.replace(/-/g,"").toUpperCase();
+      if (!dlLocked) {
+        updates.dlNumber = dlNumber.replace(/\s/g,"");
         updates.dlExpiry = dlExpiry;
-        updates.dlClass  = dlClass;
+        updates.dlClass = dlClass;
         updates.dlStatus = "pending";
-        updates.dlSubmittedAt = new Date();
         if (imgMap.dlImage) updates.dlImage = imgMap.dlImage;
       }
-      
-      // Update Aadhaar (Flat for Admin + Nested for Web)
-      if (!aadPending) {
+      if (!aadLocked) {
         updates.aadhaarNumber = aadhaarNumber.replace(/\s/g,"");
         updates.aadhaarStatus = "pending";
-        updates.aadhaarSubmittedAt = new Date();
         if (imgMap.aadhaarFrontImage) updates.aadhaarFrontImage = imgMap.aadhaarFrontImage;
-        if (imgMap.aadhaarBackImage)  updates.aadhaarBackImage  = imgMap.aadhaarBackImage;
+        if (imgMap.aadhaarBackImage) updates.aadhaarBackImage = imgMap.aadhaarBackImage;
       }
-      
-      // Update Selfie (Flat for Admin + Nested for Web)
-      if (!selfiePend) {
+      if (!selfieLocked) {
         updates.selfieStatus = "pending";
-        updates.selfieSubmittedAt = new Date();
         if (imgMap.selfieImage) updates.selfieImage = imgMap.selfieImage;
       }
-
-      // Reconstruct nested verification object for backward compatibility (e.g. for VehicleResults.jsx)
-      updates.verification = {
-        ...existingVerification,
-        status: "pending",
-        drivingLicence: {
-          number: updates.dlNumber || existingVerification.drivingLicence?.number || existingVerification.dl?.number,
-          expiry: updates.dlExpiry || existingVerification.drivingLicence?.expiry || existingVerification.dl?.expiry,
-          class: updates.dlClass || existingVerification.drivingLicence?.class || existingVerification.dl?.class,
-          status: updates.dlStatus || existingVerification.drivingLicence?.status || existingVerification.dl?.status,
-          image: updates.dlImage || existingVerification.drivingLicence?.image || existingVerification.dl?.image,
-          submittedAt: updates.dlSubmittedAt || existingVerification.drivingLicence?.submittedAt || existingVerification.dl?.submittedAt
-        },
-        aadhaar: {
-          number: updates.aadhaarNumber || existingVerification.aadhaar?.number,
-          status: updates.aadhaarStatus || existingVerification.aadhaar?.status,
-          frontImage: updates.aadhaarFrontImage || existingVerification.aadhaar?.frontImage,
-          backImage: updates.aadhaarBackImage || existingVerification.aadhaar?.backImage,
-          submittedAt: updates.aadhaarSubmittedAt || existingVerification.aadhaar?.submittedAt
-        },
-        selfie: {
-          status: updates.selfieStatus || existingVerification.selfie?.status,
-          image: updates.selfieImage || existingVerification.selfie?.image,
-          submittedAt: updates.selfieSubmittedAt || existingVerification.selfie?.submittedAt
-        }
-      };
       
       await setDoc(doc(db, "users", user.uid), updates, { merge: true });
-      showToast("Documents submitted for review!");
-      window.scrollTo({ top:0, behavior:"smooth" });
-    } catch(e) { showToast("Upload failed — check your connection.", "error"); }
+      showToast("Documents submitted successfully!");
+    } catch(e) { showToast("Failed to upload documents", "error"); }
     finally { setUploading(false); }
   };
 
-  const handleIdentityImageChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file || !user) return;
-    setUploading(true);
-    try {
-      const url = await uploadToCloudinary(file);
-      await updateProfile(user, { photoURL: url });
-      await setDoc(doc(db, "users", user.uid), { 
-        profileImage: url,
-        profile: { ...profile, profileImage: url } 
-      }, { merge: true });
-      showToast("Profile identity updated!");
-    } catch (err) { alert("Failed to update identity photo."); }
-    finally { setUploading(false); }
-  };
-
-  if (loading) return (
-    <div style={{ minHeight:"100vh", display:"flex", alignItems:"center", justifyContent:"center", background:"#f8fafc" }}>
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-      <div style={{ textAlign:"center" }}>
-        <div style={{ width:"40px", height:"40px", border:"4px solid rgba(190,13,13,0.1)", borderTop:`4px solid ${RED}`, borderRadius:"50%", animation:"spin 0.8s linear infinite", margin:"0 auto" }} />
-        <p style={{ color:"#64748b", marginTop:"20px", fontSize:"15px", fontWeight:"700", fontFamily:H }}>Loading verification...</p>
-      </div>
-    </div>
-  );
-
-  const phoneDisplay = profile.phone ? profile.phone.replace("+91","").trim() : "";
+  if (loading) return null;
 
   return (
     <div style={{ minHeight:"100vh", background:"#f5f7f9", fontFamily:F }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
-        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.98) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        
-        .pi-wrap   { padding-bottom: 120px; position: relative; z-index: 10; }
-        .pi-inner  { max-width: 1250px; margin: 0 auto; padding: 0 24px; }
-        .pi-card   { 
-          background: #fff; 
-          border-radius: 12px; 
-          padding: 24px 40px 40px 40px; 
-          margin-bottom: 24px; 
-          box-shadow: 0 15px 40px rgba(0,0,0,0.03); 
-          border: 1.5px solid #e2e8f0; 
-          position: relative;
-          overflow: hidden;
-          animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        .dv-split   { display: flex; gap: 40px; align-items: stretch; }
-        .dv-side-upload { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-        .dv-side-details { flex: 1; min-width: 0; }
-
-        .pi-grid   { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .pi-title  { font-size: 30px; margin-bottom: 24px; letter-spacing: -1px; }
-        .pi-avatar { width: 100px; height: 100px; font-size: 38px; border: 4px solid #fff; }
-        .pi-name   { font-size: 26px; }
-        .pi-btns   { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
-
-        /* Avatar Hover Effect */
-        .avatar-box { position: relative; overflow: hidden; cursor: pointer; transition: all 0.3s ease; }
-        .avatar-box:hover { transform: scale(1.02); }
-        .avatar-overlay {
-          position: absolute;
-          bottom: -50px;
-          left: 0;
-          right: 0;
-          height: 50px;
-          background: rgba(37, 99, 235, 0.7);
-          backdrop-filter: blur(4px);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          color: white;
-        }
-        .avatar-box:hover .avatar-overlay { bottom: 0; }
-        .avatar-box:hover img { filter: brightness(0.8); }
-
-        .divider   { height: 1.2px; background: #e2e8f0; margin-left: -40px; margin-right: -40px; margin-top: 40px; margin-bottom: 40px; }
-        
-        @media (max-width: 900px) {
-          .pi-inner { padding: 0 16px !important; }
-          .pi-card  { padding: 28px !important; }
-          .dv-grid  { grid-template-columns: 1fr !important; }
-        }
+        .pi-inner { max-width: 1250px; margin: 0 auto; padding: 0 24px; }
+        .pi-card { background:#fff; border-radius:12px; padding:24px 40px 40px; margin-bottom:24px; box-shadow:0 15px 40px rgba(0,0,0,0.03); border:1.5px solid #e2e8f0; position:relative; overflow:hidden; }
+        .dv-split { display:flex; gap:40px; }
+        .dv-side-upload { flex:1; display:flex; flex-direction:column; }
+        .dv-side-details { flex:1; }
+        .divider { height:1.2px; background:#e2e8f0; margin:40px -40px; }
       `}</style>
 
-      {/* IDENTITY BANNER (Same as PersonalInfo) */}
-      <div style={{ position: 'relative', height: '400px', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url("/document.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.6)' }} />
-        <div className="pi-inner" style={{ height: '100%', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: '40px' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-            <div className="avatar-box" style={{ width: '140px', height: '140px', borderRadius: '50%', background: RED, border: '5px solid rgba(255,255,255,0.2)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', marginBottom: '20px', cursor: 'default' }}>
-              <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
-                {uploading ? <div style={{ fontSize: '12px', fontWeight: '900' }}>UPLOADING...</div> : (profile.profileImage || user?.photoURL) ? (
-                  <img src={profile.profileImage || user?.photoURL} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                ) : <><CameraIcon /><span style={{ fontSize: '11px', fontWeight: '900', marginTop: '6px', textTransform: 'uppercase' }}>User Profile</span></>}
-              </div>
+      {/* BANNER */}
+      <div style={{ position:'relative', height:'400px', overflow:'hidden' }}>
+        <div style={{ position:'absolute', inset:0, backgroundImage:'url("/document.jpg")', backgroundSize:'cover', backgroundPosition:'center', filter:'brightness(0.6)' }} />
+        <div className="pi-inner" style={{ height:'100%', position:'relative', zIndex:2, display:'flex', flexDirection:'column', justifyContent:'flex-end', alignItems:'center', paddingBottom:'40px' }}>
+          <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
+            <div style={{ width:'140px', height:'140px', borderRadius:'50%', background:RED, border:'5px solid rgba(255,255,255,0.2)', marginBottom:'20px', overflow:'hidden' }}>
+              {(profile.profileImage || user?.photoURL) ? <img src={profile.profileImage || user?.photoURL} style={{ width:'100%', height:'100%', objectFit:'cover' }} /> : <div style={{ height:'100%', display:'flex', alignItems:'center', justifyContent:'center', color:'#fff' }}><CameraIcon /></div>}
             </div>
-            <div>
-              <h1 style={{ margin: 0, color: '#fff', fontSize: '42px', fontWeight: '900', fontFamily: H, letterSpacing: '-1px', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>{profile.name || user?.displayName}</h1>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '25px', marginTop: '12px', color: 'rgba(255,255,255,0.9)', fontSize: '15px', fontWeight: '600' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><PhoneIcon /> +91 {phoneDisplay || 'Add Phone'}</div>
-                <div style={{ height: '12px', width: '1.5px', background: 'rgba(255,255,255,0.3)' }} />
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><MailIcon /> {user?.email}</div>
-              </div>
+            <h1 style={{ margin:0, color:'#fff', fontSize:'42px', fontWeight:'900', fontFamily:H }}>{profile.name || user?.displayName}</h1>
+            <div style={{ display:'flex', gap:'20px', color:'#fff', fontSize:'15px', fontWeight:'600', marginTop:'10px' }}>
+              <div style={{ display:'flex', alignItems:'center', gap:'8px' }}><PhoneIcon /> {profile.phone || 'No Phone'}</div>
+              <div style={{ display:'flex', alignItems:'center', gap:'8px' }}><MailIcon /> {user?.email}</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="pi-inner" style={{ marginTop: '30px', paddingBottom: '100px' }}>
-               </div>
-             ) : cameraOn ? (
-               <div style={{ textAlign:"center" }}>
-                 <video ref={videoRef} autoPlay playsInline muted style={{ width:"260px", height:"260px", borderRadius:"50%", objectFit:"cover", border:`5px solid ${RED}`, margin:"0 auto" }} />
-                 <canvas ref={canvasRef} style={{ display:"none" }} />
-                 <div style={{ marginTop:"20px" }}>
-                   <button onClick={takeSelfie} style={{ background:RED, color:"white", border:"none", padding:"12px 30px", borderRadius:"14px", fontWeight:"900", cursor:"pointer", boxShadow:`0 10px 20px ${RED}40` }}>Capture Selfie</button>
-                 </div>
-               </div>
-             ) : (
-                <button onClick={startCamera} style={{ background:"#1e293b", color:"white", border:"none", padding:"16px 32px", borderRadius:"16px", fontWeight:"900", cursor:"pointer" }}>Open Camera for Selfie</button>
-             )}
-          </div>
+      <div className="pi-inner" style={{ marginTop:'30px', paddingBottom:'100px' }}>
+        {(() => {
+          const statuses = Object.values(docStatus);
+          const isAnyRejected = statuses.includes("rejected");
+          const isAllVerified = statuses.every(s => s === "verified");
 
-          <div className="divider" />
+          return (
+            <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} className="pi-card">
+              <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"20px" }}>
+                <h2 style={{ fontSize:"22px", fontWeight:"900", color:RED, margin:0, fontFamily:H }}>Document Verification</h2>
+                {isAllVerified ? (
+                  <div style={{ background:"#10b981", color:"#fff", padding:"6px 14px", borderRadius:"10px", fontSize:"11px", fontWeight:"900", display:"flex", alignItems:"center", gap:"6px" }}><CheckIcon /> VERIFIED</div>
+                ) : isAnyRejected ? (
+                  <div style={{ color:RED, fontSize:"12px", fontWeight:"800", background:RED+"08", padding:"6px 12px", borderRadius:"8px", display:"flex", alignItems:"center", gap:"8px" }}><WarnIcon /> YOUR DOCUMENTS ARE REJECTED. TRY AGAIN.</div>
+                ) : null}
+              </div>
+              <div style={{ height:'1.2px', background:'#e2e8f0', margin:'0 -40px 40px' }} />
 
-          {/* SUBMIT BUTTON */}
-          <div style={{ marginTop:"20px", display:"flex", justifyContent:"center" }}>
-            <button
-               onClick={handleSubmitAll}
-               disabled={uploading || (docStatus["driving-licence"]!=="not_uploaded" && docStatus.aadhaar!=="not_uploaded" && docStatus.selfie!=="not_uploaded" && docStatus["driving-licence"]!=="rejected" && docStatus.aadhaar!=="rejected" && docStatus.selfie!=="rejected")}
-               style={{
-                 background: (uploading || (docStatus["driving-licence"]!=="not_uploaded" && docStatus.aadhaar!=="not_uploaded" && docStatus.selfie!=="not_uploaded" && docStatus["driving-licence"]!=="rejected" && docStatus.aadhaar!=="rejected" && docStatus.selfie!=="rejected")) ? "#f1f5f9" : RED,
-                 color: (uploading || (docStatus["driving-licence"]!=="not_uploaded" && docStatus.aadhaar!=="not_uploaded" && docStatus.selfie!=="not_uploaded" && docStatus["driving-licence"]!=="rejected" && docStatus.aadhaar!=="rejected" && docStatus.selfie!=="rejected")) ? "#94a3b8" : "#fff",
-                 border:"none", padding:"18px 60px", borderRadius:"16px", fontWeight:"900", fontSize:"16px", cursor:"pointer", transition:"all 0.3s ease", boxShadow: uploading ? "none" : `0 10px 30px ${RED}40`
-               }}>
-               {uploading ? "UPLOADING..." : "Submit Documents"}
-            </button>
-          </div>
-        </motion.div>
+              {/* DL SECTION */}
+              <div style={{ marginBottom: "40px" }}>
+                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: docStatus["driving-licence"]==="verified"?"0":"30px" }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
+                    <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><LicenceIcon /></div>
+                    <div>
+                      <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Driving Licence</h3>
+                      <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your valid Indian Driving Licence</p>
+                    </div>
+                  </div>
+                  <StatusBadge status={docStatus["driving-licence"]} />
+                </div>
+                {docStatus["driving-licence"] !== "verified" && (
+                  <div className="dv-split">
+                    <div className="dv-side-upload">
+                      <UploadBox label="DL Front Photo" hint="Clear photo" file={dlFront} onChange={setDlFront} disabled={docStatus["driving-licence"]==="pending"} fallbackUrl={dlImageUrl} />
+                    </div>
+                    <div className="dv-side-details">
+                      <p style={{ fontSize:"11px", fontWeight:"800", color:RED, textTransform:"uppercase", marginBottom:"8px", fontFamily:H }}>DL Number</p>
+                      <input value={dlNumber} onChange={e => setDlNumber(e.target.value.toUpperCase())} placeholder="OD0420XXXXXXXXX" style={inputStyle(docStatus["driving-licence"]!=="pending")} disabled={docStatus["driving-licence"]==="pending"} />
+                      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"20px", marginTop:"20px" }}>
+                        <div>
+                          <p style={{ fontSize:"11px", fontWeight:"800", color:RED, textTransform:"uppercase", marginBottom:"8px", fontFamily:H }}>Expiry Date</p>
+                          <ExpiryDatePicker value={dlExpiry} onChange={setDlExpiry} disabled={docStatus["driving-licence"]==="pending"} />
+                        </div>
+                        <div>
+                          <p style={{ fontSize:"11px", fontWeight:"800", color:RED, textTransform:"uppercase", marginBottom:"8px", fontFamily:H }}>Category</p>
+                          <MiniDropdown options={[{value:"LMV",label:"LMV (Car)"},{value:"MCWG",label:"MCWG (Bike)"}]} value={dlClass} onChange={setDlClass} width="100%" disabled={docStatus["driving-licence"]==="pending"} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="divider" />
+
+              {/* AADHAAR SECTION */}
+              <div style={{ marginBottom: "40px" }}>
+                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: docStatus.aadhaar==="verified"?"0":"30px" }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
+                    <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><AadhaarIcon /></div>
+                    <div>
+                      <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Aadhaar Card</h3>
+                      <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your 12-digit Aadhaar Card details</p>
+                    </div>
+                  </div>
+                  <StatusBadge status={docStatus.aadhaar} />
+                </div>
+                {docStatus.aadhaar !== "verified" && (
+                  <div className="dv-split">
+                    <div className="dv-side-upload" style={{ display:"flex", gap:"15px" }}>
+                      <UploadBox label="Front" hint="Front side" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarFrontUrl} />
+                      <UploadBox label="Back" hint="Back side" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarBackUrl} />
+                    </div>
+                    <div className="dv-side-details">
+                      <p style={{ fontSize:"11px", fontWeight:"800", color:RED, textTransform:"uppercase", marginBottom:"8px", fontFamily:H }}>Aadhaar Number</p>
+                      <input value={aadhaarNumber} onChange={e => setAadhaarNumber(e.target.value.replace(/\D/g,"").replace(/(\d{4})(?=\d)/g,"$1 ").trim())} placeholder="XXXX XXXX XXXX" style={inputStyle(docStatus.aadhaar!=="pending")} disabled={docStatus.aadhaar==="pending"} />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="divider" />
+
+              {/* SELFIE SECTION */}
+              <div style={{ marginBottom: "20px" }}>
+                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: docStatus.selfie==="verified"?"0":"30px" }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
+                    <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><SelfieIcon /></div>
+                    <div>
+                      <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Live Selfie</h3>
+                      <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Clear face verification photo</p>
+                    </div>
+                  </div>
+                  <StatusBadge status={docStatus.selfie} />
+                </div>
+                {docStatus.selfie !== "verified" && (
+                  <div className="dv-split">
+                    <div className="dv-side-upload" style={{ position:"relative", height:"240px", borderRadius:"14px", border:"2px dashed #e2e8f0", background:"#f8fafc", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden" }}>
+                      {cameraOn ? (
+                        <div style={{ width:"100%", height:"100%" }}>
+                          <video ref={videoRef} autoPlay playsInline style={{ width:"100%", height:"100%", objectFit:"cover" }} />
+                          <button onClick={takeSelfie} style={{ position:"absolute", bottom:"15px", left:"50%", transform:"translateX(-50%)", background:RED, color:"#fff", border:"none", padding:"10px 25px", borderRadius:"12px", fontWeight:"900", cursor:"pointer" }}>CAPTURE</button>
+                        </div>
+                      ) : (selfieImg || selfieUrl) ? (
+                        <div style={{ width:"100%", height:"100%" }}>
+                           <img src={selfieImg || selfieUrl} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
+                           <button onClick={() => setCameraOn(true)} style={{ position:"absolute", bottom:"15px", left:"50%", transform:"translateX(-50%)", background:RED, color:"#fff", border:"none", padding:"10px 25px", borderRadius:"12px", fontWeight:"900", cursor:"pointer" }}>RETAKE</button>
+                        </div>
+                      ) : (
+                        <button onClick={startCamera} style={{ background:"#1e293b", color:"#fff", border:"none", padding:"15px 30px", borderRadius:"12px", fontWeight:"900", cursor:"pointer" }}>OPEN CAMERA</button>
+                      )}
+                      <canvas ref={canvasRef} style={{ display:"none" }} />
+                    </div>
+                    <div className="dv-side-details">
+                      <p style={{ fontSize:"14px", fontWeight:"600", color:"#475569", lineHeight:"1.6" }}>Face verification ensures that the person holding the documents matches the registered identity.</p>
+                      <ul style={{ paddingLeft:"20px", color:"#64748b", fontSize:"13px", marginTop:"10px" }}>
+                        <li>No sunglasses or hats</li>
+                        <li>Look directly at the camera</li>
+                        <li>Good lighting is essential</li>
+                      </ul>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {!isAllVerified && (
+                <div style={{ marginTop:"60px", textAlign:"center" }}>
+                  <button onClick={handleSubmitAll} disabled={uploading} style={{ background:uploading?"#f1f5f9":RED, color:uploading?"#94a3b8":"#fff", border:"none", padding:"18px 80px", borderRadius:"16px", fontWeight:"900", fontSize:"16px", cursor:uploading?"not-allowed":"pointer", boxShadow:uploading?"none":"0 10px 40px "+RED+"30" }}>
+                    {uploading ? "SUBMITTING..." : "SUBMIT FOR REVIEW"}
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          );
+        })()}
       </div>
 
       <AnimatePresence>
         {toast && (
           <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0 }} style={{ position:"fixed", bottom:"40px", left:0, right:0, display:"flex", justifyContent:"center", zIndex:9999 }}>
-            <div style={{ background: toast.type==="error"?"#fff5f5":"#f0fff4", color: toast.type==="error"?RED:"#22c55e", padding:"16px 28px", borderRadius:"16px", border:`2px solid ${toast.type==="error"?"#feb2b2":"#bbf7d0"}`, fontWeight:"900", fontSize:"14px", fontFamily:H }}>
-               {toast.type==="error"?"⚠️":"✅"} {toast.msg}
-            </div>
+            <div style={{ background:"#fff", padding:"16px 30px", borderRadius:"16px", boxShadow:"0 10px 30px rgba(0,0,0,0.1)", border:`2px solid ${toast.type==="error"?RED:"#22c55e"}`, color:toast.type==="error"?RED:"#22c55e", fontWeight:"900" }}>{toast.msg}</div>
           </motion.div>
         )}
       </AnimatePresence>
