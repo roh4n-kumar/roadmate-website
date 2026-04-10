@@ -451,8 +451,8 @@ const DocumentVerification = () => {
                 </div>
                 {docStatus.aadhaar !== "verified" && (
                   <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
-                    {/* Aadhaar Number at Top */}
-                    <div style={{ width: "100%" }}>
+                    {/* Aadhaar Number at Top (50% width) */}
+                    <div style={{ width: "50%" }}>
                       <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Aadhaar Number</p>
                       <input value={aadhaarNumber} onChange={e => setAadhaarNumber(e.target.value.replace(/\D/g,"").replace(/(\d{4})(?=\d)/g,"$1 ").trim())} placeholder="XXXX XXXX XXXX" style={inputStyle(docStatus.aadhaar!=="pending")} disabled={docStatus.aadhaar==="pending"} />
                       <p style={{ fontSize:"12px", color:"#64748b", marginTop:"8px", fontWeight:"500" }}>Please ensure Aadhaar details match correctly.</p>
