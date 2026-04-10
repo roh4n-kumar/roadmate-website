@@ -363,7 +363,7 @@ const DocumentVerification = () => {
         .dv-split { display:flex; gap:40px; align-items: stretch; }
         .dv-side-upload { flex:1; min-width:0; display:flex; flex-direction:column; }
         .dv-side-details { flex:1; min-width:0; }
-        .divider { height:1.2px; background:#e2e8f0; margin-left:-40px; margin-right:-40px; margin-bottom:40px; }
+        .divider { height:1.2px; background:#e2e8f0; margin-left:-40px; margin-right:-40px; margin-top:40px; margin-bottom:40px; }
       `}</style>
 
       {/* BANNER (Exact Sync with PersonalInfo) */}
@@ -394,7 +394,7 @@ const DocumentVerification = () => {
           return (
             <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} className="pi-card">
               {/* HEADER SECTION */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <h2 style={{ fontSize: "22px", fontWeight: "900", color: RED, margin: 0, fontFamily: H }}>Document Verification</h2>
                 {(() => {
                   const globalStatus = isAnyRejected ? "rejected" : statuses.includes("pending") ? "pending" : isAllVerified ? "verified" : null;
@@ -408,18 +408,15 @@ const DocumentVerification = () => {
                 </div>
               )}
 
-              <div className="divider" />
+              <div className="divider" style={{ marginTop: "20px" }} />
 
               {/* DL SECTION */}
               <div>
                 <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
                   <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><LicenceIcon /></div>
-                  <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <div>
-                      <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Driving Licence</h3>
-                      <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your valid Indian Driving Licence</p>
-                    </div>
-                    {docStatus["driving-licence"] === "verified" && <div style={{ color: "#16a34a" }}><CheckIcon /></div>}
+                  <div>
+                    <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Driving Licence</h3>
+                    <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your valid Indian Driving Licence</p>
                   </div>
                 </div>
                 {docStatus["driving-licence"] !== "verified" && (
@@ -459,12 +456,9 @@ const DocumentVerification = () => {
               <div>
                 <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
                   <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><AadhaarIcon /></div>
-                  <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <div>
-                      <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Aadhaar Card</h3>
-                      <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your 12-digit Aadhaar Card details</p>
-                    </div>
-                    {docStatus.aadhaar === "verified" && <div style={{ color: "#16a34a" }}><CheckIcon /></div>}
+                  <div>
+                    <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Aadhaar Card</h3>
+                    <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your 12-digit Aadhaar Card details</p>
                   </div>
                 </div>
                 {docStatus.aadhaar !== "verified" && (
@@ -500,12 +494,9 @@ const DocumentVerification = () => {
               <div>
                 <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
                   <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><SelfieIcon /></div>
-                  <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <div>
-                      <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Live Selfie</h3>
-                      <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Take a clear selfie for face verification</p>
-                    </div>
-                    {docStatus.selfie === "verified" && <div style={{ color: "#16a34a" }}><CheckIcon /></div>}
+                  <div>
+                    <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Live Selfie</h3>
+                    <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Take a clear selfie for face verification</p>
                   </div>
                 </div>
                 {docStatus.selfie !== "verified" && (
