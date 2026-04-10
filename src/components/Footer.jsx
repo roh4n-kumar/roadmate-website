@@ -91,7 +91,7 @@ const Footer = () => {
             <Link to="/" style={{ display: "block", marginBottom: "20px" }}>
               <img src={logo} alt="RoadMate" style={{ height: "48px", width: "auto", objectFit: "contain" }} />
             </Link>
-            <p style={{ color: "rgba(255, 255, 255, 0.7)", lineHeight: "1.8", fontSize: "15px", maxWidth: "320px", marginBottom: "30px" }}>
+            <p style={{ color: "#ffffff", lineHeight: "1.8", fontSize: "15px", maxWidth: "320px", marginBottom: "30px" }}>
               Bhubaneswar's leading vehicle rental platform. Experience the freedom of the road with our quality, 100% verified fleet.
             </p>
           </div>
@@ -143,7 +143,7 @@ const Footer = () => {
         </div>
  
         <div style={{ borderTop: "1px solid rgba(255, 255, 255, 0.1)", paddingTop: "30px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
-          <p style={{ fontSize: "13px", color: "rgba(255, 255, 255, 0.5)", fontWeight: 500 }}>
+          <p style={{ fontSize: "13px", color: "#ffffff", fontWeight: 500 }}>
             © {new Date().getFullYear()} RoadMate Private Limited. All rights reserved.
           </p>
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
