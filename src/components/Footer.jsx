@@ -82,7 +82,7 @@ const socialIcons = {
 
 const Footer = () => {
   return (
-    <footer style={{ background: "#111111", color: "#ffffff", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "50px", paddingBottom: "40px", fontFamily: F }}>
+    <footer style={{ background: "#000000", color: "#ffffff", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "50px", paddingBottom: "40px", fontFamily: F }}>
       <div style={{ maxWidth: "1250px", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "50px", marginBottom: "35px" }}>
           
