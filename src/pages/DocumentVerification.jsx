@@ -484,7 +484,7 @@ const DocumentVerification = () => {
                   <StatusBadge status={docStatus.selfie} />
                 </div>
                 {docStatus.selfie !== "verified" && (
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "25px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "25px", width: "100%" }}>
                     {/* Centered Camera Box - Identical pixel dimensions to Aadhaar boxes */}
                     <div style={{ position:"relative", width: "calc(50% - 10px)", height:"200px", borderRadius:"14px", border:"2px dashed #e2e8f0", background:"#f8fafc", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden", flexShrink: 0 }}>
                       {cameraOn ? (
