@@ -257,9 +257,9 @@ const DocumentVerification = () => {
           const slf = v.selfie || {};
 
           setDocStatus({ 
-            "driving-licence": dl.status || "not_uploaded", 
-            aadhaar: aad.status || "not_uploaded", 
-            selfie: slf.status || "not_uploaded" 
+            "driving-licence": (dl.status || "not_uploaded").toLowerCase(), 
+            aadhaar: (aad.status || "not_uploaded").toLowerCase(), 
+            selfie: (slf.status || "not_uploaded").toLowerCase() 
           });
 
           if (dl.number) setDlNumber(dl.number); 
