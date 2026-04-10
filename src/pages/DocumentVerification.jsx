@@ -485,8 +485,8 @@ const DocumentVerification = () => {
                 </div>
                 {docStatus.selfie !== "verified" && (
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "25px" }}>
-                    {/* Centered Camera Box - Exactly matched with Aadhaar box size */}
-                    <div className="dv-side-upload" style={{ position:"relative", width: "calc(50% - 10px)", height:"200px", borderRadius:"14px", border:"2px dashed #e2e8f0", background:"#f8fafc", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden" }}>
+                    {/* Centered Camera Box - Identical pixel dimensions to Aadhaar boxes */}
+                    <div style={{ position:"relative", width: "calc(50% - 10px)", height:"200px", borderRadius:"14px", border:"2px dashed #e2e8f0", background:"#f8fafc", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden", flexShrink: 0 }}>
                       {cameraOn ? (
                         <div style={{ width:"100%", height:"100%" }}>
                           <video ref={videoRef} autoPlay playsInline style={{ width:"100%", height:"100%", objectFit:"cover" }} />
