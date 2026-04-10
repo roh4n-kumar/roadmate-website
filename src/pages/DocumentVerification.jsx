@@ -345,7 +345,10 @@ const DocumentVerification = () => {
       await setDoc(doc(db, "users", user.uid), updates, { merge: true });
       showToast("Documents submitted successfully!");
     } catch(e) { showToast("Failed to upload documents", "error"); }
-    finally { setUploading(false); }
+    finally { 
+      setUploading(false); 
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   if (loading) return null;
