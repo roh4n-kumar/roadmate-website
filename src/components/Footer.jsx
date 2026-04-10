@@ -97,9 +97,9 @@ const Footer = () => {
           </div>
  
           {/* Quick Links */}
-          <div>
+          <div style={{ textAlign: "right" }}>
             <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff" }}>Company</h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-end" }}>
               <Link to="/about" style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>About Us</Link>
               <Link to="/vehicles?type=all" style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>Our Fleet</Link>
               <Link to="/pricing" style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>Pricing</Link>
@@ -108,9 +108,9 @@ const Footer = () => {
           </div>
  
           {/* Support */}
-          <div>
+          <div style={{ textAlign: "right" }}>
             <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff" }}>Support</h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-end" }}>
               {[
                 { name: "Help Center", path: "/help-center" }, 
                 { name: "Safety Information", path: "/safety-information" }, 
@@ -123,9 +123,9 @@ const Footer = () => {
           </div>
  
           {/* Explore Section */}
-          <div>
+          <div style={{ textAlign: "right" }}>
             <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff" }}>Explore</h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-end" }}>
               {[
                 { name: "Special Offers", path: "/#offers" }, 
                 { name: "Trust & Safety", path: "/safety-information" }, 
