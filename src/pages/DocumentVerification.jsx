@@ -389,6 +389,7 @@ const DocumentVerification = () => {
           const statuses = Object.values(docStatus);
           const isAnyRejected = statuses.includes("rejected");
           const isAllVerified = statuses.every(s => s === "verified");
+          const isAllLocked   = statuses.every(s => s === "verified" || s === "pending");
 
           return (
             <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} className="pi-card">
@@ -535,7 +536,7 @@ const DocumentVerification = () => {
                 )}
               </div>
 
-              {!isAllVerified && (
+              {!isAllLocked && (
                 <>
                   <div className="divider" style={{ marginTop: "40px", marginBottom: "40px" }} />
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
