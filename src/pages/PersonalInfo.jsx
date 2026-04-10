@@ -169,7 +169,7 @@ const PincodeInput = ({ value, onChange, disabled, hasWarning, onEnterBlur }) =>
 };
 
 const FIELDS = [
-  { key: "name",    label: "Full Name",     type: "text",          Icon: UserIcon,   placeholder: "Enter your full name" },
+  { key: "name",    label: "Full Name",     type: "text",          Icon: UserIcon,   placeholder: "Enter your full name", hint: "Must match the name on your official documents." },
   { key: "email",   label: "Email Address", type: "email",         Icon: MailIcon,   placeholder: "Enter your email", disabled: true },
   { key: "phone",   label: "Phone Number",  type: "phone",         Icon: PhoneIcon },
   { key: "dob",     label: "Date of Birth", type: "datepicker",    Icon: CakeIcon },
@@ -473,7 +473,7 @@ const PersonalInfo = () => {
               <div style={{ height: '1.2px', background: '#e2e8f0', marginLeft: '-40px', marginRight: '-40px', marginBottom: '40px' }} />
               
               <div className="pi-grid">
-                {FIELDS.map(({ key, label, type, Icon, placeholder, options, disabled }) => (
+                {FIELDS.map(({ key, label, type, Icon, placeholder, options, disabled, hint }) => (
                   <div key={key} style={{ gridColumn: type === "textarea" ? "1 / -1" : "auto" }}>
                     <label style={{ display: "block", fontSize: "12px", fontWeight: "800", color: RED, marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.5px", fontFamily: H }}>
                       {label}
@@ -484,6 +484,7 @@ const PersonalInfo = () => {
                     : type === "custom-select"? <CustomDropdown options={options.map(o => ({ value: o, label: o }))} value={formData[key] || ""} onChange={(val) => handleChange(key, val)} disabled={!editMode} width="100%" placeholder="Select gender" />
                     : type === "textarea"     ? <textarea value={formData[key] || ""} onChange={(e) => handleChange(key, e.target.value)} onKeyDown={handleEnterKey} disabled={!editMode} placeholder={placeholder} rows={2} style={{ ...inputStyle(editMode), resize: "none", color: editMode ? "#0f172a" : "#64748b" }} />
                     : <input type={type} value={formData[key] || ""} onChange={(e) => handleChange(key, e.target.value)} onKeyDown={handleEnterKey} disabled={!editMode || disabled} placeholder={placeholder} style={{ ...inputStyle(editMode && !disabled), color: (editMode && !disabled) ? "#0f172a" : "#64748b" }} />}
+                    {hint && <p style={{ margin: "6px 0 0 0", fontSize: "11px", color: "#94a3b8", fontWeight: "500", lineHeight: "1.4" }}>{hint}</p>}
                   </div>
                 ))}
               </div>
