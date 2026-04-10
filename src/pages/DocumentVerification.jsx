@@ -396,7 +396,7 @@ const DocumentVerification = () => {
                   <div style={{ color: RED, fontSize: "12px", fontWeight: "800", display: "flex", alignItems: "center", gap: "8px", background: RED+"08", padding: "6px 12px", borderRadius: "8px" }}><WarnIcon /> YOUR DOCUMENTS ARE REJECTED. TRY AGAIN TO VERIFY.</div>
                 ) : null}
               </div>
-              <div style={{ height: '1.2px', background: '#e2e8f0', marginLeft: '-40px', marginRight: '-40px', marginBottom: '40px' }} />
+              <div className="divider" style={{ marginTop: 0 }} />
 
               {/* DL SECTION */}
               <div style={{ marginBottom: "40px" }}>
