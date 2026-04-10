@@ -484,8 +484,9 @@ const DocumentVerification = () => {
                   <StatusBadge status={docStatus.selfie} />
                 </div>
                 {docStatus.selfie !== "verified" && (
-                  <div className="dv-split">
-                    <div className="dv-side-upload" style={{ position:"relative", height:"240px", borderRadius:"14px", border:"2px dashed #e2e8f0", background:"#f8fafc", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden" }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "25px" }}>
+                    {/* Centered Camera Box */}
+                    <div className="dv-side-upload" style={{ position:"relative", width: "100%", maxWidth: "600px", height:"320px", borderRadius:"14px", border:"2px dashed #e2e8f0", background:"#f8fafc", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden" }}>
                       {cameraOn ? (
                         <div style={{ width:"100%", height:"100%" }}>
                           <video ref={videoRef} autoPlay playsInline style={{ width:"100%", height:"100%", objectFit:"cover" }} />
@@ -501,11 +502,13 @@ const DocumentVerification = () => {
                       )}
                       <canvas ref={canvasRef} style={{ display:"none" }} />
                     </div>
-                    <div className="dv-side-details">
-                      <p style={{ fontSize:"14px", color:"#475569", fontWeight:"600", lineHeight:"1.6" }}>Face verification ensures that the person matches the identity. Please make sure your face is well-lit.</p>
-                      <ul style={{ paddingLeft:"20px", color:"#64748b", fontSize:"13px", fontWeight:"500", marginTop:"15px" }}>
-                        <li>No sunglasses or hats</li>
-                        <li>Look directly at camera</li>
+
+                    {/* Instructions below Camera Box */}
+                    <div style={{ textAlign: "center", maxWidth: "600px" }}>
+                      <p style={{ fontSize:"14px", color:"#475569", fontWeight:"600", lineHeight:"1.6", margin: 0 }}>Face verification ensures that the person matches the identity. Please make sure your face is well-lit.</p>
+                      <ul style={{ display: "flex", justifyContent: "center", gap: "20px", listStyle: "none", padding: 0, color:"#64748b", fontSize:"13px", fontWeight:"500", marginTop:"10px" }}>
+                        <li style={{ display: "flex", alignItems: "center", gap: "6px" }}><div style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#94a3b8" }} /> No sunglasses or hats</li>
+                        <li style={{ display: "flex", alignItems: "center", gap: "6px" }}><div style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#94a3b8" }} /> Look directly at camera</li>
                       </ul>
                     </div>
                   </div>
@@ -513,11 +516,14 @@ const DocumentVerification = () => {
               </div>
 
               {!isAllVerified && (
-                <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center' }}>
-                  <button onClick={handleSubmitAll} disabled={uploading} style={{ background: uploading ? "#f1f5f9" : RED, color: uploading ? "#94a3b8" : "#fff", border: 'none', padding: '16px 60px', borderRadius: '12px', fontWeight: '950', fontSize: '15px', cursor: uploading ? 'not-allowed' : 'pointer', transition: 'all 0.3s ease', boxShadow: uploading ? "none" : "0 10px 40px "+RED+"30", display:"flex", alignItems:"center", gap:"10px", letterSpacing:"1px" }}>
-                    {uploading ? "SUBMITTING..." : "SUBMIT FOR VERIFICATION"}
-                  </button>
-                </div>
+                <>
+                  <div className="divider" style={{ marginTop: "40px", marginBottom: "40px" }} />
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <button onClick={handleSubmitAll} disabled={uploading} style={{ background: uploading ? "#f1f5f9" : RED, color: uploading ? "#94a3b8" : "#fff", border: 'none', padding: '16px 60px', borderRadius: '12px', fontWeight: '950', fontSize: '15px', cursor: uploading ? 'not-allowed' : 'pointer', transition: 'all 0.3s ease', boxShadow: uploading ? "none" : "0 10px 40px "+RED+"30", display:"flex", alignItems:"center", gap:"10px", letterSpacing:"1px" }}>
+                      {uploading ? "SUBMITTING..." : "SUBMIT FOR VERIFICATION"}
+                    </button>
+                  </div>
+                </>
               )}
             </motion.div>
           );
