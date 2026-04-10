@@ -10,15 +10,15 @@ import {
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 // Assets
-import illustration from "../assets/login_illustration_v2.jpeg";
+import illustration from "../assets/login_illustration_v2.jpg";
 import logo from "../assets/roadMate Red Logo 2.png";
 
 const RED = "#be0d0d";
 const H = "'Outfit', sans-serif";
 
-// Static Image Dimensions
-const IMG_NATURAL_W = 2048;
-const IMG_NATURAL_H = 3052;
+// Optimized Image Dimensions (Standardized to 800x1200 for calculation)
+const IMG_NATURAL_W = 800;
+const IMG_NATURAL_H = 1200;
 
 // Pure function to calculate dimensions instantly without state lag
 const getModalDimensions = () => {
