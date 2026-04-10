@@ -412,12 +412,15 @@ const DocumentVerification = () => {
 
               {/* DL SECTION */}
               <div>
-                <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
-                  <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><LicenceIcon /></div>
-                  <div>
-                    <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Driving Licence</h3>
-                    <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your valid Indian Driving Licence</p>
+                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
+                    <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><LicenceIcon /></div>
+                    <div>
+                      <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Driving Licence</h3>
+                      <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your valid Indian Driving Licence</p>
+                    </div>
                   </div>
+                  {docStatus["driving-licence"] === "verified" && <div style={{ color:"#10b981" }}><CheckIcon /></div>}
                 </div>
                 {docStatus["driving-licence"] !== "verified" && (
                   <div className="dv-split" style={{ marginTop: "30px" }}>
@@ -454,12 +457,15 @@ const DocumentVerification = () => {
 
               {/* AADHAAR SECTION */}
               <div>
-                <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
-                  <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><AadhaarIcon /></div>
-                  <div>
-                    <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Aadhaar Card</h3>
-                    <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your 12-digit Aadhaar Card details</p>
+                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
+                    <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><AadhaarIcon /></div>
+                    <div>
+                      <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Aadhaar Card</h3>
+                      <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your 12-digit Aadhaar Card details</p>
+                    </div>
                   </div>
+                  {docStatus.aadhaar === "verified" && <div style={{ color:"#10b981" }}><CheckIcon /></div>}
                 </div>
                 {docStatus.aadhaar !== "verified" && (
                   <div style={{ display: "flex", flexDirection: "column", gap: "25px", marginTop: "30px" }}>
@@ -492,12 +498,15 @@ const DocumentVerification = () => {
 
               {/* SELFIE SECTION */}
               <div>
-                <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
-                  <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><SelfieIcon /></div>
-                  <div>
-                    <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Live Selfie</h3>
-                    <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Take a clear selfie for face verification</p>
+                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
+                    <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><SelfieIcon /></div>
+                    <div>
+                      <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Live Selfie</h3>
+                      <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Take a clear selfie for face verification</p>
+                    </div>
                   </div>
+                  {docStatus.selfie === "verified" && <div style={{ color:"#10b981" }}><CheckIcon /></div>}
                 </div>
                 {docStatus.selfie !== "verified" && (
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "25px", width: "100%", marginTop: "30px" }}>
