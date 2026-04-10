@@ -358,7 +358,7 @@ const PersonalInfo = () => {
                 )}
               </div>
 
-              <div style={{ height: '1px', background: '#e2e8f0', marginBottom: '30px' }} />
+              <div style={{ height: '1.2px', background: '#e2e8f0', marginLeft: '-40px', marginRight: '-40px', marginBottom: '30px' }} />
               
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '30px' }}>
                 <h2 style={{ margin: 0, fontSize: "16px", fontWeight: "900", color: "#94a3b8", fontFamily: H }}>General Information</h2>
