@@ -451,21 +451,19 @@ const DocumentVerification = () => {
                 </div>
                 {docStatus.aadhaar !== "verified" && (
                   <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
-                    {/* Aadhaar Number at Top (50% width) */}
-                    <div style={{ width: "50%" }}>
-                      <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Aadhaar Number</p>
-                      <input value={aadhaarNumber} onChange={e => setAadhaarNumber(e.target.value.replace(/\D/g,"").replace(/(\d{4})(?=\d)/g,"$1 ").trim())} placeholder="XXXX XXXX XXXX" style={inputStyle(docStatus.aadhaar!=="pending")} disabled={docStatus.aadhaar==="pending"} />
-                      <p style={{ fontSize:"12px", color:"#64748b", marginTop:"8px", fontWeight:"500" }}>Please ensure Aadhaar details match correctly.</p>
+                    {/* Aadhaar Number matched with Front Photo width */}
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+                      <div>
+                        <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Aadhaar Number</p>
+                        <input value={aadhaarNumber} onChange={e => setAadhaarNumber(e.target.value.replace(/\D/g,"").replace(/(\d{4})(?=\d)/g,"$1 ").trim())} placeholder="XXXX XXXX XXXX" style={inputStyle(docStatus.aadhaar!=="pending")} disabled={docStatus.aadhaar==="pending"} />
+                        <p style={{ fontSize:"12px", color:"#64748b", marginTop:"8px", fontWeight:"500" }}>Please ensure Aadhaar details match correctly.</p>
+                      </div>
                     </div>
 
-                    {/* Upload Boxes Side-by-Side (50/50) */}
-                    <div style={{ display:"flex", gap:"20px" }}>
-                      <div style={{ flex: 1 }}>
-                        <UploadBox label="Front Photo" hint="Front side of Aadhaar" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarFrontUrl} />
-                      </div>
-                      <div style={{ flex: 1 }}>
-                        <UploadBox label="Back Photo" hint="Back side of Aadhaar" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarBackUrl} />
-                      </div>
+                    {/* Upload Boxes matched width */}
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+                      <UploadBox label="Front Photo" hint="Front side of Aadhaar" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarFrontUrl} />
+                      <UploadBox label="Back Photo" hint="Back side of Aadhaar" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarBackUrl} />
                     </div>
                   </div>
                 )}
