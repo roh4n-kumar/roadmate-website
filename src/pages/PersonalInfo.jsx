@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { auth, db } from "../firebase";
+import { auth, db, storage } from "../firebase";
 import { onAuthStateChanged, updateProfile } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import ProfileCard from "../components/ProfileCard";
+import Footer from "../components/Footer";
 
 const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
@@ -192,8 +194,10 @@ const PersonalInfo = () => {
   const [originalPincodeDigits,setOriginalPincodeDigits]= useState("");
   const [phoneWarning,         setPhoneWarning]         = useState(false);
   const [pincodeWarning,       setPincodeWarning]       = useState(false);
-  const formCardRef = useRef(null);
-  const navigate    = useNavigate();
+  const [uploading,            setUploading]            = useState(false);
+  const fileInputRef = useRef(null);
+  const formCardRef  = useRef(null);
+  const navigate     = useNavigate();
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (u) => {
@@ -256,6 +260,53 @@ const PersonalInfo = () => {
 
   const handleEditClick = () => { setEditMode(true); setTimeout(() => formCardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 150); };
   const handleEnterKey = (e) => { if (e.key === "Enter") { e.preventDefault(); e.target.blur(); } };
+
+  const handleImageClick = () => fileInputRef.current?.click();
+
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file || !user) return;
+    
+    // Check if it's an image
+    if (!file.type.startsWith('image/')) {
+      alert("Please upload an image file");
+      return;
+    }
+
+    setUploading(true);
+    try {
+      const storageRef = ref(storage, `profiles/${user.uid}`);
+      await uploadBytes(storageRef, file);
+      const url = await getDownloadURL(storageRef);
+      
+      // Update Auth
+      await updateProfile(user, { photoURL: url });
+      
+      // Update Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        profile: { ...formData, profileImage: url }
+      }, { merge: true });
+
+      setFormData(prev => ({ ...prev, profileImage: url }));
+      setOriginalData(prev => ({ ...prev, profileImage: url }));
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    } catch (err) {
+      console.error("Upload error:", err);
+      alert("Failed to upload image. Make sure Firebase Storage is enabled.");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const hasChanges = 
+    formData.name !== originalData.name ||
+    formData.dob !== originalData.dob ||
+    formData.gender !== originalData.gender ||
+    formData.city !== originalData.city ||
+    formData.address !== originalData.address ||
+    phoneDigits !== originalPhoneDigits ||
+    pincodeDigits !== originalPincodeDigits;
 
   if (loading) return (
     <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#f8fafc" }}>
@@ -320,11 +371,22 @@ const PersonalInfo = () => {
           <div className="pi-inner" style={{ height: '100%', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: '40px' }}>
             {/* Banner Main Content */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              {/* Hidden File Input */}
+              <input type="file" ref={fileInputRef} onChange={handleImageChange} accept="image/*" style={{ display: 'none' }} />
+              
               {/* Avatar */}
-              <div style={{ position: 'relative', cursor: 'pointer', marginBottom: '20px' }}>
-                <div style={{ width: '140px', height: '140px', borderRadius: '50%', background: RED, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', border: '5px solid rgba(255,255,255,0.2)', transition: 'transform 0.3s', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
-                  <CameraIcon />
-                  <span style={{ fontSize: '11px', fontWeight: '900', marginTop: '6px', textTransform: 'uppercase' }}>Add Photo</span>
+              <div onClick={handleImageClick} style={{ position: 'relative', cursor: uploading ? 'default' : 'pointer', marginBottom: '20px' }}>
+                <div style={{ width: '140px', height: '140px', borderRadius: '50%', background: RED, overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', border: '5px solid rgba(255,255,255,0.2)', transition: 'all 0.3s', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
+                  {uploading ? (
+                    <div style={{ fontSize: '12px', fontWeight: '900' }}>UPLOADING...</div>
+                  ) : formData.profileImage || user?.photoURL ? (
+                    <img src={formData.profileImage || user?.photoURL} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  ) : (
+                    <>
+                      <CameraIcon />
+                      <span style={{ fontSize: '11px', fontWeight: '900', marginTop: '6px', textTransform: 'uppercase' }}>Add Photo</span>
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -352,7 +414,7 @@ const PersonalInfo = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <motion.div ref={formCardRef} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="pi-card" style={{ margin: 0, padding: '24px 40px 40px 40px' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-                <h2 style={{ fontSize: '22px', fontWeight: '900', color: '#000', margin: 0, fontFamily: H }}>My Profile</h2>
+                <h2 style={{ fontSize: '22px', fontWeight: '900', color: RED, margin: 0, fontFamily: H }}>My Profile</h2>
                 {!editMode && (
                   <button onClick={handleEditClick} style={{ background: '#f1f5f9', border: 'none', padding: '8px 20px', borderRadius: '8px', fontWeight: '800', color: '#475569', cursor: 'pointer', transition: '0.2s', fontSize: '12px' }}>EDIT</button>
                 )}
@@ -382,7 +444,21 @@ const PersonalInfo = () => {
                 {editMode && (
                   <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'flex-end', gap: '15px' }}>
                     <button onClick={handleCancel} style={{ background: 'none', border: 'none', color: '#64748b', fontWeight: '800', cursor: 'pointer' }}>CANCEL</button>
-                    <button onClick={handleSave} disabled={saving} style={{ background: '#e2e8f0', color: '#94a3b8', border: 'none', padding: '12px 40px', borderRadius: '8px', fontWeight: '900', fontSize: '14px', cursor: 'pointer' }}>
+                    <button 
+                      onClick={handleSave} 
+                      disabled={!hasChanges || saving} 
+                      style={{ 
+                        background: (!hasChanges || saving) ? '#f1f5f9' : RED, 
+                        color: (!hasChanges || saving) ? '#94a3b8' : '#fff', 
+                        border: 'none', 
+                        padding: '12px 40px', 
+                        borderRadius: '8px', 
+                        fontWeight: '900', 
+                        fontSize: '14px', 
+                        cursor: (!hasChanges || saving) ? 'not-allowed' : 'pointer',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
                       {saving ? "SAVING..." : "SAVE"}
                     </button>
                   </div>
@@ -417,6 +493,7 @@ const PersonalInfo = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <Footer />
     </div>
   );
 };
