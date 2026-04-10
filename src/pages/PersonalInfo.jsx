@@ -25,6 +25,13 @@ const InfoIcon    = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill=
 const ShieldIcon  = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>);
 const ChevronLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>);
 const ChevronRight= () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>);
+const HomeIcon    = () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>);
+const CameraIcon  = () => (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>);
+const WalletIcon  = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>);
+const GiftIcon    = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>);
+const UsersIcon   = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>);
+const DevicesIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="12" rx="2" ry="2"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg>);
+const KeyIcon     = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3L15.5 7.5z"/></svg>);
 
 const inputStyle = (editable) => ({
   width: "100%", padding: "12px 16px", borderRadius: "14px",
@@ -271,31 +278,22 @@ const PersonalInfo = () => {
         .cancel-btn:hover { background: rgba(15, 23, 42, 0.05) !important; }
 
         /* Modern Styles */
-        .pi-header {
-          background: linear-gradient(180deg, #111 0%, #0f172a 100%);
-          padding: 140px 0 120px;
-          margin-bottom: -60px;
-          text-align: center;
-          position: relative;
-          color: #fff;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
         
         .pi-wrap   { padding-bottom: 120px; position: relative; z-index: 10; }
-        .pi-inner  { max-width: 850px; margin: 0 auto; padding: 0 24px; }
+        .pi-inner  { max-width: 1250px; margin: 0 auto; padding: 0 24px; }
         .pi-card   { 
           background: #fff; 
-          border-radius: 32px; 
+          border-radius: 12px; 
           padding: 40px; 
           margin-bottom: 24px; 
           box-shadow: 0 15px 40px rgba(0,0,0,0.03); 
-          border: 1px solid rgba(15, 23, 42, 0.04); 
+          border: 1.5px solid #e2e8f0; 
           position: relative;
           overflow: hidden;
           animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .pi-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .pi-title  { font-size: 48px; margin-bottom: 12px; letter-spacing: -2px; }
+        .pi-grid   { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .pi-title  { font-size: 30px; margin-bottom: 24px; letter-spacing: -1px; }
         .pi-avatar { width: 100px; height: 100px; font-size: 38px; border: 4px solid #fff; }
         .pi-name   { font-size: 26px; }
         .pi-btns   { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
@@ -315,83 +313,88 @@ const PersonalInfo = () => {
         }
       `}</style>
 
-      <div className="pi-header">
-        <div className="pi-inner">
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="pi-title" style={{ fontFamily: H, fontWeight: "900", margin: 0 }}>
-              Personal <span style={{ color: RED }}>Information</span>
-            </h1>
-            <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "17px", marginTop: "12px", fontWeight: "500", maxWidth: '500px', margin: '12px auto 0' }}>Manage your RoadMate account details and preferences to ensure a seamless rental experience.</p>
-          </motion.div>
-        </div>
-      </div>
-
-      <div className="pi-inner pi-wrap">
-          {/* Avatar card */}
-          <div style={{ marginBottom: "30px" }}>
-            <ProfileCard 
-              name={formData.name || user?.displayName} 
-              email={formData.email || user?.email}
-              style={{ padding: "30px" }}
-              action={!editMode && (
-                <button onClick={handleEditClick} className="edit-btn pi-edit-btn" style={{ background: "rgba(15, 23, 42, 0.04)", border: "none", padding: "14px 24px", borderRadius: "16px", fontWeight: "800", fontSize: "14px", cursor: "pointer", color: "#0f172a", display: "flex", alignItems: "center", gap: "10px", fontFamily: F, whiteSpace: "nowrap", transition: "all .3s" }}>
-                  <EditIcon /> Edit Profile
-                </button>
-              )}
-            />
-          </div>
-
-          {/* Fields card */}
-          <motion.div ref={formCardRef} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="pi-card">
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '40px' }}>
-              <h2 style={{ margin: 0, fontSize: "13px", fontWeight: "800", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1.5px", fontFamily: H }}>Account Details</h2>
-              <div style={{ height: '1px', flex: 1, background: 'rgba(15, 23, 42, 0.05)', marginLeft: '20px' }} />
-            </div>
-
-            <div className="pi-grid">
-              {FIELDS.map(({ key, label, type, Icon, placeholder, options, disabled }) => (
-                <div key={key} style={{ gridColumn: type === "textarea" ? "1 / -1" : "auto" }}>
-                  <label style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "13px", fontWeight: "800", color: "#475569", marginBottom: "12px", textTransform: "uppercase", letterSpacing: "1px", fontFamily: H }}>
-                    <span style={{ color: RED, display: "flex", alignItems: "center", background: `${RED}10`, padding: '6px', borderRadius: '8px' }}><Icon /></span>
-                    {label}
-                  </label>
-                  {type === "phone"         ? <PhoneInput digits={phoneDigits} onChange={setPhoneDigits} disabled={!editMode} hasWarning={phoneWarning} onEnterBlur={checkPhone} />
-                  : type === "pincode"      ? <PincodeInput value={pincodeDigits} onChange={setPincodeDigits} disabled={!editMode} hasWarning={pincodeWarning} onEnterBlur={checkPincode} />
-                  : type === "datepicker"   ? <DatePicker value={formData[key] || ""} onChange={(val) => handleChange(key, val)} disabled={!editMode} />
-                  : type === "custom-select"? <CustomDropdown options={options.map(o => ({ value: o, label: o }))} value={formData[key] || ""} onChange={(val) => handleChange(key, val)} disabled={!editMode} width="100%" placeholder="Select gender" />
-                  : type === "textarea"     ? <textarea value={formData[key] || ""} onChange={(e) => handleChange(key, e.target.value)} onKeyDown={handleEnterKey} disabled={!editMode} placeholder={placeholder} rows={3} style={{ ...inputStyle(editMode), resize: "none", color: editMode ? "#0f172a" : "#64748b" }} />
-                  : <input type={type} value={formData[key] || ""} onChange={(e) => handleChange(key, e.target.value)} onKeyDown={handleEnterKey} disabled={!editMode || disabled} placeholder={placeholder} style={{ ...inputStyle(editMode && !disabled), color: (editMode && !disabled) ? "#0f172a" : "#64748b" }} />}
+      <div style={{ background: '#f5f7f9', minHeight: '100vh', paddingBottom: '100px' }}>
+        {/* IDENTITY BANNER RAILS */}
+        <div style={{ position: 'relative', height: '400px', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url("/thar-off-roading.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.6)' }} />
+          <div className="pi-inner" style={{ height: '100%', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: '40px' }}>
+            {/* Banner Main Content */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              {/* Avatar */}
+              <div style={{ position: 'relative', cursor: 'pointer', marginBottom: '20px' }}>
+                <div style={{ width: '140px', height: '140px', borderRadius: '50%', background: RED, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', border: '5px solid rgba(255,255,255,0.2)', transition: 'transform 0.3s', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
+                  <CameraIcon />
+                  <span style={{ fontSize: '11px', fontWeight: '900', marginTop: '6px', textTransform: 'uppercase' }}>Add Photo</span>
                 </div>
-              ))}
+              </div>
+
+              {/* Name and Details */}
+              <div>
+                <h1 style={{ margin: 0, color: '#fff', fontSize: '42px', fontWeight: '900', fontFamily: H, letterSpacing: '-1px', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>
+                  {formData.name || user?.displayName}
+                </h1>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '25px', marginTop: '12px', color: 'rgba(255,255,255,0.9)', fontSize: '15px', fontWeight: '600' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <PhoneIcon /> {phoneDigits ? `+91 ${phoneDigits}` : 'Add Phone Number'}
+                  </div>
+                  <div style={{ height: '12px', width: '1.5px', background: 'rgba(255,255,255,0.3)' }} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <MailIcon /> {formData.email || 'Add Email Address'}
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <div style={{ marginTop: "32px", padding: "16px 20px", borderRadius: "16px", background: "rgba(15, 23, 42, 0.02)", display: "flex", alignItems: "center", gap: "12px", fontSize: "14px", color: "#64748b", fontWeight: "600", border: '1px dashed rgba(15, 23, 42, 0.1)' }}>
-              <InfoIcon />
-              <span>Note: Your email address is linked to your login and cannot be manually updated.</span>
-            </div>
+        <div className="pi-inner" style={{ marginTop: '30px' }}>
+          {/* MAIN FORM */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <motion.div ref={formCardRef} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="pi-card" style={{ margin: 0, padding: '40px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '30px' }}>
+                <h2 style={{ fontSize: '24px', fontWeight: '900', color: '#000', margin: 0, fontFamily: H }}>My Profile</h2>
+                {!editMode && (
+                  <button onClick={handleEditClick} style={{ background: '#f1f5f9', border: 'none', padding: '10px 24px', borderRadius: '8px', fontWeight: '800', color: '#475569', cursor: 'pointer', transition: '0.2s' }}>EDIT</button>
+                )}
+              </div>
 
-            <AnimatePresence>
-              {(phoneWarning || pincodeWarning) && (
-                <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
-                  style={{ marginTop: "20px", padding: "14px 20px", borderRadius: "16px", background: "#fef2f2", border: "1.5px solid #fecdd3", display: "flex", alignItems: "center", gap: "12px", color: RED, fontSize: "14px", fontWeight: "700" }}>
-                  <ShieldIcon />
-                  {phoneWarning ? "Invalid phone number: Must be exactly 10 digits" : "Invalid pin code: Must be exactly 6 digits"}
-                </motion.div>
-              )}
-            </AnimatePresence>
+              <div style={{ height: '1px', background: '#e2e8f0', marginBottom: '30px' }} />
+              
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '30px' }}>
+                <h2 style={{ margin: 0, fontSize: "16px", fontWeight: "900", color: "#94a3b8", fontFamily: H }}>General Information</h2>
+              </div>
 
-            <AnimatePresence>
-              {editMode && (
-                <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 15 }} className="pi-btns">
-                  <button onClick={handleCancel} className="cancel-btn" style={{ background: "transparent", border: "1.5px solid #e2e8f0", padding: "14px 32px", borderRadius: "16px", fontWeight: "800", fontSize: "15px", cursor: "pointer", color: "#64748b", fontFamily: F, transition: "all .2s" }}>Discard Changes</button>
-                  <button onClick={handleSave} disabled={saving} style={{ background: RED, color: "white", border: "none", padding: "14px 44px", borderRadius: "16px", fontWeight: "900", fontSize: "16px", cursor: "pointer", display: "flex", alignItems: "center", gap: "12px", boxShadow: `0 12px 30px ${RED}40`, fontFamily: H, transition: "all .3s cubic-bezier(0.16, 1, 0.3, 1)" }}>
-                    {saving ? <div style={{ width: '20px', height: '20px', border: '3px solid rgba(255,255,255,0.3)', borderTop: '3px solid #fff', borderRadius: '50%', animation: 'spin 0.6s linear infinite' }} /> : <SaveIcon />}
-                    {saving ? "Updating..." : "Save Profile"}
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
+              <div className="pi-grid">
+                {FIELDS.map(({ key, label, type, Icon, placeholder, options, disabled }) => (
+                  <div key={key} style={{ gridColumn: type === "textarea" ? "1 / -1" : "auto" }}>
+                    <label style={{ display: "block", fontSize: "12px", fontWeight: "800", color: "#94a3b8", marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.5px", fontFamily: H }}>
+                      {label}
+                    </label>
+                    {type === "phone"         ? <PhoneInput digits={phoneDigits} onChange={setPhoneDigits} disabled={!editMode} hasWarning={phoneWarning} onEnterBlur={checkPhone} />
+                    : type === "pincode"      ? <PincodeInput value={pincodeDigits} onChange={setPincodeDigits} disabled={!editMode} hasWarning={pincodeWarning} onEnterBlur={checkPincode} />
+                    : type === "datepicker"   ? <DatePicker value={formData[key] || ""} onChange={(val) => handleChange(key, val)} disabled={!editMode} />
+                    : type === "custom-select"? <CustomDropdown options={options.map(o => ({ value: o, label: o }))} value={formData[key] || ""} onChange={(val) => handleChange(key, val)} disabled={!editMode} width="100%" placeholder="Select gender" />
+                    : type === "textarea"     ? <textarea value={formData[key] || ""} onChange={(e) => handleChange(key, e.target.value)} onKeyDown={handleEnterKey} disabled={!editMode} placeholder={placeholder} rows={2} style={{ ...inputStyle(editMode), resize: "none", color: editMode ? "#0f172a" : "#64748b" }} />
+                    : <input type={type} value={formData[key] || ""} onChange={(e) => handleChange(key, e.target.value)} onKeyDown={handleEnterKey} disabled={!editMode || disabled} placeholder={placeholder} style={{ ...inputStyle(editMode && !disabled), color: (editMode && !disabled) ? "#0f172a" : "#64748b" }} />}
+                  </div>
+                ))}
+              </div>
+              
+              <div style={{ marginTop: '20px', fontSize: '11px', color: '#94a3b8', fontWeight: '500' }}>Required for GST purpose on your bookings.</div>
+
+              <AnimatePresence>
+                {editMode && (
+                  <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'flex-end', gap: '15px' }}>
+                    <button onClick={handleCancel} style={{ background: 'none', border: 'none', color: '#64748b', fontWeight: '800', cursor: 'pointer' }}>CANCEL</button>
+                    <button onClick={handleSave} disabled={saving} style={{ background: '#e2e8f0', color: '#94a3b8', border: 'none', padding: '12px 40px', borderRadius: '8px', fontWeight: '900', fontSize: '14px', cursor: 'pointer' }}>
+                      {saving ? "SAVING..." : "SAVE"}
+                    </button>
+                  </div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          </div>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -424,4 +427,13 @@ const PersonalInfo = () => {
 
 const spinnerStyle = { width: "50px", height: "50px", border: "5px solid rgba(190,13,13,0.1)", borderTop: `5px solid ${RED}`, borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto" };
 const navBtnStyle  = { background: "rgba(15, 23, 42, 0.04)", border: "none", cursor: "pointer", padding: "8px", borderRadius: "12px", display: "flex", alignItems: "center", color: "#475569", transition: "all 0.2s" };
+
+const SidebarItem = ({ icon, label, active }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '15px 20px', borderRadius: '12px', background: active ? '#eff6ff' : 'transparent', color: active ? '#2563eb' : '#64748b', cursor: 'pointer', transition: 'all 0.2s' }} onMouseEnter={e => { if(!active) e.currentTarget.style.background = '#f8fafc'; }} onMouseLeave={e => { if(!active) e.currentTarget.style.background = 'transparent'; }}>
+    <div style={{ display: 'flex', alignItems: 'center' }}>{icon}</div>
+    <span style={{ fontSize: '15px', fontWeight: active ? '800' : '600' }}>{label}</span>
+    {active && <div style={{ marginLeft: 'auto', width: '6px', height: '6px', borderRadius: '50%', background: '#ef4444' }} />}
+  </div>
+);
+
 export default PersonalInfo;
