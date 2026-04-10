@@ -399,6 +399,8 @@ const DocumentVerification = () => {
                   <div style={{ background:"#10b981", color:"#fff", padding:"6px 14px", borderRadius:"10px", fontSize:"11px", fontWeight:"900", display:"flex", alignItems:"center", gap:"6px", letterSpacing:"0.5px" }}><CheckIcon /> VERIFIED</div>
                 ) : isAnyRejected ? (
                   <div style={{ color: RED, fontSize: "12px", fontWeight: "800", display: "flex", alignItems: "center", gap: "8px", background: RED+"08", padding: "6px 12px", borderRadius: "8px" }}><WarnIcon /> YOUR DOCUMENTS ARE REJECTED. TRY AGAIN TO VERIFY.</div>
+                ) : statuses.includes("pending") ? (
+                  <div style={{ background:"#3b82f6", color:"#fff", padding:"6px 14px", borderRadius:"10px", fontSize:"11px", fontWeight:"900", display:"flex", alignItems:"center", gap:"6px", letterSpacing:"0.5px" }}>PENDING VERIFICATION</div>
                 ) : null}
               </div>
               <div className="divider" style={{ marginTop: 0 }} />
@@ -413,7 +415,6 @@ const DocumentVerification = () => {
                       <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your valid Indian Driving Licence</p>
                     </div>
                   </div>
-                  <StatusBadge status={docStatus["driving-licence"]} />
                 </div>
                 {docStatus["driving-licence"] !== "verified" && (
                   <div className="dv-split">
@@ -458,7 +459,6 @@ const DocumentVerification = () => {
                       <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your 12-digit Aadhaar Card details</p>
                     </div>
                   </div>
-                  <StatusBadge status={docStatus.aadhaar} />
                 </div>
                 {docStatus.aadhaar !== "verified" && (
                   <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
@@ -502,7 +502,6 @@ const DocumentVerification = () => {
                       <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Take a clear selfie for face verification</p>
                     </div>
                   </div>
-                  <StatusBadge status={docStatus.selfie} />
                 </div>
                 {docStatus.selfie !== "verified" && (
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "25px", width: "100%" }}>
