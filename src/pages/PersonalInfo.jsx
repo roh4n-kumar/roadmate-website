@@ -350,11 +350,11 @@ const PersonalInfo = () => {
         <div className="pi-inner" style={{ marginTop: '30px' }}>
           {/* MAIN FORM */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <motion.div ref={formCardRef} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="pi-card" style={{ margin: 0, padding: '40px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '30px' }}>
-                <h2 style={{ fontSize: '24px', fontWeight: '900', color: '#000', margin: 0, fontFamily: H }}>My Profile</h2>
+            <motion.div ref={formCardRef} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="pi-card" style={{ margin: 0, padding: '24px 40px 40px 40px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+                <h2 style={{ fontSize: '22px', fontWeight: '900', color: '#000', margin: 0, fontFamily: H }}>My Profile</h2>
                 {!editMode && (
-                  <button onClick={handleEditClick} style={{ background: '#f1f5f9', border: 'none', padding: '10px 24px', borderRadius: '8px', fontWeight: '800', color: '#475569', cursor: 'pointer', transition: '0.2s' }}>EDIT</button>
+                  <button onClick={handleEditClick} style={{ background: '#f1f5f9', border: 'none', padding: '8px 20px', borderRadius: '8px', fontWeight: '800', color: '#475569', cursor: 'pointer', transition: '0.2s', fontSize: '12px' }}>EDIT</button>
                 )}
               </div>
 
