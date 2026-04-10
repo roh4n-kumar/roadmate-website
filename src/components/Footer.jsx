@@ -84,10 +84,10 @@ const Footer = () => {
   return (
     <footer style={{ background: "#111111", color: "#ffffff", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "50px", paddingBottom: "40px", fontFamily: F }}>
       <div style={{ maxWidth: "1250px", margin: "0 auto", padding: "0 24px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "50px", marginBottom: "35px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "50px", marginBottom: "35px" }}>
           
           {/* Brand Column */}
-          <div style={{ gridColumn: "span 2" }}>
+          <div style={{ flex: "1 1 300px" }}>
             <Link to="/" style={{ display: "block", marginBottom: "20px" }}>
               <img src={logo} alt="RoadMate" style={{ height: "48px", width: "auto", objectFit: "contain" }} />
             </Link>
@@ -96,7 +96,8 @@ const Footer = () => {
             </p>
           </div>
  
-          <div style={{ display: "flex", gap: "80px", flexWrap: "wrap", justifyContent: "flex-end" }}>
+          {/* Nav Group */}
+          <div style={{ display: "flex", gap: "80px", flexWrap: "wrap" }}>
             {/* Quick Links */}
             <div>
               <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff", textAlign: "left" }}>Company</h4>
