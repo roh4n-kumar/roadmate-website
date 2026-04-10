@@ -135,20 +135,21 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             display: inline-flex; 
             align-items: center;
             justify-content: center;
-            padding: 6px 18px; 
-            border-radius: 50px;
+            padding: 6px 4px; 
+            margin: 0 14px;
             border: none; 
             outline: none; 
             background: transparent;
             box-sizing: border-box;
             white-space: nowrap;
+            position: relative;
           }
           .desktop-link:hover { 
             color: ${RED} !important; 
           }
           .desktop-link.active { 
             color: ${RED} !important; 
-            background: rgba(190, 13, 13, 0.1); 
+            background: transparent; 
           }
           .account-btn {
             background: transparent; 
