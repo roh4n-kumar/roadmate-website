@@ -207,14 +207,15 @@ const PersonalInfo = () => {
       const profile  = rootData.profile || {};
       
       let data = { 
-        name: profile.name || u.displayName || "", 
+        name: rootData.name || profile.name || u.displayName || "", 
         email: u.email, 
-        phone: profile.phone || "",
-        dob: profile.dob || "",
-        gender: profile.gender || "",
-        city: profile.city || "",
-        address: profile.address || "",
-        pincode: profile.pincode || ""
+        phone: rootData.phone || profile.phone || "",
+        dob: rootData.dob || profile.dob || "",
+        gender: rootData.gender || profile.gender || "",
+        city: rootData.city || profile.city || "",
+        address: rootData.address || profile.address || "",
+        pincode: rootData.pincode || profile.pincode || "",
+        profileImage: rootData.profileImage || profile.profileImage || u.photoURL || ""
       };
 
       const phone   = data.phone ? data.phone.replace("+91","").replace(/\s/g,"").replace(/\D/g,"").slice(0,10) : "";
@@ -239,6 +240,7 @@ const PersonalInfo = () => {
     try {
       const saveData = { ...formData, phone: "+91 " + phoneDigits, pincode: pincodeDigits };
       await setDoc(doc(db, "users", user.uid), { 
+        ...saveData,
         profile: saveData, 
         updatedAt: new Date() 
       }, { merge: true });
@@ -306,6 +308,7 @@ const PersonalInfo = () => {
       
       // Update Firestore
       await setDoc(doc(db, "users", user.uid), {
+        profileImage: url,
         profile: { ...formData, profileImage: url }
       }, { merge: true });
 

@@ -251,35 +251,50 @@ const DocumentVerification = () => {
         if (snap.exists()) {
           const d = snap.data();
           setProfile(d.profile || {});
-          const v = d.verification || {};
-          const dl = v.drivingLicence || {};
-          const aad = v.aadhaar || {};
-          const slf = v.selfie || {};
-
+          
+          // Double-read logic: root fields first (for Admin compatibility), then fallback to nested objects
+          const statuses = {
+             dl: (d.dlStatus || d.verification?.drivingLicence?.status || d.verification?.dl?.status || "not_uploaded").toLowerCase(),
+             aadhaar: (d.aadhaarStatus || d.verification?.aadhaar?.status || "not_uploaded").toLowerCase(),
+             selfie: (d.selfieStatus || d.verification?.selfie?.status || "not_uploaded").toLowerCase()
+          };
+          
           setDocStatus({ 
-            "driving-licence": (dl.status || "not_uploaded").toLowerCase(), 
-            aadhaar: (aad.status || "not_uploaded").toLowerCase(), 
-            selfie: (slf.status || "not_uploaded").toLowerCase() 
+            "driving-licence": statuses.dl, 
+            aadhaar: statuses.aadhaar, 
+            selfie: statuses.selfie 
           });
 
-          // Only update local inputs if they are empty OR if the status is pending/verified (to avoid snap-back while typing)
-          const isDlLocked = (dl.status || "").toLowerCase() === "pending" || (dl.status || "").toLowerCase() === "verified";
-          const isAadLocked = (aad.status || "").toLowerCase() === "pending" || (aad.status || "").toLowerCase() === "verified";
+          // Flags for locking inputs during review
+          const isDlLocked = statuses.dl === "pending" || statuses.dl === "verified";
+          const isAadLocked = statuses.aadhaar === "pending" || statuses.aadhaar === "verified";
 
-          if (dl.number && (isDlLocked || !dlNumber)) setDlNumber(dl.number); 
-          if (dl.expiry && (isDlLocked || !dlExpiry)) setDlExpiry(dl.expiry);
-          const dlCat = dl.category || dl.class;
-          if (dlCat && (isDlLocked || !dlClass)) setDlClass(dlCat);
-          if (dl.image)  setDlImageUrl(dl.image); 
+          // Read DL values (Double-read)
+          const curDlNumber = d.dlNumber || d.verification?.drivingLicence?.number || d.verification?.dl?.number;
+          const curDlExpiry = d.dlExpiry || d.verification?.drivingLicence?.expiry || d.verification?.dl?.expiry;
+          const curDlClass  = d.dlClass  || d.verification?.drivingLicence?.class  || d.verification?.drivingLicence?.category || d.verification?.dl?.class;
+          const curDlImage  = d.dlImage  || d.verification?.drivingLicence?.image  || d.verification?.dl?.image;
 
-          if (aad.number && (isAadLocked || !aadhaarNumber)) {
-            const raw = aad.number.replace(/\s/g,"");
+          if (curDlNumber && (isDlLocked || !dlNumber)) setDlNumber(curDlNumber);
+          if (curDlExpiry && (isDlLocked || !dlExpiry)) setDlExpiry(curDlExpiry);
+          if (curDlClass  && (isDlLocked || !dlClass))  setDlClass(curDlClass);
+          if (curDlImage) setDlImageUrl(curDlImage);
+
+          // Read Aadhaar values (Double-read)
+          const curAadNumber = d.aadhaarNumber || d.verification?.aadhaar?.number;
+          const curAadFront  = d.aadhaarFrontImage || d.verification?.aadhaar?.frontImage;
+          const curAadBack   = d.aadhaarBackImage  || d.verification?.aadhaar?.backImage;
+
+          if (curAadNumber && (isAadLocked || !aadhaarNumber)) {
+            const raw = curAadNumber.replace(/\s/g,"");
             setAadhaarNumber(raw.replace(/(\d{4})(?=\d)/g,"$1 ").trim());
           }
-          if (aad.frontImage) setAadhaarFrontUrl(aad.frontImage); 
-          if (aad.backImage) setAadhaarBackUrl(aad.backImage); 
+          if (curAadFront) setAadhaarFrontUrl(curAadFront);
+          if (curAadBack)  setAadhaarBackUrl(curAadBack);
 
-          if (slf.image) setSelfieImg(slf.image); 
+          // Read Selfie values
+          const curSelfie = d.selfieImage || d.verification?.selfie?.image;
+          if (curSelfie) setSelfieImg(curSelfie);
         }
         setLoading(false);
       });
@@ -335,40 +350,64 @@ const DocumentVerification = () => {
       const imgMap = {}; uploadedImgs.forEach(({ key, url }) => { imgMap[key]=url; });
       
       const snap = await getDoc(doc(db, "users", user.uid));
-      const existingVerification = snap.exists() ? (snap.data().verification || {}) : {};
+      const rootData = snap.exists() ? snap.data() : {};
+      const existingVerification = rootData.verification || {};
 
-      const verificationData = { ...existingVerification };
+      const updates = {};
       
+      // Update Driving Licence (Flat for Admin + Nested for Web)
       if (!dlPending) {
-        verificationData.drivingLicence = {
-          number: dlNumber.replace(/-/g,"").toUpperCase(),
-          expiry: dlExpiry,
-          class: dlClass,
-          status: "pending",
-          submittedAt: new Date(),
-          ...(imgMap.dlImage ? { image: imgMap.dlImage } : {})
-        };
+        updates.dlNumber = dlNumber.replace(/-/g,"").toUpperCase();
+        updates.dlExpiry = dlExpiry;
+        updates.dlClass  = dlClass;
+        updates.dlStatus = "pending";
+        updates.dlSubmittedAt = new Date();
+        if (imgMap.dlImage) updates.dlImage = imgMap.dlImage;
       }
       
+      // Update Aadhaar (Flat for Admin + Nested for Web)
       if (!aadPending) {
-        verificationData.aadhaar = {
-          number: aadhaarNumber.replace(/\s/g,""),
-          status: "pending",
-          submittedAt: new Date(),
-          ...(imgMap.aadhaarFrontImage ? { frontImage: imgMap.aadhaarFrontImage } : {}),
-          ...(imgMap.aadhaarBackImage  ? { backImage: imgMap.aadhaarBackImage } : {})
-        };
+        updates.aadhaarNumber = aadhaarNumber.replace(/\s/g,"");
+        updates.aadhaarStatus = "pending";
+        updates.aadhaarSubmittedAt = new Date();
+        if (imgMap.aadhaarFrontImage) updates.aadhaarFrontImage = imgMap.aadhaarFrontImage;
+        if (imgMap.aadhaarBackImage)  updates.aadhaarBackImage  = imgMap.aadhaarBackImage;
       }
       
+      // Update Selfie (Flat for Admin + Nested for Web)
       if (!selfiePend) {
-        verificationData.selfie = {
-          status: "pending",
-          submittedAt: new Date(),
-          ...(imgMap.selfieImage ? { image: imgMap.selfieImage } : {})
-        };
+        updates.selfieStatus = "pending";
+        updates.selfieSubmittedAt = new Date();
+        if (imgMap.selfieImage) updates.selfieImage = imgMap.selfieImage;
       }
+
+      // Reconstruct nested verification object for backward compatibility (e.g. for VehicleResults.jsx)
+      updates.verification = {
+        ...existingVerification,
+        status: "pending",
+        drivingLicence: {
+          number: updates.dlNumber || existingVerification.drivingLicence?.number || existingVerification.dl?.number,
+          expiry: updates.dlExpiry || existingVerification.drivingLicence?.expiry || existingVerification.dl?.expiry,
+          class: updates.dlClass || existingVerification.drivingLicence?.class || existingVerification.dl?.class,
+          status: updates.dlStatus || existingVerification.drivingLicence?.status || existingVerification.dl?.status,
+          image: updates.dlImage || existingVerification.drivingLicence?.image || existingVerification.dl?.image,
+          submittedAt: updates.dlSubmittedAt || existingVerification.drivingLicence?.submittedAt || existingVerification.dl?.submittedAt
+        },
+        aadhaar: {
+          number: updates.aadhaarNumber || existingVerification.aadhaar?.number,
+          status: updates.aadhaarStatus || existingVerification.aadhaar?.status,
+          frontImage: updates.aadhaarFrontImage || existingVerification.aadhaar?.frontImage,
+          backImage: updates.aadhaarBackImage || existingVerification.aadhaar?.backImage,
+          submittedAt: updates.aadhaarSubmittedAt || existingVerification.aadhaar?.submittedAt
+        },
+        selfie: {
+          status: updates.selfieStatus || existingVerification.selfie?.status,
+          image: updates.selfieImage || existingVerification.selfie?.image,
+          submittedAt: updates.selfieSubmittedAt || existingVerification.selfie?.submittedAt
+        }
+      };
       
-      await setDoc(doc(db, "users", user.uid), { verification: verificationData }, { merge: true });
+      await setDoc(doc(db, "users", user.uid), updates, { merge: true });
       showToast("Documents submitted for review!");
       window.scrollTo({ top:0, behavior:"smooth" });
     } catch(e) { showToast("Upload failed — check your connection.", "error"); }
@@ -382,7 +421,10 @@ const DocumentVerification = () => {
     try {
       const url = await uploadToCloudinary(file);
       await updateProfile(user, { photoURL: url });
-      await setDoc(doc(db, "users", user.uid), { profile: { ...profile, profileImage: url } }, { merge: true });
+      await setDoc(doc(db, "users", user.uid), { 
+        profileImage: url,
+        profile: { ...profile, profileImage: url } 
+      }, { merge: true });
       showToast("Profile identity updated!");
     } catch (err) { alert("Failed to update identity photo."); }
     finally { setUploading(false); }

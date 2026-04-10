@@ -20,10 +20,22 @@ export const useUserSync = () => {
             console.log("Creating new professional user document for:", user.email);
             await setDoc(userRef, {
               uid: user.uid,
-              email: user.email,
+              email: user.email || "",
+              name: user.displayName || "",
+              phone: "",
+              dob: "",
+              gender: "",
+              city: "",
+              pincode: "",
+              address: "",
               createdAt: serverTimestamp(),
+
+              // Initial Verification Status (Flat structure for Admin Panel)
+              dlStatus: "not_uploaded",
+              aadhaarStatus: "not_uploaded",
+              selfieStatus: "not_uploaded",
               
-              // Modular Maps
+              // Modular Maps (Maintaining for Web App compatibility)
               profile: {
                 name: user.displayName || "",
                 email: user.email || "",
@@ -37,10 +49,10 @@ export const useUserSync = () => {
               },
               
               verification: {
-                status: "unverified", // unverified, pending, verified, rejected
-                aadhaar: { number: "", status: "none", image: null },
-                dl: { number: "", status: "none", image: null },
-                selfie: { status: "none", image: null },
+                status: "not_uploaded",
+                aadhaar: { number: "", status: "not_uploaded", image: null },
+                dl: { number: "", status: "not_uploaded", image: null },
+                selfie: { status: "not_uploaded", image: null },
                 updatedAt: null
               },
               

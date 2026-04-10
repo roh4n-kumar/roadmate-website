@@ -217,8 +217,10 @@ export default function VehicleResults() {
       const userSnap = await getDoc(userRef);
       const userData = userSnap.exists() ? userSnap.data() : {};
       
-      const hasPhone = !!userData.profile?.phone;
-      const isVerified = userData.verification?.status === "verified";
+      const hasPhone = !!userData.phone || !!userData.profile?.phone;
+      const isVerified = 
+        (userData.dlStatus === "verified" && userData.aadhaarStatus === "verified" && userData.selfieStatus === "verified") ||
+        (userData.verification?.status === "verified");
 
       if (!hasPhone && !isVerified) {
         navigate("/?error=both");
