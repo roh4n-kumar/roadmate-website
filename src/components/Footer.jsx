@@ -143,7 +143,7 @@ const Footer = () => {
           <p style={{ fontSize: "13px", color: "rgba(255, 255, 255, 0.5)", fontWeight: 500 }}>
             © {new Date().getFullYear()} RoadMate Private Limited. All rights reserved.
           </p>
-          <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>>
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
             {["instagram", "twitter", "facebook", "linkedin"].map(social => {
               const links = {
                 instagram: "https://www.instagram.com/roh4n.chaudhary?igsh=MXM5b25lcTlsODg0OQ==",
@@ -151,27 +151,23 @@ const Footer = () => {
                 facebook: "https://www.facebook.com/share/1CXSdCGZj9/",
                 linkedin: "https://www.linkedin.com/in/rohan-k-54aa08259?utm_source=share_via&utm_content=profile&utm_medium=member_android"
               };
-              
-              const shapes = {
-                facebook: "50%",
-                instagram: "10px",
-                twitter: "10px",
-                linkedin: "10px"
-              };
 
               return (
                 <a key={social} href={links[social]} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
                   <div style={{ 
-                    width: "36px", 
-                    height: "36px", 
+                    width: "32px", 
+                    height: "32px", 
                     display: "flex", 
                     alignItems: "center", 
                     justifyContent: "center", 
-                    backgroundColor: RED, 
-                    borderRadius: shapes[social], 
+                    backgroundColor: "transparent", 
                     cursor: "pointer", 
-                    transition: "all 0.3s" 
-                  }}>
+                    transition: "all 0.3s",
+                    opacity: 0.8
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.opacity = 1; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.8; e.currentTarget.style.transform = "translateY(0)"; }}
+                  >
                     {socialIcons[social]}
                   </div>
                 </a>
