@@ -163,16 +163,13 @@ const Footer = () => {
                     backgroundColor: "transparent", 
                     cursor: "pointer", 
                     transition: "all 0.3s ease",
-                    opacity: 0.8,
                     color: "#ffffff"
                   }}
                   onMouseEnter={(e) => { 
-                    e.currentTarget.style.opacity = 1; 
                     e.currentTarget.style.transform = "translateY(-3px)"; 
                     e.currentTarget.style.color = RED;
                   }}
                   onMouseLeave={(e) => { 
-                    e.currentTarget.style.opacity = 0.8; 
                     e.currentTarget.style.transform = "translateY(0)"; 
                     e.currentTarget.style.color = "#ffffff";
                   }}
