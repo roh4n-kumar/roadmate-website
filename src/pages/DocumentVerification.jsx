@@ -395,14 +395,16 @@ const DocumentVerification = () => {
             <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} className="pi-card">
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
                 <h2 style={{ fontSize: "22px", fontWeight: "900", color: RED, margin: 0, fontFamily: H }}>Document Verification</h2>
-                {isAllVerified ? (
-                  <div style={{ background:"#10b981", color:"#fff", padding:"6px 14px", borderRadius:"10px", fontSize:"11px", fontWeight:"900", display:"flex", alignItems:"center", gap:"6px", letterSpacing:"0.5px" }}><CheckIcon /> VERIFIED</div>
-                ) : isAnyRejected ? (
-                  <div style={{ color: RED, fontSize: "12px", fontWeight: "800", display: "flex", alignItems: "center", gap: "8px", background: RED+"08", padding: "6px 12px", borderRadius: "8px" }}><WarnIcon /> YOUR DOCUMENTS ARE REJECTED. TRY AGAIN TO VERIFY.</div>
-                ) : statuses.includes("pending") ? (
-                  <div style={{ background:"#3b82f6", color:"#fff", padding:"6px 14px", borderRadius:"10px", fontSize:"11px", fontWeight:"900", display:"flex", alignItems:"center", gap:"6px", letterSpacing:"0.5px" }}>PENDING VERIFICATION</div>
-                ) : null}
+                {(() => {
+                  const globalStatus = isAnyRejected ? "rejected" : statuses.includes("pending") ? "pending" : isAllVerified ? "verified" : null;
+                  return globalStatus ? <StatusBadge status={globalStatus} /> : null;
+                })()}
               </div>
+              {isAnyRejected && (
+                <div style={{ color: RED, fontSize: "12px", fontWeight: "800", display: "flex", alignItems: "center", gap: "8px", background: RED+"08", padding: "10px 16px", borderRadius: "8px", marginBottom: "20px" }}>
+                  <WarnIcon /> YOUR DOCUMENTS ARE REJECTED. PLEASE UPDATE AND SUBMIT AGAIN.
+                </div>
+              )}
               <div className="divider" style={{ marginTop: 0 }} />
 
               {/* DL SECTION */}
