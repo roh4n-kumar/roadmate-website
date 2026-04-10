@@ -542,16 +542,15 @@ const DocumentVerification = () => {
             <StatusBadge status={docStatus.aadhaar} />
           </div>
           
-          <div className="dv-split">
-            <div className="dv-side-upload">
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
-                <UploadBox label="Front Side" hint="Aadhaar front" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified"} fallbackUrl={aadhaarFrontUrl} />
-                <UploadBox label="Back Side" hint="Aadhaar back" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified"} fallbackUrl={aadhaarBackUrl} />
-              </div>
-            </div>
-            <div className="dv-side-details">
+          <div style={{ maxWidth: "800px" }}>
+            <div style={{ marginBottom: "25px", maxWidth: "450px" }}>
               <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Aadhaar Number</p>
               <input value={aadhaarNumber} onChange={e => { const raw=e.target.value.replace(/\D/g,"").slice(0,12); setAadhaarNumber(raw.replace(/(\d{4})(?=\d)/g,"$1 ").trim()); }} placeholder="XXXX XXXX XXXX" style={inputStyle(docStatus.aadhaar!=="pending" && docStatus.aadhaar!=="verified")} disabled={docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified"} />
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "25px" }}>
+              <UploadBox label="Front Side" hint="Aadhaar front" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified"} fallbackUrl={aadhaarFrontUrl} />
+              <UploadBox label="Back Side" hint="Aadhaar back" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified"} fallbackUrl={aadhaarBackUrl} />
             </div>
           </div>
 
