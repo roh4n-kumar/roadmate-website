@@ -371,6 +371,26 @@ const PersonalInfo = () => {
         .pi-name   { font-size: 26px; }
         .pi-btns   { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
 
+        /* Avatar Hover Effect */
+        .avatar-box { position: relative; overflow: hidden; cursor: pointer; transition: all 0.3s ease; }
+        .avatar-box:hover { transform: scale(1.02); }
+        .avatar-overlay {
+          position: absolute;
+          bottom: -50px;
+          left: 0;
+          right: 0;
+          height: 50px;
+          background: rgba(37, 99, 235, 0.7); /* Blue tint like the screenshot */
+          backdrop-filter: blur(4px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          color: white;
+        }
+        .avatar-box:hover .avatar-overlay { bottom: 0; }
+        .avatar-box:hover img { filter: brightness(0.8); }
+
         @media (max-width: 900px) {
           .pi-header { padding: 60px 0 100px; }
           .pi-wrap  { padding-bottom: 80px !important; }
@@ -397,12 +417,17 @@ const PersonalInfo = () => {
               <input type="file" ref={fileInputRef} onChange={handleImageChange} accept="image/*" style={{ display: 'none' }} />
               
               {/* Avatar */}
-              <div onClick={handleImageClick} style={{ position: 'relative', cursor: uploading ? 'default' : 'pointer', marginBottom: '20px' }}>
-                <div style={{ width: '140px', height: '140px', borderRadius: '50%', background: RED, overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', border: '5px solid rgba(255,255,255,0.2)', transition: 'all 0.3s', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
+              <div onClick={handleImageClick} className="avatar-box" style={{ width: '140px', height: '140px', borderRadius: '50%', background: RED, border: '5px solid rgba(255,255,255,0.2)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', marginBottom: '20px' }}>
+                <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
                   {uploading ? (
                     <div style={{ fontSize: '12px', fontWeight: '900' }}>UPLOADING...</div>
                   ) : formData.profileImage || user?.photoURL ? (
-                    <img src={formData.profileImage || user?.photoURL} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <>
+                      <img src={formData.profileImage || user?.photoURL} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'all 0.3s' }} />
+                      <div className="avatar-overlay">
+                        <EditIcon />
+                      </div>
+                    </>
                   ) : (
                     <>
                       <CameraIcon />
