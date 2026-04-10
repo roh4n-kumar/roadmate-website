@@ -359,11 +359,11 @@ const DocumentVerification = () => {
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
         @keyframes fadeInScale { from { opacity: 0; transform: scale(0.98) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
         .pi-inner { max-width: 1250px; margin: 0 auto; padding: 0 24px; }
-        .pi-card { background:#fff; border-radius:12px; padding:40px; margin-bottom:24px; box-shadow:0 15px 40px rgba(0,0,0,0.03); border:1.5px solid #e2e8f0; position:relative; overflow:hidden; animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .pi-card { background:#fff; border-radius:12px; padding:24px 40px 40px 40px; margin-bottom:24px; box-shadow:0 15px 40px rgba(0,0,0,0.03); border:1.5px solid #e2e8f0; position:relative; overflow:hidden; animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .dv-split { display:flex; gap:40px; align-items: stretch; }
         .dv-side-upload { flex:1; min-width:0; display:flex; flex-direction:column; }
         .dv-side-details { flex:1; min-width:0; }
-        .divider { height:1.2px; background:#e2e8f0; margin-left:-40px; margin-right:-40px; margin-top:40px; margin-bottom:40px; }
+        .divider { height:1.2px; background:#e2e8f0; margin-left:-40px; margin-right:-40px; margin-bottom:40px; }
       `}</style>
 
       {/* BANNER (Exact Sync with PersonalInfo) */}
@@ -394,7 +394,7 @@ const DocumentVerification = () => {
           return (
             <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} className="pi-card">
               {/* HEADER SECTION */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
                 <h2 style={{ fontSize: "22px", fontWeight: "900", color: RED, margin: 0, fontFamily: H }}>Document Verification</h2>
                 {(() => {
                   const globalStatus = isAnyRejected ? "rejected" : statuses.includes("pending") ? "pending" : isAllVerified ? "verified" : null;
