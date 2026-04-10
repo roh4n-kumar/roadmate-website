@@ -405,10 +405,10 @@ const DocumentVerification = () => {
                   <WarnIcon /> YOUR DOCUMENTS ARE REJECTED. PLEASE UPDATE AND SUBMIT AGAIN.
                 </div>
               )}
-              <div className="divider" style={{ marginTop: 0 }} />
+              <div className="divider" />
 
               {/* DL SECTION */}
-              <div style={{ marginBottom: "40px" }}>
+              <div>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: docStatus["driving-licence"]==="verified" ? "0" : "30px" }}>
                   <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
                     <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><LicenceIcon /></div>
@@ -452,7 +452,7 @@ const DocumentVerification = () => {
               <div className="divider" />
 
               {/* AADHAAR SECTION */}
-              <div style={{ marginBottom: "40px" }}>
+              <div>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: docStatus.aadhaar==="verified" ? "0" : "30px" }}>
                   <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
                     <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><AadhaarIcon /></div>
@@ -495,7 +495,7 @@ const DocumentVerification = () => {
               <div className="divider" />
 
               {/* SELFIE SECTION */}
-              <div style={{ marginBottom: "40px" }}>
+              <div>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: docStatus.selfie==="verified" ? "0" : "30px" }}>
                   <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
                     <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><SelfieIcon /></div>
@@ -539,7 +539,7 @@ const DocumentVerification = () => {
 
               {!isAllLocked && (
                 <>
-                  <div className="divider" style={{ marginTop: "40px", marginBottom: "40px" }} />
+                  <div className="divider" />
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <button onClick={handleSubmitAll} disabled={uploading} style={{ background: uploading ? "#f1f5f9" : RED, color: uploading ? "#94a3b8" : "#fff", border: 'none', padding: '16px 60px', borderRadius: '12px', fontWeight: '950', fontSize: '15px', cursor: uploading ? 'not-allowed' : 'pointer', transition: 'all 0.3s ease', boxShadow: uploading ? "none" : "0 10px 40px "+RED+"30", display:"flex", alignItems:"center", gap:"10px", letterSpacing:"1px" }}>
                       {uploading ? "SUBMITTING..." : "SUBMIT FOR VERIFICATION"}
