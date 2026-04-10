@@ -349,7 +349,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     <div style={{ padding: "0 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>My details</h3>
                       <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => handleProtectedAction("/my-bookings")} />
-                      <DrawerItem icon={<UserIcon size={20} />} label="Personal information" onClick={() => handleProtectedAction("/profile")} />
+                      <DrawerItem icon={<UserIcon size={20} />} label="My Profile" onClick={() => handleProtectedAction("/profile")} />
                     </div>
 
                     <div style={{ padding: "10px 0" }}>
