@@ -358,16 +358,12 @@ const PersonalInfo = () => {
                 )}
               </div>
 
-              <div style={{ height: '1.2px', background: '#e2e8f0', marginLeft: '-40px', marginRight: '-40px', marginBottom: '30px' }} />
+              <div style={{ height: '1.2px', background: '#e2e8f0', marginLeft: '-40px', marginRight: '-40px', marginBottom: '40px' }} />
               
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '30px' }}>
-                <h2 style={{ margin: 0, fontSize: "16px", fontWeight: "900", color: "#94a3b8", fontFamily: H }}>General Information</h2>
-              </div>
-
               <div className="pi-grid">
                 {FIELDS.map(({ key, label, type, Icon, placeholder, options, disabled }) => (
                   <div key={key} style={{ gridColumn: type === "textarea" ? "1 / -1" : "auto" }}>
-                    <label style={{ display: "block", fontSize: "12px", fontWeight: "800", color: "#94a3b8", marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.5px", fontFamily: H }}>
+                    <label style={{ display: "block", fontSize: "12px", fontWeight: "800", color: RED, marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.5px", fontFamily: H }}>
                       {label}
                     </label>
                     {type === "phone"         ? <PhoneInput digits={phoneDigits} onChange={setPhoneDigits} disabled={!editMode} hasWarning={phoneWarning} onEnterBlur={checkPhone} />
