@@ -393,29 +393,30 @@ const DocumentVerification = () => {
 
           return (
             <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} className="pi-card">
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
-                <h2 style={{ fontSize: "22px", fontWeight: "900", color: RED, margin: 0, fontFamily: H, marginBottom: 0 }}>Document Verification</h2>
+              {/* HEADER SECTION */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <h2 style={{ fontSize: "22px", fontWeight: "900", color: RED, margin: 0, fontFamily: H }}>Document Verification</h2>
                 {(() => {
                   const globalStatus = isAnyRejected ? "rejected" : statuses.includes("pending") ? "pending" : isAllVerified ? "verified" : null;
                   return globalStatus ? <StatusBadge status={globalStatus} /> : null;
                 })()}
               </div>
+
               {isAnyRejected && (
-                <div style={{ color: RED, fontSize: "12px", fontWeight: "800", display: "flex", alignItems: "center", gap: "8px", background: RED+"08", padding: "10px 16px", borderRadius: "8px", marginBottom: "20px" }}>
+                <div style={{ color: RED, fontSize: "12px", fontWeight: "800", display: "flex", alignItems: "center", gap: "8px", background: RED+"08", padding: "10px 16px", borderRadius: "8px", marginTop: "20px" }}>
                   <WarnIcon /> YOUR DOCUMENTS ARE REJECTED. PLEASE UPDATE AND SUBMIT AGAIN.
                 </div>
               )}
+
               <div className="divider" />
 
               {/* DL SECTION */}
               <div>
-                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: "0" }}>
-                  <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
-                    <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><LicenceIcon /></div>
-                    <div>
-                      <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Driving Licence</h3>
-                      <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your valid Indian Driving Licence</p>
-                    </div>
+                <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
+                  <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><LicenceIcon /></div>
+                  <div>
+                    <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Driving Licence</h3>
+                    <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your valid Indian Driving Licence</p>
                   </div>
                 </div>
                 {docStatus["driving-licence"] !== "verified" && (
@@ -453,18 +454,15 @@ const DocumentVerification = () => {
 
               {/* AADHAAR SECTION */}
               <div>
-                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: "0" }}>
-                  <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
-                    <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><AadhaarIcon /></div>
-                    <div>
-                      <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Aadhaar Card</h3>
-                      <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your 12-digit Aadhaar Card details</p>
-                    </div>
+                <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
+                  <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><AadhaarIcon /></div>
+                  <div>
+                    <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Aadhaar Card</h3>
+                    <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Upload your 12-digit Aadhaar Card details</p>
                   </div>
                 </div>
                 {docStatus.aadhaar !== "verified" && (
                   <div style={{ display: "flex", flexDirection: "column", gap: "25px", marginTop: "30px" }}>
-                    {/* Aadhaar Number matched with Front Photo width */}
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
                       <div>
                         <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Aadhaar Number</p>
@@ -482,8 +480,6 @@ const DocumentVerification = () => {
                         <p style={{ fontSize:"12px", color:"#64748b", marginTop:"8px", fontWeight:"500" }}>Please ensure Aadhaar details match correctly.</p>
                       </div>
                     </div>
-
-                    {/* Upload Boxes matched width */}
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
                       <UploadBox label="Front Photo" hint="Front side of Aadhaar" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarFrontUrl} />
                       <UploadBox label="Back Photo" hint="Back side of Aadhaar" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar==="pending"} fallbackUrl={aadhaarBackUrl} />
@@ -496,18 +492,15 @@ const DocumentVerification = () => {
 
               {/* SELFIE SECTION */}
               <div>
-                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom: "0" }}>
-                  <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
-                    <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><SelfieIcon /></div>
-                    <div>
-                      <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Live Selfie</h3>
-                      <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Take a clear selfie for face verification</p>
-                    </div>
+                <div style={{ display:"flex", alignItems:"center", gap:"15px" }}>
+                  <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:RED+"10", color:RED, display:"flex", alignItems:"center", justifyContent:"center" }}><SelfieIcon /></div>
+                  <div>
+                    <h3 style={{ margin:0, fontSize:"19px", fontWeight:"900", fontFamily:H, color:"#1e293b" }}>Live Selfie</h3>
+                    <p style={{ margin:0, fontSize:"12px", color:"#94a3b8", fontWeight:"500" }}>Take a clear selfie for face verification</p>
                   </div>
                 </div>
                 {docStatus.selfie !== "verified" && (
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "25px", width: "100%", marginTop: "30px" }}>
-                    {/* Square Camera Box for Selfie */}
                     <div style={{ position:"relative", width: "320px", height:"320px", borderRadius:"14px", border:"2px dashed #e2e8f0", background:"#f8fafc", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden", flexShrink: 0 }}>
                       {cameraOn ? (
                         <div style={{ width:"100%", height:"100%" }}>
@@ -524,8 +517,6 @@ const DocumentVerification = () => {
                       )}
                       <canvas ref={canvasRef} style={{ display:"none" }} />
                     </div>
-
-                    {/* Instructions below Camera Box */}
                     <div style={{ textAlign: "center", maxWidth: "600px" }}>
                       <p style={{ fontSize:"14px", color:"#475569", fontWeight:"600", lineHeight:"1.6", margin: 0 }}>Face verification ensures that the person matches the identity. Please make sure your face is well-lit.</p>
                       <ul style={{ display: "flex", justifyContent: "center", gap: "20px", listStyle: "none", padding: 0, color:"#64748b", fontSize:"13px", fontWeight:"500", marginTop:"10px" }}>
