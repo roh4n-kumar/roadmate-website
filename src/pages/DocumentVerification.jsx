@@ -262,8 +262,16 @@ const DocumentVerification = () => {
             selfie: (slf.status || "not_uploaded").toLowerCase() 
           });
 
-          if (dl.number) setDlNumber(dl.number); 
-          if (dl.expiry) setDlExpiry(dl.expiry); 
+          // Only update local inputs if they are empty OR if the status is pending/verified (to avoid snap-back while typing)
+          const isDlLocked = (dl.status || "").toLowerCase() === "pending" || (dl.status || "").toLowerCase() === "verified";
+          const isAadLocked = (aad.status || "").toLowerCase() === "pending" || (aad.status || "").toLowerCase() === "verified";
+
+          if (dl.number && (isDlLocked || !dlNumber)) setDlNumber(dl.number); 
+          if (dl.expiry && (isDlLocked || !dlExpiry)) setDlExpiry(dl.expiry);
+          if (dl.category && (isDlLocked || !dlClass)) setDlClass(dl.category);
+
+          if (aad.number && (isAadLocked || !aadhaarNumber)) setAadhaarNumber(aad.number);
+ 
           if (dl.class)  setDlClass(dl.class); 
           if (dl.image)  setDlImageUrl(dl.image); 
 
@@ -508,16 +516,16 @@ const DocumentVerification = () => {
               <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"20px" }}>
                 <div style={{ gridColumn: "1 / -1" }}>
                   <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>DL Number</p>
-                  <input value={dlNumber} onChange={e => setDlNumber(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,15))} placeholder="OD0420XXXXXXXXX" style={inputStyle(docStatus["driving-licence"]==="not_uploaded" || docStatus["driving-licence"]==="rejected")} disabled={docStatus["driving-licence"]!=="not_uploaded" && docStatus["driving-licence"]!=="rejected"} />
+                  <input value={dlNumber} onChange={e => setDlNumber(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,15))} placeholder="OD0420XXXXXXXXX" style={inputStyle(docStatus["driving-licence"]!=="pending" && docStatus["driving-licence"]!=="verified")} disabled={docStatus["driving-licence"]==="pending" || docStatus["driving-licence"]==="verified"} />
                   {dlErrors.dlNumber && <p style={{ margin:"6px 0 0", fontSize:"11px", color:RED, fontWeight:"700" }}>⚠ {dlErrors.dlNumber}</p>}
                 </div>
                 <div>
                   <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Expiry Date</p>
-                  <ExpiryDatePicker value={dlExpiry} onChange={setDlExpiry} disabled={docStatus["driving-licence"]!=="not_uploaded" && docStatus["driving-licence"]!=="rejected"} hasError={!!dlErrors.dlExpiry} />
+                  <ExpiryDatePicker value={dlExpiry} onChange={setDlExpiry} disabled={docStatus["driving-licence"]==="pending" || docStatus["driving-licence"]==="verified"} hasError={!!dlErrors.dlExpiry} />
                 </div>
                 <div>
                   <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Vehicle Category</p>
-                  <MiniDropdown options={[{value:"LMV",label:"LMV (Car)"},{value:"MCWG",label:"MCWG (Bike)"},{value:"LMV+MCWG",label:"Both Car & Bike"}]} value={dlClass} onChange={setDlClass} width="100%" disabled={docStatus["driving-licence"]!=="not_uploaded" && docStatus["driving-licence"]!=="rejected"} />
+                  <MiniDropdown options={[{value:"LMV",label:"LMV (Car)"},{value:"MCWG",label:"MCWG (Bike)"},{value:"LMV+MCWG",label:"Both Car & Bike"}]} value={dlClass} onChange={setDlClass} width="100%" disabled={docStatus["driving-licence"]==="pending" || docStatus["driving-licence"]==="verified"} />
                 </div>
               </div>
             </div>
@@ -540,12 +548,12 @@ const DocumentVerification = () => {
           <div style={{ maxWidth: "800px" }}>
             <div style={{ marginBottom: "25px" }}>
               <p style={{ fontSize:"11px", fontWeight:"800", color: RED, textTransform:"uppercase", letterSpacing:"0.6px", marginBottom:"8px", fontFamily:H }}>Aadhaar Number</p>
-              <input value={aadhaarNumber} onChange={e => { const raw=e.target.value.replace(/\D/g,"").slice(0,12); setAadhaarNumber(raw.replace(/(\d{4})(?=\d)/g,"$1 ").trim()); }} placeholder="XXXX XXXX XXXX" style={{ ...inputStyle(docStatus.aadhaar==="not_uploaded" || docStatus.aadhaar==="rejected"), fontSize: "18px", letterSpacing: "2px" }} disabled={docStatus.aadhaar!=="not_uploaded" && docStatus.aadhaar!=="rejected"} />
+              <input value={aadhaarNumber} onChange={e => { const raw=e.target.value.replace(/\D/g,"").slice(0,12); setAadhaarNumber(raw.replace(/(\d{4})(?=\d)/g,"$1 ").trim()); }} placeholder="XXXX XXXX XXXX" style={{ ...inputStyle(docStatus.aadhaar!=="pending" && docStatus.aadhaar!=="verified"), fontSize: "18px", letterSpacing: "2px" }} disabled={docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified"} />
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "25px" }} className="aadhaar-photos">
-              <UploadBox label="Front Side" hint="Clear Aadhaar front" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar!=="not_uploaded" && docStatus.aadhaar!=="rejected"} fallbackUrl={aadhaarFrontUrl} />
-              <UploadBox label="Back Side" hint="Clear Aadhaar back" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar!=="not_uploaded" && docStatus.aadhaar!=="rejected"} fallbackUrl={aadhaarBackUrl} />
+              <UploadBox label="Front Side" hint="Clear Aadhaar front" file={aadhaarFront} onChange={setAadhaarFront} disabled={docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified"} fallbackUrl={aadhaarFrontUrl} />
+              <UploadBox label="Back Side" hint="Clear Aadhaar back" file={aadhaarBack} onChange={setAadhaarBack} disabled={docStatus.aadhaar==="pending" || docStatus.aadhaar==="verified"} fallbackUrl={aadhaarBackUrl} />
             </div>
           </div>
 
