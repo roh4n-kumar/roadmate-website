@@ -363,7 +363,7 @@ const DocumentVerification = () => {
         .dv-split { display:flex; gap:40px; align-items: stretch; }
         .dv-side-upload { flex:1; min-width:0; display:flex; flex-direction:column; }
         .dv-side-details { flex:1; min-width:0; }
-        .divider { height:1.5px; background:#cbd5e1; margin-left:-40px; margin-right:-40px; margin-top:40px; margin-bottom:40px; }
+        .divider { height:1.2px; background:#e2e8f0; margin-left:-40px; margin-right:-40px; margin-top:40px; margin-bottom:40px; }
       `}</style>
 
       {/* BANNER (Exact Sync with PersonalInfo) */}
