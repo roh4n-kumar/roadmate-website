@@ -612,21 +612,56 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     @media (max-width: 900px) {
-      .search-ribbon { padding: 20px 20px 60px; }
-      .search-inner { flex-direction: column; gap: 10px; align-items: stretch; }
-      .search-field { flex: none; border-right: none !important; padding-right: 0 !important; margin-right: 0 !important; }
-      .search-btn { width: 100%; justify-content: center; border-radius: 14px; height: 50px; }
-      .search-btn:hover { transform: none; }
-      .offer-section { padding: 40px 20px 30px; }
-      .why-section { padding: 20px 20px 50px; }
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
-      .how-section { padding: 30px 20px 50px; }
-      .steps-grid { grid-template-columns: repeat(2, 1fr); }
-      .steps-grid::before { display: none; }
-      .cal-popup { left: 0; right: 0; width: auto !important; }
-      .hero-banner { display: none !important; }
-      .hero-section { margin-top: 56px !important; padding-bottom: 70px; }
-      .search-ribbon { padding-top: 16px !important; }
+      .hero-section { margin-top: 0 !important; padding-bottom: 40px; }
+      .search-ribbon-v2 { padding: 80px 16px 60px !important; }
+      .hero-title { 
+        font-size: 36px !important; 
+        transform: translateY(0) !important; 
+        margin-bottom: 30px !important;
+        text-align: center !important;
+      }
+      .hero-subtitle { font-size: 16px !important; }
+      
+      .search-master-card { 
+        padding: 30px 16px 40px !important; 
+        margin-top: 20px !important;
+      }
+      .search-tab-popup { 
+        left: 20px !important; 
+        top: -40px !important; 
+        padding: 10px 20px !important;
+      }
+      .search-tab-text { font-size: 11px !important; }
+
+      .search-main-card { 
+        grid-template-columns: 1fr !important; 
+        border-radius: 20px !important;
+        overflow: hidden;
+      }
+      .search-col { 
+        padding: 20px !important; 
+        border-right: none !important; 
+        border-bottom: 1.5px solid #cbd5e1 !important; 
+      }
+      .search-col:last-child { border-bottom: none !important; }
+      .col-value { font-size: 28px !important; }
+      
+      .floating-search-btn {
+        width: calc(100% - 32px) !important;
+        height: 56px !important;
+        font-size: 18px !important;
+        bottom: -28px !important;
+      }
+      
+      .special-fares-row { flex-direction: column !important; gap: 15px !important; }
+      .features-grid { grid-template-columns: 1fr !important; gap: 15px !important; }
+      .steps-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+      .steps-grid-connector { display: none !important; }
+      .feature-card { padding: 30px 20px !important; border-radius: 20px !important; }
+      .step-num { width: 60px !important; height: 60px !important; font-size: 20px !important; }
+      
+      .disclaimer-pill { padding: 10px 14px !important; }
+      .pill-text { font-size: 11px !important; }
     }
 
     /* ORIGINAL HIGH-FIDELITY RESTORATION */

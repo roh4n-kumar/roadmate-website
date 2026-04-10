@@ -31,11 +31,18 @@ const FAQSection = () => {
   const [active, setActive] = useState(null);
 
   return (
-    <section style={{ padding: "100px 24px", background: "#ffffff" }}>
+    <section className="faq-section" style={{ padding: "100px 24px", background: "#ffffff" }}>
       <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
+        <style>{`
+          @media (max-width: 900px) {
+            .faq-section { padding: 40px 16px !important; }
+            .faq-heading { font-size: 28px !important; }
+            .faq-q-text { font-size: 16px !important; }
+          }
+        `}</style>
         <div style={{ textAlign: "left", marginBottom: "50px" }}>
           <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Help Center</span>
-          <h2 style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 900, fontFamily: H, marginTop: "15px", color: "#0f172a", lineHeight: "1.2" }}>FAQs related to Vehicle Renting</h2>
+          <h2 className="faq-heading" style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 900, fontFamily: H, marginTop: "15px", color: "#0f172a", lineHeight: "1.2" }}>FAQs related to Vehicle Renting</h2>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -61,7 +68,7 @@ const FAQSection = () => {
                   textAlign: "left"
                 }}
               >
-                <span style={{ fontSize: "18px", fontWeight: 700, color: active === i ? RED : "#0f172a", fontFamily: H, transition: "color 0.3s ease" }}>{faq.q}</span>
+                <span className="faq-q-text" style={{ fontSize: "18px", fontWeight: 700, color: active === i ? RED : "#0f172a", fontFamily: H, transition: "color 0.3s ease" }}>{faq.q}</span>
                 <div style={{ 
                     transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
                     transform: active === i ? "rotate(180deg)" : "rotate(0deg)",

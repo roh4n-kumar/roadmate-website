@@ -105,7 +105,7 @@ const MapSection = () => {
       <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "50px" }}>
           <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "1000px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Our Network</span>
-          <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, marginTop: "10px", color: "#0f172a" }}>Visit Our Hubs</h2>
+          <h2 className="map-heading" style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, marginTop: "10px", color: "#0f172a" }}>Visit Our Hubs</h2>
           <p style={{ color: "#64748b", fontSize: "16px", marginTop: "15px", maxWidth: "600px", margin: "15px auto 0" }}>
             Free & Open-Source Map: Find RoadMate partners and garages across the city without any API restrictions.
           </p>
@@ -128,6 +128,10 @@ const MapSection = () => {
 
           <style>
               {`
+                  @media (max-width: 900px) {
+                    #leaflet-map { height: 400px !important; }
+                    .map-heading { font-size: 32px !important; }
+                  }
                   @keyframes spin { to { transform: rotate(360deg); } }
                   @keyframes pulse {
                     0% { transform: scale(0.6); opacity: 0.6; }

@@ -208,9 +208,29 @@ const Offers = () => {
              text-transform: uppercase;
           }
 
-          @media (max-width: 1000px) {
-            .top-bar { flex-direction: column; align-items: flex-start; gap: 20px; }
-            .nav-controls { width: 100%; justify-content: space-between; }
+          @media (max-width: 900px) {
+            #offers-slider { padding: 40px 16px 60px !important; }
+            .outer-card { padding: 30px 0 !important; border-radius: 24px !important; }
+            .top-bar { 
+              padding: 0 20px !important; 
+              flex-direction: column !important; 
+              align-items: flex-start !important; 
+              gap: 15px !important; 
+            }
+            .main-heading { font-size: 28px !important; }
+            .nav-controls { width: 100% !important; justify-content: flex-start !important; }
+            .offer-grid { padding: 10px 20px 25px !important; scroll-padding-left: 20px !important; }
+            .o-card { 
+              width: 88vw !important; 
+              padding: 16px !important; 
+              gap: 16px !important; 
+              min-height: auto !important;
+            }
+            .o-img-box { width: 100px !important; height: 100px !important; }
+            .o-title { font-size: 18px !important; margin-top: 10px !important; }
+            .o-desc { font-size: 12px !important; }
+            .o-tc { font-size: 8px !important; top: 15px !important; right: 15px !important; }
+            .o-footer { padding-top: 10px !important; }
           }
         `}
       </style>
