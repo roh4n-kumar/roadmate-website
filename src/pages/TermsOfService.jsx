@@ -143,25 +143,10 @@ const TermsOfService = () => {
                     </div>
                     
                     {/* Support Box */}
-                    <div style={{ borderTop: "1.5px solid rgba(0,0,0,0.06)", paddingTop: "50px", marginTop: "80px", textAlign: "center" }}>
-                        <p style={{ fontSize: "15px", color: "#64748b", fontWeight: 600, marginBottom: "15px" }}>
-                            Have questions regarding our policies?
+                    <div style={{ marginTop: "60px", textAlign: "center" }}>
+                        <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.4)" }}>
+                            If you have any questions about these Terms of Service, please contact us at legal@roadmate.in
                         </p>
-                        <a 
-                            href="mailto:legal@roadmate.in" 
-                            style={{ 
-                                color: RED, 
-                                textDecoration: "none", 
-                                fontWeight: 800, 
-                                fontSize: "16px",
-                                background: `${RED}11`,
-                                padding: "12px 30px",
-                                borderRadius: "12px",
-                                display: "inline-block"
-                            }}
-                        >
-                            legal@roadmate.in
-                        </a>
                     </div>
                 </div>
             </section>
