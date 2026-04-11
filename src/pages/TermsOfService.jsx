@@ -98,10 +98,18 @@ const TermsOfService = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        style={{ fontSize: "56px", fontWeight: 900, fontFamily: H, marginBottom: "20px", letterSpacing: "-1.5px" }}
+                        style={{ fontSize: "56px", fontWeight: 900, fontFamily: H, marginBottom: "15px", letterSpacing: "-1.5px" }}
                     >
                         Terms of <span style={{ color: RED }}>Service</span>
                     </motion.h1>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        style={{ fontSize: "16px", color: "rgba(255,255,255,0.6)", maxWidth: "600px", margin: "0 auto", lineHeight: 1.6 }}
+                    >
+                        Your guide to a safe, transparent, and hassle-free roadMate experience.
+                    </motion.p>
 
                 </div>
             </section>
