@@ -154,65 +154,67 @@ const About = () => {
              </div>
 
              {/* OUR STORY / MISSION */}
-             <div style={{ padding: "40px 24px 80px", maxWidth: "1250px", margin: "0 auto", textAlign: "left" }}>
-                 {/* ABOUT US */}
-                 <div className="animate-box">
-                    <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "20px" }}>
-                        <span style={{ color: BLUE }}>About</span> <span style={{ color: RED }}>Us</span>
-                    </h2>
-                    <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "20px", textAlign: "justify" }}>
-                        roadMate was born from a simple yet powerful observation: the freedom of movement shouldn't be a luxury or a bureaucratic hurdle. In a fast-evolving city like Bhubaneswar, we noticed that while the need for local travel was growing, the means to access reliable, clean, and well-maintained vehicles remained surprisingly difficult. Whether you are a student striving for a better commute, a professional navigating a busy schedule, or a traveler eager to explore the hidden joys of Odisha, roadMate is here to ensure that your journey starts on the right note.
-                    </p>
-                    <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
-                        We didn't just want to build a rental service; we wanted to create a travel ecosystem where convenience meets trust. Our platform bridges the gap between high-quality local vehicles and the modern rider who values efficiency, fair pricing, and absolute transparency. We are committed to empowering every individual with the freedom they deserve, making every trip—whether it's a few miles or a few hundred—a memory to cherish. At roadMate, your journey is our pride, and your satisfaction is our mission.
-                    </p>
-                 </div>
-
-                 {/* OUR MISSION */}
-                 <div className="animate-box">
-                    <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "20px" }}>
-                        <span style={{ color: BLUE }}>Our</span> <span style={{ color: RED }}>Mission</span>
-                    </h2>
-                    <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
-                        At roadMate, our mission is to redefine the landscape of urban mobility through a localized, high-fidelity lens. We believe that everyone deserves the freedom to move without boundaries, regardless of their destination or duration. By combining cutting-edge technology with a customer-first approach, we are building a seamless rental experience that is as instinctive as it is reliable. Our journey begins in Bhubaneswar, where we aim to set a new benchmark for trust, cleanliness, and accessibility, eventually scaling this vision to empower explorers across the nation. Through transparent pricing, verified fleets, and 24/7 support, we are turning transit into a frictionless experience, one ride at a time.
-                    </p>
-                 </div>
-
-                 {/* MANAGEMENT TEAM SECTION */}
-                 <div className="animate-box delay-1">
-                    <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "30px" }}>
-                        <span style={{ color: BLUE }}>Management</span> <span style={{ color: RED }}>Team</span>
-                    </h2>
-                    
-                    <div style={{ display: "flex", gap: "30px", marginBottom: "40px", alignItems: "flex-start" }}>
-                        <div style={{ width: "180px", height: "180px", borderRadius: "50%", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "4px solid #fff", boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}>
-                            <img src="/Founder%20%26%20CEO.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} alt="Founder & CEO" />
-                        </div>
-                        <div>
-                            <h3 style={{ fontSize: "19px", fontWeight: 800, fontFamily: H, marginBottom: "8px" }}>
-                                <span style={{ color: BLUE }}>Rohan Chaudhary</span>, <span style={{ color: RED }}>Founder & CEO</span>
-                            </h3>
-                            <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
-                                Rohan Chaudhary is the visionary behind roadMate. With a deep passion for improving urban mobility and a background in strategic development, he founded roadMate to bridge the gap in Bhubaneswar's local transport. He is dedicated to transforming the rental experience into a seamless, trust-driven journey for every rider.
-                            </p>
-                        </div>
+             <section style={{ padding: "0 24px", width: "100%" }}>
+                <div style={{ padding: "40px 0 80px", maxWidth: "1250px", margin: "0 auto", textAlign: "left" }}>
+                    {/* ABOUT US */}
+                    <div className="animate-box">
+                        <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "20px" }}>
+                            <span style={{ color: BLUE }}>About</span> <span style={{ color: RED }}>Us</span>
+                        </h2>
+                        <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "20px", textAlign: "justify" }}>
+                            roadMate was born from a simple yet powerful observation: the freedom of movement shouldn't be a luxury or a bureaucratic hurdle. In a fast-evolving city like Bhubaneswar, we noticed that while the need for local travel was growing, the means to access reliable, clean, and well-maintained vehicles remained surprisingly difficult. Whether you are a student striving for a better commute, a professional navigating a busy schedule, or a traveler eager to explore the hidden joys of Odisha, roadMate is here to ensure that your journey starts on the right note.
+                        </p>
+                        <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
+                            We didn't just want to build a rental service; we wanted to create a travel ecosystem where convenience meets trust. Our platform bridges the gap between high-quality local vehicles and the modern rider who values efficiency, fair pricing, and absolute transparency. We are committed to empowering every individual with the freedom they deserve, making every trip—whether it's a few miles or a few hundred—a memory to cherish. At roadMate, your journey is our pride, and your satisfaction is our mission.
+                        </p>
                     </div>
 
-                    <div style={{ display: "flex", gap: "30px", alignItems: "flex-start" }}>
-                        <div style={{ width: "180px", height: "180px", borderRadius: "50%", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "4px solid #fff", boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}>
-                           <img src="/Co-Founder.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }} alt="Co-Founder" />
+                    {/* OUR MISSION */}
+                    <div className="animate-box">
+                        <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "20px" }}>
+                            <span style={{ color: BLUE }}>Our</span> <span style={{ color: RED }}>Mission</span>
+                        </h2>
+                        <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
+                            At roadMate, our mission is to redefine the landscape of urban mobility through a localized, high-fidelity lens. We believe that everyone deserves the freedom to move without boundaries, regardless of their destination or duration. By combining cutting-edge technology with a customer-first approach, we are building a seamless rental experience that is as instinctive as it is reliable. Our journey begins in Bhubaneswar, where we aim to set a new benchmark for trust, cleanliness, and accessibility, eventually scaling this vision to empower explorers across the nation. Through transparent pricing, verified fleets, and 24/7 support, we are turning transit into a frictionless experience, one ride at a time.
+                        </p>
+                    </div>
+
+                    {/* MANAGEMENT TEAM SECTION */}
+                    <div className="animate-box delay-1">
+                        <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "30px" }}>
+                            <span style={{ color: BLUE }}>Management</span> <span style={{ color: RED }}>Team</span>
+                        </h2>
+                        
+                        <div style={{ display: "flex", gap: "30px", marginBottom: "40px", alignItems: "flex-start" }}>
+                            <div style={{ width: "180px", height: "180px", borderRadius: "50%", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "4px solid #fff", boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}>
+                                <img src="/Founder%20%26%20CEO.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} alt="Founder & CEO" />
+                            </div>
+                            <div>
+                                <h3 style={{ fontSize: "19px", fontWeight: 800, fontFamily: H, marginBottom: "8px" }}>
+                                    <span style={{ color: BLUE }}>Rohan Chaudhary</span>, <span style={{ color: RED }}>Founder & CEO</span>
+                                </h3>
+                                <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
+                                    Rohan Chaudhary is the visionary behind roadMate. With a deep passion for improving urban mobility and a background in strategic development, he founded roadMate to bridge the gap in Bhubaneswar's local transport. He is dedicated to transforming the rental experience into a seamless, trust-driven journey for every rider.
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 style={{ fontSize: "19px", fontWeight: 800, fontFamily: H, marginBottom: "8px" }}>
-                                <span style={{ color: BLUE }}>Ankit Gupta</span>, <span style={{ color: RED }}>Co-Founder</span>
-                            </h3>
-                            <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
-                                Ankit Gupta is the Co-Founder of roadMate and has been an integral part of the journey since its very inception. Working side-by-side with Rohan from day one, his dedication and strategic insight have been crucial in building the foundation of roadMate. He continues to drive our mission forward with a shared vision of transforming urban mobility.
-                            </p>
+
+                        <div style={{ display: "flex", gap: "30px", alignItems: "flex-start" }}>
+                            <div style={{ width: "180px", height: "180px", borderRadius: "50%", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "4px solid #fff", boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}>
+                            <img src="/Co-Founder.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }} alt="Co-Founder" />
+                            </div>
+                            <div>
+                                <h3 style={{ fontSize: "19px", fontWeight: 800, fontFamily: H, marginBottom: "8px" }}>
+                                    <span style={{ color: BLUE }}>Ankit Gupta</span>, <span style={{ color: RED }}>Co-Founder</span>
+                                </h3>
+                                <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
+                                    Ankit Gupta is the Co-Founder of roadMate and has been an integral part of the journey since its very inception. Working side-by-side with Rohan from day one, his dedication and strategic insight have been crucial in building the foundation of roadMate. He continues to drive our mission forward with a shared vision of transforming urban mobility.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                 </div>
-             </div>
+                </div>
+             </section>
 
              {/* FEATURE GRID */}
              <section style={{ padding: "40px 24px", background: "#f8f9fa" }}>
