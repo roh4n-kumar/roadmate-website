@@ -154,7 +154,7 @@ const About = () => {
              </div>
 
              {/* OUR STORY / MISSION */}
-             <div style={{ padding: "40px 40px 80px", maxWidth: "1200px", margin: "0 auto", textAlign: "left" }}>
+             <div style={{ padding: "40px 40px 80px", maxWidth: "1250px", margin: "0 auto", textAlign: "left" }}>
                  {/* ABOUT US */}
                  <div className="animate-box">
                     <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "20px" }}>
