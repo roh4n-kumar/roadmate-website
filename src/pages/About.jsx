@@ -174,13 +174,13 @@ const About = () => {
                         <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
                             Our Mission
                         </h2>
-                        <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
+                        <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "50px", textAlign: "justify" }}>
                             At roadMate, our mission is to redefine the landscape of urban mobility through a localized, high-fidelity lens. We believe that everyone deserves the freedom to move without boundaries, regardless of their destination or duration. By combining cutting-edge technology with a customer-first approach, we are building a seamless rental experience that is as instinctive as it is reliable. Our journey begins in Bhubaneswar, where we aim to set a new benchmark for trust, cleanliness, and accessibility, eventually scaling this vision to empower explorers across the nation. Through transparent pricing, verified fleets, and 24/7 support, we are turning transit into a frictionless experience, one ride at a time. We strive to not just provide a service but to become an integral part of your daily life, ensuring that every time you need to move, roadMate is your most trusted companion, making the complex simple and the impossible attainable.
                         </p>
                     </div>
 
                     {/* MANAGEMENT TEAM SECTION */}
-                    <div className="animate-box delay-1" style={{ marginBottom: "40px" }}>
+                    <div className="animate-box delay-1" style={{ marginBottom: "50px" }}>
                         <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "30px", textTransform: "uppercase", letterSpacing: "1px" }}>
                             Our Leaders
                         </h2>
@@ -249,7 +249,7 @@ const About = () => {
                         <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
                             Our Vision
                         </h2>
-                        <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
+                        <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "50px", textAlign: "justify" }}>
                             To become the pulse of urban mobility, transforming every commute into a seamless, reliable, and empowering journey for everyone. By pioneering a trust-driven travel ecosystem in Bhubaneswar and beyond, we envision a future where accessibility is effortless and every traveler moves with confidence and pride.
                         </p>
                     </div>
