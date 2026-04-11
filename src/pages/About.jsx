@@ -180,7 +180,7 @@ const About = () => {
                     </div>
 
                     {/* MANAGEMENT TEAM SECTION */}
-                    <div className="animate-box delay-1">
+                    <div className="animate-box delay-1" style={{ marginBottom: "40px" }}>
                         <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "30px", textTransform: "uppercase", letterSpacing: "1px" }}>
                             Our Leaders
                         </h2>
