@@ -186,11 +186,11 @@ const About = () => {
                         </h2>
                         
                         <div style={{ display: "flex", gap: "30px", marginBottom: "40px", alignItems: "flex-start" }}>
-                            <div style={{ width: "215px", height: "215px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
+                            <div style={{ width: "250px", height: "250px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
                                 <img src="/founder_ceo.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} alt="Founder & CEO" />
                             </div>
                             <div>
-                                <h3 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, marginBottom: "2px", color: "#0f172a" }}>
+                                <h3 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, marginTop: 0, marginBottom: "2px", color: "#0f172a", lineHeight: 1.1 }}>
                                     Rohan Chaudhary
                                 </h3>
                                 <div style={{ fontSize: "15px", fontWeight: 700, fontFamily: H, color: RED, marginBottom: "12px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
@@ -199,7 +199,7 @@ const About = () => {
                                 <p style={{ fontSize: "15.5px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
                                     Rohan Chaudhary is the visionary behind roadMate. A B.Tech student with a Computer Science background, he founded roadMate with a deep passion for improving urban mobility. The spark for roadMate came when Rohan personally struggled to rent a bike in Bhubaneswar—facing endless paperwork, poorly maintained vehicles, and a lack of transparency. This frustrating experience stayed with him, leading to the observation that local transport needed a trust-driven, tech-first solution. His goal is to bridge this gap by transforming the rental experience into a seamless, reliable journey for every rider.
                                 </p>
-                                <div style={{ display: "flex", gap: "12px", marginTop: "20px" }}>
+                                <div style={{ display: "flex", gap: "12px", marginTop: "15px" }}>
                                     <a href="#" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "36px", height: "36px", borderRadius: "50%", background: "#000", color: "#fff", transition: "all 0.3s ease" }} 
                                        onMouseOver={e => { e.currentTarget.style.background = "#0077b5"; }} 
                                        onMouseOut={e => { e.currentTarget.style.background = "#000"; }}>
@@ -215,11 +215,11 @@ const About = () => {
                         </div>
 
                         <div style={{ display: "flex", gap: "30px", alignItems: "flex-start" }}>
-                            <div style={{ width: "215px", height: "215px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
+                            <div style={{ width: "250px", height: "250px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
                             <img src="/co_founder.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }} alt="Co-Founder" />
                             </div>
                             <div>
-                                <h3 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, marginBottom: "2px", color: "#0f172a" }}>
+                                <h3 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, marginTop: 0, marginBottom: "2px", color: "#0f172a", lineHeight: 1.1 }}>
                                     Ankit Gupta
                                 </h3>
                                 <div style={{ fontSize: "15px", fontWeight: 700, fontFamily: H, color: RED, marginBottom: "12px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
@@ -228,7 +228,7 @@ const About = () => {
                                 <p style={{ fontSize: "15.5px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
                                     Ankit Gupta is the Co-Founder of roadMate and has been an integral part of the journey since its very inception. A B.Tech student with an Electrical and Computer Science background, he has worked side-by-side with Rohan from day one, turning a shared vision into a functional reality. Ankit’s technical dedication and hands-on approach have been crucial in building the platform's foundation, navigating early obstacles to ensure ultimate reliability. His strategic insight continues to drive roadMate's mission forward, aiming to redefine transit into a frictionless experience across the city.
                                 </p>
-                                <div style={{ display: "flex", gap: "12px", marginTop: "20px" }}>
+                                <div style={{ display: "flex", gap: "12px", marginTop: "15px" }}>
                                     <a href="#" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "36px", height: "36px", borderRadius: "50%", background: "#000", color: "#fff", transition: "all 0.3s ease" }} 
                                        onMouseOver={e => { e.currentTarget.style.background = "#0077b5"; }} 
                                        onMouseOut={e => { e.currentTarget.style.background = "#000"; }}>
