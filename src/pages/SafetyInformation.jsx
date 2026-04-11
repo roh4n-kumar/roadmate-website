@@ -36,7 +36,7 @@ const SafetyInformation = () => {
             
             {/* HERO SECTION */}
             <section style={{ 
-                padding: "120px 40px 30px", 
+                padding: "120px 40px 20px", 
                 background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",
@@ -57,7 +57,7 @@ const SafetyInformation = () => {
                             letterSpacing: "3px", 
                             padding: "10px 24px", 
                             borderRadius: "99px", 
-                            marginBottom: "30px",
+                            marginBottom: "20px",
                             border: `1px solid ${RED}33`
                         }}
                     >
