@@ -17,6 +17,9 @@ import SafetyInformation from "./pages/SafetyInformation";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import OffersPage from "./pages/OffersPage";
+import HowItWorks from "./pages/HowItWorks";
+import Blogs from "./pages/Blogs";
+import PartnerWithUs from "./pages/PartnerWithUs";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import logo from "./assets/roadMate Red Logo 2.png";
@@ -150,6 +153,9 @@ function App() {
         <Route path="/terms-of-service"    element={<TermsOfService />} />
         <Route path="/privacy-policy"      element={<PrivacyPolicy />} />
         <Route path="/offers"              element={<OffersPage />} />
+        <Route path="/how-it-works"        element={<HowItWorks />} />
+        <Route path="/blogs"               element={<Blogs />} />
+        <Route path="/partner-with-us"     element={<PartnerWithUs />} />
       </Routes>
     </>
   );
