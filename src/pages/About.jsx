@@ -202,7 +202,7 @@ const About = () => {
                             </div>
                         </div>
 
-                        <div style={{ display: "flex", gap: "30px", alignItems: "flex-start" }}>
+                        <div style={{ display: "flex", gap: "30px", alignItems: "flex-start", flexDirection: "row-reverse" }}>
                             <div style={{ width: "250px", height: "250px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
                             <img src="/co_founder.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }} alt="Co-Founder" />
                             </div>
