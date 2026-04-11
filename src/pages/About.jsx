@@ -196,8 +196,8 @@ const About = () => {
                                 <div style={{ fontSize: "15px", fontWeight: 700, fontFamily: H, color: RED, marginBottom: "12px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
                                     Founder & CEO
                                 </div>
-                                <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
-                                    Rohan Chaudhary is the visionary behind roadMate. With a deep passion for improving urban mobility and a background in strategic development, he founded roadMate to bridge the gap in Bhubaneswar's local transport. He is dedicated to transforming the rental experience into a seamless, trust-driven journey for every rider.
+                                <p style={{ fontSize: "15.5px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
+                                    Rohan Chaudhary is the visionary behind roadMate. A B.Tech student with a Computer Science background, he founded roadMate with a deep passion for improving urban mobility. His goal is to bridge the gap in Bhubaneswar's local transport by transforming the rental experience into a seamless, trust-driven journey for every rider.
                                 </p>
                             </div>
                         </div>
@@ -213,8 +213,8 @@ const About = () => {
                                 <div style={{ fontSize: "15px", fontWeight: 700, fontFamily: H, color: RED, marginBottom: "12px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
                                     Co-Founder
                                 </div>
-                                <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
-                                    Ankit Gupta is the Co-Founder of roadMate and has been an integral part of the journey since its very inception. Working side-by-side with Rohan from day one, his dedication and strategic insight have been crucial in building the foundation of roadMate. He continues to drive our mission forward with a shared vision of transforming urban mobility.
+                                <p style={{ fontSize: "15.5px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
+                                    Ankit Gupta is the Co-Founder of roadMate and has been an integral part of the journey since its very inception. A B.Tech student with an Electrical and Computer Science background, he has worked side-by-side with Rohan from day one. His technical dedication and strategic insight have been crucial in building the foundation of roadMate's mission to transform urban mobility.
                                 </p>
                             </div>
                         </div>
