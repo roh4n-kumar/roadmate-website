@@ -199,12 +199,16 @@ const About = () => {
                                 <p style={{ fontSize: "15.5px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
                                     Rohan Chaudhary is the visionary behind roadMate. A B.Tech student with a Computer Science background, he founded roadMate with a deep passion for improving urban mobility. The spark for roadMate came when Rohan personally struggled to rent a bike in Bhubaneswar—facing endless paperwork, poorly maintained vehicles, and a lack of transparency. This frustrating experience stayed with him, leading to the observation that local transport needed a trust-driven, tech-first solution. His goal is to bridge this gap by transforming the rental experience into a seamless, reliable journey for every rider.
                                 </p>
-                                <div style={{ display: "flex", gap: "15px", marginTop: "15px" }}>
-                                    <a href="#" style={{ color: "#4a4a4a", transition: "color 0.3s" }} onMouseOver={e => e.currentTarget.style.color = "#0077b5"} onMouseOut={e => e.currentTarget.style.color = "#4a4a4a"}>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                <div style={{ display: "flex", gap: "12px", marginTop: "20px" }}>
+                                    <a href="#" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "36px", height: "36px", borderRadius: "50%", background: "#f1f5f9", color: "#475569", transition: "all 0.3s ease" }} 
+                                       onMouseOver={e => { e.currentTarget.style.background = "#0077b5"; e.currentTarget.style.color = "#fff"; }} 
+                                       onMouseOut={e => { e.currentTarget.style.background = "#f1f5f9"; e.currentTarget.style.color = "#475569"; }}>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                                     </a>
-                                    <a href="#" style={{ color: "#4a4a4a", transition: "color 0.3s" }} onMouseOver={e => e.currentTarget.style.color = RED} onMouseOut={e => e.currentTarget.style.color = "#4a4a4a"}>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                    <a href="#" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "36px", height: "36px", borderRadius: "50%", background: "#f1f5f9", color: "#475569", transition: "all 0.3s ease" }} 
+                                       onMouseOver={e => { e.currentTarget.style.background = RED; e.currentTarget.style.color = "#fff"; }} 
+                                       onMouseOut={e => { e.currentTarget.style.background = "#f1f5f9"; e.currentTarget.style.color = "#475569"; }}>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                     </a>
                                 </div>
                             </div>
@@ -224,12 +228,16 @@ const About = () => {
                                 <p style={{ fontSize: "15.5px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
                                     Ankit Gupta is the Co-Founder of roadMate and has been an integral part of the journey since its very inception. A B.Tech student with an Electrical and Computer Science background, he has worked side-by-side with Rohan from day one, turning a shared vision into a functional reality. Ankit’s technical dedication and hands-on approach have been crucial in building the platform's foundation, navigating early obstacles to ensure ultimate reliability. His strategic insight continues to drive roadMate's mission forward, aiming to redefine transit into a frictionless experience across the city.
                                 </p>
-                                <div style={{ display: "flex", gap: "15px", marginTop: "15px" }}>
-                                    <a href="#" style={{ color: "#4a4a4a", transition: "color 0.3s" }} onMouseOver={e => e.currentTarget.style.color = "#0077b5"} onMouseOut={e => e.currentTarget.style.color = "#4a4a4a"}>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                <div style={{ display: "flex", gap: "12px", marginTop: "20px" }}>
+                                    <a href="#" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "36px", height: "36px", borderRadius: "50%", background: "#f1f5f9", color: "#475569", transition: "all 0.3s ease" }} 
+                                       onMouseOver={e => { e.currentTarget.style.background = "#0077b5"; e.currentTarget.style.color = "#fff"; }} 
+                                       onMouseOut={e => { e.currentTarget.style.background = "#f1f5f9"; e.currentTarget.style.color = "#475569"; }}>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                                     </a>
-                                    <a href="#" style={{ color: "#4a4a4a", transition: "color 0.3s" }} onMouseOver={e => e.currentTarget.style.color = RED} onMouseOut={e => e.currentTarget.style.color = "#4a4a4a"}>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                    <a href="#" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "36px", height: "36px", borderRadius: "50%", background: "#f1f5f9", color: "#475569", transition: "all 0.3s ease" }} 
+                                       onMouseOver={e => { e.currentTarget.style.background = RED; e.currentTarget.style.color = "#fff"; }} 
+                                       onMouseOut={e => { e.currentTarget.style.background = "#f1f5f9"; e.currentTarget.style.color = "#475569"; }}>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                     </a>
                                 </div>
                             </div>
