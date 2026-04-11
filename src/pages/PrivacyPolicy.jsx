@@ -7,26 +7,41 @@ const SLATE = "#000000";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
-const policySections = [
+const policyData = [
     {
-        title: "Information We Collect",
-        content: "We collect information you provide directly to us, such as when you create an account, book a vehicle, or communicate with us. This includes your name, email, phone number, driving license details, and payment information."
+      category: "1. Information Collection",
+      points: [
+        { id: "1.1", text: "We collect information you provide directly to us, such as when you create an account, book a vehicle, or communicate with us." },
+        { id: "1.2", text: "This includes your name, email, phone number, driving license details, and payment information required for booking." }
+      ]
     },
     {
-        title: "How We Use Your Information",
-        content: "We use your information to provide and improve our services, process your bookings, verify your identity, and communicate with you about your rentals and promotional offers."
+      category: "2. Usage & Purpose",
+      points: [
+        { id: "2.1", text: "We use your information to provide and improve our services, process your bookings, and verify your identity." },
+        { id: "2.2", text: "Your data helps us communicate about your rentals, account notifications, and personalized promotional offers." }
+      ]
     },
     {
-        title: "Data Sharing and Disclosure",
-        content: "We do not sell your personal information. We may share your data with verified vehicle partners to facilitate your rental, and with service providers who perform services on our behalf (like payment processing)."
+      category: "3. Sharing & Privacy",
+      points: [
+        { id: "3.1", text: "We do not sell your personal information. We may share data with verified vehicle partners to facilitate your rental." },
+        { id: "3.2", text: "Data may be shared with service providers (like payment processors) who perform essential services on our behalf." }
+      ]
     },
     {
-        title: "Data Security",
-        content: "We implement industry-standard security measures to protect your personal data from unauthorized access, loss, or misuse. However, no method of transmission over the internet is 100% secure."
+      category: "4. Data Security",
+      points: [
+        { id: "4.1", text: "We implement industry-standard security measures to protect your personal data from unauthorized access, loss, or misuse." },
+        { id: "4.2", text: "While we strive for absolute security, no method of transmission over the internet is completely risk-free." }
+      ]
     },
     {
-        title: "Your Rights",
-        content: "You have the right to access, update, or delete your personal information. You can manage your account settings within the app or contact our support team for assistance."
+      category: "5. User Rights",
+      points: [
+        { id: "5.1", text: "You have the right to access, update, or delete your personal information through your account settings." },
+        { id: "5.2", text: "For dedicated support regarding your data, you can contact our privacy team anytime via the provided contact channels." }
+      ]
     }
 ];
 
@@ -88,13 +103,27 @@ const PrivacyPolicy = () => {
 
             {/* CONTENT SECTION */}
             <section style={{ padding: "40px 24px" }}>
-                <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-                    <div style={{ background: "#f8fafc", padding: "50px", borderRadius: "32px", border: "1px solid rgba(0,0,0,0.05)" }}>
-                        {policySections.map((section, index) => (
-                            <div key={index} style={{ marginBottom: index === policySections.length - 1 ? 0 : "40px" }}>
-                                <h3 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, color: SLATE, marginBottom: "12px" }}>{section.title}</h3>
-                                <p style={{ fontSize: "15px", color: "rgba(15,23,42,0.7)", lineHeight: "1.7", margin: 0 }}>{section.content}</p>
-                            </div>
+                <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+                    
+                    <div style={{ marginTop: "10px" }}>
+                        {policyData.map((section, sIdx) => (
+                           <div key={sIdx} style={{ marginBottom: "60px" }}>
+                                <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: SLATE, marginBottom: "25px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                                    {section.category}
+                                </h3>
+                                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                                    {section.points.map((point, pIdx) => (
+                                        <div key={pIdx} style={{ display: "flex", gap: "15px", alignItems: "flex-start" }}>
+                                            <span style={{ fontSize: "14px", fontWeight: 800, color: RED, fontFamily: H, minWidth: "30px", paddingTop: "2px" }}>
+                                                {point.id}
+                                            </span>
+                                            <p style={{ fontSize: "14.5px", color: "#475569", lineHeight: "1.8", margin: 0, fontWeight: 500 }}>
+                                                {point.text}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                           </div>
                         ))}
                     </div>
                     

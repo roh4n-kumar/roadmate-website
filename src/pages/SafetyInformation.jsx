@@ -7,22 +7,34 @@ const SLATE = "#000000";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
-const safetyTips = [
+const safetyData = [
     {
-        title: "Vehicle Inspection",
-        desc: "Always inspect the vehicle before starting your trip. Check for any pre-existing damages, tire pressure, and fuel levels."
+      category: "1. Vehicle Standards",
+      points: [
+        { id: "1.1", text: "Always inspect the vehicle before starting your trip. Check for any pre-existing damages, tire pressure, and fuel levels." },
+        { id: "1.2", text: "Our fleet undergoes regular maintenance checks to ensure peak performance and safety for every user." }
+      ]
     },
     {
-        title: "Safe Driving",
-        desc: "Follow all local traffic rules and speed limits. Wear your seatbelt (or helmet for bikes) at all times."
+      category: "2. Driving Conduct",
+      points: [
+        { id: "2.1", text: "Follow all local traffic rules and strictly adhere to speed limits. roadMate promotes responsible city and highway driving." },
+        { id: "2.2", text: "Wearing mandatory safety gear (Helmets for bikes, Seatbelts for cars) is non-negotiable and required by law." }
+      ]
     },
     {
-        title: "Emergency Support",
-        desc: "In case of an accident or breakdown, contact our 24/7 emergency support immediately through the app or our helpline."
+      category: "3. Emergency protocols",
+      points: [
+        { id: "3.1", text: "In case of an accident or breakdown, contact our 24/7 support immediately through the app or helpline." },
+        { id: "3.2", text: "We provide on-spot assistance and insurance guidance to ensure your safety is never compromised." }
+      ]
     },
     {
-        title: "Verified Community",
-        desc: "All our partners and users are 100% verified to ensure a safe and trustworthy environment for everyone."
+      category: "4. Trust & Verification",
+      points: [
+        { id: "4.1", text: "All our partners and users are 100% verified to ensure a safe and trustworthy community environment." },
+        { id: "4.2", text: "We maintain a rating system to ensure high standards of vehicle upkeep and user responsibility." }
+      ]
     }
 ];
 
@@ -32,7 +44,7 @@ const SafetyInformation = () => {
     }, []);
 
     return (
-        <div style={{ background: "#f8fafc", fontFamily: F, color: "#1a1a1a", minHeight: "100vh" }}>
+        <div style={{ background: "#ffffff", fontFamily: F, color: "#1a1a1a", minHeight: "100vh" }}>
             
             {/* HERO SECTION */}
             <section style={{ 
@@ -83,41 +95,28 @@ const SafetyInformation = () => {
             </section>
 
             {/* CONTENT SECTION */}
-            <section style={{ background: "#ffffff", padding: "40px 24px" }}>
+            <section style={{ padding: "40px 24px" }}>
                 <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "30px" }}>
-                        {safetyTips.map((tip, index) => (
-                            <motion.div 
-                                key={index} 
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                style={{ 
-                                    padding: "40px", 
-                                    background: "#fff", 
-                                    borderRadius: "24px",
-                                    border: "1px solid rgba(15, 23, 42, 0.08)",
-                                    boxShadow: "0 10px 30px rgba(15, 23, 42, 0.03)"
-                                }}
-                            >
-                                <div style={{ 
-                                    width: "50px", 
-                                    height: "50px", 
-                                    borderRadius: "15px", 
-                                    background: `${RED}11`, 
-                                    display: "flex", 
-                                    alignItems: "center", 
-                                    justifyContent: "center",
-                                    marginBottom: "25px"
-                                }}>
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                                    </svg>
+                    
+                    <div style={{ marginTop: "10px" }}>
+                        {safetyData.map((section, sIdx) => (
+                           <div key={sIdx} style={{ marginBottom: "60px" }}>
+                                <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: SLATE, marginBottom: "25px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                                    {section.category}
+                                </h3>
+                                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                                    {section.points.map((point, pIdx) => (
+                                        <div key={pIdx} style={{ display: "flex", gap: "15px", alignItems: "flex-start" }}>
+                                            <span style={{ fontSize: "14px", fontWeight: 800, color: RED, fontFamily: H, minWidth: "30px", paddingTop: "2px" }}>
+                                                {point.id}
+                                            </span>
+                                            <p style={{ fontSize: "14.5px", color: "#475569", lineHeight: "1.8", margin: 0, fontWeight: 500 }}>
+                                                {point.text}
+                                            </p>
+                                        </div>
+                                    ))}
                                 </div>
-                                <h4 style={{ fontSize: "20px", fontWeight: 800, fontFamily: H, margin: "0 0 15px 0", color: SLATE }}>{tip.title}</h4>
-                                <p style={{ fontSize: "15px", color: "rgba(15,23,42,0.7)", lineHeight: "1.7", margin: 0 }}>{tip.desc}</p>
-                            </motion.div>
+                           </div>
                         ))}
                     </div>
 
