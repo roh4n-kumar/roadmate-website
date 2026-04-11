@@ -68,7 +68,7 @@ const Contact = () => {
 
             {/* HERO SECTION (EXISTING STYLE) */}
             <section style={{ 
-                padding: "120px 40px 70px", 
+                padding: "120px 40px 30px", 
                 background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",

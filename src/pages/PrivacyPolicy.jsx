@@ -40,7 +40,7 @@ const PrivacyPolicy = () => {
             
             {/* HERO SECTION */}
             <section style={{ 
-                padding: "120px 40px 70px", 
+                padding: "120px 40px 30px", 
                 background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",
@@ -82,7 +82,7 @@ const PrivacyPolicy = () => {
             </section>
 
             {/* CONTENT SECTION */}
-            <section style={{ padding: "80px 24px" }}>
+            <section style={{ padding: "40px 24px" }}>
                 <div style={{ maxWidth: "800px", margin: "0 auto" }}>
                     <div style={{ background: "#f8fafc", padding: "50px", borderRadius: "32px", border: "1px solid rgba(0,0,0,0.05)" }}>
                         {policySections.map((section, index) => (

@@ -52,7 +52,7 @@ const HelpCenter = () => {
             
             {/* HERO SECTION (Standard Cover) */}
             <section style={{ 
-                padding: "120px 40px 70px", 
+                padding: "120px 40px 30px", 
                 background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",
@@ -99,7 +99,7 @@ const HelpCenter = () => {
             </section>
 
             {/* CONTENT SECTION (White Background) */}
-            <div style={{ flex: 1, background: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", padding: "50px 20px 80px" }}>
+            <div style={{ flex: 1, background: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 20px 80px" }}>
                 <div style={{ maxWidth: "1200px", width: "100%", display: "flex", flexWrap: "wrap", gap: "60px", alignItems: "stretch", justifyContent: "center" }}>
                     
                     {/* LEFT CARD (Stretched to match Right Side height) */}

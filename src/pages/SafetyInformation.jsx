@@ -36,7 +36,7 @@ const SafetyInformation = () => {
             
             {/* HERO SECTION */}
             <section style={{ 
-                padding: "120px 40px 70px", 
+                padding: "120px 40px 30px", 
                 background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",
@@ -83,7 +83,7 @@ const SafetyInformation = () => {
             </section>
 
             {/* CONTENT SECTION */}
-            <section style={{ background: "#ffffff", padding: "80px 24px" }}>
+            <section style={{ background: "#ffffff", padding: "40px 24px" }}>
                 <div style={{ maxWidth: "900px", margin: "0 auto" }}>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "30px" }}>
                         {safetyTips.map((tip, index) => (

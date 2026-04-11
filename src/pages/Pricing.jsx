@@ -125,7 +125,7 @@ const Pricing = () => {
 
             {/* HERO SECTION */}
             <section style={{ 
-                padding: "120px 40px 100px", 
+                padding: "120px 40px 30px", 
                 background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",
@@ -209,7 +209,7 @@ const Pricing = () => {
             </section>
 
             {/* PRICING CARDS */}
-            <section style={{ padding: "80px 24px 120px", maxWidth: "1250px", margin: "-60px auto 0", position: "relative", zIndex: 10 }}>
+            <section style={{ padding: "40px 24px 120px", maxWidth: "1250px", margin: "-20px auto 0", position: "relative", zIndex: 10 }}>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "30px" }}>
                     {pricingData.map((plan, i) => (
                         <motion.div 

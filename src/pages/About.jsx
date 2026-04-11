@@ -107,7 +107,7 @@ const About = () => {
 
              {/* HERO SECTION */}
              <div style={{ 
-                padding: "120px 40px 70px", 
+                padding: "120px 40px 30px", 
                 background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",
@@ -205,7 +205,7 @@ const About = () => {
              </div>
 
              {/* FEATURE GRID */}
-             <div style={{ padding: "80px 40px", background: "#f8f9fa" }}>
+             <section style={{ padding: "40px 24px", background: "#f8f9fa" }}>
                  <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
                     <div style={{ textAlign: "center", marginBottom: "70px" }}>
                          <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H }}>The <span style={{ color: BLUE }}>roadMate</span> <span style={{ color: RED }}>Difference</span></h2>

@@ -67,7 +67,7 @@ const TermsOfService = () => {
             
             {/* HERO SECTION */}
             <section style={{ 
-                padding: "120px 40px 70px", 
+                padding: "120px 40px 30px", 
                 background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",
@@ -115,12 +115,12 @@ const TermsOfService = () => {
             </section>
 
             {/* CONTENT SECTION */}
-            <section style={{ padding: "80px 24px" }}>
+            <section style={{ padding: "40px 24px" }}>
                 <div style={{ maxWidth: "900px", margin: "0 auto" }}>
                     
 
 
-                    <div style={{ marginTop: "40px" }}>
+                    <div style={{ marginTop: "10px" }}>
                         {tosData.map((section, sIdx) => (
                            <div key={sIdx} style={{ marginBottom: "60px" }}>
                                 <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: SLATE, marginBottom: "25px", textTransform: "uppercase", letterSpacing: "1px" }}>
