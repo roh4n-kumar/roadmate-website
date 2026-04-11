@@ -182,7 +182,7 @@ const About = () => {
                     {/* MANAGEMENT TEAM SECTION */}
                     <div className="animate-box delay-1">
                         <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "30px", textTransform: "uppercase", letterSpacing: "1px" }}>
-                            Management Team
+                            Our Leaders
                         </h2>
                         
                         <div style={{ display: "flex", gap: "30px", marginBottom: "40px", alignItems: "flex-start" }}>
@@ -202,7 +202,7 @@ const About = () => {
                             </div>
                         </div>
 
-                        <div style={{ display: "flex", gap: "30px", alignItems: "flex-start", flexDirection: "row-reverse" }}>
+                        <div style={{ display: "flex", gap: "30px", alignItems: "flex-start" }}>
                             <div style={{ width: "250px", height: "250px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
                             <img src="/co_founder.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }} alt="Co-Founder" />
                             </div>
