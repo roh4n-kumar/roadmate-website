@@ -190,9 +190,12 @@ const About = () => {
                                 <img src="/Founder%20%26%20CEO.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} alt="Founder & CEO" />
                             </div>
                             <div>
-                                <h3 style={{ fontSize: "19px", fontWeight: 800, fontFamily: H, marginBottom: "8px" }}>
-                                    <span style={{ color: BLUE }}>Rohan Chaudhary</span>, <span style={{ color: RED }}>Founder & CEO</span>
+                                <h3 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, marginBottom: "2px", color: "#0f172a" }}>
+                                    Rohan Chaudhary
                                 </h3>
+                                <div style={{ fontSize: "15px", fontWeight: 700, fontFamily: H, color: RED, marginBottom: "12px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                                    Founder & CEO
+                                </div>
                                 <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
                                     Rohan Chaudhary is the visionary behind roadMate. With a deep passion for improving urban mobility and a background in strategic development, he founded roadMate to bridge the gap in Bhubaneswar's local transport. He is dedicated to transforming the rental experience into a seamless, trust-driven journey for every rider.
                                 </p>
@@ -204,9 +207,12 @@ const About = () => {
                             <img src="/Co-Founder.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }} alt="Co-Founder" />
                             </div>
                             <div>
-                                <h3 style={{ fontSize: "19px", fontWeight: 800, fontFamily: H, marginBottom: "8px" }}>
-                                    <span style={{ color: BLUE }}>Ankit Gupta</span>, <span style={{ color: RED }}>Co-Founder</span>
+                                <h3 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, marginBottom: "2px", color: "#0f172a" }}>
+                                    Ankit Gupta
                                 </h3>
+                                <div style={{ fontSize: "15px", fontWeight: 700, fontFamily: H, color: RED, marginBottom: "12px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                                    Co-Founder
+                                </div>
                                 <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
                                     Ankit Gupta is the Co-Founder of roadMate and has been an integral part of the journey since its very inception. Working side-by-side with Rohan from day one, his dedication and strategic insight have been crucial in building the foundation of roadMate. He continues to drive our mission forward with a shared vision of transforming urban mobility.
                                 </p>
