@@ -118,8 +118,7 @@ const About = () => {
                 <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 2 }}>
                     <div style={{ 
                             display: "inline-block", 
-                            background: "rgba(255, 255, 255, 0.1)", 
-                            backdropFilter: "blur(10px)",
+                            background: "#ffffff", 
                             color: RED, 
                             fontSize: "14px", 
                             fontWeight: 900, 
@@ -128,7 +127,7 @@ const About = () => {
                             padding: "10px 24px", 
                             borderRadius: "99px", 
                             marginBottom: "20px",
-                            border: "1px solid rgba(255, 255, 255, 0.2)"
+                            border: "none"
                         }}>
                         Discover roadMate
                     </div>

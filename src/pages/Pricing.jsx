@@ -140,8 +140,7 @@ const Pricing = () => {
                         transition={{ duration: 0.6 }}
                         style={{ 
                             display: "inline-block", 
-                            background: "rgba(255, 255, 255, 0.1)", 
-                            backdropFilter: "blur(10px)",
+                            background: "#ffffff", 
                             color: RED, 
                             fontSize: "14px", 
                             fontWeight: 900, 
@@ -150,7 +149,7 @@ const Pricing = () => {
                             padding: "10px 24px", 
                             borderRadius: "99px", 
                             marginBottom: "20px",
-                            border: "1px solid rgba(255, 255, 255, 0.2)"
+                            border: "none"
                         }}
                     >
                         Transparent Pricing
