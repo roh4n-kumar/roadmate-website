@@ -249,24 +249,43 @@ const About = () => {
              {/* FEATURE GRID */}
               <section style={{ padding: "80px 24px", background: "#f8f9fa" }}>
                  <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
-                    {/* VISION */}
-                    <div style={{ textAlign: "center", marginBottom: "80px", maxWidth: "900px", margin: "0 auto 100px" }}>
-                         <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H, marginBottom: "30px" }}>Our <span style={{ color: RED }}>Vision</span></h2>
-                         <p style={{ fontSize: "24px", lineHeight: 1.6, color: "#1e293b", fontWeight: 500, fontStyle: "italic", marginBottom: "40px" }}>
-                            "To become the pulse of urban mobility, transforming every commute into a seamless, reliable, and empowering journey for everyone."
-                         </p>
-                         <div style={{ width: "80px", height: "4px", background: RED, margin: "0 auto" }}></div>
+                    
+                    {/* VISION SECTION (Leader Style) */}
+                    <div className="animate-box" style={{ marginBottom: "80px" }}>
+                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "30px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                            Our Vision
+                        </h2>
+                        <div style={{ display: "flex", gap: "30px", alignItems: "flex-start" }}>
+                            <div style={{ width: "250px", height: "180px", borderRadius: "0", background: "#fff", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(0,0,0,0.05)" }}>
+                                <IconMission />
+                            </div>
+                            <div>
+                                <p style={{ fontSize: "22px", lineHeight: 1.6, color: "#1e293b", fontWeight: 500, fontStyle: "italic" }}>
+                                    "To become the pulse of urban mobility, transforming every commute into a seamless, reliable, and empowering journey for everyone."
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div style={{ textAlign: "center", marginBottom: "60px" }}>
-                         <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H }}>Our <span style={{ color: BLUE }}>Core</span> <span style={{ color: RED }}>Values</span></h2>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "30px" }}>
+                    {/* VALUES SECTION (Leader Style) */}
+                    <div className="animate-box">
+                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "30px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                            Our Values
+                        </h2>
+                        
                         {values.map((v, i) => (
-                            <div key={i} className={`glass-card animate-box delay-${i+1}`}>
-                                <div style={{ fontSize: "40px", marginBottom: "25px" }}>{v.icon}</div>
-                                <h3 style={{ fontSize: "22px", fontWeight: 800, marginBottom: "15px", fontFamily: H }}>{v.title}</h3>
-                                <p style={{ fontSize: "15px", color: "#64748b", lineHeight: 1.7 }}>{v.desc}</p>
+                            <div key={i} style={{ display: "flex", gap: "30px", marginBottom: "40px", alignItems: "flex-start" }} className={`animate-box delay-${i+1}`}>
+                                <div style={{ width: "250px", height: "150px", borderRadius: "0", background: "#fff", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(0,0,0,0.05)" }}>
+                                    {v.icon}
+                                </div>
+                                <div>
+                                    <h3 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, marginTop: "4px", marginBottom: "12px", color: "#000", lineHeight: 1.1 }}>
+                                        {v.title}
+                                    </h3>
+                                    <p style={{ fontSize: "15.5px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
+                                        {v.desc}
+                                    </p>
+                                </div>
                             </div>
                         ))}
                     </div>
