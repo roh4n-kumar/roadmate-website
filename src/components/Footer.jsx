@@ -158,7 +158,7 @@ const Footer = () => {
                 {[
                   { name: "Special Offers", path: "/offers" }, 
                   { name: "How It Works", path: "/how-it-works" }, 
-                  { name: "RoadMate Blogs", path: "/blogs" }, 
+                  { name: "Blogs", path: "/blogs" }, 
                   { name: "Partner With Us", path: "/partner-with-us" }
                 ].map(item => (
                   <Link key={item.name} to={item.path} style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>{item.name}</Link>
