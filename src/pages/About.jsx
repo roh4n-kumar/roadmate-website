@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import Footer from "../components/Footer";
 
 const RED = "#be0d0d";
-const BLUE = "#0f172a";
+const BLUE = "#000000";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
@@ -71,9 +71,9 @@ const About = () => {
 
     const features = [
         { icon: <IconMission />, title: "Our Mission", desc: "To revolutionize local transport by making vehicle rentals as simple as checking your phone. We're starting in Bhubaneswar to empower every traveler with freedom and accessibility." },
-        { icon: <IconSafety />, title: "Trust & Safety", desc: "Every vehicle on RoadMate undergoes a rigorous 50-point inspection. We partner with local experts to ensure your ride is safe, clean, and reliable." },
+        { icon: <IconSafety />, title: "Trust & Safety", desc: "Every vehicle on roadMate undergoes a rigorous 50-point inspection. We partner with local experts to ensure your ride is safe, clean, and reliable." },
         { icon: <IconAccess />, title: "Instant Access", desc: "No more long queues or endless paperwork. Our digital-first approach means you can go from browsing to riding in under 2 minutes." },
-        { icon: <IconCommunity />, title: "Community First", desc: "RoadMate isn't just a rental service; it's a community. We believe in providing value to both our riders and our local partners." }
+        { icon: <IconCommunity />, title: "Community First", desc: "roadMate isn't just a rental service; it's a community. We believe in providing value to both our riders and our local partners." }
     ];
 
 
@@ -108,13 +108,12 @@ const About = () => {
              {/* HERO SECTION */}
              <div style={{ 
                 padding: "120px 40px 70px", 
-                background: "linear-gradient(180deg, #111 0%, #0f172a 100%)", 
+                background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",
                 position: "relative",
                 overflow: "hidden"
              }}>
-                <div style={{ position: "absolute", top: "-50%", left: "-10%", width: "60%", height: "200%", background: `radial-gradient(circle, ${RED}11 0%, transparent 70%)`, pointerEvents: "none" }} />
                 
                 <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative", zIndex: 2 }}>
                     <div className="animate-box" style={{ 
@@ -130,7 +129,7 @@ const About = () => {
                         marginBottom: "30px",
                         border: `1px solid ${RED}33`
                     }}>
-                        Discover RoadMate
+                        Discover roadMate
                     </div>
                     <h1 className="animate-box delay-1" style={{ 
                         fontSize: "56px", 
@@ -162,10 +161,10 @@ const About = () => {
                         <span style={{ color: BLUE }}>About</span> <span style={{ color: RED }}>Us</span>
                     </h2>
                     <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "20px", textAlign: "justify" }}>
-                        RoadMate was born from a simple yet powerful observation: the freedom of movement shouldn't be a luxury or a bureaucratic hurdle. In a fast-evolving city like Bhubaneswar, we noticed that while the need for local travel was growing, the means to access reliable, clean, and well-maintained vehicles remained surprisingly difficult. Whether you are a student striving for a better commute, a professional navigating a busy schedule, or a traveler eager to explore the hidden joys of Odisha, RoadMate is here to ensure that your journey starts on the right note.
+                        roadMate was born from a simple yet powerful observation: the freedom of movement shouldn't be a luxury or a bureaucratic hurdle. In a fast-evolving city like Bhubaneswar, we noticed that while the need for local travel was growing, the means to access reliable, clean, and well-maintained vehicles remained surprisingly difficult. Whether you are a student striving for a better commute, a professional navigating a busy schedule, or a traveler eager to explore the hidden joys of Odisha, roadMate is here to ensure that your journey starts on the right note.
                     </p>
                     <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
-                        We didn't just want to build a rental service; we wanted to create a travel ecosystem where convenience meets trust. Our platform bridges the gap between high-quality local vehicles and the modern rider who values efficiency, fair pricing, and absolute transparency. We are committed to empowering every individual with the freedom they deserve, making every trip—whether it's a few miles or a few hundred—a memory to cherish. At RoadMate, your journey is our pride, and your satisfaction is our mission.
+                        We didn't just want to build a rental service; we wanted to create a travel ecosystem where convenience meets trust. Our platform bridges the gap between high-quality local vehicles and the modern rider who values efficiency, fair pricing, and absolute transparency. We are committed to empowering every individual with the freedom they deserve, making every trip—whether it's a few miles or a few hundred—a memory to cherish. At roadMate, your journey is our pride, and your satisfaction is our mission.
                     </p>
                  </div>
 
@@ -184,7 +183,7 @@ const About = () => {
                                 <span style={{ color: BLUE }}>Rohan Chaudhary</span>, <span style={{ color: RED }}>Founder & CEO</span>
                             </h3>
                             <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
-                                Rohan Chaudhary is the visionary behind RoadMate. With a deep passion for improving urban mobility and a background in strategic development, he founded RoadMate to bridge the gap in Bhubaneswar's local transport. He is dedicated to transforming the rental experience into a seamless, trust-driven journey for every rider.
+                                Rohan Chaudhary is the visionary behind roadMate. With a deep passion for improving urban mobility and a background in strategic development, he founded roadMate to bridge the gap in Bhubaneswar's local transport. He is dedicated to transforming the rental experience into a seamless, trust-driven journey for every rider.
                             </p>
                         </div>
                     </div>
@@ -198,7 +197,7 @@ const About = () => {
                                 <span style={{ color: BLUE }}>Ankit Gupta</span>, <span style={{ color: RED }}>Co-Founder</span>
                             </h3>
                             <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
-                                Ankit Gupta is the Co-Founder of RoadMate and has been an integral part of the journey since its very inception. Working side-by-side with Rohan from day one, his dedication and strategic insight have been crucial in building the foundation of RoadMate. He continues to drive our mission forward with a shared vision of transforming urban mobility.
+                                Ankit Gupta is the Co-Founder of roadMate and has been an integral part of the journey since its very inception. Working side-by-side with Rohan from day one, his dedication and strategic insight have been crucial in building the foundation of roadMate. He continues to drive our mission forward with a shared vision of transforming urban mobility.
                             </p>
                         </div>
                     </div>
@@ -209,7 +208,7 @@ const About = () => {
              <div style={{ padding: "80px 40px", background: "#f8f9fa" }}>
                  <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
                     <div style={{ textAlign: "center", marginBottom: "70px" }}>
-                         <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H }}>The <span style={{ color: BLUE }}>RoadMate</span> <span style={{ color: RED }}>Difference</span></h2>
+                         <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H }}>The <span style={{ color: BLUE }}>roadMate</span> <span style={{ color: RED }}>Difference</span></h2>
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "30px" }}>
                         {features.map((f, i) => (
@@ -230,7 +229,7 @@ const About = () => {
                  <div style={{ 
                     maxWidth: "1250px", 
                     margin: "0 auto", 
-                    background: "linear-gradient(135deg, #111 0%, #0f172a 100%)", 
+                    background: "#000000", 
                     borderRadius: "40px", 
                     padding: "80px 40px", 
                     textAlign: "center",
@@ -238,10 +237,9 @@ const About = () => {
                     position: "relative",
                     overflow: "hidden"
                  }}>
-                    <div style={{ position: "absolute", bottom: "-20%", right: "-10%", width: "40%", height: "100%", background: `radial-gradient(circle, ${RED}22 0%, transparent 70%)`, pointerEvents: "none" }} />
                     <h2 style={{ fontSize: "56px", fontWeight: 900, fontFamily: H, marginBottom: "30px", letterSpacing: "-1px" }}>Ready to hit the <span style={{ color: RED }}>road?</span></h2>
                     <p style={{ fontSize: "20px", color: "rgba(255,255,255,0.7)", marginBottom: "40px", maxWidth: "600px", margin: "0 auto 40px" }}>
-                        Join thousands of smart riders in Bhubaneswar who choose RoadMate for their daily commute and weekend trips.
+                        Join thousands of smart riders in Bhubaneswar who choose roadMate for their daily commute and weekend trips.
                     </p>
                     <button 
                         onClick={() => window.location.href = "/"}

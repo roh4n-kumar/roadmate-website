@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Footer from "../components/Footer";
 
 const RED = "#be0d0dff";
-const SLATE = "#0f172a";
+const SLATE = "#000000";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
@@ -53,30 +53,28 @@ const HelpCenter = () => {
             {/* HERO SECTION (Standard Cover) */}
             <section style={{ 
                 padding: "120px 40px 70px", 
-                background: "linear-gradient(180deg, #111 0%, #0f172a 100%)", 
+                background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",
                 position: "relative",
                 overflow: "hidden"
             }}>
-                <div style={{ position: "absolute", top: "-50%", left: "-10%", width: "60%", height: "200%", background: `radial-gradient(circle, ${RED}11 0%, transparent 70%)`, pointerEvents: "none" }} />
                 <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative", zIndex: 2 }}>
                         <motion.div 
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             style={{ 
                                 display: "inline-block", 
-                                background: "rgba(190, 13, 13, 0.12)", 
+                                background: `${RED}22`, 
                                 color: RED, 
-                                fontSize: "12px", 
+                                fontSize: "14px", 
                                 fontWeight: 900, 
                                 textTransform: "uppercase", 
-                                letterSpacing: "4px", 
-                                padding: "12px 36px", 
+                                letterSpacing: "3px", 
+                                padding: "10px 24px", 
                                 borderRadius: "99px", 
                                 marginBottom: "30px",
-                                border: `1.5px solid rgba(190, 13, 13, 0.3)`,
-                                backdropFilter: "blur(4px)"
+                                border: `1px solid ${RED}33`
                             }}
                         >
                             24/7 Support
@@ -95,7 +93,7 @@ const HelpCenter = () => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         style={{ fontSize: "18px", color: "rgba(255,255,255,0.7)", lineHeight: 1.6, maxWidth: "600px", margin: "0 auto 30px" }}
                     >
-                        Welcome to RoadMate Support. We're here to ensure your journey is smooth and worry-free.
+                        Welcome to roadMate Support. We're here to ensure your journey is smooth and worry-free.
                     </motion.p>
                 </div>
             </section>
@@ -347,7 +345,7 @@ const HelpCenter = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 style={{ fontSize: "44px", fontWeight: 900, fontFamily: H, marginBottom: "5px", letterSpacing: "-1.5px", marginTop: 0 }}
                             >
-                                <span style={{ color: SLATE }}>Road</span><span style={{ color: RED }}>Mate</span> Help
+                                <span style={{ color: SLATE }}>road</span><span style={{ color: RED }}>Mate</span> Help
                             </motion.h1>
                             <motion.p 
                                 initial={{ opacity: 0, y: 20 }}

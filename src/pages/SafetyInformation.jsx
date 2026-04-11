@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Footer from "../components/Footer";
 
 const RED = "#be0d0dff";
-const SLATE = "#0f172a";
+const SLATE = "#000000";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
@@ -37,13 +37,12 @@ const SafetyInformation = () => {
             {/* HERO SECTION */}
             <section style={{ 
                 padding: "120px 40px 70px", 
-                background: "linear-gradient(180deg, #111 0%, #0f172a 100%)", 
+                background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",
                 position: "relative",
                 overflow: "hidden"
             }}>
-                <div style={{ position: "absolute", top: "-50%", left: "-10%", width: "60%", height: "200%", background: `radial-gradient(circle, ${RED}11 0%, transparent 70%)`, pointerEvents: "none" }} />
                 <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 2 }}>
                     <motion.div 
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -123,7 +122,6 @@ const SafetyInformation = () => {
                     </div>
 
                     <div style={{ marginTop: "80px", padding: "50px", background: SLATE, borderRadius: "32px", color: "#fff", position: "relative", overflow: "hidden" }}>
-                        <div style={{ position: "absolute", bottom: "-20%", right: "-5%", width: "40%", height: "80%", background: `radial-gradient(circle, ${RED}22 0%, transparent 70%)` }} />
                         <h4 style={{ fontSize: "24px", fontWeight: 900, fontFamily: H, marginBottom: "15px" }}>Incident Reporting</h4>
                         <p style={{ fontSize: "16px", color: "rgba(255,255,255,0.7)", lineHeight: "1.6", maxWidth: "600px", marginBottom: "0" }}>
                             If you encounter any issues during your trip, our support team is available at <strong>+91 98765 43210</strong>. 

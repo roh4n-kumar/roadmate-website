@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 
 const RED = "#be0d0d";
-const BLUE = "#0f172a";
+const BLUE = "#000000";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
@@ -126,13 +126,12 @@ const Pricing = () => {
             {/* HERO SECTION */}
             <section style={{ 
                 padding: "120px 40px 100px", 
-                background: "linear-gradient(180deg, #111 0%, #0f172a 100%)", 
+                background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",
                 position: "relative",
                 overflow: "hidden"
             }}>
-                <div style={{ position: "absolute", top: "-50%", left: "-10%", width: "60%", height: "200%", background: `radial-gradient(circle, ${RED}11 0%, transparent 70%)`, pointerEvents: "none" }} />
                 
                 <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative", zIndex: 2 }}>
                     <motion.div 
