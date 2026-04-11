@@ -102,9 +102,7 @@ const TermsOfService = () => {
                     >
                         Terms of <span style={{ color: RED }}>Service</span>
                     </motion.h1>
-                    <p style={{ fontSize: "16px", color: "rgba(255,255,255,0.7)", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase" }}>
-                        Effective Date: April 2026
-                    </p>
+
                 </div>
             </section>
 
@@ -112,22 +110,7 @@ const TermsOfService = () => {
             <section style={{ padding: "80px 24px" }}>
                 <div style={{ maxWidth: "900px", margin: "0 auto" }}>
                     
-                    {/* Header Note */}
-                    <div style={{ padding: "30px", background: "#f8fafc", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.04)", marginBottom: "60px" }}>
-                        <p style={{ margin: 0, fontSize: "15px", fontWeight: 600, color: RED, display: "flex", gap: "10px", alignItems: "center" }}>
-                           <span style={{ fontSize: "20px" }}>⚠️</span> IMPORTANT : ADHERE TO STATE GUIDELINES
-                        </p>
-                        <p style={{ fontSize: "14px", color: "#64748b", lineHeight: 1.6, marginTop: "10px", margin: "10px 0 0 0" }}>
-                            Please read these terms carefully. By using roadMate, you acknowledge that you have read, understood, and agreed to be bound by these guidelines and regional traffic regulations.
-                        </p>
-                    </div>
 
-                    {/* TOS Render */}
-                    <div style={{ textAlign: "center", marginBottom: "50px" }}>
-                        <h2 style={{ fontSize: "28px", fontWeight: 900, fontFamily: H, color: RED, display: "inline-block", borderBottom: `3px solid ${RED}`, paddingBottom: "5px" }}>
-                            TERMS OF SERVICE
-                        </h2>
-                    </div>
 
                     <div style={{ marginTop: "40px" }}>
                         {tosData.map((section, sIdx) => (
