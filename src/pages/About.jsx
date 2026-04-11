@@ -158,8 +158,8 @@ const About = () => {
                 <div style={{ padding: "40px 0 80px", maxWidth: "1250px", margin: "0 auto", textAlign: "left" }}>
                     {/* ABOUT US */}
                     <div className="animate-box">
-                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
-                            <span style={{ color: BLUE }}>About</span> <span style={{ color: RED }}>Us</span>
+                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                            About Us
                         </h2>
                         <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "20px", textAlign: "justify" }}>
                             roadMate was born from a simple yet powerful observation: the freedom of movement shouldn't be a luxury or a bureaucratic hurdle. In a fast-evolving city like Bhubaneswar, we noticed that while the need for local travel was growing, the means to access reliable, clean, and well-maintained vehicles remained surprisingly difficult. Whether you are a student striving for a better commute, a professional navigating a busy schedule, or a traveler eager to explore the hidden joys of Odisha, roadMate is here to ensure that your journey starts on the right note.
@@ -171,8 +171,8 @@ const About = () => {
 
                     {/* OUR MISSION */}
                     <div className="animate-box">
-                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
-                            <span style={{ color: BLUE }}>Our</span> <span style={{ color: RED }}>Mission</span>
+                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                            Our Mission
                         </h2>
                         <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
                             At roadMate, our mission is to redefine the landscape of urban mobility through a localized, high-fidelity lens. We believe that everyone deserves the freedom to move without boundaries, regardless of their destination or duration. By combining cutting-edge technology with a customer-first approach, we are building a seamless rental experience that is as instinctive as it is reliable. Our journey begins in Bhubaneswar, where we aim to set a new benchmark for trust, cleanliness, and accessibility, eventually scaling this vision to empower explorers across the nation. Through transparent pricing, verified fleets, and 24/7 support, we are turning transit into a frictionless experience, one ride at a time.
@@ -181,8 +181,8 @@ const About = () => {
 
                     {/* MANAGEMENT TEAM SECTION */}
                     <div className="animate-box delay-1">
-                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, marginBottom: "30px", textTransform: "uppercase", letterSpacing: "1px" }}>
-                            <span style={{ color: BLUE }}>Management</span> <span style={{ color: RED }}>Team</span>
+                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "30px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                            Management Team
                         </h2>
                         
                         <div style={{ display: "flex", gap: "30px", marginBottom: "40px", alignItems: "flex-start" }}>
