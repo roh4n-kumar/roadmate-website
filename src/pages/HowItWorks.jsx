@@ -9,24 +9,24 @@ const H   = "'Outfit', sans-serif";
 
 const howItWorksData = [
   {
-    category: "1. Search & Select",
-    content: "Browse our wide range of 100% verified cars and bikes. Filter by type, price, and availability to find your perfect match. Enter your pickup and drop-off dates to get instant pricing. We offer flexible hourly and daily rental plans."
+    category: "1. Search & Select Your Ride",
+    content: "The RoadMate journey begins with a seamless discovery experience. Browse through our extensive fleet of 100% verified cars and bikes listed by trusted local hosts. Use our advanced filters to sort by vehicle type, fuel preference, transmission, and price range to find the perfect match for your needs. Simply enter your desired pickup location and dates to see real-time availability and transparent pricing. We offer flexible plans, from short hourly rentals for quick errands to daily or weekly plans for long road trips and self-drive adventures."
   },
   {
-    category: "2. Profile Verification",
-    content: "New users need to complete a one-time verification. Upload your valid Driving License and Aadhaar card. Our team typically verifies documents within 30-60 minutes, ensuring a secure community for all travelers."
+    category: "2. One-Time Digital Verification",
+    content: "To maintain a safe and secure community, all new RoadMate users undergo a quick, one-time digital verification process. You'll need to upload a clear photograph of your valid, permanent Driving License (original) and an identity proof such as an Aadhaar card or Passport. Our automated systems and dedicated safety team typically complete the verification within 30-60 minutes. Once verified, you're a member of the RoadMate community for life and can book any vehicle instantly without having to re-upload documents for future trips."
   },
   {
-    category: "3. Secure Payment",
-    content: "Confirm your booking by paying through our secure payment gateway. We support UPI, Credit/Debit cards, and Net Banking. Receive an instant booking confirmation via email and SMS with vehicle details and pickup location."
+    category: "3. Secure Online Booking",
+    content: "Once you've found your ride, confirming your booking is just a few taps away. Our checkout process is protected by industry-standard encryption, and we support a wide variety of payment methods including UPI, Credit/Debit cards, and Net Banking. We believe in transparency—the price you see is the price you pay, with no hidden charges for basic insurance or platform fees. After a successful payment, you'll receive an instant confirmation via the app, email, and SMS, containing your unique booking ID, pickup instructions, and host contact details."
   },
   {
-    category: "4. Pickup & Ride",
-    content: "Arrive at the designated pickup point or get your vehicle delivered to your doorstep (at select locations). Perform a quick inspection, share the OTP with the partner, and you're ready to hit the road!"
+    category: "4. Handover & Inspection",
+    content: "On the day of your booking, head to the designated pickup point or have the vehicle delivered to your doorstep if you've opted for home delivery. Our vehicle partners will assist you with a quick physical handover. To protect your interests, we recommend doing a thorough inspection of the vehicle, including checking the fuel level, tire condition, and existing minor dents or scratches. Share the Booking OTP with the host only after you are satisfied with the vehicle's condition. Capture a quick walkaround video for your own reference, and you're ready to hit the road!"
   },
   {
-    category: "5. Safe Return",
-    content: "Return the vehicle at the scheduled time and location. Ensure fuel levels match the pickup state to avoid extra charges. Once the partner confirms the safe return, your refundable security deposit (if any) is initiated immediately."
+    category: "5. Safe Ride & Easy Return",
+    content: "Enjoy your self-drive experience with the peace of mind that comes with our 24/7 roadside assistance. As your rental period comes to an end, navigate back to the drop-off location and return the vehicle at the scheduled time. Ensure that you return the vehicle with the same fuel level as was provided at pickup to avoid additional refueling convenience charges. The host will perform a final check to confirm the vehicle's safe return. If a security deposit was charged, the refund is initiated immediately to your original payment source, reflecting in your account as per your bank's processing time."
   }
 ];
 
@@ -81,7 +81,7 @@ const HowItWorks = () => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         style={{ fontSize: "16px", color: "rgba(255,255,255,0.6)", lineHeight: 1.6, maxWidth: "600px", margin: "0 auto" }}
                     >
-                        The simple 5-step process to getting your favorite ride with RoadMate.
+                        The simple 5-step process to getting your favorite ride and starting your journey with RoadMate.
                     </motion.p>
                 </div>
             </section>
@@ -105,7 +105,7 @@ const HowItWorks = () => {
 
                     <div style={{ marginTop: "60px", textAlign: "center" }}>
                         <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.4)" }}>
-                            Still have questions? Check our <a href="/help-center" style={{ color: RED, textDecoration: "none", fontWeight: 700 }}>Help Center</a> or contact us at support@roadmate.in
+                            Still have questions about the process? Check our <a href="/help-center" style={{ color: RED, textDecoration: "none", fontWeight: 700 }}>Help Center</a> or contact us at support@roadmate.in
                         </p>
                     </div>
                 </div>

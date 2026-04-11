@@ -10,23 +10,23 @@ const H   = "'Outfit', sans-serif";
 const policyData = [
     {
       category: "1. Information Collection",
-      content: "We collect information you provide directly to us, such as when you create an account, book a vehicle, or communicate with us. This includes your name, email, phone number, driving license details, and payment information required for booking."
+      content: "At roadMate, we collect information you provide directly to us when you create an account, book a vehicle, or communicate with our support team. This primarily includes your legal name, verified email address, phone number, and detailed driving license information. For booking purposes, we also process payment information through secure third-party gateways. Additionally, we may collect technical data such as your IP address, browser type, and device identifiers to ensure a stable and secure session on our platform."
     },
     {
       category: "2. Usage & Purpose",
-      content: "We use your information to provide and improve our services, process your bookings, and verify your identity. Your data helps us communicate about your rentals, account notifications, and personalized promotional offers."
+      content: "We use your personal information to facilitate smooth rental operations, process your bookings efficiently, and verify your eligibility as a safe driver. Your data helps us provide you with real-time notifications about your trip status, promotional offers that match your travel habits, and critical safety updates. Furthermore, we analyze aggregated, non-identifiable usage patterns to improve our app interface, optimize vehicle availability in specific regions, and enhance our overall customer support experience."
     },
     {
       category: "3. Sharing & Privacy",
-      content: "We do not sell your personal information. We may share data with verified vehicle partners to facilitate your rental. Data may be shared with service providers (like payment processors) who perform essential services on our behalf."
+      content: "We maintain a strict policy against selling your personal information to third parties for marketing. We share your data only with verified vehicle partners and hosts specifically involved in your rental to ensure a seamless handover. We may also collaborate with trusted service providers, such as payment processors and identity verification agencies, who are contractually obligated to protect your data. Disclosure of information may also occur if required by law or to protect the safety and rights of roadMate, our users, and the public."
     },
     {
       category: "4. Data Security",
-      content: "We implement industry-standard security measures to protect your personal data from unauthorized access, loss, or misuse. While we strive for absolute security, no method of transmission over the internet is completely risk-free."
+      content: "Your privacy is paramount. We implement industry-leading encryption and security protocols to safeguard your personal data from unauthorized access, accidental loss, or misuse. This includes the use of Secure Socket Layer (SSL) technology for data transmission and restricted access to personal information by our team. While we strive for the highest level of protection, please be aware that no transmission over the internet or electronic storage is 100% secure, and users are encouraged to maintain strong, unique passwords for their accounts."
     },
     {
-      category: "5. User Rights",
-      content: "You have the right to access, update, or delete your personal information through your account settings. For dedicated support regarding your data, you can contact our privacy team anytime via the provided contact channels."
+      category: "5. User Rights & Data Retention",
+      content: "You have the full right to access, update, or request the correction of your personal data through your profile settings. If you wish to delete your account or retract your consent for certain data usage, you can contact our privacy officer. We retain your personal information only as long as necessary to fulfill the purposes outlined in this policy or to comply with legal, tax, and accounting requirements. Following this period, your data is either securely deleted or anonymized for long-term analytical use."
     }
 ];
 
@@ -81,7 +81,7 @@ const PrivacyPolicy = () => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         style={{ fontSize: "16px", color: "rgba(255,255,255,0.6)", lineHeight: 1.6, maxWidth: "600px", margin: "0 auto" }}
                     >
-                        We value your privacy and are committed to protecting your personal data.
+                        We value your trust and are committed to protecting your personal data with the highest security standards.
                     </motion.p>
                 </div>
             </section>
@@ -105,7 +105,7 @@ const PrivacyPolicy = () => {
                     
                     <div style={{ marginTop: "60px", textAlign: "center" }}>
                         <p style={{ fontSize: "14px", color: "rgba(15,23,42,0.4)" }}>
-                            If you have any questions about this Privacy Policy, please contact us at privacy@roadmate.in
+                            If you have further questions about how we handle your data, please contact us at privacy@roadmate.in
                         </p>
                     </div>
                 </div>
