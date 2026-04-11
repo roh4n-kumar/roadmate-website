@@ -242,6 +242,8 @@ const About = () => {
                                 </div>
                             </div>
                         </div>
+                    </div>
+ 
                     {/* VISION */}
                     <div className="animate-box">
                         <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
