@@ -69,11 +69,11 @@ const About = () => {
         </svg>
     );
 
-    const features = [
-        { icon: <IconMission />, title: "Our Mission", desc: "To revolutionize local transport by making vehicle rentals as simple as checking your phone. We're starting in Bhubaneswar to empower every traveler with freedom and accessibility." },
-        { icon: <IconSafety />, title: "Trust & Safety", desc: "Every vehicle on roadMate undergoes a rigorous 50-point inspection. We partner with local experts to ensure your ride is safe, clean, and reliable." },
-        { icon: <IconAccess />, title: "Instant Access", desc: "No more long queues or endless paperwork. Our digital-first approach means you can go from browsing to riding in under 2 minutes." },
-        { icon: <IconCommunity />, title: "Community First", desc: "roadMate isn't just a rental service; it's a community. We believe in providing value to both our riders and our local partners." }
+    const values = [
+        { icon: <IconMission />, title: "Innovation", desc: "We are committed to redefining urban mobility by leveraging technology to solve real-world transit challenges." },
+        { icon: <IconSafety />, title: "Integrity", desc: "Trust is our foundation. We maintain the highest standards of transparency and reliability in every interaction." },
+        { icon: <IconAccess />, title: "Customer Centricity", desc: "Our riders are at the heart of roadMate. We design every feature and service to ensure a seamless user experience." },
+        { icon: <IconCommunity />, title: "Shared Value", desc: "We grow together. By empowering local partners and riders, we create a sustainable ecosystem for urban transit." }
     ];
 
 
@@ -247,22 +247,31 @@ const About = () => {
              </section>
 
              {/* FEATURE GRID */}
-             <section style={{ padding: "40px 24px", background: "#f8f9fa" }}>
+              <section style={{ padding: "80px 24px", background: "#f8f9fa" }}>
                  <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
-                    <div style={{ textAlign: "center", marginBottom: "70px" }}>
-                         <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H }}>The <span style={{ color: BLUE }}>roadMate</span> <span style={{ color: RED }}>Difference</span></h2>
+                    {/* VISION */}
+                    <div style={{ textAlign: "center", marginBottom: "80px", maxWidth: "900px", margin: "0 auto 100px" }}>
+                         <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H, marginBottom: "30px" }}>Our <span style={{ color: RED }}>Vision</span></h2>
+                         <p style={{ fontSize: "24px", lineHeight: 1.6, color: "#1e293b", fontWeight: 500, fontStyle: "italic", marginBottom: "40px" }}>
+                            "To become the pulse of urban mobility, transforming every commute into a seamless, reliable, and empowering journey for everyone."
+                         </p>
+                         <div style={{ width: "80px", height: "4px", background: RED, margin: "0 auto" }}></div>
+                    </div>
+
+                    <div style={{ textAlign: "center", marginBottom: "60px" }}>
+                         <h2 style={{ fontSize: "42px", fontWeight: 900, fontFamily: H }}>Our <span style={{ color: BLUE }}>Core</span> <span style={{ color: RED }}>Values</span></h2>
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "30px" }}>
-                        {features.map((f, i) => (
+                        {values.map((v, i) => (
                             <div key={i} className={`glass-card animate-box delay-${i+1}`}>
-                                <div style={{ fontSize: "40px", marginBottom: "25px" }}>{f.icon}</div>
-                                <h3 style={{ fontSize: "22px", fontWeight: 800, marginBottom: "15px", fontFamily: H }}>{f.title}</h3>
-                                <p style={{ fontSize: "15px", color: "#64748b", lineHeight: 1.7 }}>{f.desc}</p>
+                                <div style={{ fontSize: "40px", marginBottom: "25px" }}>{v.icon}</div>
+                                <h3 style={{ fontSize: "22px", fontWeight: 800, marginBottom: "15px", fontFamily: H }}>{v.title}</h3>
+                                <p style={{ fontSize: "15px", color: "#64748b", lineHeight: 1.7 }}>{v.desc}</p>
                             </div>
                         ))}
                     </div>
                  </div>
-             </section>
+              </section>
 
 
 
