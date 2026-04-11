@@ -250,42 +250,30 @@ const About = () => {
               <section style={{ padding: "80px 24px", background: "#f8f9fa" }}>
                  <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
                     
-                    {/* VISION SECTION (Leader Style) */}
-                    <div className="animate-box" style={{ marginBottom: "80px" }}>
-                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "30px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                    {/* VISION */}
+                    <div className="animate-box">
+                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
                             Our Vision
                         </h2>
-                        <div style={{ display: "flex", gap: "30px", alignItems: "flex-start" }}>
-                            <div style={{ width: "250px", height: "180px", borderRadius: "0", background: "#fff", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(0,0,0,0.05)" }}>
-                                <IconMission />
-                            </div>
-                            <div>
-                                <p style={{ fontSize: "22px", lineHeight: 1.6, color: "#1e293b", fontWeight: 500, fontStyle: "italic" }}>
-                                    "To become the pulse of urban mobility, transforming every commute into a seamless, reliable, and empowering journey for everyone."
-                                </p>
-                            </div>
-                        </div>
+                        <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
+                            To become the pulse of urban mobility, transforming every commute into a seamless, reliable, and empowering journey for everyone. By pioneering a trust-driven travel ecosystem in Bhubaneswar and beyond, we envision a future where accessibility is effortless and every traveler moves with confidence and pride.
+                        </p>
                     </div>
 
-                    {/* VALUES SECTION (Leader Style) */}
+                    {/* VALUES */}
                     <div className="animate-box">
                         <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "30px", textTransform: "uppercase", letterSpacing: "1px" }}>
                             Our Values
                         </h2>
                         
                         {values.map((v, i) => (
-                            <div key={i} style={{ display: "flex", gap: "30px", marginBottom: "40px", alignItems: "flex-start" }} className={`animate-box delay-${i+1}`}>
-                                <div style={{ width: "250px", height: "150px", borderRadius: "0", background: "#fff", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(0,0,0,0.05)" }}>
-                                    {v.icon}
-                                </div>
-                                <div>
-                                    <h3 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, marginTop: "4px", marginBottom: "12px", color: "#000", lineHeight: 1.1 }}>
-                                        {v.title}
-                                    </h3>
-                                    <p style={{ fontSize: "15.5px", color: "#4a4a4a", lineHeight: 1.7, textAlign: "justify" }}>
-                                        {v.desc}
-                                    </p>
-                                </div>
+                            <div key={i} className={`animate-box delay-${i+1}`}>
+                                <h3 style={{ fontSize: "16px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "15px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                                    {v.title}
+                                </h3>
+                                <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "30px", textAlign: "justify" }}>
+                                    {v.desc}
+                                </p>
                             </div>
                         ))}
                     </div>
