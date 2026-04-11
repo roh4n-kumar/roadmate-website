@@ -10,31 +10,19 @@ const H   = "'Outfit', sans-serif";
 const safetyData = [
     {
       category: "1. Vehicle Standards",
-      points: [
-        { id: "1.1", text: "Always inspect the vehicle before starting your trip. Check for any pre-existing damages, tire pressure, and fuel levels." },
-        { id: "1.2", text: "Our fleet undergoes regular maintenance checks to ensure peak performance and safety for every user." }
-      ]
+      content: "Always inspect the vehicle before starting your trip. Check for any pre-existing damages, tire pressure, and fuel levels. Our fleet undergoes regular maintenance checks to ensure peak performance and safety for every user."
     },
     {
       category: "2. Driving Conduct",
-      points: [
-        { id: "2.1", text: "Follow all local traffic rules and strictly adhere to speed limits. roadMate promotes responsible city and highway driving." },
-        { id: "2.2", text: "Wearing mandatory safety gear (Helmets for bikes, Seatbelts for cars) is non-negotiable and required by law." }
-      ]
+      content: "Follow all local traffic rules and strictly adhere to speed limits. roadMate promotes responsible city and highway driving. Wearing mandatory safety gear (Helmets for bikes, Seatbelts for cars) is non-negotiable and required by law."
     },
     {
       category: "3. Emergency protocols",
-      points: [
-        { id: "3.1", text: "In case of an accident or breakdown, contact our 24/7 support immediately through the app or helpline." },
-        { id: "3.2", text: "We provide on-spot assistance and insurance guidance to ensure your safety is never compromised." }
-      ]
+      content: "In case of an accident or breakdown, contact our 24/7 support immediately through the app or helpline. We provide on-spot assistance and insurance guidance to ensure your safety is never compromised."
     },
     {
       category: "4. Trust & Verification",
-      points: [
-        { id: "4.1", text: "All our partners and users are 100% verified to ensure a safe and trustworthy community environment." },
-        { id: "4.2", text: "We maintain a rating system to ensure high standards of vehicle upkeep and user responsibility." }
-      ]
+      content: "All our partners and users are 100% verified to ensure a safe and trustworthy community environment. We maintain a rating system to ensure high standards of vehicle upkeep and user responsibility."
     }
 ];
 
@@ -101,21 +89,12 @@ const SafetyInformation = () => {
                     <div style={{ marginTop: "10px" }}>
                         {safetyData.map((section, sIdx) => (
                            <div key={sIdx} style={{ marginBottom: "60px" }}>
-                                <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: SLATE, marginBottom: "25px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                                <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
                                     {section.category}
                                 </h3>
-                                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                                    {section.points.map((point, pIdx) => (
-                                        <div key={pIdx} style={{ display: "flex", gap: "15px", alignItems: "flex-start" }}>
-                                            <span style={{ fontSize: "14px", fontWeight: 800, color: RED, fontFamily: H, minWidth: "30px", paddingTop: "2px" }}>
-                                                {point.id}
-                                            </span>
-                                            <p style={{ fontSize: "14.5px", color: "#475569", lineHeight: "1.8", margin: 0, fontWeight: 500 }}>
-                                                {point.text}
-                                            </p>
-                                        </div>
-                                    ))}
-                                </div>
+                                <p style={{ fontSize: "14.5px", color: "#475569", lineHeight: "1.8", margin: 0, fontWeight: 500 }}>
+                                    {section.content}
+                                </p>
                            </div>
                         ))}
                     </div>

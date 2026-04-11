@@ -10,31 +10,19 @@ const H   = "'Outfit', sans-serif";
 const partnerData = [
   {
     category: "1. Become a Host",
-    points: [
-      { id: "1.1", text: "List your car or bike on RoadMate and start earning immediately. We welcome individual owners and small fleet managers." },
-      { id: "1.2", text: "Our simple onboarding process ensures your vehicle is ready for rent within 24-48 hours of inspection." }
-    ]
+    content: "List your car or bike on RoadMate and start earning immediately. We welcome individual owners and small fleet managers. Our simple onboarding process ensures your vehicle is ready for rent within 24-48 hours of inspection."
   },
   {
     category: "2. Host Benefits",
-    points: [
-      { id: "2.1", text: "Guaranteed Revenue: Earn high competitive rates based on vehicle demand and seasonal trends." },
-      { id: "2.2", text: "Real-time Tracking: Monitor your vehicle's location and usage through our host dashboard." }
-    ]
+    content: "Guaranteed Revenue: Earn high competitive rates based on vehicle demand and seasonal trends. Real-time Tracking: Monitor your vehicle's location and usage through our host dashboard."
   },
   {
     category: "3. Safety & Assurance",
-    points: [
-      { id: "3.1", text: "Verified Renters: Every user on RoadMate undergoes strict document verification before they can book." },
-      { id: "3.2", text: "Insurance Cover: We provide comprehensive insurance protection for every trip to secure your asset." }
-    ]
+    content: "Verified Renters: Every user on RoadMate undergoes strict document verification before they can book. Insurance Cover: We provide comprehensive insurance protection for every trip to secure your asset."
   },
   {
     category: "4. Business Partnerships",
-    points: [
-      { id: "4.1", text: "Corporate Tie-ups: Partner with us to provide mobility solutions for your employees or guests." },
-      { id: "4.2", text: "Affiliate Program: Refer partners to RoadMate and earn a commission on every successful onboarding." }
-    ]
+    content: "Corporate Tie-ups: Partner with us to provide mobility solutions for your employees or guests. Affiliate Program: Refer partners to RoadMate and earn a commission on every successful onboarding."
   }
 ];
 
@@ -101,21 +89,12 @@ const PartnerWithUs = () => {
                     <div style={{ marginTop: "10px" }}>
                         {partnerData.map((section, sIdx) => (
                            <div key={sIdx} style={{ marginBottom: "60px" }}>
-                                <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: SLATE, marginBottom: "25px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                                <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
                                     {section.category}
                                 </h3>
-                                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                                    {section.points.map((point, pIdx) => (
-                                        <div key={pIdx} style={{ display: "flex", gap: "15px", alignItems: "flex-start" }}>
-                                            <span style={{ fontSize: "14px", fontWeight: 800, color: RED, fontFamily: H, minWidth: "30px", paddingTop: "2px" }}>
-                                                {point.id}
-                                            </span>
-                                            <p style={{ fontSize: "14.5px", color: "#475569", lineHeight: "1.8", margin: 0, fontWeight: 500 }}>
-                                                {point.text}
-                                            </p>
-                                        </div>
-                                    ))}
-                                </div>
+                                <p style={{ fontSize: "14.5px", color: "#475569", lineHeight: "1.8", margin: 0, fontWeight: 500 }}>
+                                    {section.content}
+                                </p>
                            </div>
                         ))}
                     </div>

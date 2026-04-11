@@ -10,38 +10,23 @@ const H   = "'Outfit', sans-serif";
 const howItWorksData = [
   {
     category: "1. Search & Select",
-    points: [
-      { id: "1.1", text: "Browse our wide range of 100% verified cars and bikes. Filter by type, price, and availability to find your perfect match." },
-      { id: "1.2", text: "Enter your pickup and drop-off dates to get instant pricing. We offer flexible hourly and daily rental plans." }
-    ]
+    content: "Browse our wide range of 100% verified cars and bikes. Filter by type, price, and availability to find your perfect match. Enter your pickup and drop-off dates to get instant pricing. We offer flexible hourly and daily rental plans."
   },
   {
     category: "2. Profile Verification",
-    points: [
-      { id: "2.1", text: "New users need to complete a one-time verification. Upload your valid Driving License and Aadhaar card." },
-      { id: "2.2", text: "Our team typically verifies documents within 30-60 minutes, ensuring a secure community for all travelers." }
-    ]
+    content: "New users need to complete a one-time verification. Upload your valid Driving License and Aadhaar card. Our team typically verifies documents within 30-60 minutes, ensuring a secure community for all travelers."
   },
   {
     category: "3. Secure Payment",
-    points: [
-      { id: "3.1", text: "Confirm your booking by paying through our secure payment gateway. We support UPI, Credit/Debit cards, and Net Banking." },
-      { id: "3.2", text: "Receive an instant booking confirmation via email and SMS with vehicle details and pickup location." }
-    ]
+    content: "Confirm your booking by paying through our secure payment gateway. We support UPI, Credit/Debit cards, and Net Banking. Receive an instant booking confirmation via email and SMS with vehicle details and pickup location."
   },
   {
     category: "4. Pickup & Ride",
-    points: [
-      { id: "4.1", text: "Arrive at the designated pickup point or get your vehicle delivered to your doorstep (at select locations)." },
-      { id: "4.2", text: "Perform a quick inspection, share the OTP with the partner, and you're ready to hit the road!" }
-    ]
+    content: "Arrive at the designated pickup point or get your vehicle delivered to your doorstep (at select locations). Perform a quick inspection, share the OTP with the partner, and you're ready to hit the road!"
   },
   {
     category: "5. Safe Return",
-    points: [
-      { id: "5.1", text: "Return the vehicle at the scheduled time and location. Ensure fuel levels match the pickup state to avoid extra charges." },
-      { id: "5.2", text: "Once the partner confirms the safe return, your refundable security deposit (if any) is initiated immediately." }
-    ]
+    content: "Return the vehicle at the scheduled time and location. Ensure fuel levels match the pickup state to avoid extra charges. Once the partner confirms the safe return, your refundable security deposit (if any) is initiated immediately."
   }
 ];
 
@@ -108,21 +93,12 @@ const HowItWorks = () => {
                     <div style={{ marginTop: "10px" }}>
                         {howItWorksData.map((section, sIdx) => (
                            <div key={sIdx} style={{ marginBottom: "60px" }}>
-                                <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: SLATE, marginBottom: "25px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                                <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
                                     {section.category}
                                 </h3>
-                                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                                    {section.points.map((point, pIdx) => (
-                                        <div key={pIdx} style={{ display: "flex", gap: "15px", alignItems: "flex-start" }}>
-                                            <span style={{ fontSize: "14px", fontWeight: 800, color: RED, fontFamily: H, minWidth: "30px", paddingTop: "2px" }}>
-                                                {point.id}
-                                            </span>
-                                            <p style={{ fontSize: "14.5px", color: "#475569", lineHeight: "1.8", margin: 0, fontWeight: 500 }}>
-                                                {point.text}
-                                            </p>
-                                        </div>
-                                    ))}
-                                </div>
+                                <p style={{ fontSize: "14.5px", color: "#475569", lineHeight: "1.8", margin: 0, fontWeight: 500 }}>
+                                    {section.content}
+                                </p>
                            </div>
                         ))}
                     </div>

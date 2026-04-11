@@ -10,38 +10,23 @@ const H   = "'Outfit', sans-serif";
 const policyData = [
     {
       category: "1. Information Collection",
-      points: [
-        { id: "1.1", text: "We collect information you provide directly to us, such as when you create an account, book a vehicle, or communicate with us." },
-        { id: "1.2", text: "This includes your name, email, phone number, driving license details, and payment information required for booking." }
-      ]
+      content: "We collect information you provide directly to us, such as when you create an account, book a vehicle, or communicate with us. This includes your name, email, phone number, driving license details, and payment information required for booking."
     },
     {
       category: "2. Usage & Purpose",
-      points: [
-        { id: "2.1", text: "We use your information to provide and improve our services, process your bookings, and verify your identity." },
-        { id: "2.2", text: "Your data helps us communicate about your rentals, account notifications, and personalized promotional offers." }
-      ]
+      content: "We use your information to provide and improve our services, process your bookings, and verify your identity. Your data helps us communicate about your rentals, account notifications, and personalized promotional offers."
     },
     {
       category: "3. Sharing & Privacy",
-      points: [
-        { id: "3.1", text: "We do not sell your personal information. We may share data with verified vehicle partners to facilitate your rental." },
-        { id: "3.2", text: "Data may be shared with service providers (like payment processors) who perform essential services on our behalf." }
-      ]
+      content: "We do not sell your personal information. We may share data with verified vehicle partners to facilitate your rental. Data may be shared with service providers (like payment processors) who perform essential services on our behalf."
     },
     {
       category: "4. Data Security",
-      points: [
-        { id: "4.1", text: "We implement industry-standard security measures to protect your personal data from unauthorized access, loss, or misuse." },
-        { id: "4.2", text: "While we strive for absolute security, no method of transmission over the internet is completely risk-free." }
-      ]
+      content: "We implement industry-standard security measures to protect your personal data from unauthorized access, loss, or misuse. While we strive for absolute security, no method of transmission over the internet is completely risk-free."
     },
     {
       category: "5. User Rights",
-      points: [
-        { id: "5.1", text: "You have the right to access, update, or delete your personal information through your account settings." },
-        { id: "5.2", text: "For dedicated support regarding your data, you can contact our privacy team anytime via the provided contact channels." }
-      ]
+      content: "You have the right to access, update, or delete your personal information through your account settings. For dedicated support regarding your data, you can contact our privacy team anytime via the provided contact channels."
     }
 ];
 
@@ -108,21 +93,12 @@ const PrivacyPolicy = () => {
                     <div style={{ marginTop: "10px" }}>
                         {policyData.map((section, sIdx) => (
                            <div key={sIdx} style={{ marginBottom: "60px" }}>
-                                <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: SLATE, marginBottom: "25px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                                <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
                                     {section.category}
                                 </h3>
-                                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                                    {section.points.map((point, pIdx) => (
-                                        <div key={pIdx} style={{ display: "flex", gap: "15px", alignItems: "flex-start" }}>
-                                            <span style={{ fontSize: "14px", fontWeight: 800, color: RED, fontFamily: H, minWidth: "30px", paddingTop: "2px" }}>
-                                                {point.id}
-                                            </span>
-                                            <p style={{ fontSize: "14.5px", color: "#475569", lineHeight: "1.8", margin: 0, fontWeight: 500 }}>
-                                                {point.text}
-                                            </p>
-                                        </div>
-                                    ))}
-                                </div>
+                                <p style={{ fontSize: "14.5px", color: "#475569", lineHeight: "1.8", margin: 0, fontWeight: 500 }}>
+                                    {section.content}
+                                </p>
                            </div>
                         ))}
                     </div>
