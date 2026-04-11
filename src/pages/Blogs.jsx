@@ -15,7 +15,7 @@ const blogData = [
     author: "Rohan Chaudhary",
     title: "Exploring the Golden Triangle: Puri, Konark, and Bhubaneswar",
     excerpt: "Discover the spiritual serenity and architectural marvels of Odisha's most iconic circuit. From the pristine beaches of Puri to the artistic Sun Temple of Konark, here is your ultimate self-drive itinerary...",
-    image: "/C:/Users/Rohan Chaudhary/.gemini/antigravity/brain/ce27c1cf-f01b-45a9-a02d-5975b4746e5c/blog_temple_puri_1775948169637.png"
+    image: "/blogs/temple_puri.png"
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const blogData = [
     author: "Ankit Gupta",
     title: "Top 5 Scenic Routes in Odisha for Your Next Weekend Escape",
     excerpt: "Odisha's diverse landscape offers everything from coastal highways to lush hill roads. We've curated the top 5 routes that promise breathtaking views and smooth driving experiences for every roadMate user...",
-    image: "/C:/Users/Rohan Chaudhary/.gemini/antigravity/brain/ce27c1cf-f01b-45a9-a02d-5975b4746e5c/blog_travel_landscape_1775948138220.png"
+    image: "/blogs/travel_landscape.png"
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const blogData = [
     author: "Sagar Panda",
     title: "Choosing Your Perfect Ride: Bike vs Car for Your Odisha Trip",
     excerpt: "Solo expedition or family vacation? Selecting the right vehicle can make or break your road trip. Read our expert comparison to decide whether a premium SUV or a powerful motorcycle fits your soul better...",
-    image: "/C:/Users/Rohan Chaudhary/.gemini/antigravity/brain/ce27c1cf-f01b-45a9-a02d-5975b4746e5c/blog_bike_riding_1775948153489.png"
+    image: "/blogs/bike_riding.png"
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const blogData = [
     author: "Rohan Chaudhary",
     title: "How to Book a Verified Vehicle in Under 2 Minutes with RoadMate",
     excerpt: "We've re-imagined the rental experience to be tech-first and friction-less. Follow this step-by-step guide to navigate our mobile app, choose your ride, and get it delivered right to your doorstep...",
-    image: "/C:/Users/Rohan Chaudhary/.gemini/antigravity/brain/ce27c1cf-f01b-45a9-a02d-5975b4746e5c/blog_roadmate_app_preview_1775948306408.png"
+    image: "/blogs/app_preview.png"
   },
   {
     id: 5,
@@ -51,7 +51,7 @@ const blogData = [
     author: "Maintenance Team",
     title: "Riding Gear Essentials: How to Stay Safe While Exploring the City",
     excerpt: "Safety is our absolute priority. Beyond providing sanitized and verified vehicles, we emphasize the importance of high-quality riding gear. Discover the essential equipment every renter should carry...",
-    image: "/C:/Users/Rohan Chaudhary/.gemini/antigravity/brain/ce27c1cf-f01b-45a9-a02d-5975b4746e5c/blog_safety_gear_preview_1775948324033.png"
+    image: "/blogs/safety_gear.png"
   },
   {
     id: 6,
@@ -60,7 +60,7 @@ const blogData = [
     author: "Local Guide",
     title: "The Puri-Konark Marine Drive: A Paradise for Every Driver",
     excerpt: "Experience the ultimate freedom on one of India's most beautiful coastal stretches. With the Bay of Bengal on one side and cashew forests on the other, this drive is a therapeutic experience every rider deserves...",
-    image: "/C:/Users/Rohan Chaudhary/.gemini/antigravity/brain/ce27c1cf-f01b-45a9-a02d-5975b4746e5c/blog_coastal_highway_preview_1775948338485.png"
+    image: "/blogs/coastal_highway.png"
   }
 ];
 
