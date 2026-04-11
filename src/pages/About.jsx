@@ -158,7 +158,7 @@ const About = () => {
                 <div style={{ padding: "40px 0 80px", maxWidth: "1250px", margin: "0 auto", textAlign: "left" }}>
                     {/* ABOUT US */}
                     <div className="animate-box">
-                        <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "20px" }}>
+                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
                             <span style={{ color: BLUE }}>About</span> <span style={{ color: RED }}>Us</span>
                         </h2>
                         <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "20px", textAlign: "justify" }}>
@@ -171,7 +171,7 @@ const About = () => {
 
                     {/* OUR MISSION */}
                     <div className="animate-box">
-                        <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "20px" }}>
+                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
                             <span style={{ color: BLUE }}>Our</span> <span style={{ color: RED }}>Mission</span>
                         </h2>
                         <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
@@ -181,7 +181,7 @@ const About = () => {
 
                     {/* MANAGEMENT TEAM SECTION */}
                     <div className="animate-box delay-1">
-                        <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "30px" }}>
+                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, marginBottom: "30px", textTransform: "uppercase", letterSpacing: "1px" }}>
                             <span style={{ color: BLUE }}>Management</span> <span style={{ color: RED }}>Team</span>
                         </h2>
                         
