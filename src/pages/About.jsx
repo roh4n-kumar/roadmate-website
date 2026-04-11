@@ -186,7 +186,7 @@ const About = () => {
                         </h2>
                         
                         <div style={{ display: "flex", gap: "30px", marginBottom: "40px", alignItems: "flex-start" }}>
-                            <div style={{ width: "180px", height: "180px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
+                            <div style={{ width: "250px", height: "250px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
                                 <img src="/Founder%20%26%20CEO.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} alt="Founder & CEO" />
                             </div>
                             <div>
@@ -203,7 +203,7 @@ const About = () => {
                         </div>
 
                         <div style={{ display: "flex", gap: "30px", alignItems: "flex-start" }}>
-                            <div style={{ width: "180px", height: "180px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
+                            <div style={{ width: "250px", height: "250px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
                             <img src="/Co-Founder.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }} alt="Co-Founder" />
                             </div>
                             <div>
