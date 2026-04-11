@@ -168,6 +168,16 @@ const About = () => {
                     </p>
                  </div>
 
+                 {/* OUR MISSION */}
+                 <div className="animate-box">
+                    <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "20px" }}>
+                        <span style={{ color: BLUE }}>Our</span> <span style={{ color: RED }}>Mission</span>
+                    </h2>
+                    <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
+                        At roadMate, our mission is to redefine the landscape of urban mobility through a localized, high-fidelity lens. We believe that everyone deserves the freedom to move without boundaries, regardless of their destination or duration. By combining cutting-edge technology with a customer-first approach, we are building a seamless rental experience that is as instinctive as it is reliable. Our journey begins in Bhubaneswar, where we aim to set a new benchmark for trust, cleanliness, and accessibility, eventually scaling this vision to empower explorers across the nation. Through transparent pricing, verified fleets, and 24/7 support, we are turning transit into a frictionless experience, one ride at a time.
+                    </p>
+                 </div>
+
                  {/* MANAGEMENT TEAM SECTION */}
                  <div className="animate-box delay-1">
                     <h2 style={{ fontSize: "22px", fontWeight: 800, fontFamily: H, marginBottom: "30px" }}>
