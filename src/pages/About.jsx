@@ -155,7 +155,7 @@ const About = () => {
 
              {/* OUR STORY / MISSION */}
              <section style={{ padding: "0 24px", width: "100%" }}>
-                <div style={{ padding: "40px 0 80px", maxWidth: "1250px", margin: "0 auto", textAlign: "left" }}>
+                <div style={{ padding: "40px 0 0", maxWidth: "1250px", margin: "0 auto", textAlign: "left" }}>
                     {/* ABOUT US */}
                     <div className="animate-box">
                         <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
@@ -259,7 +259,7 @@ const About = () => {
                         <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
                             Our Values
                         </h2>
-                        <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
+                        <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "100px", textAlign: "justify" }}>
                             Our core values are the heartbeat of everything we do at roadMate. We are driven by Innovation, constantly leveraging technology to solve real-world urban mobility challenges and redefine the transit experience for a modern audience. Integrity is our foundation; we uphold the highest standards of transparency, safety, and reliability in every interaction we have with our riders and partners. We are obsessively Customer Centric, designing every feature to ensure a seamless, empowering, and reliable journey that puts the rider's needs first. Finally, we believe in Shared Value, growing together with our local communities and partners to build a sustainable, thriving ecosystem for urban transit that benefits everyone involved.
                         </p>
                     </div>
@@ -269,7 +269,7 @@ const About = () => {
 
 
              {/* CTA */}
-             <div style={{ padding: "100px 40px" }}>
+             <div style={{ padding: "0 40px 100px" }}>
                  <div style={{ 
                     maxWidth: "1250px", 
                     margin: "0 auto", 
