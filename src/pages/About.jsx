@@ -190,7 +190,7 @@ const About = () => {
                                 <img src="/founder_ceo.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} alt="Founder & CEO" />
                             </div>
                             <div>
-                                <h3 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, marginTop: 0, marginBottom: "2px", color: "#000", lineHeight: 1.1 }}>
+                                <h3 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, marginTop: "4px", marginBottom: "2px", color: "#000", lineHeight: 1.1 }}>
                                     Rohan Chaudhary
                                 </h3>
                                 <div style={{ fontSize: "15px", fontWeight: 700, fontFamily: H, color: RED, marginBottom: "12px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
@@ -219,7 +219,7 @@ const About = () => {
                             <img src="/co_founder.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }} alt="Co-Founder" />
                             </div>
                             <div>
-                                <h3 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, marginTop: 0, marginBottom: "2px", color: "#000", lineHeight: 1.1 }}>
+                                <h3 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, marginTop: "4px", marginBottom: "2px", color: "#000", lineHeight: 1.1 }}>
                                     Ankit Gupta
                                 </h3>
                                 <div style={{ fontSize: "15px", fontWeight: 700, fontFamily: H, color: RED, marginBottom: "12px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
