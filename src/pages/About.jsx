@@ -242,14 +242,6 @@ const About = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-             </section>
-
-             {/* FEATURE GRID */}
-              <section style={{ padding: "80px 24px", background: "#fff" }}>
-                 <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
-                    
                     {/* VISION */}
                     <div className="animate-box">
                         <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
@@ -269,8 +261,8 @@ const About = () => {
                             Our core values are the heartbeat of everything we do at roadMate. We are driven by Innovation, constantly leveraging technology to solve real-world urban mobility challenges and redefine the transit experience for a modern audience. Integrity is our foundation; we uphold the highest standards of transparency, safety, and reliability in every interaction we have with our riders and partners. We are obsessively Customer Centric, designing every feature to ensure a seamless, empowering, and reliable journey that puts the rider's needs first. Finally, we believe in Shared Value, growing together with our local communities and partners to build a sustainable, thriving ecosystem for urban transit that benefits everyone involved.
                         </p>
                     </div>
-                 </div>
-              </section>
+                </div>
+             </section>
 
 
 
