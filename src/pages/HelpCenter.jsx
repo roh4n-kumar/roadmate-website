@@ -52,7 +52,7 @@ const HelpCenter = () => {
             
             {/* HERO SECTION (Standard Cover) */}
             <section style={{ 
-                padding: "120px 40px 120px", 
+                padding: "120px 40px 60px", 
                 background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",
