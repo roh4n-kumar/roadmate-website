@@ -40,7 +40,7 @@ const PrivacyPolicy = () => {
             
             {/* HERO SECTION */}
             <section style={{ 
-                padding: "120px 40px 20px", 
+                padding: "120px 40px 40px", 
                 background: "#000000", 
                 color: "#fff", 
                 textAlign: "center",
