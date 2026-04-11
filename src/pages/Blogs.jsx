@@ -84,7 +84,7 @@ const Blogs = () => {
 
             {/* CONTENT SECTION */}
             <section style={{ padding: "40px 24px" }}>
-                <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+                <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
                     
                     <div style={{ marginTop: "10px" }}>
                         {blogData.map((section, sIdx) => (
