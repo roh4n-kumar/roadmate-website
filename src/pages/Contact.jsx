@@ -82,7 +82,8 @@ const Contact = () => {
                         className="animate-box"
                         style={{ 
                             display: "inline-block", 
-                            background: `${RED}22`, 
+                            background: "rgba(255, 255, 255, 0.1)", 
+                            backdropFilter: "blur(10px)",
                             color: RED, 
                             fontSize: "14px", 
                             fontWeight: 900, 
@@ -91,7 +92,7 @@ const Contact = () => {
                             padding: "10px 24px", 
                             borderRadius: "99px", 
                             marginBottom: "20px",
-                            border: `1px solid ${RED}33`
+                            border: "1px solid rgba(255, 255, 255, 0.2)"
                         }}
                     >
                         Connect With Us

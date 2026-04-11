@@ -116,19 +116,20 @@ const About = () => {
              }}>
                 
                 <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-                    <div className="animate-box" style={{ 
-                        display: "inline-block", 
-                        background: `${RED}22`, 
-                        color: RED, 
-                        fontSize: "14px", 
-                        fontWeight: 900, 
-                        textTransform: "uppercase", 
-                        letterSpacing: "3px", 
-                        padding: "10px 24px", 
-                        borderRadius: "99px", 
-                        marginBottom: "20px",
-                        border: `1px solid ${RED}33`
-                    }}>
+                    <div style={{ 
+                            display: "inline-block", 
+                            background: "rgba(255, 255, 255, 0.1)", 
+                            backdropFilter: "blur(10px)",
+                            color: RED, 
+                            fontSize: "14px", 
+                            fontWeight: 900, 
+                            textTransform: "uppercase", 
+                            letterSpacing: "3px", 
+                            padding: "10px 24px", 
+                            borderRadius: "99px", 
+                            marginBottom: "20px",
+                            border: "1px solid rgba(255, 255, 255, 0.2)"
+                        }}>
                         Discover roadMate
                     </div>
                     <h1 className="animate-box delay-1" style={{ 
