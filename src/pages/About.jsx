@@ -175,7 +175,7 @@ const About = () => {
                             Our Mission
                         </h2>
                         <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
-                            At roadMate, our mission is to redefine the landscape of urban mobility through a localized, high-fidelity lens. We believe that everyone deserves the freedom to move without boundaries, regardless of their destination or duration. By combining cutting-edge technology with a customer-first approach, we are building a seamless rental experience that is as instinctive as it is reliable. Our journey begins in Bhubaneswar, where we aim to set a new benchmark for trust, cleanliness, and accessibility, eventually scaling this vision to empower explorers across the nation. Through transparent pricing, verified fleets, and 24/7 support, we are turning transit into a frictionless experience, one ride at a time.
+                            At roadMate, our mission is to redefine the landscape of urban mobility through a localized, high-fidelity lens. We believe that everyone deserves the freedom to move without boundaries, regardless of their destination or duration. By combining cutting-edge technology with a customer-first approach, we are building a seamless rental experience that is as instinctive as it is reliable. Our journey begins in Bhubaneswar, where we aim to set a new benchmark for trust, cleanliness, and accessibility, eventually scaling this vision to empower explorers across the nation. Through transparent pricing, verified fleets, and 24/7 support, we are turning transit into a frictionless experience, one ride at a time. We strive to not just provide a service but to become an integral part of your daily life, ensuring that every time you need to move, roadMate is your most trusted companion, making the complex simple and the impossible attainable.
                         </p>
                     </div>
 
@@ -247,7 +247,7 @@ const About = () => {
              </section>
 
              {/* FEATURE GRID */}
-              <section style={{ padding: "80px 24px", background: "#f8f9fa" }}>
+              <section style={{ padding: "80px 24px", background: "#fff" }}>
                  <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
                     
                     {/* VISION */}
@@ -262,20 +262,12 @@ const About = () => {
 
                     {/* VALUES */}
                     <div className="animate-box">
-                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "30px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                        <h2 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "20px", textTransform: "uppercase", letterSpacing: "1px" }}>
                             Our Values
                         </h2>
-                        
-                        {values.map((v, i) => (
-                            <div key={i} className={`animate-box delay-${i+1}`}>
-                                <h3 style={{ fontSize: "16px", fontWeight: 900, fontFamily: H, color: RED, marginBottom: "15px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
-                                    {v.title}
-                                </h3>
-                                <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "30px", textAlign: "justify" }}>
-                                    {v.desc}
-                                </p>
-                            </div>
-                        ))}
+                        <p style={{ fontSize: "14px", color: "#4a4a4a", lineHeight: 1.7, marginBottom: "40px", textAlign: "justify" }}>
+                            Our core values are the heartbeat of everything we do at roadMate. We are driven by Innovation, constantly leveraging technology to solve real-world urban mobility challenges and redefine the transit experience for a modern audience. Integrity is our foundation; we uphold the highest standards of transparency, safety, and reliability in every interaction we have with our riders and partners. We are obsessively Customer Centric, designing every feature to ensure a seamless, empowering, and reliable journey that puts the rider's needs first. Finally, we believe in Shared Value, growing together with our local communities and partners to build a sustainable, thriving ecosystem for urban transit that benefits everyone involved.
+                        </p>
                     </div>
                  </div>
               </section>
