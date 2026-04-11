@@ -75,7 +75,7 @@ const Contact = () => {
                 position: "relative",
                 overflow: "hidden"
             }}>
-                <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+                <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 2 }}>
                     <motion.div 
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -110,7 +110,7 @@ const Contact = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="animate-box delay-2"
-                        style={{ fontSize: "18px", color: "rgba(255,255,255,0.7)", lineHeight: 1.6, maxWidth: "600px", margin: "0 auto 30px" }}
+                        style={{ fontSize: "16px", color: "rgba(255,255,255,0.6)", lineHeight: 1.6, maxWidth: "600px", margin: "0 auto" }}
                     >
                         Find our corporate office address and direct contact lines below. Reach out to our team for any assistance or inquiries.
                     </motion.p>

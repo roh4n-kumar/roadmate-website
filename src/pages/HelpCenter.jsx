@@ -59,30 +59,32 @@ const HelpCenter = () => {
                 position: "relative",
                 overflow: "hidden"
             }}>
-                <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-                        <motion.div 
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            style={{ 
-                                display: "inline-block", 
-                                background: `${RED}22`, 
-                                color: RED, 
-                                fontSize: "14px", 
-                                fontWeight: 900, 
-                                textTransform: "uppercase", 
-                                letterSpacing: "3px", 
-                                padding: "10px 24px", 
-                                borderRadius: "99px", 
-                                marginBottom: "30px",
-                                border: `1px solid ${RED}33`
-                            }}
-                        >
-                            24/7 Support
-                        </motion.div>
+                <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="animate-box"
+                        style={{ 
+                            display: "inline-block", 
+                            background: `${RED}22`, 
+                            color: RED, 
+                            fontSize: "14px", 
+                            fontWeight: 900, 
+                            textTransform: "uppercase", 
+                            letterSpacing: "3px", 
+                            padding: "10px 24px", 
+                            borderRadius: "99px", 
+                            marginBottom: "30px",
+                            border: `1px solid ${RED}33`
+                        }}
+                    >
+                        Customer Support
+                    </motion.div>
                     <motion.h1 
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.1 }}
+                        className="animate-box delay-1"
                         style={{ fontSize: "56px", fontWeight: 900, fontFamily: H, marginBottom: "20px", letterSpacing: "-1.5px", lineHeight: 1.1 }}
                     >
                         Help <span style={{ color: RED }}>Center</span>
@@ -91,9 +93,10 @@ const HelpCenter = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        style={{ fontSize: "18px", color: "rgba(255,255,255,0.7)", lineHeight: 1.6, maxWidth: "600px", margin: "0 auto 30px" }}
+                        className="animate-box delay-2"
+                        style={{ fontSize: "16px", color: "rgba(255,255,255,0.6)", lineHeight: 1.6, maxWidth: "600px", margin: "0 auto" }}
                     >
-                        Welcome to roadMate Support. We're here to ensure your journey is smooth and worry-free.
+                        Find answers to your questions, learn how to use roadMate, and get in touch with our team for personalized assistance.
                     </motion.p>
                 </div>
             </section>

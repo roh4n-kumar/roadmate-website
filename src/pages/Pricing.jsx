@@ -133,7 +133,7 @@ const Pricing = () => {
                 overflow: "hidden"
             }}>
                 
-                <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+                <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 2 }}>
                     <motion.div 
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -176,21 +176,22 @@ const Pricing = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                         style={{ 
-                            fontSize: "18px", 
-                            color: "rgba(255,255,255,0.7)", 
+                            fontSize: "16px", 
+                            color: "rgba(255,255,255,0.6)", 
                             lineHeight: 1.6, 
                             maxWidth: "600px", 
-                            margin: "0 auto 40px" 
+                            margin: "0 auto" 
                         }}
                     >
                         Whether you need a quick run across town or a weekend getaway, we have the perfect pricing for your journey. No hidden fees.
                     </motion.p>
-
+                
                     <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
                         className="billing-toggle"
+                        style={{ marginTop: "40px" }}
                     >
                         <button 
                             className={`toggle-btn ${billingCycle === "hourly" ? "active" : "inactive"}`}

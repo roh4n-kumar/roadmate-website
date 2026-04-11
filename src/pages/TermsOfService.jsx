@@ -98,7 +98,7 @@ const TermsOfService = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        style={{ fontSize: "56px", fontWeight: 900, fontFamily: H, marginBottom: "15px", letterSpacing: "-1.5px" }}
+                        style={{ fontSize: "56px", fontWeight: 900, fontFamily: H, marginBottom: "20px", letterSpacing: "-1.5px", lineHeight: 1.1 }}
                     >
                         Terms of <span style={{ color: RED }}>Service</span>
                     </motion.h1>

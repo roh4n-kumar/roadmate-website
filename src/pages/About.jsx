@@ -115,7 +115,7 @@ const About = () => {
                 overflow: "hidden"
              }}>
                 
-                <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+                <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 2 }}>
                     <div className="animate-box" style={{ 
                         display: "inline-block", 
                         background: `${RED}22`, 
@@ -142,11 +142,11 @@ const About = () => {
                         Your Journey, <span style={{ color: RED }}>Our Pride</span>
                     </h1>
                     <p className="animate-box delay-2" style={{ 
-                        fontSize: "18px", 
-                        color: "rgba(255,255,255,0.7)", 
+                        fontSize: "16px", 
+                        color: "rgba(255,255,255,0.6)", 
                         lineHeight: 1.6, 
                         maxWidth: "600px", 
-                        margin: "0 auto 30px" 
+                        margin: "0 auto" 
                     }}>
                         We're on a mission to simplify vehicle rentals in Bhubaneswar, providing every explorer with the freedom they deserve.
                     </p>
