@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import TimePopup from "./TimePopup";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { auth } from "../firebase";
 
 
 
@@ -184,6 +185,13 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     if (!vehicleType || !selectedDate || !pickupTime || !dropoffTime) {
       setToastMsg("Please select Vehicle Category, Pickup and Dropoff Times!");
       setTimeout(() => setToastMsg(null), 4000);
+      return;
+    }
+
+    // CHECK IF LOGGED IN
+    if (!auth.currentUser) {
+      setToastMsg("Please Sign In to search and book your ride! 🔑");
+      setTimeout(() => setToastMsg(null), 5000);
       return;
     }
     
