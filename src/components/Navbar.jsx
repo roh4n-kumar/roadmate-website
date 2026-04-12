@@ -311,7 +311,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             >
                 <div style={{ padding: "24px 25px 18px", borderBottom: "1.5px solid rgba(15, 23, 42, 0.08)", marginBottom: "0px" }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <h2 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, margin: 0, color: "#1e293b", letterSpacing: "-0.5px" }}>Menu</h2>
+                    <h2 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, margin: 0, color: "#1e293b", letterSpacing: "-0.5px" }}>Account</h2>
                     <button onClick={() => setIsDrawerOpen(false)} style={{ background: "#f1f5f9", border: "none", width: "32px", height: "32px", borderRadius: "10px", fontSize: "20px", cursor: "pointer", color: "#64748b", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "400" }}>&times;</button>
                   </div>
                 </div>
@@ -320,11 +320,11 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                   <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "10px", paddingTop: "20px" }} className="hide-scrollbar">
                     <div style={{ padding: "0 25px" }}>
                       {!isLoggedIn ? (
-                        <div style={{ padding: "30px", borderRadius: "30px", background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)", marginBottom: "30px" }}>
+                        <div style={{ padding: "10px 0 30px", background: "transparent", marginBottom: "10px" }}>
                           <h3 style={{ fontSize: "22px", fontWeight: 900, marginBottom: "20px", color: "#111", fontFamily: H }}>Login to start your ride.</h3>
                           <button
                             onClick={() => { setIsDrawerOpen(false); setIsLoginOpen(true); }}
-                            style={{ width: "100%", padding: "16px", background: `linear-gradient(135deg, ${RED}, #ff4d4d)`, color: "#fff", border: "none", borderRadius: "18px", fontSize: "16px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", boxShadow: "0 10px 20px rgba(190,13,13,0.2)", fontFamily: F }}
+                            style={{ width: "100%", padding: "16px", background: RED, color: "#fff", border: "none", borderRadius: "18px", fontSize: "16px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", boxShadow: `0 10px 20px ${RED}40`, fontFamily: F }}
                           >
                             <LoginIcon size={20} /> Login / Signup
                           </button>
