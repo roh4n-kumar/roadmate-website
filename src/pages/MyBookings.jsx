@@ -111,8 +111,9 @@ const MyBookings = () => {
         .mb-tab.active { color: ${RED}; }
         .mb-tab-indicator { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: ${RED}; border-radius: 10px 10px 0 0; z-index: 1001; }
         
-        .mb-content { max-width: 1250px; margin: 0 auto; padding: 24px 24px 80px; }
-        .mb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 24px; }
+        .mb-content-wrapper { padding: 0 24px; }
+        .mb-content { max-width: 1250px; margin: 0 auto; padding: 24px 0 80px; }
+        .mb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
         .mb-card { 
           background: #fff; border-radius: 28px; overflow: hidden; 
           box-shadow: 0 10px 30px rgba(0,0,0,0.04); border: 1.5px solid rgba(15,23,42,0.05);
@@ -131,7 +132,8 @@ const MyBookings = () => {
         @media (max-width: 900px) {
           .mb-page { padding-top: 60px !important; }
           .mb-ribbon { top: 60px !important; padding: 0 16px !important; }
-          .mb-content { padding: 16px 16px 40px !important; }
+          .mb-content-wrapper { padding: 0 16px !important; }
+          .mb-content { padding: 16px 0 40px !important; }
           .mb-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
           .mb-title-main { font-size: 20px !important; }
         }
@@ -168,8 +170,9 @@ const MyBookings = () => {
         </div>
       </div>
 
-      <div className="mb-content">
-        <div className="mb-grid">
+      <div className="mb-content-wrapper">
+        <div className="mb-content">
+          <div className="mb-grid">
           <AnimatePresence mode="popLayout">
             {list.length === 0 ? (
               <motion.div 
@@ -259,6 +262,7 @@ const MyBookings = () => {
               ))
             )}
           </AnimatePresence>
+          </div>
         </div>
       </div>
     </div>
