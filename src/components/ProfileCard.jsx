@@ -7,9 +7,7 @@ const F = "'Inter', sans-serif";
 
 const ProfileCard = ({ name, email, avatarOnly = false, action, style = {} }) => {
   const initial = (name?.[0] || email?.[0] || "?").toUpperCase();
-
-  // Exact Brand Primary Gradient as before
-  const avatarGradient = `linear-gradient(135deg, ${RED}, #ff4d4d)`;
+  const avatarBg = RED;
 
   return (
     <motion.div 
@@ -19,10 +17,10 @@ const ProfileCard = ({ name, email, avatarOnly = false, action, style = {} }) =>
         display: "flex", 
         alignItems: "center", 
         gap: "20px", 
-        padding: "20px", 
-        borderRadius: "24px", 
-        background: "#f8f9fa", 
-        border: "1px solid #eee",
+        padding: "10px 0", 
+        borderRadius: "0", 
+        background: "transparent", 
+        border: "none",
         transition: "all 0.3s ease",
         flexWrap: "wrap",
         ...style 
@@ -34,7 +32,7 @@ const ProfileCard = ({ name, email, avatarOnly = false, action, style = {} }) =>
             width: "56px", 
             height: "56px", 
             borderRadius: "16px", 
-            background: avatarGradient, 
+            background: avatarBg, 
             display: "flex", 
             alignItems: "center", 
             justifyContent: "center", 
@@ -42,7 +40,6 @@ const ProfileCard = ({ name, email, avatarOnly = false, action, style = {} }) =>
             fontSize: "22px", 
             fontWeight: 900, 
             fontFamily: H,
-            boxShadow: `0 8px 20px ${RED}25`,
             position: "relative",
             zIndex: 1
           }}>

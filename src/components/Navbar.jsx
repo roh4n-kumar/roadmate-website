@@ -335,10 +335,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                             name={user?.displayName} 
                             email={user?.email} 
                             style={{ 
-                              padding: "20px", 
-                              borderRadius: "24px", 
-                              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-                              background: "rgba(255,255,255,0.8)" 
+                              padding: "10px 0", 
                             }} 
                           />
                         </div>
