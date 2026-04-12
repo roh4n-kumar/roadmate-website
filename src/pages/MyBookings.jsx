@@ -108,7 +108,7 @@ const MyBookings = () => {
         .mb-tab.active { color: ${RED}; }
         .mb-tab-indicator { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: ${RED}; border-radius: 10px 10px 0 0; z-index: 1001; }
         
-        .mb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; padding: 60px 24px; max-width: 1250px; margin: 0 auto; }
+        .mb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; padding: 24px 24px 80px; max-width: 1250px; margin: 0 auto; }
         .mb-card { 
           background: #fff; border-radius: 28px; overflow: hidden; 
           box-shadow: 0 10px 30px rgba(0,0,0,0.04); border: 1.5px solid rgba(15,23,42,0.05);
