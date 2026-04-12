@@ -162,10 +162,8 @@ const MyBookings = () => {
             ))}
           </div>
           
-          <div className="mb-header-right vr-hide-mob" style={{ justifySelf: "end" }}>
-            <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>
-              Roadmate Account
-            </span>
+          <div className="mb-header-right vr-hide-mob" style={{ width: "160px" }}>
+            {/* Right spacer to keep tabs centered/aligned correctly */}
           </div>
         </div>
       </div>
@@ -226,8 +224,13 @@ const MyBookings = () => {
                          <span style={{ fontSize: "11px", fontWeight: "800", color: "#94a3b8", textTransform: "uppercase" }}>Total Paid</span>
                          <span style={{ fontSize: "22px", fontWeight: "950", color: RED, fontFamily: H }}>₹{b.breakdown?.grandTotal || b.totalPrice || "0"}</span>
                        </div>
-                       <span style={{ fontSize: "10px", fontWeight: "900", background: b.status === "cancelled" ? "#fff1f2" : "#f0fdf4", color: b.status === "cancelled" ? "#e11d48" : "#16a34a", padding: "5px 12px", borderRadius: "99px", textTransform: "uppercase" }}>
-                         {b.status || "Paid"}
+                       <span style={{ 
+                         fontSize: "10px", fontWeight: "900", 
+                         background: b.status === "cancelled" ? "#fff1f2" : (b.status === "pending" || !b.status ? "#fffbeb" : "#f0fdf4"), 
+                         color: b.status === "cancelled" ? "#e11d48" : (b.status === "pending" || !b.status ? "#d97706" : "#16a34a"), 
+                         padding: "5px 12px", borderRadius: "99px", textTransform: "uppercase" 
+                       }}>
+                         {b.status || "Pending"}
                        </span>
                     </div>
 
