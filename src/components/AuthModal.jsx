@@ -162,18 +162,7 @@ const AuthModal = ({ isOpen, onClose }) => {
             <p style={{ color: "#64748b", fontSize: "14px", fontWeight: 500 }}>Join RoadMate and explore the smarter <br/> way to travel today.</p>
           </div>
 
-          <button className="google-btn" onClick={handleGoogleLogin} disabled={loading}>
-            {loading ? (
-              <span style={{ fontSize: "14px", color: "#64748b" }}>Connecting...</span>
-            ) : (
-              <>
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="22" alt="G" />
-                <span>Continue with Google</span>
-              </>
-            )}
-          </button>
-
-          <button className="google-btn" onClick={handleGoogleLogin} disabled={loading}>
+          <button className="google-btn" onClick={handleGoogleLogin} disabled={loading} style={{ marginTop: "15px" }}>
             {loading ? (
               <span style={{ fontSize: "14px", color: "#64748b" }}>Connecting...</span>
             ) : (
