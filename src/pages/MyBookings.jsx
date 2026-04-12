@@ -91,23 +91,23 @@ const MyBookings = () => {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
         .mb-ribbon {
-          position: sticky; top: 64px; z-index: 100;
+          position: sticky; top: 63px; z-index: 100;
           background: rgba(255, 255, 255, 0.9);
           backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
           border-bottom: 1.5px solid rgba(15, 23, 42, 0.1);
-          padding: 0 24px; height: 80px;
+          padding: 0 24px; height: 64px;
           display: flex; align-items: center; justify-content: center;
         }
         .mb-inner { max-width: 1250px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
         .mb-header-left { display: flex; flex-direction: column; min-width: 0; }
-        .mb-tabs { display: flex; gap: 32px; height: 80px; align-items: center; }
+        .mb-tabs { display: flex; gap: 32px; height: 64px; align-items: center; }
         .mb-tab { 
           position: relative; cursor: pointer; height: 100%; display: flex; align-items: center;
           font-size: 14px; font-weight: 800; color: #94a3b8; transition: all 0.3s;
           font-family: H; text-transform: uppercase; letter-spacing: 0.5px;
         }
         .mb-tab.active { color: ${RED}; }
-        .mb-tab-indicator { position: absolute; bottom: -1.5px; left: 0; right: 0; height: 3px; background: ${RED}; border-radius: 10px 10px 0 0; }
+        .mb-tab-indicator { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: ${RED}; border-radius: 10px 10px 0 0; z-index: 2; }
         
         .mb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; padding: 40px 24px; max-width: 1250px; margin: 0 auto; }
         .mb-card { 
