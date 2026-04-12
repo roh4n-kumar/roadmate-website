@@ -87,9 +87,12 @@ const MyBookings = () => {
   const list = activeTab === "upcoming" ? upcoming : activeTab === "completed" ? completed : cancelled;
 
   return (
-    <div style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: F }}>
+    <div className="mb-page" style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: F }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
+        
+        /* ── Desktop layout ── */
+        .mb-page { padding-top: 64px; }
         .mb-ribbon {
           position: sticky; top: 64px; z-index: 999;
           background: #fff;
@@ -108,7 +111,8 @@ const MyBookings = () => {
         .mb-tab.active { color: ${RED}; }
         .mb-tab-indicator { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: ${RED}; border-radius: 10px 10px 0 0; z-index: 1001; }
         
-        .mb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; padding: 24px 24px 80px; max-width: 1250px; margin: 0 auto; }
+        .mb-content { max-width: 1250px; margin: 0 auto; padding: 24px 24px 80px; }
+        .mb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 32px; }
         .mb-card { 
           background: #fff; border-radius: 28px; overflow: hidden; 
           box-shadow: 0 10px 30px rgba(0,0,0,0.04); border: 1.5px solid rgba(15,23,42,0.05);
@@ -125,8 +129,10 @@ const MyBookings = () => {
         }
         
         @media (max-width: 900px) {
+          .mb-page { padding-top: 60px !important; }
           .mb-ribbon { top: 60px !important; padding: 0 16px !important; }
-          .mb-grid { grid-template-columns: 1fr !important; padding: 20px 16px !important; }
+          .mb-content { padding: 16px 16px 40px !important; }
+          .mb-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
           .mb-title-main { font-size: 20px !important; }
         }
       `}</style>
@@ -139,19 +145,19 @@ const MyBookings = () => {
               My Bookings
             </h1>
           </div>
-
+          
           <div className="mb-tabs">
             {["upcoming", "completed", "cancelled"].map((tab) => (
-              <div key={tab} className={`mb-tab ${activeTab === tab ? 'active' : ''}`} onClick={() => setActiveTab(tab)}>
+              <div 
+                key={tab} 
+                className={`mb-tab ${activeTab === tab ? "active" : ""}`}
+                onClick={() => setActiveTab(tab)}
+              >
                 {tab}
-                <span style={{ 
-                  marginLeft: "10px", fontSize: "11px", padding: "2px 8px", borderRadius: "6px",
-                  background: activeTab === tab ? `${RED}10` : "rgba(15,23,42,0.05)",
-                  color: activeTab === tab ? RED : "#94a3b8"
-                }}>
+                <span style={{ marginLeft: "8px", opacity: 0.5, fontSize: "11px", background: activeTab === tab ? `${RED}15` : "rgba(15,23,42,0.05)", padding: "2px 8px", borderRadius: "99px" }}>
                   {tab === "upcoming" ? upcoming.length : tab === "completed" ? completed.length : cancelled.length}
                 </span>
-                {activeTab === tab && <motion.div layoutId="tab-indicator" className="mb-tab-indicator" />}
+                {activeTab === tab && <motion.div layoutId="mb-tab-indicator" className="mb-tab-indicator" />}
               </div>
             ))}
           </div>
@@ -164,92 +170,53 @@ const MyBookings = () => {
         </div>
       </div>
 
-      {/* Bookings Grid */}
-      <div className="mb-grid">
-        <AnimatePresence mode="wait">
-          {list.length > 0 ? (
-            <motion.div key={activeTab} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }}
-              style={{ display: "grid", gridTemplateColumns: "inherit", gap: "inherit", gridColumn: "1/-1" }}>
-              {list.map((b, idx) => (
-                <motion.div key={idx} className="mb-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.05 }}>
-                  
-                  {/* Vehicle Image Header */}
-                  <div style={{ position: "relative", height: "180px", overflow: "hidden" }}>
-                    <img src={b.vehicle?.image || "https://images.unsplash.com/photo-1558981403-c5f91cbcf523?auto=format&fit=crop&q=80&w=800"} 
-                      alt={b.vehicle?.name} className="mb-img" 
-                      style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} 
-                    />
-                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15, 23, 42, 0.7) 0%, transparent 60%)" }} />
-                    <div style={{ position: "absolute", top: "12px", right: "12px", display: "flex", gap: "8px" }}>
-                       <span style={{ 
-                         background: "rgba(255,255,255,0.9)", backdropFilter: "blur(8px)", padding: "4px 12px", borderRadius: "99px",
-                         fontSize: "10px", fontWeight: "900", color: SLATE, textTransform: "uppercase", letterSpacing: "0.5px"
-                       }}>ID: {b.id ? b.id.slice(-6).toUpperCase() : "..."}</span>
+      <div className="mb-content">
+        <div className="mb-grid">
+          <AnimatePresence mode="popLayout">
+            {list.length === 0 ? (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ gridColumn: "1/-1", textAlign: "center", padding: "100px 20px", background: "#fff", borderRadius: "32px", border: "1.5px dashed rgba(15,23,42,0.1)" }}>
+                <p style={{ fontSize: "18px", fontWeight: "800", color: "#64748b", fontFamily: H }}>No bookings found in {activeTab}</p>
+                <button onClick={() => navigate("/")} className="rm-btn-premium" style={{ marginTop: "20px", padding: "12px 24px", background: RED, color: "#fff", border: "none", borderRadius: "12px", cursor: "pointer" }}>Book your first ride</button>
+              </motion.div>
+            ) : (
+              list.map((b, i) => (
+                <motion.div key={b.id} layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ delay: i * 0.05 }} className="mb-card">
+                  <div style={{ position: "relative", height: "200px", overflow: "hidden" }}>
+                    <img src={b.vehicle?.image || "https://images.unsplash.com/photo-1558981403-c5f91cbcf523?auto=format&fit=crop&q=80&w=800"} className="mb-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} alt={b.vehicle?.name} />
+                    <div style={{ position: "absolute", top: "12px", right: "12px", background: "rgba(15, 23, 42, 0.8)", color: "#fff", fontSize: "10px", fontWeight: "900", padding: "4px 10px", borderRadius: "99px", backdropFilter: "blur(8px)", fontFamily: H, textTransform: "uppercase" }}>
+                      ID: {b.id.slice(0, 6).toUpperCase()}
                     </div>
-                    <div style={{ position: "absolute", bottom: "14px", left: "16px" }}>
-                       <h3 style={{ color: "#fff", fontSize: "20px", fontWeight: "900", margin: 0, fontFamily: H, letterSpacing: "-0.5px" }}>
-                         {b.vehicle?.name || b.vehicleType}
-                       </h3>
+                    <div style={{ position: "absolute", bottom: "0", left: "0", right: "0", background: "linear-gradient(to top, rgba(0,0,0,0.7), transparent)", padding: "20px 24px" }}>
+                      <h3 style={{ color: "#fff", margin: 0, fontSize: "20px", fontWeight: "900", fontFamily: H }}>{b.vehicle?.name || b.vehicleType}</h3>
                     </div>
                   </div>
 
                   <div style={{ padding: "24px" }}>
-                    {/* Booking Details */}
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "20px" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "24px" }}>
                       <div>
-                        <p style={{ fontSize: "10px", fontWeight: "900", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1px", margin: "0 0 6px" }}>
-                           <IcoCalendar /> Booking Date
+                        <p style={{ margin: "0 0 6px 0", fontSize: "11px", fontWeight: "800", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1px" }}>
+                          <IcoCalendar /> Booking Date
                         </p>
-                        <p style={{ fontSize: "14px", fontWeight: "800", color: SLATE, margin: 0 }}>
-                           {formatPrettyDate(b.trip?.date || b.date || b.createdAt)}
-                        </p>
+                        <p style={{ margin: 0, fontSize: "14px", fontWeight: "900", color: SLATE, fontFamily: H }}>{formatPrettyDate(b.trip?.date || b.date || b.createdAt)}</p>
                       </div>
-                      <div style={{ textAlign: "right" }}>
-                        <p style={{ fontSize: "10px", fontWeight: "900", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1px", margin: "0 0 6px" }}>
-                           <IcoClock /> Duration
+                      <div>
+                        <p style={{ margin: "0 0 6px 0", fontSize: "11px", fontWeight: "800", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1px" }}>
+                          <IcoClock /> Duration
                         </p>
-                        <p style={{ fontSize: "14px", fontWeight: "800", color: SLATE, margin: 0 }}>
-                           {b.trip?.pickupTime || "09:00 AM"} – {b.trip?.dropTime || "09:00 PM"}
-                        </p>
+                        <p style={{ margin: 0, fontSize: "14px", fontWeight: "900", color: SLATE, fontFamily: H }}>{b.trip?.pickupTime || "09:00 AM"} – {b.trip?.dropTime || "09:00 PM"}</p>
                       </div>
                     </div>
 
-                    <div style={{ background: "#f8fafc", padding: "16px", borderRadius: "18px", border: "1px solid rgba(15,23,42,0.04)", marginBottom: "24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                          <span style={{ fontSize: "11px", fontWeight: "900", color: "#64748b", textTransform: "uppercase" }}>Total Paid</span>
-                          <span style={{ fontSize: "20px", fontWeight: "900", color: RED }}>₹{b.breakdown?.grandTotal || b.totalPrice || "0"}</span>
+                    <div style={{ background: "#f8fafc", borderRadius: "20px", padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px", border: "1px solid rgba(15,23,42,0.05)" }}>
+                       <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
+                         <span style={{ fontSize: "11px", fontWeight: "800", color: "#94a3b8", textTransform: "uppercase" }}>Total Paid</span>
+                         <span style={{ fontSize: "22px", fontWeight: "950", color: RED, fontFamily: H }}>₹{b.breakdown?.grandTotal || b.totalPrice || "0"}</span>
                        </div>
-                       <span style={{ 
-                         fontSize: "11px", fontWeight: "900", padding: "4px 10px", borderRadius: "8px", 
-                         background: b.paymentStatus === 'paid' ? '#f0fdf4' : '#fff7ed',
-                         color: b.paymentStatus === 'paid' ? '#16a34a' : '#ea580c',
-                         textTransform: "uppercase"
-                       }}>
-                         {b.paymentStatus === 'paid' ? "Paid ✓" : "Pending"}
+                       <span style={{ fontSize: "10px", fontWeight: "900", background: b.status === "cancelled" ? "#fff1f2" : "#fffbeb", color: b.status === "cancelled" ? "#e11d48" : "#d97706", padding: "5px 12px", borderRadius: "99px", textTransform: "uppercase" }}>
+                         {b.status || "Paid"}
                        </span>
                     </div>
 
-                    {/* Action Buttons */}
-                    {activeTab === "upcoming" ? (
-                      <button onClick={() => handleCancel(b.id)} style={{
-                        width: "100%", padding: "14px", background: "transparent", border: `2px solid ${RED}`, color: RED,
-                        borderRadius: "14px", fontWeight: "900", fontSize: "14px", cursor: "pointer", transition: "all .3s ease",
-                        display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", fontFamily: H
-                      }}
-                        onMouseEnter={(e) => { e.currentTarget.style.background = RED; e.currentTarget.style.color = "#fff"; }}
-                        onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = RED; }}
-                      >
-                        <IcoTrash /> Cancel Booking
-                      </button>
-                    ) : activeTab === "completed" ? (
-                      <div style={{ display: "flex", gap: "10px" }}>
-                        <div style={{ flex: 1, padding: "14px", borderRadius: "14px", background: "#f0fdf4", color: "#16a34a", fontWeight: "900", fontSize: "14px", textAlign: "center", border: "1px solid #bbf7d0" }}>
-                          Ride Completed ✓
-                        </div>
-                        <button onClick={() => navigate("/")} style={{ width: "fit-content", padding: "14px 20px", background: SLATE, color: "#fff", borderRadius: "14px", fontWeight: "900", fontSize: "14px", border: "none", cursor: "pointer" }}>Rent Again</button>
-                      </div>
-                    ) : (
-                      <div style={{ width: "100%", padding: "14px", borderRadius: "14px", background: "#fef2f2", color: RED, fontWeight: "900", fontSize: "14px", textAlign: "center", border: "1px solid #fee2e2" }}>
                         Booking Cancelled
                       </div>
                     )}
