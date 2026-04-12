@@ -132,10 +132,6 @@ const MyBookings = () => {
         }
       `}</style>
 
-      {/* Spacing for Nav */}
-      <div style={{ height: "64px" }} className="vr-hide-mob" />
-      <div style={{ height: "60px" }} className="vr-show-mob" />
-
       {/* Sticky Tabs Ribbon */}
       <div className="mb-ribbon">
         <div className="mb-inner">
@@ -143,7 +139,6 @@ const MyBookings = () => {
             <h1 className="mb-title-main" style={{ fontSize: "24px", fontWeight: "900", color: SLATE, fontFamily: H, margin: 0, letterSpacing: "-0.8px" }}>
               My Bookings
             </h1>
-            <p className="vr-hide-mob" style={{ color: "#64748b", fontWeight: "700", margin: 0, fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.3px" }}>Manage your rentals</p>
           </div>
 
           <div className="mb-tabs">
