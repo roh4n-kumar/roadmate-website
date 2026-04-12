@@ -93,7 +93,7 @@ const MyBookings = () => {
         .mb-ribbon {
           position: sticky; top: 64px; z-index: 999;
           background: #fff;
-          border-bottom: 1.5px solid rgba(15, 23, 42, 0.1);
+          border-bottom: 1.5px solid rgba(15, 23, 42, 0.25);
           padding: 0 24px; height: 64px;
           display: flex; align-items: center; justify-content: center;
         }
@@ -135,7 +135,7 @@ const MyBookings = () => {
       <div className="mb-ribbon">
         <div className="mb-inner">
           <div className="mb-header-left">
-            <h1 className="mb-title-main" style={{ fontSize: "24px", fontWeight: "900", color: SLATE, fontFamily: H, margin: 0, letterSpacing: "-0.8px" }}>
+            <h1 className="mb-title-main" style={{ fontSize: "20px", fontWeight: "900", color: "#0f172a", fontFamily: H, margin: 0, letterSpacing: "-0.5px" }}>
               My Bookings
             </h1>
           </div>
@@ -156,10 +156,10 @@ const MyBookings = () => {
             ))}
           </div>
           
-          <div className="vr-hide-mob" style={{ marginLeft: "auto" }}>
-             <span style={{ fontSize: "12px", color: SLATE, fontWeight: "900", textTransform: "uppercase", letterSpacing: "1px", fontFamily: H, opacity: 0.6 }}>
-                RoadMate Account
-             </span>
+          <div className="mb-header-right vr-hide-mob" style={{ justifySelf: "end" }}>
+            <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+              Roadmate Account
+            </span>
           </div>
         </div>
       </div>
