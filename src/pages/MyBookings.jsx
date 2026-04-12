@@ -174,17 +174,31 @@ const MyBookings = () => {
         <div className="mb-grid">
           <AnimatePresence mode="popLayout">
             {list.length === 0 ? (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ gridColumn: "1/-1", textAlign: "center", padding: "100px 20px", background: "#fff", borderRadius: "32px", border: "1.5px dashed rgba(15,23,42,0.1)" }}>
+              <motion.div 
+                key="empty"
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                exit={{ opacity: 0 }}
+                style={{ gridColumn: "1/-1", textAlign: "center", padding: "100px 20px", background: "#fff", borderRadius: "32px", border: "1.5px dashed rgba(15,23,42,0.1)" }}
+              >
                 <p style={{ fontSize: "18px", fontWeight: "800", color: "#64748b", fontFamily: H }}>No bookings found in {activeTab}</p>
                 <button onClick={() => navigate("/")} className="rm-btn-premium" style={{ marginTop: "20px", padding: "12px 24px", background: RED, color: "#fff", border: "none", borderRadius: "12px", cursor: "pointer" }}>Book your first ride</button>
               </motion.div>
             ) : (
               list.map((b, i) => (
-                <motion.div key={b.id} layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ delay: i * 0.05 }} className="mb-card">
+                <motion.div 
+                  key={b.id} 
+                  layout 
+                  initial={{ opacity: 0, y: 20 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  exit={{ opacity: 0, scale: 0.95 }} 
+                  transition={{ delay: i * 0.05 }} 
+                  className="mb-card"
+                >
                   <div style={{ position: "relative", height: "200px", overflow: "hidden" }}>
                     <img src={b.vehicle?.image || "https://images.unsplash.com/photo-1558981403-c5f91cbcf523?auto=format&fit=crop&q=80&w=800"} className="mb-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} alt={b.vehicle?.name} />
                     <div style={{ position: "absolute", top: "12px", right: "12px", background: "rgba(15, 23, 42, 0.8)", color: "#fff", fontSize: "10px", fontWeight: "900", padding: "4px 10px", borderRadius: "99px", backdropFilter: "blur(8px)", fontFamily: H, textTransform: "uppercase" }}>
-                      ID: {b.id.slice(0, 6).toUpperCase()}
+                      ID: {b.id.slice(0, 6)}
                     </div>
                     <div style={{ position: "absolute", bottom: "0", left: "0", right: "0", background: "linear-gradient(to top, rgba(0,0,0,0.7), transparent)", padding: "20px 24px" }}>
                       <h3 style={{ color: "#fff", margin: 0, fontSize: "20px", fontWeight: "900", fontFamily: H }}>{b.vehicle?.name || b.vehicleType}</h3>
@@ -212,42 +226,36 @@ const MyBookings = () => {
                          <span style={{ fontSize: "11px", fontWeight: "800", color: "#94a3b8", textTransform: "uppercase" }}>Total Paid</span>
                          <span style={{ fontSize: "22px", fontWeight: "950", color: RED, fontFamily: H }}>₹{b.breakdown?.grandTotal || b.totalPrice || "0"}</span>
                        </div>
-                       <span style={{ fontSize: "10px", fontWeight: "900", background: b.status === "cancelled" ? "#fff1f2" : "#fffbeb", color: b.status === "cancelled" ? "#e11d48" : "#d97706", padding: "5px 12px", borderRadius: "99px", textTransform: "uppercase" }}>
+                       <span style={{ fontSize: "10px", fontWeight: "900", background: b.status === "cancelled" ? "#fff1f2" : "#f0fdf4", color: b.status === "cancelled" ? "#e11d48" : "#16a34a", padding: "5px 12px", borderRadius: "99px", textTransform: "uppercase" }}>
                          {b.status || "Paid"}
                        </span>
                     </div>
 
-                        Booking Cancelled
-                      </div>
-                    )}
+                    <div style={{ display: "flex", gap: "12px" }}>
+                      {b.status !== "cancelled" && b.status !== "completed" && (
+                        <button 
+                          onClick={() => handleCancel(b.id)}
+                          style={{ flex: 1, padding: "12px", border: "1.5px solid #ef4444", background: "transparent", color: "#ef4444", borderRadius: "14px", fontSize: "13px", fontWeight: "800", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", transition: "all 0.2s" }}
+                        >
+                          <IcoTrash /> Cancel Booking
+                        </button>
+                      )}
+                      
+                      {(b.status === "completed" || b.status === "cancelled") && (
+                        <button 
+                          onClick={() => navigate("/")}
+                          style={{ flex: 1, padding: "12px", background: RED, color: "#fff", border: "none", borderRadius: "14px", fontSize: "13px", fontWeight: "800", cursor: "pointer" }}
+                        >
+                          Rent Again
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </motion.div>
-              ))}
-            </motion.div>
-          ) : (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ gridColumn: "1/-1", padding: "100px 20px", textAlign: "center", background: "#fff", borderRadius: "32px", border: "1.5px dashed #e2e8f0" }}>
-              <div style={{ fontSize: "60px", marginBottom: "24px" }}>
-                {activeTab === "upcoming" ? "🏝️" : activeTab === "completed" ? "🏁" : "🔄"}
-              </div>
-              <h3 style={{ fontSize: "24px", fontWeight: "900", color: SLATE, margin: "0", fontFamily: H, letterSpacing: "-0.5px" }}>
-                No {activeTab} bookings found
-              </h3>
-              <p style={{ color: "#64748b", fontSize: "16px", fontWeight: "600", marginTop: "12px", maxWidth: "400px", margin: "12px auto 0" }}>
-                {activeTab === "upcoming" ? "You don't have any active rides scheduled. Why not plan your next trip now?" : "Your ride history is empty. Start your journey with RoadMate today!"}
-              </p>
-              {activeTab === "upcoming" && (
-                <button onClick={() => window.location.href = '/'} style={{ 
-                  marginTop: "30px", padding: "14px 40px", borderRadius: "16px", background: RED, color: "#fff", border: "none", 
-                  fontWeight: "900", fontSize: "15px", cursor: "pointer", boxShadow: `0 10px 25px ${RED}40`, fontFamily: H, transition: "all 0.3s" 
-                }}
-                onMouseEnter={e => e.currentTarget.style.transform = "translateY(-4px)"}
-                onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}>
-                  Book a Vehicle
-                </button>
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
+              ))
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );
