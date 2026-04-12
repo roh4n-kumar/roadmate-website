@@ -95,14 +95,15 @@ const MyBookings = () => {
           background: rgba(255, 255, 255, 0.9);
           backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
           border-bottom: 1.5px solid rgba(15, 23, 42, 0.1);
-          padding: 0 24px; height: 72px;
+          padding: 0 24px; height: 80px;
           display: flex; align-items: center; justify-content: center;
         }
-        .mb-inner { max-width: 1250px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
-        .mb-tabs { display: flex; gap: 32px; height: 72px; align-items: center; }
+        .mb-inner { max-width: 1250px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .mb-header-left { display: flex; flex-direction: column; min-width: 0; }
+        .mb-tabs { display: flex; gap: 32px; height: 80px; align-items: center; }
         .mb-tab { 
           position: relative; cursor: pointer; height: 100%; display: flex; align-items: center;
-          font-size: 15px; font-weight: 800; color: #94a3b8; transition: all 0.3s;
+          font-size: 14px; font-weight: 800; color: #94a3b8; transition: all 0.3s;
           font-family: H; text-transform: uppercase; letter-spacing: 0.5px;
         }
         .mb-tab.active { color: ${RED}; }
@@ -117,28 +118,34 @@ const MyBookings = () => {
         .mb-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); border-color: ${RED}20; }
         .mb-card:hover .mb-img { transform: scale(1.05); }
 
+        @media (max-width: 1000px) {
+           .mb-inner { flex-direction: column; align-items: flex-start; height: auto; padding: 16px 0; gap: 16px; }
+           .mb-ribbon { height: auto !important; }
+           .mb-tabs { height: 40px !important; width: 100%; overflow-x: auto; scrollbar-width: none; }
+           .mb-tabs::-webkit-scrollbar { display: none; }
+        }
+        
         @media (max-width: 900px) {
-          .mb-ribbon { top: 60px !important; height: 64px !important; padding: 0 16px !important; }
-          .mb-inner { justify-content: flex-start !important; overflow-x: auto; scrollbar-width: none; }
-          .mb-tabs { gap: 20px !important; }
+          .mb-ribbon { top: 60px !important; padding: 0 16px !important; }
           .mb-grid { grid-template-columns: 1fr !important; padding: 20px 16px !important; }
-          .mb-title-main { font-size: 24px !important; }
+          .mb-title-main { font-size: 20px !important; }
         }
       `}</style>
 
-      {/* Main Title Section */}
-      <div style={{ background: "#fff", padding: "120px 24px 40px" }}>
-        <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
-          <h1 className="mb-title-main" style={{ fontSize: "42px", fontWeight: "900", color: SLATE, fontFamily: H, margin: 0, letterSpacing: "-1.5px" }}>
-            My Bookings
-          </h1>
-          <p style={{ color: "#64748b", fontWeight: "600", marginTop: "8px", fontSize: "16px" }}>Manage your rentals and see your ride history.</p>
-        </div>
-      </div>
+      {/* Spacing for Nav */}
+      <div style={{ height: "64px" }} className="vr-hide-mob" />
+      <div style={{ height: "60px" }} className="vr-show-mob" />
 
       {/* Sticky Tabs Ribbon */}
       <div className="mb-ribbon">
         <div className="mb-inner">
+          <div className="mb-header-left">
+            <h1 className="mb-title-main" style={{ fontSize: "24px", fontWeight: "900", color: SLATE, fontFamily: H, margin: 0, letterSpacing: "-0.8px" }}>
+              My Bookings
+            </h1>
+            <p className="vr-hide-mob" style={{ color: "#64748b", fontWeight: "700", margin: 0, fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.3px" }}>Manage your rentals</p>
+          </div>
+
           <div className="mb-tabs">
             {["upcoming", "completed", "cancelled"].map((tab) => (
               <div key={tab} className={`mb-tab ${activeTab === tab ? 'active' : ''}`} onClick={() => setActiveTab(tab)}>
@@ -154,9 +161,10 @@ const MyBookings = () => {
               </div>
             ))}
           </div>
-          <div className="vr-hide-mob">
-             <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", textTransform: "uppercase", letterSpacing: "1px", fontFamily: H }}>
-                {auth.currentUser?.displayName || "Guest"} • RoadMate
+          
+          <div className="vr-hide-mob" style={{ marginLeft: "auto" }}>
+             <span style={{ fontSize: "12px", color: SLATE, fontWeight: "900", textTransform: "uppercase", letterSpacing: "1px", fontFamily: H, opacity: 0.6 }}>
+                RoadMate Account
              </span>
           </div>
         </div>
