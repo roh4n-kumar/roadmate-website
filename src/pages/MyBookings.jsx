@@ -9,6 +9,7 @@ import {
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../firebase";
+import { logSuspiciousActivity } from "../utils/securityLogger";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMotorcycle, faCar, faCalendarAlt, faClock } from '@fortawesome/free-solid-svg-icons';
@@ -49,11 +50,25 @@ const MyBookings = () => {
   }, []);
 
   const handleCancel = async (id) => {
+    // Defense in Depth: Verify ownership in application logic too
+    const booking = bookings.find(b => b.id === id);
+    if (!booking || booking.userId !== auth.currentUser?.uid) {
+      logSuspiciousActivity("UNAUTHORIZED_CANCELLATION_ATTEMPT", { bookingId: id });
+      alert("Unauthorized action or booking not found.");
+      return;
+    }
+
     const ok = window.confirm("Cancel this booking?");
     if (!ok) return;
-    await updateDoc(doc(db, "bookings", id), { status: "cancelled" });
-    setBookings((prev) => prev.map((b) => (b.id === id ? { ...b, status: "cancelled" } : b)));
-    setActiveTab("cancelled");
+    
+    try {
+      await updateDoc(doc(db, "bookings", id), { status: "cancelled" });
+      setBookings((prev) => prev.map((b) => (b.id === id ? { ...b, status: "cancelled" } : b)));
+      setActiveTab("cancelled");
+    } catch (error) {
+      console.error("Cancellation error:", error);
+      alert("Failed to cancel booking. Please check your permissions.");
+    }
   };
 
   if (loading) {

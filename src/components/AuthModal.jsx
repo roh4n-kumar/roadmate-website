@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { auth, db } from "../firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { logAuthEvent } from "../utils/securityLogger";
 
 // Assets
 import illustration from "../assets/login_illustration_v2.jpg";
@@ -50,9 +51,11 @@ const AuthModal = ({ isOpen, onClose }) => {
     try {
       const result = await signInWithPopup(auth, provider);
       await syncUser(result.user, "google");
+      logAuthEvent("SUCCESS", "google");
       onClose();
     } catch (err) {
       console.error("Google Auth Error:", err);
+      logAuthEvent("FAILURE", "google", err);
     } finally {
       setLoading(false);
     }
@@ -158,6 +161,17 @@ const AuthModal = ({ isOpen, onClose }) => {
             <h3 style={{ fontSize: "22px", fontWeight: 800, color: RED, fontFamily: H, margin: "0 0 8px", lineHeight: 1.2 }}>Sign in to start riding!!</h3>
             <p style={{ color: "#64748b", fontSize: "14px", fontWeight: 500 }}>Join RoadMate and explore the smarter <br/> way to travel today.</p>
           </div>
+
+          <button className="google-btn" onClick={handleGoogleLogin} disabled={loading}>
+            {loading ? (
+              <span style={{ fontSize: "14px", color: "#64748b" }}>Connecting...</span>
+            ) : (
+              <>
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="22" alt="G" />
+                <span>Continue with Google</span>
+              </>
+            )}
+          </button>
 
           <button className="google-btn" onClick={handleGoogleLogin} disabled={loading}>
             {loading ? (

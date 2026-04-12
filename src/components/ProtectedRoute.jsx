@@ -13,9 +13,21 @@ const ProtectedRoute = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  if (user === undefined) return null; // loading
+  if (user === undefined) {
+    return (
+      <div style={{ minHeight: "100vh", background: "#0f172a", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div className="spinner" style={{ width: "40px", height: "40px", border: "4px solid rgba(255,255,255,0.1)", borderTopColor: "#be0d0d", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+    );
+  }
 
-  return user ? children : <Navigate to="/" />; // ✅ /login ki jagah / par bhejo
+  // 1. Check if logged in
+  if (!user) {
+    return <Navigate to="/" />;
+  }
+
+  return children;
 };
 
 export default ProtectedRoute;

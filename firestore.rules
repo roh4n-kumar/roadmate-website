@@ -1,0 +1,55 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Admin helper
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == "admin.roadmate@gmail.com";
+    }
+
+    // Vehicles, Locations, and Offers: Read by everyone, Write by Admin only
+    match /vehicles/{vehicleId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /locations/{locationId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /offers/{offerId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // User Profile: Owner or Admin
+    match /users/{userId} {
+      allow read, write: if request.auth != null && (request.auth.uid == userId || isAdmin());
+    }
+
+    // Bookings: Owner (verified userId) or Admin
+    match /bookings/{bookingId} {
+      allow read, update, delete: if request.auth != null && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if request.auth != null && (request.resource.data.userId == request.auth.uid || isAdmin());
+    }
+
+    // Notifications: Owner or Admin
+    match /notifications/{notifId} {
+      allow read, write: if request.auth != null && (
+        (resource.data.userId == request.auth.uid) || 
+        (request.resource.data.userId == request.auth.uid) ||
+        isAdmin()
+      );
+    }
+
+    // Security Logs: ONLY Create allowed by authenticated users (No reading/modifying)
+    match /security_logs/{logId} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if isAdmin(); // Only Admin can audit logs
+    }
+
+    // Default: Deny everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

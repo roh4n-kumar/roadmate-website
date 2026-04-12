@@ -24,6 +24,7 @@ import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import logo from "./assets/roadMate Red Logo 2.png";
 import { useUserSync } from "./hooks/useUserSync";
+import { logApiError } from "./utils/securityLogger";
 
 const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
@@ -132,6 +133,17 @@ function App() {
   useUserSync();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
+  useEffect(() => {
+    const handleError = (event) => {
+      logApiError(event.reason || "Unhandled Rejection", { 
+        type: "GLOBAL_UNHANDLED_REJECTION",
+        message: event.reason?.message || "Unknown error"
+      });
+    };
+    window.addEventListener("unhandledrejection", handleError);
+    return () => window.removeEventListener("unhandledrejection", handleError);
+  }, []);
+
   return (
     <>
       <Navbar isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
@@ -139,6 +151,7 @@ function App() {
 
       <Routes>
         <Route path="/"                   element={<Home isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />} />
+        
         <Route path="/profile"            element={<ProtectedRoute><PersonalInfo /></ProtectedRoute>} />
         <Route path="/vehicles"           element={<ProtectedRoute><VehicleResults /></ProtectedRoute>} />
         <Route path="/payment"            element={<ProtectedRoute><Payment /></ProtectedRoute>} />

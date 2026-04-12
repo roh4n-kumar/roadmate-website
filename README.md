@@ -1,50 +1,51 @@
-# RoadMate - Premium Mobility Platform
+# RoadMate: Premium Mobility & Rental Platform
 
-RoadMate is a premium online car and bike rental platform designed for a seamless and high-end user experience. This project has recently undergone a major **UI/UX Redesign** to align with modern SaaS and premium startup aesthetics.
-
-## ✨ Premium UI Redesign (March 2026)
-
-The platform now features a **Glassmorphic Design System** with a focus on luxury and performance.
-
-### 🎨 Design Language
-- **Aesthetic**: Premium glassmorphism, soft gradients, and high-fidelity micro-interactions.
-- **Typography**: Integrated the **'Outfit'** font from Google Fonts for a modern and sophisticated feel.
-- **Color Palette**: 
-  - **Primary Accent**: `#be0d0d` (Racing Red)
-  - **Base Tones**: Midnight Blue (`#140f26`), Deep Navy (`#1f1b3a`), and sleek Dark Modes.
-  - **Glass**: High-blur backdrops with subtle 1px translucent borders.
-
-### 🚀 Key Redesigned Components
-- **Navbar & Hero**: A revamped navigation experience with glassmorphic effects and a bold, high-impact hero section.
-- **Vehicle Selection**: Premium vehicle cards with dynamic hover states and elegant typography.
-- **Authentication**: Completely redesigned **Login & Signup** flows with premium auth cards and animated glass backgrounds.
-- **User Dashboard**:
-  - **Personal Info**: Clean, dashboard-style personal information management.
-  - **Document Verification**: A high-fidelity, step-by-step verification flow for DL and Aadhaar with modern upload interfaces.
-  - **My Bookings**: Enhanced booking management cards with clear status indicators.
-
-### 📱 Responsive Design
-- **Mobile-First Approach**: The entire platform is fully optimized for mobile devices, ensuring a premium experience on every screen size.
+RoadMate is a high-fidelity car and bike rental platform built for performance, security, and a seamless user experience. Designed with a "Security-First" approach, it combines a cinematic glassmorphic UI with a robust serverless backend to redefine mobility in urban environments.
 
 ---
 
-## 🛠 Tech Stack
-- **Frontend**: React.js, Vite
-- **Styling**: Vanilla CSS, Framer Motion (Animations)
-- **Backend/DB**: Firebase (Auth & Firestore)
-- **Deployment**: Vercel
+## 🛡️ Enterprise-Grade Security
+The platform has been hardened with a focus on data integrity and identity protection.
 
-## 🚀 Getting Started
+*   **Google-Only Authentication**: Transitioned to a centralized, high-security Google-only authentication model. This eliminates password-related vulnerabilities (brute force, credential stuffing) and ensures identity verification via Google's enterprise infrastructure.
+*   **Zero-Trust Data Access (IDOR Prevention)**: Implemented strict UID-based verification across all sensitive data points including Bookings, Payments, and User Profiles. Data is strictly isolated via server-side Firestore Security Rules.
+*   **Security Audit Logging**: Built an internal `SecurityLogger` that monitors:
+    *   Authentication successes and failures.
+    *   Unauthorized data access attempts (potential IDOR hits).
+    *   Payment transaction integrity and errors.
+*   **Deployment Protection**: Configured with hardened `.gitignore` policies and environment variable modularization to ensure 0% exposure of backend secrets.
 
-1. Clone the repository:
-   ```bash
-   git clone <repo-url>
-   ```
-2. Install dependencies:
+## ✨ Premium UI/UX Experience
+RoadMate features a custom-built **Glassmorphic Design System** tailored for a premium feel.
+
+*   **Cinematic Hero & Navbar**: Dynamic, scroll-responsive navigation with high-blur backdrops.
+*   **Fluid Animations**: Powered by **Framer Motion**, featuring smooth layouts, staggered entrance animations, and micro-interactions.
+*   **Mobile-First Precision**: Every component is vertically optimized for mobile viewports, ensuring zero layout shifts and a native-app feel on smartphones.
+*   **Typography**: Clean, geometric aesthetics using the **'Outfit'** font family for a professional look.
+
+## 🛠️ Tech Stack & Architecture
+*   **Frontend**: React 18 (Vite)
+*   **Styling**: Vanilla CSS (Modular & Scalable), Framer Motion
+*   **Backend**: Firebase (Authentication | Firestore Cloud Database)
+*   **Security**: Firebase Security Rules (Version 2)
+*   **Hosting**: High-performance deployment on Vercel
+
+---
+
+## 🚀 Development Setup
+
+1. **Environment Config**:
+   Create a `.env` file and populate it with your Firebase configuration variables as defined in `src/firebase.js`.
+
+2. **Installation**:
    ```bash
    npm install
    ```
-3. Run the development server:
+
+3. **Running the App**:
    ```bash
    npm run dev
    ```
+
+---
+*Built with ❤️ for a smarter way to travel.*

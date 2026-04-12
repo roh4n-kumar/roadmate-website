@@ -233,8 +233,8 @@ const DocumentVerification = () => {
     const compressed = (file.type==="image/jpeg"||file.type==="image/png"||file.type==="image/webp") ? await compressImage(file) : file;
     const formData = new FormData();
     formData.append("file", compressed);
-    formData.append("upload_preset", "RoadMate Image");
-    formData.append("cloud_name", "ds1cjvxyj");
+    formData.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
+    formData.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
     const res = await fetch("https://api.cloudinary.com/v1_1/ds1cjvxyj/image/upload", { method:"POST", body:formData });
     const data = await res.json();
     if (!data.secure_url) throw new Error("Upload failed");

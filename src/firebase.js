@@ -3,13 +3,13 @@ import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth"
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "REMOVED_SECRET",
-  authDomain: "roadmate-72830.firebaseapp.com",
-  projectId: "roadmate-72830",
-  storageBucket: "roadmate-72830.firebasestorage.app",
-  messagingSenderId: "1062661041786",
-  appId: "1:1062661041786:web:5b92f1c2730472bc3755c3",
-  measurementId: "G-C3TS0N6HEF"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { db } from "../firebase";
+import { db, auth } from "../firebase";
 import { doc, getDoc, updateDoc, onSnapshot, serverTimestamp } from "firebase/firestore";
+import { logSuspiciousActivity, logApiError } from "../utils/securityLogger";
 
 const RED = "#be0d0d";
 const SLATE = "#0f172a";
@@ -119,11 +120,21 @@ export default function Payment() {
 
     // ── SYNC WITH FIRESTORE BOOKING ──
     useEffect(() => {
-        if (!bookingId) return;
+        if (!bookingId || !auth.currentUser) return;
 
         const unsub = onSnapshot(doc(db, "bookings", bookingId), (snap) => {
             if (snap.exists()) {
                 const data = snap.data();
+                
+                // CRITICAL SECURITY: IDOR PREVENTION
+                // Ensure the booking belongs to the current authenticated user
+                if (data.userId !== auth.currentUser?.uid) {
+                    logSuspiciousActivity("UNAUTHORIZED_PAYMENT_ACCESS", { bookingId });
+                    console.error("Unauthorized access attempt detected.");
+                    navigate("/my-bookings");
+                    return;
+                }
+
                 setDbBooking(data);
                 
                 // If payment was already completed elsewhere
@@ -233,6 +244,7 @@ export default function Payment() {
                 setTimeout(() => navigate("/my-bookings"), 3000);
             }, 1500);
         } catch (error) {
+            logApiError(error, { bookingId });
             console.error("Payment update failed:", error);
             setLoading(false);
             setToast({ msg: "Payment failed to sync. Please contact support.", type: "error" });
