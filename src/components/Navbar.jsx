@@ -317,8 +317,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                 </div>
 
                 <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "10px", paddingTop: "20px" }} className="hide-scrollbar">
-                    <div style={{ padding: "0 25px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "10px" }} className="hide-scrollbar">
+                    <div style={{ padding: "35px 25px" }}>
                       {!isLoggedIn ? (
                         <div style={{ padding: "10px 0 30px", background: "transparent", marginBottom: "10px" }}>
                           <h3 style={{ fontSize: "22px", fontWeight: 900, marginBottom: "20px", color: "#111", fontFamily: H }}>Login to start your ride.</h3>
@@ -330,19 +330,19 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                           </button>
                         </div>
                       ) : (
-                        <div style={{ marginBottom: "30px" }}>
+                        <div style={{ margin: 0 }}>
                           <ProfileCard 
                             name={user?.displayName} 
                             email={user?.email} 
                             style={{ 
-                              padding: "10px 0", 
+                              padding: "0", 
                             }} 
                           />
                         </div>
                       )}
                     </div>
 
-                    <div style={{ height: "1px", minHeight: "1px", background: "rgba(15, 23, 42, 0.08)", marginBottom: "15px", marginTop: "10px", width: "calc(100% - 60px)", marginLeft: "auto", marginRight: "auto", borderRadius: "2px", flexShrink: 0 }} />
+                    <div style={{ height: "1px", minHeight: "1px", background: "rgba(15, 23, 42, 0.08)", marginBottom: "15px", marginTop: "0px", width: "calc(100% - 10px)", marginLeft: "auto", marginRight: "auto", borderRadius: "2px", flexShrink: 0 }} />
                     {/* Section Headers with padding moved to items */}
                     <div style={{ padding: "0 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>My details</h3>
