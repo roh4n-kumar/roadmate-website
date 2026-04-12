@@ -97,10 +97,10 @@ const MyBookings = () => {
           position: sticky; top: 64px; z-index: 999;
           background: #fff;
           border-bottom: 1.5px solid rgba(15, 23, 42, 0.25);
-          padding: 0 24px; height: 64px;
+          height: 64px;
           display: flex; align-items: center; justify-content: center;
         }
-        .mb-inner { max-width: 1250px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .mb-inner { max-width: 1250px; width: 100%; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
         .mb-header-left { display: flex; flex-direction: column; min-width: 0; }
         .mb-tabs { display: flex; gap: 32px; height: 64px; align-items: center; }
         .mb-tab { 
@@ -112,7 +112,7 @@ const MyBookings = () => {
         .mb-tab-indicator { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: ${RED}; border-radius: 10px 10px 0 0; z-index: 1001; }
         
         .mb-content { max-width: 1250px; margin: 0 auto; padding: 24px 24px 80px; }
-        .mb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 32px; }
+        .mb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; }
         .mb-card { 
           background: #fff; border-radius: 28px; overflow: hidden; 
           box-shadow: 0 10px 30px rgba(0,0,0,0.04); border: 1.5px solid rgba(15,23,42,0.05);
@@ -228,6 +228,7 @@ const MyBookings = () => {
                          fontSize: "10px", fontWeight: "900", 
                          background: b.status === "cancelled" ? "#fff1f2" : (b.status === "pending" || !b.status ? "#fffbeb" : "#f0fdf4"), 
                          color: b.status === "cancelled" ? "#e11d48" : (b.status === "pending" || !b.status ? "#d97706" : "#16a34a"), 
+                         border: `1px solid ${b.status === "cancelled" ? "#fecaca" : (b.status === "pending" || !b.status ? "#fed7aa" : "#bbf7d0")}`,
                          padding: "5px 12px", borderRadius: "99px", textTransform: "uppercase" 
                        }}>
                          {b.status || "Pending"}
