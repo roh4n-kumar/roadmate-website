@@ -224,30 +224,97 @@ export default function Payment() {
     const costs     = dbBooking?.breakdown || { baseTotal, gst: passedGst, helmetCharge, driverCharge, grandTotal: total };
     const grand     = costs.grandTotal || costs.total || total || 0;
 
+    // ── RAZORPAY INTEGRATION ──
+    const loadRazorpayScript = () => {
+        return new Promise((resolve) => {
+            const script = document.createElement("script");
+            script.src = "https://checkout.razorpay.com/v1/checkout.js";
+            script.onload = () => resolve(true);
+            script.onerror = () => resolve(false);
+            document.body.appendChild(script);
+        });
+    };
+
     const handlePay = async () => {
         setLoading(true);
+        
         try {
-            // Update Firestore document status
-            if (bookingId) {
-                await updateDoc(doc(db, "bookings", bookingId), {
-                    status: "upcoming",
-                    paymentStatus: "paid",
-                    paidAt: serverTimestamp(),
-                    paymentMethod: "UPI/QR (Simulated)"
-                });
+            // 1. Load Razorpay SDK
+            const res = await loadRazorpayScript();
+            if (!res) {
+                setToast({ msg: "Razorpay SDK failed to load. Check internet.", type: "error" });
+                setLoading(false);
+                return;
             }
 
-            setTimeout(() => {
-                setLoading(false);
-                setSuccess(true);
-                clearPaymentSession();
-                setTimeout(() => navigate("/my-bookings"), 3000);
-            }, 1500);
+            // 2. Create Order via Backend (Vercel Function)
+            // SECURITY: No amount sent from frontend in production. 
+            // Here we pass it for test purposes, but real logic should fetch from DB.
+            const orderRes = await fetch("/api/create-order", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    bookingId,
+                    amount: grand,
+                    userId: auth.currentUser?.uid
+                })
+            });
+
+            const orderData = await orderRes.json();
+            if (!orderRes.ok) throw new Error(orderData.message || "Failed to create order");
+
+            // 3. Launch Razorpay Checkout
+            const options = {
+                key: import.meta.env.VITE_RAZORPAY_KEY_ID, 
+                amount: orderData.amount,
+                currency: "INR",
+                name: "RoadMate",
+                description: `Booking for ${vehicle?.name}`,
+                image: "/logo.png", // Or your logo path
+                order_id: orderData.id,
+                handler: async (response) => {
+                    // This function runs after successful payment
+                    try {
+                        await updateDoc(doc(db, "bookings", bookingId), {
+                            status: "upcoming",
+                            paymentStatus: "paid",
+                            paidAt: serverTimestamp(),
+                            razorpayPaymentId: response.razorpay_payment_id,
+                            razorpayOrderId: response.razorpay_order_id,
+                            razorpaySignature: response.razorpay_signature,
+                            paymentMethod: "Razorpay"
+                        });
+                        
+                        setLoading(false);
+                        setSuccess(true);
+                        clearPaymentSession();
+                        setTimeout(() => navigate("/my-bookings"), 3000);
+                    } catch (err) {
+                        logApiError(err, { bookingId, step: "DB_SYNC" });
+                        setToast({ msg: "Payment success but sync failed. Contact Support.", type: "error" });
+                        setLoading(false);
+                    }
+                },
+                prefill: {
+                    name: auth.currentUser?.displayName || "",
+                    email: auth.currentUser?.email || "",
+                },
+                theme: {
+                    color: RED
+                },
+                modal: {
+                    ondismiss: () => setLoading(false)
+                }
+            };
+
+            const rzp = new window.Razorpay(options);
+            rzp.open();
+
         } catch (error) {
             logApiError(error, { bookingId });
-            console.error("Payment update failed:", error);
+            console.error("Payment flow failed:", error);
             setLoading(false);
-            setToast({ msg: "Payment failed to sync. Please contact support.", type: "error" });
+            setToast({ msg: error.message || "Something went wrong.", type: "error" });
             setTimeout(() => setToast(null), 5000);
         }
     };

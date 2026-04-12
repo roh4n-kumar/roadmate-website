@@ -17,12 +17,13 @@ const logSecurityEvent = async (type, details = {}, level = "INFO") => {
             timestamp: serverTimestamp(),
             path: window.location.pathname,
             userAgent: navigator.userAgent,
-            details: {
-                ...details,
-                // Mask sensitive info if any inadvertently passed
-                password: details.password ? "[MASKED]" : undefined
-            }
+            details: JSON.parse(JSON.stringify(details)) // Deep clone and remove undefined values
         };
+
+        // Mask password if accidentally included
+        if (logData.details.password) {
+            logData.details.password = "[MASKED]";
+        }
 
         // Log to console for development visibility
         console.log(`[Security ${level}] ${type}:`, logData);
