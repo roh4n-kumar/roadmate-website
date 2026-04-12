@@ -71,7 +71,7 @@ const MyBookings = () => {
 
   if (loading) {
     return (
-      <div style={{ padding: "100px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "80vh", background: "#f8fafc" }}>
+      <div style={{ padding: "100px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "80vh", background: "#ffffff" }}>
         <motion.div 
           animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
           style={{ width: "40px", height: "40px", border: "4px solid rgba(190,13,13,0.1)", borderTopColor: RED, borderRadius: "50%" }} 
@@ -92,15 +92,15 @@ const MyBookings = () => {
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
         
         /* ── Desktop layout ── */
-        .mb-page { padding-top: 64px; }
+        .mb-page { padding-top: 64px; background: #ffffff; }
         .mb-ribbon {
           position: sticky; top: 64px; z-index: 999;
           background: #fff;
           border-bottom: 1.5px solid rgba(15, 23, 42, 0.25);
-          height: 64px;
+          height: 64px; padding: 0 24px;
           display: flex; align-items: center; justify-content: center;
         }
-        .mb-inner { max-width: 1250px; width: 100%; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .mb-inner { max-width: 1250px; width: 100%; padding: 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
         .mb-header-left { display: flex; flex-direction: column; min-width: 0; }
         .mb-tabs { display: flex; gap: 32px; height: 64px; align-items: center; }
         .mb-tab { 
