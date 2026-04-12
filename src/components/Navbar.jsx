@@ -318,10 +318,10 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
 
                 <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "10px" }} className="hide-scrollbar">
-                    <div style={{ padding: "30px 25px 35px" }}>
+                    <div style={{ padding: "30px 25px 35px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
                       {!isLoggedIn ? (
-                        <div style={{ margin: 0 }}>
-                          <h3 style={{ fontSize: "18px", fontWeight: 900, marginBottom: "16px", color: "#111", fontFamily: H, letterSpacing: "-0.5px" }}>Login to start your ride.</h3>
+                        <div style={{ margin: 0, width: "100%" }}>
+                          <h3 style={{ fontSize: "18px", fontWeight: 900, marginBottom: "20px", color: "#111", fontFamily: H, letterSpacing: "-0.5px", textAlign: "center" }}>Login to start your ride.</h3>
                           <button
                             onClick={() => { setIsDrawerOpen(false); setIsLoginOpen(true); }}
                             style={{ width: "100%", padding: "16px", background: RED, color: "#fff", border: "none", borderRadius: "18px", fontSize: "16px", fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", boxShadow: `0 10px 20px ${RED}40`, fontFamily: F }}
