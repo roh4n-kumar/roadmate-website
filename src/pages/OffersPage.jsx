@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 import { offersData } from "../data/offers";
 import Footer from "../components/Footer";
 import OfferModal from "../components/OfferModal";
@@ -13,9 +13,19 @@ const OffersPage = () => {
   const navigate = useNavigate();
   const [selectedOffer, setSelectedOffer] = useState(null);
 
+  const location = useLocation();
+ 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    
+    // Check for incoming trigger from Home page
+    if (location.state?.openOfferId) {
+      const off = offersData.find(x => x.id === location.state.openOfferId);
+      if (off) setSelectedOffer(off);
+      // Clear state so it doesn't reopen on refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   return (
     <div style={{ background: "#f8fafc", minHeight: "100vh" }}>

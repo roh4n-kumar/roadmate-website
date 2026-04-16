@@ -8,11 +8,9 @@ const H = "'Outfit', sans-serif";
 const F = "'Inter', sans-serif";
 
 import { offersData } from "../data/offers";
-import OfferModal from "./OfferModal";
 
 const Offers = () => {
   const navigate = useNavigate();
-  const [selectedOffer, setSelectedOffer] = useState(null);
   
   // We only show the first 6 offers on the homepage
   const featuredOffers = offersData.slice(0, 6);
@@ -278,25 +276,12 @@ const Offers = () => {
                    
                    <div className="o-footer">
                       <div className="o-code">Code: <span>{off.code}</span></div>
-                      <div className="o-action rm-btn-premium" style={{ padding: '8px 16px', fontSize: '11px' }} onClick={() => setSelectedOffer(off)}>BOOK NOW</div>
+                      <div className="o-action rm-btn-premium" style={{ padding: '8px 16px', fontSize: '11px' }} onClick={() => navigate("/offers", { state: { openOfferId: off.id } })}>BOOK NOW</div>
                    </div>
                 </div>
               </div>
             ))}
           </motion.div>
-        </AnimatePresence>
-
-        <AnimatePresence>
-          {selectedOffer && (
-            <OfferModal 
-              offer={selectedOffer} 
-              onClose={() => setSelectedOffer(null)} 
-              onBookNow={() => {
-                setSelectedOffer(null);
-                navigate("/vehicles");
-              }} 
-            />
-          )}
         </AnimatePresence>
       </div>
     </section>
