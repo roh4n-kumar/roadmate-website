@@ -31,7 +31,7 @@ const FAQSection = () => {
   const [active, setActive] = useState(null);
 
   return (
-    <section className="faq-section" style={{ padding: "40px 24px", background: "#ffffff" }}>
+    <section className="faq-section" style={{ padding: "80px 24px 40px", background: "#ffffff" }}>
       <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
         <style>{`
           @media (max-width: 900px) {
