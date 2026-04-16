@@ -181,7 +181,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <WhyChooseUs />
 
       {/* Featured Fleet (Offers Style) */}
-      <section style={{ padding: "100px 24px 100px", maxWidth: "1350px", margin: "0 auto", position: 'relative', zIndex: 10 }}>
+      <section style={{ padding: "100px 24px 20px", maxWidth: "1350px", margin: "0 auto", position: 'relative', zIndex: 10 }}>
         <div className="fleet-outer-card">
           <div className="fleet-header">
             <div>
