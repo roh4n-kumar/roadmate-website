@@ -137,6 +137,7 @@ const StatusBadge = ({ status }) => {
     verified:     { bg:"#f0fdf4", border:"#bbf7d0", color:"#16a34a", text:"Verified",     icon:<CheckIcon /> },
     pending:      { bg:"#fffbeb", border:"#fde68a", color:"#d97706", text:"Pending",      icon:<ClockIcon /> },
     rejected:     { bg:"#fef2f2", border:"#fecdd3", color:RED,       text:"Rejected",     icon:<WarnIcon /> },
+    expired:      { bg:"#fff1f2", border:"#fda4af", color:RED,       text:"Expired",      icon:<WarnIcon /> },
     not_uploaded: { bg:"#f8fafc", border:"#e2e8f0", color:"#94a3b8", text:"Not Uploaded", icon:<span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#cbd5e1", display:"inline-block" }}/> },
   };
   const c = config[status] || config.not_uploaded;
@@ -251,8 +252,11 @@ const DocumentVerification = () => {
           const d = snap.data();
           setProfile(d.profile || {});
           
+          const curDlExpiry = d.dlExpiry || d.verification?.drivingLicence?.expiry || d.verification?.dl?.expiry;
+          const isDlExpired = curDlExpiry && new Date(curDlExpiry) < new Date();
+          
           const statuses = {
-             dl: (d.dlStatus || d.verification?.drivingLicence?.status || d.verification?.dl?.status || "not_uploaded").toLowerCase(),
+             dl: isDlExpired ? "expired" : (d.dlStatus || d.verification?.drivingLicence?.status || d.verification?.dl?.status || "not_uploaded").toLowerCase(),
              aadhaar: (d.aadhaarStatus || d.verification?.aadhaar?.status || "not_uploaded").toLowerCase(),
              selfie: (d.selfieStatus || d.verification?.selfie?.status || "not_uploaded").toLowerCase()
           };

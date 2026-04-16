@@ -222,6 +222,15 @@ export default function VehicleResults() {
         (userData.dlStatus === "verified" && userData.aadhaarStatus === "verified" && userData.selfieStatus === "verified") ||
         (userData.verification?.status === "verified");
 
+      // Check for DL Expiration
+      const dlExp = userData.dlExpiry || userData.verification?.dl?.expiry || userData.verification?.drivingLicence?.expiry;
+      const isExpired = dlExp && new Date(dlExp) < new Date();
+
+      if (isExpired) {
+        navigate("/?error=expired");
+        return;
+      }
+
       if (!hasPhone && !isVerified) {
         navigate("/?error=both");
         return;

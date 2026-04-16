@@ -30,7 +30,8 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       const msgs = {
         both: "Please verify your mobile number and documents before booking.",
         phone: "Please verify your mobile number first.",
-        docs: "Please verify your documents first."
+        docs: "Please verify your documents first.",
+        expired: "Your Driving License has expired. Please update it in the verification tab to continue."
       };
       setToast(msgs[errorType] || "Verification required.");
       // Clear param
