@@ -249,18 +249,20 @@ const OffersPage = () => {
       `}</style>
 
       {/* TOP STICKY RIBBON (Below Navbar) */}
-      <div className="offers-ribbon">
-        <button className="back-icon-btn" onClick={() => navigate("/")}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-            <path d="m15 18-6-6 6-6"/>
-          </svg>
-        </button>
-        <div className="top-info">
-          <h2 className="page-title">Exclusive Offers</h2>
-          <div className="divider"></div>
-          <div className="status-pill">PROMO ACTIVE</div>
+      <div className="offers-ribbon" style={{ padding: 0 }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto", width: "100%", height: "100%", display: "flex", alignItems: "center", padding: "0 40px" }}>
+          <button className="back-icon-btn" onClick={() => navigate("/")}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m15 18-6-6 6-6"/>
+            </svg>
+          </button>
+          <div className="top-info">
+            <h2 className="page-title">Exclusive Offers</h2>
+            <div className="divider"></div>
+            <div className="status-pill">PROMO ACTIVE</div>
+          </div>
+          <div className="available-count">6 AVAILABLE</div>
         </div>
-        <div className="available-count">6 AVAILABLE</div>
       </div>
 
       <div className="offers-main-wrapper">
