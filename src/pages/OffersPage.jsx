@@ -260,7 +260,7 @@ const OffersPage = () => {
         </div>
       </div>
 
-      <div className="offers-main-wrapper" style={{ padding: "0 24px" }}>
+      <div className="offers-main-wrapper" style={{ padding: "118px 24px 0" }}>
         <div className="offers-content" style={{ padding: "40px 0 100px", maxWidth: "1250px", margin: "0 auto" }}>
           <motion.div 
             className="o-grid"
