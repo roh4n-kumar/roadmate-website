@@ -106,7 +106,7 @@ const MapSection = () => {
         <div style={{ textAlign: "center", marginBottom: "40px" }}>
           <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "1000px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Our Network</span>
           <h2 className="map-heading" style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, marginTop: "8px", color: "#0f172a", lineHeight: 1.1 }}>Visit Our Hubs</h2>
-          <p style={{ color: "#64748b", fontSize: "16px", marginTop: "12px", maxWidth: "600px", margin: "12px auto 0", lineHeight: 1.6 }}>
+          <p style={{ color: "#64748b", fontSize: "16px", marginTop: "5px", maxWidth: "600px", margin: "5px auto 0", lineHeight: 1.6 }}>
             Locate our nearest partner hubs and certified garages for a seamless pickup and support experience across the city.
           </p>
         </div>
