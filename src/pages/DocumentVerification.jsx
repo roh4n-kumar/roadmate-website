@@ -191,6 +191,7 @@ const DocumentVerification = () => {
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
   const [docStatus, setDocStatus] = useState({ "driving-licence":"not_uploaded", aadhaar:"not_uploaded", selfie:"not_uploaded" });
+  const [showDlReupload, setShowDlReupload] = useState(false);
   
   const [dlFront, setDlFront] = useState(null);
   const [dlImageUrl, setDlImageUrl] = useState(null);
@@ -436,8 +437,26 @@ const DocumentVerification = () => {
                     </div>
                   </div>
                   {docStatus["driving-licence"] === "verified" && <div style={{ color:"#10b981" }}><CheckIcon /></div>}
+                  {docStatus["driving-licence"] === "expired" && !showDlReupload && (
+                    <button 
+                      onClick={() => setShowDlReupload(true)}
+                      style={{ background: RED, color: "#fff", border: "none", padding: "8px 16px", borderRadius: "10px", fontSize: "11px", fontWeight: "900", cursor: "pointer", fontFamily: H, boxShadow: "0 4px 15px "+RED+"30" }}
+                    >
+                      RE-UPLOAD DL
+                    </button>
+                  )}
                 </div>
-                {docStatus["driving-licence"] !== "verified" && (
+
+                {docStatus["driving-licence"] === "expired" && !showDlReupload && (
+                  <div style={{ marginTop: "20px", background: RED+"05", border: "1.5px dashed "+RED+"30", borderRadius: "16px", padding: "20px", display: "flex", alignItems: "center", gap: "12px", color: RED }}>
+                    <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: RED, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><WarnIcon /></div>
+                    <p style={{ margin: 0, fontSize: "14px", fontWeight: "700", fontFamily: F, lineHeight: "1.5" }}>
+                      Your Driving License has <span style={{ fontWeight: "900" }}>EXPIRED</span>. You must re-upload a valid license to continue using RoadMate services.
+                    </p>
+                  </div>
+                )}
+
+                {docStatus["driving-licence"] !== "verified" && (docStatus["driving-licence"] !== "expired" || showDlReupload) && (
                   <div className="dv-split" style={{ marginTop: "30px" }}>
                     <div className="dv-side-upload">
                       <UploadBox label="DL Front Photo" hint="Clear photo for verification" file={dlFront} onChange={setDlFront} disabled={docStatus["driving-licence"]==="pending"} fallbackUrl={dlImageUrl} />
@@ -552,7 +571,7 @@ const DocumentVerification = () => {
                 )}
               </div>
 
-              {!isAllLocked && (
+              {(!isAllLocked && (docStatus["driving-licence"] !== "expired" || showDlReupload)) && (
                 <>
                   <div className="divider" />
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
