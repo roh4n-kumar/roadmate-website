@@ -33,8 +33,11 @@ service cloud.firestore {
 
     // Bookings: Owner (verified userId) or Admin
     match /bookings/{bookingId} {
-      allow read, update, delete: if request.auth != null && (resource.data.userId == request.auth.uid || isAdmin());
       allow create: if request.auth != null && (request.resource.data.userId == request.auth.uid || isAdmin());
+      allow read, update, delete: if request.auth != null && (
+        (resource != null && resource.data.userId == request.auth.uid) || 
+        isAdmin()
+      );
     }
 
     // Security Logs: ONLY Create allowed by authenticated users (No reading/modifying)
