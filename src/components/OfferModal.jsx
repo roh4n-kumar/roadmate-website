@@ -23,7 +23,7 @@ const OfferModal = ({ offer, onClose, onBookNow }) => {
         setTimeout(() => setCopied(false), 2000);
     };
 
-    const tcPoints = [
+    const tcPoints = offer.details || [
         `Use code ${offer.code} to get this exclusive discount.`,
         "Offer available only for registered RoadMate users.",
         "Offer is applicable for a minimum rental duration of 1 hour.",
