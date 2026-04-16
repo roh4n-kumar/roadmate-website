@@ -101,7 +101,7 @@ const MapSection = () => {
   }, [locations, loading]);
 
   return (
-    <section style={{ padding: "40px 24px", background: "#ffffff", overflow: "hidden" }}>
+    <section style={{ padding: "40px 24px 80px", background: "#ffffff", overflow: "hidden" }}>
       <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "30px" }}>
           <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "1000px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Our Network</span>
