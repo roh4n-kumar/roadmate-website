@@ -403,8 +403,13 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     fontSize: "11px", fontWeight: "900", color: "white",
                     fontFamily: H, flexShrink: 0,
                     boxShadow: "0 4px 10px rgba(190,13,13,0.2)",
+                    overflow: "hidden"
                   }}>
-                    {(user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()}
+                    {user?.photoURL ? (
+                       <img src={user.photoURL} alt="User" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    ) : (
+                       (user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()
+                    )}
                   </div>
                   <span style={{
                     fontSize: "15px",
@@ -508,6 +513,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                           <ProfileCard 
                             name={user?.displayName} 
                             email={user?.email} 
+                            photoURL={user?.photoURL}
                             style={{ 
                               padding: "0", 
                             }} 

@@ -5,7 +5,7 @@ const RED = "#be0d0d";
 const H = "'Outfit', sans-serif";
 const F = "'Inter', sans-serif";
 
-const ProfileCard = ({ name, email, avatarOnly = false, action, style = {} }) => {
+const ProfileCard = ({ name, email, photoURL, avatarOnly = false, action, style = {} }) => {
   const initial = (name?.[0] || email?.[0] || "?").toUpperCase();
   const avatarBg = RED;
 
@@ -41,9 +41,18 @@ const ProfileCard = ({ name, email, avatarOnly = false, action, style = {} }) =>
             fontWeight: 900, 
             fontFamily: H,
             position: "relative",
-            zIndex: 1
+            zIndex: 1,
+            overflow: "hidden"
           }}>
-            {initial}
+            {photoURL ? (
+              <img 
+                src={photoURL} 
+                alt={name} 
+                style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+              />
+            ) : (
+              initial
+            )}
           </div>
         </div>
 
