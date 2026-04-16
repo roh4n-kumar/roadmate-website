@@ -464,7 +464,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
 
                 <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "10px" }} className="hide-scrollbar">
-                    <div style={{ padding: "30px 25px 35px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+                    <div style={{ padding: "30px 25px 35px", display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left" }}>
                       {!isLoggedIn ? (
                         <div style={{ margin: 0, width: "100%" }}>
                           <h3 style={{ fontSize: "18px", fontWeight: 900, marginBottom: "20px", color: "#111", fontFamily: H, letterSpacing: "-0.5px", textAlign: "center" }}>Login to start your ride.</h3>
@@ -493,7 +493,6 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     <div style={{ padding: "0 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>My details</h3>
                       <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => handleProtectedAction("/my-bookings")} />
-                      <DrawerItem icon={<BellIcon size={20} />} label="Notifications" onClick={() => { setIsDrawerOpen(false); setIsNotifDrawerOpen(true); }} />
                       <DrawerItem icon={<UserIcon size={20} />} label="My Profile" onClick={() => handleProtectedAction("/profile")} />
                     </div>
 
@@ -514,6 +513,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
 
                     <div style={{ padding: "10px 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>More</h3>
+                      <DrawerItem icon={<BellIcon size={20} />} label="Notifications" onClick={() => { setIsDrawerOpen(false); setIsNotifDrawerOpen(true); }} />
                       <DrawerItem icon={<HelpCircleIcon size={20} />} label="Help" onClick={() => { setIsDrawerOpen(false); /* help */ }} />
                       <DrawerItem icon={<TagIcon size={20} />} label="Offers" onClick={() => { 
                         setIsDrawerOpen(false); 
