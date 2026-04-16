@@ -180,12 +180,43 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     return formData.selectedDate.toDateString() === tomm.toDateString();
   };
 
+  const timeToMinutes = (timeStr) => {
+    if (!timeStr) return 0;
+    try {
+      const [parts, ap] = timeStr.split(" ");
+      let [h, m] = parts.split(":").map(Number);
+      if (ap === "PM" && h !== 12) h += 12;
+      if (ap === "AM" && h === 12) h = 0;
+      return h * 60 + m;
+    } catch (e) { return 0; }
+  };
+
   const handleSearch = () => {
     const { vehicleType, selectedDate, pickupTime, dropoffTime, withHelmet, withDriver } = formData;
     if (!vehicleType || !selectedDate || !pickupTime || !dropoffTime) {
       setToastMsg("Please select Vehicle Category, Pickup and Dropoff Times!");
       setTimeout(() => setToastMsg(null), 4000);
       return;
+    }
+
+    const pickM = timeToMinutes(pickupTime);
+    const dropM = timeToMinutes(dropoffTime);
+
+    // 1. Check if Dropoff is after Pickup (min 1h)
+    if (dropM < pickM + 60) {
+      setToastMsg("Booking must be for at least 1 hour!");
+      setTimeout(() => setToastMsg(null), 4000);
+      return;
+    }
+
+    // 2. Check if Today's pickup is not in the past
+    if (isSelectedToday()) {
+      const now = new Date();
+      if (pickM < (now.getHours() * 60 + now.getMinutes() + 15)) { // 15 min buffer for the 'click' lag
+        setToastMsg("Pickup time cannot be in the past!");
+        setTimeout(() => setToastMsg(null), 4000);
+        return;
+      }
     }
 
     // CHECK IF LOGGED IN
@@ -914,7 +945,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               {formData.pickupTime && <div className="col-sub" style={{ color: '#718096' }}>Selected start time</div>}
               {showPickTime && (
                 <div className="cal-box" onClick={e => e.stopPropagation()}>
-                    <TimePopup onSelect={t => { setFormData({...formData, pickupTime: t}); openDropdown('off'); }} />
+                    <TimePopup 
+                      onSelect={t => { setFormData({...formData, pickupTime: t, dropoffTime: null}); openDropdown('off'); }} 
+                      minTimeMinutes={isSelectedToday() ? (new Date().getHours() * 60 + new Date().getMinutes() + 60) : 0}
+                      errorMsg={isSelectedToday() ? "Pickup must be at least 1h from now" : ""}
+                    />
                 </div>
               )}
             </div>
@@ -944,7 +979,11 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
               {formData.dropoffTime && <div className="col-sub" style={{ color: '#718096' }}>Selected end time</div>}
               {showDropTime && (
                 <div className="cal-box" onClick={e => e.stopPropagation()}>
-                    <TimePopup onSelect={t => { setFormData({...formData, dropoffTime: t}); openDropdown('off'); }} />
+                    <TimePopup 
+                      onSelect={t => { setFormData({...formData, dropoffTime: t}); openDropdown('off'); }} 
+                      minTimeMinutes={formData.pickupTime ? (timeToMinutes(formData.pickupTime) + 60) : 0}
+                      errorMsg="Return must be at least 1h after pickup"
+                    />
                 </div>
               )}
             </div>

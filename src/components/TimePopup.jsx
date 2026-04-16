@@ -4,7 +4,7 @@ const RED = "#be0d0d";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
-const TimePopup = ({ onSelect }) => {
+const TimePopup = ({ onSelect, minTimeMinutes, errorMsg }) => {
   const [hour,   setHour]   = useState(9);
   const [minute, setMinute] = useState(0);
   const [ampm,   setAmpm]   = useState("AM");
@@ -16,6 +16,15 @@ const TimePopup = ({ onSelect }) => {
   const decrementMinute = () => setMinute(prev => (prev === 0 ? 55 : prev - 5));
 
   const formatNum = (n) => n.toString().padStart(2, "0");
+
+  const getSelectedMinutes = () => {
+    let h = hour;
+    if (ampm === "PM" && h !== 12) h += 12;
+    if (ampm === "AM" && h === 12) h = 0;
+    return h * 60 + minute;
+  };
+
+  const isInvalid = minTimeMinutes !== undefined && getSelectedMinutes() < minTimeMinutes;
 
   const ArrowBtn = ({ direction, onClick }) => (
     <button 
@@ -66,7 +75,7 @@ const TimePopup = ({ onSelect }) => {
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px", width: "48px" }}>
           <ArrowBtn direction="up" onClick={incrementHour} />
           <div style={{ 
-            fontSize: "32px", fontWeight: "900", fontFamily: H, color: "#1e293b", 
+            fontSize: "32px", fontWeight: "900", fontFamily: H, color: isInvalid ? RED : "#1e293b", 
             lineHeight: 1, fontVariantNumeric: "tabular-nums" 
           }}>
             {formatNum(hour)}
@@ -80,7 +89,7 @@ const TimePopup = ({ onSelect }) => {
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px", width: "48px" }}>
           <ArrowBtn direction="up" onClick={incrementMinute} />
           <div style={{ 
-            fontSize: "32px", fontWeight: "900", fontFamily: H, color: "#1e293b", 
+            fontSize: "32px", fontWeight: "900", fontFamily: H, color: isInvalid ? RED : "#1e293b", 
             lineHeight: 1, fontVariantNumeric: "tabular-nums" 
           }}>
             {formatNum(minute)}
@@ -96,7 +105,7 @@ const TimePopup = ({ onSelect }) => {
         background: "#f8fafc", 
         borderRadius: "14px", 
         padding: "4px", 
-        marginBottom: "20px",
+        marginBottom: isInvalid ? "8px" : "20px",
         gap: "4px",
         border: "1px solid #f1f5f9"
       }}>
@@ -107,7 +116,7 @@ const TimePopup = ({ onSelect }) => {
             style={{
               flex: 1, padding: "10px", borderRadius: "10px", border: "none",
               background: ampm === v ? "#fff" : "transparent",
-              color: ampm === v ? RED : "#64748b",
+              color: ampm === v ? (isInvalid ? RED : RED) : "#64748b",
               fontWeight: "800", fontSize: "13px", 
               cursor: "pointer",
               transition: "all 0.2s ease",
@@ -120,25 +129,36 @@ const TimePopup = ({ onSelect }) => {
 
       {/* Confirm Button */}
       <button 
+        disabled={isInvalid}
         onClick={() => onSelect(`${formatNum(hour)}:${formatNum(minute)} ${ampm}`)}
         style={{
           width: "100%",
-          background: RED,
+          background: isInvalid ? "#cbd5e1" : RED,
           color: "#fff", 
           border: "none", 
           padding: "14px", 
           borderRadius: "14px",
           fontWeight: "800", 
-          cursor: "pointer", 
+          cursor: isInvalid ? "not-allowed" : "pointer", 
           fontSize: "14px",
-          boxShadow: `0 8px 20px rgba(190,13,13,0.25)`,
+          boxShadow: isInvalid ? "none" : `0 8px 20px rgba(190,13,13,0.25)`,
           fontFamily: H,
           transition: "all 0.3s ease"
         }}
-        onMouseOver={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; e.currentTarget.style.boxShadow = `0 12px 25px rgba(190,13,13,0.35)`; }}
-        onMouseOut={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = `0 8px 20px rgba(190,13,13,0.25)`; }}
+        onMouseOver={(e) => { 
+          if (!isInvalid) {
+            e.currentTarget.style.transform = "translateY(-1px)"; 
+            e.currentTarget.style.boxShadow = `0 12px 25px rgba(190,13,13,0.35)`; 
+          }
+        }}
+        onMouseOut={(e) => { 
+          if (!isInvalid) {
+            e.currentTarget.style.transform = "translateY(0)"; 
+            e.currentTarget.style.boxShadow = `0 8px 20px rgba(190,13,13,0.25)`; 
+          }
+        }}
       >
-        Confirm Time
+        {isInvalid ? "Invalid Selection" : "Confirm Time"}
       </button>
 
     </div>
