@@ -11,6 +11,17 @@ import {
   GoogleAuthProvider,
   signInWithPopup
 } from "firebase/auth";
+import { 
+  collection, 
+  query, 
+  orderBy, 
+  onSnapshot, 
+  where, 
+  updateDoc, 
+  doc, 
+  getDocs, 
+  writeBatch 
+} from "firebase/firestore";
 
 
 const RED = "#be0d0d";
@@ -29,6 +40,9 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   const [isLogoutHovered, setIsLogoutHovered] = useState(false);
   const [authWarning, setAuthWarning] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+  const [showNotif, setShowNotif] = useState(false);
+  const notifRef = useRef();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -72,6 +86,47 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
       document.documentElement.style.overflow = "unset";
     };
   }, [isDrawerOpen]);
+
+  useEffect(() => {
+    if (!user) { setNotifications([]); return; }
+    const q = query(
+      collection(db, "users", user.uid, "notifications"),
+      orderBy("at", "desc")
+    );
+    const unsub = onSnapshot(q, (snap) => {
+      const list = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      setNotifications(list);
+    });
+    return () => unsub();
+  }, [user]);
+
+  useEffect(() => {
+    const handler = (e) => { if (notifRef.current && !notifRef.current.contains(e.target)) setShowNotif(false); };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const markAllRead = async () => {
+    if (!user || notifications.length === 0) return;
+    const batch = writeBatch(db);
+    notifications.filter(n => !n.read).forEach(n => {
+      batch.update(doc(db, "users", user.uid, "notifications", n.id), { read: true });
+    });
+    await batch.commit();
+    setShowNotif(false);
+  };
+
+  const formatTime = (at) => {
+    if (!at) return "";
+    const date = at.toDate ? at.toDate() : new Date(at);
+    const diff = Math.floor((new Date() - date) / 1000);
+    if (diff < 60) return "Just now";
+    if (diff < 3600) return `${Math.floor(diff/60)}m ago`;
+    if (diff < 86400) return `${Math.floor(diff/3600)}h ago`;
+    return date.toLocaleDateString("en-IN", { day:"numeric", month:"short" });
+  };
+
+  const unreadCount = notifications.filter(n => !n.read).length;
 
   // Removed handleGoogleSignup logic as it is now handled in AuthModal
 
@@ -247,6 +302,64 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
 
           {/* Account/Mobile Trig (Right) */}
           <div style={{ display: "flex", alignItems: "center", gap: "20px", zIndex: 10, justifyContent: "flex-end" }}>
+            {isLoggedIn && (
+              <div ref={notifRef} style={{ position: "relative" }}>
+                <button 
+                  onClick={() => setShowNotif(!showNotif)}
+                  style={{ background: "transparent", border: "none", color: isNavbarSolid ? "#000" : "#fff", cursor: "pointer", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", padding: "8px", borderRadius: "50%", transition: "all 0.2s" }}
+                >
+                  <BellIcon />
+                  {unreadCount > 0 && (
+                    <span style={{ position: "absolute", top: "6px", right: "6px", width: "10px", height: "10px", background: RED, borderRadius: "50%", border: "2px solid #fff", boxShadow: "0 0 10px "+RED+"40" }} />
+                  )}
+                </button>
+
+                <AnimatePresence>
+                  {showNotif && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      style={{ position: "absolute", top: "calc(100% + 12px)", right: "-50px", width: "320px", background: "#fff", borderRadius: "20px", boxShadow: "0 20px 50px rgba(0,0,0,0.15)", border: "1.5px solid rgba(15, 23, 42, 0.08)", overflow: "hidden", zIndex: 99999 }}
+                    >
+                      <div style={{ padding: "18px 20px", borderBottom: "1.5px solid #f1f5f9", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                        <h4 style={{ margin: 0, fontSize: "16px", fontWeight: "900", fontFamily: H, color: "#1e293b" }}>Notifications</h4>
+                        {unreadCount > 0 && (
+                          <button onClick={markAllRead} style={{ background: "transparent", border: "none", color: RED, fontSize: "12px", fontWeight: "800", cursor: "pointer", padding: 0 }}>Mark all read</button>
+                        )}
+                      </div>
+
+                      <div style={{ maxHeight: "380px", overflowY: "auto", padding: "10px 0" }} className="hide-scrollbar">
+                        {notifications.length === 0 ? (
+                          <div style={{ padding: "40px 20px", textAlign: "center" }}>
+                            <div style={{ marginBottom: "15px", opacity: 0.3 }}><BellIcon size={40} /></div>
+                            <p style={{ margin: 0, fontSize: "14px", color: "#64748b", fontWeight: "600" }}>No new notifications</p>
+                          </div>
+                        ) : (
+                          notifications.map((n, i) => (
+                            <div 
+                              key={n.id} 
+                              style={{ padding: "14px 20px", borderBottom: i === notifications.length - 1 ? "none" : "1.2px solid #f8fafc", display: "flex", gap: "14px", background: n.read ? "transparent" : RED+"05", cursor: "pointer", transition: "all 0.2s" }}
+                              onMouseEnter={e => e.currentTarget.style.background = n.read ? "#f8fafc" : RED+"08"}
+                              onMouseLeave={e => e.currentTarget.style.background = n.read ? "transparent" : RED+"05"}
+                            >
+                              <div style={{ width: "36px", height: "36px", borderRadius: "10px", background: n.type === "approved" ? "#22c55e15" : n.type === "rejected" ? RED+"15" : "#f59e0b15", color: n.type === "approved" ? "#22c55e" : n.type === "rejected" ? RED : "#f59e0b", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                                {n.type === "approved" ? <CheckIcon size={18} /> : n.type === "rejected" ? <div style={{ fontSize: "18px", fontWeight: "900" }}>!</div> : <ClockIcon size={18} />}
+                              </div>
+                              <div style={{ flex: 1, minWidth: 0 }}>
+                                <p style={{ margin: 0, fontSize: "13px", color: "#1e293b", fontWeight: n.read ? "600" : "800", lineHeight: "1.4" }}>{n.message}</p>
+                                <p style={{ margin: "4px 0 0", fontSize: "11px", color: "#94a3b8", fontWeight: "600" }}>{formatTime(n.at)}</p>
+                              </div>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )}
+
             <button onClick={() => setIsDrawerOpen(true)} className="account-btn desktop-nav">
               {isLoggedIn ? (
                 <>
@@ -481,5 +594,8 @@ const InfoIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 2
 const GlobeIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>;
 const LoginIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>;
 const LogoutIcon = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>;
+const BellIcon = ({ size = 20 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>;
+const CheckIcon = ({ size = 16 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
+const ClockIcon = ({ size = 16 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>;
 
 export default Navbar;

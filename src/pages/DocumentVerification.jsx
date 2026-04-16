@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { auth, db } from "../firebase";
 import { onAuthStateChanged, updateProfile } from "firebase/auth";
-import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
+import { doc, getDoc, setDoc, onSnapshot, updateDoc, collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "../components/Footer";
@@ -288,6 +288,18 @@ const DocumentVerification = () => {
           };
           
           setDocStatus({ "driving-licence": statuses.dl, aadhaar: statuses.aadhaar, selfie: statuses.selfie });
+          
+          // Auto-Expiry Notification Trigger
+          if (isDlExpired && d.lastExpiryNotified !== curDlExpiry) {
+            addDoc(collection(db, "users", u.uid, "notifications"), {
+              type: "expired",
+              docType: "driving-licence",
+              message: `Your Driving License expired on ${new Date(curDlExpiry).toLocaleDateString("en-IN", { day:"numeric", month:"short", year:"numeric" })}. Please update it.`,
+              read: false,
+              at: new Date()
+            });
+            updateDoc(doc(db, "users", u.uid), { lastExpiryNotified: curDlExpiry });
+          }
 
           const isDlLocked = statuses.dl === "pending" || statuses.dl === "verified";
           const isAadLocked = statuses.aadhaar === "pending" || statuses.aadhaar === "verified";
