@@ -439,7 +439,14 @@ const DocumentVerification = () => {
                   {docStatus["driving-licence"] === "verified" && <div style={{ color:"#10b981" }}><CheckIcon /></div>}
                   {docStatus["driving-licence"] === "expired" && !showDlReupload && (
                     <button 
-                      onClick={() => setShowDlReupload(true)}
+                      onClick={() => {
+                        setShowDlReupload(true);
+                        setDlNumber("");
+                        setDlExpiry("");
+                        setDlClass("");
+                        setDlFront(null);
+                        setDlImageUrl("");
+                      }}
                       style={{ background: RED, color: "#fff", border: "none", padding: "8px 16px", borderRadius: "10px", fontSize: "11px", fontWeight: "900", cursor: "pointer", fontFamily: H, boxShadow: "0 4px 15px "+RED+"30" }}
                     >
                       RE-UPLOAD DL
