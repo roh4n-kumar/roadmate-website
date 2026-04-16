@@ -65,9 +65,8 @@ const MyBookings = () => {
       await updateDoc(doc(db, "bookings", id), { status: "cancelled" });
       
       // Add Cancellation Notification
-      await addDoc(collection(db, "notifications"), {
+      await addDoc(collection(db, "users", auth.currentUser.uid, "notifications"), {
         type: "cancelled",
-        userId: auth.currentUser.uid,
         bookingId: id,
         message: `Booking Cancelled: Your ride for ${booking.vehicle?.name || "the vehicle"} (ID: ${id.slice(0, 6)}) has been cancelled.`,
         read: false,

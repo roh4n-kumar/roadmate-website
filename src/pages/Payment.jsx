@@ -286,9 +286,8 @@ export default function Payment() {
                         });
 
                         // Add Booking Confirmation Notification
-                        await addDoc(collection(db, "notifications"), {
+                        await addDoc(collection(db, "users", auth.currentUser.uid, "notifications"), {
                             type: "booking_confirmed",
-                            userId: auth.currentUser.uid,
                             bookingId: bookingId,
                             message: `Booking Confirmed! Your ride for ${fmtDate(tripData.date)} (${vehicle?.name}) is ready. 🚗`,
                             read: false,
