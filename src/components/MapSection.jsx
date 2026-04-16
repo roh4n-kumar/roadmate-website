@@ -101,13 +101,13 @@ const MapSection = () => {
   }, [locations, loading]);
 
   return (
-    <section style={{ padding: "100px 24px", background: "#ffffff", overflow: "hidden" }}>
+    <section style={{ padding: "60px 24px", background: "#ffffff", overflow: "hidden" }}>
       <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: "50px" }}>
+        <div style={{ textAlign: "center", marginBottom: "40px" }}>
           <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "1000px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Our Network</span>
           <h2 className="map-heading" style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, marginTop: "10px", color: "#0f172a" }}>Visit Our Hubs</h2>
           <p style={{ color: "#64748b", fontSize: "16px", marginTop: "15px", maxWidth: "600px", margin: "15px auto 0" }}>
-            Free & Open-Source Map: Find RoadMate partners and garages across the city without any API restrictions.
+            Free & Open-Source Map: Find RoadMate partners and garages across the city.
           </p>
         </div>
 
@@ -118,18 +118,18 @@ const MapSection = () => {
           style={{ position: "relative", borderRadius: "40px", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.06)", border: "2px solid #fff", background: "#f8f9fa" }}
         >
           {loading ? (
-            <div style={{ height: "500px", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "15px" }}>
+            <div style={{ height: "400px", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "15px" }}>
               <div style={{ width: "40px", height: "40px", border: "3px solid #ddd", borderTop: `3px solid ${RED}`, borderRadius: "50%", animation: "spin 1s linear infinite" }} />
               <p style={{ color: "#64748b", fontSize: "14px", fontWeight: 600 }}>Locating our partners...</p>
             </div>
           ) : (
-            <div id="leaflet-map" style={{ height: "550px", width: "100%", zIndex: 1 }} />
+            <div id="leaflet-map" style={{ height: "400px", width: "100%", zIndex: 1 }} />
           )}
 
           <style>
               {`
                   @media (max-width: 900px) {
-                    #leaflet-map { height: 400px !important; }
+                    #leaflet-map { height: 350px !important; }
                     .map-heading { font-size: 32px !important; }
                   }
                   @keyframes spin { to { transform: rotate(360deg); } }
