@@ -239,9 +239,9 @@ const Offers = () => {
       <div className="outer-card">
         {/* TOP BAR */}
         <div className="top-bar">
-          <div className="title-area">
-            <span className="title-pill">EXCLUSIVE DEALS</span>
+          <div className="title-area" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
             <h2 className="main-heading">Offers For You</h2>
+            <span className="title-pill" style={{ marginBottom: 0 }}>EXCLUSIVE DEALS</span>
           </div>
 
           <div className="nav-controls">
@@ -252,7 +252,7 @@ const Offers = () => {
           </div>
         </div>
 
-        <div style={{ height: '1.2px', background: '#f2f2f2', width: '100%', marginBottom: '20px' }} />
+        <div style={{ height: '1.2px', background: '#e2e2e2', width: '100%', marginBottom: '20px' }} />
 
         {/* OFFERS GRID */}
         <AnimatePresence mode="wait">
