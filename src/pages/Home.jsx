@@ -285,16 +285,17 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       </section>
 
       {/* Network Map Section */}
+      {/* Network Map Section */}
       <MapSection />
 
       {/* Experience / App Section */}
-      <section className="exp-section" style={{ background: RED, padding: "100px 24px", overflow: "hidden", position: "relative" }}>
+      <section className="exp-section" style={{ background: RED, padding: "60px 24px", overflow: "hidden", position: "relative" }}>
         <div className="exp-grid" style={{ maxWidth: "1250px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px", alignItems: "center" }}>
           <div>
             <span style={{ color: "#fff", background: "rgba(255, 255, 255, 0.15)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Next Gen Mobility</span>
             <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, color: "#ffffff", marginTop: "15px", lineHeight: "1.1" }}>Your Journey, <br/>Our Responsibility</h2>
             <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "18px", lineHeight: "1.7", marginTop: "25px", marginBottom: "40px" }}>
-              Moving around the city hasn't been this easier. With RoadMate, you get a great experience at an affordable price. Zero paperwork, 100% verified rides.
+              Moving around the city hasn't been this easier. With RoadMate, you get a great experience at an affordable price. Zero paperwork.
             </p>
             <div className="exp-btns" style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
               <button style={{ background: "#fff", color: "#000", padding: "18px 32px", borderRadius: "16px", border: "none", fontWeight: 800, fontSize: "16px", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", boxShadow: "0 10px 30px rgba(0,0,0,0.15)" }}>
@@ -312,7 +313,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-             <div style={{ width: "100%", height: "500px", overflow: "hidden", position: "relative" }}>
+             <div style={{ width: "100%", height: "400px", overflow: "hidden", position: "relative" }}>
                 <img src="/puri_marine_drive.jpg" alt="Puri Konark Marine Drive" className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
              </div>
           </motion.div>
