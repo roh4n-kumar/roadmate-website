@@ -289,7 +289,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <MapSection />
 
       {/* Experience / App Section */}
-      <section className="exp-section" style={{ background: RED, padding: "60px 24px", overflow: "hidden", position: "relative" }}>
+      <section className="exp-section" style={{ background: RED, padding: "40px 24px", overflow: "hidden", position: "relative" }}>
         <div className="exp-grid" style={{ maxWidth: "1250px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px", alignItems: "center" }}>
           <div>
             <span style={{ color: "#fff", background: "rgba(255, 255, 255, 0.15)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Next Gen Mobility</span>
@@ -313,7 +313,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-             <div style={{ width: "100%", height: "400px", overflow: "hidden", position: "relative" }}>
+             <div style={{ width: "100%", height: "350px", overflow: "hidden", position: "relative" }}>
                 <img src="/puri_marine_drive.jpg" alt="Puri Konark Marine Drive" className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
              </div>
           </motion.div>
