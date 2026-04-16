@@ -29,7 +29,14 @@ const IconSupport = () => (
 );
 
 const IconRocket = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#be0d0d" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.71-2.13.71-2.13l-1.58-1.58s-1.29 0-2.13.71z"/><path d="M12 18l-3.5-1.5-1.5-3.5c0 0 2.5-3 5.5-3.5s7-4.5 7-4.5 4.5 4 4.5 7-3.5 5.5-3.5 5.5l-3.5-1.5-1.5-3.5z"/><circle cx="16.5" cy="7.5" r=".75"/></svg>
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+    <path d="M12 2C12 2 11 3 11 5C11 7 12 8 12 8C12 8 13 7 13 5C13 3 12 2 12 2Z" fill="#be0d0d"/>
+    <path d="M12 22C14.2091 22 16 20.2091 16 18H8C8 20.2091 9.79086 22 12 22Z" fill="#ff4d4d"/>
+    <path d="M19 13C19 13 18.5 14.5 17 15C15.5 15.5 13.5 15.5 12 15.5C10.5 15.5 8.5 15.5 7 15C5.5 14.5 5 13 5 13C5 13 5.5 10 7 7C8.5 4 10.5 2 12 2C13.5 2 15.5 4 17 7C18.5 10 19 13 19 13Z" fill="#be0d0d"/>
+    <circle cx="12" cy="8" r="2" fill="white"/>
+    <path d="M7 15C7 15 6 16 6 18C6 20 7 21 7 21" stroke="#be0d0d" strokeWidth="2" strokeLinecap="round"/>
+    <path d="M17 15C17 15 18 16 18 18C18 20 17 21 17 21" stroke="#be0d0d" strokeWidth="2" strokeLinecap="round"/>
+  </svg>
 );
 
 const featureCards = [
