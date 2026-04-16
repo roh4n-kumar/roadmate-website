@@ -248,7 +248,7 @@ const OffersPage = () => {
           <div className="divider"></div>
           <div className="status-pill">PROMO ACTIVE</div>
         </div>
-        <div className="available-count">{offersData.length} AVAILABLE</div>
+        <div className="available-count">6 AVAILABLE</div>
       </div>
 
       <div className="offers-main-wrapper">
@@ -259,7 +259,7 @@ const OffersPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            {offersData.map((off, idx) => (
+            {offersData.slice(0, 6).map((off, idx) => (
               <motion.div 
                 key={off.id} 
                 className="o-card"
