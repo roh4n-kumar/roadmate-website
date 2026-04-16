@@ -74,6 +74,7 @@ const ExpiryDatePicker = ({ value, onChange, disabled, hasError }) => {
   const parsed = value ? (() => { const parts = value.split('-'); if (parts.length!==3) return null; const [y,m,d] = parts.map(Number); return new Date(y, m-1, d); })() : null;
   const [viewMonth, setViewMonth] = useState(parsed ? parsed.getMonth() : today.getMonth());
   const [viewYear,  setViewYear]  = useState(parsed ? parsed.getFullYear() : today.getFullYear());
+  const [mode,      setMode]      = useState("days"); // "days" | "years"
   useEffect(() => {
     const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
     document.addEventListener("mousedown", handler);
@@ -103,26 +104,50 @@ const ExpiryDatePicker = ({ value, onChange, disabled, hasError }) => {
             style={{ position:"absolute", top:"calc(100% + 8px)", left:0, zIndex:9999, background:"#fff", borderRadius:"20px", border:"1px solid #f1f5f9", boxShadow:"0 15px 35px rgba(0,0,0,0.12)", padding:"16px", width:"280px" }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"12px" }}>
               <button onClick={prevMonth} style={pickerNavBtn}>&lsaquo;</button>
-              <div style={{ fontWeight:"800", fontSize:"14px", fontFamily:H, color:"#1e293b" }}>{months[viewMonth]} {viewYear}</div>
+              <div 
+                onClick={() => setMode(m => m === "days" ? "years" : "days")}
+                style={{ fontWeight:"800", fontSize:"14px", fontFamily:H, color:"#1e293b", cursor:"pointer", padding:"4px 10px", borderRadius:"8px", background: mode === "years" ? "#f1f5f9" : "transparent", transition: "all 0.2s" }}
+              >
+                {months[viewMonth]} {viewYear}
+              </div>
               <button onClick={nextMonth} style={pickerNavBtn}>&rsaquo;</button>
             </div>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:"1px", marginBottom:"4px" }}>
-              {["Su","Mo","Tu","We","Th","Fr","Sa"].map(d => <div key={d} style={{ textAlign:"center", fontSize:"10px", fontWeight:"800", color:"#94a3b8", padding:"4px 0" }}>{d}</div>)}
-            </div>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:"2px" }}>
-              {Array.from({ length:firstDay }).map((_,i) => <div key={"e"+i} style={{ height:"32px" }}/>)}
-              {Array.from({ length:days }, (_,i) => i+1).map(day => {
-                const past = isPastDay(day);
-                return (
-                  <button key={day} onClick={() => !past && handleDayClick(day)} disabled={past}
-                    style={{ width:"100%", height:"32px", borderRadius:"8px", border:"none", background:selectedDay===day?RED:"transparent", color:selectedDay===day?"white":past?"#e2e8f0":"#334155", fontWeight:selectedDay===day?"800":"600", fontSize:"12px", cursor:past?"default":"pointer", transition:"all 0.2s" }}
-                    onMouseEnter={e => { if (selectedDay!==day && !past) e.currentTarget.style.background="#f1f5f9"; }}
-                    onMouseLeave={e => { if (selectedDay!==day) e.currentTarget.style.background="transparent"; }}>
-                    {day}
+
+            {mode === "years" ? (
+              <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:"8px", maxHeight:"200px", overflowY:"auto", padding:"4px" }}>
+                {Array.from({ length: 24 }, (_, i) => new Date().getFullYear() + i).map(y => (
+                  <button 
+                    key={y} 
+                    onClick={() => { setViewYear(y); setMode("days"); }}
+                    style={{ padding: "8px 0", borderRadius: "8px", border: "none", background: viewYear === y ? RED : "transparent", color: viewYear === y ? "#fff" : "#334155", fontSize: "12px", fontWeight: "700", cursor: "pointer", transition: "all 0.2s" }}
+                    onMouseEnter={e => { if (viewYear !== y) e.currentTarget.style.background = "#f1f5f9"; }}
+                    onMouseLeave={e => { if (viewYear !== y) e.currentTarget.style.background = "transparent"; }}
+                  >
+                    {y}
                   </button>
-                );
-              })}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <>
+                <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:"1px", marginBottom:"4px" }}>
+                  {["Su","Mo","Tu","We","Th","Fr","Sa"].map(d => <div key={d} style={{ textAlign:"center", fontSize:"10px", fontWeight:"800", color:"#94a3b8", padding:"4px 0" }}>{d}</div>)}
+                </div>
+                <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:"2px" }}>
+                  {Array.from({ length:firstDay }).map((_,i) => <div key={"e"+i} style={{ height:"32px" }}/>)}
+                  {Array.from({ length:days }, (_,i) => i+1).map(day => {
+                    const past = isPastDay(day);
+                    return (
+                      <button key={day} onClick={() => !past && handleDayClick(day)} disabled={past}
+                        style={{ width:"100%", height:"32px", borderRadius:"8px", border:"none", background:selectedDay===day?RED:"transparent", color:selectedDay===day?"white":past?"#e2e8f0":"#334155", fontWeight:selectedDay===day?"800":"600", fontSize:"12px", cursor:past?"default":"pointer", transition:"all 0.2s" }}
+                        onMouseEnter={e => { if (selectedDay!==day && !past) e.currentTarget.style.background="#f1f5f9"; }}
+                        onMouseLeave={e => { if (selectedDay!==day) e.currentTarget.style.background="transparent"; }}>
+                        {day}
+                      </button>
+                    );
+                  })}
+                </div>
+              </>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
