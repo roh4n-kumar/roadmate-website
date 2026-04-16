@@ -58,7 +58,7 @@ const FAQSection = () => {
                 onClick={() => setActive(active === i ? null : i)}
                 style={{ 
                   width: "100%", 
-                  padding: "20px 0", 
+                  padding: "16px 0", 
                   display: "flex", 
                   justifyContent: "space-between", 
                   alignItems: "center", 
@@ -68,7 +68,7 @@ const FAQSection = () => {
                   textAlign: "left"
                 }}
               >
-                <span className="faq-q-text" style={{ fontSize: "18px", fontWeight: 700, color: active === i ? RED : "#0f172a", fontFamily: H, transition: "color 0.3s ease" }}>{faq.q}</span>
+                <span className="faq-q-text" style={{ fontSize: "17px", fontWeight: 600, color: active === i ? RED : "#0f172a", fontFamily: H, transition: "color 0.3s ease" }}>{faq.q}</span>
                 <div style={{ 
                     transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
                     transform: active === i ? "rotate(180deg)" : "rotate(0deg)",
