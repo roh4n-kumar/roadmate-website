@@ -28,7 +28,7 @@ const OffersPage = () => {
   }, [location.state]);
 
   return (
-    <div style={{ background: "#f8fafc", minHeight: "100vh" }}>
+    <div style={{ background: "#f8fafc", minHeight: "100vh", paddingTop: "64px" }}>
       <style>{`
         .offers-main-wrapper {
           padding-top: 118px; /* Navbar height (64px) + Ribbon height (54px) */
@@ -260,8 +260,8 @@ const OffersPage = () => {
         </div>
       </div>
 
-      <div className="offers-main-wrapper" style={{ padding: "118px 24px 0" }}>
-        <div className="offers-content" style={{ padding: "20px 0 100px", maxWidth: "1250px", margin: "0 auto" }}>
+      <div className="offers-main-wrapper" style={{ padding: "0 24px" }}>
+        <div className="offers-content" style={{ padding: "24px 0 100px", maxWidth: "1250px", margin: "0 auto" }}>
           <motion.div 
             className="o-grid"
             initial={{ opacity: 0 }}
