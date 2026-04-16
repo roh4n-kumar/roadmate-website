@@ -268,7 +268,6 @@ const DocumentVerification = () => {
 
           // DL
           const curDlNumber = d.dlNumber || d.verification?.drivingLicence?.number || d.verification?.dl?.number;
-          const curDlExpiry = d.dlExpiry || d.verification?.drivingLicence?.expiry || d.verification?.dl?.expiry;
           const curDlClass  = d.dlClass  || d.verification?.drivingLicence?.class  || d.verification?.dl?.class;
           const curDlImage  = d.dlImage  || d.verification?.drivingLicence?.image  || d.verification?.dl?.image;
 
