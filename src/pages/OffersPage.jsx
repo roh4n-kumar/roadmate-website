@@ -249,8 +249,8 @@ const OffersPage = () => {
       `}</style>
 
       {/* TOP STICKY RIBBON (Below Navbar) */}
-      <div className="offers-ribbon" style={{ padding: 0 }}>
-        <div style={{ maxWidth: "1250px", margin: "0 auto", width: "100%", height: "100%", display: "flex", alignItems: "center", padding: "0 24px" }}>
+      <div className="offers-ribbon" style={{ padding: "0 24px" }}>
+        <div style={{ maxWidth: "1250px", margin: "0 auto", width: "100%", height: "100%", display: "flex", alignItems: "center" }}>
           <div className="top-info">
             <h2 className="page-title">Exclusive Offers</h2>
             <div className="divider"></div>
@@ -260,8 +260,8 @@ const OffersPage = () => {
         </div>
       </div>
 
-      <div className="offers-main-wrapper">
-        <div className="offers-content">
+      <div className="offers-main-wrapper" style={{ padding: "0 24px" }}>
+        <div className="offers-content" style={{ padding: "40px 0 100px", maxWidth: "1250px", margin: "0 auto" }}>
           <motion.div 
             className="o-grid"
             initial={{ opacity: 0 }}
