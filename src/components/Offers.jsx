@@ -263,7 +263,7 @@ const Offers = () => {
             className="offer-grid"
           >
             {featuredOffers.map(off => (
-              <div key={off.id} className="o-card">
+              <div key={off.id} className="o-card" onClick={() => navigate("/offers", { state: { openOfferId: off.id } })} style={{ cursor: 'pointer' }}>
                 <div className="o-tc">T&C's APPLY</div>
                 
                 <div className="o-img-box">
@@ -274,9 +274,8 @@ const Offers = () => {
                    <h3 className="o-title">{off.title}</h3>
                    <p className="o-desc">{off.desc}</p>
                    
-                   <div className="o-footer">
+                   <div className="o-footer" style={{ justifyContent: 'center' }}>
                       <div className="o-code">Code: <span>{off.code}</span></div>
-                      <div className="o-action rm-btn-premium" style={{ padding: '8px 16px', fontSize: '11px' }} onClick={() => navigate("/offers", { state: { openOfferId: off.id } })}>BOOK NOW</div>
                    </div>
                 </div>
               </div>

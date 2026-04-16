@@ -272,6 +272,8 @@ const OffersPage = () => {
               <motion.div 
                 key={off.id} 
                 className="o-card"
+                onClick={() => setSelectedOffer(off)}
+                style={{ cursor: "pointer" }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -289,14 +291,11 @@ const OffersPage = () => {
                 </div>
 
                 <div className="o-body">
-                  <div className="o-footer">
+                  <div className="o-footer" style={{ justifyContent: 'center', textAlign: 'center' }}>
                     <div className="o-price-box">
-                      <div className="o-price">SAVE <span>{off.title.match(/\d+%/)?.[0] || "EXTRA"}</span></div>
+                      <div className="o-price">Code: <span>{off.code}</span></div>
                       <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 500, marginTop: '4px' }}>{off.desc}</div>
                     </div>
-                    <button className="rm-btn-premium" onClick={() => setSelectedOffer(off)} style={{ padding: '10px 20px', fontSize: '12px' }}>
-                      Book Now
-                    </button>
                   </div>
                 </div>
               </motion.div>
@@ -311,7 +310,8 @@ const OffersPage = () => {
               onClose={() => setSelectedOffer(null)} 
               onBookNow={() => {
                 setSelectedOffer(null);
-                navigate("/vehicles");
+                // No redirect here as requested, or keep it optional? 
+                // User said remove from modal too.
               }} 
             />
           )}

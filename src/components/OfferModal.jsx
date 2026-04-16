@@ -114,21 +114,6 @@ const OfferModal = ({ offer, onClose, onBookNow }) => {
                     </div>
                 </div>
 
-                {/* Footer Action - Sticky Footer */}
-                <div style={{ padding: "24px 40px", background: "#fff", borderTop: "1px solid #f1f5f9", flexShrink: 0 }}>
-                    <button 
-                        onClick={onBookNow}
-                        className="rm-btn-premium"
-                        style={{ 
-                            width: "100%", padding: "16px", borderRadius: "12px", 
-                            fontSize: "14px", fontWeight: "900", cursor: "pointer", 
-                            boxShadow: "0 10px 25px rgba(190, 13, 13, 0.2)",
-                            textTransform: "uppercase", letterSpacing: "0.5px"
-                        }}
-                    >
-                        Book Now with this Offer
-                    </button>
-                </div>
             </motion.div>
         </motion.div>
     );
