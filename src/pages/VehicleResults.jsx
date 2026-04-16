@@ -275,7 +275,7 @@ export default function VehicleResults() {
         status: "pending",
         paymentStatus: "unpaid",
         createdAt: serverTimestamp(),
-        expiresAt: new Date(Date.now() + 60 * 60 * 1000) // 60 min window
+        expiresAt: new Date(Date.now() + 10 * 60 * 1000) // 10 min window
       };
 
       const docRef = await addDoc(collection(db, "bookings"), bookingData);
