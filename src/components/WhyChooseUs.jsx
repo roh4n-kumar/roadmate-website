@@ -48,7 +48,7 @@ const featureCards = [
 
 const WhyChooseUs = () => {
     return (
-        <section className="why-section" style={{ padding: "40px 24px 100px", background: "#fafafa" }}>
+        <section className="why-section" style={{ padding: "100px 24px 100px", background: "#fafafa" }}>
             <style>{`
                 .why-inner { max-width: 1250px; margin: 0 auto; }
                 .section-header { text-align: center; margin-bottom: 60px; }
