@@ -98,8 +98,8 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
             background: #fff;
             border-radius: 24px;
             padding: 25px 0;
-            box-shadow: 0 0 60px rgba(0,0,0,0.15), 0 10px 30px rgba(0,0,0,0.1);
-            border: 1.2px solid #f2f2f2;
+            box-shadow: none;
+            border: 1px solid #e0e0e0;
             overflow: hidden;
           }
 
