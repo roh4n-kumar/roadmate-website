@@ -93,8 +93,6 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   useEffect(() => {
     if (!user) { setNotifications([]); return; }
     
-    console.log("🔔 Starting Notif Listener for:", user.uid);
-    
     const q = query(
       collection(db, "users", user.uid, "notifications"),
       orderBy("at", "desc")
@@ -103,12 +101,10 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
     const unsub = onSnapshot(q, 
       (snap) => {
         const list = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-        console.log("✅ Notifications loaded:", list.length);
         setNotifications(list);
       },
       (error) => {
-        console.error("❌ Notification listener error:", error.code, error.message);
-        console.log("Current Auth UID:", auth.currentUser?.uid);
+        // Silent failing or standard silent update for prod
       }
     );
     return () => unsub();
