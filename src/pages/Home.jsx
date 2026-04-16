@@ -8,6 +8,8 @@ import MapSection from "../components/MapSection";
 import FAQSection from "../components/FAQSection";
 import Footer from "../components/Footer";
 import Offers from "../components/Offers";
+import WhyChooseUs from "../components/WhyChooseUs";
+import HowItWorks from "../components/HowItWorks";
 
 
 const RED = "#be0d0d";
@@ -171,11 +173,15 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
         </motion.div>
       </div>
 
-      {/* OFFERS SECTION - Reordered below Hero */}
+      {/* OFFERS SECTION - Reordered between Ribbon and WhyChooseUs */}
       <Offers />
 
+      {/* Trust & Process Sections */}
+      <WhyChooseUs />
+      <HowItWorks />
+
       {/* Featured Fleet (Offers Style) */}
-      <section style={{ padding: "60px 24px 100px", maxWidth: "1350px", margin: "0 auto", position: 'relative', zIndex: 10 }}>
+      <section style={{ padding: "0 24px 100px", maxWidth: "1350px", margin: "0 auto", position: 'relative', zIndex: 10 }}>
         <div className="fleet-outer-card">
           <div className="fleet-header">
             <div>
