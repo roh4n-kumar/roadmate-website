@@ -225,6 +225,8 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </button>
           </div>
 
+          <div style={{ height: '1.2px', background: '#e2e2e2', width: '100%', marginBottom: '20px' }} />
+
           <div className="fleet-scroll-grid">
             {loading ? (
               <div style={{ textAlign: "center", width: "100%", padding: "40px" }}>
