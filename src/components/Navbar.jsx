@@ -514,15 +514,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     <div style={{ padding: "10px 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>More</h3>
                       <DrawerItem icon={<BellIcon size={20} />} label="Notifications" onClick={() => { setIsDrawerOpen(false); setIsNotifDrawerOpen(true); }} />
-                      <DrawerItem icon={<HelpCircleIcon size={20} />} label="Help" onClick={() => { setIsDrawerOpen(false); /* help */ }} />
-                      <DrawerItem icon={<TagIcon size={20} />} label="Offers" onClick={() => { 
-                        setIsDrawerOpen(false); 
-                        if (window.location.pathname === "/") {
-                          document.getElementById("offers-slider")?.scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          navigate("/?scroll=offers");
-                        }
-                      }} />
+                      <DrawerItem icon={<HelpCircleIcon size={20} />} label="Help" onClick={() => { setIsDrawerOpen(false); navigate("/help-center"); }} />
+                      <DrawerItem icon={<TagIcon size={20} />} label="Offers" onClick={() => { setIsDrawerOpen(false); navigate("/offers"); }} />
                       <DrawerItem icon={<InfoIcon size={20} />} label="Know about RoadMate" onClick={() => { setIsDrawerOpen(false); navigate("/about"); }} />
                       <DrawerItem 
                         icon={<GlobeIcon size={20} />} 
