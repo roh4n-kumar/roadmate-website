@@ -177,8 +177,8 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <Offers />
 
       {/* Trust & Process Sections */}
-      <WhyChooseUs />
       <HowItWorks />
+      <WhyChooseUs />
 
       {/* Featured Fleet (Offers Style) */}
       <section style={{ padding: "0 24px 100px", maxWidth: "1350px", margin: "0 auto", position: 'relative', zIndex: 10 }}>
