@@ -35,7 +35,7 @@ const Offers = () => {
             background: #fff;
             border-radius: 24px;
             padding: 25px 0;
-            box-shadow: none;
+            box-shadow: 0 0 25px rgba(0,0,0,0.04);
             border: 1px solid #e0e0e0;
             overflow: hidden;
           }
