@@ -92,7 +92,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   useEffect(() => {
     if (!user) { setNotifications([]); return; }
     const q = query(
-      collection(db, "users", user.uid, "notifications"),
+      collection(db, "notifications"),
+      where("userId", "==", user.uid),
       orderBy("at", "desc")
     );
     const unsub = onSnapshot(q, (snap) => {
@@ -144,11 +145,16 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
         // If ride is in 25-35 minutes
         if (diffMins > 0 && diffMins <= 30) {
           // Check if already notified
-          const existingQ = query(collection(db, "users", user.uid, "notifications"), where("type", "==", "reminder"), where("bookingId", "==", docSnap.id));
+          const existingQ = query(collection(db, "notifications"), 
+            where("type", "==", "reminder"), 
+            where("bookingId", "==", docSnap.id),
+            where("userId", "==", user.uid)
+          );
           const existSnap = await getDocs(existingQ);
           if (existSnap.empty) {
-            await addDoc(collection(db, "users", user.uid, "notifications"), {
+            await addDoc(collection(db, "notifications"), {
               type: "reminder",
+              userId: user.uid,
               bookingId: docSnap.id,
               message: `Your ride for ${b.vehicle?.name || "RoadMate vehicle"} starts in 30 minutes! 🚗`,
               read: false,
@@ -180,7 +186,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
     if (!user || notifications.length === 0) return;
     const batch = writeBatch(db);
     notifications.filter(n => !n.read).forEach(n => {
-      batch.update(doc(db, "users", user.uid, "notifications", n.id), { read: true });
+      batch.update(doc(db, "notifications", n.id), { read: true });
     });
     await batch.commit();
   };
