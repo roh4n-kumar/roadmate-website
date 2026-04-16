@@ -463,7 +463,34 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                 </div>
 
                 <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0", overflowY: "auto", paddingBottom: "10px" }} className="hide-scrollbar">
+                  <style>{`
+                    .drawer-content-scroll::-webkit-scrollbar {
+                      width: 5px;
+                    }
+                    .drawer-content-scroll::-webkit-scrollbar-track {
+                      background: transparent;
+                    }
+                    .drawer-content-scroll::-webkit-scrollbar-thumb {
+                      background: rgba(15, 23, 42, 0.1);
+                      border-radius: 10px;
+                    }
+                    .drawer-content-scroll::-webkit-scrollbar-thumb:hover {
+                      background: rgba(15, 23, 42, 0.2);
+                    }
+                  `}</style>
+                  <div 
+                    style={{ 
+                      display: "flex", 
+                      flexDirection: "column", 
+                      gap: "0", 
+                      overflowY: "auto", 
+                      paddingBottom: "30px",
+                      WebkitOverflowScrolling: "touch",
+                      overscrollBehavior: "contain",
+                      scrollBehavior: "smooth"
+                    }} 
+                    className="drawer-content-scroll hide-scrollbar"
+                  >
                     <div style={{ padding: "30px 25px 35px", display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left" }}>
                       {!isLoggedIn ? (
                         <div style={{ margin: 0, width: "100%" }}>
