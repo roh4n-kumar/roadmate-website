@@ -268,7 +268,10 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
                       <button 
                         className="rm-btn-premium" 
                         style={{ padding: '8px 16px', fontSize: '11px' }}
-                        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
                       >
                         Book Now
                       </button>
