@@ -265,7 +265,11 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
                         <span style={{ fontSize: "22px", fontWeight: 900, color: "#0f172a" }}>₹{v.price}</span>
                         <span style={{ fontSize: "13px", color: "#64748b", fontWeight: 600 }}>/hr</span>
                       </div>
-                      <button className="rm-btn-premium" style={{ padding: '8px 16px', fontSize: '11px' }}>
+                      <button 
+                        className="rm-btn-premium" 
+                        style={{ padding: '8px 16px', fontSize: '11px' }}
+                        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                      >
                         Book Now
                       </button>
                     </div>
