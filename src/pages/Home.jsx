@@ -313,7 +313,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-             <div style={{ width: "100%", height: "350px", overflow: "hidden", position: "relative" }}>
+             <div style={{ width: "100%", height: "380px", overflow: "hidden", position: "relative" }}>
                 <img src="/puri_marine_drive.jpg" alt="Puri Konark Marine Drive" className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
              </div>
           </motion.div>

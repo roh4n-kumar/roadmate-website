@@ -118,12 +118,12 @@ const MapSection = () => {
           style={{ position: "relative", borderRadius: "40px", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.06)", border: "2px solid #fff", background: "#f8f9fa" }}
         >
           {loading ? (
-            <div style={{ height: "350px", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "15px" }}>
+            <div style={{ height: "380px", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "15px" }}>
               <div style={{ width: "40px", height: "40px", border: "3px solid #ddd", borderTop: `3px solid ${RED}`, borderRadius: "50%", animation: "spin 1s linear infinite" }} />
               <p style={{ color: "#64748b", fontSize: "14px", fontWeight: 600 }}>Locating our partners...</p>
             </div>
           ) : (
-            <div id="leaflet-map" style={{ height: "350px", width: "100%", zIndex: 1 }} />
+            <div id="leaflet-map" style={{ height: "380px", width: "100%", zIndex: 1 }} />
           )}
 
           <style>
