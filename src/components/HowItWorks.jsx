@@ -5,7 +5,7 @@ const H = "'Outfit', sans-serif";
 
 const HowItWorks = () => {
     return (
-        <section className="how-section" style={{ padding: "80px 24px 100px", background: "#ffffff", position: "relative", overflow: "hidden" }}>
+        <section className="how-section" style={{ padding: "40px 24px 100px", background: "#ffffff", position: "relative", overflow: "hidden" }}>
             <style>{`
                 .how-inner { max-width: 1250px; margin: 0 auto; position: relative; z-index: 1; }
                 .section-header { text-align: center; margin-bottom: 60px; }

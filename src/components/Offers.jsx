@@ -19,7 +19,7 @@ const Offers = () => {
     <section 
       id="offers-slider" 
       style={{ 
-        padding: "20px 24px 100px", 
+        padding: "20px 24px 40px", 
         maxWidth: "1300px", 
         margin: "0 auto", 
         position: "relative", 
