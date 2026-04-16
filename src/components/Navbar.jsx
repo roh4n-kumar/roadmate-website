@@ -26,6 +26,7 @@ import {
 
 
 const RED = "#be0d0d";
+const SLATE = "#0f172a";
 const F   = "'Inter', sans-serif";
 const H   = "'Outfit', sans-serif";
 
