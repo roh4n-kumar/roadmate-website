@@ -52,7 +52,7 @@ const OfferModal = ({ offer, onClose, onBookNow }) => {
                 style={{ 
                     background: "#fff", width: "100%", maxWidth: "560px", 
                     maxHeight: "90vh", // Ensure it doesn't exceed screen height
-                    borderRadius: "32px", overflow: "hidden", 
+                    borderRadius: "24px", overflow: "hidden", 
                     boxShadow: "0 40px 100px rgba(15, 23, 42, 0.25)",
                     position: "relative",
                     display: "flex",
@@ -63,12 +63,12 @@ const OfferModal = ({ offer, onClose, onBookNow }) => {
                 <div style={{ padding: "32px 40px 24px", borderBottom: "1.5px dashed #f1f5f9", textAlign: "center", position: "relative", flexShrink: 0 }}>
                     <button 
                         onClick={onClose}
-                        style={{ position: "absolute", top: "20px", right: "20px", background: "#f8fafc", border: "none", width: "36px", height: "36px", borderRadius: "50%", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: SLATE, transition: "all 0.2s" }}
+                        style={{ position: "absolute", top: "20px", right: "20px", background: "#f8fafc", border: "none", width: "36px", height: "36px", borderRadius: "12px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: SLATE, transition: "all 0.2s" }}
                     >
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                     </button>
 
-                    <span style={{ background: "rgba(190, 13, 13, 0.08)", color: RED, padding: "6px 16px", borderRadius: "99px", fontSize: "10px", fontVariantCaps: "all-small-caps", fontWeight: "900", letterSpacing: "1px", marginBottom: "12px", display: "inline-block", fontFamily: H }}>{offer.category} EXCLUSIVE</span>
+                    <span style={{ background: "rgba(190, 13, 13, 0.08)", color: RED, padding: "6px 16px", borderRadius: "8px", fontSize: "10px", fontVariantCaps: "all-small-caps", fontWeight: "900", letterSpacing: "1px", marginBottom: "12px", display: "inline-block", fontFamily: H }}>{offer.category} EXCLUSIVE</span>
                     <h2 style={{ fontSize: "24px", fontWeight: "900", color: SLATE, margin: "0 0 6px", fontFamily: H, letterSpacing: "-0.5px" }}>{offer.title}</h2>
                     <p style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.45)", fontWeight: "600", margin: 0 }}>{offer.desc}</p>
                 </div>
@@ -86,7 +86,7 @@ const OfferModal = ({ offer, onClose, onBookNow }) => {
                     <div style={{ padding: "24px 40px", background: "#f8fafc", textAlign: "center", borderBottom: "1px solid #f1f5f9" }}>
                         <div style={{ 
                             display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", 
-                            background: "#fff", padding: "10px 20px", borderRadius: "16px", border: "1.5px solid #e2e8f0",
+                            background: "#fff", padding: "10px 20px", borderRadius: "12px", border: "1.5px solid #e2e8f0",
                             width: "fit-content", margin: "0 auto", boxShadow: "0 2px 10px rgba(0,0,0,0.02)"
                         }}>
                             <span style={{ fontSize: "18px", fontWeight: "900", color: SLATE, fontFamily: H, letterSpacing: "1px" }}>{offer.code}</span>
@@ -120,7 +120,7 @@ const OfferModal = ({ offer, onClose, onBookNow }) => {
                         onClick={onBookNow}
                         className="rm-btn-premium"
                         style={{ 
-                            width: "100%", padding: "16px", borderRadius: "14px", 
+                            width: "100%", padding: "16px", borderRadius: "12px", 
                             fontSize: "14px", fontWeight: "900", cursor: "pointer", 
                             boxShadow: "0 10px 25px rgba(190, 13, 13, 0.2)",
                             textTransform: "uppercase", letterSpacing: "0.5px"
