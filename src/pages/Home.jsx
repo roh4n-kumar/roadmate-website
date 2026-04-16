@@ -181,7 +181,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <WhyChooseUs />
 
       {/* Featured Fleet (Offers Style) */}
-      <section style={{ padding: "100px 24px 40px", maxWidth: "1350px", margin: "0 auto", position: 'relative', zIndex: 10 }}>
+      <section style={{ padding: "100px 24px 100px", maxWidth: "1350px", margin: "0 auto", position: 'relative', zIndex: 10 }}>
         <div className="fleet-outer-card">
           <div className="fleet-header">
             <div>
@@ -285,22 +285,22 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       </section>
 
       {/* Experience / App Section */}
-      <section className="exp-section" style={{ background: "#ffffff", padding: "40px 24px 100px", overflow: "hidden", position: "relative" }}>
+      <section className="exp-section" style={{ background: "#ffffff", padding: "100px 24px", overflow: "hidden", position: "relative" }}>
         <div className="exp-grid" style={{ maxWidth: "1250px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px", alignItems: "center" }}>
           <div>
-            <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Next Gen Mobility</span>
             <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, fontFamily: H, color: "#0f172a", marginTop: "15px", lineHeight: "1.1" }}>Your Journey, <br/>Our Responsibility</h2>
             <p style={{ color: "#64748b", fontSize: "18px", lineHeight: "1.7", marginTop: "25px", marginBottom: "40px" }}>
               Moving around the city hasn't been this easier. With RoadMate, you get a great experience at an affordable price. Zero paperwork, 100% verified rides.
             </p>
-            <div className="exp-btns" style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+            <div className="exp-btns" style={{ display: "flex", gap: "20px", flexWrap: "wrap", marginBottom: "25px" }}>
               <button style={{ background: "#fff", color: "#000", padding: "18px 32px", borderRadius: "16px", border: "1px solid rgba(0,0,0,0.05)", fontWeight: 800, fontSize: "16px", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }}>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store" style={{ height: "24px" }} />
               </button>
               <button style={{ background: "transparent", color: "#0f172a", padding: "18px 32px", borderRadius: "16px", border: "1.5px solid rgba(15,23,42,0.1)", fontWeight: 800, fontSize: "16px", cursor: "pointer" }}>
-                Explore More
+                Visit Our Hub
               </button>
             </div>
+            <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Next Gen Mobility</span>
           </div>
           <motion.div 
             className="v-card exp-image-box"
