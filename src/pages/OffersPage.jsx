@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { offersData } from "../data/offers";
 import Footer from "../components/Footer";
+import OfferModal from "../components/OfferModal";
 
 const RED = "#be0d0d";
 const H = "'Outfit', sans-serif";
@@ -10,6 +11,7 @@ const F = "'Inter', sans-serif";
 
 const OffersPage = () => {
   const navigate = useNavigate();
+  const [selectedOffer, setSelectedOffer] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -285,7 +287,7 @@ const OffersPage = () => {
                       <div className="o-price">SAVE <span>{off.title.match(/\d+%/)?.[0] || "EXTRA"}</span></div>
                       <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 500, marginTop: '4px' }}>{off.desc}</div>
                     </div>
-                    <button className="rm-btn-premium" onClick={() => navigate("/vehicles")} style={{ padding: '10px 20px', fontSize: '12px' }}>
+                    <button className="rm-btn-premium" onClick={() => setSelectedOffer(off)} style={{ padding: '10px 20px', fontSize: '12px' }}>
                       Book Now
                     </button>
                   </div>
@@ -294,6 +296,19 @@ const OffersPage = () => {
             ))}
           </motion.div>
         </div>
+
+        <AnimatePresence>
+          {selectedOffer && (
+            <OfferModal 
+              offer={selectedOffer} 
+              onClose={() => setSelectedOffer(null)} 
+              onBookNow={() => {
+                setSelectedOffer(null);
+                navigate("/vehicles");
+              }} 
+            />
+          )}
+        </AnimatePresence>
       </div>
 
       <Footer />
