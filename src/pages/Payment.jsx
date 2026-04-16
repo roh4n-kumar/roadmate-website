@@ -155,8 +155,11 @@ export default function Payment() {
 
                         if (remaining <= 0) {
                             setShowExpiredModal(true);
-                            // We could also update Firestore status to "expired" here
-                            updateDoc(doc(db, "bookings", bookingId), { status: "expired" }).catch(() => {});
+                            // ONLY expire if the booking is STILL pending
+                            // This prevents overwriting a successful "upcoming" status
+                            if (dbBooking?.status === "pending" || !dbBooking?.status) {
+                                updateDoc(doc(db, "bookings", bookingId), { status: "expired" }).catch(() => {});
+                            }
                         }
                     };
 
