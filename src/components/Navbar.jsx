@@ -487,9 +487,10 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                       paddingBottom: "30px",
                       WebkitOverflowScrolling: "touch",
                       overscrollBehavior: "contain",
-                      scrollBehavior: "smooth"
+                      scrollBehavior: "smooth",
+                      willChange: "scroll-position"
                     }} 
-                    className="drawer-content-scroll hide-scrollbar"
+                    className="drawer-content-scroll"
                   >
                     <div style={{ padding: "30px 25px 35px", display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left" }}>
                       {!isLoggedIn ? (
