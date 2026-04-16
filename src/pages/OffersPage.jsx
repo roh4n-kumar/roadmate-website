@@ -31,7 +31,7 @@ const OffersPage = () => {
     <div style={{ background: "#f8fafc", minHeight: "100vh" }}>
       <style>{`
         .offers-main-wrapper {
-          padding-top: 64px; /* Space for the global Navbar (64px) */
+          padding-top: 118px; /* Navbar height (64px) + Ribbon height (54px) */
           background: #f8fafc;
           min-height: 100vh;
         }
