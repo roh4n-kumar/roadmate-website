@@ -285,7 +285,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       </section>
 
       {/* Experience / App Section */}
-      <section className="exp-section" style={{ background: "#fafafa", padding: "100px 24px", overflow: "hidden", position: "relative" }}>
+      <section className="exp-section" style={{ background: "#ffffff", padding: "100px 24px", overflow: "hidden", position: "relative" }}>
         <div className="exp-grid" style={{ maxWidth: "1250px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px", alignItems: "center" }}>
           <div>
             <span style={{ color: RED, background: "rgba(190, 13, 13, 0.08)", padding: "8px 20px", borderRadius: "100px", fontWeight: 800, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1.5px", display: "inline-block" }}>Next Gen Mobility</span>
