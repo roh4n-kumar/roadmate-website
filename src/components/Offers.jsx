@@ -252,6 +252,8 @@ const Offers = () => {
           </div>
         </div>
 
+        <div style={{ height: '1.2px', background: '#f2f2f2', width: '100%', marginBottom: '20px' }} />
+
         {/* OFFERS GRID */}
         <AnimatePresence mode="wait">
           <motion.div 
