@@ -113,7 +113,7 @@ export default function Payment() {
     const [activeSection, setActiveSection] = useState(null);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
-    const [timeLeft, setTimeLeft] = useState(600);
+    const [timeLeft, setTimeLeft] = useState(3600);
     const [showExpiredModal, setShowExpiredModal] = useState(false);
     const [dbBooking, setDbBooking] = useState(null);
     const [toast, setToast] = useState(null); // { msg, type }
@@ -146,7 +146,7 @@ export default function Payment() {
                 // Sync Timer with server-side createdAt
                 if (data.createdAt) {
                     const createdNode = data.createdAt.toDate();
-                    const expiryTime = createdNode.getTime() + (10 * 60 * 1000);
+                    const expiryTime = createdNode.getTime() + (60 * 60 * 1000);
                     
                     const updateTimer = () => {
                         const now = Date.now();
