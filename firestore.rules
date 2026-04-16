@@ -37,15 +37,6 @@ service cloud.firestore {
       allow create: if request.auth != null && (request.resource.data.userId == request.auth.uid || isAdmin());
     }
 
-    // Notifications: Owner or Admin
-    match /notifications/{notifId} {
-      allow read, write: if request.auth != null && (
-        (resource.data.userId == request.auth.uid) || 
-        (request.resource.data.userId == request.auth.uid) ||
-        isAdmin()
-      );
-    }
-
     // Security Logs: ONLY Create allowed by authenticated users (No reading/modifying)
     match /security_logs/{logId} {
       allow create: if request.auth != null;

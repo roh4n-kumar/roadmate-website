@@ -25,9 +25,10 @@ import {
 } from "firebase/firestore";
 
 
-const RED = "#be0d0d";
-const F   = "'Inter', sans-serif";
-const H   = "'Outfit', sans-serif";
+const RED   = "#be0d0d";
+const SLATE = "#0f172a";
+const F     = "'Inter', sans-serif";
+const H     = "'Outfit', sans-serif";
 
 const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSetDrawerOpen }) => {
   const [_internalDrawerOpen, _setInternalDrawerOpen] = useState(false);
@@ -43,6 +44,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   const [isScrolled, setIsScrolled] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [isNotifDrawerOpen, setIsNotifDrawerOpen] = useState(false);
+  const unreadCount = notifications.filter(n => !n.read).length;
   const notifRef = useRef();
 
   const navigate = useNavigate();
@@ -158,18 +160,6 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
       });
     };
 
-    const parseDateTime = (dateStr, timeStr) => {
-      if (!dateStr || !timeStr) return null;
-      try {
-        const [h, m_ap] = timeStr.trim().split(":");
-        const [min, ap] = m_ap.split(" ");
-        let hours = parseInt(h);
-        if (ap === "PM" && hours !== 12) hours += 12;
-        if (ap === "AM" && hours === 12) hours = 0;
-        return new Date(`${dateStr}T${hours.toString().padStart(2, '0')}:${min}:00`);
-      } catch(e) { return null; }
-    };
-
     checkReminders();
     const interval = setInterval(checkReminders, 300000); // Check every 5 mins
     return () => clearInterval(interval);
@@ -194,7 +184,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
     return date.toLocaleDateString("en-IN", { day:"numeric", month:"short" });
   };
 
-  const unreadCount = notifications.filter(n => !n.read).length;
+  // Already calculated near state declarations
 
   // Removed handleGoogleSignup logic as it is now handled in AuthModal
 
