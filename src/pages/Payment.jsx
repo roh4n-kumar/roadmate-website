@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { db, auth } from "../firebase";
-import { doc, getDoc, updateDoc, onSnapshot, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, updateDoc, onSnapshot, serverTimestamp, collection, addDoc } from "firebase/firestore";
 import { logSuspiciousActivity, logApiError } from "../utils/securityLogger";
 
 const RED = "#be0d0d";
@@ -283,6 +283,15 @@ export default function Payment() {
                             razorpayOrderId: response.razorpay_order_id,
                             razorpaySignature: response.razorpay_signature,
                             paymentMethod: "Razorpay"
+                        });
+
+                        // Add Booking Confirmation Notification
+                        await addDoc(collection(db, "users", auth.currentUser.uid, "notifications"), {
+                            type: "booking_confirmed",
+                            bookingId: bookingId,
+                            message: `Booking Confirmed! Your ride for ${fmtDate(tripData.date)} (${vehicle?.name}) is ready. 🚗`,
+                            read: false,
+                            at: new Date()
                         });
                         
                         setLoading(false);

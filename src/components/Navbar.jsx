@@ -20,7 +20,8 @@ import {
   updateDoc, 
   doc, 
   getDocs, 
-  writeBatch 
+  writeBatch,
+  addDoc
 } from "firebase/firestore";
 
 
@@ -41,7 +42,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   const [authWarning, setAuthWarning] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
   const [notifications, setNotifications] = useState([]);
-  const [showNotif, setShowNotif] = useState(false);
+  const [isNotifDrawerOpen, setIsNotifDrawerOpen] = useState(false);
   const notifRef = useRef();
 
   const navigate = useNavigate();
@@ -101,10 +102,78 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   }, [user]);
 
   useEffect(() => {
-    const handler = (e) => { if (notifRef.current && !notifRef.current.contains(e.target)) setShowNotif(false); };
+    const handler = (e) => { 
+      // Handle drawer close logic if needed, though AnimatePresence takes care of it
+    };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
+
+  const parseDateTime = (dateStr, timeStr) => {
+    if (!dateStr || !timeStr) return null;
+    try {
+      const [h, m_ap] = timeStr.trim().split(":");
+      const [min, ap] = m_ap.split(" ");
+      let hours = parseInt(h);
+      if (ap === "PM" && hours !== 12) hours += 12;
+      if (ap === "AM" && hours === 12) hours = 0;
+      // dateStr should be YYYY-MM-DD
+      return new Date(`${dateStr}T${hours.toString().padStart(2, '0')}:${min}:00`);
+    } catch(e) { return null; }
+  };
+
+  useEffect(() => {
+    if (!user) return;
+    const checkReminders = async () => {
+      const bookingsQ = query(collection(db, "bookings"), where("userId", "==", user.uid), where("status", "in", ["upcoming", "confirmed", "Pending"]));
+      const snap = await getDocs(bookingsQ);
+      const now = new Date();
+      
+      snap.docs.forEach(async (docSnap) => {
+        const b = docSnap.data();
+        const tripDate = b.trip?.date || b.date;
+        const pickupTime = b.trip?.pickupTime;
+        if (!tripDate || !pickupTime) return;
+
+        const rideStart = parseDateTime(tripDate, pickupTime);
+        if (!rideStart) return;
+
+        const diffMins = (rideStart - now) / 60000;
+        
+        // If ride is in 25-35 minutes
+        if (diffMins > 0 && diffMins <= 30) {
+          // Check if already notified
+          const existingQ = query(collection(db, "users", user.uid, "notifications"), where("type", "==", "reminder"), where("bookingId", "==", docSnap.id));
+          const existSnap = await getDocs(existingQ);
+          if (existSnap.empty) {
+            await addDoc(collection(db, "users", user.uid, "notifications"), {
+              type: "reminder",
+              bookingId: docSnap.id,
+              message: `Your ride for ${b.vehicle?.name || "RoadMate vehicle"} starts in 30 minutes! 🚗`,
+              read: false,
+              at: new Date()
+            });
+          }
+        }
+      });
+    };
+
+    const parseDateTime = (dateStr, timeStr) => {
+      if (!dateStr || !timeStr) return null;
+      try {
+        const [h, m_ap] = timeStr.trim().split(":");
+        const [min, ap] = m_ap.split(" ");
+        let hours = parseInt(h);
+        if (ap === "PM" && hours !== 12) hours += 12;
+        if (ap === "AM" && hours === 12) hours = 0;
+        return new Date(`${dateStr}T${hours.toString().padStart(2, '0')}:${min}:00`);
+      } catch(e) { return null; }
+    };
+
+    checkReminders();
+    const interval = setInterval(checkReminders, 300000); // Check every 5 mins
+    return () => clearInterval(interval);
+  }, [user]);
 
   const markAllRead = async () => {
     if (!user || notifications.length === 0) return;
@@ -113,7 +182,6 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
       batch.update(doc(db, "users", user.uid, "notifications", n.id), { read: true });
     });
     await batch.commit();
-    setShowNotif(false);
   };
 
   const formatTime = (at) => {
@@ -166,6 +234,18 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           @media (min-width: 901px) {
             .mobile-trigger { display: none !important; }
           }
+          .notif-drawer-item {
+            padding: 16px 20px;
+            border-bottom: 1.2px solid #f8fafc;
+            display: flex;
+            gap: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+          }
+          .notif-drawer-item:hover { background: #f8fafc; }
+          .notif-drawer-item.unread { background: ${RED}05; }
+          .notif-drawer-item.unread:hover { background: ${RED}08; }
           // Removed redundant google-auth-btn style
 
           .logout-btn {
@@ -303,9 +383,9 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           {/* Account/Mobile Trig (Right) */}
           <div style={{ display: "flex", alignItems: "center", gap: "20px", zIndex: 10, justifyContent: "flex-end" }}>
             {isLoggedIn && (
-              <div ref={notifRef} style={{ position: "relative" }}>
+              <div style={{ position: "relative" }}>
                 <button 
-                  onClick={() => setShowNotif(!showNotif)}
+                  onClick={() => setIsNotifDrawerOpen(true)}
                   style={{ background: "transparent", border: "none", color: isNavbarSolid ? "#000" : "#fff", cursor: "pointer", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", padding: "8px", borderRadius: "50%", transition: "all 0.2s" }}
                 >
                   <BellIcon />
@@ -313,50 +393,6 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     <span style={{ position: "absolute", top: "6px", right: "6px", width: "10px", height: "10px", background: RED, borderRadius: "50%", border: "2px solid #fff", boxShadow: "0 0 10px "+RED+"40" }} />
                   )}
                 </button>
-
-                <AnimatePresence>
-                  {showNotif && (
-                    <motion.div 
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      style={{ position: "absolute", top: "calc(100% + 12px)", right: "-50px", width: "320px", background: "#fff", borderRadius: "20px", boxShadow: "0 20px 50px rgba(0,0,0,0.15)", border: "1.5px solid rgba(15, 23, 42, 0.08)", overflow: "hidden", zIndex: 99999 }}
-                    >
-                      <div style={{ padding: "18px 20px", borderBottom: "1.5px solid #f1f5f9", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                        <h4 style={{ margin: 0, fontSize: "16px", fontWeight: "900", fontFamily: H, color: "#1e293b" }}>Notifications</h4>
-                        {unreadCount > 0 && (
-                          <button onClick={markAllRead} style={{ background: "transparent", border: "none", color: RED, fontSize: "12px", fontWeight: "800", cursor: "pointer", padding: 0 }}>Mark all read</button>
-                        )}
-                      </div>
-
-                      <div style={{ maxHeight: "380px", overflowY: "auto", padding: "10px 0" }} className="hide-scrollbar">
-                        {notifications.length === 0 ? (
-                          <div style={{ padding: "40px 20px", textAlign: "center" }}>
-                            <div style={{ marginBottom: "15px", opacity: 0.3 }}><BellIcon size={40} /></div>
-                            <p style={{ margin: 0, fontSize: "14px", color: "#64748b", fontWeight: "600" }}>No new notifications</p>
-                          </div>
-                        ) : (
-                          notifications.map((n, i) => (
-                            <div 
-                              key={n.id} 
-                              style={{ padding: "14px 20px", borderBottom: i === notifications.length - 1 ? "none" : "1.2px solid #f8fafc", display: "flex", gap: "14px", background: n.read ? "transparent" : RED+"05", cursor: "pointer", transition: "all 0.2s" }}
-                              onMouseEnter={e => e.currentTarget.style.background = n.read ? "#f8fafc" : RED+"08"}
-                              onMouseLeave={e => e.currentTarget.style.background = n.read ? "transparent" : RED+"05"}
-                            >
-                              <div style={{ width: "36px", height: "36px", borderRadius: "10px", background: n.type === "approved" ? "#22c55e15" : n.type === "rejected" ? RED+"15" : "#f59e0b15", color: n.type === "approved" ? "#22c55e" : n.type === "rejected" ? RED : "#f59e0b", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                                {n.type === "approved" ? <CheckIcon size={18} /> : n.type === "rejected" ? <div style={{ fontSize: "18px", fontWeight: "900" }}>!</div> : <ClockIcon size={18} />}
-                              </div>
-                              <div style={{ flex: 1, minWidth: 0 }}>
-                                <p style={{ margin: 0, fontSize: "13px", color: "#1e293b", fontWeight: n.read ? "600" : "800", lineHeight: "1.4" }}>{n.message}</p>
-                                <p style={{ margin: "4px 0 0", fontSize: "11px", color: "#94a3b8", fontWeight: "600" }}>{formatTime(n.at)}</p>
-                              </div>
-                            </div>
-                          ))
-                        )}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </div>
             )}
 
@@ -460,6 +496,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     <div style={{ padding: "0 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>My details</h3>
                       <DrawerItem icon={<BookingIcon />} label="My Bookings" onClick={() => handleProtectedAction("/my-bookings")} />
+                      <DrawerItem icon={<BellIcon size={20} />} label="Notifications" onClick={() => { setIsDrawerOpen(false); setIsNotifDrawerOpen(true); }} />
                       <DrawerItem icon={<UserIcon size={20} />} label="My Profile" onClick={() => handleProtectedAction("/profile")} />
                     </div>
 
@@ -541,6 +578,58 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
         isOpen={isLoginOpen} 
         onClose={() => setIsLoginOpen(false)} 
       />
+
+      {/* NOTIFICATION SIDE DRAWER */}
+      <AnimatePresence>
+        {isNotifDrawerOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsNotifDrawerOpen(false)}
+              style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.4)", backdropFilter: "blur(4px)", zIndex: 10001 }}
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              style={{ position: "fixed", top: 0, right: 0, width: "100%", maxWidth: "340px", height: "100vh", backgroundColor: "#fff", zIndex: 10002, display: "flex", flexDirection: "column", boxShadow: "-20px 0 50px rgba(0,0,0,0.1)", borderLeft: "1px solid rgba(0,0,0,0.05)" }}
+            >
+              <div style={{ padding: "24px 25px 18px", borderBottom: "1.5px solid rgba(15, 23, 42, 0.08)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <h2 style={{ fontSize: "22px", fontWeight: 900, fontFamily: H, margin: 0, color: "#1e293b", letterSpacing: "-0.5px" }}>Notifications</h2>
+                <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+                   {unreadCount > 0 && <button onClick={markAllRead} style={{ background: RED+"08", border: "none", color: RED, fontSize: "11px", fontWeight: "800", cursor: "pointer", padding: "6px 12px", borderRadius: "8px" }}>Mark Read</button>}
+                   <button onClick={() => setIsNotifDrawerOpen(false)} style={{ background: "#f1f5f9", border: "none", width: "32px", height: "32px", borderRadius: "10px", fontSize: "20px", cursor: "pointer", color: "#64748b", display: "flex", alignItems: "center", justifyContent: "center" }}>&times;</button>
+                </div>
+              </div>
+
+              <div style={{ flex: 1, overflowY: "auto" }} className="hide-scrollbar">
+                {notifications.length === 0 ? (
+                  <div style={{ padding: "80px 40px", textAlign: "center" }}>
+                    <div style={{ marginBottom: "20px", opacity: 0.2, color: SLATE }}><BellIcon size={64} /></div>
+                    <h3 style={{ fontSize: "18px", fontWeight: "800", color: "#1e293b", marginBottom: "8px", fontFamily: H }}>All caught up!</h3>
+                    <p style={{ margin: 0, fontSize: "14px", color: "#64748b", fontWeight: "500" }}>No new notifications found</p>
+                  </div>
+                ) : (
+                  notifications.map((n) => (
+                    <div key={n.id} className={`notif-drawer-item ${n.read ? "" : "unread"}`}>
+                      <div style={{ width: "40px", height: "40px", borderRadius: "12px", background: n.type === "approved" ? "#22c55e15" : n.type === "rejected" || n.type === "cancelled" ? RED+"15" : "#f59e0b15", color: n.type === "approved" ? "#22c55e" : n.type === "rejected" || n.type === "cancelled" ? RED : "#f59e0b", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        {n.type === "approved" ? <CheckIcon size={20} /> : (n.type === "rejected" || n.type === "cancelled") ? <div style={{ fontSize: "20px", fontWeight: "900" }}>!</div> : <ClockIcon size={20} />}
+                      </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <p style={{ margin: 0, fontSize: "14px", color: "#1e293b", fontWeight: n.read ? "600" : "800", lineHeight: "1.5" }}>{n.message}</p>
+                        <p style={{ margin: "6px 0 0", fontSize: "12px", color: "#94a3b8", fontWeight: "600" }}>{formatTime(n.at)}</p>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
 
       <AnimatePresence>

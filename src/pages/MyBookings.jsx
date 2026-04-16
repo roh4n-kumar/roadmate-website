@@ -6,6 +6,7 @@ import {
   where,
   updateDoc,
   doc,
+  addDoc,
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../firebase";
@@ -62,6 +63,16 @@ const MyBookings = () => {
     
     try {
       await updateDoc(doc(db, "bookings", id), { status: "cancelled" });
+      
+      // Add Cancellation Notification
+      await addDoc(collection(db, "users", auth.currentUser.uid, "notifications"), {
+        type: "cancelled",
+        bookingId: id,
+        message: `Booking Cancelled: Your ride for ${booking.vehicle?.name || "the vehicle"} (ID: ${id.slice(0, 6)}) has been cancelled.`,
+        read: false,
+        at: new Date()
+      });
+
       setBookings((prev) => prev.map((b) => (b.id === id ? { ...b, status: "cancelled" } : b)));
       setActiveTab("cancelled");
     } catch (error) {
