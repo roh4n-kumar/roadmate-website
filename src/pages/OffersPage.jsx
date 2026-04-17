@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import OfferModal from "../components/OfferModal";
 
 const RED = "#be0d0d";
+const SLATE = "#0f172a";
 const H = "'Outfit', sans-serif";
 const F = "'Inter', sans-serif";
 
