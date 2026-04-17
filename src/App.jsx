@@ -124,12 +124,11 @@ const MobileShell = ({ setIsDrawerOpen }) => {
           onClick={() => {
             if (location.pathname === "/") {
               setIsDrawerOpen(true);
+            } else {
+              navigate("/", { state: { openDrawer: true } });
             }
           }}
-          style={{ 
-            opacity: location.pathname === "/" ? 1 : 0.5,
-            pointerEvents: location.pathname === "/" ? "auto" : "none"
-          }}
+          style={{ cursor: "pointer" }}
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           Account

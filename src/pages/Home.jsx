@@ -22,6 +22,14 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const [featuredVehicles, setFeaturedVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [toast, setToast] = useState("");
+  
+  useEffect(() => {
+    if (location.state?.openDrawer) {
+      setIsDrawerOpen(true);
+      // Clear state so it doesn't open again on re-renders
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location.state, setIsDrawerOpen, navigate, location.pathname]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
