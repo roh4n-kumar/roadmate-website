@@ -424,9 +424,25 @@ export default function Payment() {
                                 onClick={(id) => setActiveSection(activeSection === id ? null : id)}
                             >
                                 <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-                                    <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                                        {["Google Pay", "PhonePe", "Paytm", "Any UPI ID"].map(u => (
-                                            <div key={u} style={{ padding: "8px 16px", borderRadius: "10px", border: "1.5px solid rgba(15,23,42,0.06)", fontWeight: 800, fontSize: "12px", color: "rgba(15,23,42,0.6)", background: "rgba(15,23,42,0.02)" }}>{u}</div>
+                                    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                                        {[
+                                            { id: "gpay", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" },
+                                            { id: "phonepe", logo: "https://static.vecteezy.com/system/resources/previews/022/100/282/non_2x/phonepe-logo-transparent-free-png.png" },
+                                            { id: "paytm", logo: "https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo_%28standalone%29.svg" },
+                                            { id: "upi", label: "Any UPI ID" }
+                                        ].map(u => (
+                                            <div key={u.id} style={{ 
+                                                height: "45px", minWidth: "80px", padding: "0 16px", 
+                                                borderRadius: "14px", border: "1.5px solid rgba(15,23,42,0.08)", 
+                                                background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
+                                                boxShadow: "0 4px 12px rgba(0,0,0,0.03)"
+                                            }}>
+                                                {u.logo ? (
+                                                    <img src={u.logo} alt={u.id} style={{ height: u.id === 'phonepe' ? "24px" : "18px", width: "auto", objectFit: "contain" }} />
+                                                ) : (
+                                                    <span style={{ fontSize: "11px", fontWeight: 800, color: "rgba(15,23,42,0.4)", textTransform: "uppercase" }}>{u.label}</span>
+                                                )}
+                                            </div>
                                         ))}
                                     </div>
                                     <div>
