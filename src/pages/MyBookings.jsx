@@ -92,9 +92,9 @@ const MyBookings = () => {
     );
   }
 
-  const upcoming  = bookings.filter((b) => b.status === "upcoming" || b.status === "pending" || !b.status);
+  const upcoming  = bookings.filter((b) => b.status === "upcoming");
   const completed = bookings.filter((b) => b.status === "completed");
-  const cancelled = bookings.filter((b) => b.status === "cancelled");
+  const cancelled = bookings.filter((b) => b.status === "cancelled" || b.status === "pending" || b.status === "expired" || !b.status);
   const list = activeTab === "upcoming" ? upcoming : activeTab === "completed" ? completed : cancelled;
 
   return (

@@ -175,6 +175,16 @@ export default function Payment() {
         return () => unsub();
     }, [bookingId, navigate]);
 
+    // ── AUTO-CANCEL ON ABANDON ──
+    useEffect(() => {
+        return () => {
+            if (bookingId && !success && (dbBooking?.status === "pending" || !dbBooking?.status)) {
+                // Using a simple updateDoc here. If it fails (e.g. tab closed), the 10-min timer will catch it eventually.
+                updateDoc(doc(db, "bookings", bookingId), { status: "cancelled" }).catch(() => {});
+            }
+        };
+    }, [bookingId, success, dbBooking?.status]);
+
     // Fallback for non-Firestore legacy flow (if any)
     useEffect(() => {
         if (bookingId) return; // Skip if using Firestore
