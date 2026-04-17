@@ -645,15 +645,20 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     @media (max-width: 900px) {
-      .hero-section { margin-top: 0 !important; padding-bottom: 40px; }
-      .search-ribbon-v2 { padding: 80px 16px 60px !important; }
+      .hero-section { margin-top: 0 !important; padding-bottom: 40px; background: #fff !important; }
+      .search-ribbon-v2 { 
+        padding: 100px 16px 60px !important; 
+        background: #fff !important; 
+        background-image: none !important;
+      }
       .hero-title { 
         font-size: 36px !important; 
         transform: translateY(0) !important; 
         margin-bottom: 30px !important;
         text-align: center !important;
+        color: #1e293b !important;
       }
-      .hero-subtitle { font-size: 16px !important; }
+      .hero-subtitle { font-size: 16px !important; color: #64748b !important; }
       
       .search-master-card { 
         padding: 30px 16px 40px !important; 

@@ -257,6 +257,21 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
           }
           .logout-btn:active { transform: translateY(0); }
+          
+          @media (max-width: 900px) {
+            .mobile-nav-solid {
+              background-color: rgba(255, 255, 255, 1) !important;
+              backdrop-filter: blur(20px) !important;
+              -webkit-backdrop-filter: blur(20px) !important;
+              border-bottom: 1.5px solid rgba(15, 23, 42, 0.05) !important;
+              box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15) !important;
+            }
+            .mobile-nav-solid .nav-logo { color: ${RED} !important; }
+            .mobile-nav-solid .account-btn { color: #000 !important; }
+            .mobile-nav-solid .mobile-trigger { color: #000 !important; }
+            .mobile-nav-solid .bell-icon { color: #000 !important; }
+          }
+
           .desktop-link { 
             transition: all 0.3s ease; 
             font-family: ${F}; 
@@ -307,6 +322,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
       </style>
 
       <nav
+        className={isNavbarSolid ? "mobile-nav-solid" : "mobile-nav-solid"} // Always solid on mobile via CSS
         style={{
           position: "fixed",
           top: 0,
@@ -385,7 +401,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                   onClick={() => setIsNotifDrawerOpen(true)}
                   style={{ background: "transparent", border: "none", color: isNavbarSolid ? "#000" : "#fff", cursor: "pointer", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", padding: "8px", borderRadius: "50%", transition: "all 0.2s" }}
                 >
-                  <BellIcon />
+                  <div className="bell-icon"><BellIcon /></div>
                   {unreadCount > 0 && (
                     <span style={{ position: "absolute", top: "6px", right: "6px", width: "10px", height: "10px", background: RED, borderRadius: "50%", border: "2px solid #fff", boxShadow: "0 0 10px "+RED+"40" }} />
                   )}
