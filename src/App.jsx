@@ -68,7 +68,7 @@ const MobileShell = ({ setIsDrawerOpen }) => {
             position: fixed;
             bottom: 0; left: 0; right: 0;
             height: 70px;
-            background: rgba(15, 23, 42, 0.9);
+            background: #000;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);

@@ -659,6 +659,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         color: #1e293b !important;
       }
       .hero-subtitle { font-size: 16px !important; color: #64748b !important; }
+      .hero-header-block { display: none !important; }
       
       .search-master-card { 
         padding: 30px 16px 40px !important; 
@@ -682,6 +683,16 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         border-bottom: 1.5px solid #cbd5e1 !important; 
       }
       .search-col:last-child { border-bottom: none !important; }
+
+      /* Fix date pills overflow */
+      .search-col:nth-child(2) .col-value { 
+        flex-direction: column !important; 
+        align-items: flex-start !important; 
+        gap: 12px !important; 
+      }
+      .search-col:nth-child(2) .col-value > div:last-child { 
+        margin-left: 0 !important; 
+      }
       .col-value { font-size: 28px !important; }
       
       .floating-search-btn {
