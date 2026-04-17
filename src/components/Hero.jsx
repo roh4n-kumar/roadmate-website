@@ -660,6 +660,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       }
       .hero-subtitle { font-size: 16px !important; color: #64748b !important; }
       .hero-header-block { display: none !important; }
+      .disclaimer-pills-row { display: none !important; }
       
       .search-master-card { 
         padding: 30px 16px 40px !important; 
@@ -911,7 +912,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
           </button>
 
           {/* Restored Disclaimer Pills */}
-          <div style={{ display: 'flex', gap: '16px', marginTop: '18px', marginBottom: '0px' }}>
+          <div className="disclaimer-pills-row" style={{ display: 'flex', gap: '16px', marginTop: '18px', marginBottom: '0px' }}>
             <div className="disclaimer-pill">
                <div className="pill-icon-box">
                   <svg viewBox="0 0 512 512" width="22" height="22" fill="currentColor">
