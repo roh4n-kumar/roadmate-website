@@ -270,6 +270,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             .mobile-nav-solid .account-btn { color: #000 !important; }
             .mobile-nav-solid .mobile-trigger { color: #000 !important; }
             .mobile-nav-solid .bell-icon { color: #000 !important; }
+            .nav-grid { grid-template-columns: auto 1fr !important; }
+            .nav-right-container { justify-content: flex-end !important; }
           }
 
           .desktop-link { 
@@ -341,7 +343,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           boxShadow: isNavbarSolid ? "0 2px 10px rgba(0, 0, 0, 0.15)" : "none",
         }}
       >
-        <div style={{ 
+        <div className="nav-grid" style={{ 
           maxWidth: "1250px", 
           margin: "0 auto", 
           width: "100%", 
@@ -394,7 +396,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           </div>
 
           {/* Account/Mobile Trig (Right) */}
-          <div style={{ display: "flex", alignItems: "center", gap: "20px", zIndex: 10, justifyContent: "flex-end" }}>
+          <div className="nav-right-container" style={{ display: "flex", alignItems: "center", gap: "20px", zIndex: 10, justifyContent: "flex-end" }}>
             {isLoggedIn && (
               <div style={{ position: "relative" }}>
                 <button 
@@ -463,9 +465,27 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                   setIsDrawerOpen(true);
                 }
               }}
-              style={{ color: isNavbarSolid ? "#0f172a" : "#fff", cursor: "pointer", display: "none", transition: "color 0.3s ease" }}
+              style={{ color: isNavbarSolid ? "#0f172a" : "#fff", cursor: "pointer", display: "none", transition: "color 0.3s ease", alignItems: "center", justifyContent: "center" }}
             >
-               <AccountIcon size={24} />
+               {isLoggedIn ? (
+                 <div style={{
+                    width: "28px", height: "28px", borderRadius: "50%",
+                    background: RED,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: "12px", fontWeight: "900", color: "white",
+                    fontFamily: H, flexShrink: 0,
+                    boxShadow: "0 4px 10px rgba(190,13,13,0.2)",
+                    overflow: "hidden"
+                  }}>
+                    {user?.photoURL ? (
+                       <img src={user.photoURL} alt="User" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    ) : (
+                       (user?.displayName?.[0] || user?.email?.[0] || "?").toUpperCase()
+                    )}
+                  </div>
+               ) : (
+                 <AccountIcon size={24} />
+               )}
             </div>
           </div>
 
