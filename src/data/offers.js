@@ -5,7 +5,7 @@ export const offersData = [
     title: "Get FLAT 15% OFF*",
     desc: "on your first car booking with RoadMate.",
     code: "WELCOME15",
-    image: "/assets/offers/car_luxury.png",
+    image: "/assets/offers/welcome_car.png",
     details: [
       "Use code WELCOME15 to get 15% flat discount up to ₹250 on car rentals.",
       "Offer available only for first-time RoadMate users.",
@@ -21,7 +21,7 @@ export const offersData = [
     title: "Get ₹50 INSTANT OFF*",
     desc: "on your very first bike ride in Bhubaneswar.",
     code: "FIRST50",
-    image: "/assets/offers/bike_adventure.png",
+    image: "/assets/offers/city_bike.png",
     details: [
       "Get ₹50 flat instant discount on your total booking value.",
       "No minimum booking value required for this offer.",
@@ -37,7 +37,7 @@ export const offersData = [
     title: "Save UPTO ₹200*",
     desc: "on your first premium vehicle rental today.",
     code: "ROADSTART",
-    image: "/assets/offers/suv_forest.png",
+    image: "/assets/offers/premium_suv.png",
     details: [
       "Get 10% discount up to ₹200 on premium car rentals.",
       "Offer applicable for premium segment (Thar, Scorpio-N, XUV700).",
@@ -53,7 +53,7 @@ export const offersData = [
     title: "Save ₹100*",
     desc: "using SBI Yono for all city bike rentals.",
     code: "SBIYONO100",
-    image: "/assets/offers/bike_adventure.png",
+    image: "/assets/offers/payment_bike.png",
     details: [
       "Use SBI Yono app to pay and get ₹100 instant discount.",
       "Offer applicable on a minimum transaction value of ₹800.",
@@ -69,7 +69,7 @@ export const offersData = [
     title: "Get 10% DISCOUNT*",
     desc: "on your first Axis Bank card transaction.",
     code: "AXISRM10",
-    image: "/assets/offers/urban_lifestyle.png",
+    image: "/assets/offers/urban_car.png",
     details: [
       "Flat 10% OFF up to ₹300 using Axis Bank Credit or Debit cards.",
       "Offer valid only for first-time Axis Bank transaction on RoadMate.",
@@ -85,7 +85,7 @@ export const offersData = [
     title: "Get FLAT 5% OFF*",
     desc: "Rent premium bikes like Royal Enfield at low rates.",
     code: "BIKERIDE5",
-    image: "/assets/offers/bike_adventure.png",
+    image: "/assets/offers/premium_bike.png",
     details: [
       "Get 5% instant discount on premium bike rentals (RE, KTM, BMW).",
       "No minimum booking amount required.",
