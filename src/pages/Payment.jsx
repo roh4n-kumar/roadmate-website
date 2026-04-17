@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { db, auth } from "../firebase";
-import { doc, getDoc, updateDoc, onSnapshot, serverTimestamp, collection, addDoc, deleteDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, onSnapshot, serverTimestamp, collection, addDoc, deleteDoc, query, where, getDocs } from "firebase/firestore";
 import { logSuspiciousActivity, logApiError } from "../utils/securityLogger";
+import { offersData } from "../data/offers";
 
 const RED = "#be0d0d";
 const SLATE = "#0f172a";
@@ -238,25 +239,97 @@ export default function Payment() {
     const costs     = dbBooking?.breakdown || { baseTotal, gst: passedGst, helmetCharge, driverCharge, grandTotal: total };
     const grand     = (costs.grandTotal || costs.total || total || 0) - discount;
 
-    const handleApplyCoupon = (e) => {
+    const handleApplyCoupon = async (e) => {
         e.stopPropagation();
         const code = coupon.trim().toUpperCase();
         if (!code) return;
 
-        // Mock coupons logic
-        if (code === "ROAD20") {
-            const d = Math.round(costs.baseTotal * 0.2);
-            setDiscount(d);
-            setAppliedCoupon(code);
-            setToast({ msg: "Coupon ROAD20 applied! 20% discount added.", type: "success" });
-        } else if (code === "WELCOME100") {
-            setDiscount(100);
-            setAppliedCoupon(code);
-            setToast({ msg: "Coupon WELCOME100 applied! ₹100 discount added.", type: "success" });
-        } else {
+        const offer = offersData.find(o => o.code === code);
+        if (!offer) {
             setToast({ msg: "Invalid coupon code.", type: "error" });
             setDiscount(0);
             setAppliedCoupon("");
+            return;
+        }
+
+        // 1. Category Check
+        const vType = (vehicle?.type || passedVehicle?.type || "").toUpperCase();
+        if (offer.category === "CAR" && !vType.includes("CAR") && !vType.includes("SUV") && !vType.includes("SEDAN")) {
+            setToast({ msg: "This coupon is only valid for Car bookings.", type: "error" });
+            return;
+        }
+        if (offer.category === "BIKE" && !vType.includes("BIKE") && !vType.includes("SCOOTY")) {
+            setToast({ msg: "This coupon is only valid for Bike bookings.", type: "error" });
+            return;
+        }
+
+        // 2. Eligibility / First Ride Check
+        const firstRideCoupons = ["WELCOME15", "FIRST50", "ROADSTART", "AXISRM10"];
+        if (firstRideCoupons.includes(code)) {
+            try {
+                const q = query(
+                    collection(db, "bookings"),
+                    where("userId", "==", auth.currentUser.uid),
+                    where("status", "in", ["upcoming", "completed"])
+                );
+                const snap = await getDocs(q);
+                
+                // Check specifically for CAR or BIKE history if needed
+                if (!snap.empty) {
+                    // For WELCOME15, check if they have any CAR booking
+                    if (code === "WELCOME15" || code === "ROADSTART" || code === "AXISRM10") {
+                        const hasCarBooking = snap.docs.some(d => {
+                            const t = (d.data().vehicle?.type || "").toUpperCase();
+                            return t.includes("CAR") || t.includes("SUV") || t.includes("SEDAN");
+                        });
+                        if (hasCarBooking) {
+                            setToast({ msg: "This offer is only valid for your first Car booking.", type: "error" });
+                            return;
+                        }
+                    }
+                    // For FIRST50, check if they have any BIKE booking
+                    if (code === "FIRST50") {
+                        const hasBikeBooking = snap.docs.some(d => {
+                            const t = (d.data().vehicle?.type || "").toUpperCase();
+                            return t.includes("BIKE") || t.includes("SCOOTY");
+                        });
+                        if (hasBikeBooking) {
+                            setToast({ msg: "This offer is only valid for your first Bike booking.", type: "error" });
+                            return;
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error("History check failed:", err);
+            }
+        }
+
+        // 3. Minimum Value Check
+        const base = costs.baseTotal || 0;
+        if (code === "SBIYONO100" && base < 800) {
+            setToast({ msg: "Minimum booking value of ₹800 required for this offer.", type: "error" });
+            return;
+        }
+        if (code === "AXISRM10" && base < 2000) {
+            setToast({ msg: "Minimum booking value of ₹2,000 required for Axis Bank offer.", type: "error" });
+            return;
+        }
+
+        // 4. Calculate Discount
+        let d = 0;
+        if (code === "WELCOME15") d = Math.min(250, Math.round(base * 0.15));
+        else if (code === "FIRST50") d = 50;
+        else if (code === "ROADSTART") d = Math.min(200, Math.round(base * 0.10));
+        else if (code === "SBIYONO100") d = 100;
+        else if (code === "AXISRM10") d = Math.min(300, Math.round(base * 0.10));
+        else if (code === "BIKERIDE5") d = Math.round(base * 0.05);
+
+        if (d > 0) {
+            setDiscount(d);
+            setAppliedCoupon(code);
+            setToast({ msg: `Coupon ${code} applied! ₹${d} discount added.`, type: "success" });
+        } else {
+            setToast({ msg: "This coupon could not be applied.", type: "error" });
         }
     };
 
