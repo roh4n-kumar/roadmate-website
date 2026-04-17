@@ -20,7 +20,6 @@ import OffersPage from "./pages/OffersPage";
 import HowItWorks from "./pages/HowItWorks";
 import Blogs from "./pages/Blogs";
 import PartnerWithUs from "./pages/PartnerWithUs";
-import Wallet from "./pages/Wallet";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import logo from "./assets/roadMate Red Logo 2.png";
@@ -170,7 +169,6 @@ function App() {
         <Route path="/how-it-works"        element={<HowItWorks />} />
         <Route path="/blogs"               element={<Blogs />} />
         <Route path="/partner-with-us"     element={<PartnerWithUs />} />
-        <Route path="/wallet"              element={<ProtectedRoute><Wallet /></ProtectedRoute>} />
       </Routes>
     </>
   );

@@ -110,6 +110,8 @@ export default function Payment() {
     } = location.state || {}; // Safe destructuring with defaults
 
     const [coupon, setCoupon] = useState("");
+    const [discount, setDiscount] = useState(0);
+    const [appliedCoupon, setAppliedCoupon] = useState("");
     const [activeSection, setActiveSection] = useState(null);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -225,7 +227,29 @@ export default function Payment() {
 
     const tripData  = dbBooking?.trip || { date, pickupTime: pickup, dropTime: drop, totalMins };
     const costs     = dbBooking?.breakdown || { baseTotal, gst: passedGst, helmetCharge, driverCharge, grandTotal: total };
-    const grand     = costs.grandTotal || costs.total || total || 0;
+    const grand     = (costs.grandTotal || costs.total || total || 0) - discount;
+
+    const handleApplyCoupon = (e) => {
+        e.stopPropagation();
+        const code = coupon.trim().toUpperCase();
+        if (!code) return;
+
+        // Mock coupons logic
+        if (code === "ROAD20") {
+            const d = Math.round(costs.baseTotal * 0.2);
+            setDiscount(d);
+            setAppliedCoupon(code);
+            setToast({ msg: "Coupon ROAD20 applied! 20% discount added.", type: "success" });
+        } else if (code === "WELCOME100") {
+            setDiscount(100);
+            setAppliedCoupon(code);
+            setToast({ msg: "Coupon WELCOME100 applied! ₹100 discount added.", type: "success" });
+        } else {
+            setToast({ msg: "Invalid coupon code.", type: "error" });
+            setDiscount(0);
+            setAppliedCoupon("");
+        }
+    };
 
     // ── RAZORPAY INTEGRATION ──
     const loadRazorpayScript = () => {
@@ -407,10 +431,10 @@ export default function Payment() {
                                     style={{ flex: 1, padding: "14px 20px", borderRadius: "12px", border: "1.5px solid rgba(15,23,42,0.1)", fontSize: "14px", fontWeight: 700, outline: "none", background: "#fcfcfc" }}
                                 />
                                 <button 
-                                    onClick={(e) => e.stopPropagation()}
+                                    onClick={handleApplyCoupon}
                                     style={{ padding: "12px 24px", borderRadius: "12px", background: SLATE, color: "#fff", border: "none", fontWeight: 800, fontSize: "13px", cursor: "pointer" }}
                                 >
-                                    Apply
+                                    {appliedCoupon === coupon.trim().toUpperCase() ? "Applied" : "Apply"}
                                 </button>
                             </div>
                         </PaymentMethodItem>
@@ -544,6 +568,12 @@ export default function Payment() {
                                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                         <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.5)", fontWeight: 600 }}>Driver Charges</span>
                                         <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{costs.driverCharge}</span>
+                                    </div>
+                                )}
+                                {discount > 0 && (
+                                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", color: "#10b981" }}>
+                                        <span style={{ fontSize: "14px", fontWeight: 600 }}>Discount ({appliedCoupon})</span>
+                                        <span style={{ fontSize: "14px", fontWeight: 800 }}>-₹{discount}</span>
                                     </div>
                                 )}
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px", paddingTop: "20px", borderTop: "1.5px dashed rgba(15,23,42,0.08)" }}>
