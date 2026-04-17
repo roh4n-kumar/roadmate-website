@@ -138,6 +138,10 @@ const OffersPage = () => {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .o-card:hover .o-image {
+          transform: scale(1.1);
         }
 
         .o-cat-badge {
@@ -158,17 +162,18 @@ const OffersPage = () => {
           position: absolute;
           top: 20px;
           right: 20px;
-          background: rgba(255, 255, 255, 0.9);
+          background: rgba(255, 255, 255, 0.95);
           backdrop-filter: blur(10px);
           padding: 6px 12px;
-          border-radius: 8px;
-          font-size: 12px;
+          border-radius: 12px;
+          font-size: 11px;
           font-weight: 800;
           color: #0f172a;
           display: flex;
           align-items: center;
-          gap: 4px;
+          gap: 6px;
           z-index: 2;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         .o-rating span { color: #94a3b8; font-weight: 600; }
 
@@ -185,7 +190,7 @@ const OffersPage = () => {
         .o-name-overlay h3 {
           margin: 0;
           font-family: ${H};
-          font-size: 22px;
+          font-size: 18px;
           font-weight: 900;
           letter-spacing: -0.5px;
         }
@@ -291,10 +296,22 @@ const OffersPage = () => {
                 </div>
 
                 <div className="o-body">
-                  <div className="o-footer" style={{ justifyContent: 'center', textAlign: 'center' }}>
+                  <div className="o-footer" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '15px' }}>
                     <div className="o-price-box">
-                      <div className="o-price">Code: <span>{off.code}</span></div>
-                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 500, marginTop: '4px' }}>{off.desc}</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                        <span style={{ fontSize: '10px', fontWeight: 900, color: RED, textTransform: 'uppercase', letterSpacing: '1px' }}>Code</span>
+                        <div className="o-price" style={{ fontSize: '18px' }}>{off.code}</div>
+                      </div>
+                      <div style={{ fontSize: '12px', color: '#64748b', fontWeight: 600, lineHeight: 1.5 }}>{off.desc}</div>
+                    </div>
+                    
+                    <div style={{ width: '100%', height: '1px', background: 'rgba(15,23,42,0.05)', margin: '5px 0' }} />
+                    
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                      <span style={{ fontSize: '11px', fontWeight: 800, color: SLATE, textTransform: 'uppercase', letterSpacing: '0.5px' }}>View Details</span>
+                      <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: `${RED}10`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: RED }}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                      </div>
                     </div>
                   </div>
                 </div>
