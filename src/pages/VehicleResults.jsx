@@ -492,7 +492,7 @@ export default function VehicleResults() {
                           )}
                           {totalMins > 0 && <p style={{ fontSize: "10px", color: "#94a3b8", fontWeight: "700", margin: "2px 0 0" }}>₹{v.pricePerHour}/hr</p>}
                         </div>
-                        <button className="rm-btn-premium" onClick={() => navigate("/")}>
+                        <button className="rm-btn-premium" onClick={() => setSelected(v)}>
                           Book Now
                         </button>
                       </div>
