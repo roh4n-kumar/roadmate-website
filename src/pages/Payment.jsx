@@ -427,7 +427,7 @@ export default function Payment() {
                                     <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
                                         {[
                                             { id: "gpay", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" },
-                                            { id: "phonepe", logo: "https://static.vecteezy.com/system/resources/previews/022/100/282/non_2x/phonepe-logo-transparent-free-png.png" },
+                                            { id: "phonepe", logo: "https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" },
                                             { id: "paytm", logo: "https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo_%28standalone%29.svg" },
                                             { id: "upi", label: "Any UPI ID" }
                                         ].map(u => (
