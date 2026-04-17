@@ -68,23 +68,24 @@ const MobileShell = ({ setIsDrawerOpen }) => {
             position: fixed;
             bottom: 0; left: 0; right: 0;
             height: 70px;
-            background: #000;
+            background: #fff;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(15, 23, 42, 0.08);
             z-index: 998;
             align-items: center;
             justify-content: space-around;
             padding: 0 10px;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
           }
           .rm-mob-btn {
             display: flex; flex-direction: column; align-items: center; gap: 4px;
             background: none; border: none; cursor: pointer;
             font-family: ${F}; font-size: 11px; font-weight: 700;
-            color: rgba(255, 255, 255, 0.5); padding: 8px 12px; border-radius: 12px;
+            color: rgba(15, 23, 42, 0.4); padding: 8px 12px; border-radius: 12px;
             transition: all .2s ease;
           }
-          .rm-mob-btn.active { color: #fff; transform: translateY(-2px); }
+          .rm-mob-btn.active { color: #000; transform: translateY(-2px); }
           .rm-mob-btn.active svg { stroke: ${RED}; stroke-width: 3; }
         }
       `}</style>
