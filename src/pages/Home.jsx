@@ -163,7 +163,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       </style>
 
       {/* Hero Section */}
-      <div style={{ position: "relative", width: "100%", overflow: "hidden" }}>
+      <div style={{ position: "relative", width: "100%", overflow: "visible", zIndex: 100 }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

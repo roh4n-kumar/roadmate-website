@@ -593,14 +593,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
     .cal-box {
       position: absolute;
-      top: 40px;
+      top: 100%;
       left: 0;
       right: 0;
       background: #fff;
       z-index: 1000;
       box-shadow: 0 30px 90px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.08);
       border-radius: 12px;
-      margin-top: 4px;
+      margin-top: 12px;
       overflow: visible !important;
       padding: 0;
       box-sizing: border-box;
@@ -669,7 +669,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .search-main-card { 
         grid-template-columns: 1fr !important; 
         border-radius: 20px !important;
-        overflow: hidden;
+        overflow: visible;
       }
       .search-col { 
         padding: 20px !important; 
