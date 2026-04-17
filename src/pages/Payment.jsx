@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { db, auth } from "../firebase";
-import { doc, getDoc, updateDoc, onSnapshot, serverTimestamp, collection, addDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, onSnapshot, serverTimestamp, collection, addDoc, deleteDoc } from "firebase/firestore";
 import { logSuspiciousActivity, logApiError } from "../utils/securityLogger";
 
 const RED = "#be0d0d";
@@ -175,12 +175,11 @@ export default function Payment() {
         return () => unsub();
     }, [bookingId, navigate]);
 
-    // ── AUTO-CANCEL ON ABANDON ──
     useEffect(() => {
         return () => {
             if (bookingId && !success && (dbBooking?.status === "pending" || !dbBooking?.status)) {
-                // Using a simple updateDoc here. If it fails (e.g. tab closed), the 10-min timer will catch it eventually.
-                updateDoc(doc(db, "bookings", bookingId), { status: "cancelled" }).catch(() => {});
+                // Completely remove the document if payment wasn't completed
+                deleteDoc(doc(db, "bookings", bookingId)).catch(() => {});
             }
         };
     }, [bookingId, success, dbBooking?.status]);
