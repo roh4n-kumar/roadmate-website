@@ -397,8 +397,6 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               onClick={() => {
                 if (isHome) {
                   setIsDrawerOpen(true);
-                } else {
-                  navigate("/", { state: { openDrawer: true } });
                 }
               }} 
               className="account-btn desktop-nav"
@@ -448,8 +446,6 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             onClick={() => {
               if (isHome) {
                 setIsDrawerOpen(true);
-              } else {
-                navigate("/", { state: { openDrawer: true } });
               }
             }}
             style={{ color: isNavbarSolid ? "#0f172a" : "#fff", cursor: "pointer", display: "none", transition: "color 0.3s ease" }}

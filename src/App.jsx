@@ -124,8 +124,6 @@ const MobileShell = ({ setIsDrawerOpen }) => {
           onClick={() => {
             if (location.pathname === "/") {
               setIsDrawerOpen(true);
-            } else {
-              navigate("/", { state: { openDrawer: true } });
             }
           }}
           style={{ cursor: "pointer" }}
