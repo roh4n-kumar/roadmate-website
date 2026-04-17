@@ -664,14 +664,17 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       
       .search-master-card { 
         padding: 30px 16px 40px !important; 
-        margin-top: 20px !important;
+        margin-top: 40px !important; /* More space for the tab */
       }
       .search-tab-popup { 
-        left: 20px !important; 
-        top: -40px !important; 
-        padding: 10px 20px !important;
+        left: 32px !important; 
+        top: -46px !important; 
+        padding: 12px 24px !important;
+        width: fit-content !important;
+        border-radius: 12px 12px 0 0 !important;
+        box-shadow: 0 -8px 20px rgba(0,0,0,0.05) !important;
       }
-      .search-tab-text { font-size: 11px !important; }
+      .search-tab-text { font-size: 11px !important; white-space: nowrap !important; }
 
       .search-main-card { 
         grid-template-columns: 1fr !important; 
