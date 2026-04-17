@@ -9,7 +9,7 @@ export const offersData = [
     details: [
       "Use code WELCOME15 to get 15% flat discount up to ₹250 on car rentals.",
       "Offer available only for first-time RoadMate users.",
-      "Applicable on a minimum booking duration of 24 hours.",
+
       "Valid on all car categories (Sedan, SUV, and Luxury).",
       "Offer is applicable once per customer login.",
       "This offer is valid only for verified profiles with valid Driving License."
@@ -41,7 +41,7 @@ export const offersData = [
     details: [
       "Get 10% discount up to ₹200 on premium car rentals.",
       "Offer applicable for premium segment (Thar, Scorpio-N, XUV700).",
-      "Minimum rental duration of 48 hours is mandatory.",
+
       "Valid on both manual and automatic transmissions.",
       "Offer and vehicle availability are subject to stocks.",
       "This offer is valid only for users above 21 years of age."
@@ -74,7 +74,7 @@ export const offersData = [
       "Flat 10% OFF up to ₹300 using Axis Bank Credit or Debit cards.",
       "Offer valid only for first-time Axis Bank transaction on RoadMate.",
       "Minimum booking amount of ₹2,000 is required.",
-      "Offer applicable on car rentals for 2 or more days.",
+
       "Discount is applied instantly at the time of payment.",
       "Valid on Axis Flipkart, Axis Ace, and Axis Neo cards only."
     ]

@@ -26,7 +26,6 @@ const OfferModal = ({ offer, onClose, onBookNow }) => {
     const tcPoints = offer.details || [
         `Use code ${offer.code} to get this exclusive discount.`,
         "Offer available only for registered RoadMate users.",
-        "Offer is applicable for a minimum rental duration of 1 hour.",
         "Valid once per customer email or mobile number.",
         "Cannot be combined with any other ongoing promotions.",
         "RoadMate reserves the right to modify or end this offer at its discretion.",
