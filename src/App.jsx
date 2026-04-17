@@ -20,7 +20,6 @@ import OffersPage from "./pages/OffersPage";
 import HowItWorks from "./pages/HowItWorks";
 import Blogs from "./pages/Blogs";
 import PartnerWithUs from "./pages/PartnerWithUs";
-import Wallet from "./pages/Wallet";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import logo from "./assets/roadMate Red Logo 2.png";
@@ -120,7 +119,18 @@ const MobileShell = ({ setIsDrawerOpen }) => {
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="m16 10-4 4-2-2"/></svg>
           Bookings
         </button>
-        <button className="rm-mob-btn" onClick={() => setIsDrawerOpen(true)}>
+        <button 
+          className="rm-mob-btn" 
+          onClick={() => {
+            if (location.pathname === "/") {
+              setIsDrawerOpen(true);
+            }
+          }}
+          style={{ 
+            opacity: location.pathname === "/" ? 1 : 0.5,
+            pointerEvents: location.pathname === "/" ? "auto" : "none"
+          }}
+        >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           Account
         </button>
@@ -170,7 +180,7 @@ function App() {
         <Route path="/how-it-works"        element={<HowItWorks />} />
         <Route path="/blogs"               element={<Blogs />} />
         <Route path="/partner-with-us"     element={<PartnerWithUs />} />
-        <Route path="/wallet"              element={<ProtectedRoute><Wallet /></ProtectedRoute>} />
+        {/* Wallet route removed */}
       </Routes>
     </>
   );

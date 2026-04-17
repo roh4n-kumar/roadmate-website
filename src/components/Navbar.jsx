@@ -393,7 +393,19 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               </div>
             )}
 
-            <button onClick={() => setIsDrawerOpen(true)} className="account-btn desktop-nav">
+            <button 
+              onClick={() => {
+                if (isHome) {
+                  setIsDrawerOpen(true);
+                }
+              }} 
+              className="account-btn desktop-nav"
+              style={{ 
+                opacity: isHome ? 1 : 0.5, 
+                cursor: isHome ? "pointer" : "default",
+                pointerEvents: isHome ? "auto" : "none"
+              }}
+            >
               {isLoggedIn ? (
                 <>
                   <div style={{
@@ -433,7 +445,11 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
           {/* Mobile Menu Icon */}
           <div
             className="mobile-trigger"
-            onClick={() => setIsDrawerOpen(true)}
+            onClick={() => {
+              if (isHome) {
+                setIsDrawerOpen(true);
+              }
+            }}
             style={{ color: isNavbarSolid ? "#0f172a" : "#fff", cursor: "pointer", display: "none", transition: "color 0.3s ease" }}
           >
              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
@@ -540,10 +556,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                       />
                     </div>
 
-                    <div style={{ padding: "10px 0" }}>
-                      <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>Payments</h3>
-                      <DrawerItem icon={<CreditCardIcon size={20} />} label="RoadMate Wallet" onClick={() => handleProtectedAction("/wallet")} />
-                    </div>
+                    {/* Wallet Section Removed */}
 
                     <div style={{ padding: "10px 0" }}>
                       <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#111", marginBottom: "12px", padding: "0 25px", fontFamily: H }}>More</h3>
