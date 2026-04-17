@@ -679,8 +679,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       }
       .search-col { 
         padding: 20px !important; 
-        border-right: none !important; 
-        border-bottom: 1.5px solid #cbd5e1 !important; 
+        border-right: none !important;
+        border-bottom: 1.5px solid #cbd5e1 !important;
+        border-radius: 0 !important; /* Straighten lines */
       }
       .search-col:last-child { border-bottom: none !important; }
 
@@ -691,7 +692,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         gap: 12px !important; 
       }
       .search-col:nth-child(2) .col-value > div:last-child { 
-        margin-left: 0 !important; 
+        display: none !important; /* Hide Today/Tomorrow pills on mobile */
       }
       .col-value { font-size: 28px !important; }
       
