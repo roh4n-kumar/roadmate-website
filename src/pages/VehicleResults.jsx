@@ -291,6 +291,11 @@ export default function VehicleResults() {
           driverCharge: breakdown.driverCharge || 0,
           grandTotal: breakdown.total
         },
+        addons: {
+          helmets: localHelmetCount,
+          helmetSizes: localHelmetSizes,
+          withDriver: withDriver
+        },
         status: "pending",
         paymentStatus: "unpaid",
         createdAt: serverTimestamp(),
@@ -461,7 +466,7 @@ export default function VehicleResults() {
                               <div style={{ position: "absolute", left: "100%", top: 0, marginLeft: "8px", background: "#fff", boxShadow: "0 10px 25px rgba(0,0,0,0.1)", borderRadius: "12px", padding: "8px", width: "80px", border: "1px solid #f1f5f9" }}>
                                 {['M', 'L', 'XL'].map(size => (
                                   <div key={size} onClick={(e) => { e.stopPropagation(); setLocalHelmetCount(1); setLocalHelmetSizes([size]); setShowHelmetDropdown(false); setActiveSubMenu(null); }}
-                                    style={{ padding: "8px", borderRadius: "6px", textAlign: "center", fontSize: "11px", color: localHelmetCount === 1 && localHelmetSizes[0] === size ? RED : SLATE, background: localHelmetCount === 1 && localHelmetSizes[0] === size ? `${RED}05` : "transparent" }}
+                                    style={{ padding: "8px", borderRadius: "6px", textAlign: "center", fontSize: "11px", fontWeight: 800, fontFamily: F, color: localHelmetCount === 1 && localHelmetSizes[0] === size ? RED : SLATE, background: localHelmetCount === 1 && localHelmetSizes[0] === size ? `${RED}05` : "transparent", cursor: "pointer" }}
                                     onMouseEnter={e => e.currentTarget.style.background = "#f8fafd"} onMouseLeave={e => e.currentTarget.style.background = localHelmetCount === 1 && localHelmetSizes[0] === size ? `${RED}05` : "transparent"}
                                   >
                                     {size}
@@ -507,7 +512,8 @@ export default function VehicleResults() {
                                               setActiveSubMenu(null);
                                             }
                                           }}
-                                            style={{ padding: "8px", borderRadius: "6px", textAlign: "center", fontSize: "10px", color: localHelmetCount === 2 && localHelmetSizes[idx] === size ? RED : SLATE, background: localHelmetCount === 2 && localHelmetSizes[idx] === size ? `${RED}05` : "transparent" }}
+                                            style={{ padding: "8px", borderRadius: "6px", textAlign: "center", fontSize: "11px", fontWeight: 800, fontFamily: F, color: localHelmetCount === 2 && localHelmetSizes[idx] === size ? RED : SLATE, background: localHelmetCount === 2 && localHelmetSizes[idx] === size ? `${RED}05` : "transparent", cursor: "pointer" }}
+                                            onMouseEnter={e => e.currentTarget.style.background = "#f8fafd"} onMouseLeave={e => e.currentTarget.style.background = localHelmetCount === 2 && localHelmetSizes[idx] === size ? `${RED}05` : "transparent"}
                                           >
                                             {size}
                                           </div>
