@@ -130,51 +130,50 @@ export default function Payment() {
                 const data = snap.data();
                 
                 // CRITICAL SECURITY: IDOR PREVENTION
-                // Ensure the booking belongs to the current authenticated user
                 if (data.userId !== auth.currentUser?.uid) {
                     logSuspiciousActivity("UNAUTHORIZED_PAYMENT_ACCESS", { bookingId });
-                    console.error("Unauthorized access attempt detected.");
                     navigate("/my-bookings");
                     return;
                 }
 
                 setDbBooking(data);
                 
-                // If payment was already completed elsewhere
                 if (data.status === "upcoming" || data.status === "completed") {
                     setSuccess(true);
                     setTimeout(() => navigate("/my-bookings"), 2000);
-                }
-
-                // Sync Timer with server-side createdAt
-                if (data.createdAt) {
-                    const createdNode = data.createdAt.toDate();
-                    const expiryTime = createdNode.getTime() + (10 * 60 * 1000);
-                    
-                    const updateTimer = () => {
-                        const now = Date.now();
-                        const remaining = Math.max(0, Math.floor((expiryTime - now) / 1000));
-                        setTimeLeft(remaining);
-
-                        if (remaining <= 0) {
-                            setShowExpiredModal(true);
-                            // ONLY expire if the booking is STILL pending
-                            // This prevents overwriting a successful "upcoming" status
-                            if (dbBooking?.status === "pending" || !dbBooking?.status) {
-                                updateDoc(doc(db, "bookings", bookingId), { status: "expired" }).catch(() => {});
-                            }
-                        }
-                    };
-
-                    updateTimer();
-                    const interval = setInterval(updateTimer, 1000);
-                    return () => clearInterval(interval);
                 }
             }
         });
 
         return () => unsub();
     }, [bookingId, navigate]);
+
+    // ── TIMER LOGIC (Separate Effect) ──
+    useEffect(() => {
+        if (!dbBooking?.createdAt || success) return;
+
+        const createdNode = dbBooking.createdAt.toDate();
+        const expiryTime = createdNode.getTime() + (10 * 60 * 1000);
+        
+        const updateTimer = () => {
+            const now = Date.now();
+            const remaining = Math.max(0, Math.floor((expiryTime - now) / 1000));
+            setTimeLeft(remaining);
+
+            if (remaining <= 0) {
+                // Check LATEST status directly from DB or current state
+                // Since this effect re-runs when dbBooking changes, it's relatively safe
+                if (dbBooking.status === "pending" || !dbBooking.status) {
+                    setShowExpiredModal(true);
+                    updateDoc(doc(db, "bookings", bookingId), { status: "expired" }).catch(() => {});
+                }
+            }
+        };
+
+        const interval = setInterval(updateTimer, 1000);
+        updateTimer();
+        return () => clearInterval(interval);
+    }, [dbBooking?.createdAt, dbBooking?.status, bookingId, success]);
 
 
 
