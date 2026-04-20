@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { db, auth } from "../firebase";
@@ -174,6 +174,7 @@ export default function VehicleResults() {
   const [localHelmetCount, setLocalHelmetCount] = useState(initialHelmetCount);
   const [localHelmetSizes, setLocalHelmetSizes] = useState([]);
   const [activeSubMenu, setActiveSubMenu] = useState(null); // '1' or '2' or '2-H1' or '2-H2'
+  const helmetRef = useRef(null);
 
   const isAll    = vehicleType.toLowerCase() === "all";
   const isBike   = vehicleType.toLowerCase().includes("bike");
@@ -196,6 +197,17 @@ export default function VehicleResults() {
     });
     return () => unsub();
   }, [targetCategory, isAll]);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (helmetRef.current && !helmetRef.current.contains(e.target)) {
+        setShowHelmetDropdown(false);
+        setActiveSubMenu(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const vehicles = dbVehicles;
   const types    = ["all", ...new Set(vehicles.map(v => v.type))];
@@ -426,7 +438,7 @@ export default function VehicleResults() {
                   )}
                   
                   {isBike && (params.get("helmet") === '1' || params.get("helmet") === 'true') && (
-                    <div style={{ display: "flex", alignItems: "center", gap: "10px", position: "relative" }}>
+                    <div ref={helmetRef} style={{ display: "flex", alignItems: "center", gap: "10px", position: "relative" }}>
                       <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
                       <div 
                         onClick={() => setShowHelmetDropdown(!showHelmetDropdown)}
