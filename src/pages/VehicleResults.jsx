@@ -60,7 +60,7 @@ const IcoCalendar = () => <Svg><rect x="3" y="4" width="18" height="18" rx="2"/>
 const IcoTag      = () => <Svg><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></Svg>;
 
 // ── Booking Modal (bottom sheet on mobile) ────────────────────────────────────
-const BookingModal = ({ vehicle, totalMins, date, pickup, drop, withHelmet, withDriver, onClose, onConfirm }) => {
+const BookingModal = ({ vehicle, totalMins, date, pickup, drop, withHelmet, helmetSizes, withDriver, onClose, onConfirm }) => {
   const isBike = vehicle.category === 'Bike';
   const isCar  = vehicle.category === 'Car';
   
@@ -124,7 +124,7 @@ const BookingModal = ({ vehicle, totalMins, date, pickup, drop, withHelmet, with
             {[
               { label: `Base Fare (₹${vehicle.pricePerHour}/hr × ${Number((totalMins/60).toFixed(1))} hrs)`, val: `₹${baseTotal}` },
               { label: "Taxes & GST (18% on Base)", val: `₹${gst}` },
-              ...(helmetCharge > 0 ? [{ label: `Helmet Charges (${withHelmet} ${withHelmet === 1 ? 'Helmet' : 'Helmets'})`, val: `₹${helmetCharge}` }] : []),
+              ...(helmetCharge > 0 ? [{ label: `Helmet Charges (${withHelmet} ${withHelmet === 1 ? 'Helmet' : 'Helmets'} - ${helmetSizes?.join(', ')})`, val: `₹${helmetCharge}` }] : []),
               ...(driverCharge > 0 ? [{ label: "Driver Charges", val: "₹400" }] : [])
             ].map(({ label, val }) => (
               <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid rgba(15,23,42,0.05)" }}>
@@ -172,6 +172,8 @@ export default function VehicleResults() {
   const [errorToast, setErrorToast] = useState("");
   const [showHelmetDropdown, setShowHelmetDropdown] = useState(false);
   const [localHelmetCount, setLocalHelmetCount] = useState(initialHelmetCount);
+  const [localHelmetSizes, setLocalHelmetSizes] = useState([]);
+  const [activeSubMenu, setActiveSubMenu] = useState(null); // '1' or '2' or '2-H1' or '2-H2'
 
   const isAll    = vehicleType.toLowerCase() === "all";
   const isBike   = vehicleType.toLowerCase().includes("bike");
@@ -208,10 +210,17 @@ export default function VehicleResults() {
     });
 
   const handleConfirm = async (v, breakdown) => { 
-    if (isBike && (params.get("helmet") === '1' || params.get("helmet") === 'true') && localHelmetCount === 0) {
-      setErrorToast("Please select a Helmet count before booking! ⛑️");
-      setTimeout(() => setErrorToast(""), 3000);
-      return;
+    if (isBike && (params.get("helmet") === '1' || params.get("helmet") === 'true')) {
+      if (localHelmetCount === 0) {
+        setErrorToast("Please select a Helmet count before booking! ⛑️");
+        setTimeout(() => setErrorToast(""), 3000);
+        return;
+      }
+      if (localHelmetSizes.length < localHelmetCount || localHelmetSizes.some(s => !s)) {
+        setErrorToast("Please select sizes for all helmets! ⛑️");
+        setTimeout(() => setErrorToast(""), 3000);
+        return;
+      }
     }
 
     if (!auth.currentUser) {
@@ -301,6 +310,7 @@ export default function VehicleResults() {
           drop,
           totalMins,
           withHelmet: localHelmetCount,
+          helmetSizes: localHelmetSizes,
           withDriver
         } 
       });
@@ -432,23 +442,83 @@ export default function VehicleResults() {
                         <div style={{ 
                           position: "absolute", top: "110%", left: "15px", background: "#fff", 
                           boxShadow: "0 10px 25px rgba(0,0,0,0.1)", borderRadius: "12px", 
-                          padding: "8px", zIndex: 1000, width: "140px", border: "1px solid #f1f5f9"
+                          padding: "8px", zIndex: 1000, width: "160px", border: "1px solid #f1f5f9"
                         }}>
-                          {[1, 2].map(num => (
-                            <div 
-                              key={num}
-                              onClick={() => { setLocalHelmetCount(num); setShowHelmetDropdown(false); }}
-                              style={{ 
-                                padding: "10px 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 800,
-                                cursor: "pointer", color: localHelmetCount === num ? RED : "#64748b",
-                                background: localHelmetCount === num ? `${RED}05` : "transparent"
-                              }}
-                              onMouseEnter={e => e.currentTarget.style.background = localHelmetCount === num ? `${RED}08` : "#f8fafd"}
-                              onMouseLeave={e => e.currentTarget.style.background = localHelmetCount === num ? `${RED}05` : "transparent"}
-                            >
-                              {num} Helmet{num > 1 ? 's' : ''}
-                            </div>
-                          ))}
+                          {/* Option for 1 Helmet */}
+                          <div 
+                            onMouseEnter={() => setActiveSubMenu('1')}
+                            style={{ 
+                              padding: "10px 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 800,
+                              cursor: "pointer", color: localHelmetCount === 1 ? RED : "#64748b",
+                              background: activeSubMenu === '1' ? "#f8fafd" : "transparent",
+                              display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative"
+                            }}
+                          >
+                            <span>1 Helmet {localHelmetCount === 1 && localHelmetSizes[0] && `(${localHelmetSizes[0]})`}</span>
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="9 18 15 12 9 6"/></svg>
+                            
+                            {activeSubMenu === '1' && (
+                              <div style={{ position: "absolute", left: "100%", top: 0, marginLeft: "8px", background: "#fff", boxShadow: "0 10px 25px rgba(0,0,0,0.1)", borderRadius: "12px", padding: "8px", width: "80px", border: "1px solid #f1f5f9" }}>
+                                {['M', 'L', 'XL'].map(size => (
+                                  <div key={size} onClick={(e) => { e.stopPropagation(); setLocalHelmetCount(1); setLocalHelmetSizes([size]); setShowHelmetDropdown(false); setActiveSubMenu(null); }}
+                                    style={{ padding: "8px", borderRadius: "6px", textAlign: "center", fontSize: "11px", color: localHelmetCount === 1 && localHelmetSizes[0] === size ? RED : SLATE, background: localHelmetCount === 1 && localHelmetSizes[0] === size ? `${RED}05` : "transparent" }}
+                                    onMouseEnter={e => e.currentTarget.style.background = "#f8fafd"} onMouseLeave={e => e.currentTarget.style.background = localHelmetCount === 1 && localHelmetSizes[0] === size ? `${RED}05` : "transparent"}
+                                  >
+                                    {size}
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Option for 2 Helmets */}
+                          <div 
+                            onMouseEnter={() => setActiveSubMenu('2')}
+                            style={{ 
+                              padding: "10px 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 800,
+                              cursor: "pointer", color: localHelmetCount === 2 ? RED : "#64748b",
+                              background: activeSubMenu === '2' || activeSubMenu?.startsWith('2-') ? "#f8fafd" : "transparent",
+                              display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", marginTop: "4px"
+                            }}
+                          >
+                            <span>2 Helmets {localHelmetCount === 2 && localHelmetSizes.filter(s=>s).length > 0 && `(${localHelmetSizes.filter(s=>s).join(',')})`}</span>
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="9 18 15 12 9 6"/></svg>
+
+                            {(activeSubMenu === '2' || activeSubMenu?.startsWith('2-')) && (
+                              <div style={{ position: "absolute", left: "100%", top: 0, marginLeft: "8px", background: "#fff", boxShadow: "0 10px 25px rgba(0,0,0,0.1)", borderRadius: "12px", padding: "8px", width: "140px", border: "1px solid #f1f5f9" }}>
+                                {['H1', 'H2'].map((h, idx) => (
+                                  <div key={h} onMouseEnter={() => setActiveSubMenu(`2-${h}`)} style={{ padding: "8px 10px", borderRadius: "6px", fontSize: "11px", fontWeight: 700, color: SLATE, background: activeSubMenu === `2-${h}` ? "#f8fafd" : "transparent", display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative" }}>
+                                    <span>Helmet {idx+1} {localHelmetCount === 2 && localHelmetSizes[idx] && `(${localHelmetSizes[idx]})`}</span>
+                                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="9 18 15 12 9 6"/></svg>
+
+                                    {activeSubMenu === `2-${h}` && (
+                                      <div style={{ position: "absolute", left: "100%", top: 0, marginLeft: "8px", background: "#fff", boxShadow: "0 10px 25px rgba(0,0,0,0.1)", borderRadius: "12px", padding: "8px", width: "60px", border: "1px solid #f1f5f9" }}>
+                                        {['M', 'L', 'XL'].map(size => (
+                                          <div key={size} onClick={(e) => { 
+                                            e.stopPropagation(); 
+                                            const newSizes = [...localHelmetSizes];
+                                            if (newSizes.length !== 2) { newSizes[0] = null; newSizes[1] = null; }
+                                            newSizes[idx] = size;
+                                            setLocalHelmetSizes(newSizes);
+                                            setLocalHelmetCount(2);
+                                            // Don't close yet if second size is missing
+                                            if (newSizes[0] && newSizes[1]) {
+                                              setShowHelmetDropdown(false);
+                                              setActiveSubMenu(null);
+                                            }
+                                          }}
+                                            style={{ padding: "8px", borderRadius: "6px", textAlign: "center", fontSize: "10px", color: localHelmetCount === 2 && localHelmetSizes[idx] === size ? RED : SLATE, background: localHelmetCount === 2 && localHelmetSizes[idx] === size ? `${RED}05` : "transparent" }}
+                                          >
+                                            {size}
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
                         </div>
                       )}
                     </div>
@@ -538,10 +608,17 @@ export default function VehicleResults() {
                           {totalMins > 0 && <p style={{ fontSize: "10px", color: "#94a3b8", fontWeight: "700", margin: "2px 0 0" }}>₹{v.pricePerHour}/hr</p>}
                         </div>
                         <button className="rm-btn-premium" onClick={() => {
-                          if (isBike && (params.get("helmet") === '1' || params.get("helmet") === 'true') && localHelmetCount === 0) {
-                            setErrorToast("Please select a Helmet count before booking! ⛑️");
-                            setTimeout(() => setErrorToast(""), 3000);
-                            return;
+                          if (isBike && (params.get("helmet") === '1' || params.get("helmet") === 'true')) {
+                            if (localHelmetCount === 0) {
+                              setErrorToast("Please select a Helmet count! ⛑️");
+                              setTimeout(() => setErrorToast(""), 3000);
+                              return;
+                            }
+                            if (localHelmetSizes.length < localHelmetCount || localHelmetSizes.some(s => !s)) {
+                              setErrorToast("Please select helmet sizes! ⛑️");
+                              setTimeout(() => setErrorToast(""), 3000);
+                              return;
+                            }
                           }
                           if (totalMins > 0 && date) {
                             setSelected(v);
@@ -564,9 +641,18 @@ export default function VehicleResults() {
 
       <AnimatePresence>
         {selected && (
-          <BookingModal vehicle={selected} totalMins={totalMins} date={date} pickup={pickup} drop={drop} 
-            withHelmet={localHelmetCount} withDriver={withDriver}
-            onClose={() => setSelected(null)} onConfirm={handleConfirm} />
+          <BookingModal 
+            vehicle={selected} 
+            totalMins={totalMins} 
+            date={date} 
+            pickup={pickup} 
+            drop={drop} 
+            withHelmet={localHelmetCount} 
+            helmetSizes={localHelmetSizes}
+            withDriver={withDriver}
+            onClose={() => setSelected(null)} 
+            onConfirm={handleConfirm} 
+          />
         )}
       </AnimatePresence>
 
