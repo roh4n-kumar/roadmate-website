@@ -159,7 +159,8 @@ export default function VehicleResults() {
   const navigate  = useNavigate();
 
   const vehicleType = params.get("type")   || "bike";
-  const date        = params.get("date")   || "";
+  const rawDate     = params.get("date")   || "";
+  const date        = rawDate.includes("T") ? rawDate.split("T")[0] : rawDate;
   const pickup      = params.get("pickup") || "";
   const drop        = params.get("drop")   || "";
   const helmetParam = params.get("helmet");

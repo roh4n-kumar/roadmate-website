@@ -229,7 +229,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     
     const params = new URLSearchParams({
       type: vehicleType,
-      date: selectedDate.toISOString(),
+      date: selectedDate.toISOString().split('T')[0],
       pickup: pickupTime,
       drop: dropoffTime,
       helmet: withHelmet ? "1" : "0",
