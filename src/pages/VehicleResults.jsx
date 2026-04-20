@@ -66,7 +66,7 @@ const BookingModal = ({ vehicle, totalMins, date, pickup, drop, withHelmet, with
   
   const baseTotal    = Math.round((vehicle.pricePerHour * totalMins) / 60);
   const gst          = Math.round(baseTotal * 0.18);
-  const helmetCharge = (isBike && withHelmet) ? 50 : 0;
+  const helmetCharge = (isBike && withHelmet > 0) ? (50 * withHelmet) : 0;
   const driverCharge = (isCar && withDriver) ? 400 : 0;
   const grandTotal   = baseTotal + gst + helmetCharge + driverCharge;
 
@@ -124,7 +124,7 @@ const BookingModal = ({ vehicle, totalMins, date, pickup, drop, withHelmet, with
             {[
               { label: `Base Fare (₹${vehicle.pricePerHour}/hr × ${Number((totalMins/60).toFixed(1))} hrs)`, val: `₹${baseTotal}` },
               { label: "Taxes & GST (18% on Base)", val: `₹${gst}` },
-              ...(helmetCharge > 0 ? [{ label: "Helmet Charges", val: "₹50" }] : []),
+              ...(helmetCharge > 0 ? [{ label: `Helmet Charges (${withHelmet} ${withHelmet === 1 ? 'Helmet' : 'Helmets'})`, val: `₹${helmetCharge}` }] : []),
               ...(driverCharge > 0 ? [{ label: "Driver Charges", val: "₹400" }] : [])
             ].map(({ label, val }) => (
               <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid rgba(15,23,42,0.05)" }}>
@@ -157,7 +157,8 @@ export default function VehicleResults() {
   const date        = params.get("date")   || "";
   const pickup      = params.get("pickup") || "";
   const drop        = params.get("drop")   || "";
-  const withHelmet  = params.get("helmet") === '1' || params.get("helmet") === 'true';
+  const helmetParam = params.get("helmet");
+  const helmetCount = (helmetParam === "2") ? 2 : (helmetParam === "1" || helmetParam === "true" ? 1 : 0);
   const withDriver  = params.get("driver") === '1' || params.get("driver") === 'true';
   const totalMins   = calcMinutes(pickup, drop);
 
@@ -290,7 +291,7 @@ export default function VehicleResults() {
           pickup,
           drop,
           totalMins,
-          withHelmet,
+          withHelmet: helmetCount,
           withDriver
         } 
       });
@@ -403,8 +404,8 @@ export default function VehicleResults() {
                   {isBike && (
                     <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                       <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
-                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11px", color: withHelmet ? RED : "rgba(15,23,42,0.4)", fontWeight: "900", background: withHelmet ? `${RED}10` : "rgba(15,23,42,0.05)", padding: "6px 14px", borderRadius: "99px", letterSpacing: "0.5px", textTransform: "uppercase" }}>
-                        {withHelmet ? "WITH HELMET" : "NO HELMET"}
+                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11px", color: helmetCount > 0 ? RED : "rgba(15,23,42,0.4)", fontWeight: "900", background: helmetCount > 0 ? `${RED}10` : "rgba(15,23,42,0.05)", padding: "6px 14px", borderRadius: "99px", letterSpacing: "0.5px", textTransform: "uppercase" }}>
+                        {helmetCount > 0 ? `${helmetCount} HELMET${helmetCount > 1 ? 'S' : ''}` : "NO HELMET"}
                       </span>
                     </div>
                   )}
@@ -451,7 +452,7 @@ export default function VehicleResults() {
                 const gst    = Math.round(bTotal * 0.18);
                 const isBike = v.category === 'Bike';
                 const isCar  = v.category === 'Car';
-                const hCharge = (isBike && withHelmet) ? 50 : 0;
+                const hCharge = (isBike && helmetCount > 0) ? (50 * helmetCount) : 0;
                 const dCharge = (isCar && withDriver) ? 400 : 0;
                 const grand = bTotal + gst + hCharge + dCharge;
                 return (
@@ -515,7 +516,7 @@ export default function VehicleResults() {
       <AnimatePresence>
         {selected && (
           <BookingModal vehicle={selected} totalMins={totalMins} date={date} pickup={pickup} drop={drop} 
-            withHelmet={withHelmet} withDriver={withDriver}
+            withHelmet={helmetCount} withDriver={withDriver}
             onClose={() => setSelected(null)} onConfirm={handleConfirm} />
         )}
       </AnimatePresence>

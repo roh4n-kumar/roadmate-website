@@ -635,7 +635,7 @@ export default function Payment() {
                                 </div>
                                 {(costs.helmetCharge > 0) && (
                                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                        <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.5)", fontWeight: 600 }}>Helmet Charges</span>
+                                        <span style={{ fontSize: "14px", color: "rgba(15,23,42,0.5)", fontWeight: 600 }}>Helmet Charges ({dbBooking?.trip?.withHelmet || location.state?.withHelmet} { (dbBooking?.trip?.withHelmet || location.state?.withHelmet) === 1 ? 'Helmet' : 'Helmets' })</span>
                                         <span style={{ fontSize: "14px", fontWeight: 800 }}>₹{costs.helmetCharge}</span>
                                     </div>
                                 )}

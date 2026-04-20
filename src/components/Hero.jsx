@@ -125,6 +125,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     return {
       vehicleType: null, // Initially null for caption
       withHelmet: true,
+      helmetCount: 1, // Default to 1 if helmet is selected
       withDriver: false,
       selectedDate: d,
       dateDisplay: `${day} ${month}'${year}`, 
@@ -231,7 +232,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       date: selectedDate.toISOString(),
       pickup: pickupTime,
       drop: dropoffTime,
-      helmet: withHelmet ? "1" : "0",
+      helmet: withHelmet ? formData.helmetCount.toString() : "0",
       driver: withDriver ? "1" : "0"
     });
 
@@ -766,8 +767,37 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 )}
               </div>
               {formData.vehicleType && (
-                <div className="col-sub" style={{ color: '#718096' }}>
-                  {formData.vehicleType === 'Bike' ? (formData.withHelmet ? 'With Helmet' : 'No Helmet') : (formData.withDriver ? 'Choice: Driver' : 'Self Drive')}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <div className="col-sub" style={{ color: '#718096' }}>
+                    {formData.vehicleType === 'Bike' ? (formData.withHelmet ? 'With Helmet' : 'No Helmet') : (formData.withDriver ? 'Choice: Driver' : 'Self Drive')}
+                  </div>
+                  
+                  {/* Helmet Count Selector */}
+                  {formData.vehicleType === 'Bike' && formData.withHelmet && (
+                    <div style={{ display: 'flex', gap: '12px', marginTop: '4px' }} onClick={e => e.stopPropagation()}>
+                      {[1, 2].map(count => (
+                        <div 
+                          key={count} 
+                          onClick={() => setFormData({...formData, helmetCount: count})}
+                          style={{ 
+                            display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer',
+                            fontSize: '11px', fontWeight: 800, color: formData.helmetCount === count ? RED : '#64748b',
+                            background: formData.helmetCount === count ? `${RED}10` : '#f1f5f9',
+                            padding: '4px 8px', borderRadius: '6px', border: `1px solid ${formData.helmetCount === count ? RED : '#e2e8f0'}`,
+                            transition: 'all 0.2s'
+                          }}
+                        >
+                          <div style={{ 
+                            width: '12px', height: '12px', borderRadius: '3px', border: `1.5px solid ${formData.helmetCount === count ? RED : '#cbd5e1'}`,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center', background: formData.helmetCount === count ? RED : '#fff'
+                          }}>
+                            {formData.helmetCount === count && <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#fff' }} />}
+                          </div>
+                          {count} {count === 1 ? 'Helmet' : 'Helmets'}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
               {showCat && (
@@ -791,7 +821,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                     const isSelected = formData.vehicleType === opt.type && (opt.type === 'Bike' ? formData.withHelmet === opt.helmet : formData.withDriver === opt.driver);
                     return (
                       <div key={opt.label}
-                        onClick={(e) => { e.stopPropagation(); setFormData({...formData, vehicleType: opt.type, withHelmet: opt.helmet, withDriver: opt.driver}); openDropdown('off'); }}
+                        onClick={(e) => { e.stopPropagation(); setFormData({...formData, vehicleType: opt.type, withHelmet: opt.helmet, withDriver: opt.driver, helmetCount: opt.helmet ? 1 : 0}); openDropdown('off'); }}
                         style={{ 
                           padding: "12px 16px", borderRadius: "10px", fontWeight: isSelected ? 700 : 500, 
                           display: 'flex', alignItems: 'center', gap: '12px',
