@@ -118,6 +118,12 @@ const BookingModal = ({ vehicle, totalMins, date, pickup, drop, withHelmet, helm
                 </div>
               ))}
             </div>
+            </div>
+            <div style={{ marginTop: "12px", display: "flex", gap: "10px", flexWrap: "wrap" }}>
+              <span style={{ fontSize: "11px", fontWeight: "700", color: "#64748b", background: "rgba(15,23,42,0.05)", padding: "4px 10px", borderRadius: "6px" }}>{vehicle.fuel}</span>
+              <span style={{ fontSize: "11px", fontWeight: "700", color: "#64748b", background: "rgba(15,23,42,0.05)", padding: "4px 10px", borderRadius: "6px" }}>{vehicle.seats} Seats</span>
+              <span style={{ fontSize: "11px", fontWeight: "700", color: "#64748b", background: "rgba(15,23,42,0.05)", padding: "4px 10px", borderRadius: "6px" }}>{vehicle.cc}</span>
+            </div>
           </div>
 
           <div style={{ marginBottom: "25px", padding: "0 5px" }}>
