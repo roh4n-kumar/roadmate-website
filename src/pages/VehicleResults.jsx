@@ -173,6 +173,7 @@ export default function VehicleResults() {
   const [selected, setSelected] = useState(null);
   const [booked,   setBooked]   = useState(false);
   const [dbVehicles, setDbVehicles] = useState([]);
+  const [activeBookings, setActiveBookings] = useState([]);
   const [loading, setLoading]       = useState(true);
   const [errorToast, setErrorToast] = useState("");
   const [showHelmetDropdown, setShowHelmetDropdown] = useState(false);
@@ -214,7 +215,31 @@ export default function VehicleResults() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const vehicles = dbVehicles;
+  useEffect(() => {
+    if (!date) return;
+    const q = query(
+      collection(db, "bookings"), 
+      where("trip.date", "==", date),
+      where("status", "in", ["upcoming", "riding"])
+    );
+    const unsub = onSnapshot(q, (snap) => {
+      setActiveBookings(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    });
+    return () => unsub();
+  }, [date]);
+
+  const vehicles = dbVehicles.filter(v => {
+    if (!pickup || !drop) return true;
+    const overlaps = activeBookings.some(b => {
+      if (b.vehicle?.id !== v.id) return false;
+      const bStart = parseTimeToMins(b.trip?.pickupTime);
+      const bEnd   = parseTimeToMins(b.trip?.dropTime);
+      const reqStart = parseTimeToMins(pickup);
+      const reqEnd   = parseTimeToMins(drop);
+      return (reqStart < bEnd) && (reqEnd > bStart);
+    });
+    return !overlaps;
+  });
   const types    = ["all", ...new Set(vehicles.map(v => v.type))];
 
   const sorted = [...vehicles]
