@@ -176,14 +176,7 @@ export default function Payment() {
         return () => unsub();
     }, [bookingId, navigate]);
 
-    useEffect(() => {
-        return () => {
-            if (bookingId && !success && (dbBooking?.status === "pending" || !dbBooking?.status)) {
-                // Completely remove the document if payment wasn't completed
-                deleteDoc(doc(db, "bookings", bookingId)).catch(() => {});
-            }
-        };
-    }, [bookingId, success, dbBooking?.status]);
+
 
     // Fallback for non-Firestore legacy flow (if any)
     useEffect(() => {
