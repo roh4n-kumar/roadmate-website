@@ -458,15 +458,42 @@ export default function VehicleResults() {
 
 
         /* ── Mobile layout ── */
-        @media (max-width: 900px) {
-          .vr-page      { padding-top: 60px !important; padding-bottom: 70px !important; }
-          .vr-subheader { top: 60px !important; padding: 12px 16px !important; }
-          .vr-hide-mob  { display: none !important; }
-          .vr-content   { padding: 16px 0 30px !important; }
-          .vr-content-wrapper { padding: 0 !important; }
           .vr-content-layout { display: block !important; }
           .vr-grid      { grid-template-columns: 1fr !important; gap: 16px !important; padding: 16px !important; }
 
+          .vr-subheader-inner {
+            grid-template-columns: 1fr auto !important;
+            height: auto !important;
+            padding: 10px 0 !important;
+            gap: 10px 20px !important;
+          }
+          .vr-header-left {
+            grid-row: 1 / 3 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 4px !important;
+          }
+          .vr-header-left h1 { font-size: 18px !important; }
+          .vr-header-avail {
+            grid-column: 2 !important;
+            grid-row: 1 !important;
+            justify-self: end !important;
+          }
+          .vr-header-actions {
+            grid-column: 2 !important;
+            grid-row: 2 !important;
+            justify-self: end !important;
+            gap: 6px !important;
+          }
+          .vr-header-actions button {
+            padding: 6px 12px !important;
+            font-size: 11px !important;
+            border-radius: 8px !important;
+          }
+          .vr-date-info { display: none !important; }
+          .vr-header-left .divider-pipe { display: none !important; }
+          .helmet-btn-wrap { margin-top: 2px !important; }
         }
       `}</style>
 
@@ -498,7 +525,7 @@ export default function VehicleResults() {
 
       <div className="vr-page">
         <div className="vr-subheader">
-          <div style={{ 
+          <div className="vr-subheader-inner" style={{ 
             maxWidth: "1250px", 
             margin: "0 auto", 
             height: "64px", 
@@ -507,7 +534,7 @@ export default function VehicleResults() {
             alignItems: "center",
             gap: "24px"
           }}>
-            <div style={{ display: "flex", alignItems: "center", position: "relative", gap: "10px", minWidth: 0 }}>
+            <div className="vr-header-left" style={{ display: "flex", alignItems: "center", position: "relative", gap: "10px", minWidth: 0 }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap", minWidth: 0 }}>
                 <h1 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, color: "#0f172a", margin: 0, letterSpacing: "-0.5px" }}>
                   {isAll ? "All Vehicles" : isBike ? "Bikes" : "Cars"}
@@ -515,13 +542,13 @@ export default function VehicleResults() {
                 
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
                   {date && (
-                    <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}>
+                    <div className="vr-date-info" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}>
                       <span style={{ color: "rgba(15, 23, 42, 0.1)", margin: "0 4px" }}>·</span>
                       <IcoCalendar /> {fmt(date)}
                     </div>
                   )}
                   {totalMins > 0 && (
-                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <div className="vr-date-info" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                       <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
                       <div className="vr-hide-mob" style={{ display: "flex", alignItems: "center", gap: "8px", color: SLATE, fontSize: "14px", fontWeight: "800", background: "rgba(15, 23, 42, 0.04)", padding: "6px 14px", borderRadius: "10px", border: "1px solid rgba(15, 23, 42, 0.05)" }}>
                         <IcoClock /> {fmtDuration(totalMins)} ({fmtTime(pickup)} – {fmtTime(drop)})
@@ -530,8 +557,8 @@ export default function VehicleResults() {
                   )}
                   
                   {isBike && (params.get("helmet") === '1' || params.get("helmet") === 'true') && (
-                    <div ref={helmetRef} style={{ display: "flex", alignItems: "center", gap: "10px", position: "relative" }}>
-                      <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
+                    <div className="helmet-btn-wrap" ref={helmetRef} style={{ display: "flex", alignItems: "center", gap: "10px", position: "relative" }}>
+                      <span className="divider-pipe" style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
                       <div 
                         onClick={() => setShowHelmetDropdown(!showHelmetDropdown)}
                         style={{ 
@@ -635,7 +662,7 @@ export default function VehicleResults() {
                   )}
                   {isCar && (
                     <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
+                      <span className="divider-pipe" style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
                       <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11px", color: withDriver ? RED : "rgba(15,23,42,0.4)", fontWeight: "900", background: withDriver ? `${RED}10` : "rgba(15,23,42,0.05)", padding: "6px 14px", borderRadius: "99px", letterSpacing: "0.5px", textTransform: "uppercase" }}>
                         {withDriver ? "WITH DRIVER" : "SELF DRIVE"}
                       </span>
@@ -645,7 +672,7 @@ export default function VehicleResults() {
               </div>
             </div>
             
-            <div style={{ justifySelf: "end", display: "flex", alignItems: "center", gap: "12px" }}>
+            <div className="vr-header-actions" style={{ justifySelf: "end", display: "flex", alignItems: "center", gap: "12px" }}>
               {/* Sort Dropdown */}
               <div ref={sortRef} style={{ position: "relative" }}>
                 <button 
@@ -704,7 +731,7 @@ export default function VehicleResults() {
             </div>
 
 
-            <div style={{ justifySelf: "end" }}>
+            <div className="vr-header-avail" style={{ justifySelf: "end" }}>
               <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>
                 {sorted.length} available
               </span>
