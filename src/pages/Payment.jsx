@@ -457,10 +457,7 @@ export default function Payment() {
                 <div style={{ display: "flex", alignItems: "center", position: "relative" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                             <h1 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, color: SLATE, margin: 0, letterSpacing: "-0.5px" }}>Payment</h1>
-                            <div style={{ display: "flex", alignItems: "center", gap: "6px", background: "rgba(15,23,42,0.03)", padding: "4px 10px", borderRadius: "8px" }}>
-                                <Svg size={14} color={RED}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></Svg>
-                                <span style={{ fontSize: "11px", fontWeight: 800, color: "rgba(15,23,42,0.4)", textTransform: "uppercase", letterSpacing: "1px" }}>Safe & Encrypted</span>
-                            </div>
+
                         </div>
                     </div>
                     <div className="pay-hide-mob" />
