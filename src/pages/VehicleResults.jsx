@@ -58,6 +58,10 @@ const IcoClock    = () => <Svg><circle cx="12" cy="12" r="10"/><polyline points=
 const IcoBack     = () => <Svg size={20}><polyline points="15 18 9 12 15 6"/></Svg>;
 const IcoCalendar = () => <Svg><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></Svg>;
 const IcoTag      = () => <Svg><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></Svg>;
+const IcoFilter   = () => <Svg><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></Svg>;
+const IcoX        = () => <Svg><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></Svg>;
+const IcoChevron  = () => <Svg><polyline points="6 9 12 15 18 9"/></Svg>;
+
 
 // ── Booking Modal (bottom sheet on mobile) ────────────────────────────────────
 const BookingModal = ({ vehicle, totalMins, date, pickup, drop, withHelmet, helmetSizes, withDriver, onClose, onConfirm }) => {
@@ -170,7 +174,7 @@ export default function VehicleResults() {
   const totalMins   = calcMinutes(pickup, drop);
 
   const [sortBy,   setSortBy]   = useState("popular");
-  const [filterCC, setFilterCC] = useState("all");
+
   const [selected, setSelected] = useState(null);
   const [booked,   setBooked]   = useState(false);
   const [dbVehicles, setDbVehicles] = useState([]);
@@ -181,7 +185,19 @@ export default function VehicleResults() {
   const [localHelmetCount, setLocalHelmetCount] = useState(initialHelmetCount);
   const [localHelmetSizes, setLocalHelmetSizes] = useState([]);
   const [activeSubMenu, setActiveSubMenu] = useState(null); // '1' or '2' or '2-H1' or '2-H2'
+  
+  // ── FILTER STATES ──────────────────────────────────────────────────────────
+  const [showFilters, setShowFilters] = useState(false);
+  const [priceRange, setPriceRange] = useState([0, 2000]);
+  const [selTypes, setSelTypes] = useState([]);
+  const [selFuels, setSelFuels] = useState([]);
+  const [selTrans, setSelTrans] = useState([]);
+
+  const [showSort, setShowSort] = useState(false);
+  const sortRef = useRef(null);
   const helmetRef = useRef(null);
+
+
 
   const isAll    = vehicleType.toLowerCase() === "all";
   const isBike   = vehicleType.toLowerCase().includes("bike");
@@ -211,10 +227,14 @@ export default function VehicleResults() {
         setShowHelmetDropdown(false);
         setActiveSubMenu(null);
       }
+      if (sortRef.current && !sortRef.current.contains(e.target)) {
+        setShowSort(false);
+      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
 
   useEffect(() => {
     if (!date) return;
@@ -241,16 +261,30 @@ export default function VehicleResults() {
     });
     return !overlaps;
   });
-  const types    = ["all", ...new Set(vehicles.map(v => v.type))];
+
+
 
   const sorted = [...vehicles]
-    .filter(v => filterCC === "all" || v.type === filterCC)
+    .filter(v => {
+      const p = v.pricePerHour || 0;
+      const matchesPrice = p >= priceRange[0] && p <= priceRange[1];
+      const matchesType  = selTypes.length === 0 || selTypes.includes(v.type);
+      const matchesFuel  = selFuels.length === 0 || selFuels.includes(v.fuel);
+      const transmission = v.transmission || (v.category === 'Bike' ? 'Manual' : 'Automatic');
+      const matchesTrans = selTrans.length === 0 || selTrans.includes(transmission);
+      return matchesPrice && matchesType && matchesFuel && matchesTrans;
+    })
     .sort((a, b) => {
       if (sortBy === "price_low")  return a.pricePerHour - b.pricePerHour;
       if (sortBy === "price_high") return b.pricePerHour - a.pricePerHour;
       if (sortBy === "rating")     return b.rating - a.rating;
       return b.reviews - a.reviews;
     });
+
+  const allTypes = [...new Set(dbVehicles.map(v => v.type))].filter(Boolean);
+  const allFuels = [...new Set(dbVehicles.map(v => v.fuel))].filter(Boolean);
+  const allTrans = ["Manual", "Automatic"];
+
 
   const handleConfirm = async (v, breakdown) => { 
     if (isBike && (params.get("helmet") === '1' || params.get("helmet") === 'true')) {
@@ -396,19 +430,46 @@ export default function VehicleResults() {
         .vr-sort       { margin-left: auto; display: flex; align-items: center; gap: 10px; }
         .vr-grid       { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
 
+        /* ── Sidebar ── */
+        .sidebar {
+          width: 280px;
+          flex-shrink: 0;
+          background: #fff;
+          border-right: 1px solid #e2e8f0;
+          padding: 24px;
+          height: calc(100vh - 128px);
+          position: sticky;
+          top: 128px;
+          overflow-y: auto;
+          scrollbar-width: none;
+        }
+        .sidebar::-webkit-scrollbar { display: none; }
+        .filter-section { margin-bottom: 32px; }
+        .filter-title { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .filter-option { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; cursor: pointer; }
+        .filter-option input { cursor: pointer; accent-color: #be0d0d; width: 16px; height: 16px; }
+        .filter-option span { font-size: 14px; color: #64748b; font-weight: 600; }
+
+        /* ── Price Slider ── */
+        .price-slider { width: 100%; margin: 10px 0; -webkit-appearance: none; height: 4px; background: #e2e8f0; border-radius: 99px; outline: none; }
+        .price-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; background: #be0d0d; border-radius: 50%; cursor: pointer; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        .price-vals { display: flex; justify-content: space-between; margin-top: 12px; }
+        .price-vals span { font-size: 13px; font-weight: 800; color: #0f172a; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; }
+
+
         /* ── Mobile layout ── */
         @media (max-width: 900px) {
           .vr-page      { padding-top: 60px !important; padding-bottom: 70px !important; }
           .vr-subheader { top: 60px !important; padding: 12px 16px !important; }
           .vr-hide-mob  { display: none !important; }
           .vr-content   { padding: 16px 0 30px !important; }
-          .vr-content-wrapper { padding: 0 16px !important; }
-          .vr-filterbar { flex-wrap: nowrap !important; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
-          .vr-types     { flex-wrap: nowrap !important; }
-          .vr-sort      { margin-left: 0 !important; flex-shrink: 0; }
-          .vr-grid      { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .vr-content-wrapper { padding: 0 !important; }
+          .vr-content-layout { display: block !important; }
+          .vr-grid      { grid-template-columns: 1fr !important; gap: 16px !important; padding: 16px !important; }
+
         }
       `}</style>
+
 
       {/* Toast */}
       <AnimatePresence>
@@ -584,7 +645,64 @@ export default function VehicleResults() {
               </div>
             </div>
             
-            <div />
+            <div style={{ justifySelf: "end", display: "flex", alignItems: "center", gap: "12px" }}>
+              {/* Sort Dropdown */}
+              <div ref={sortRef} style={{ position: "relative" }}>
+                <button 
+                  onClick={() => setShowSort(!showSort)}
+                  style={{ 
+                    display: "flex", alignItems: "center", gap: "8px", background: "rgba(15,23,42,0.05)", 
+                    border: "1px solid rgba(15,23,42,0.05)", padding: "8px 16px", borderRadius: "10px", 
+                    cursor: "pointer", fontSize: "13px", fontWeight: "800", color: SLATE, transition: "all 0.2s" 
+                  }}
+                >
+                  <Svg size={14}><path d="M11 5L6 9L1 5"/><path d="M11 13L6 17L1 13"/></Svg>
+                  SORT: {sortBy.replace("_", " ").toUpperCase()}
+                </button>
+                <AnimatePresence>
+                  {showSort && (
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
+                      style={{ position: "absolute", top: "110%", right: 0, background: "#fff", boxShadow: "0 10px 30px rgba(0,0,0,0.1)", borderRadius: "12px", padding: "8px", zIndex: 1000, width: "180px", border: "1px solid #f1f5f9" }}>
+                      {[
+                        { id: "popular", label: "Popularity", icon: <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/> },
+                        { id: "rating", label: "Top Rated", icon: <><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></> },
+                        { id: "price_low", label: "Price: Low to High", icon: <><path d="M7 10v4h4"/><path d="M15 14l-8-8"/></> },
+                        { id: "price_high", label: "Price: High to Low", icon: <><path d="M7 14v-4h4"/><path d="M15 10l-8 8"/></> }
+
+                      ].map(s => (
+                        <div key={s.id} onClick={() => { setSortBy(s.id); setShowSort(false); }}
+                          style={{ 
+                            padding: "10px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: 700, 
+                            cursor: "pointer", color: sortBy === s.id ? RED : "#64748b",
+                            background: sortBy === s.id ? `${RED}05` : "transparent",
+                            display: "flex", alignItems: "center", gap: "10px", transition: "all 0.2s"
+                          }}
+                          onMouseEnter={e => e.currentTarget.style.background = sortBy === s.id ? `${RED}10` : "#f8fafd"}
+                          onMouseLeave={e => e.currentTarget.style.background = sortBy === s.id ? `${RED}05` : "transparent"}
+                        >
+                          <Svg size={14}>{s.icon}</Svg>
+                          {s.label}
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <button 
+                onClick={() => setShowFilters(true)}
+                style={{ 
+                  display: "flex", alignItems: "center", gap: "8px", background: "rgba(15,23,42,0.05)", 
+                  border: "1px solid rgba(15,23,42,0.05)", padding: "8px 16px", borderRadius: "10px", 
+                  cursor: "pointer", fontSize: "13px", fontWeight: "800", color: SLATE, transition: "all 0.2s" 
+                }}
+                onMouseEnter={e => e.currentTarget.style.background = "rgba(15,23,42,0.08)"}
+                onMouseLeave={e => e.currentTarget.style.background = "rgba(15,23,42,0.05)"}
+              >
+                <IcoFilter /> FILTERS
+              </button>
+            </div>
+
 
             <div style={{ justifySelf: "end" }}>
               <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>
@@ -596,14 +714,22 @@ export default function VehicleResults() {
 
 
         <div className="vr-content-wrapper">
-          <div className="vr-content">
-            {/* Filter + Sort */}
-            {loading ? (
-              <div style={{ textAlign: "center", padding: "80px 20px" }}>
-                <div style={{ width: "32px", height: "32px", border: "3px solid #e2e8f0", borderTop: `3px solid ${RED}`, borderRadius: "50%", animation: "spin .7s linear infinite", margin: "0 auto 12px" }} />
-                <p style={{ color: "#64748b", fontSize: "13px", fontWeight: "600" }}>Fetching available {isAll ? "vehicles" : isBike ? "bikes" : "cars"}...</p>
-              </div>
-            ) : sorted.length === 0 ? (
+          <div style={{ maxWidth: "1250px", margin: "0 auto", display: "flex", gap: "0" }} className="vr-content-layout">
+            
+            {/* Sidebar Filter - REMOVED static, now in drawer */}
+
+
+              <div style={{ flexGrow: 1 }}>
+
+
+              <div className="vr-content" style={{ padding: "24px" }}>
+                {loading ? (
+                  <div style={{ textAlign: "center", padding: "80px 20px" }}>
+                    <div style={{ width: "32px", height: "32px", border: "3px solid #e2e8f0", borderTop: `3px solid ${RED}`, borderRadius: "50%", animation: "spin .7s linear infinite", margin: "0 auto 12px" }} />
+                    <p style={{ color: "#64748b", fontSize: "13px", fontWeight: "600" }}>Fetching available {isAll ? "vehicles" : isBike ? "bikes" : "cars"}...</p>
+                  </div>
+                ) : sorted.length === 0 ? (
+
               <div style={{ textAlign: "center", padding: "80px 20px", background: "#fff", borderRadius: "24px", border: "1.5px dashed #e2e8f0" }}>
                 <p style={{ fontSize: "16px", fontWeight: "700", color: "#64748b" }}>No {isAll ? "vehicles" : isBike ? "bikes" : "cars"} available right now.</p>
                 <p style={{ fontSize: "14px", color: "#94a3b8", marginTop: "4px" }}>Try changing your filters or searching for another type.</p>
@@ -687,6 +813,8 @@ export default function VehicleResults() {
           </div>
         </div>
       </div>
+    </div>
+
 
       <AnimatePresence>
         {selected && (
@@ -728,6 +856,85 @@ export default function VehicleResults() {
           </motion.div>
         )}
       </AnimatePresence>
+      <AnimatePresence>
+        {showFilters && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            style={{ position: "fixed", inset: 0, background: "rgba(15,23,42,0.4)", backdropFilter: "blur(8px)", zIndex: 10000, display: "flex", justifyContent: "flex-start" }}
+            onClick={() => setShowFilters(false)}
+          >
+            <motion.div initial={{ x: "-100%" }} animate={{ x: 0 }} exit={{ x: "-100%" }} transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              onClick={e => e.stopPropagation()}
+              style={{ width: "100%", maxWidth: "350px", height: "100%", background: "#fff", padding: "32px", boxShadow: "20px 0 60px rgba(0,0,0,0.1)", display: "flex", flexDirection: "column" }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px" }}>
+                <div>
+                  <h2 style={{ fontSize: "20px", fontWeight: "900", fontFamily: H, color: SLATE, margin: 0 }}>Filters</h2>
+                  <p style={{ fontSize: "12px", color: "#64748b", fontWeight: 700, margin: "4px 0 0" }}>Narrow down your search</p>
+                </div>
+                <button onClick={() => setShowFilters(false)} style={{ background: "rgba(15,23,42,0.05)", border: "none", width: "32px", height: "32px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: SLATE, cursor: "pointer" }}><IcoX /></button>
+              </div>
+
+              <div style={{ flexGrow: 1, overflowY: "auto", paddingRight: "10px", scrollbarWidth: "none" }}>
+                <div className="filter-section">
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+                    <h3 className="filter-title" style={{ margin: 0 }}>Price Range</h3>
+                    <span style={{ fontSize: "12px", fontWeight: 800, color: RED }}>₹{priceRange[1]}</span>
+                  </div>
+                  <input type="range" min="0" max="2000" step="50" value={priceRange[1]} onChange={e => setPriceRange([0, parseInt(e.target.value)])} className="price-slider" />
+                  <div className="price-vals">
+                    <span>₹0</span>
+                    <span>₹2000+</span>
+                  </div>
+                </div>
+
+                <div className="filter-section">
+                  <h3 className="filter-title">Vehicle Type</h3>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                    {allTypes.map(t => (
+                      <button key={t} onClick={() => setSelTypes(prev => prev.includes(t) ? prev.filter(x => x !== t) : [...prev, t])}
+                        style={{ padding: "8px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: "700", border: "1.5px solid", background: selTypes.includes(t) ? RED : "transparent", color: selTypes.includes(t) ? "#fff" : SLATE, borderColor: selTypes.includes(t) ? RED : "#e2e8f0", transition: "all 0.2s" }}>
+                        {t}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="filter-section">
+                  <h3 className="filter-title">Fuel Type</h3>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                    {allFuels.map(f => (
+                      <button key={f} onClick={() => setSelFuels(prev => prev.includes(f) ? prev.filter(x => x !== f) : [...prev, f])}
+                        style={{ padding: "8px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: "700", border: "1.5px solid", background: selFuels.includes(f) ? RED : "transparent", color: selFuels.includes(f) ? "#fff" : SLATE, borderColor: selFuels.includes(f) ? RED : "#e2e8f0", transition: "all 0.2s" }}>
+                        {f}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="filter-section">
+                  <h3 className="filter-title">Transmission</h3>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                    {allTrans.map(tr => (
+                      <button key={tr} onClick={() => setSelTrans(prev => prev.includes(tr) ? prev.filter(x => x !== tr) : [...prev, tr])}
+                        style={{ padding: "8px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: "700", border: "1.5px solid", background: selTrans.includes(tr) ? RED : "transparent", color: selTrans.includes(tr) ? "#fff" : SLATE, borderColor: selTrans.includes(tr) ? RED : "#e2e8f0", transition: "all 0.2s" }}>
+                        {tr}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ paddingTop: "20px", borderTop: "1px solid #f1f5f9", display: "flex", gap: "12px" }}>
+                <button onClick={() => { setSelTypes([]); setSelFuels([]); setSelTrans([]); setPriceRange([0, 2000]); }} style={{ flex: 1, padding: "14px", borderRadius: "12px", background: "rgba(15,23,42,0.05)", color: SLATE, fontSize: "14px", fontWeight: "800", border: "none", cursor: "pointer" }}>Reset</button>
+                <button onClick={() => setShowFilters(false)} style={{ flex: 2, padding: "14px", borderRadius: "12px", background: RED, color: "#fff", fontSize: "14px", fontWeight: "900", border: "none", cursor: "pointer", boxShadow: `0 8px 20px ${RED}30` }}>Show {sorted.length} Vehicles</button>
+              </div>
+            </motion.div>
+          </motion.div>
+
+        )}
+      </AnimatePresence>
     </div>
-  );
+  </div>
+);
 }
+
