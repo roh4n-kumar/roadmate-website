@@ -489,6 +489,16 @@ export default function VehicleResults() {
             justify-content: flex-end !important; 
             gap: 10px !important;
           }
+          .vr-helmet-submenu, .vr-helmet-submenu-l2 {
+            position: relative !important;
+            left: 0 !important;
+            top: 0 !important;
+            margin: 8px 0 !important;
+            width: 100% !important;
+            box-shadow: none !important;
+            border: 1px solid #f1f5f9 !important;
+            display: block !important;
+          }
           .vr-subheader-actions button, .vr-subheader-actions > div {
             padding: 6px 12px !important;
             font-size: 11px !important;
@@ -601,7 +611,7 @@ export default function VehicleResults() {
                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="9 18 15 12 9 6"/></svg>
                             
                             {activeSubMenu === '1' && (
-                              <div style={{ position: "absolute", left: "100%", top: 0, marginLeft: "8px", background: "#fff", boxShadow: "0 10px 25px rgba(0,0,0,0.1)", borderRadius: "12px", padding: "8px", width: "80px", border: "1px solid #f1f5f9" }}>
+                              <div className="vr-helmet-submenu" style={{ position: "absolute", left: "100%", top: 0, marginLeft: "8px", background: "#fff", boxShadow: "0 10px 25px rgba(0,0,0,0.1)", borderRadius: "12px", padding: "8px", width: "80px", border: "1px solid #f1f5f9" }}>
                                 {['M', 'L', 'XL'].map(size => (
                                   <div key={size} onClick={(e) => { e.stopPropagation(); setLocalHelmetCount(1); setLocalHelmetSizes([size]); setShowHelmetDropdown(false); setActiveSubMenu(null); }}
                                     style={{ padding: "8px", borderRadius: "6px", textAlign: "center", fontSize: "11px", fontWeight: 800, fontFamily: F, color: localHelmetCount === 1 && localHelmetSizes[0] === size ? RED : SLATE, background: localHelmetCount === 1 && localHelmetSizes[0] === size ? `${RED}05` : "transparent", cursor: "pointer" }}
@@ -628,14 +638,14 @@ export default function VehicleResults() {
                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="9 18 15 12 9 6"/></svg>
 
                             {(activeSubMenu === '2' || activeSubMenu?.startsWith('2-')) && (
-                              <div style={{ position: "absolute", left: "100%", top: 0, marginLeft: "8px", background: "#fff", boxShadow: "0 10px 25px rgba(0,0,0,0.1)", borderRadius: "12px", padding: "8px", width: "140px", border: "1px solid #f1f5f9" }}>
+                              <div className="vr-helmet-submenu" style={{ position: "absolute", left: "100%", top: 0, marginLeft: "8px", background: "#fff", boxShadow: "0 10px 25px rgba(0,0,0,0.1)", borderRadius: "12px", padding: "8px", width: "140px", border: "1px solid #f1f5f9" }}>
                                 {['H1', 'H2'].map((h, idx) => (
                                   <div key={h} onMouseEnter={() => setActiveSubMenu(`2-${h}`)} style={{ padding: "8px 10px", borderRadius: "6px", fontSize: "11px", fontWeight: 700, color: SLATE, background: activeSubMenu === `2-${h}` ? "#f8fafd" : "transparent", display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative" }}>
                                     <span>Helmet {idx+1} {localHelmetCount === 2 && localHelmetSizes[idx] && `(${localHelmetSizes[idx]})`}</span>
                                     <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="9 18 15 12 9 6"/></svg>
 
                                     {activeSubMenu === `2-${h}` && (
-                                      <div style={{ position: "absolute", left: "100%", top: 0, marginLeft: "8px", background: "#fff", boxShadow: "0 10px 25px rgba(0,0,0,0.1)", borderRadius: "12px", padding: "8px", width: "60px", border: "1px solid #f1f5f9" }}>
+                                      <div className="vr-helmet-submenu-l2" style={{ position: "absolute", left: "100%", top: 0, marginLeft: "8px", background: "#fff", boxShadow: "0 10px 25px rgba(0,0,0,0.1)", borderRadius: "12px", padding: "8px", width: "60px", border: "1px solid #f1f5f9" }}>
                                         {['M', 'L', 'XL'].map(size => (
                                           <div key={size} onClick={(e) => { 
                                             e.stopPropagation(); 
