@@ -772,7 +772,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         margin-top: 0 !important;
       }
       .date-pill.active {
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+        box-shadow: none !important;
       }
       
       .col-sub {
@@ -787,10 +787,13 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         left: auto !important;
         transform: none !important;
         width: 100% !important;
-        margin-top: 24px !important;
+        max-width: 100% !important;
+        margin: 24px 0 0 0 !important;
+        padding: 0 !important;
         height: 48px !important;
         font-size: 16px !important;
         box-shadow: none !important;
+        box-sizing: border-box !important;
       }
 
       .disclaimer-pills-row { 
