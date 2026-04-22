@@ -248,9 +248,14 @@ const OffersPage = () => {
         }
 
         @media (max-width: 900px) {
-          .offers-top-nav { padding: 0 20px; }
-          .offers-content { padding: 30px 20px 80px; }
-          .o-grid { grid-template-columns: 1fr; }
+          .offers-ribbon { padding: 0 16px !important; }
+          .offers-main-wrapper { padding: 0 16px !important; }
+          .offers-content { padding: 20px 0 60px !important; }
+          .page-title { font-size: 16px !important; }
+          .available-count { font-size: 10px !important; }
+          .o-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .o-body { padding: 20px !important; }
+          .o-image-area { height: 180px !important; }
         }
       `}</style>
 
