@@ -652,12 +652,14 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       }
       .col-value {
         font-size: 22px !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 8px !important;
+        flex-direction: row !important; /* Back to row */
+        align-items: center !important;
       }
-      .col-value > div {
-        margin-left: 0 !important;
+      .date-pills-desktop {
+        display: none !important;
+      }
+      .date-pills-intermediate {
+        display: flex !important;
       }
       .date-pill {
         padding: 4px 8px !important;
@@ -950,13 +952,20 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                     {formData.dateDisplay}
                   </span>
                 </div>
-                {/* Pills moved here */}
-                <div style={{ display: 'flex', gap: '8px', marginLeft: 'auto' }}>
+                {/* Desktop Pills */}
+                <div className="date-pills-desktop" style={{ display: 'flex', gap: '8px', marginLeft: 'auto' }}>
                   <button onClick={jumpToday} className={`date-pill ${isSelectedToday() ? 'active' : ''}`}>Today</button>
                   <button onClick={jumpTomm} className={`date-pill ${isSelectedTomorrow() ? 'active' : ''}`}>Tomorrow</button>
                 </div>
               </div>
-              <div className="col-sub" style={{ color: '#718096' }}>{formData.dayName}</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '4px' }}>
+                <div className="col-sub" style={{ color: '#718096' }}>{formData.dayName}</div>
+                {/* Intermediate Pills (Hidden by default) */}
+                <div className="date-pills-intermediate" style={{ display: 'none', gap: '8px' }}>
+                  <button onClick={jumpToday} className={`date-pill ${isSelectedToday() ? 'active' : ''}`}>Today</button>
+                  <button onClick={jumpTomm} className={`date-pill ${isSelectedTomorrow() ? 'active' : ''}`}>Tomorrow</button>
+                </div>
+              </div>
               {showCal && (
                 <div className="cal-box" style={{ padding: 0 }} onClick={e => e.stopPropagation()}>
                     <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)}); openDropdown('off'); }} />
