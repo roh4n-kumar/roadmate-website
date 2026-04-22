@@ -396,19 +396,20 @@ const PersonalInfo = () => {
 
         @media (max-width: 900px) {
           .pi-page-wrapper { padding-top: 64px !important; }
-          .pi-banner { height: 320px !important; }
+          .pi-banner { height: 400px !important; }
+          .pi-banner-inner { justify-content: center !important; padding-bottom: 0 !important; padding-top: 20px !important; }
           .pi-header { padding: 40px 0 60px; }
           .pi-wrap  { padding-bottom: 80px !important; }
           .pi-inner { padding: 0 16px !important; }
           .pi-card  { padding: 24px 20px !important; border-radius: 20px !important; margin-bottom: 20px !important; }
           .pi-grid  { grid-template-columns: 1fr !important; gap: 20px !important; }
-          .pi-title { font-size: 28px !important; margin-bottom: 12px !important; }
-          .pi-avatar{ width: 90px !important; height: 90px !important; font-size: 24px !important; }
-          .pi-name  { font-size: 20px !important; }
+          .pi-title { font-size: 32px !important; margin-bottom: 12px !important; }
+          .pi-avatar{ width: 110px !important; height: 110px !important; font-size: 28px !important; border-width: 4px !important; }
+          .pi-name  { font-size: 22px !important; }
           .pi-btns  { flex-direction: column-reverse !important; gap: 12px !important; }
           .pi-btns button { width: 100% !important; justify-content: center !important; height: 56px !important; }
           .pi-edit-btn { padding: 10px 16px !important; font-size: 13px !important; }
-          .pi-banner-details { flex-direction: column !important; gap: 10px !important; }
+          .pi-banner-details { flex-direction: column !important; gap: 12px !important; align-items: center !important; }
           .pi-separator { display: none !important; }
           .pi-card-header { flex-direction: row !important; align-items: center !important; }
           .pi-card-title { font-size: 18px !important; }
@@ -419,7 +420,7 @@ const PersonalInfo = () => {
         {/* IDENTITY BANNER RAILS */}
         <div className="pi-banner" style={{ position: 'relative', height: '400px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url("/thar-off-roading.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.6)' }} />
-          <div className="pi-inner" style={{ height: '100%', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: '40px' }}>
+          <div className="pi-inner pi-banner-inner" style={{ height: '100%', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: '40px' }}>
             {/* Banner Main Content */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
               {/* Hidden File Input */}
