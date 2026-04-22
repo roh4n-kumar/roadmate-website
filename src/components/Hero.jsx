@@ -674,21 +674,24 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       }
 
       .search-main-card { 
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
+        background: #fff !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 12px !important;
+        gap: 0 !important;
         margin-top: 0 !important;
+        overflow: hidden !important;
       }
 
       .search-col { 
-        padding: 12px 10px !important; 
-        border: 1px solid #cbd5e1 !important;
-        border-radius: 10px !important;
-        background: #fff !important;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.02) !important;
+        padding: 14px 12px !important; 
+        border: none !important;
+        border-bottom: 1px solid #cbd5e1 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
@@ -704,10 +707,17 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .search-col:nth-child(2) { grid-column: 1 / 3 !important; }
       
       /* 3. Pickup Time (Left) */
-      .search-col:nth-child(3) { grid-column: 1 / 2 !important; }
+      .search-col:nth-child(3) { 
+        grid-column: 1 / 2 !important; 
+        border-bottom: none !important;
+        border-right: 1px solid #cbd5e1 !important;
+      }
       
       /* 4. Drop Time (Right) */
-      .search-col:nth-child(4) { grid-column: 2 / 3 !important; }
+      .search-col:nth-child(4) { 
+        grid-column: 2 / 3 !important; 
+        border-bottom: none !important;
+      }
 
       /* The swap icon between Pickup and Return Time */
       .search-col:nth-child(3)::after {
