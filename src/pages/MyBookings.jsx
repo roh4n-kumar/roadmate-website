@@ -250,7 +250,7 @@ const MyBookings = () => {
                     </div>
 
                     <div style={{ display: "flex", gap: "12px" }}>
-                      {b.status !== "cancelled" && b.status !== "completed" && (
+                      {b.status !== "cancelled" && b.status !== "completed" && b.status !== "expired" && (
                         <button 
                           onClick={() => handleCancel(b.id)}
                           style={{ flex: 1, padding: "12px", border: "1.5px solid #ef4444", background: "transparent", color: "#ef4444", borderRadius: "14px", fontSize: "13px", fontWeight: "800", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", transition: "all 0.2s" }}
@@ -259,7 +259,7 @@ const MyBookings = () => {
                         </button>
                       )}
                       
-                      {(b.status === "completed" || b.status === "cancelled") && (
+                      {(b.status === "completed" || b.status === "cancelled" || b.status === "expired") && (
                         <button 
                           onClick={() => navigate("/")}
                           style={{ flex: 1, padding: "12px", background: RED, color: "#fff", border: "none", borderRadius: "14px", fontSize: "13px", fontWeight: "800", cursor: "pointer" }}

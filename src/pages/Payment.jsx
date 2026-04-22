@@ -165,7 +165,7 @@ export default function Payment() {
                 // Since this effect re-runs when dbBooking changes, it's relatively safe
                 if (dbBooking.status === "pending" || !dbBooking.status) {
                     setShowExpiredModal(true);
-                    updateDoc(doc(db, "bookings", bookingId), { status: "expired" }).catch(() => {});
+                    // Removed: updateDoc(doc(db, "bookings", bookingId), { status: "expired" }).catch(() => {});
                 }
             }
         };
