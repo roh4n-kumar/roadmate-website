@@ -152,8 +152,8 @@ const MyBookings = () => {
           .mb-content { padding: 16px 0 40px !important; }
           .mb-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
           .mb-title-main { font-size: 20px !important; }
-          .mb-tabs { gap: 0 !important; }
-          .mb-tab { font-size: 14px !important; flex: 1; justify-content: center; }
+          .mb-tabs { gap: 12px !important; justify-content: center !important; }
+          .mb-tab { font-size: 13px !important; flex: none !important; }
         }
       `}</style>
 
