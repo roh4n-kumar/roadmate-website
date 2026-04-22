@@ -426,7 +426,7 @@ const DocumentVerification = () => {
           .pi-inner { padding: 0 16px !important; }
           .pi-card { padding: 24px 20px !important; border-radius: 20px !important; margin-bottom: 20px !important; }
           .dv-split { flex-direction: column !important; gap: 30px !important; }
-          .pi-banner-title { font-size: 22px !important; }
+          .pi-name { font-size: 22px !important; }
           .pi-banner-details { flex-direction: column !important; gap: 6px !important; align-items: center !important; }
           .pi-separator { display: none !important; }
           .divider { margin-left: -20px !important; margin-right: -20px !important; }
@@ -439,12 +439,12 @@ const DocumentVerification = () => {
       {/* BANNER (Exact Sync with PersonalInfo) */}
       <div className="pi-banner" style={{ position:'relative', height:'400px', overflow:'hidden' }}>
         <div style={{ position:'absolute', inset:0, backgroundImage:'url("/document.jpg")', backgroundSize:'cover', backgroundPosition:'center', filter:'brightness(0.6)' }} />
-        <div className="pi-inner pi-banner-inner" style={{ height:'100%', position:'relative', zIndex:2, display:'flex', flexDirection:'column', justifyContent:'flex-end', alignItems:'center', paddingBottom:'40px' }}>
+        <div className="pi-inner pi-banner-inner" style={{ height:'100%', position:'relative', zIndex:2, display:'flex', flexDirection:'column', alignItems:'center' }}>
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', textAlign:'center' }}>
-            <div style={{ width:'140px', height:'140px', borderRadius:'50%', background:RED, border:'5px solid rgba(255,255,255,0.2)', boxShadow:'0 10px 30px rgba(0,0,0,0.2)', marginBottom:'20px', overflow:'hidden' }}>
+            <div className="pi-avatar" style={{ width:'140px', height:'140px', borderRadius:'50%', background:RED, border:'5px solid rgba(255,255,255,0.2)', boxShadow:'0 10px 30px rgba(0,0,0,0.2)', marginBottom:'20px', position: 'relative', overflow:'hidden' }}>
               {(profile.profileImage || user?.photoURL) ? <img src={profile.profileImage || user?.photoURL} style={{ width:'100%', height:'100%', objectFit:'cover' }} /> : <div style={{ height:'100%', display:'flex', alignItems:'center', justifyContent:'center', color:'#fff' }}><CameraIcon /></div>}
             </div>
-            <h1 className="pi-banner-title" style={{ margin:0, color:'#fff', fontSize:'42px', fontWeight:'900', fontFamily:H, letterSpacing:'-1px', textShadow:'0 2px 10px rgba(0,0,0,0.3)' }}>{profile.name || user?.displayName}</h1>
+            <h1 className="pi-name" style={{ margin:0, color:'#fff', fontSize:'42px', fontWeight:'900', fontFamily:H, letterSpacing:'-1px', textShadow:'0 2px 10px rgba(0,0,0,0.3)' }}>{profile.name || user?.displayName}</h1>
             <div className="pi-banner-details" style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:'25px', marginTop:'12px', color:'rgba(255,255,255,0.9)', fontSize:'15px', fontWeight:'600' }}>
               <div style={{ display:'flex', alignItems:'center', gap:'8px' }}><PhoneIcon /> +91 {profile.phone ? profile.phone.replace("+91","").trim() : 'Add Phone'}</div>
               <div className="pi-separator" style={{ height:'12px', width:'1.5px', background:'rgba(255,255,255,0.3)' }} />
