@@ -460,82 +460,13 @@ export default function VehicleResults() {
         /* ── Mobile layout ── */
         @media (max-width: 900px) {
           .vr-page      { padding-top: 60px !important; padding-bottom: 70px !important; }
-          .vr-subheader { 
-            top: 60px !important; 
-            padding: 12px 16px !important; 
-            height: auto !important; 
-            background: #fff !important;
-          }
-          .vr-subheader-inner {
-            grid-template-columns: 1fr !important; /* Stack vertically */
-            gap: 12px !important;
-            height: auto !important;
-          }
-          .vr-header-top {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: baseline !important;
-            width: 100% !important;
-          }
-          .vr-header-left {
-            display: flex !important;
-            align-items: center !important;
-            gap: 8px !important;
-          }
-          .vr-header-date {
-            font-size: 13px !important;
-            color: #64748b !important;
-            font-weight: 700 !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 6px !important;
-          }
-          .vr-header-date::before {
-            content: "·" !important;
-            margin-right: 2px !important;
-            color: rgba(15, 23, 42, 0.2) !important;
-            font-size: 18px !important;
-            font-weight: 900 !important;
-          }
-          .vr-header-available { 
-            display: block !important;
-            font-size: 11px !important;
-            color: #94a3b8 !important;
-            font-weight: 800 !important;
-            text-transform: uppercase !important;
-            margin-left: auto !important;
-          }
-          .vr-controls-row {
-            display: flex !important;
-            gap: 8px !important;
-            overflow-x: auto !important;
-            padding-bottom: 4px !important;
-            scrollbar-width: none !important;
-            -ms-overflow-style: none !important;
-            width: calc(100% + 32px) !important;
-            margin-left: -16px !important;
-            padding-left: 16px !important;
-          }
-          .vr-controls-row::-webkit-scrollbar { display: none !important; }
-          
-          .vr-control-item {
-            flex-shrink: 0 !important;
-            white-space: nowrap !important;
-            font-size: 11px !important;
-            padding: 8px 12px !important;
-          }
-
+          .vr-subheader { top: 60px !important; padding: 12px 16px !important; }
           .vr-hide-mob  { display: none !important; }
-          .vr-content   { padding: 8px 0 30px !important; }
+          .vr-content   { padding: 16px 0 30px !important; }
           .vr-content-wrapper { padding: 0 !important; }
           .vr-content-layout { display: block !important; }
           .vr-grid      { grid-template-columns: 1fr !important; gap: 16px !important; padding: 16px !important; }
 
-          .vcard { border-radius: 20px !important; }
-          .v-img-container { height: 180px !important; }
-        }
-        .vr-header-available {
-          display: none;
         }
       `}</style>
 
@@ -567,46 +498,47 @@ export default function VehicleResults() {
 
       <div className="vr-page">
         <div className="vr-subheader">
-          <div className="vr-subheader-inner" style={{ 
+          <div style={{ 
             maxWidth: "1250px", 
             margin: "0 auto", 
             height: "64px", 
             display: "grid", 
-            gridTemplateColumns: "1fr auto auto", 
+            gridTemplateColumns: "11fr auto auto", 
             alignItems: "center",
             gap: "24px"
           }}>
-            <div className="vr-header-top" style={{ minWidth: 0, display: "flex", alignItems: "center", gap: "12px" }}>
+            <div style={{ display: "flex", alignItems: "center", position: "relative", gap: "10px", minWidth: 0 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap", minWidth: 0 }}>
                 <h1 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, color: "#0f172a", margin: 0, letterSpacing: "-0.5px" }}>
                   {isAll ? "All Vehicles" : isBike ? "Bikes" : "Cars"}
                 </h1>
-                {date && (
-                  <div className="vr-header-date" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}>
-                    <span className="vr-hide-mob" style={{ color: "rgba(15, 23, 42, 0.1)", margin: "0 4px" }}>·</span>
-                    <IcoCalendar /> {fmt(date)}
-                  </div>
-                )}
-              
-              {/* This one only shows on mobile */}
-              <div className="vr-header-available">
-                <span style={{ fontSize: "11px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>
-                  {sorted.length} available
-                </span>
-              </div>
-            </div>
-
-            <div className="vr-controls-row" style={{ display: "flex", alignItems: "center", gap: "12px", minWidth: 0 }}>
-                  {/* Date removed from here, now in header-top */}
+                
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                  {date && (
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}>
+                      <span style={{ color: "rgba(15, 23, 42, 0.1)", margin: "0 4px" }}>·</span>
+                      <IcoCalendar /> {fmt(date)}
+                    </div>
+                  )}
+                  {totalMins > 0 && (
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
+                      <div className="vr-hide-mob" style={{ display: "flex", alignItems: "center", gap: "8px", color: SLATE, fontSize: "14px", fontWeight: "800", background: "rgba(15, 23, 42, 0.04)", padding: "6px 14px", borderRadius: "10px", border: "1px solid rgba(15, 23, 42, 0.05)" }}>
+                        <IcoClock /> {fmtDuration(totalMins)} ({fmtTime(pickup)} – {fmtTime(drop)})
+                      </div>
+                    </div>
+                  )}
                   
                   {isBike && (params.get("helmet") === '1' || params.get("helmet") === 'true') && (
-                    <div ref={helmetRef} className="vr-control-item" style={{ display: "flex", alignItems: "center", gap: "10px", position: "relative" }}>
+                    <div ref={helmetRef} style={{ display: "flex", alignItems: "center", gap: "10px", position: "relative" }}>
+                      <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
                       <div 
                         onClick={() => setShowHelmetDropdown(!showHelmetDropdown)}
                         style={{ 
                           display: "flex", alignItems: "center", gap: "6px", fontSize: "11px", 
                           color: localHelmetCount > 0 ? RED : "rgba(15,23,42,0.4)", 
                           fontWeight: "900", background: localHelmetCount > 0 ? `${RED}10` : "rgba(15,23,42,0.05)", 
-                          padding: "8px 14px", borderRadius: "99px", letterSpacing: "0.5px", 
+                          padding: "6px 14px", borderRadius: "99px", letterSpacing: "0.5px", 
                           textTransform: "uppercase", cursor: "pointer", transition: "all 0.2s",
                           border: showHelmetDropdown ? `1.5px solid ${RED}` : "1.5px solid transparent"
                         }}
@@ -617,7 +549,7 @@ export default function VehicleResults() {
 
                       {showHelmetDropdown && (
                         <div style={{ 
-                          position: "absolute", top: "110%", left: "0", background: "#fff", 
+                          position: "absolute", top: "110%", left: "15px", background: "#fff", 
                           boxShadow: "0 10px 25px rgba(0,0,0,0.1)", borderRadius: "12px", 
                           padding: "8px", zIndex: 1000, width: "160px", border: "1px solid #f1f5f9"
                         }}>
@@ -701,74 +633,78 @@ export default function VehicleResults() {
                       )}
                     </div>
                   )}
-
                   {isCar && (
-                    <div className="vr-control-item" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11px", color: withDriver ? RED : "rgba(15,23,42,0.4)", fontWeight: "900", background: withDriver ? `${RED}10` : "rgba(15,23,42,0.05)", padding: "8px 14px", borderRadius: "99px", letterSpacing: "0.5px", textTransform: "uppercase" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
+                      <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11px", color: withDriver ? RED : "rgba(15,23,42,0.4)", fontWeight: "900", background: withDriver ? `${RED}10` : "rgba(15,23,42,0.05)", padding: "6px 14px", borderRadius: "99px", letterSpacing: "0.5px", textTransform: "uppercase" }}>
                         {withDriver ? "WITH DRIVER" : "SELF DRIVE"}
                       </span>
                     </div>
                   )}
-
-                  {/* Sort Dropdown */}
-                  <div ref={sortRef} className="vr-control-item" style={{ position: "relative" }}>
-                    <button 
-                      onClick={() => setShowSort(!showSort)}
-                      style={{ 
-                        display: "flex", alignItems: "center", gap: "8px", background: "rgba(15,23,42,0.05)", 
-                        border: "1px solid rgba(15,23,42,0.05)", padding: "8px 16px", borderRadius: "10px", 
-                        cursor: "pointer", fontSize: "13px", fontWeight: "800", color: SLATE, transition: "all 0.2s" 
-                      }}
-                    >
-                      <Svg size={14}><path d="M11 5L6 9L1 5"/><path d="M11 13L6 17L1 13"/></Svg>
-                      <span className="vr-hide-mob">SORT: {sortBy.replace("_", " ").toUpperCase()}</span>
-                    </button>
-                    <AnimatePresence>
-                      {showSort && (
-                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
-                          style={{ position: "absolute", top: "110%", right: 0, background: "#fff", boxShadow: "0 10px 30px rgba(0,0,0,0.1)", borderRadius: "12px", padding: "8px", zIndex: 1000, width: "180px", border: "1px solid #f1f5f9" }}>
-                          {[
-                            { id: "popular", label: "Popularity", icon: <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/> },
-                            { id: "rating", label: "Top Rated", icon: <><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></> },
-                            { id: "price_low", label: "Price: Low to High", icon: <><path d="M7 10v4h4"/><path d="M15 14l-8-8"/></> },
-                            { id: "price_high", label: "Price: High to Low", icon: <><path d="M7 14v-4h4"/><path d="M15 10l-8 8"/></> }
-
-                          ].map(s => (
-                            <div key={s.id} onClick={() => { setSortBy(s.id); setShowSort(false); }}
-                              style={{ 
-                                padding: "10px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: 700, 
-                                cursor: "pointer", color: sortBy === s.id ? RED : "#64748b",
-                                background: sortBy === s.id ? `${RED}05` : "transparent",
-                                display: "flex", alignItems: "center", gap: "10px", transition: "all 0.2s"
-                              }}
-                              onMouseEnter={e => e.currentTarget.style.background = sortBy === s.id ? `${RED}10` : "#f8fafd"}
-                              onMouseLeave={e => e.currentTarget.style.background = sortBy === s.id ? `${RED}05` : "transparent"}
-                            >
-                              <Svg size={14}>{s.icon}</Svg>
-                              {s.label}
-                            </div>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-
-                  <button 
-                    onClick={() => setShowFilters(true)}
-                    className="vr-control-item"
-                    style={{ 
-                      display: "flex", alignItems: "center", gap: "8px", background: "rgba(15,23,42,0.05)", 
-                      border: "1px solid rgba(15,23,42,0.05)", padding: "8px 16px", borderRadius: "10px", 
-                      cursor: "pointer", fontSize: "13px", fontWeight: "800", color: SLATE, transition: "all 0.2s" 
-                    }}
-                  >
-                    <IcoFilter /> <span className="vr-hide-mob">FILTERS</span>
-                  </button>
+                </div>
+              </div>
             </div>
             
+            <div style={{ justifySelf: "end", display: "flex", alignItems: "center", gap: "12px" }}>
+              {/* Sort Dropdown */}
+              <div ref={sortRef} style={{ position: "relative" }}>
+                <button 
+                  onClick={() => setShowSort(!showSort)}
+                  style={{ 
+                    display: "flex", alignItems: "center", gap: "8px", background: "rgba(15,23,42,0.05)", 
+                    border: "1px solid rgba(15,23,42,0.05)", padding: "8px 16px", borderRadius: "10px", 
+                    cursor: "pointer", fontSize: "13px", fontWeight: "800", color: SLATE, transition: "all 0.2s" 
+                  }}
+                >
+                  <Svg size={14}><path d="M11 5L6 9L1 5"/><path d="M11 13L6 17L1 13"/></Svg>
+                  SORT: {sortBy.replace("_", " ").toUpperCase()}
+                </button>
+                <AnimatePresence>
+                  {showSort && (
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
+                      style={{ position: "absolute", top: "110%", right: 0, background: "#fff", boxShadow: "0 10px 30px rgba(0,0,0,0.1)", borderRadius: "12px", padding: "8px", zIndex: 1000, width: "180px", border: "1px solid #f1f5f9" }}>
+                      {[
+                        { id: "popular", label: "Popularity", icon: <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/> },
+                        { id: "rating", label: "Top Rated", icon: <><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></> },
+                        { id: "price_low", label: "Price: Low to High", icon: <><path d="M7 10v4h4"/><path d="M15 14l-8-8"/></> },
+                        { id: "price_high", label: "Price: High to Low", icon: <><path d="M7 14v-4h4"/><path d="M15 10l-8 8"/></> }
+
+                      ].map(s => (
+                        <div key={s.id} onClick={() => { setSortBy(s.id); setShowSort(false); }}
+                          style={{ 
+                            padding: "10px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: 700, 
+                            cursor: "pointer", color: sortBy === s.id ? RED : "#64748b",
+                            background: sortBy === s.id ? `${RED}05` : "transparent",
+                            display: "flex", alignItems: "center", gap: "10px", transition: "all 0.2s"
+                          }}
+                          onMouseEnter={e => e.currentTarget.style.background = sortBy === s.id ? `${RED}10` : "#f8fafd"}
+                          onMouseLeave={e => e.currentTarget.style.background = sortBy === s.id ? `${RED}05` : "transparent"}
+                        >
+                          <Svg size={14}>{s.icon}</Svg>
+                          {s.label}
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <button 
+                onClick={() => setShowFilters(true)}
+                style={{ 
+                  display: "flex", alignItems: "center", gap: "8px", background: "rgba(15,23,42,0.05)", 
+                  border: "1px solid rgba(15,23,42,0.05)", padding: "8px 16px", borderRadius: "10px", 
+                  cursor: "pointer", fontSize: "13px", fontWeight: "800", color: SLATE, transition: "all 0.2s" 
+                }}
+                onMouseEnter={e => e.currentTarget.style.background = "rgba(15,23,42,0.08)"}
+                onMouseLeave={e => e.currentTarget.style.background = "rgba(15,23,42,0.05)"}
+              >
+                <IcoFilter /> FILTERS
+              </button>
             </div>
-            
-            <div className="vr-hide-mob" style={{ justifySelf: "end" }}>
+
+
+            <div style={{ justifySelf: "end" }}>
               <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>
                 {sorted.length} available
               </span>
