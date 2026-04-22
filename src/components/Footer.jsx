@@ -91,15 +91,14 @@ const socialIcons = {
             }
             .footer-main-row {
               flex-direction: column !important;
-              gap: 40px !important;
-              align-items: center !important;
+              gap: 30px !important;
+              align-items: flex-start !important;
             }
             .nav-columns-group {
               width: 100% !important;
               display: grid !important;
               grid-template-columns: 1fr 1fr !important;
               gap: 40px 20px !important;
-              justify-content: start !important;
             }
             .footer-nav-col {
               display: flex;
@@ -120,11 +119,11 @@ const socialIcons = {
             .footer-bottom-row {
               justify-content: center !important;
               flex-direction: column-reverse !important;
-              gap: 30px !important;
+              gap: 20px !important;
               text-align: center !important;
             }
             .footer-container {
-              padding: 0 20px !important;
+              padding: 0 16px !important;
             }
           }
         `}
