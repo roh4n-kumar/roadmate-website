@@ -483,18 +483,19 @@ export default function VehicleResults() {
             gap: 8px !important;
           }
           .vr-header-date {
-            font-size: 11px !important;
+            font-size: 13px !important;
             color: #64748b !important;
             font-weight: 700 !important;
             display: flex !important;
             align-items: center !important;
-            gap: 4px !important;
+            gap: 6px !important;
           }
           .vr-header-date::before {
-            content: "·";
-            margin-right: 4px;
-            color: rgba(15, 23, 42, 0.2);
-            font-weight: 900;
+            content: "·" !important;
+            margin-right: 2px !important;
+            color: rgba(15, 23, 42, 0.2) !important;
+            font-size: 18px !important;
+            font-weight: 900 !important;
           }
           .vr-header-available {
             font-size: 11px !important;
@@ -577,7 +578,6 @@ export default function VehicleResults() {
                 </h1>
                 {date && (
                   <div className="vr-header-date" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}>
-                    <span className="vr-hide-mob" style={{ color: "rgba(15, 23, 42, 0.1)", margin: "0 4px" }}>·</span>
                     <IcoCalendar /> {fmt(date)}
                   </div>
                 )}
@@ -716,7 +716,7 @@ export default function VehicleResults() {
                       }}
                     >
                       <Svg size={14}><path d="M11 5L6 9L1 5"/><path d="M11 13L6 17L1 13"/></Svg>
-                      SORT: {sortBy.replace("_", " ").toUpperCase()}
+                      <span className="vr-hide-mob">SORT: {sortBy.replace("_", " ").toUpperCase()}</span>
                     </button>
                     <AnimatePresence>
                       {showSort && (
@@ -757,7 +757,7 @@ export default function VehicleResults() {
                       cursor: "pointer", fontSize: "13px", fontWeight: "800", color: SLATE, transition: "all 0.2s" 
                     }}
                   >
-                    <IcoFilter /> FILTERS
+                    <IcoFilter /> <span className="vr-hide-mob">FILTERS</span>
                   </button>
             </div>
             
