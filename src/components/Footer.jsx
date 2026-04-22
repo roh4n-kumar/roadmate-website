@@ -90,27 +90,28 @@ const socialIcons = {
               flex-direction: column !important;
               gap: 40px !important;
               align-items: center !important;
-              text-align: center !important;
             }
             .nav-columns-group {
               width: 100% !important;
-              flex-direction: column !important;
-              align-items: center !important;
-              gap: 40px !important;
+              display: grid !important;
+              grid-template-columns: 1fr 1fr !important;
+              gap: 40px 20px !important;
+              justify-content: start !important;
             }
             .footer-nav-col {
               display: flex;
               flex-direction: column;
-              align-items: center !important;
+              align-items: flex-start !important;
             }
             .footer-nav-col h4 {
-              text-align: center !important;
+              text-align: left !important;
             }
             .footer-nav-links {
-              align-items: center !important;
+              align-items: flex-start !important;
             }
             .brand-column {
               align-items: center !important;
+              text-align: center !important;
               max-width: 100% !important;
             }
             .footer-bottom-row {
