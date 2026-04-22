@@ -147,6 +147,20 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
             margin: 0;
             line-height: 1.2;
           }
+
+          /* IMAGE PERFORMANCE OPTIMIZATION */
+          @keyframes shimmer {
+            0% { background-position: -468px 0; }
+            100% { background-position: 468px 0; }
+          }
+          .img-shimmer {
+            background: #f6f7f8;
+            background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+            background-repeat: no-repeat;
+            background-size: 800px 100%;
+            animation: shimmer 1s linear infinite forwards;
+          }
+
           @media (max-width: 900px) {
             .fleet-section { padding: 40px 16px 20px !important; }
             .fleet-outer-card { margin: 0 !important; padding: 30px 0 !important; border-radius: 20px !important; }
@@ -250,9 +264,17 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
                   onClick={() => navigate(`/vehicles?type=${v.type}`)}
                   style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", border: "1px solid #f1f5f9", transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "pointer", boxShadow: "0 6px 12px -2px rgba(0,0,0,0.08), 0 3px 6px -2px rgba(0,0,0,0.05)" }}
                 >
-                  <div style={{ height: "200px", overflow: "hidden", position: "relative" }}>
-                    <img src={v.image} alt={v.name} className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
-                    <div style={{ position: "absolute", top: "15px", left: "15px", background: "#334155", color: "#fff", padding: "5px 12px", borderRadius: "8px", fontWeight: 800, fontSize: "10px", textTransform: "uppercase" }}>
+                  <div style={{ position: "relative", height: "180px", borderRadius: "20px", overflow: "hidden", marginBottom: "20px" }}>
+                    <div className="img-shimmer" style={{ position: "absolute", inset: 0, zIndex: 0 }} />
+                    <img 
+                      src={v.image} 
+                      alt={v.name} 
+                      loading="lazy"
+                      decoding="async"
+                      className="v-img" 
+                      style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease", position: "relative", zIndex: 1 }} 
+                    />
+                    <div style={{ position: "absolute", top: "15px", left: "15px", background: "#334155", color: "#fff", padding: "5px 12px", borderRadius: "8px", fontWeight: 800, fontSize: "10px", textTransform: "uppercase", zIndex: 2 }}>
                       {v.type}
                     </div>
                   </div>
@@ -315,7 +337,15 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
             viewport={{ once: true }}
           >
              <div style={{ width: "100%", height: "380px", overflow: "hidden", position: "relative" }}>
-                <img src="/puri_marine_drive.jpg" alt="Puri Konark Marine Drive" className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
+                <div className="img-shimmer" style={{ position: "absolute", inset: 0, zIndex: 0 }} />
+                <img 
+                  src="/puri_marine_drive.jpg" 
+                  alt="Puri Konark Marine Drive" 
+                  loading="lazy"
+                  decoding="async"
+                  className="v-img" 
+                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)", position: "relative", zIndex: 1 }} 
+                />
              </div>
           </motion.div>
         </div>

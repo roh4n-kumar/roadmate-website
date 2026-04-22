@@ -101,7 +101,14 @@ const BookingModal = ({ vehicle, totalMins, date, pickup, drop, withHelmet, helm
         </div>
 
         <div style={{ position: "relative", height: "180px", margin: "15px 15px 0", borderRadius: "20px", overflow: "hidden" }}>
-          <img src={vehicle.image} alt={vehicle.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <div className="img-shimmer" style={{ position: "absolute", inset: 0, zIndex: 0 }} />
+          <img 
+            src={vehicle.image} 
+            alt={vehicle.name} 
+            loading="lazy"
+            decoding="async"
+            style={{ width: "100%", height: "100%", objectFit: "cover", position: "relative", zIndex: 1 }} 
+          />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 70%)" }} />
           <div style={{ position: "absolute", bottom: "15px", left: "20px", right: "50px" }}>
             <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "12px", fontWeight: "700", margin: 0, textTransform: "uppercase", letterSpacing: "1px" }}>{vehicle.type}</p>
@@ -508,8 +515,21 @@ export default function VehicleResults() {
             box-shadow: none !important;
             border: 1.5px solid #f1f5f9 !important;
           }
-
         }
+
+        /* IMAGE PERFORMANCE OPTIMIZATION */
+        @keyframes shimmer {
+          0% { background-position: -468px 0; }
+          100% { background-position: 468px 0; }
+        }
+        .img-shimmer {
+          background: #f6f7f8;
+          background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+          background-repeat: no-repeat;
+          background-size: 800px 100%;
+          animation: shimmer 1s linear infinite forwards;
+        }
+
       `}</style>
 
 
@@ -792,7 +812,15 @@ export default function VehicleResults() {
                     style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", border: "none", boxShadow: "0 0 0 1.5px rgba(15, 23, 42, 0.1), 0 10px 30px rgba(0,0,0,0.08)" }}>
 
                     <div style={{ position: "relative", height: "200px", overflow: "hidden" }}>
-                      <img src={v.image} alt={v.name} className="v-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
+                      <div className="img-shimmer" style={{ position: "absolute", inset: 0, zIndex: 0 }} />
+                      <img 
+                        src={v.image} 
+                        alt={v.name} 
+                        loading="lazy"
+                        decoding="async"
+                        className="v-img" 
+                        style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)", position: "relative", zIndex: 1 }} 
+                      />
                       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15, 23, 42, 0.6) 0%, transparent 60%)" }} />
                       <span style={{ position: "absolute", top: "12px", left: "12px", background: "rgba(15, 23, 42, 0.8)", color: "#fff", fontSize: "11px", fontWeight: "800", padding: "5px 12px", borderRadius: "99px", backdropFilter: "blur(8px)", fontFamily: H, textTransform: "uppercase" }}>{v.type}</span>
                       <div style={{ position: "absolute", top: "12px", right: "12px", display: "flex", alignItems: "center", gap: "4px", background: "rgba(255, 255, 255, 0.9)", color: "#fbbf24", fontSize: "12px", fontWeight: "900", padding: "5px 12px", borderRadius: "99px", backdropFilter: "blur(8px)", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}>

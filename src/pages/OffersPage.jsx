@@ -257,6 +257,20 @@ const OffersPage = () => {
           .o-body { padding: 20px !important; }
           .o-image-area { height: 180px !important; }
         }
+
+        /* IMAGE PERFORMANCE OPTIMIZATION */
+        @keyframes shimmer {
+          0% { background-position: -468px 0; }
+          100% { background-position: 468px 0; }
+        }
+        .img-shimmer {
+          background: #f6f7f8;
+          background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+          background-repeat: no-repeat;
+          background-size: 800px 100%;
+          animation: shimmer 1s linear infinite forwards;
+        }
+
       `}</style>
 
       {/* TOP STICKY RIBBON (Below Navbar) */}
@@ -290,12 +304,20 @@ const OffersPage = () => {
                 transition={{ delay: idx * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="o-img-area">
+                  <div className="img-shimmer" style={{ position: "absolute", inset: 0, zIndex: 0 }} />
                   <div className="o-cat-badge">{off.category}</div>
                   <div className="o-rating">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="#fbbf24" stroke="#fbbf24" strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     4.8 <span>(120)</span>
                   </div>
-                  <img src={off.image} alt={off.title} className="o-image" />
+                  <img 
+                    src={off.image} 
+                    alt={off.title} 
+                    loading="lazy"
+                    decoding="async"
+                    className="o-image" 
+                    style={{ position: "relative", zIndex: 1 }}
+                  />
                   <div className="o-name-overlay">
                     <h3>{off.title}</h3>
                   </div>
