@@ -397,7 +397,7 @@ const PersonalInfo = () => {
         @media (max-width: 900px) {
           .pi-page-wrapper { padding-top: 0px !important; }
           .pi-banner { height: 320px !important; }
-          .pi-banner-inner { justify-content: center !important; padding-bottom: 0px !important; padding-top: 40px !important; }
+          .pi-banner-inner { justify-content: center !important; padding: 0 !important; }
           .pi-header { padding: 40px 0 60px; }
           .pi-wrap  { padding-bottom: 80px !important; }
           .pi-inner { padding: 0 16px !important; }
