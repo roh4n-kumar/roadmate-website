@@ -1053,7 +1053,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <AnimatePresence>
         {toastMsg && (
           <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-             style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 11000, padding: "0 20px", pointerEvents: "none" }}>
+             style={{ position: "fixed", bottom: window.innerWidth <= 900 ? "100px" : "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 11000, padding: "0 20px", pointerEvents: "none" }}>
             <div style={{ 
               background: "#fff5f5", 
               color: RED, 

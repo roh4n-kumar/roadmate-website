@@ -475,7 +475,7 @@ export default function VehicleResults() {
       <AnimatePresence>
         {booked && (
           <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-            style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 4000, padding: "0 20px" }}>
+            style={{ position: "fixed", bottom: window.innerWidth <= 900 ? "100px" : "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 4000, padding: "0 20px" }}>
             <div style={{ 
               background: "#f0fff4", 
               color: "#22c55e", 
@@ -836,7 +836,7 @@ export default function VehicleResults() {
       <AnimatePresence>
         {errorToast && (
           <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-             style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 9000, padding: "0 20px" }}>
+             style={{ position: "fixed", bottom: window.innerWidth <= 900 ? "100px" : "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 9000, padding: "0 20px" }}>
             <div style={{ 
               background: "#fff5f5", 
               color: RED, 

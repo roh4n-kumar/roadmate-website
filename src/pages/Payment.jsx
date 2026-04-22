@@ -791,7 +791,7 @@ export default function Payment() {
             <AnimatePresence>
                 {toast && (
                     <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                        style={{ position: "fixed", bottom: "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 11000, padding: "0 20px", pointerEvents: "none" }}>
+                        style={{ position: "fixed", bottom: window.innerWidth <= 900 ? "100px" : "40px", left: "0", right: "0", display: "flex", justifyContent: "center", zIndex: 11000, padding: "0 20px", pointerEvents: "none" }}>
                         <div style={{ 
                             background: toast.type === "error" ? "#fff5f5" : "#f0fff4", 
                             color: toast.type === "error" ? RED : "#22c55e", 

@@ -710,7 +710,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             initial={{ opacity: 0, y: 50, x: "-50%" }} 
             animate={{ opacity: 1, y: 0, x: "-50%" }} 
             exit={{ opacity: 0, y: 50, x: "-50%" }}
-            style={{ position: "fixed", bottom: "40px", left: "50%", zIndex: 20000, background: "#0f172a", color: "#fff", padding: "14px 28px", borderRadius: "16px", fontWeight: "700", display: "flex", alignItems: "center", gap: "10px", boxShadow: "0 20px 40px rgba(0,0,0,0.2)", borderLeft: `5px solid ${RED}`, fontSize: "14px", fontFamily: F, whiteSpace: "nowrap" }}
+            style={{ position: "fixed", bottom: window.innerWidth <= 900 ? "100px" : "40px", left: "50%", zIndex: 20000, background: "#0f172a", color: "#fff", padding: "14px 28px", borderRadius: "16px", fontWeight: "700", display: "flex", alignItems: "center", gap: "10px", boxShadow: "0 20px 40px rgba(0,0,0,0.2)", borderLeft: `5px solid ${RED}`, fontSize: "14px", fontFamily: F, whiteSpace: "nowrap" }}
           >
             <div style={{ background: RED, width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "900" }}>!</div>
             {authWarning}
