@@ -645,6 +645,24 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
+    /* INTERMEDIATE TABLET/SMALL DESKTOP FIX */
+    @media (min-width: 901px) and (max-width: 1250px) {
+      .search-main-card {
+        grid-template-columns: 190px 1.2fr 190px 190px !important;
+      }
+      .col-value {
+        font-size: 24px !important;
+      }
+      .date-pill {
+        padding: 4px 10px !important;
+        font-size: 11px !important;
+        height: 28px !important;
+      }
+      .search-col {
+        padding: 18px 12px !important;
+      }
+    }
+
     @media (max-width: 900px) {
       .hero-section { margin-top: 0 !important; padding-bottom: 10px; background: #fdfdfd !important; }
       .search-ribbon-v2 { 
