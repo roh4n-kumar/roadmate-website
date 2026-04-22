@@ -148,7 +148,8 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
             line-height: 1.2;
           }
           @media (max-width: 900px) {
-            .fleet-outer-card { margin: 0 16px !important; padding: 30px 0 !important; border-radius: 20px !important; }
+            .fleet-section { padding: 40px 16px 20px !important; }
+            .fleet-outer-card { margin: 0 !important; padding: 30px 0 !important; border-radius: 20px !important; }
             .fleet-header { padding: 0 20px !important; flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
             .fleet-scroll-grid { padding: 10px 20px 30px !important; scroll-padding-left: 20px !important; }
             .fleet-scroll-grid > * { width: 280px !important; }
@@ -181,7 +182,7 @@ const Home = ({ isDrawerOpen, setIsDrawerOpen }) => {
       <WhyChooseUs />
 
       {/* Featured Fleet (Offers Style) */}
-      <section style={{ padding: "100px 24px 20px", maxWidth: "1350px", margin: "0 auto", position: 'relative', zIndex: 10 }}>
+      <section className="fleet-section" style={{ padding: "100px 24px 20px", maxWidth: "1350px", margin: "0 auto", position: 'relative', zIndex: 10 }}>
         <div className="fleet-outer-card">
           <div className="fleet-header">
             <div>
