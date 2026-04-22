@@ -497,11 +497,13 @@ export default function VehicleResults() {
             font-size: 18px !important;
             font-weight: 900 !important;
           }
-          .vr-header-available {
+          .vr-header-available { 
+            display: block !important;
             font-size: 11px !important;
             color: #94a3b8 !important;
             font-weight: 800 !important;
             text-transform: uppercase !important;
+            margin-left: auto !important;
           }
           .vr-controls-row {
             display: flex !important;
@@ -531,6 +533,9 @@ export default function VehicleResults() {
 
           .vcard { border-radius: 20px !important; }
           .v-img-container { height: 180px !important; }
+        }
+        .vr-header-available {
+          display: none;
         }
       `}</style>
 
@@ -571,20 +576,20 @@ export default function VehicleResults() {
             alignItems: "center",
             gap: "24px"
           }}>
-            <div className="vr-header-top" style={{ minWidth: 0, display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
-              <div className="vr-header-left" style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <div className="vr-header-top" style={{ minWidth: 0, display: "flex", alignItems: "center", gap: "12px" }}>
                 <h1 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, color: "#0f172a", margin: 0, letterSpacing: "-0.5px" }}>
                   {isAll ? "All Vehicles" : isBike ? "Bikes" : "Cars"}
                 </h1>
                 {date && (
                   <div className="vr-header-date" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}>
+                    <span className="vr-hide-mob" style={{ color: "rgba(15, 23, 42, 0.1)", margin: "0 4px" }}>·</span>
                     <IcoCalendar /> {fmt(date)}
                   </div>
                 )}
-              </div>
               
+              {/* This one only shows on mobile */}
               <div className="vr-header-available">
-                <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                <span style={{ fontSize: "11px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>
                   {sorted.length} available
                 </span>
               </div>
@@ -761,7 +766,13 @@ export default function VehicleResults() {
                   </button>
             </div>
             
-            {/* Removed redundant available span */}
+            </div>
+            
+            <div className="vr-hide-mob" style={{ justifySelf: "end" }}>
+              <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                {sorted.length} available
+              </span>
+            </div>
           </div>
         </div>
 
