@@ -676,7 +676,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .search-main-card { 
         background: #fff !important;
         border: 1px solid #cbd5e1 !important;
-        border-radius: 12px !important;
+        border-radius: 20px !important;
         box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
