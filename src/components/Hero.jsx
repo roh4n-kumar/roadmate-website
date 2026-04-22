@@ -646,66 +646,200 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     }
 
     @media (max-width: 900px) {
-      .hero-section { margin-top: 0 !important; padding-bottom: 40px; background: #fff !important; }
+      .hero-section { margin-top: 0 !important; padding-bottom: 40px; background: #fdfdfd !important; }
       .search-ribbon-v2 { 
-        padding: 100px 16px 60px !important; 
-        background: #fff !important; 
+        padding: 40px 16px 20px !important; 
+        background: transparent !important; 
         background-image: none !important;
       }
       .hero-title { 
-        font-size: 36px !important; 
+        font-size: 32px !important; 
         transform: translateY(0) !important; 
-        margin-bottom: 30px !important;
+        margin-bottom: 15px !important;
         text-align: center !important;
         color: #1e293b !important;
       }
-      .hero-subtitle { font-size: 16px !important; color: #64748b !important; }
-      .hero-header-block { display: none !important; }
-      .disclaimer-pills-row { display: none !important; }
+      .hero-subtitle { font-size: 15px !important; color: #64748b !important; text-align: center !important; display: block !important; margin-bottom: 20px !important; }
+      .hero-header-block { display: block !important; margin-bottom: 10px !important; }
       
       .search-master-card { 
-        padding: 30px 16px 40px !important; 
-        margin-top: 40px !important; /* More space for the tab */
+        padding: 0 !important; 
+        margin-top: 10px !important; 
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
       }
       .search-tab-popup { 
-        left: 32px !important; 
-        top: -46px !important; 
-        padding: 12px 24px !important;
-        width: fit-content !important;
-        border-radius: 12px 12px 0 0 !important;
-        box-shadow: 0 -8px 20px rgba(0,0,0,0.05) !important;
+        display: none !important; 
       }
-      .search-tab-text { font-size: 11px !important; white-space: nowrap !important; }
 
       .search-main-card { 
-        grid-template-columns: 1fr !important; 
-        border-radius: 20px !important;
-        overflow: visible;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12px !important;
+        margin-top: 0 !important;
       }
+
       .search-col { 
-        padding: 20px !important; 
-        border-right: none !important;
-        border-bottom: 1.5px solid #cbd5e1 !important;
-        border-radius: 0 !important; /* Straighten lines */
+        padding: 12px 10px !important; 
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 10px !important;
+        background: #fff !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: center !important;
+        position: relative !important;
+        min-width: 0 !important; /* Allow flex children to shrink */
       }
-      .search-col:last-child { border-bottom: none !important; }
+
+      /* 1. Vehicle Category (Full width) */
+      .search-col:nth-child(1) { grid-column: 1 / 3 !important; }
+      
+      /* 2. Date (Full width) */
+      .search-col:nth-child(2) { grid-column: 1 / 3 !important; }
+      
+      /* 3. Pickup Time (Left) */
+      .search-col:nth-child(3) { grid-column: 1 / 2 !important; }
+      
+      /* 4. Drop Time (Right) */
+      .search-col:nth-child(4) { grid-column: 2 / 3 !important; }
+
+      /* The swap icon between Pickup and Return Time */
+      .search-col:nth-child(3)::after {
+        content: "⇄";
+        position: absolute;
+        right: -16px; /* Adjust based on new gap and padding */
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #be0d0d;
+        font-size: 14px;
+        z-index: 10;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      }
+
+      .col-label {
+        font-size: 10px !important;
+        font-weight: 800 !important;
+        color: #94a3b8 !important;
+        text-transform: uppercase !important;
+        margin-bottom: 4px !important;
+        letter-spacing: 0.5px !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: space-between !important;
+      }
+      
+      .col-value { 
+        font-size: 16px !important; 
+        font-weight: 900 !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 6px !important;
+        width: 100% !important;
+        overflow: hidden !important;
+      }
+      .col-value span {
+         white-space: nowrap !important;
+         overflow: hidden !important;
+         text-overflow: ellipsis !important;
+      }
+      .col-value svg {
+        display: none !important;
+      }
 
       /* Fix date pills overflow */
       .search-col:nth-child(2) .col-value { 
-        flex-direction: column !important; 
-        align-items: flex-start !important; 
-        gap: 12px !important; 
+        flex-direction: row !important; 
+        align-items: center !important; 
+        gap: 8px !important; 
       }
       .search-col:nth-child(2) .col-value > div:last-child { 
-        display: none !important; /* Hide Today/Tomorrow pills on mobile */
+        display: flex !important; /* Show Today/Tomorrow pills on mobile */
+        margin-left: auto !important;
+        gap: 4px !important;
       }
-      .col-value { font-size: 28px !important; }
+      .date-pill {
+        padding: 4px 8px !important;
+        font-size: 10px !important;
+        height: 24px !important;
+        margin-top: 0 !important;
+      }
       
+      .col-sub {
+        font-size: 12px !important;
+        color: #94a3b8 !important;
+        margin-top: 4px !important;
+      }
+
       .floating-search-btn {
-        width: calc(100% - 32px) !important;
-        height: 56px !important;
-        font-size: 18px !important;
-        bottom: -28px !important;
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        margin-top: 24px !important;
+        height: 52px !important;
+        border-radius: 10px !important;
+        font-size: 16px !important;
+        letter-spacing: 0.5px !important;
+        box-shadow: 0 8px 20px rgba(190,13,13,0.3) !important;
+      }
+
+      /* Quick Info / Special Fares styled pills */
+      .disclaimer-pills-row { 
+        display: flex !important; 
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important; 
+        padding-bottom: 12px !important;
+        margin-top: 24px !important;
+        margin-bottom: 0 !important;
+        gap: 12px !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        position: relative;
+      }
+      .disclaimer-pills-row::-webkit-scrollbar { display: none; }
+      
+      .disclaimer-pill { 
+        flex: 0 0 auto !important; 
+        padding: 12px 16px !important; 
+        border-radius: 10px !important; 
+        border: 1px solid #e2e8f0 !important;
+        background: #fff !important;
+        gap: 0 !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        min-width: 150px !important;
+      }
+      .pill-icon-box { display: none !important; }
+      
+      .pill-text { 
+        font-size: 12px !important; 
+        color: #0d9488 !important; /* Teal green matching flight app style */
+        font-weight: 600 !important; 
+        margin-top: 2px !important; 
+        line-height: 1.3 !important;
+      }
+      .pill-text span { 
+        font-size: 14px !important; 
+        color: #111 !important; 
+        font-weight: 800 !important; 
+        margin-bottom: 4px !important; 
+        text-transform: capitalize !important; 
+        display: block !important; 
       }
       
       .special-fares-row { flex-direction: column !important; gap: 15px !important; }
@@ -714,9 +848,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .steps-grid-connector { display: none !important; }
       .feature-card { padding: 30px 20px !important; border-radius: 20px !important; }
       .step-num { width: 60px !important; height: 60px !important; font-size: 20px !important; }
-      
-      .disclaimer-pill { padding: 10px 14px !important; }
-      .pill-text { font-size: 11px !important; }
     }
 
   `;
