@@ -665,6 +665,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .search-master-card { 
         padding: 0 !important; 
         margin-top: 10px !important; 
+        margin-bottom: 40px !important;
         background: transparent !important;
         border: none !important;
         box-shadow: none !important;
@@ -711,23 +712,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
       /* The swap icon between Pickup and Return Time */
       .search-col:nth-child(3)::after {
-        content: "⇄";
-        position: absolute;
-        right: -16px; /* Adjust based on new gap and padding */
-        top: 50%;
-        transform: translateY(-50%);
-        width: 24px;
-        height: 24px;
-        background: #fff;
-        border: 1px solid #e2e8f0;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #be0d0d;
-        font-size: 14px;
-        z-index: 10;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        display: none !important;
       }
 
       .col-label {
@@ -777,6 +762,9 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         height: 24px !important;
         margin-top: 0 !important;
       }
+      .date-pill.active {
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+      }
       
       .col-sub {
         font-size: 12px !important;
@@ -784,62 +772,8 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         margin-top: 4px !important;
       }
 
-      .floating-search-btn {
-        position: relative !important;
-        bottom: auto !important;
-        left: auto !important;
-        transform: none !important;
-        width: 100% !important;
-        margin-top: 24px !important;
-        height: 52px !important;
-        border-radius: 10px !important;
-        font-size: 16px !important;
-        letter-spacing: 0.5px !important;
-        box-shadow: 0 8px 20px rgba(190,13,13,0.3) !important;
-      }
-
-      /* Quick Info / Special Fares styled pills */
       .disclaimer-pills-row { 
-        display: flex !important; 
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important; 
-        padding-bottom: 12px !important;
-        margin-top: 24px !important;
-        margin-bottom: 0 !important;
-        gap: 12px !important;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        position: relative;
-      }
-      .disclaimer-pills-row::-webkit-scrollbar { display: none; }
-      
-      .disclaimer-pill { 
-        flex: 0 0 auto !important; 
-        padding: 12px 16px !important; 
-        border-radius: 10px !important; 
-        border: 1px solid #e2e8f0 !important;
-        background: #fff !important;
-        gap: 0 !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        min-width: 150px !important;
-      }
-      .pill-icon-box { display: none !important; }
-      
-      .pill-text { 
-        font-size: 12px !important; 
-        color: #0d9488 !important; /* Teal green matching flight app style */
-        font-weight: 600 !important; 
-        margin-top: 2px !important; 
-        line-height: 1.3 !important;
-      }
-      .pill-text span { 
-        font-size: 14px !important; 
-        color: #111 !important; 
-        font-weight: 800 !important; 
-        margin-bottom: 4px !important; 
-        text-transform: capitalize !important; 
-        display: block !important; 
+        display: none !important; 
       }
       
       .special-fares-row { flex-direction: column !important; gap: 15px !important; }
