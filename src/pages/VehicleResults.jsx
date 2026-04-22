@@ -460,6 +460,7 @@ export default function VehicleResults() {
         /* ── Mobile layout ── */
         @media (max-width: 900px) {
           .vr-page      { padding-top: 60px !important; padding-bottom: 70px !important; }
+          .vr-subheader { top: 60px !important; padding: 14px 18px !important; height: auto !important; background: #fff !important; }
           .vr-subheader-inner { 
             display: grid !important; 
             grid-template-areas: "left count" "actions actions" !important;
@@ -495,7 +496,7 @@ export default function VehicleResults() {
           }
           
           .vr-hide-mob  { display: none !important; }
-          .vr-content   { padding: 24px 0 30px !important; }
+          .vr-content   { padding: 16px 0 30px !important; }
           .vr-content-wrapper { padding: 0 !important; }
           .vr-content-layout { display: block !important; }
           .vr-grid      { grid-template-columns: 1fr !important; gap: 16px !important; padding: 16px !important; }
