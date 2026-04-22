@@ -682,7 +682,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         grid-template-columns: 1fr 1fr !important;
         gap: 0 !important;
         margin-top: 0 !important;
-        overflow: hidden !important;
+        overflow: visible !important;
       }
 
       .search-col { 
