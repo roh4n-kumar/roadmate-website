@@ -544,7 +544,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                       flexDirection: "column", 
                       gap: "0", 
                       overflowY: "auto", 
-                      paddingBottom: "100px",
+                      paddingBottom: "60px",
                       WebkitOverflowScrolling: "touch",
                       overscrollBehavior: "contain",
                       scrollBehavior: "smooth",
