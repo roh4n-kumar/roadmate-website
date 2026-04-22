@@ -80,55 +80,39 @@ const socialIcons = {
   linkedin: <LinkedInIcon />,
 };
 
-  const Footer = () => {
+const Footer = () => {
   return (
-    <footer className="site-footer" style={{ background: "#000000", color: "#ffffff", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "50px", paddingBottom: "40px", fontFamily: F }}>
+    <footer style={{ background: "#000000", color: "#ffffff", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "50px", paddingBottom: "40px", fontFamily: F }}>
       <style>
         {`
           @media (max-width: 900px) {
-            .site-footer {
-              padding-bottom: 90px !important;
-            }
             .footer-main-row {
               flex-direction: column !important;
-              gap: 30px !important;
-              align-items: flex-start !important;
+              gap: 40px !important;
+              align-items: center !important;
+              text-align: center !important;
             }
             .nav-columns-group {
-              width: 100% !important;
               display: grid !important;
               grid-template-columns: 1fr 1fr !important;
-              gap: 40px 20px !important;
-            }
-            .footer-nav-col {
-              display: flex;
-              flex-direction: column;
-              align-items: flex-start !important;
-            }
-            .footer-nav-col h4 {
+              width: 100% !important;
+              gap: 30px 20px !important;
               text-align: left !important;
-            }
-            .footer-nav-links {
-              align-items: flex-start !important;
             }
             .brand-column {
               align-items: center !important;
-              text-align: center !important;
               max-width: 100% !important;
             }
             .footer-bottom-row {
               justify-content: center !important;
               flex-direction: column-reverse !important;
-              gap: 20px !important;
+              gap: 30px !important;
               text-align: center !important;
-            }
-            .footer-container {
-              padding: 0 20px !important;
             }
           }
         `}
       </style>
-      <div className="footer-container" style={{ maxWidth: "1250px", margin: "0 auto", padding: "0 24px" }}>
+      <div style={{ maxWidth: "1250px", margin: "0 auto", padding: "0 24px" }}>
         <div className="footer-main-row" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "50px", marginBottom: "35px" }}>
           
           {/* Brand Column */}
@@ -144,9 +128,9 @@ const socialIcons = {
           {/* Nav Group */}
           <div className="nav-columns-group" style={{ display: "flex", gap: "80px", flexWrap: "wrap" }}>
             {/* Quick Links */}
-            <div className="footer-nav-col">
+            <div>
               <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff", textAlign: "left" }}>Company</h4>
-              <div className="footer-nav-links" style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
                 <Link to="/about" style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>About Us</Link>
                 <Link to="/vehicles?type=all" style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>Our Fleet</Link>
                 <Link to="/pricing" style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>Pricing</Link>
@@ -155,9 +139,9 @@ const socialIcons = {
             </div>
   
             {/* Support */}
-            <div className="footer-nav-col">
+            <div>
               <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff", textAlign: "left" }}>Support</h4>
-              <div className="footer-nav-links" style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
                 {[
                   { name: "Help Center", path: "/help-center" }, 
                   { name: "Safety Information", path: "/safety-information" }, 
@@ -170,9 +154,9 @@ const socialIcons = {
             </div>
   
             {/* Explore Section */}
-            <div className="footer-nav-col">
+            <div>
               <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff", textAlign: "left" }}>Explore</h4>
-              <div className="footer-nav-links" style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
                 {[
                   { name: "Special Offers", path: "/offers" }, 
                   { name: "How It Works", path: "/how-it-works" }, 
