@@ -403,7 +403,7 @@ const PersonalInfo = () => {
             position: absolute !important;
             top: 50% !important;
             left: 50% !important;
-            transform: translate(-50%, -40%) !important; 
+            transform: translate(-50%, -35%) !important; 
             width: 100% !important;
             height: auto !important;
             display: flex !important;
@@ -419,7 +419,7 @@ const PersonalInfo = () => {
           .pi-card  { padding: 24px 20px !important; border-radius: 20px !important; margin-bottom: 20px !important; }
           .pi-grid  { grid-template-columns: 1fr !important; gap: 20px !important; }
           .pi-title { font-size: 28px !important; margin-bottom: 8px !important; }
-          .pi-avatar{ width: 100px !important; height: 100px !important; font-size: 24px !important; border-width: 4px !important; margin-bottom: 15px !important; }
+          .pi-avatar{ width: 100px !important; height: 100px !important; font-size: 24px !important; border-width: 4px !important; margin-bottom: 12px !important; }
           .pi-name  { font-size: 22px !important; }
           .pi-btns  { flex-direction: column-reverse !important; gap: 12px !important; }
           .pi-btns button { width: 100% !important; justify-content: center !important; height: 56px !important; }
