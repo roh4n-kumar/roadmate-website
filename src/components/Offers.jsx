@@ -210,7 +210,7 @@ const Offers = () => {
           }
 
           @media (max-width: 900px) {
-            #offers-slider { padding: 40px 16px 60px !important; }
+            #offers-slider { padding: 10px 16px 60px !important; }
             .outer-card { padding: 30px 0 !important; border-radius: 24px !important; }
             .top-bar { 
               padding: 0 20px !important; 
