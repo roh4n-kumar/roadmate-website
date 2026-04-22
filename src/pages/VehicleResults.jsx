@@ -477,7 +477,7 @@ export default function VehicleResults() {
             order: 2 !important; 
             position: absolute !important; 
             right: 16px !important; 
-            top: 14px !important;
+            top: 15px !important; /* Slightly adjusted for better centering */
           }
           .vr-subheader-actions { 
             width: 100% !important; 
@@ -552,7 +552,7 @@ export default function VehicleResults() {
                   )}
                   {totalMins > 0 && (
                     <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
+                      <span className="vr-hide-mob" style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
                       <div className="vr-hide-mob" style={{ display: "flex", alignItems: "center", gap: "8px", color: SLATE, fontSize: "14px", fontWeight: "800", background: "rgba(15, 23, 42, 0.04)", padding: "6px 14px", borderRadius: "10px", border: "1px solid rgba(15, 23, 42, 0.05)" }}>
                         <IcoClock /> {fmtDuration(totalMins)} ({fmtTime(pickup)} – {fmtTime(drop)})
                       </div>
@@ -561,7 +561,7 @@ export default function VehicleResults() {
                   
                   {isBike && (params.get("helmet") === '1' || params.get("helmet") === 'true') && (
                     <div ref={helmetRef} style={{ display: "flex", alignItems: "center", gap: "10px", position: "relative" }}>
-                      <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
+                      <span className="vr-hide-mob" style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
                       <div 
                         onClick={() => setShowHelmetDropdown(!showHelmetDropdown)}
                         style={{ 
@@ -665,7 +665,7 @@ export default function VehicleResults() {
                   )}
                   {isCar && (
                     <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
+                      <span className="vr-hide-mob" style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
                       <span style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11px", color: withDriver ? RED : "rgba(15,23,42,0.4)", fontWeight: "900", background: withDriver ? `${RED}10` : "rgba(15,23,42,0.05)", padding: "6px 14px", borderRadius: "99px", letterSpacing: "0.5px", textTransform: "uppercase" }}>
                         {withDriver ? "WITH DRIVER" : "SELF DRIVE"}
                       </span>
