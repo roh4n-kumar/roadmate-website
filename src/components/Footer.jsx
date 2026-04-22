@@ -123,7 +123,7 @@ const socialIcons = {
               text-align: center !important;
             }
             .footer-container {
-              padding: 0 16px !important;
+              padding: 0 20px !important;
             }
           }
         `}
