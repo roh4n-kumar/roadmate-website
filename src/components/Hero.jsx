@@ -950,14 +950,13 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
                     {formData.dateDisplay}
                   </span>
                 </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '4px' }}>
-                <div className="col-sub" style={{ color: '#718096' }}>{formData.dayName}</div>
-                <div style={{ display: 'flex', gap: '8px' }}>
+                {/* Pills moved here */}
+                <div style={{ display: 'flex', gap: '8px', marginLeft: 'auto' }}>
                   <button onClick={jumpToday} className={`date-pill ${isSelectedToday() ? 'active' : ''}`}>Today</button>
                   <button onClick={jumpTomm} className={`date-pill ${isSelectedTomorrow() ? 'active' : ''}`}>Tomorrow</button>
                 </div>
               </div>
+              <div className="col-sub" style={{ color: '#718096' }}>{formData.dayName}</div>
               {showCal && (
                 <div className="cal-box" style={{ padding: 0 }} onClick={e => e.stopPropagation()}>
                     <CalendarInline selected={formData.selectedDate} onSelect={d => { setFormData({...formData, selectedDate:d, dateDisplay: formatPrettyDate(d), dayName: getDayName(d)}); openDropdown('off'); }} />
