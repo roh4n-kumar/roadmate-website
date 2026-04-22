@@ -665,7 +665,6 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
       .search-master-card { 
         padding: 0 !important; 
         margin-top: 10px !important; 
-        margin-bottom: 40px !important;
         background: transparent !important;
         border: none !important;
         box-shadow: none !important;
@@ -770,6 +769,18 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         font-size: 12px !important;
         color: #94a3b8 !important;
         margin-top: 4px !important;
+      }
+
+      .floating-search-btn {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        margin-top: 24px !important;
+        height: 48px !important;
+        font-size: 16px !important;
+        box-shadow: none !important;
       }
 
       .disclaimer-pills-row { 
