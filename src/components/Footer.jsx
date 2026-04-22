@@ -82,10 +82,13 @@ const socialIcons = {
 
   const Footer = () => {
   return (
-    <footer style={{ background: "#000000", color: "#ffffff", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "50px", paddingBottom: "40px", fontFamily: F }}>
+    <footer className="site-footer" style={{ background: "#000000", color: "#ffffff", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "50px", paddingBottom: "40px", fontFamily: F }}>
       <style>
         {`
           @media (max-width: 900px) {
+            .site-footer {
+              padding-bottom: 90px !important;
+            }
             .footer-main-row {
               flex-direction: column !important;
               gap: 40px !important;
@@ -121,7 +124,7 @@ const socialIcons = {
               text-align: center !important;
             }
             .footer-container {
-              padding: 0 16px !important;
+              padding: 0 20px !important;
             }
           }
         `}
