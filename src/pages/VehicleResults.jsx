@@ -495,7 +495,7 @@ export default function VehicleResults() {
           }
           
           .vr-hide-mob  { display: none !important; }
-          .vr-content   { padding: 16px 0 30px !important; }
+          .vr-content   { padding: 24px 0 30px !important; }
           .vr-content-wrapper { padding: 0 !important; }
           .vr-content-layout { display: block !important; }
           .vr-grid      { grid-template-columns: 1fr !important; gap: 16px !important; padding: 16px !important; }
