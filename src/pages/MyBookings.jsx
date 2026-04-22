@@ -127,7 +127,7 @@ const MyBookings = () => {
         .mb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
         .mb-card { 
           background: #fff; border-radius: 28px; overflow: hidden; 
-          box-shadow: 0 10px 30px rgba(0,0,0,0.04); border: 1.5px solid rgba(15,23,42,0.05);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.04); border: 1.5px solid rgba(15,23,42,0.15);
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .mb-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); border-color: ${RED}20; }
