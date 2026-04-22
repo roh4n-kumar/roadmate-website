@@ -394,10 +394,12 @@ const PersonalInfo = () => {
         .avatar-box:hover .avatar-overlay { bottom: 0; }
         .avatar-box:hover img { filter: brightness(0.8); }
 
+        .pi-banner-inner { justify-content: flex-end; padding-bottom: 40px; }
+        
         @media (max-width: 900px) {
           .pi-page-wrapper { padding-top: 0px !important; }
           .pi-banner { height: 320px !important; }
-          .pi-banner-inner { justify-content: center !important; padding: 0 !important; }
+          .pi-banner-inner { justify-content: center !important; padding: 0 !important; padding-top: 30px !important; }
           .pi-header { padding: 40px 0 60px; }
           .pi-wrap  { padding-bottom: 80px !important; }
           .pi-inner { padding: 0 16px !important; }
@@ -420,7 +422,7 @@ const PersonalInfo = () => {
         {/* IDENTITY BANNER RAILS */}
         <div className="pi-banner" style={{ position: 'relative', height: '400px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url("/thar-off-roading.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.6)' }} />
-          <div className="pi-inner pi-banner-inner" style={{ height: '100%', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: '40px' }}>
+          <div className="pi-inner pi-banner-inner" style={{ height: '100%', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {/* Banner Main Content */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
               {/* Hidden File Input */}
