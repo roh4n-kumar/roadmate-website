@@ -648,18 +648,24 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     /* INTERMEDIATE TABLET/SMALL DESKTOP FIX */
     @media (min-width: 901px) and (max-width: 1250px) {
       .search-main-card {
-        grid-template-columns: 190px 1.2fr 190px 190px !important;
+        grid-template-columns: 180px 1.4fr 180px 180px !important;
       }
       .col-value {
-        font-size: 24px !important;
+        font-size: 22px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+      }
+      .col-value > div {
+        margin-left: 0 !important;
       }
       .date-pill {
-        padding: 4px 10px !important;
-        font-size: 11px !important;
-        height: 28px !important;
+        padding: 4px 8px !important;
+        font-size: 10px !important;
+        height: 24px !important;
       }
       .search-col {
-        padding: 18px 12px !important;
+        padding: 15px 10px !important;
       }
     }
 
