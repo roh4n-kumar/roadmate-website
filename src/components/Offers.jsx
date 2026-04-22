@@ -218,20 +218,41 @@ const Offers = () => {
               align-items: flex-start !important; 
               gap: 15px !important; 
             }
-            .main-heading { font-size: 28px !important; }
+            .title-area {
+              flex-wrap: wrap !important;
+              gap: 10px !important;
+            }
+            .main-heading { font-size: 26px !important; line-height: 1.1 !important; }
+            .title-pill { padding: 6px 12px !important; font-size: 10px !important; }
             .nav-controls { width: 100% !important; justify-content: flex-start !important; }
+            .view-all-btn { width: auto !important; padding: 10px 20px !important; font-size: 13px !important; }
             .offer-grid { padding: 10px 20px 25px !important; scroll-padding-left: 20px !important; }
             .o-card { 
-              width: 88vw !important; 
+              width: 85vw !important; 
               padding: 16px !important; 
-              gap: 16px !important; 
+              flex-direction: column !important;
+              gap: 12px !important; 
               min-height: auto !important;
             }
-            .o-img-box { width: 100px !important; height: 100px !important; }
-            .o-title { font-size: 18px !important; margin-top: 10px !important; }
-            .o-desc { font-size: 12px !important; }
-            .o-tc { font-size: 8px !important; top: 15px !important; right: 15px !important; }
-            .o-footer { padding-top: 10px !important; }
+            .o-img-box { 
+              width: 100% !important; 
+              height: 160px !important; 
+              border-radius: 8px !important; 
+            }
+            .o-title { font-size: 19px !important; margin-top: 4px !important; }
+            .o-desc { font-size: 13px !important; max-width: 100% !important; }
+            .o-tc { 
+              top: 24px !important; 
+              right: 24px !important; 
+              background: rgba(255,255,255,0.9);
+              padding: 4px 8px !important;
+              border-radius: 4px !important;
+              backdrop-filter: blur(4px) !important;
+              z-index: 2 !important;
+              font-size: 9px !important;
+              box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+            .o-footer { padding-top: 12px !important; border-top: 1px dashed rgba(0,0,0,0.08); margin-top: 8px !important; }
           }
         `}
       </style>
