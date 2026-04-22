@@ -104,6 +104,9 @@ const Footer = () => {
               align-items: center !important;
               max-width: 100% !important;
             }
+            .brand-column p {
+              margin-bottom: 0px !important;
+            }
             .footer-bottom-row {
               justify-content: center !important;
               flex-direction: column-reverse !important;
