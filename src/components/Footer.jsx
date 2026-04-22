@@ -120,10 +120,13 @@ const socialIcons = {
               gap: 30px !important;
               text-align: center !important;
             }
+            .footer-container {
+              padding: 0 16px !important;
+            }
           }
         `}
       </style>
-      <div style={{ maxWidth: "1250px", margin: "0 auto", padding: "0 24px" }}>
+      <div className="footer-container" style={{ maxWidth: "1250px", margin: "0 auto", padding: "0 24px" }}>
         <div className="footer-main-row" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "50px", marginBottom: "35px" }}>
           
           {/* Brand Column */}
