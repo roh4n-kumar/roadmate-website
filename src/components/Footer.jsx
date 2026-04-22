@@ -88,7 +88,7 @@ const Footer = () => {
           @media (max-width: 900px) {
             .footer-main-row {
               flex-direction: column !important;
-              gap: 0px !important;
+              gap: 50px !important;
               align-items: center !important;
               text-align: center !important;
             }
@@ -113,6 +113,7 @@ const Footer = () => {
               flex-direction: column-reverse !important;
               gap: 30px !important;
               text-align: center !important;
+              padding-bottom: 100px !important;
             }
           }
         `}
