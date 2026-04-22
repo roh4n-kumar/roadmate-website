@@ -474,8 +474,33 @@ export default function VehicleResults() {
           .vr-header-top {
             display: flex !important;
             justify-content: space-between !important;
-            align-items: center !important;
+            align-items: baseline !important;
             width: 100% !important;
+          }
+          .vr-header-left {
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+          }
+          .vr-header-date {
+            font-size: 11px !important;
+            color: #64748b !important;
+            font-weight: 700 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 4px !important;
+          }
+          .vr-header-date::before {
+            content: "·";
+            margin-right: 4px;
+            color: rgba(15, 23, 42, 0.2);
+            font-weight: 900;
+          }
+          .vr-header-available {
+            font-size: 11px !important;
+            color: #94a3b8 !important;
+            font-weight: 800 !important;
+            text-transform: uppercase !important;
           }
           .vr-controls-row {
             display: flex !important;
@@ -545,23 +570,28 @@ export default function VehicleResults() {
             alignItems: "center",
             gap: "24px"
           }}>
-            <div className="vr-header-top" style={{ minWidth: 0 }}>
-              <h1 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, color: "#0f172a", margin: 0, letterSpacing: "-0.5px" }}>
-                {isAll ? "All Vehicles" : isBike ? "Bikes" : "Cars"}
-              </h1>
+            <div className="vr-header-top" style={{ minWidth: 0, display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
+              <div className="vr-header-left" style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                <h1 style={{ fontSize: "20px", fontWeight: 900, fontFamily: H, color: "#0f172a", margin: 0, letterSpacing: "-0.5px" }}>
+                  {isAll ? "All Vehicles" : isBike ? "Bikes" : "Cars"}
+                </h1>
+                {date && (
+                  <div className="vr-header-date" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap" }}>
+                    <span className="vr-hide-mob" style={{ color: "rgba(15, 23, 42, 0.1)", margin: "0 4px" }}>·</span>
+                    <IcoCalendar /> {fmt(date)}
+                  </div>
+                )}
+              </div>
               
-              <div className="vr-hide-mob" style={{ display: "none" }}>
-                {/* Available count for mobile will be handled in vr-header-top if needed, 
-                    but I'll keep it at the end like desktop for now or move it inside vr-header-top for mobile */}
+              <div className="vr-header-available">
+                <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                  {sorted.length} available
+                </span>
               </div>
             </div>
 
             <div className="vr-controls-row" style={{ display: "flex", alignItems: "center", gap: "12px", minWidth: 0 }}>
-                  {date && (
-                    <div className="vr-control-item" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#64748b", fontWeight: "700", whiteSpace: "nowrap", background: "rgba(15,23,42,0.05)", padding: "8px 12px", borderRadius: "10px" }}>
-                      <IcoCalendar /> {fmt(date)}
-                    </div>
-                  )}
+                  {/* Date removed from here, now in header-top */}
                   
                   {isBike && (params.get("helmet") === '1' || params.get("helmet") === 'true') && (
                     <div ref={helmetRef} className="vr-control-item" style={{ display: "flex", alignItems: "center", gap: "10px", position: "relative" }}>
@@ -731,11 +761,7 @@ export default function VehicleResults() {
                   </button>
             </div>
             
-            <div style={{ justifySelf: "end" }}>
-              <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "800", flexShrink: 0, fontFamily: H, textTransform: "uppercase", letterSpacing: "0.5px" }}>
-                {sorted.length} available
-              </span>
-            </div>
+            {/* Removed redundant available span */}
           </div>
         </div>
 
