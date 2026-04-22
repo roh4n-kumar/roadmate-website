@@ -50,6 +50,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const isBlockedDrawerPage = location.pathname === "/vehicles" || location.pathname === "/payment";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -413,7 +414,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
 
             <button 
               onClick={() => {
-                if (isHome) {
+                if (!isBlockedDrawerPage) {
                   setIsDrawerOpen(true);
                 }
               }} 
@@ -461,7 +462,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
             <div
               className="mobile-trigger"
               onClick={() => {
-                if (isHome) {
+                if (!isBlockedDrawerPage) {
                   setIsDrawerOpen(true);
                 }
               }}
