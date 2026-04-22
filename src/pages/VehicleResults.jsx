@@ -699,7 +699,7 @@ export default function VehicleResults() {
                   }}
                 >
                   <Svg size={14}><path d="M11 5L6 9L1 5"/><path d="M11 13L6 17L1 13"/></Svg>
-                  SORT: {sortBy.replace("_", " ").toUpperCase()}
+                  SORT
                 </button>
                 <AnimatePresence>
                   {showSort && (
