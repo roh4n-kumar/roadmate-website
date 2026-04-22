@@ -111,9 +111,9 @@ const Footer = () => {
             .footer-bottom-row {
               justify-content: center !important;
               flex-direction: column !important;
-              gap: 20px !important;
+              gap: 5px !important;
               text-align: center !important;
-              padding-bottom: 90px !important;
+              padding-bottom: 50px !important;
             }
           }
         `}
