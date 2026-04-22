@@ -648,7 +648,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     @media (max-width: 900px) {
       .hero-section { margin-top: 0 !important; padding-bottom: 40px; background: #fdfdfd !important; }
       .search-ribbon-v2 { 
-        padding: 40px 16px 20px !important; 
+        padding: 90px 16px 20px !important; 
         background: transparent !important; 
         background-image: none !important;
       }
@@ -685,7 +685,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
       .search-col { 
         padding: 12px 10px !important; 
-        border: 1px solid #e2e8f0 !important;
+        border: 1px solid #cbd5e1 !important;
         border-radius: 10px !important;
         background: #fff !important;
         box-shadow: 0 2px 8px rgba(0,0,0,0.02) !important;

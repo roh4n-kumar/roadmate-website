@@ -263,8 +263,8 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               background-color: rgba(255, 255, 255, 1) !important;
               backdrop-filter: blur(20px) !important;
               -webkit-backdrop-filter: blur(20px) !important;
-              border-bottom: 1.5px solid rgba(15, 23, 42, 0.05) !important;
-              box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15) !important;
+              border-bottom: 1px solid #e2e8f0 !important;
+              box-shadow: none !important;
             }
             .mobile-nav-solid .nav-logo { color: ${RED} !important; }
             .mobile-nav-solid .account-btn { color: #000 !important; }
