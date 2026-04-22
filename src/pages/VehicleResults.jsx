@@ -460,29 +460,32 @@ export default function VehicleResults() {
         /* ── Mobile layout ── */
         @media (max-width: 900px) {
           .vr-page      { padding-top: 60px !important; padding-bottom: 70px !important; }
-          .vr-subheader { top: 60px !important; padding: 12px 16px !important; height: auto !important; background: #fff !important; }
           .vr-subheader-inner { 
-            display: flex !important; 
-            flex-direction: column !important; 
+            display: grid !important; 
+            grid-template-areas: "left count" "actions actions" !important;
+            grid-template-columns: 1fr auto !important;
             height: auto !important; 
             gap: 16px !important; 
             padding: 4px 0 !important;
+            align-items: center !important;
           }
           .vr-subheader-left { 
-            width: 100% !important; 
-            justify-content: space-between !important; 
-            order: 1 !important;
+            grid-area: left !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+            min-width: 0 !important;
           }
           .vr-subheader-count { 
-            order: 2 !important; 
-            position: absolute !important; 
-            right: 16px !important; 
-            top: 15px !important; /* Slightly adjusted for better centering */
+            grid-area: count !important;
+            position: static !important;
+            display: flex !important;
+            align-items: center !important;
           }
           .vr-subheader-actions { 
+            grid-area: actions !important;
             width: 100% !important; 
             justify-content: flex-end !important; 
-            order: 3 !important;
             gap: 10px !important;
           }
           .vr-subheader-actions button, .vr-subheader-actions > div {
@@ -561,7 +564,7 @@ export default function VehicleResults() {
                   
                   {isBike && (params.get("helmet") === '1' || params.get("helmet") === 'true') && (
                     <div ref={helmetRef} style={{ display: "flex", alignItems: "center", gap: "10px", position: "relative" }}>
-                      <span className="vr-hide-mob" style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
+                      <span style={{ fontSize: "13px", color: "rgba(15, 23, 42, 0.2)", fontWeight: "500" }}>|</span>
                       <div 
                         onClick={() => setShowHelmetDropdown(!showHelmetDropdown)}
                         style={{ 
