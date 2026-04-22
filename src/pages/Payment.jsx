@@ -432,10 +432,10 @@ export default function Payment() {
     const fmtDate = s => { if (!s) return ""; const d = new Date(s); return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }); };
 
     return (
-                <div style={{ minHeight: "100vh", background: "#f9fafbd7", paddingTop: "64px", paddingBottom: "100px", fontFamily: F }}>
+                <div className="pay-page" style={{ minHeight: "100vh", background: "#f9fafbd7", paddingTop: "64px", paddingBottom: "100px", fontFamily: F }}>
             
             {/* Sticky Ribbon Header */}
-            <div style={{ 
+            <div className="pay-subheader" style={{ 
                 position: "sticky", 
                 top: "64px", 
                 zIndex: 100, 
@@ -445,7 +445,7 @@ export default function Payment() {
                 width: "100%",
                 padding: "0 24px"
             }}>
-                <div style={{ 
+                <div className="pay-subheader-inner" style={{ 
                     maxWidth: "1250px", 
                     margin: "0 auto", 
                     height: "64px", 
@@ -463,8 +463,8 @@ export default function Payment() {
                         </div>
                     </div>
                     <div />
-                    <div style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: "flex-end" }}>
-                        <span style={{ 
+                    <div className="pay-timer-wrapper" style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: "flex-end" }}>
+                        <span className="pay-timer-text" style={{ 
                             fontFamily: H, 
                             fontSize: "20px", 
                             fontWeight: "500", 
@@ -480,11 +480,11 @@ export default function Payment() {
                 </div>
             </div>
 
-            <div style={{ padding: "0 24px" }}>
-                <div style={{ maxWidth: "1250px", margin: "40px auto 0" }}>
+            <div className="pay-content-wrapper" style={{ padding: "0 24px" }}>
+                <div className="pay-content-inner" style={{ maxWidth: "1250px", margin: "40px auto 0" }}>
 
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 400px", gap: "40px", alignItems: "start" }}>
+                <div className="pay-grid" style={{ display: "grid", gridTemplateColumns: "1fr 400px", gap: "40px", alignItems: "start" }}>
                     
                     {/* LEFT: Payment Methods Selection */}
                     <motion.div layout transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
@@ -597,7 +597,7 @@ export default function Payment() {
                     </motion.div>
 
                     {/* RIGHT: Order Summary Sidebar */}
-                    <div style={{ position: "sticky", top: "100px" }}>
+                    <div className="pay-sidebar" style={{ position: "sticky", top: "100px" }}>
                         <div style={{ background: "#fff", borderRadius: "28px", padding: "30px", color: SLATE, border: "1.5px solid rgba(15, 23, 42, 0.12)", boxShadow: "0 8px 30px rgba(15, 23, 42, 0.04)" }}>
                             <h3 style={{ fontSize: "18px", fontWeight: 900, fontFamily: H, margin: "0 0 25px", color: SLATE }}>Order Details</h3>
                             
@@ -785,6 +785,21 @@ export default function Payment() {
             <style>{`
                 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
                 input::placeholder { color: rgba(15,23,42,0.3); font-weight: 500; }
+
+                @media (max-width: 900px) {
+                    .pay-page { padding-top: 60px !important; padding-bottom: 40px !important; }
+                    .pay-subheader { top: 60px !important; padding: 0 16px !important; height: 56px !important; }
+                    .pay-subheader-inner { height: 56px !important; grid-template-columns: 1fr auto !important; }
+                    .pay-timer-text { fontSize: 16px !important; min-width: auto !important; }
+                    .pay-content-wrapper { padding: 0 16px !important; }
+                    .pay-content-inner { margin-top: 20px !important; }
+                    .pay-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+                    .pay-sidebar { position: static !important; }
+                    
+                    /* Adjust card layout for mobile */
+                    .pay-grid > div:first-child { order: 2; }
+                    .pay-sidebar { order: 1; }
+                }
             `}</style>
 
             {/* Global Styled Toast */}
