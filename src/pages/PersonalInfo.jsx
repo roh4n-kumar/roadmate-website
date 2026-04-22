@@ -395,23 +395,29 @@ const PersonalInfo = () => {
         .avatar-box:hover img { filter: brightness(0.8); }
 
         @media (max-width: 900px) {
-          .pi-header { padding: 60px 0 100px; }
+          .pi-page-wrapper { padding-top: 64px !important; }
+          .pi-banner { height: 320px !important; }
+          .pi-header { padding: 40px 0 60px; }
           .pi-wrap  { padding-bottom: 80px !important; }
           .pi-inner { padding: 0 16px !important; }
-          .pi-card  { padding: 28px !important; border-radius: 24px !important; margin-bottom: 20px !important; }
+          .pi-card  { padding: 24px 20px !important; border-radius: 20px !important; margin-bottom: 20px !important; }
           .pi-grid  { grid-template-columns: 1fr !important; gap: 20px !important; }
-          .pi-title { font-size: 32px !important; }
-          .pi-avatar{ width: 80px !important; height: 80px !important; font-size: 30px !important; }
+          .pi-title { font-size: 28px !important; margin-bottom: 12px !important; }
+          .pi-avatar{ width: 90px !important; height: 90px !important; font-size: 24px !important; }
           .pi-name  { font-size: 20px !important; }
           .pi-btns  { flex-direction: column-reverse !important; gap: 12px !important; }
           .pi-btns button { width: 100% !important; justify-content: center !important; height: 56px !important; }
           .pi-edit-btn { padding: 10px 16px !important; font-size: 13px !important; }
+          .pi-banner-details { flex-direction: column !important; gap: 10px !important; }
+          .pi-separator { display: none !important; }
+          .pi-card-header { flex-direction: row !important; align-items: center !important; }
+          .pi-card-title { font-size: 18px !important; }
         }
       `}</style>
 
-      <div style={{ background: '#f5f7f9', minHeight: '100vh', paddingBottom: '100px' }}>
+      <div className="pi-page-wrapper" style={{ background: '#f5f7f9', minHeight: '100vh', paddingBottom: '100px' }}>
         {/* IDENTITY BANNER RAILS */}
-        <div style={{ position: 'relative', height: '400px', overflow: 'hidden' }}>
+        <div className="pi-banner" style={{ position: 'relative', height: '400px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url("/thar-off-roading.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.6)' }} />
           <div className="pi-inner" style={{ height: '100%', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: '40px' }}>
             {/* Banner Main Content */}
@@ -420,7 +426,7 @@ const PersonalInfo = () => {
               <input type="file" ref={fileInputRef} onChange={handleImageChange} accept="image/*" style={{ display: 'none' }} />
               
               {/* Avatar */}
-              <div onClick={handleImageClick} className="avatar-box" style={{ width: '140px', height: '140px', borderRadius: '50%', background: RED, border: '5px solid rgba(255,255,255,0.2)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', marginBottom: '20px' }}>
+              <div onClick={handleImageClick} className="avatar-box pi-avatar" style={{ width: '140px', height: '140px', borderRadius: '50%', background: RED, border: '5px solid rgba(255,255,255,0.2)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', marginBottom: '20px' }}>
                 <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
                   {uploading ? (
                     <div style={{ fontSize: '12px', fontWeight: '900' }}>UPLOADING...</div>
@@ -449,7 +455,7 @@ const PersonalInfo = () => {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <PhoneIcon /> {phoneDigits ? `+91 ${phoneDigits}` : 'Add Phone Number'}
                   </div>
-                  <div style={{ height: '12px', width: '1.5px', background: 'rgba(255,255,255,0.3)' }} />
+                  <div className="pi-separator" style={{ height: '12px', width: '1.5px', background: 'rgba(255,255,255,0.3)' }} />
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <MailIcon /> {formData.email || 'Add Email Address'}
                   </div>
@@ -463,8 +469,8 @@ const PersonalInfo = () => {
           {/* MAIN FORM */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <motion.div ref={formCardRef} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="pi-card" style={{ margin: 0, padding: '24px 40px 40px 40px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-                <h2 style={{ fontSize: '22px', fontWeight: '900', color: RED, margin: 0, fontFamily: H }}>My Profile</h2>
+              <div className="pi-card-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+                <h2 className="pi-card-title" style={{ fontSize: '22px', fontWeight: '900', color: RED, margin: 0, fontFamily: H }}>My Profile</h2>
                 {!editMode && (
                   <button onClick={handleEditClick} style={{ background: '#f1f5f9', border: 'none', padding: '8px 20px', borderRadius: '8px', fontWeight: '800', color: '#475569', cursor: 'pointer', transition: '0.2s', fontSize: '12px' }}>EDIT</button>
                 )}
