@@ -80,7 +80,7 @@ const socialIcons = {
   linkedin: <LinkedInIcon />,
 };
 
-const Footer = () => {
+  const Footer = () => {
   return (
     <footer style={{ background: "#000000", color: "#ffffff", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "50px", paddingBottom: "40px", fontFamily: F }}>
       <style>
@@ -94,8 +94,20 @@ const Footer = () => {
             }
             .nav-columns-group {
               width: 100% !important;
-              justify-content: space-around !important;
-              gap: 20px !important;
+              flex-direction: column !important;
+              align-items: center !important;
+              gap: 40px !important;
+            }
+            .footer-nav-col {
+              display: flex;
+              flex-direction: column;
+              align-items: center !important;
+            }
+            .footer-nav-col h4 {
+              text-align: center !important;
+            }
+            .footer-nav-links {
+              align-items: center !important;
             }
             .brand-column {
               align-items: center !important;
@@ -126,9 +138,9 @@ const Footer = () => {
           {/* Nav Group */}
           <div className="nav-columns-group" style={{ display: "flex", gap: "80px", flexWrap: "wrap" }}>
             {/* Quick Links */}
-            <div>
+            <div className="footer-nav-col">
               <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff", textAlign: "left" }}>Company</h4>
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
+              <div className="footer-nav-links" style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
                 <Link to="/about" style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>About Us</Link>
                 <Link to="/vehicles?type=all" style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>Our Fleet</Link>
                 <Link to="/pricing" style={{ color: "rgba(255, 255, 255, 0.8)", textDecoration: "none", fontSize: "14px", fontWeight: 500, transition: "color 0.2s", lineHeight: "1.6" }} onMouseEnter={(e) => e.target.style.color = RED} onMouseLeave={(e) => e.target.style.color = "rgba(255, 255, 255, 0.8)"}>Pricing</Link>
@@ -137,9 +149,9 @@ const Footer = () => {
             </div>
   
             {/* Support */}
-            <div>
+            <div className="footer-nav-col">
               <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff", textAlign: "left" }}>Support</h4>
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
+              <div className="footer-nav-links" style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
                 {[
                   { name: "Help Center", path: "/help-center" }, 
                   { name: "Safety Information", path: "/safety-information" }, 
@@ -152,9 +164,9 @@ const Footer = () => {
             </div>
   
             {/* Explore Section */}
-            <div>
+            <div className="footer-nav-col">
               <h4 style={{ fontSize: "18px", fontWeight: 800, marginTop: "0", marginBottom: "25px", fontFamily: H, color: "#ffffff", textAlign: "left" }}>Explore</h4>
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
+              <div className="footer-nav-links" style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
                 {[
                   { name: "Special Offers", path: "/offers" }, 
                   { name: "How It Works", path: "/how-it-works" }, 
