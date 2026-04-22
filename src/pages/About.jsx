@@ -105,7 +105,6 @@ const About = () => {
                 }
 
                 @media (max-width: 900px) {
-                    .about-hero { padding: 80px 20px 40px !important; }
                     .about-hero h1 { fontSize: 38px !important; }
                     .about-hero p { fontSize: 14px !important; }
                     .about-section { padding: 0 20px !important; }
