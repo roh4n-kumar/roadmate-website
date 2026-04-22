@@ -98,6 +98,7 @@ const Footer = () => {
               width: 100% !important;
               gap: 30px 20px !important;
               text-align: left !important;
+              padding: 0 16px !important;
             }
             .brand-column {
               align-items: center !important;
