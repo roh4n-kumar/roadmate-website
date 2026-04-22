@@ -46,6 +46,7 @@ const PaymentMethodItem = ({ id, active, icon, title, subtitle, onClick, childre
                 ? `0 20px 40px ${RED}15` 
                 : "0 8px 30px rgba(15, 23, 42, 0.04)"
         }}
+        className="pay-method-item"
         style={{ 
             padding: "24px", 
             borderRadius: "32px", 
@@ -495,7 +496,7 @@ export default function Payment() {
                             icon={<Svg size={24}><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82zM7 7h.01"/></Svg>}
                             onClick={(id) => setActiveSection(activeSection === id ? null : id)}
                         >
-                            <div style={{ display: "flex", gap: "12px" }}>
+                            <div className="coupon-input-wrapper" style={{ display: "flex", gap: "12px" }}>
                                 <input 
                                     type="text" 
                                     placeholder="Enter code" 
@@ -522,7 +523,7 @@ export default function Payment() {
                                 onClick={(id) => setActiveSection(activeSection === id ? null : id)}
                             >
                                 <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-                                    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                                    <div className="pay-method-logos" style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
                                         {[
                                             { id: "gpay", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" },
                                             { id: "phonepe", logo: "https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" },
@@ -794,9 +795,13 @@ export default function Payment() {
                     .pay-content-wrapper { padding: 0 16px !important; }
                     .pay-content-inner { margin-top: 20px !important; }
                     .pay-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
-                    .pay-sidebar { position: static !important; }
                     .pay-hide-mob { display: none !important; }
                     
+                    .pay-method-item { padding: 18px !important; border-radius: 24px !important; }
+                    .coupon-input-wrapper { flex-direction: column !important; }
+                    .pay-method-logos { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; width: 100% !important; }
+                    .pay-method-logos > div { min-width: auto !important; }
+
                     /* Adjust card layout for mobile */
                     .pay-grid > div:first-child { order: 1 !important; }
                     .pay-sidebar { order: 2 !important; }
