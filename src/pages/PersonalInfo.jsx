@@ -395,21 +395,21 @@ const PersonalInfo = () => {
         .avatar-box:hover img { filter: brightness(0.8); }
 
         @media (max-width: 900px) {
-          .pi-page-wrapper { padding-top: 64px !important; }
-          .pi-banner { height: 360px !important; }
-          .pi-banner-inner { justify-content: flex-end !important; padding-bottom: 30px !important; padding-top: 0 !important; }
+          .pi-page-wrapper { padding-top: 0px !important; }
+          .pi-banner { height: 320px !important; }
+          .pi-banner-inner { justify-content: flex-end !important; padding-bottom: 25px !important; padding-top: 80px !important; }
           .pi-header { padding: 40px 0 60px; }
           .pi-wrap  { padding-bottom: 80px !important; }
           .pi-inner { padding: 0 16px !important; }
           .pi-card  { padding: 24px 20px !important; border-radius: 20px !important; margin-bottom: 20px !important; }
           .pi-grid  { grid-template-columns: 1fr !important; gap: 20px !important; }
-          .pi-title { font-size: 30px !important; margin-bottom: 8px !important; }
-          .pi-avatar{ width: 100px !important; height: 100px !important; font-size: 26px !important; border-width: 4px !important; margin-bottom: 15px !important; }
-          .pi-name  { font-size: 22px !important; }
+          .pi-title { font-size: 26px !important; margin-bottom: 6px !important; }
+          .pi-avatar{ width: 90px !important; height: 90px !important; font-size: 24px !important; border-width: 3.5px !important; margin-bottom: 12px !important; }
+          .pi-name  { font-size: 20px !important; }
           .pi-btns  { flex-direction: column-reverse !important; gap: 12px !important; }
           .pi-btns button { width: 100% !important; justify-content: center !important; height: 56px !important; }
           .pi-edit-btn { padding: 10px 16px !important; font-size: 13px !important; }
-          .pi-banner-details { flex-direction: column !important; gap: 8px !important; align-items: center !important; }
+          .pi-banner-details { flex-direction: column !important; gap: 6px !important; align-items: center !important; }
           .pi-separator { display: none !important; }
           .pi-card-header { flex-direction: row !important; align-items: center !important; }
           .pi-card-title { font-size: 18px !important; }
