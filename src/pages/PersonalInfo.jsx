@@ -397,13 +397,13 @@ const PersonalInfo = () => {
         @media (max-width: 900px) {
           .pi-page-wrapper { padding-top: 0px !important; }
           .pi-banner { height: 320px !important; }
-          .pi-banner-inner { justify-content: flex-end !important; padding-bottom: 25px !important; padding-top: 80px !important; }
+          .pi-banner-inner { justify-content: center !important; padding-bottom: 0px !important; padding-top: 40px !important; }
           .pi-header { padding: 40px 0 60px; }
           .pi-wrap  { padding-bottom: 80px !important; }
           .pi-inner { padding: 0 16px !important; }
           .pi-card  { padding: 24px 20px !important; border-radius: 20px !important; margin-bottom: 20px !important; }
           .pi-grid  { grid-template-columns: 1fr !important; gap: 20px !important; }
-          .pi-title { font-size: 26px !important; margin-bottom: 6px !important; }
+          .pi-title { font-size: 28px !important; margin-bottom: 8px !important; }
           .pi-avatar{ width: 90px !important; height: 90px !important; font-size: 24px !important; border-width: 3.5px !important; margin-bottom: 12px !important; }
           .pi-name  { font-size: 20px !important; }
           .pi-btns  { flex-direction: column-reverse !important; gap: 12px !important; }
