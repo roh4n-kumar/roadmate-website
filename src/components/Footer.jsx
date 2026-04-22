@@ -110,10 +110,10 @@ const Footer = () => {
             }
             .footer-bottom-row {
               justify-content: center !important;
-              flex-direction: column-reverse !important;
-              gap: 30px !important;
+              flex-direction: column !important;
+              gap: 20px !important;
               text-align: center !important;
-              padding-bottom: 100px !important;
+              padding-bottom: 90px !important;
             }
           }
         `}
