@@ -399,11 +399,26 @@ const DocumentVerification = () => {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
         @keyframes fadeInScale { from { opacity: 0; transform: scale(0.98) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .pi-inner { max-width: 1250px; margin: 0 auto; padding: 0 24px; }
-        .pi-card { background:#fff; border-radius:12px; padding:24px 40px 40px 40px; margin-bottom:24px; box-shadow:0 15px 40px rgba(0,0,0,0.03); border:1.5px solid #e2e8f0; position:relative; overflow:hidden; animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .dv-split { display:flex; gap:40px; align-items: stretch; }
-        .dv-side-upload { flex:1; min-width:0; display:flex; flex-direction:column; }
-        .dv-side-details { flex:1; min-width:0; }
+        
+        .pi-wrap   { padding-bottom: 120px; position: relative; z-index: 10; }
+        .pi-inner  { max-width: 1250px; margin: 0 auto; padding: 0 24px; }
+        .pi-card   { 
+          background: #fff; 
+          border-radius: 12px; 
+          padding: 40px; 
+          margin-bottom: 24px; 
+          box-shadow: 0 15px 40px rgba(0,0,0,0.03); 
+          border: 1.5px solid #e2e8f0; 
+          position: relative;
+          overflow: hidden;
+          animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .pi-grid   { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .pi-title  { font-size: 30px; margin-bottom: 24px; letter-spacing: -1px; }
+        .pi-avatar { width: 100px; height: 100px; font-size: 38px; border: 4px solid #fff; }
+        .pi-name   { font-size: 26px; }
+        .pi-btns   { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
+        .pi-banner-inner { justify-content: flex-end; padding-bottom: 40px; }
         .divider { height:1.2px; background:#e2e8f0; margin-left:-40px; margin-right:-40px; margin-top:40px; margin-bottom:40px; }
 
         @media (max-width: 900px) {
@@ -423,12 +438,21 @@ const DocumentVerification = () => {
             padding: 0 !important;
             margin: 0 !important;
           }
+          .pi-header { padding: 40px 0 60px; }
+          .pi-wrap  { padding-bottom: 80px !important; }
           .pi-inner { padding: 0 16px !important; }
-          .pi-card { padding: 24px 20px !important; border-radius: 20px !important; margin-bottom: 20px !important; }
-          .dv-split { flex-direction: column !important; gap: 30px !important; }
-          .pi-name { font-size: 22px !important; }
+          .pi-card  { padding: 24px 20px !important; border-radius: 20px !important; margin-bottom: 20px !important; }
+          .pi-grid  { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .pi-title { font-size: 28px !important; margin-bottom: 8px !important; }
+          .pi-avatar{ width: 100px !important; height: 100px !important; font-size: 24px !important; border-width: 4px !important; margin-bottom: 12px !important; }
+          .pi-name  { font-size: 22px !important; }
+          .pi-btns  { flex-direction: column-reverse !important; gap: 12px !important; }
+          .pi-btns button { width: 100% !important; justify-content: center !important; height: 56px !important; }
+          .pi-edit-btn { padding: 10px 16px !important; font-size: 13px !important; }
           .pi-banner-details { flex-direction: column !important; gap: 6px !important; align-items: center !important; }
           .pi-separator { display: none !important; }
+          .pi-card-header { flex-direction: row !important; align-items: center !important; }
+          .pi-card-title { font-size: 18px !important; }
           .divider { margin-left: -20px !important; margin-right: -20px !important; }
           .dv-mobile-grid { grid-template-columns: 1fr !important; }
           .dv-selfie-box { width: 100% !important; max-width: 400px !important; height: auto !important; aspect-ratio: 1/1 !important; }
@@ -436,19 +460,20 @@ const DocumentVerification = () => {
         }
       `}</style>
 
-      {/* BANNER (Exact Sync with PersonalInfo) */}
-      <div className="pi-banner" style={{ position:'relative', height:'400px', overflow:'hidden' }}>
-        <div style={{ position:'absolute', inset:0, backgroundImage:'url("/document.jpg")', backgroundSize:'cover', backgroundPosition:'center', filter:'brightness(0.6)' }} />
-        <div className="pi-inner pi-banner-inner" style={{ height:'100%', position:'relative', zIndex:2, display:'flex', flexDirection:'column', alignItems:'center' }}>
-          <div style={{ display:'flex', flexDirection:'column', alignItems:'center', textAlign:'center' }}>
-            <div className="pi-avatar" style={{ width:'140px', height:'140px', borderRadius:'50%', background:RED, border:'5px solid rgba(255,255,255,0.2)', boxShadow:'0 10px 30px rgba(0,0,0,0.2)', marginBottom:'20px', position: 'relative', overflow:'hidden' }}>
-              {(profile.profileImage || user?.photoURL) ? <img src={profile.profileImage || user?.photoURL} style={{ width:'100%', height:'100%', objectFit:'cover' }} /> : <div style={{ height:'100%', display:'flex', alignItems:'center', justifyContent:'center', color:'#fff' }}><CameraIcon /></div>}
+      {/* IDENTITY BANNER RAILS */}
+      <div className="pi-banner" style={{ position: 'relative', height: '400px', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url("/document.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.6)' }} />
+        <div className="pi-inner pi-banner-inner" style={{ height: '100%', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          {/* Banner Main Content */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+            <div className="pi-avatar" style={{ width: '140px', height: '140px', borderRadius: '50%', background: RED, border: '5px solid rgba(255,255,255,0.2)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', marginBottom: '20px', position: 'relative', overflow: 'hidden' }}>
+              {(profile.profileImage || user?.photoURL) ? <img src={profile.profileImage || user?.photoURL} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}><CameraIcon /></div>}
             </div>
-            <h1 className="pi-name" style={{ margin:0, color:'#fff', fontSize:'42px', fontWeight:'900', fontFamily:H, letterSpacing:'-1px', textShadow:'0 2px 10px rgba(0,0,0,0.3)' }}>{profile.name || user?.displayName}</h1>
-            <div className="pi-banner-details" style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:'25px', marginTop:'12px', color:'rgba(255,255,255,0.9)', fontSize:'15px', fontWeight:'600' }}>
-              <div style={{ display:'flex', alignItems:'center', gap:'8px' }}><PhoneIcon /> +91 {profile.phone ? profile.phone.replace("+91","").trim() : 'Add Phone'}</div>
-              <div className="pi-separator" style={{ height:'12px', width:'1.5px', background:'rgba(255,255,255,0.3)' }} />
-              <div style={{ display:'flex', alignItems:'center', gap:'8px' }}><MailIcon /> {user?.email}</div>
+            <h1 className="pi-name" style={{ margin: 0, color: '#fff', fontSize: '42px', fontWeight: '900', fontFamily: H, letterSpacing: '-1px', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>{profile.name || user?.displayName}</h1>
+            <div className="pi-banner-details" style={{ display: 'flex', alignItems: 'center', gap: '25px', marginTop: '12px', color: 'rgba(255,255,255,0.9)', fontSize: '15px', fontWeight: '600' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><PhoneIcon /> +91 {profile.phone ? profile.phone.replace("+91","").trim() : 'Add Phone'}</div>
+              <div className="pi-separator" style={{ height: '12px', width: '1.5px', background: 'rgba(255,255,255,0.3)' }} />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><MailIcon /> {user?.email}</div>
             </div>
           </div>
         </div>
