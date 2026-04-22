@@ -81,6 +81,9 @@ const socialIcons = {
 };
 
 const Footer = () => {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   return (
     <footer style={{ background: "#000000", color: "#ffffff", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "50px", paddingBottom: "40px", fontFamily: F }}>
       <style>
@@ -113,7 +116,7 @@ const Footer = () => {
               flex-direction: column !important;
               gap: 5px !important;
               text-align: center !important;
-              padding-bottom: 50px !important;
+              padding-bottom: ${isHome ? "70px" : "10px"} !important;
             }
           }
         `}

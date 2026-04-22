@@ -397,7 +397,7 @@ const PersonalInfo = () => {
         .pi-banner-inner { justify-content: flex-end; padding-bottom: 40px; }
         
         @media (max-width: 900px) {
-          .pi-page-wrapper { padding-top: 0px !important; }
+          .pi-page-wrapper { padding-top: 0px !important; padding-bottom: 0px !important; }
           .pi-banner { height: 350px !important; position: relative !important; display: flex !important; align-items: center !important; justify-content: center !important; }
           .pi-banner-inner { 
             position: absolute !important;
@@ -430,7 +430,7 @@ const PersonalInfo = () => {
           .pi-card-title { font-size: 18px !important; }
         }
       `}</style>
-
+ 
       <div className="pi-page-wrapper" style={{ background: '#f5f7f9', minHeight: '100vh', paddingBottom: '100px' }}>
         {/* IDENTITY BANNER RAILS */}
         <div className="pi-banner" style={{ position: 'relative', height: '400px', overflow: 'hidden' }}>
