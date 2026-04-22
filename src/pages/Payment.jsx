@@ -462,7 +462,7 @@ export default function Payment() {
                             </div>
                         </div>
                     </div>
-                    <div />
+                    <div className="pay-hide-mob" />
                     <div className="pay-timer-wrapper" style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: "flex-end" }}>
                         <span className="pay-timer-text" style={{ 
                             fontFamily: H, 
@@ -795,10 +795,11 @@ export default function Payment() {
                     .pay-content-inner { margin-top: 20px !important; }
                     .pay-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
                     .pay-sidebar { position: static !important; }
+                    .pay-hide-mob { display: none !important; }
                     
                     /* Adjust card layout for mobile */
-                    .pay-grid > div:first-child { order: 2; }
-                    .pay-sidebar { order: 1; }
+                    .pay-grid > div:first-child { order: 1 !important; }
+                    .pay-sidebar { order: 2 !important; }
                 }
             `}</style>
 
