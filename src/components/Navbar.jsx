@@ -263,7 +263,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
               background-color: rgba(255, 255, 255, 1) !important;
               backdrop-filter: blur(20px) !important;
               -webkit-backdrop-filter: blur(20px) !important;
-              border-bottom: 1px solid #e2e8f0 !important;
+              border-bottom: 1.5px solid #cbd5e1 !important;
               box-shadow: none !important;
             }
             .mobile-nav-solid .nav-logo { color: ${RED} !important; }

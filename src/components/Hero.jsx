@@ -648,7 +648,7 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
     @media (max-width: 900px) {
       .hero-section { margin-top: 0 !important; padding-bottom: 40px; background: #fdfdfd !important; }
       .search-ribbon-v2 { 
-        padding: 90px 16px 20px !important; 
+        padding: 70px 16px 20px !important; 
         background: transparent !important; 
         background-image: none !important;
       }
