@@ -700,10 +700,12 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         min-width: 0 !important; /* Allow flex children to shrink */
       }
 
-      /* 1. Vehicle Category (Full width) - Add top radius */
+      /* 1. Vehicle Category (Full width) - Add top radius and overlap border */
       .search-col:nth-child(1) { 
         grid-column: 1 / 3 !important; 
         border-radius: 20px 20px 0 0 !important;
+        margin: -1px -1px 0 -1px !important;
+        width: calc(100% + 2px) !important;
       }
       
       /* 2. Date (Full width) */
