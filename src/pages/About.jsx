@@ -103,10 +103,23 @@ const About = () => {
                     box-shadow: 0 30px 60px rgba(0,0,0,0.08);
                     border-color: ${RED}22;
                 }
+
+                @media (max-width: 900px) {
+                    .about-hero { padding: 80px 20px 40px !important; }
+                    .about-hero h1 { fontSize: 38px !important; }
+                    .about-hero p { fontSize: 14px !important; }
+                    .about-section { padding: 0 20px !important; }
+                    .leader-row { flex-direction: column !important; gap: 20px !important; }
+                    .leader-img { width: 100% !important; height: 350px !important; }
+                    .cta-card { padding: 60px 24px !important; border-radius: 24px !important; }
+                    .cta-card h2 { fontSize: 32px !important; }
+                    .cta-card p { fontSize: 15px !important; }
+                    .cta-btn { width: 100% !important; padding: 18px 24px !important; }
+                }
              `}</style>
 
              {/* HERO SECTION */}
-             <div style={{ 
+             <div className="about-hero" style={{ 
                 padding: "120px 24px 60px", 
                 background: "#000000", 
                 color: "#fff", 
@@ -154,7 +167,7 @@ const About = () => {
              </div>
 
              {/* OUR STORY / MISSION */}
-             <section style={{ padding: "0 24px", width: "100%" }}>
+             <section className="about-section" style={{ padding: "0 24px", width: "100%" }}>
                 <div style={{ padding: "40px 0 0", maxWidth: "1250px", margin: "0 auto", textAlign: "left" }}>
                     {/* ABOUT US */}
                     <div className="animate-box">
@@ -185,8 +198,8 @@ const About = () => {
                             Our Leaders
                         </h2>
                         
-                        <div style={{ display: "flex", gap: "30px", marginBottom: "40px", alignItems: "flex-start" }}>
-                            <div style={{ width: "250px", height: "250px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
+                        <div className="leader-row" style={{ display: "flex", gap: "30px", marginBottom: "40px", alignItems: "flex-start" }}>
+                            <div className="leader-img" style={{ width: "250px", height: "250px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
                                 <img src="/founder_ceo.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} alt="Founder & CEO" />
                             </div>
                             <div>
@@ -214,8 +227,8 @@ const About = () => {
                             </div>
                         </div>
 
-                        <div style={{ display: "flex", gap: "30px", alignItems: "flex-start" }}>
-                            <div style={{ width: "250px", height: "250px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
+                        <div className="leader-row" style={{ display: "flex", gap: "30px", alignItems: "flex-start" }}>
+                            <div className="leader-img" style={{ width: "250px", height: "250px", borderRadius: "0", background: "#f0f0f0", flexShrink: 0, overflow: 'hidden', border: "none" }}>
                             <img src="/co_founder.png" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }} alt="Co-Founder" />
                             </div>
                             <div>
@@ -270,7 +283,7 @@ const About = () => {
 
              {/* CTA */}
              <div style={{ padding: "0 40px 100px" }}>
-                 <div style={{ 
+                 <div className="cta-card" style={{ 
                     maxWidth: "1250px", 
                     margin: "0 auto", 
                     background: "#000000", 
@@ -286,6 +299,7 @@ const About = () => {
                         Join thousands of smart riders in Bhubaneswar who choose roadMate for their daily commute and weekend trips.
                     </p>
                     <button 
+                        className="cta-btn"
                         onClick={() => window.location.href = "/"}
                         style={{ 
                             background: RED, 
