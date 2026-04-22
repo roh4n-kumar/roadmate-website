@@ -152,8 +152,8 @@ const MyBookings = () => {
           .mb-content { padding: 16px 0 40px !important; }
           .mb-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
           .mb-title-main { font-size: 20px !important; }
-          .mb-tabs { gap: 12px !important; justify-content: center !important; }
-          .mb-tab { font-size: 13px !important; flex: none !important; }
+          .mb-tabs { gap: 16px !important; justify-content: center !important; }
+          .mb-tab { font-size: 12px !important; flex: none !important; }
         }
       `}</style>
 
@@ -174,7 +174,7 @@ const MyBookings = () => {
                 onClick={() => setActiveTab(tab)}
               >
                 {tab}
-                <span style={{ marginLeft: "8px", opacity: 0.5, fontSize: "11px", background: activeTab === tab ? `${RED}15` : "rgba(15,23,42,0.05)", padding: "2px 8px", borderRadius: "99px" }}>
+                <span style={{ marginLeft: "6px", opacity: 0.5, fontSize: "10px", background: activeTab === tab ? `${RED}15` : "rgba(15,23,42,0.05)", padding: "2px 6px", borderRadius: "99px" }}>
                   {tab === "upcoming" ? upcoming.length : tab === "completed" ? completed.length : cancelled.length}
                 </span>
                 {activeTab === tab && <motion.div layoutId="mb-tab-indicator" className="mb-tab-indicator" />}
