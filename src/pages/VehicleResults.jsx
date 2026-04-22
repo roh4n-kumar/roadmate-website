@@ -490,15 +490,19 @@ export default function VehicleResults() {
             gap: 10px !important;
           }
           .vr-helmet-submenu, .vr-helmet-submenu-l2 {
-            position: relative !important;
-            left: 0 !important;
+            position: absolute !important;
+            left: auto !important;
+            right: 100% !important; /* Open to the left on mobile */
             top: 0 !important;
-            margin: 8px 0 !important;
-            width: 100% !important;
-            box-shadow: none !important;
+            margin: 0 !important;
+            margin-right: 8px !important;
+            width: auto !important;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
             border: 1px solid #f1f5f9 !important;
             display: block !important;
           }
+          .vr-helmet-submenu { width: 140px !important; }
+          .vr-helmet-submenu-l2 { width: 60px !important; }
           .vr-subheader-actions button, .vr-subheader-actions > div {
             padding: 6px 12px !important;
             font-size: 11px !important;
