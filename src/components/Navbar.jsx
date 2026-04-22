@@ -534,6 +534,9 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     .drawer-content-scroll::-webkit-scrollbar-thumb:hover {
                       background: rgba(15, 23, 42, 0.2);
                     }
+                    @media (max-width: 600px) {
+                      .drawer-logout-wrapper { margin-top: 20px !important; }
+                    }
                   `}</style>
                   <div 
                     style={{ 
@@ -541,7 +544,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                       flexDirection: "column", 
                       gap: "0", 
                       overflowY: "auto", 
-                      paddingBottom: "30px",
+                      paddingBottom: "100px",
                       WebkitOverflowScrolling: "touch",
                       overscrollBehavior: "contain",
                       scrollBehavior: "smooth",
@@ -609,7 +612,7 @@ const Navbar = ({ isDrawerOpen: externalDrawerOpen, setIsDrawerOpen: externalSet
                     </div>
 
                    {isLoggedIn && (
-                     <div style={{ marginTop: "40px", padding: "10px 25px 20px" }}>
+                     <div className="drawer-logout-wrapper" style={{ marginTop: "40px", padding: "10px 25px 20px" }}>
                        <button
                          onClick={handleLogout}
                          onMouseEnter={() => setIsLogoutHovered(true)}
