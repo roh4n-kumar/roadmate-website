@@ -88,7 +88,7 @@ const Footer = () => {
           @media (max-width: 900px) {
             .footer-main-row {
               flex-direction: column !important;
-              gap: 15px !important;
+              gap: 0px !important;
               align-items: center !important;
               text-align: center !important;
             }
@@ -103,6 +103,7 @@ const Footer = () => {
             .brand-column {
               align-items: center !important;
               max-width: 100% !important;
+              flex: none !important;
             }
             .brand-column p {
               margin-bottom: 0px !important;
