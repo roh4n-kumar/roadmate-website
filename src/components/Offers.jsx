@@ -219,8 +219,9 @@ const Offers = () => {
               gap: 15px !important; 
             }
             .title-area {
-              flex-wrap: wrap !important;
-              gap: 10px !important;
+              flex-direction: column-reverse !important;
+              align-items: flex-start !important;
+              gap: 8px !important;
             }
             .main-heading { font-size: 26px !important; line-height: 1.1 !important; }
             .title-pill { padding: 6px 12px !important; font-size: 10px !important; }
