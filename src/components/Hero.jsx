@@ -700,23 +700,28 @@ const Hero = ({ isDrawerOpen, setIsDrawerOpen }) => {
         min-width: 0 !important; /* Allow flex children to shrink */
       }
 
-      /* 1. Vehicle Category (Full width) */
-      .search-col:nth-child(1) { grid-column: 1 / 3 !important; }
+      /* 1. Vehicle Category (Full width) - Add top radius */
+      .search-col:nth-child(1) { 
+        grid-column: 1 / 3 !important; 
+        border-radius: 20px 20px 0 0 !important;
+      }
       
       /* 2. Date (Full width) */
       .search-col:nth-child(2) { grid-column: 1 / 3 !important; }
       
-      /* 3. Pickup Time (Left) */
+      /* 3. Pickup Time (Left) - Add bottom-left radius */
       .search-col:nth-child(3) { 
         grid-column: 1 / 2 !important; 
         border-bottom: none !important;
         border-right: 1px solid #cbd5e1 !important;
+        border-radius: 0 0 0 20px !important;
       }
       
-      /* 4. Drop Time (Right) */
+      /* 4. Drop Time (Right) - Add bottom-right radius */
       .search-col:nth-child(4) { 
         grid-column: 2 / 3 !important; 
         border-bottom: none !important;
+        border-radius: 0 0 20px 0 !important;
       }
 
       /* The swap icon between Pickup and Return Time */
