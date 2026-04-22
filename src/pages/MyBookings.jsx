@@ -135,20 +135,25 @@ const MyBookings = () => {
 
         @media (max-width: 1000px) {
            .mb-inner { flex-direction: column; align-items: flex-start; height: auto; padding: 16px 0 0 0; gap: 12px; }
-           .mb-ribbon { height: auto !important; }
-           .mb-tabs { height: 44px !important; width: 100%; overflow: visible; display: flex; justify-content: space-between; }
+           .mb-ribbon { height: auto !important; border-bottom: none !important; }
+           .mb-header-left { padding: 0 16px !important; }
+           .mb-tabs { 
+             height: 52px !important; width: 100%; overflow: visible; display: flex; justify-content: space-between; 
+             border-bottom: 1.5px solid rgba(15, 23, 42, 0.25) !important;
+             padding: 0 16px !important;
+           }
            .mb-tabs::-webkit-scrollbar { display: none; }
         }
         
         @media (max-width: 900px) {
           .mb-page { padding-top: 60px !important; }
-          .mb-ribbon { top: 60px !important; padding: 0 16px !important; }
+          .mb-ribbon { top: 60px !important; padding: 0 !important; }
           .mb-content-wrapper { padding: 0 16px !important; }
           .mb-content { padding: 16px 0 40px !important; }
           .mb-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
           .mb-title-main { font-size: 20px !important; }
           .mb-tabs { gap: 0 !important; }
-          .mb-tab { font-size: 10px !important; flex: 1; justify-content: center; }
+          .mb-tab { font-size: 14px !important; flex: 1; justify-content: center; }
         }
       `}</style>
 
